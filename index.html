@@ -124,6 +124,8 @@
             margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 2px solid #e2e8f0;
+            cursor: move;
+            user-select: none;
         }
 
         .panel-title {
@@ -483,8 +485,51 @@
             };
             openPanels.push(panelInfo);
 
+            // Make panel draggable
+            makeDraggable(panel);
+
             // Create chart
             updatePanelChart(panelInfo);
+        }
+
+        function makeDraggable(panel) {
+            const header = panel.querySelector('.panel-header');
+            let isDragging = false;
+            let currentX;
+            let currentY;
+            let initialX;
+            let initialY;
+
+            header.addEventListener('mousedown', (e) => {
+                // Don't drag if clicking the close button
+                if (e.target.classList.contains('close-button') ||
+                    e.target.closest('.close-button')) {
+                    return;
+                }
+
+                isDragging = true;
+                initialX = e.clientX - panel.offsetLeft;
+                initialY = e.clientY - panel.offsetTop;
+                panel.style.zIndex = 1000; // Bring to front
+            });
+
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+
+                e.preventDefault();
+                currentX = e.clientX - initialX;
+                currentY = e.clientY - initialY;
+
+                panel.style.left = currentX + 'px';
+                panel.style.top = currentY + 'px';
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    panel.style.zIndex = 999; // Reset z-index
+                }
+            });
         }
 
         function updatePanelChart(panelInfo) {
