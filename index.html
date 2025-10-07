@@ -215,6 +215,48 @@
             font-size: 14px;
         }
 
+        /* Map controls */
+        .map-controls {
+            position: absolute;
+            top: 120px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .map-controls button {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .map-controls button:last-child {
+            margin-bottom: 0;
+        }
+
+        .map-controls button.active {
+            background: #4299e1;
+            border-color: #4299e1;
+            color: white;
+        }
+
+        .map-controls button:hover:not(.active) {
+            border-color: #4299e1;
+            color: #4299e1;
+        }
+
         /* Loading indicator */
         .loading {
             position: absolute;
@@ -276,6 +318,12 @@
         Click on any county to view detected plant and animal species. Use the timeline slider to explore different months. Multiple counties can be viewed simultaneously.
     </div>
 
+    <!-- Map controls -->
+    <div class="map-controls">
+        <button id="topoButton" class="active" onclick="switchMapView('topo')">Topology</button>
+        <button id="heatmapButton" onclick="switchMapView('heatmap')">Heatmap</button>
+    </div>
+
     <!-- Map container -->
     <div id="map"></div>
 
@@ -295,9 +343,11 @@
         let map;
         let foodseqData;
         let countiesLayer;
+        let countiesGeoJSON;
         let currentTimeIndex = 0;
         let openPanels = [];
         let plantMarkers = [];
+        let currentMapView = 'topo';
 
         // Month names for display
         const monthNames = [
@@ -315,7 +365,7 @@
                 ]);
 
                 foodseqData = await foodseqResponse.json();
-                const countiesGeoJSON = await countiesResponse.json();
+                countiesGeoJSON = await countiesResponse.json();
 
                 // Hide loading indicator
                 document.getElementById('loading').style.display = 'none';
@@ -345,54 +395,6 @@
                 attribution: '© OpenStreetMap contributors',
                 maxZoom: 19
             }).addTo(map);
-
-            // Style function for counties
-            function countyStyle(feature) {
-                return {
-                    fillColor: '#ffffff',
-                    weight: 2,
-                    opacity: 1,
-                    color: '#4299e1',
-                    fillOpacity: 0.3
-                };
-            }
-
-            // Highlight on hover
-            function highlightFeature(e) {
-                const layer = e.target;
-                layer.setStyle({
-                    weight: 3,
-                    color: '#2b6cb0',
-                    fillOpacity: 0.5
-                });
-                layer.bringToFront();
-            }
-
-            function resetHighlight(e) {
-                countiesLayer.resetStyle(e.target);
-            }
-
-            // Click handler for counties
-            function onCountyClick(e) {
-                const county = e.target.feature;
-                const countyName = getCountyName(county);
-
-                // Find plant in this county
-                const plant = findPlantByCounty(countyName);
-
-                if (plant) {
-                    openDataPanel(plant, e.latlng);
-                }
-            }
-
-            // Add event listeners
-            function onEachFeature(feature, layer) {
-                layer.on({
-                    mouseover: highlightFeature,
-                    mouseout: resetHighlight,
-                    click: onCountyClick
-                });
-            }
 
             // Add counties layer
             countiesLayer = L.geoJSON(countiesGeoJSON, {
@@ -664,6 +666,127 @@
         function updateAllPanels() {
             openPanels.forEach(panelInfo => {
                 updatePanelChart(panelInfo);
+            });
+        }
+
+        function switchMapView(view) {
+            currentMapView = view;
+
+            // Update button states
+            document.getElementById('topoButton').classList.toggle('active', view === 'topo');
+            document.getElementById('heatmapButton').classList.toggle('active', view === 'heatmap');
+
+            // Remove existing counties layer
+            if (countiesLayer) {
+                map.removeLayer(countiesLayer);
+            }
+
+            if (view === 'topo') {
+                // Show topology view with county boundaries
+                countiesLayer = L.geoJSON(countiesGeoJSON, {
+                    style: countyStyle,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+            } else {
+                // Show heatmap view
+                countiesLayer = L.geoJSON(countiesGeoJSON, {
+                    style: getHeatmapStyle,
+                    onEachFeature: onEachFeature
+                }).addTo(map);
+            }
+        }
+
+        function countyStyle(feature) {
+            return {
+                fillColor: '#ffffff',
+                weight: 2,
+                opacity: 1,
+                color: '#4299e1',
+                fillOpacity: 0.3
+            };
+        }
+
+        function getHeatmapStyle(feature) {
+            // Calculate population density based on county
+            const density = getPopulationDensity(feature);
+            return {
+                fillColor: getColor(density),
+                weight: 1,
+                opacity: 1,
+                color: '#ffffff',
+                fillOpacity: 0.7
+            };
+        }
+
+        function getPopulationDensity(feature) {
+            // Simulated population density data for NC counties
+            // In a real implementation, this would come from actual census data
+            const countyName = feature.properties.NAME || feature.properties.name;
+
+            // High density counties (urban areas)
+            const highDensity = ['Mecklenburg', 'Wake', 'Durham', 'Guilford', 'Forsyth'];
+            // Medium density
+            const mediumDensity = ['Cumberland', 'Gaston', 'New Hanover', 'Cabarrus', 'Union', 'Orange', 'Buncombe'];
+
+            if (highDensity.includes(countyName)) {
+                return 1000 + Math.random() * 500; // 1000-1500
+            } else if (mediumDensity.includes(countyName)) {
+                return 400 + Math.random() * 300; // 400-700
+            } else {
+                return 50 + Math.random() * 200; // 50-250
+            }
+        }
+
+        function getColor(density) {
+            // Color scale from light yellow to dark red
+            return density > 1000 ? '#800026' :
+                   density > 700  ? '#BD0026' :
+                   density > 500  ? '#E31A1C' :
+                   density > 400  ? '#FC4E2A' :
+                   density > 300  ? '#FD8D3C' :
+                   density > 200  ? '#FEB24C' :
+                   density > 100  ? '#FED976' :
+                                    '#FFEDA0';
+        }
+
+        function highlightFeature(e) {
+            const layer = e.target;
+            if (currentMapView === 'topo') {
+                layer.setStyle({
+                    weight: 3,
+                    color: '#2b6cb0',
+                    fillOpacity: 0.5
+                });
+            } else {
+                layer.setStyle({
+                    weight: 3,
+                    color: '#2b6cb0'
+                });
+            }
+            layer.bringToFront();
+        }
+
+        function resetHighlight(e) {
+            countiesLayer.resetStyle(e.target);
+        }
+
+        function onCountyClick(e) {
+            const county = e.target.feature;
+            const countyName = getCountyName(county);
+
+            // Find plant in this county
+            const plant = findPlantByCounty(countyName);
+
+            if (plant) {
+                openDataPanel(plant, e.latlng);
+            }
+        }
+
+        function onEachFeature(feature, layer) {
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: onCountyClick
             });
         }
 
