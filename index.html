@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NC FoodSeq Wastewater Visualization</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow: hidden;
+        }
+
+        #map {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        /* Title overlay */
+        .title-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            text-align: center;
+        }
+
+        .title-container h1 {
+            font-size: 24px;
+            color: #1a365d;
+            margin-bottom: 5px;
+        }
+
+        .title-container p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Timeline slider */
+        .timeline-container {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 60%;
+            min-width: 400px;
+        }
+
+        .timeline-label {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 10px;
+        }
+
+        .timeline-slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, #e2e8f0, #4299e1);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .timeline-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2b6cb0;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #2b6cb0;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Data panel */
+        .data-panel {
+            position: absolute;
+            z-index: 999;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 450px;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        .close-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .close-button:hover {
+            background: #e2e8f0;
+        }
+
+        .tab-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-button.active {
+            background: #4299e1;
+            border-color: #4299e1;
+            color: white;
+        }
+
+        .tab-button:hover:not(.active) {
+            border-color: #4299e1;
+            color: #4299e1;
+        }
+
+        .chart-container {
+            margin-top: 15px;
+        }
+
+        canvas {
+            max-height: 400px;
+        }
+
+        /* Instructions */
+        .instructions {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 250px;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #4a5568;
+        }
+
+        .instructions strong {
+            color: #1a365d;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        /* Loading indicator */
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: white;
+            padding: 30px 50px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .loading-spinner {
+            border: 4px solid #e2e8f0;
+            border-top: 4px solid #4299e1;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Custom Leaflet styles */
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+        }
+
+        .plant-marker {
+            background-color: #48bb78;
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading indicator -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <div>Loading FoodSeq data...</div>
+    </div>
+
+    <!-- Title -->
+    <div class="title-container">
+        <h1>NC FoodSeq Wastewater Monitoring</h1>
+        <p>Interactive Dietary Species Detection Across North Carolina</p>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions">
+        <strong>How to use:</strong>
+        Click on any county to view detected plant and animal species. Use the timeline slider to explore different months. Multiple counties can be viewed simultaneously.
+    </div>
+
+    <!-- Map container -->
+    <div id="map"></div>
+
+    <!-- Timeline slider -->
+    <div class="timeline-container">
+        <div class="timeline-label" id="timelineLabel">January 2024</div>
+        <input type="range" min="0" max="11" value="0" class="timeline-slider" id="timelineSlider">
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+    <script>
+        // Global variables
+        let map;
+        let foodseqData;
+        let countiesLayer;
+        let currentTimeIndex = 0;
+        let openPanels = [];
+        let plantMarkers = [];
+
+        // Month names for display
+        const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June',
+            'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        // Initialize the application
+        async function init() {
+            try {
+                // Load data
+                const [foodseqResponse, countiesResponse] = await Promise.all([
+                    fetch('data/foodseq_data.json'),
+                    fetch('data/nc_counties.geojson')
+                ]);
+
+                foodseqData = await foodseqResponse.json();
+                const countiesGeoJSON = await countiesResponse.json();
+
+                // Hide loading indicator
+                document.getElementById('loading').style.display = 'none';
+
+                // Initialize map
+                initMap(countiesGeoJSON);
+
+                // Initialize timeline
+                initTimeline();
+
+                // Add plant markers
+                addPlantMarkers();
+
+            } catch (error) {
+                console.error('Error loading data:', error);
+                document.getElementById('loading').innerHTML =
+                    '<div style="color: #e53e3e;">Error loading data. Please check console.</div>';
+            }
+        }
+
+        function initMap(countiesGeoJSON) {
+            // Create map centered on NC
+            map = L.map('map').setView([35.5, -79.5], 7);
+
+            // Add base map
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+
+            // Style function for counties
+            function countyStyle(feature) {
+                return {
+                    fillColor: '#ffffff',
+                    weight: 2,
+                    opacity: 1,
+                    color: '#4299e1',
+                    fillOpacity: 0.3
+                };
+            }
+
+            // Highlight on hover
+            function highlightFeature(e) {
+                const layer = e.target;
+                layer.setStyle({
+                    weight: 3,
+                    color: '#2b6cb0',
+                    fillOpacity: 0.5
+                });
+                layer.bringToFront();
+            }
+
+            function resetHighlight(e) {
+                countiesLayer.resetStyle(e.target);
+            }
+
+            // Click handler for counties
+            function onCountyClick(e) {
+                const county = e.target.feature;
+                const countyName = getCountyName(county);
+
+                // Find plant in this county
+                const plant = findPlantByCounty(countyName);
+
+                if (plant) {
+                    openDataPanel(plant, e.latlng);
+                }
+            }
+
+            // Add event listeners
+            function onEachFeature(feature, layer) {
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight,
+                    click: onCountyClick
+                });
+            }
+
+            // Add counties layer
+            countiesLayer = L.geoJSON(countiesGeoJSON, {
+                style: countyStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        }
+
+        function addPlantMarkers() {
+            // Add markers for each treatment plant
+            Object.keys(foodseqData.plants).forEach(plantId => {
+                const plant = foodseqData.plants[plantId];
+
+                const marker = L.circleMarker([plant.lat, plant.lng], {
+                    radius: 8,
+                    fillColor: '#48bb78',
+                    color: '#ffffff',
+                    weight: 3,
+                    opacity: 1,
+                    fillOpacity: 0.9
+                }).addTo(map);
+
+                marker.bindPopup(`<strong>${plant.name}</strong><br>${plant.county} County`);
+
+                marker.on('click', (e) => {
+                    openDataPanel(plant, e.latlng);
+                });
+
+                plantMarkers.push(marker);
+            });
+        }
+
+        function getCountyName(countyFeature) {
+            // Extract county name from GeoJSON properties
+            // This might need adjustment based on actual GeoJSON structure
+            return countyFeature.properties.NAME || countyFeature.properties.name;
+        }
+
+        function findPlantByCounty(countyName) {
+            // Find a plant in the specified county
+            for (let plantId in foodseqData.plants) {
+                const plant = foodseqData.plants[plantId];
+                if (plant.county === countyName) {
+                    return plant;
+                }
+            }
+            return null;
+        }
+
+        function openDataPanel(plant, latlng) {
+            // Check if panel already exists for this plant
+            const existingPanel = openPanels.find(p => p.plant === plant);
+            if (existingPanel) {
+                return; // Panel already open
+            }
+
+            // Create panel element
+            const panel = document.createElement('div');
+            panel.className = 'data-panel';
+
+            // Calculate position
+            const point = map.latLngToContainerPoint(latlng);
+            const offset = openPanels.length * 30; // Cascade panels
+            panel.style.left = (point.x + 20 + offset) + 'px';
+            panel.style.top = (point.y + offset) + 'px';
+
+            // Panel HTML
+            panel.innerHTML = `
+                <div class="panel-header">
+                    <div class="panel-title">${plant.name}</div>
+                    <button class="close-button" onclick="closePanel(this)">×</button>
+                </div>
+                <div class="tab-container">
+                    <button class="tab-button active" onclick="switchTab(this, 'plants')">Plants</button>
+                    <button class="tab-button" onclick="switchTab(this, 'animals')">Animals</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="chart-${plant.name.replace(/\s/g, '-')}"></canvas>
+                </div>
+            `;
+
+            document.body.appendChild(panel);
+
+            // Store panel info
+            const panelInfo = {
+                panel: panel,
+                plant: plant,
+                currentTab: 'plants',
+                chart: null
+            };
+            openPanels.push(panelInfo);
+
+            // Create chart
+            updatePanelChart(panelInfo);
+        }
+
+        function updatePanelChart(panelInfo) {
+            const canvas = panelInfo.panel.querySelector('canvas');
+            const ctx = canvas.getContext('2d');
+
+            // Get data for current time and tab
+            const date = foodseqData.dates[currentTimeIndex];
+            const timeseriesData = panelInfo.plant.timeseries[date];
+            const speciesData = timeseriesData[panelInfo.currentTab];
+
+            // Sort species by abundance and take top 25
+            const sortedSpecies = Object.entries(speciesData)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 25);
+
+            const labels = sortedSpecies.map(([species, _]) =>
+                foodseqData.species_metadata[species] || species
+            );
+            const values = sortedSpecies.map(([_, abundance]) => abundance);
+
+            // Destroy existing chart if it exists
+            if (panelInfo.chart) {
+                panelInfo.chart.destroy();
+            }
+
+            // Create new chart
+            panelInfo.chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Abundance',
+                        data: values,
+                        backgroundColor: panelInfo.currentTab === 'plants'
+                            ? 'rgba(72, 187, 120, 0.8)'
+                            : 'rgba(66, 153, 225, 0.8)',
+                        borderColor: panelInfo.currentTab === 'plants'
+                            ? 'rgba(72, 187, 120, 1)'
+                            : 'rgba(66, 153, 225, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: `Top 25 ${panelInfo.currentTab === 'plants' ? 'Plant' : 'Animal'} Species`,
+                            font: {
+                                size: 16,
+                                weight: 'bold'
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Abundance'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Set canvas height
+            canvas.style.height = '400px';
+        }
+
+        function closePanel(button) {
+            const panel = button.closest('.data-panel');
+            const panelIndex = openPanels.findIndex(p => p.panel === panel);
+
+            if (panelIndex !== -1) {
+                // Destroy chart
+                if (openPanels[panelIndex].chart) {
+                    openPanels[panelIndex].chart.destroy();
+                }
+                // Remove from array
+                openPanels.splice(panelIndex, 1);
+            }
+
+            panel.remove();
+        }
+
+        function switchTab(button, tab) {
+            const panel = button.closest('.data-panel');
+            const panelInfo = openPanels.find(p => p.panel === panel);
+
+            if (!panelInfo) return;
+
+            // Update tab buttons
+            panel.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            button.classList.add('active');
+
+            // Update panel tab
+            panelInfo.currentTab = tab;
+
+            // Update chart
+            updatePanelChart(panelInfo);
+        }
+
+        function initTimeline() {
+            const slider = document.getElementById('timelineSlider');
+            const label = document.getElementById('timelineLabel');
+
+            slider.addEventListener('input', (e) => {
+                currentTimeIndex = parseInt(e.target.value);
+                updateTimelineLabel();
+                updateAllPanels();
+            });
+
+            updateTimelineLabel();
+        }
+
+        function updateTimelineLabel() {
+            const label = document.getElementById('timelineLabel');
+            const date = foodseqData.dates[currentTimeIndex];
+            const [year, month] = date.split('-');
+            label.textContent = `${monthNames[parseInt(month) - 1]} ${year}`;
+        }
+
+        function updateAllPanels() {
+            openPanels.forEach(panelInfo => {
+                updatePanelChart(panelInfo);
+            });
+        }
+
+        // Start the application
+        init();
+    </script>
+</body>
+</html>

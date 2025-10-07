@@ -33,12 +33,15 @@ MVP needed ASAP for collaborator demonstration
 
 ### File Organization
 ```
-wastewater/
+wastewater/src/
 ├── index.html                  # Main application (self-contained)
 ├── data/
 │   ├── foodseq_data.json      # Main species abundance data
 │   ├── nc_counties.geojson    # NC county boundaries
 │   └── plant_locations.json   # Treatment plant coordinates
+├── venv/                       # Python virtual environment (local)
+├── generate_toy_data.py        # Data generation script
+├── .gitignore                  # Git ignore file
 └── DESIGN.md                   # This document
 ```
 
@@ -142,6 +145,28 @@ Standard GeoJSON with NC county polygons (100 counties)
 - Weekly/daily temporal resolution
 - Species detail pages with ecological info
 - Animation mode (auto-play through timeline)
+
+---
+
+## Setup Instructions
+
+### Python Environment Setup
+```bash
+# Create virtual environment (in project folder)
+python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate  # On Mac/Linux
+# or
+venv\Scripts\activate  # On Windows
+
+# Install dependencies (once created)
+pip install -r requirements.txt
+```
+
+### Running the Application
+1. Generate toy data: `python generate_toy_data.py`
+2. Open `index.html` in your browser
 
 ---
 

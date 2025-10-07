@@ -1,0 +1,163 @@
+# NC FoodSeq Wastewater Visualization
+
+Interactive web-based visualization of FoodSeq data from 39 wastewater treatment plants across North Carolina.
+
+![NC FoodSeq Demo](https://img.shields.io/badge/status-MVP-green)
+
+## Overview
+
+This tool enables exploration of plant and animal species detected in wastewater treatment plants across North Carolina. Users can click on counties to view the most abundant species and scrub through time to see temporal patterns.
+
+## Features
+
+- **Interactive Map**: Click on NC counties or treatment plant markers to view data
+- **Dual Species Views**: Toggle between plant and animal species detection
+- **Top 25 Display**: Bar charts showing the most abundant species
+- **Temporal Navigation**: Slider to explore 12 months of data
+- **Multi-Panel**: View multiple counties simultaneously for comparison
+- **Responsive Design**: Professional appearance suitable for presentations
+
+## Quick Start
+
+### 1. Generate Data
+
+```bash
+# Activate virtual environment
+source venv/bin/activate
+
+# Generate toy FoodSeq data
+python3 generate_toy_data.py
+```
+
+### 2. View Visualization
+
+Start a local web server (required to avoid CORS issues):
+
+```bash
+# Start server
+python3 -m http.server 8000
+
+# Open in browser
+open http://localhost:8000/index.html
+```
+
+Or visit `http://localhost:8000/index.html` in your browser.
+
+## Data
+
+### Toy Dataset
+
+The current implementation uses synthetic data including:
+- **39 wastewater treatment plants** across NC
+- **162 plant species** (crops, fruits, vegetables, nuts, herbs)
+- **66 animal species** (livestock, fish, shellfish)
+- **12 monthly time points** (2024)
+
+### Real Data Integration
+
+To use real FoodSeq data, modify `generate_toy_data.py` or create a new conversion script that outputs JSON in the following format:
+
+```json
+{
+  "dates": ["2024-01", "2024-02", ...],
+  "plants": {
+    "plant_001": {
+      "name": "Durham WWTP",
+      "lat": 35.99,
+      "lng": -78.90,
+      "county": "Durham",
+      "timeseries": {
+        "2024-01": {
+          "plants": {"Species name": abundance, ...},
+          "animals": {"Species name": abundance, ...}
+        }
+      }
+    }
+  },
+  "species_metadata": {
+    "Scientific name": "Common name"
+  }
+}
+```
+
+## Project Structure
+
+```
+wastewater/src/
+├── index.html                  # Main visualization (single-file app)
+├── data/
+│   ├── foodseq_data.json      # Species abundance data
+│   └── nc_counties.geojson    # NC county boundaries
+├── generate_toy_data.py        # Data generation script
+├── create_nc_geojson.py        # GeoJSON filter script
+├── venv/                       # Python virtual environment
+├── DESIGN.md                   # Detailed design documentation
+└── README.md                   # This file
+```
+
+## Technology Stack
+
+- **Leaflet.js** - Interactive mapping
+- **Chart.js** - Data visualization
+- **Vanilla JavaScript** - Application logic
+- **Python** - Data generation/processing
+
+No build tools or server required - runs entirely in the browser!
+
+## Usage
+
+1. **View County Data**: Click on any NC county or treatment plant marker
+2. **Switch Species Type**: Use the "Plants" / "Animals" tabs in the panel
+3. **Compare Counties**: Click multiple counties to open multiple panels
+4. **Navigate Time**: Use the timeline slider at the bottom
+5. **Close Panels**: Click the × button on any panel
+
+## Development
+
+### Setup
+
+```bash
+# Create virtual environment
+python3 -m venv venv
+
+# Activate it
+source venv/bin/activate  # Mac/Linux
+# or
+venv\Scripts\activate     # Windows
+
+# Install dependencies (if needed)
+pip install -r requirements.txt
+```
+
+### Regenerate Data
+
+```bash
+python3 generate_toy_data.py
+```
+
+This will overwrite `data/foodseq_data.json` with fresh synthetic data.
+
+## Future Enhancements
+
+- [ ] Real FoodSeq data integration
+- [ ] Side-by-side county comparison
+- [ ] Species search and filtering
+- [ ] Data export functionality
+- [ ] Heatmap view of diversity
+- [ ] Animation mode for temporal visualization
+- [ ] Multiple plants per county
+- [ ] Weekly/daily temporal resolution
+
+## Credits
+
+**Principal Investigator**: Lawrence David, Duke University
+**Lab**: [The David Lab](https://www.ladlab.org/)
+**Technology**: FoodSeq - DNA-based dietary tracking
+
+## License
+
+Research use only. Contact the David Lab for collaboration opportunities.
+
+---
+
+*For detailed design decisions and implementation notes, see [DESIGN.md](DESIGN.md)*
