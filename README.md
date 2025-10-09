@@ -55,6 +55,26 @@ The current implementation uses synthetic data including:
 
 ### Real Data Integration
 
+#### Data Processing Pipeline
+
+Real FoodSeq data is processed from phyloseq format (RDS file) to JSON using an R script:
+
+**Input**: `data/raw/NCWW_allsamples_02142025.rds` (phyloseq object)
+**Output**: `data/processed/foodseq_data.json`
+**Script**: `data/scripts/01_convert_phyloseq_to_json.R`
+
+**Design Decisions**:
+1. **Missing coordinates**: Use county centroid as fallback for treatment plants without lat/long
+2. **Sample aggregation**: Average read counts when multiple samples exist for same location/month
+3. **Normalization**: Apply CLR (Centered Log-Ratio) transformation for compositional data
+4. **Location handling**: Keep all Charlotte treatment plants (1-4) as separate locations
+
+**Species Classification**:
+- **Plants**: Taxa with phylum = "Streptophyta"
+- **Animals**: Taxa with phylum = "Chordata"
+
+#### JSON Format
+
 To use real FoodSeq data, modify `generate_toy_data.py` or create a new conversion script that outputs JSON in the following format:
 
 ```json
