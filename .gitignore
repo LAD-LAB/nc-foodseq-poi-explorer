@@ -26,3 +26,10 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Data - raw data should never be committed
+data/raw/
+*.rds
+*.csv
+*.xlsx
+!data/processed/  # Allow processed/aggregated data
