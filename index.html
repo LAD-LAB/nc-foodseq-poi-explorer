@@ -67,41 +67,62 @@
 
         .timeline-label {
             text-align: center;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: #1a365d;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-selector {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: wrap;
             margin-bottom: 10px;
         }
 
-        .timeline-slider {
-            width: 100%;
-            height: 6px;
-            border-radius: 3px;
-            background: linear-gradient(to right, #e2e8f0, #4299e1);
-            outline: none;
-            -webkit-appearance: none;
-            appearance: none;
+        .time-period-button {
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a5568;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
         }
 
-        .timeline-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #2b6cb0;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        .time-period-button.active {
+            background: #4299e1;
+            border-color: #4299e1;
+            color: white;
         }
 
-        .timeline-slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #2b6cb0;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        .time-period-button.sparse {
+            opacity: 0.6;
+            border-style: dashed;
+        }
+
+        .time-period-button:hover:not(.active) {
+            border-color: #4299e1;
+            color: #4299e1;
+        }
+
+        .time-period-button .location-count {
+            font-size: 10px;
+            opacity: 0.8;
+            display: block;
+        }
+
+        .timeline-info {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-top: 8px;
         }
 
         /* Data panel */
@@ -327,10 +348,13 @@
     <!-- Map container -->
     <div id="map"></div>
 
-    <!-- Timeline slider -->
+    <!-- Timeline selector -->
     <div class="timeline-container">
-        <div class="timeline-label" id="timelineLabel">January 2024</div>
-        <input type="range" min="0" max="11" value="0" class="timeline-slider" id="timelineSlider">
+        <div class="timeline-label">Time Period</div>
+        <div class="timeline-selector" id="timelineSelector">
+            <!-- Buttons will be dynamically generated -->
+        </div>
+        <div class="timeline-info" id="timelineInfo">Loading...</div>
     </div>
 
     <!-- Leaflet JS -->
@@ -344,7 +368,9 @@
         let foodseqData;
         let countiesLayer;
         let countiesGeoJSON;
-        let currentTimeIndex = 0;
+        let populationDensityGeoJSON;
+        let densityLayer;
+        let currentTimeIndex = 8; // Default to June 2021 (last timepoint)
         let openPanels = [];
         let plantMarkers = [];
         let currentMapView = 'topo';
@@ -359,13 +385,17 @@
         async function init() {
             try {
                 // Load data
-                const [foodseqResponse, countiesResponse] = await Promise.all([
+                const [foodseqResponse, countiesResponse, densityResponse] = await Promise.all([
                     fetch('data/foodseq_data.json'),
-                    fetch('data/nc_counties.geojson')
+                    fetch('data/nc_counties.geojson'),
+                    fetch('data/nc_population_density.geojson')
                 ]);
 
                 foodseqData = await foodseqResponse.json();
                 countiesGeoJSON = await countiesResponse.json();
+                populationDensityGeoJSON = await densityResponse.json();
+
+                console.log('Loaded', populationDensityGeoJSON.features.length, 'block groups');
 
                 // Hide loading indicator
                 document.getElementById('loading').style.display = 'none';
@@ -434,10 +464,11 @@
         }
 
         function findPlantByCounty(countyName) {
-            // Find a plant in the specified county
+            // Find a plant in the specified county (case-insensitive match)
+            const countyLower = countyName.toLowerCase();
             for (let plantId in foodseqData.plants) {
                 const plant = foodseqData.plants[plantId];
-                if (plant.county === countyName) {
+                if (plant.county.toLowerCase() === countyLower) {
                     return plant;
                 }
             }
@@ -543,15 +574,48 @@
             const timeseriesData = panelInfo.plant.timeseries[date];
             const speciesData = timeseriesData[panelInfo.currentTab];
 
-            // Sort species by abundance and take top 25
+            // Filter out zero values, sort by abundance, and take top 25
             const sortedSpecies = Object.entries(speciesData)
+                .filter(([species, abundance]) => abundance > 0)
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 25);
 
-            const labels = sortedSpecies.map(([species, _]) =>
-                foodseqData.species_metadata[species] || species
+            // Get labels and prepare color-coding by food group
+            const chartData = sortedSpecies.map(([species, abundance]) => {
+                const metadata = foodseqData.species_metadata[species];
+                return {
+                    label: metadata ? metadata.common_name : species,
+                    value: abundance,
+                    food_group: metadata ? metadata.food_group : 'Other',
+                    category: metadata ? metadata.category : 'Other'
+                };
+            });
+
+            const labels = chartData.map(d => d.label);
+            const values = chartData.map(d => d.value);
+
+            // Color palette by food group
+            const foodGroupColors = {
+                // Plants
+                'Grains': '#E6C966',
+                'GrainsOil': '#C7A248',
+                'VegeBrassica': '#75B256',
+                'VegeAllium': '#A8C982',
+                'VegeGourd': '#9EA54B',
+                'VegeLegume': '#67753C',
+                'Nut': '#967B3A',
+                'Fruit': '#CF6F6A',
+                // Animals
+                'Actinopteri': '#6BBBBE',  // Fish
+                'Aves': '#E4A8A8',          // Birds
+                'Mammalia': '#BC4A46',      // Mammals
+                'Other': '#9BA4B4'
+            };
+
+            // Assign colors based on food group
+            const backgroundColors = chartData.map(d =>
+                foodGroupColors[d.food_group] || foodGroupColors['Other']
             );
-            const values = sortedSpecies.map(([_, abundance]) => abundance);
 
             // Destroy existing chart if it exists
             if (panelInfo.chart) {
@@ -566,12 +630,8 @@
                     datasets: [{
                         label: 'Abundance',
                         data: values,
-                        backgroundColor: panelInfo.currentTab === 'plants'
-                            ? 'rgba(72, 187, 120, 0.8)'
-                            : 'rgba(66, 153, 225, 0.8)',
-                        borderColor: panelInfo.currentTab === 'plants'
-                            ? 'rgba(72, 187, 120, 1)'
-                            : 'rgba(66, 153, 225, 1)',
+                        backgroundColor: backgroundColors,
+                        borderColor: backgroundColors.map(c => c.replace(')', ', 0.8)').replace('rgb', 'rgba')),
                         borderWidth: 1
                     }]
                 },
@@ -644,23 +704,54 @@
         }
 
         function initTimeline() {
-            const slider = document.getElementById('timelineSlider');
-            const label = document.getElementById('timelineLabel');
+            const selector = document.getElementById('timelineSelector');
+            const info = document.getElementById('timelineInfo');
 
-            slider.addEventListener('input', (e) => {
-                currentTimeIndex = parseInt(e.target.value);
-                updateTimelineLabel();
-                updateAllPanels();
+            // Create button for each time period
+            foodseqData.dates.forEach((date, index) => {
+                const periodInfo = foodseqData.time_periods[date];
+                const button = document.createElement('button');
+                button.className = 'time-period-button';
+
+                // Mark sparse periods (< 5 locations)
+                if (periodInfo.n_locations < 5) {
+                    button.classList.add('sparse');
+                }
+
+                // Set active state for default (June 2021)
+                if (index === currentTimeIndex) {
+                    button.classList.add('active');
+                }
+
+                button.innerHTML = `
+                    ${periodInfo.label}
+                    <span class="location-count">${periodInfo.n_locations} locations</span>
+                `;
+
+                button.addEventListener('click', () => {
+                    // Remove active from all buttons
+                    document.querySelectorAll('.time-period-button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+
+                    // Set new active
+                    button.classList.add('active');
+                    currentTimeIndex = index;
+                    updateTimelineInfo();
+                    updateAllPanels();
+                });
+
+                selector.appendChild(button);
             });
 
-            updateTimelineLabel();
+            updateTimelineInfo();
         }
 
-        function updateTimelineLabel() {
-            const label = document.getElementById('timelineLabel');
+        function updateTimelineInfo() {
+            const info = document.getElementById('timelineInfo');
             const date = foodseqData.dates[currentTimeIndex];
-            const [year, month] = date.split('-');
-            label.textContent = `${monthNames[parseInt(month) - 1]} ${year}`;
+            const periodInfo = foodseqData.time_periods[date];
+            info.textContent = `Showing ${periodInfo.label} - ${periodInfo.n_locations} of 20 treatment plants`;
         }
 
         function updateAllPanels() {
@@ -676,9 +767,12 @@
             document.getElementById('topoButton').classList.toggle('active', view === 'topo');
             document.getElementById('heatmapButton').classList.toggle('active', view === 'heatmap');
 
-            // Remove existing counties layer
+            // Remove existing layers
             if (countiesLayer) {
                 map.removeLayer(countiesLayer);
+            }
+            if (densityLayer) {
+                map.removeLayer(densityLayer);
             }
 
             if (view === 'topo') {
@@ -688,9 +782,21 @@
                     onEachFeature: onEachFeature
                 }).addTo(map);
             } else {
-                // Show heatmap view
+                // Show heatmap view with population density
+                // Add density layer first (as underlay)
+                densityLayer = L.geoJSON(populationDensityGeoJSON, {
+                    style: getDensityStyle
+                }).addTo(map);
+
+                // Add county boundaries on top with minimal styling
                 countiesLayer = L.geoJSON(countiesGeoJSON, {
-                    style: getHeatmapStyle,
+                    style: {
+                        fillColor: 'none',
+                        fillOpacity: 0,
+                        weight: 1,
+                        opacity: 0.5,
+                        color: '#666666'
+                    },
                     onEachFeature: onEachFeature
                 }).addTo(map);
             }
@@ -706,47 +812,30 @@
             };
         }
 
-        function getHeatmapStyle(feature) {
-            // Calculate population density based on county
-            const density = getPopulationDensity(feature);
+        function getDensityStyle(feature) {
+            // Get population density from block group properties
+            const density = feature.properties.pop_density;
+            const color = getDensityColor(density);
+
             return {
-                fillColor: getColor(density),
-                weight: 1,
-                opacity: 1,
-                color: '#ffffff',
-                fillOpacity: 0.7
+                fillColor: color,
+                weight: 0.5,
+                opacity: 0.3,
+                color: '#999999',
+                fillOpacity: 0.6
             };
         }
 
-        function getPopulationDensity(feature) {
-            // Simulated population density data for NC counties
-            // In a real implementation, this would come from actual census data
-            const countyName = feature.properties.NAME || feature.properties.name;
-
-            // High density counties (urban areas)
-            const highDensity = ['Mecklenburg', 'Wake', 'Durham', 'Guilford', 'Forsyth'];
-            // Medium density
-            const mediumDensity = ['Cumberland', 'Gaston', 'New Hanover', 'Cabarrus', 'Union', 'Orange', 'Buncombe'];
-
-            if (highDensity.includes(countyName)) {
-                return 1000 + Math.random() * 500; // 1000-1500
-            } else if (mediumDensity.includes(countyName)) {
-                return 400 + Math.random() * 300; // 400-700
-            } else {
-                return 50 + Math.random() * 200; // 50-250
-            }
-        }
-
-        function getColor(density) {
-            // Color scale from light yellow to dark red
-            return density > 1000 ? '#800026' :
-                   density > 700  ? '#BD0026' :
-                   density > 500  ? '#E31A1C' :
-                   density > 400  ? '#FC4E2A' :
-                   density > 300  ? '#FD8D3C' :
-                   density > 200  ? '#FEB24C' :
-                   density > 100  ? '#FED976' :
-                                    '#FFEDA0';
+        function getDensityColor(density) {
+            // Color scale from light yellow (rural) to dark red (urban)
+            // Based on people per square mile
+            return density > 5000 ? '#67000d' :  // Very High
+                   density > 2000 ? '#a50f15' :  // High
+                   density > 1000 ? '#cb181d' :  // Medium-High
+                   density > 500  ? '#ef3b2c' :  // Medium
+                   density > 200  ? '#fb6a4a' :  // Low-Medium
+                   density > 50   ? '#fc9272' :  // Low
+                                    '#fcbba1';   // Very Low
         }
 
         function highlightFeature(e) {

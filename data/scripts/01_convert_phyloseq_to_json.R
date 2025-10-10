@@ -103,14 +103,16 @@ plant_tax <- as.data.frame(tax_table(plant_food)@.Data)
 colnames(plant_tax) <- colnames(tax_table(plant_food))
 plant_sam <- as(sample_data(plant_food), "data.frame")
 
-# Create species metadata (scientific name -> common name)
+# Create species metadata (scientific name -> common name + categories)
 plant_species_metadata <- plant_tax %>%
   rownames_to_column("taxa_id") %>%
-  select(taxa_id, family, genus, species) %>%
+  select(taxa_id, family, genus, species, FoodGroup, BigGroup, CommonName) %>%
   mutate(
     scientific_name = paste(genus, species),
-    # Use genus as common name for now (can enhance later)
-    common_name = genus
+    # Use CommonName if available, otherwise genus
+    common_name = ifelse(!is.na(CommonName) & CommonName != "", CommonName, genus),
+    food_group = ifelse(!is.na(FoodGroup) & FoodGroup != "", FoodGroup, "Other"),
+    category = ifelse(!is.na(BigGroup) & BigGroup != "", BigGroup, "Other")
   )
 
 cat("  - Extracted", nrow(plant_species_metadata), "plant species\n\n")
@@ -137,10 +139,13 @@ animal_sam <- as(sample_data(animal_food), "data.frame")
 # Create species metadata
 animal_species_metadata <- animal_tax %>%
   rownames_to_column("taxa_id") %>%
-  select(taxa_id, class, order, family, genus, species) %>%
+  select(taxa_id, class, order, family, genus, species, FoodGroup, BigGroup, CommonName) %>%
   mutate(
     scientific_name = paste(genus, species),
-    common_name = genus  # Can enhance with proper common names later
+    # Use CommonName if available, otherwise genus
+    common_name = ifelse(!is.na(CommonName) & CommonName != "", CommonName, genus),
+    food_group = ifelse(!is.na(FoodGroup) & FoodGroup != "", FoodGroup, class),  # Use class as fallback (Fish, Birds, Mammals)
+    category = ifelse(!is.na(BigGroup) & BigGroup != "", BigGroup, class)
   )
 
 cat("  - Extracted", nrow(animal_species_metadata), "animal species\n\n")
@@ -166,7 +171,11 @@ aggregate_by_location_date <- function(otu_matrix, sample_data, type = "plant") 
   sample_meta <- sample_data %>%
     rownames_to_column("sample_id") %>%
     select(sample_id, Location, Date, Month) %>%
-    mutate(date_str = paste0("2020-", str_pad(Month, 2, pad = "0")))
+    mutate(
+      Date_parsed = as.Date(Date, format = "%m/%d/%Y"),
+      Year = as.numeric(format(Date_parsed, "%Y")),
+      date_str = format(Date_parsed, "%Y-%m")
+    )
 
   otu_with_meta <- otu_long %>%
     left_join(sample_meta, by = "sample_id")
@@ -246,29 +255,44 @@ for (loc in sample_locations$Location) {
   # Create plant ID (use location name as ID)
   plant_id <- paste0("plant_", str_pad(which(sample_locations$Location == loc), 3, pad = "0"))
 
-  # Add to plants list
-  plants_list[[plant_id]] <- list(
-    name = paste(loc, "WWTP"),
-    lat = loc_meta$lat,
-    lng = loc_meta$long,
-    county = loc_meta$County,
-    timeseries = timeseries
-  )
+  # Add to plants list (only if coordinates are valid)
+  if (!is.na(loc_meta$lat) && !is.na(loc_meta$long)) {
+    plants_list[[plant_id]] <- list(
+      name = paste(loc, "WWTP"),
+      lat = loc_meta$lat,
+      lng = loc_meta$long,
+      county = loc_meta$County,
+      timeseries = timeseries
+    )
+  } else {
+    cat("  - Warning: Skipping", loc, "- missing coordinates\n")
+  }
 }
 
 cat("  - Created data for", length(plants_list), "treatment plants\n")
 
-# Build species metadata
+# Build species metadata with categories
 all_species_metadata <- bind_rows(
-  plant_species_metadata %>% select(scientific_name, common_name),
-  animal_species_metadata %>% select(scientific_name, common_name)
+  plant_species_metadata %>%
+    select(scientific_name, common_name, food_group, category) %>%
+    mutate(type = "plant"),
+  animal_species_metadata %>%
+    select(scientific_name, common_name, food_group, category) %>%
+    mutate(type = "animal")
 ) %>%
   distinct(scientific_name, .keep_all = TRUE)
 
-species_metadata_list <- setNames(
-  as.list(all_species_metadata$common_name),
-  all_species_metadata$scientific_name
-)
+# Create nested list structure for each species
+species_metadata_list <- list()
+for (i in 1:nrow(all_species_metadata)) {
+  sp <- all_species_metadata[i, ]
+  species_metadata_list[[sp$scientific_name]] <- list(
+    common_name = sp$common_name,
+    food_group = sp$food_group,
+    category = sp$category,
+    type = sp$type
+  )
+}
 
 cat("  - Created metadata for", length(species_metadata_list), "species\n\n")
 
@@ -278,17 +302,41 @@ cat("  - Created metadata for", length(species_metadata_list), "species\n\n")
 
 cat("Creating final JSON object...\n")
 
+# Calculate sample counts per date
+date_sample_counts <- bind_rows(
+  plant_agg %>% select(Location, date_str) %>% distinct(),
+  animal_agg %>% select(Location, date_str) %>% distinct()
+) %>%
+  distinct() %>%
+  group_by(date_str) %>%
+  summarise(
+    n_locations = n_distinct(Location),
+    .groups = "drop"
+  )
+
+# Create time period metadata
+time_periods <- list()
+for (date in all_dates) {
+  counts <- date_sample_counts %>% filter(date_str == date)
+  time_periods[[date]] <- list(
+    n_locations = ifelse(nrow(counts) > 0, counts$n_locations[1], 0),
+    label = format(as.Date(paste0(date, "-01")), "%B %Y")
+  )
+}
+
 foodseq_json <- list(
   dates = all_dates,
+  time_periods = time_periods,
   plants = plants_list,
   species_metadata = species_metadata_list,
   metadata = list(
-    generated_date = Sys.Date(),
+    generated_date = as.character(Sys.Date()),
     n_locations = length(plants_list),
     n_species = length(species_metadata_list),
     n_plant_species = sum(plant_species_metadata$scientific_name %in% names(species_metadata_list)),
     n_animal_species = sum(animal_species_metadata$scientific_name %in% names(species_metadata_list)),
-    data_source = "NCWW manuscript phyloseq objects"
+    data_source = "NCWW manuscript phyloseq objects",
+    date_range = paste(min(all_dates), "to", max(all_dates))
   )
 )
 
