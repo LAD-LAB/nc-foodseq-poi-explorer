@@ -12,9 +12,11 @@ This tool enables exploration of plant and animal species detected in wastewater
 
 - **Interactive Map**: Click on NC counties or treatment plant markers to view data
 - **Dual Species Views**: Toggle between plant and animal species detection
-- **Top 25 Display**: Bar charts showing the most abundant species
-- **Temporal Navigation**: Slider to explore 12 months of data
+- **Top 25 Display**: Color-coded bar charts by food group showing the most abundant species
+- **Temporal Navigation**: Discrete time period selector with data availability indicators
+- **Population Density Overlay**: Heatmap view showing rural/urban context (YlGnBu color scheme)
 - **Multi-Panel**: View multiple counties simultaneously for comparison
+- **Draggable Panels**: Rearrange panels for custom layouts
 - **Responsive Design**: Professional appearance suitable for presentations
 
 ## Quick Start
@@ -45,15 +47,19 @@ Or visit `http://localhost:8000/index.html` in your browser.
 
 ## Data
 
-### Current Dataset (Real FoodSeq Data - 2020)
+### Current Dataset (Real FoodSeq Data - 2020-2021)
 
-The visualization now uses **real FoodSeq data** from the NC Wastewater manuscript:
+The visualization uses **real FoodSeq data** from the NC Wastewater manuscript:
 
-- **21 wastewater treatment plants** across NC
-- **185 plant species** (Streptophyta phylum - food plants)
-- **116 animal species** (food animals)
-- **8 monthly time points** (May-December 2020)
+- **20 wastewater treatment plants** across NC (Charlotte 4 excluded due to missing coordinates)
+- **248 species total:**
+  - **185 plant species** (Streptophyta phylum - food plants)
+  - **116 animal species** (food animals marked as IsFood = "Y")
+- **9 timepoints** (May-December 2020, June 2021)
+  - Default view: **June 2021** (most comprehensive with 19/20 locations)
+  - Visual indicators show data sparsity for early months
 - **Geographic coverage**: Coastal (Wilmington, Beaufort) to Mountain (Asheville, Marion) regions
+- **Species metadata**: Common names, food groups (Grains, Vegetables, Fish, Birds, Mammals), categories
 
 ### Data Processing Pipeline
 
@@ -110,19 +116,23 @@ To use real FoodSeq data, modify `generate_toy_data.py` or create a new conversi
 nc-foodseq-viz/
 ├── index.html                           # Main visualization (single-file app)
 ├── data/
-│   ├── foodseq_data.json               # Current data (real 2020 data)
+│   ├── foodseq_data.json               # Real FoodSeq data (2020-2021, 703KB)
 │   ├── nc_counties.geojson             # NC county boundaries
+│   ├── nc_population_density.geojson   # Census block groups with density (5.5MB)
 │   ├── raw/                            # Raw data (git-ignored)
 │   │   └── NCWW_allsamples_02142025.rds
 │   ├── processed/                      # Processed data outputs
 │   │   └── foodseq_data.json
 │   ├── scripts/                        # Data processing scripts
-│   │   └── 01_convert_phyloseq_to_json.R
+│   │   ├── 01_convert_phyloseq_to_json.R
+│   │   └── 02_create_population_density_geojson.R
 │   └── WORKFLOW.md                     # Data processing documentation
 ├── generate_toy_data.py                 # Toy data generation (testing)
 ├── create_nc_geojson.py                 # GeoJSON filter script
 ├── DESIGN.md                            # Design documentation
 ├── CLAUDE.md                            # Development workflow guide
+├── REMINDME.md                          # Session notes and next steps
+├── TODO_POPULATION_DATA.md              # Instructions for real Census data
 └── README.md                            # This file
 ```
 
@@ -140,8 +150,12 @@ No build tools or server required - runs entirely in the browser!
 1. **View County Data**: Click on any NC county or treatment plant marker
 2. **Switch Species Type**: Use the "Plants" / "Animals" tabs in the panel
 3. **Compare Counties**: Click multiple counties to open multiple panels
-4. **Navigate Time**: Use the timeline slider at the bottom
-5. **Close Panels**: Click the × button on any panel
+4. **Navigate Time**: Click time period buttons to switch between May 2020 - June 2021
+5. **View Population Density**: Click "Heatmap" to see rural/urban context
+6. **Rearrange Panels**: Drag panels by their headers to reposition
+7. **Close Panels**: Click the × button on any panel
+
+**Note**: June 2021 is the default view (19 of 20 treatment plants). Earlier months have fewer locations (indicated by dashed borders on time buttons).
 
 ## Development
 
@@ -162,6 +176,7 @@ pip install -r requirements.txt
 
 ### Process Real Data
 
+**FoodSeq Data:**
 ```bash
 # Run R script to convert manuscript phyloseq data to JSON
 Rscript data/scripts/01_convert_phyloseq_to_json.R
@@ -169,6 +184,17 @@ Rscript data/scripts/01_convert_phyloseq_to_json.R
 # Copy processed data to visualization directory
 cp data/processed/foodseq_data.json data/foodseq_data.json
 ```
+
+**Population Density Data:**
+
+⚠️ **Important**: The current population density layer uses simulated data. To use real Census data (matching manuscript Figure 1a), follow the instructions in `TODO_POPULATION_DATA.md`:
+
+1. Install `tidycensus` R package
+2. Get free Census API key from https://api.census.gov/data/key_signup.html
+3. Add key to `~/.Renviron`
+4. Run: `Rscript data/scripts/02_create_population_density_geojson.R`
+
+See `TODO_POPULATION_DATA.md` for complete step-by-step instructions.
 
 ### Generate Toy Data (for testing)
 
@@ -179,15 +205,21 @@ python3 generate_toy_data.py
 
 ## Future Enhancements
 
-- [x] Real FoodSeq data integration ✅ **Complete!**
-- [ ] Enhanced species names (scientific → proper common names)
-- [ ] Side-by-side county comparison
+**Completed:**
+- [x] Real FoodSeq data integration ✅
+- [x] Time period selector with data availability indicators ✅
+- [x] Species categorization and color-coding ✅
+- [x] Population density heatmap overlay ✅
+- [x] Draggable multi-panel comparison ✅
+
+**Planned:**
+- [ ] Real Census population data (currently simulated - see `TODO_POPULATION_DATA.md`)
+- [ ] Heatmap legend showing density bins
 - [ ] Species search and filtering
 - [ ] Data export functionality
-- [ ] Heatmap view of diversity
 - [ ] Animation mode for temporal visualization
-- [ ] Multiple plants per county
-- [ ] Weekly/daily temporal resolution
+- [ ] Side-by-side panel comparison view
+- [ ] Weekly/daily temporal resolution (if data available)
 
 ## Credits
 
