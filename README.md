@@ -45,22 +45,26 @@ Or visit `http://localhost:8000/index.html` in your browser.
 
 ## Data
 
-### Toy Dataset
+### Current Dataset (Real FoodSeq Data - 2020)
 
-The current implementation uses synthetic data including:
-- **39 wastewater treatment plants** across NC
-- **162 plant species** (crops, fruits, vegetables, nuts, herbs)
-- **66 animal species** (livestock, fish, shellfish)
-- **12 monthly time points** (2024)
+The visualization now uses **real FoodSeq data** from the NC Wastewater manuscript:
 
-### Real Data Integration
+- **21 wastewater treatment plants** across NC
+- **185 plant species** (Streptophyta phylum - food plants)
+- **116 animal species** (food animals)
+- **8 monthly time points** (May-December 2020)
+- **Geographic coverage**: Coastal (Wilmington, Beaufort) to Mountain (Asheville, Marion) regions
 
-#### Data Processing Pipeline
+### Data Processing Pipeline
 
-Real FoodSeq data is processed from phyloseq format (RDS file) to JSON using an R script:
+Real FoodSeq data is processed from phyloseq format (RDS files) to JSON using an R script:
 
-**Input**: `data/raw/NCWW_allsamples_02142025.rds` (phyloseq object)
-**Output**: `data/processed/foodseq_data.json`
+**Input**:
+- `NCWW_allsamples_animal.rds` (animal species from manuscript)
+- `NCWW_allsamples_trnL.rds` (plant species from manuscript)
+
+**Output**: `data/processed/foodseq_data.json` → `data/foodseq_data.json`
+
 **Script**: `data/scripts/01_convert_phyloseq_to_json.R`
 
 **Design Decisions**:
@@ -103,16 +107,23 @@ To use real FoodSeq data, modify `generate_toy_data.py` or create a new conversi
 ## Project Structure
 
 ```
-wastewater/src/
-├── index.html                  # Main visualization (single-file app)
+nc-foodseq-viz/
+├── index.html                           # Main visualization (single-file app)
 ├── data/
-│   ├── foodseq_data.json      # Species abundance data
-│   └── nc_counties.geojson    # NC county boundaries
-├── generate_toy_data.py        # Data generation script
-├── create_nc_geojson.py        # GeoJSON filter script
-├── venv/                       # Python virtual environment
-├── DESIGN.md                   # Detailed design documentation
-└── README.md                   # This file
+│   ├── foodseq_data.json               # Current data (real 2020 data)
+│   ├── nc_counties.geojson             # NC county boundaries
+│   ├── raw/                            # Raw data (git-ignored)
+│   │   └── NCWW_allsamples_02142025.rds
+│   ├── processed/                      # Processed data outputs
+│   │   └── foodseq_data.json
+│   ├── scripts/                        # Data processing scripts
+│   │   └── 01_convert_phyloseq_to_json.R
+│   └── WORKFLOW.md                     # Data processing documentation
+├── generate_toy_data.py                 # Toy data generation (testing)
+├── create_nc_geojson.py                 # GeoJSON filter script
+├── DESIGN.md                            # Design documentation
+├── CLAUDE.md                            # Development workflow guide
+└── README.md                            # This file
 ```
 
 ## Technology Stack
@@ -149,17 +160,27 @@ venv\Scripts\activate     # Windows
 pip install -r requirements.txt
 ```
 
-### Regenerate Data
+### Process Real Data
 
 ```bash
+# Run R script to convert manuscript phyloseq data to JSON
+Rscript data/scripts/01_convert_phyloseq_to_json.R
+
+# Copy processed data to visualization directory
+cp data/processed/foodseq_data.json data/foodseq_data.json
+```
+
+### Generate Toy Data (for testing)
+
+```bash
+# Generate synthetic data (optional, for testing)
 python3 generate_toy_data.py
 ```
 
-This will overwrite `data/foodseq_data.json` with fresh synthetic data.
-
 ## Future Enhancements
 
-- [ ] Real FoodSeq data integration
+- [x] Real FoodSeq data integration ✅ **Complete!**
+- [ ] Enhanced species names (scientific → proper common names)
 - [ ] Side-by-side county comparison
 - [ ] Species search and filtering
 - [ ] Data export functionality
