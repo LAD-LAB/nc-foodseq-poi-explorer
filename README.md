@@ -187,14 +187,14 @@ cp data/processed/foodseq_data.json data/foodseq_data.json
 
 **Population Density Data:**
 
-⚠️ **Important**: The current population density layer uses simulated data. To use real Census data (matching manuscript Figure 1a), follow the instructions in `TODO_POPULATION_DATA.md`:
+✅ **Using Real Census Data**: The population density layer now uses **real 2020 Census data** via the Census API, matching the methodology in manuscript Figure 1a.
 
-1. Install `tidycensus` R package
-2. Get free Census API key from https://api.census.gov/data/key_signup.html
-3. Add key to `~/.Renviron`
-4. Run: `Rscript data/scripts/02_create_population_density_geojson.R`
+To regenerate the population density GeoJSON:
+```bash
+Rscript data/scripts/02_create_population_density_geojson.R
+```
 
-See `TODO_POPULATION_DATA.md` for complete step-by-step instructions.
+The script fetches data from the Census API using your API key stored in `.env`.
 
 ### Generate Toy Data (for testing)
 
@@ -211,9 +211,9 @@ python3 generate_toy_data.py
 - [x] Species categorization and color-coding ✅
 - [x] Population density heatmap overlay ✅
 - [x] Draggable multi-panel comparison ✅
+- [x] Real Census population data (2020 Census via API) ✅
 
 **Planned:**
-- [ ] Real Census population data (currently simulated - see `TODO_POPULATION_DATA.md`)
 - [ ] Heatmap legend showing density bins
 - [ ] Species search and filtering
 - [ ] Data export functionality

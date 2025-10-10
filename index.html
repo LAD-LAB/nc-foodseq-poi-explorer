@@ -814,7 +814,7 @@
 
         function getDensityStyle(feature) {
             // Get population density from block group properties
-            const density = feature.properties.pop_density;
+            const density = feature.properties.pop_density_mi;
             const color = getDensityColor(density);
 
             return {

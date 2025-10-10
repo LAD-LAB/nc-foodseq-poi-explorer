@@ -27,6 +27,11 @@ Thumbs.db
 # Logs
 *.log
 
+# Environment variables (API keys, secrets)
+.env
+.env.local
+.env.*.local
+
 # Data - raw data should never be committed
 data/raw/
 *.rds
