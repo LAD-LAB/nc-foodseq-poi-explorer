@@ -60,17 +60,18 @@ if (!is.null(pop_field)) {
     )
 }
 
-# Create density bins for visualization
+# Create density bins for visualization (matching manuscript Figure 1a)
 nc_bg <- nc_bg %>%
   mutate(
     density_bin = case_when(
-      pop_density >= 5000 ~ "Very High (5000+)",
-      pop_density >= 2000 ~ "High (2000-5000)",
-      pop_density >= 1000 ~ "Medium-High (1000-2000)",
-      pop_density >= 500  ~ "Medium (500-1000)",
-      pop_density >= 200  ~ "Low-Medium (200-500)",
-      pop_density >= 50   ~ "Low (50-200)",
-      TRUE ~ "Very Low (<50)"
+      pop_density >= 10000 ~ "10,000 or more",
+      pop_density >= 5000  ~ "5,000 to 9,999",
+      pop_density >= 2000  ~ "2,000 to 4,999",
+      pop_density >= 1000  ~ "1,000 to 1,999",
+      pop_density >= 500   ~ "500 to 999",
+      pop_density >= 100   ~ "100 to 499",
+      pop_density >= 50    ~ "50 to 99",
+      TRUE ~ "Less than 50"
     ),
     density_category = case_when(
       pop_density >= 2000 ~ "urban",

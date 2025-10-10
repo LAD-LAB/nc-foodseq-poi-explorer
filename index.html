@@ -827,15 +827,16 @@
         }
 
         function getDensityColor(density) {
-            // Color scale from light yellow (rural) to dark red (urban)
-            // Based on people per square mile
-            return density > 5000 ? '#67000d' :  // Very High
-                   density > 2000 ? '#a50f15' :  // High
-                   density > 1000 ? '#cb181d' :  // Medium-High
-                   density > 500  ? '#ef3b2c' :  // Medium
-                   density > 200  ? '#fb6a4a' :  // Low-Medium
-                   density > 50   ? '#fc9272' :  // Low
-                                    '#fcbba1';   // Very Low
+            // Color scale from light yellow (rural) to dark blue (urban)
+            // Matches manuscript Figure 1a color scheme
+            return density >= 10000 ? '#08306b' :  // 10,000 or more (dark blue)
+                   density >= 5000  ? '#08519c' :  // 5,000 to 9,999 (medium-dark blue)
+                   density >= 2000  ? '#3182bd' :  // 2,000 to 4,999 (medium blue)
+                   density >= 1000  ? '#6baed6' :  // 1,000 to 1,999 (light blue)
+                   density >= 500   ? '#9ecae1' :  // 500 to 999 (very light blue)
+                   density >= 100   ? '#c6dbef' :  // 100 to 499 (pale blue)
+                   density >= 50    ? '#deebbd' :  // 50 to 99 (yellow-green)
+                                      '#ffffcc';   // Less than 50 (pale yellow)
         }
 
         function highlightFeature(e) {
