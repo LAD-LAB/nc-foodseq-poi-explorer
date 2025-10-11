@@ -763,8 +763,15 @@
             plantMarkers.forEach(marker => {
                 const plant = marker.plant;
 
-                // Check if plant has data for current date
-                const hasData = plant.timeseries && plant.timeseries[currentDate];
+                // Check if plant has actual data (non-zero values) for current date
+                let hasData = false;
+                if (plant.timeseries && plant.timeseries[currentDate]) {
+                    const timeData = plant.timeseries[currentDate];
+                    // Check if there are any non-zero plant or animal values
+                    const plantValues = Object.values(timeData.plants || {});
+                    const animalValues = Object.values(timeData.animals || {});
+                    hasData = plantValues.some(v => v > 0) || animalValues.some(v => v > 0);
+                }
 
                 if (hasData) {
                     // Active location - red color
