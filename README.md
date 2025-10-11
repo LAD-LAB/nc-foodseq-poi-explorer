@@ -12,9 +12,12 @@ This tool enables exploration of plant and animal species detected in wastewater
 
 - **Interactive Map**: Click on NC counties or treatment plant markers to view data
 - **Dual Species Views**: Toggle between plant and animal species detection
-- **Top 25 Display**: Color-coded bar charts by food group showing the most abundant species
+- **Top 25 Display**: Color-coded bar charts using **lab's standardized food group colors**
 - **Temporal Navigation**: Discrete time period selector with data availability indicators
-- **Population Density Overlay**: Heatmap view showing rural/urban context (YlGnBu color scheme)
+- **Dynamic Marker Colors**: Location markers change color based on data availability
+  - **Green markers**: Default/no data for selected time period
+  - **Red markers**: Has data available for selected time period
+- **Population Density Overlay**: Real 2020 Census data heatmap (YlGnBu color scheme)
 - **Multi-Panel**: View multiple counties simultaneously for comparison
 - **Draggable Panels**: Rearrange panels for custom layouts
 - **Responsive Design**: Professional appearance suitable for presentations
@@ -52,14 +55,24 @@ Or visit `http://localhost:8000/index.html` in your browser.
 The visualization uses **real FoodSeq data** from the NC Wastewater manuscript:
 
 - **20 wastewater treatment plants** across NC (Charlotte 4 excluded due to missing coordinates)
-- **248 species total:**
-  - **185 plant species** (Streptophyta phylum - food plants)
-  - **116 animal species** (food animals marked as IsFood = "Y")
+- **292 species total:**
+  - **179 plant species** (Streptophyta phylum - food plants)
+  - **113 animal species** (food animals marked as IsFood = "Y")
+- **9 standardized food groups** using lab's color palette (91.1% color coverage):
+  - Seafood (85 species) - Pink (#EB88D1)
+  - Vegetable (39 species) - Purple (#B26EB6)
+  - Fruit (35 species) - Blue (#8593C6)
+  - Meat & Poultry (28 species) - Red (#DC7775)
+  - Herb & Spice (25 species) - Brown (#B79888)
+  - Seed & Nut (24 species) - Yellow (#FFEA99)
+  - Legume (17 species) - Green (#9CAF6A)
+  - Grain (13 species) - Orange (#FCC77C)
+  - Other (26 species) - Gray (#9BA4B4)
 - **9 timepoints** (May-December 2020, June 2021)
   - Default view: **June 2021** (most comprehensive with 19/20 locations)
   - Visual indicators show data sparsity for early months
 - **Geographic coverage**: Coastal (Wilmington, Beaufort) to Mountain (Asheville, Marion) regions
-- **Species metadata**: Common names, food groups (Grains, Vegetables, Fish, Birds, Mammals), categories
+- **Species metadata**: Common names, standardized food groups, categories
 
 ### Data Processing Pipeline
 
@@ -208,13 +221,14 @@ python3 generate_toy_data.py
 **Completed:**
 - [x] Real FoodSeq data integration ✅
 - [x] Time period selector with data availability indicators ✅
-- [x] Species categorization and color-coding ✅
+- [x] Lab's standardized food group classifications and colors ✅
+- [x] Dynamic marker colors showing data availability ✅
 - [x] Population density heatmap overlay ✅
 - [x] Draggable multi-panel comparison ✅
 - [x] Real Census population data (2020 Census via API) ✅
 
 **Planned:**
-- [ ] Heatmap legend showing density bins
+- [ ] Population density legend showing density bins (recommended next)
 - [ ] Species search and filtering
 - [ ] Data export functionality
 - [ ] Animation mode for temporal visualization
