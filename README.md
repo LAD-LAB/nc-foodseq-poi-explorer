@@ -17,7 +17,15 @@ This tool enables exploration of plant and animal species detected in wastewater
 - **Dynamic Marker Colors**: Location markers change color based on data availability
   - **Green markers**: Default/no data for selected time period
   - **Red markers**: Has data available for selected time period
-- **Population Density Overlay**: Real 2020 Census data heatmap (YlGnBu color scheme)
+- **Census Data Overlays**: Multiple layers providing social/economic context
+  - **Population Density**: Block group-level density (YlGnBu color scheme)
+  - **Demographic Layers**: Census tract-level data (ACS 2019-2023)
+    - Median Household Income (Purple scale)
+    - % Foreign Born (Orange scale)
+    - % White (Blue scale)
+    - % Black (Green scale)
+    - % Asian (Red scale)
+    - % Hispanic/Latino (Teal scale)
 - **Multi-Panel**: View multiple counties simultaneously for comparison
 - **Draggable Panels**: Rearrange panels for custom layouts
 - **Responsive Design**: Professional appearance suitable for presentations
@@ -132,13 +140,15 @@ nc-foodseq-viz/
 │   ├── foodseq_data.json               # Real FoodSeq data (2020-2021, 703KB)
 │   ├── nc_counties.geojson             # NC county boundaries
 │   ├── nc_population_density.geojson   # Census block groups with density (5.5MB)
+│   ├── nc_demographics.geojson         # Census tracts with demographic data (3.6MB)
 │   ├── raw/                            # Raw data (git-ignored)
 │   │   └── NCWW_allsamples_02142025.rds
 │   ├── processed/                      # Processed data outputs
 │   │   └── foodseq_data.json
 │   ├── scripts/                        # Data processing scripts
 │   │   ├── 01_convert_phyloseq_to_json.R
-│   │   └── 02_create_population_density_geojson.R
+│   │   ├── 02_create_population_density_geojson.R
+│   │   └── 03_create_demographic_geojson.R
 │   └── WORKFLOW.md                     # Data processing documentation
 ├── generate_toy_data.py                 # Toy data generation (testing)
 ├── create_nc_geojson.py                 # GeoJSON filter script
@@ -164,7 +174,15 @@ No build tools or server required - runs entirely in the browser!
 2. **Switch Species Type**: Use the "Plants" / "Animals" tabs in the panel
 3. **Compare Counties**: Click multiple counties to open multiple panels
 4. **Navigate Time**: Click time period buttons to switch between May 2020 - June 2021
-5. **View Population Density**: Click "Heatmap" to see rural/urban context
+5. **View Census Data**: Use the map layer buttons on the right to view:
+   - **Topology**: County boundaries (default view)
+   - **Population Density**: Rural/suburban/urban classification
+   - **Median Income**: Economic status by census tract (purple: darker = wealthier)
+   - **% Foreign Born**: Immigration patterns (orange: darker = higher %)
+   - **% White**: Racial composition (blue: darker = higher %)
+   - **% Black**: Racial composition (green: darker = higher %)
+   - **% Asian**: Racial composition (red: darker = higher %)
+   - **% Hispanic/Latino**: Ethnic composition (teal: darker = higher %)
 6. **Rearrange Panels**: Drag panels by their headers to reposition
 7. **Close Panels**: Click the × button on any panel
 
@@ -198,16 +216,30 @@ Rscript data/scripts/01_convert_phyloseq_to_json.R
 cp data/processed/foodseq_data.json data/foodseq_data.json
 ```
 
-**Population Density Data:**
+**Census Data:**
 
-✅ **Using Real Census Data**: The population density layer now uses **real 2020 Census data** via the Census API, matching the methodology in manuscript Figure 1a.
+✅ **Using Real Census Data**: The visualization includes multiple census layers:
+- **Population Density** (2020 Census): Block group-level data matching manuscript Figure 1a methodology
+- **Demographics** (ACS 2019-2023): Census tract-level socioeconomic data
 
-To regenerate the population density GeoJSON:
+To regenerate the census GeoJSON files:
 ```bash
+# Population density (block groups)
 Rscript data/scripts/02_create_population_density_geojson.R
+
+# Demographics (census tracts)
+Rscript data/scripts/03_create_demographic_geojson.R
 ```
 
-The script fetches data from the Census API using your API key stored in `.env`.
+Both scripts fetch data from the Census API using your API key stored in `.env`.
+
+**Census Variables Used:**
+- B19013_001: Median household income
+- B05002_013/B05002_001: Foreign born population percentage
+- B02001_002/B02001_001: White alone percentage
+- B02001_003/B02001_001: Black or African American alone percentage
+- B02001_005/B02001_001: Asian alone percentage
+- B03003_003/B03003_001: Hispanic or Latino percentage
 
 ### Generate Toy Data (for testing)
 
@@ -226,9 +258,10 @@ python3 generate_toy_data.py
 - [x] Population density heatmap overlay ✅
 - [x] Draggable multi-panel comparison ✅
 - [x] Real Census population data (2020 Census via API) ✅
+- [x] 6 demographic layers (income, race/ethnicity) at census tract level ✅
 
 **Planned:**
-- [ ] Population density legend showing density bins (recommended next)
+- [ ] Interactive legend showing color scales for each layer (recommended next)
 - [ ] Species search and filtering
 - [ ] Data export functionality
 - [ ] Animation mode for temporal visualization

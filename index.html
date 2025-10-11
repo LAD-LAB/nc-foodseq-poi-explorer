@@ -342,7 +342,13 @@
     <!-- Map controls -->
     <div class="map-controls">
         <button id="topoButton" class="active" onclick="switchMapView('topo')">Topology</button>
-        <button id="heatmapButton" onclick="switchMapView('heatmap')">Population Density</button>
+        <button id="densityButton" onclick="switchMapView('density')">Population Density</button>
+        <button id="incomeButton" onclick="switchMapView('income')">Median Income</button>
+        <button id="foreignButton" onclick="switchMapView('foreign')">% Foreign Born</button>
+        <button id="whiteButton" onclick="switchMapView('white')">% White</button>
+        <button id="blackButton" onclick="switchMapView('black')">% Black</button>
+        <button id="asianButton" onclick="switchMapView('asian')">% Asian</button>
+        <button id="hispanicButton" onclick="switchMapView('hispanic')">% Hispanic/Latino</button>
     </div>
 
     <!-- Map container -->
@@ -369,7 +375,9 @@
         let countiesLayer;
         let countiesGeoJSON;
         let populationDensityGeoJSON;
+        let demographicsGeoJSON;
         let densityLayer;
+        let demographicLayer;
         let currentTimeIndex = 8; // Default to June 2021 (last timepoint)
         let openPanels = [];
         let plantMarkers = [];
@@ -385,17 +393,20 @@
         async function init() {
             try {
                 // Load data
-                const [foodseqResponse, countiesResponse, densityResponse] = await Promise.all([
+                const [foodseqResponse, countiesResponse, densityResponse, demographicsResponse] = await Promise.all([
                     fetch('data/foodseq_data.json'),
                     fetch('data/nc_counties.geojson'),
-                    fetch('data/nc_population_density.geojson')
+                    fetch('data/nc_population_density.geojson'),
+                    fetch('data/nc_demographics.geojson')
                 ]);
 
                 foodseqData = await foodseqResponse.json();
                 countiesGeoJSON = await countiesResponse.json();
                 populationDensityGeoJSON = await densityResponse.json();
+                demographicsGeoJSON = await demographicsResponse.json();
 
                 console.log('Loaded', populationDensityGeoJSON.features.length, 'block groups');
+                console.log('Loaded', demographicsGeoJSON.features.length, 'census tracts');
 
                 // Hide loading indicator
                 document.getElementById('loading').style.display = 'none';
@@ -794,7 +805,13 @@
 
             // Update button states
             document.getElementById('topoButton').classList.toggle('active', view === 'topo');
-            document.getElementById('heatmapButton').classList.toggle('active', view === 'heatmap');
+            document.getElementById('densityButton').classList.toggle('active', view === 'density');
+            document.getElementById('incomeButton').classList.toggle('active', view === 'income');
+            document.getElementById('foreignButton').classList.toggle('active', view === 'foreign');
+            document.getElementById('whiteButton').classList.toggle('active', view === 'white');
+            document.getElementById('blackButton').classList.toggle('active', view === 'black');
+            document.getElementById('asianButton').classList.toggle('active', view === 'asian');
+            document.getElementById('hispanicButton').classList.toggle('active', view === 'hispanic');
 
             // Remove existing layers
             if (countiesLayer) {
@@ -803,6 +820,9 @@
             if (densityLayer) {
                 map.removeLayer(densityLayer);
             }
+            if (demographicLayer) {
+                map.removeLayer(demographicLayer);
+            }
 
             if (view === 'topo') {
                 // Show topology view with county boundaries
@@ -810,9 +830,8 @@
                     style: countyStyle,
                     onEachFeature: onEachFeature
                 }).addTo(map);
-            } else {
-                // Show heatmap view with population density
-                // Add density layer first (as underlay)
+            } else if (view === 'density') {
+                // Show population density (block groups)
                 densityLayer = L.geoJSON(populationDensityGeoJSON, {
                     style: getDensityStyle
                 }).addTo(map);
@@ -828,7 +847,60 @@
                     },
                     onEachFeature: onEachFeature
                 }).addTo(map);
+            } else {
+                // Show demographic layer (census tracts)
+                demographicLayer = L.geoJSON(demographicsGeoJSON, {
+                    style: feature => getDemographicStyle(feature, view)
+                }).addTo(map);
+
+                // Add county boundaries on top with minimal styling
+                countiesLayer = L.geoJSON(countiesGeoJSON, {
+                    style: {
+                        fillColor: 'none',
+                        fillOpacity: 0,
+                        weight: 1,
+                        opacity: 0.5,
+                        color: '#666666'
+                    },
+                    onEachFeature: onEachFeature
+                }).addTo(map);
             }
+        }
+
+        function getDemographicStyle(feature, layerType) {
+            let color;
+            const props = feature.properties;
+
+            switch(layerType) {
+                case 'income':
+                    color = getIncomeColor(props.median_income);
+                    break;
+                case 'foreign':
+                    color = getForeignBornColor(props.pct_foreign_born);
+                    break;
+                case 'white':
+                    color = getWhiteColor(props.pct_white);
+                    break;
+                case 'black':
+                    color = getBlackColor(props.pct_black);
+                    break;
+                case 'asian':
+                    color = getAsianColor(props.pct_asian);
+                    break;
+                case 'hispanic':
+                    color = getHispanicColor(props.pct_hispanic);
+                    break;
+                default:
+                    color = '#cccccc';
+            }
+
+            return {
+                fillColor: color,
+                weight: 0.5,
+                opacity: 0.3,
+                color: '#999999',
+                fillOpacity: 0.7
+            };
         }
 
         function countyStyle(feature) {
@@ -868,6 +940,78 @@
                                       '#ffffd9';   // Less than 50 (pale yellow)
         }
 
+        function getIncomeColor(income) {
+            // Purple scale - ColorBrewer Purples 8-class (darker = higher income)
+            return income >= 150000 ? '#54278f' :  // Over $150k (darkest purple)
+                   income >= 100000 ? '#756bb1' :  // $100k-$150k
+                   income >= 75000  ? '#9e9ac8' :  // $75k-$100k
+                   income >= 60000  ? '#bcbddc' :  // $60k-$75k
+                   income >= 50000  ? '#dadaeb' :  // $50k-$60k
+                   income >= 40000  ? '#efedf5' :  // $40k-$50k
+                   income >= 30000  ? '#fcfbfd' :  // $30k-$40k
+                                      '#f2f0f7';   // Under $30k (lightest purple)
+        }
+
+        function getForeignBornColor(pct) {
+            // Orange scale - ColorBrewer Oranges 8-class (darker = higher %)
+            return pct >= 40 ? '#a63603' :  // Over 40% (darkest orange)
+                   pct >= 30 ? '#d94801' :  // 30-40%
+                   pct >= 20 ? '#f16913' :  // 20-30%
+                   pct >= 15 ? '#fd8d3c' :  // 15-20%
+                   pct >= 10 ? '#fdae6b' :  // 10-15%
+                   pct >= 5  ? '#fdd0a2' :  // 5-10%
+                   pct >= 2  ? '#fee6ce' :  // 2-5%
+                                '#feedde';   // 0-2% (lightest orange)
+        }
+
+        function getWhiteColor(pct) {
+            // Blue scale - ColorBrewer Blues 8-class (darker = higher %)
+            return pct >= 90 ? '#08519c' :  // 90-100% (darkest blue)
+                   pct >= 80 ? '#3182bd' :  // 80-90%
+                   pct >= 70 ? '#6baed6' :  // 70-80%
+                   pct >= 60 ? '#9ecae1' :  // 60-70%
+                   pct >= 50 ? '#c6dbef' :  // 50-60%
+                   pct >= 40 ? '#deebf7' :  // 40-50%
+                   pct >= 20 ? '#f7fbff' :  // 20-40%
+                                '#eff3ff';   // 0-20% (lightest blue)
+        }
+
+        function getBlackColor(pct) {
+            // Green scale - ColorBrewer Greens 8-class (darker = higher %)
+            return pct >= 80 ? '#00441b' :  // Over 80% (darkest green)
+                   pct >= 60 ? '#006d2c' :  // 60-80%
+                   pct >= 40 ? '#238b45' :  // 40-60%
+                   pct >= 30 ? '#41ab5d' :  // 30-40%
+                   pct >= 20 ? '#74c476' :  // 20-30%
+                   pct >= 10 ? '#a1d99b' :  // 10-20%
+                   pct >= 5  ? '#c7e9c0' :  // 5-10%
+                                '#e5f5e0';   // 0-5% (lightest green)
+        }
+
+        function getAsianColor(pct) {
+            // Red scale - ColorBrewer Reds 8-class (darker = higher %)
+            return pct >= 15 ? '#67000d' :  // Over 15% (darkest red)
+                   pct >= 10 ? '#a50f15' :  // 10-15%
+                   pct >= 7  ? '#cb181d' :  // 7-10%
+                   pct >= 5  ? '#ef3b2c' :  // 5-7%
+                   pct >= 3  ? '#fb6a4a' :  // 3-5%
+                   pct >= 2  ? '#fc9272' :  // 2-3%
+                   pct >= 1  ? '#fcbba1' :  // 1-2%
+                                '#fee5d9';   // 0-1% (lightest red)
+        }
+
+        function getHispanicColor(pct) {
+            // Teal/Cyan scale - ColorBrewer BuGn 8-class (darker = higher %)
+            return pct >= 40 ? '#00441b' :  // Over 40% (darkest teal)
+                   pct >= 30 ? '#006d2c' :  // 30-40%
+                   pct >= 20 ? '#238b45' :  // 20-30%
+                   pct >= 15 ? '#41ae76' :  // 15-20%
+                   pct >= 10 ? '#66c2a4' :  // 10-15%
+                   pct >= 5  ? '#99d8c9' :  // 5-10%
+                   pct >= 3  ? '#ccece6' :  // 3-5%
+                                '#e5f5f9';   // 0-3% (lightest teal)
+        }
+
         function highlightFeature(e) {
             const layer = e.target;
             if (currentMapView === 'topo') {
@@ -878,8 +1022,9 @@
                 });
             } else {
                 layer.setStyle({
-                    weight: 3,
-                    color: '#2b6cb0'
+                    weight: 2,
+                    color: '#2b6cb0',
+                    opacity: 1
                 });
             }
             layer.bringToFront();
