@@ -606,28 +606,11 @@
             const labels = chartData.map(d => d.label);
             const values = chartData.map(d => d.value);
 
-            // Color palette by food group
-            const foodGroupColors = {
-                // Plants
-                'Grains': '#E6C966',
-                'GrainsOil': '#C7A248',
-                'VegeBrassica': '#75B256',
-                'VegeAllium': '#A8C982',
-                'VegeGourd': '#9EA54B',
-                'VegeLegume': '#67753C',
-                'Nut': '#967B3A',
-                'Fruit': '#CF6F6A',
-                // Animals
-                'Actinopteri': '#6BBBBE',  // Fish
-                'Aves': '#E4A8A8',          // Birds
-                'Mammalia': '#BC4A46',      // Mammals
-                'Other': '#9BA4B4'
-            };
-
-            // Assign colors based on food group
-            const backgroundColors = chartData.map(d =>
-                foodGroupColors[d.food_group] || foodGroupColors['Other']
-            );
+            // Assign colors using species metadata color (from lab's color theme)
+            const backgroundColors = sortedSpecies.map(([species, abundance]) => {
+                const metadata = foodseqData.species_metadata[species];
+                return metadata && metadata.color ? metadata.color : '#9BA4B4'; // Default gray
+            });
 
             // Destroy existing chart if it exists
             if (panelInfo.chart) {

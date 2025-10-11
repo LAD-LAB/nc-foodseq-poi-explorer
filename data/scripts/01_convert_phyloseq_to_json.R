@@ -1,12 +1,14 @@
 #!/usr/bin/env Rscript
 # File: 01_convert_phyloseq_to_json.R
 # Author: Anna Bauer (adapted from NCWW manuscript code)
-# Date: 2025-10-09
+# Date: 2025-10-10 (Updated)
 # Purpose: Convert phyloseq RDS files to JSON format for FoodSeq web visualization
 #
 # Input:
 #   - Manuscript data: NCWW_allsamples_animal.rds
 #   - Manuscript data: NCWW_allsamples_trnL.rds
+#   - Lab food group mappings: asv_to_foodgroup_trnL.csv, asv_to_foodgroup_12S.csv
+#   - Color theme: food_group_theme.csv
 # Output:
 #   - data/processed/foodseq_data.json (visualization format)
 #
@@ -15,6 +17,9 @@
 #   2. Sample aggregation: Average read counts for multiple samples per location/month
 #   3. Normalization: CLR (Centered Log-Ratio) transformation for compositional data
 #   4. Location handling: Keep all Charlotte plants (1-4) as separate locations
+#   5. NA handling: Smart hybrid approach
+#      - Keep NAs with valid metadata (genus-level IDs like "Allium NA")
+#      - Aggregate true unknowns into "Unidentified" category
 
 # ============================================================================
 # SETUP
@@ -30,9 +35,86 @@ library(jsonlite)
 MANUSCRIPT_DATA_DIR <- "../Wastewater/NCWastewaterManuscript/20250408_NewFormatting/NCWW_ms_code/Data"
 OUTPUT_FILE <- "data/processed/foodseq_data.json"
 
+# Lab food group mapping files
+PLANT_FOOD_MAP <- "data/raw/asv_to_foodgroup_trnL.csv"
+ANIMAL_FOOD_MAP <- "data/raw/asv_to_foodgroup_12S.csv"
+COLOR_THEME <- "data/raw/food_group_theme.csv"
+
 cat("Starting phyloseq to JSON conversion...\n")
 cat("Input directory:", MANUSCRIPT_DATA_DIR, "\n")
 cat("Output file:", OUTPUT_FILE, "\n\n")
+
+# ============================================================================
+# LOAD LAB'S FOOD GROUP MAPPINGS
+# ============================================================================
+
+cat("Loading lab's food group mappings...\n")
+
+# Load plant ASV -> food group mapping
+plant_fg_map <- read_csv(PLANT_FOOD_MAP, show_col_types = FALSE) %>%
+  rename(asv_seq = asv)
+cat("  - Loaded", nrow(plant_fg_map), "plant ASV food group mappings\n")
+
+# Load animal ASV -> food group mapping
+animal_fg_map <- read_csv(ANIMAL_FOOD_MAP, show_col_types = FALSE) %>%
+  rename(asv_seq = asv)
+cat("  - Loaded", nrow(animal_fg_map), "animal ASV food group mappings\n")
+
+# Load color theme
+color_theme <- read_csv(COLOR_THEME, show_col_types = FALSE)
+cat("  - Loaded", nrow(color_theme), "food group colors\n\n")
+
+# ============================================================================
+# NORMALIZE OLD FOOD GROUPS TO LAB'S CATEGORIES
+# ============================================================================
+
+# Function to normalize old detailed food groups to broad lab categories
+normalize_food_group <- function(fg) {
+  fg_lower <- tolower(as.character(fg))
+
+  # Normalize to lab's broad categories
+  normalized <- case_when(
+    # Fruits
+    grepl("^fruit", fg_lower) ~ "fruit",
+    fg_lower %in% c("flavoringfruit") ~ "fruit",
+
+    # Vegetables
+    grepl("^vege", fg_lower) ~ "vegetable",
+    fg_lower %in% c("asianfood") ~ "vegetable",
+
+    # Grains
+    grepl("grain", fg_lower) ~ "grain",
+
+    # Legumes
+    grepl("legume", fg_lower) ~ "legume",
+    fg_lower %in% c("pulse") ~ "legume",
+
+    # Seeds & nuts
+    grepl("^nut", fg_lower) ~ "seed_nut",
+    grepl("seed", fg_lower) ~ "seed_nut",
+    fg_lower %in% c("teaseed", "flavoringseed") ~ "seed_nut",
+
+    # Herbs & spices
+    grepl("herb", fg_lower) ~ "herb_spice",
+    fg_lower %in% c("garnish", "teaherb") ~ "herb_spice",
+
+    # Meat & poultry (animals)
+    grepl("^a_", fg_lower) & !grepl("fish|amphibian", fg_lower) ~ "meat_poultry",
+
+    # Seafood (animals)
+    grepl("fish|amphibian", fg_lower) ~ "seafood",
+
+    # Other
+    fg_lower %in% c("additivegum", "sweetener", "tea", "edibleflower",
+                    "medflower", "medleaf", "medroot", "flavoringpod",
+                    "wild/ forage") ~ "other",
+
+    # Default
+    TRUE ~ fg_lower
+  )
+
+  return(normalized)
+}
 
 # ============================================================================
 # LOAD PHYLOSEQ DATA
@@ -66,12 +148,11 @@ cat("Extracting sample metadata...\n")
 sam_data_trnL <- as(sample_data(NCWW_trnL), "data.frame")
 
 # Extract unique locations with coordinates
-# Note: Carrboro coordinates need fixing (mentioned in manuscript line 233)
 sample_locations <- sam_data_trnL %>%
   select(Location, County, long, lat) %>%
   distinct(Location, .keep_all = TRUE)
 
-# Fix Carrboro coordinates if present (from manuscript note)
+# Fix Carrboro coordinates if present
 if ("Carrboro" %in% sample_locations$Location) {
   sample_locations <- sample_locations %>%
     mutate(
@@ -85,16 +166,16 @@ cat("  - Found", nrow(sample_locations), "unique locations\n")
 cat("  - Locations:", paste(sample_locations$Location, collapse = ", "), "\n\n")
 
 # ============================================================================
-# PROCESS PLANT DATA
+# PROCESS PLANT DATA WITH LAB'S FOOD GROUPS
 # ============================================================================
 
-cat("Processing plant data...\n")
+cat("Processing plant data with lab's food group mappings...\n")
 
 # Filter to food plants only (Streptophyta phylum)
 plant_food <- subset_taxa(NCWW_trnL, phylum == "Streptophyta")
 cat("  - Food plants:", ntaxa(plant_food), "taxa\n")
 
-# Extract abundance data and metadata
+# Extract data
 plant_otu <- as(otu_table(plant_food), "matrix")
 if (!taxa_are_rows(plant_food)) {
   plant_otu <- t(plant_otu)
@@ -103,31 +184,57 @@ plant_tax <- as.data.frame(tax_table(plant_food)@.Data)
 colnames(plant_tax) <- colnames(tax_table(plant_food))
 plant_sam <- as(sample_data(plant_food), "data.frame")
 
-# Create species metadata (scientific name -> common name + categories)
+# Join with ASV-based food group mapping
 plant_species_metadata <- plant_tax %>%
-  rownames_to_column("taxa_id") %>%
-  select(taxa_id, family, genus, species, FoodGroup, BigGroup, CommonName) %>%
+  rownames_to_column("asv_seq") %>%
+  left_join(plant_fg_map, by = "asv_seq") %>%
   mutate(
+    # Create scientific name
     scientific_name = paste(genus, species),
-    # Use CommonName if available, otherwise genus
-    common_name = ifelse(!is.na(CommonName) & CommonName != "", CommonName, genus),
-    food_group = ifelse(!is.na(FoodGroup) & FoodGroup != "", FoodGroup, "Other"),
-    category = ifelse(!is.na(BigGroup) & BigGroup != "", BigGroup, "Other")
-  )
 
-cat("  - Extracted", nrow(plant_species_metadata), "plant species\n\n")
+    # Smart NA handling
+    has_valid_metadata = !is.na(CommonName) | !is.na(food_group),
+    is_unknown_unknown = is.na(genus) & is.na(species) & !has_valid_metadata,
+
+    # Display name: use common name if available, otherwise genus, otherwise "Unidentified"
+    display_name = case_when(
+      is_unknown_unknown ~ "Unidentified Plants",
+      !is.na(CommonName) & CommonName != "" ~ CommonName,
+      !is.na(genus) ~ genus,
+      TRUE ~ "Unidentified Plants"
+    ),
+
+    # Food group from lab's mapping, fallback to normalized old FoodGroup
+    final_food_group = case_when(
+      is_unknown_unknown ~ "other",
+      !is.na(food_group) ~ food_group,  # Use CSV mapping first (already in correct format)
+      !is.na(FoodGroup) ~ normalize_food_group(FoodGroup),  # Normalize old detailed groups
+      TRUE ~ "other"
+    ),
+
+    # Category (keep simplified)
+    final_category = case_when(
+      is_unknown_unknown ~ "Unidentified",
+      !is.na(BigGroup) & BigGroup != "" ~ BigGroup,
+      TRUE ~ "Other"
+    )
+  ) %>%
+  select(asv_seq, scientific_name, display_name, final_food_group, final_category, is_unknown_unknown)
+
+cat("  - Processed", nrow(plant_species_metadata), "plant species\n")
+cat("  - Unknown/unknown species:", sum(plant_species_metadata$is_unknown_unknown), "\n\n")
 
 # ============================================================================
-# PROCESS ANIMAL DATA
+# PROCESS ANIMAL DATA WITH LAB'S FOOD GROUPS
 # ============================================================================
 
-cat("Processing animal data...\n")
+cat("Processing animal data with lab's food group mappings...\n")
 
 # Filter to food animals only
 animal_food <- subset_taxa(NCWW_animal, IsFood == "Y")
 cat("  - Food animals:", ntaxa(animal_food), "taxa\n")
 
-# Extract abundance data and metadata
+# Extract data
 animal_otu <- as(otu_table(animal_food), "matrix")
 if (!taxa_are_rows(animal_food)) {
   animal_otu <- t(animal_otu)
@@ -136,19 +243,47 @@ animal_tax <- as.data.frame(tax_table(animal_food)@.Data)
 colnames(animal_tax) <- colnames(tax_table(animal_food))
 animal_sam <- as(sample_data(animal_food), "data.frame")
 
-# Create species metadata
+# Join with ASV-based food group mapping
 animal_species_metadata <- animal_tax %>%
-  rownames_to_column("taxa_id") %>%
-  select(taxa_id, class, order, family, genus, species, FoodGroup, BigGroup, CommonName) %>%
+  rownames_to_column("asv_seq") %>%
+  left_join(animal_fg_map, by = "asv_seq") %>%
   mutate(
+    # Create scientific name
     scientific_name = paste(genus, species),
-    # Use CommonName if available, otherwise genus
-    common_name = ifelse(!is.na(CommonName) & CommonName != "", CommonName, genus),
-    food_group = ifelse(!is.na(FoodGroup) & FoodGroup != "", FoodGroup, class),  # Use class as fallback (Fish, Birds, Mammals)
-    category = ifelse(!is.na(BigGroup) & BigGroup != "", BigGroup, class)
-  )
 
-cat("  - Extracted", nrow(animal_species_metadata), "animal species\n\n")
+    # Smart NA handling
+    has_valid_metadata = !is.na(CommonName) | !is.na(food_group),
+    is_unknown_unknown = is.na(genus) & is.na(species) & !has_valid_metadata,
+
+    # Display name
+    display_name = case_when(
+      is_unknown_unknown ~ "Unidentified Animals",
+      !is.na(CommonName) & CommonName != "" ~ CommonName,
+      !is.na(genus) ~ genus,
+      TRUE ~ "Unidentified Animals"
+    ),
+
+    # Food group from lab's mapping, fallback to normalized old FoodGroup or class
+    final_food_group = case_when(
+      is_unknown_unknown ~ "other",
+      !is.na(food_group) ~ food_group,  # Use CSV mapping first (already in correct format)
+      !is.na(FoodGroup) ~ normalize_food_group(FoodGroup),  # Normalize old detailed groups
+      !is.na(class) ~ normalize_food_group(class),  # Normalize class names
+      TRUE ~ "other"
+    ),
+
+    # Category
+    final_category = case_when(
+      is_unknown_unknown ~ "Unidentified",
+      !is.na(BigGroup) & BigGroup != "" ~ BigGroup,
+      !is.na(class) ~ class,
+      TRUE ~ "Other"
+    )
+  ) %>%
+  select(asv_seq, scientific_name, display_name, final_food_group, final_category, is_unknown_unknown)
+
+cat("  - Processed", nrow(animal_species_metadata), "animal species\n")
+cat("  - Unknown/unknown species:", sum(animal_species_metadata$is_unknown_unknown), "\n\n")
 
 # ============================================================================
 # AGGREGATE DATA BY LOCATION AND DATE
@@ -156,16 +291,16 @@ cat("  - Extracted", nrow(animal_species_metadata), "animal species\n\n")
 
 cat("Aggregating data by location and date...\n")
 
-# Function to aggregate samples by location and date
-aggregate_by_location_date <- function(otu_matrix, sample_data, type = "plant") {
+# Function to aggregate, with smart NA handling
+aggregate_by_location_date <- function(otu_matrix, sample_data, species_metadata, type = "plant") {
 
-  # Convert OTU to data frame
+  # Convert OTU to data frame (using ASV sequences as IDs)
   otu_df <- as.data.frame(otu_matrix) %>%
-    rownames_to_column("taxa_id")
+    rownames_to_column("asv_seq")
 
   # Pivot to long format
   otu_long <- otu_df %>%
-    pivot_longer(-taxa_id, names_to = "sample_id", values_to = "abundance")
+    pivot_longer(-asv_seq, names_to = "sample_id", values_to = "abundance")
 
   # Join with sample metadata
   sample_meta <- sample_data %>%
@@ -177,12 +312,14 @@ aggregate_by_location_date <- function(otu_matrix, sample_data, type = "plant") 
       date_str = format(Date_parsed, "%Y-%m")
     )
 
+  # Join with species metadata
   otu_with_meta <- otu_long %>%
-    left_join(sample_meta, by = "sample_id")
+    left_join(sample_meta, by = "sample_id") %>%
+    left_join(species_metadata, by = "asv_seq")
 
-  # Aggregate by location and date (average abundance)
+  # Aggregate unknowns: sum abundances for all "Unidentified" species
   aggregated <- otu_with_meta %>%
-    group_by(Location, date_str, taxa_id) %>%
+    group_by(Location, date_str, display_name, final_food_group, final_category, is_unknown_unknown) %>%
     summarise(
       mean_abundance = mean(abundance, na.rm = TRUE),
       n_samples = n(),
@@ -193,11 +330,11 @@ aggregate_by_location_date <- function(otu_matrix, sample_data, type = "plant") 
 }
 
 # Aggregate plant data
-plant_agg <- aggregate_by_location_date(plant_otu, plant_sam, "plant")
+plant_agg <- aggregate_by_location_date(plant_otu, plant_sam, plant_species_metadata, "plant")
 cat("  - Plant data aggregated to", nrow(plant_agg), "location-date-taxa combinations\n")
 
 # Aggregate animal data
-animal_agg <- aggregate_by_location_date(animal_otu, animal_sam, "animal")
+animal_agg <- aggregate_by_location_date(animal_otu, animal_sam, animal_species_metadata, "animal")
 cat("  - Animal data aggregated to", nrow(animal_agg), "location-date-taxa combinations\n\n")
 
 # ============================================================================
@@ -227,22 +364,22 @@ for (loc in sample_locations$Location) {
     # Get plant data for this location and date
     plant_data <- plant_agg %>%
       filter(Location == loc, date_str == date) %>%
-      select(taxa_id, mean_abundance)
+      select(display_name, mean_abundance)
 
     # Get animal data for this location and date
     animal_data <- animal_agg %>%
       filter(Location == loc, date_str == date) %>%
-      select(taxa_id, mean_abundance)
+      select(display_name, mean_abundance)
 
-    # Convert to named lists
+    # Convert to named lists (using display_name as key)
     plants_named <- setNames(
       as.list(plant_data$mean_abundance),
-      plant_species_metadata$scientific_name[match(plant_data$taxa_id, plant_species_metadata$taxa_id)]
+      plant_data$display_name
     )
 
     animals_named <- setNames(
       as.list(animal_data$mean_abundance),
-      animal_species_metadata$scientific_name[match(animal_data$taxa_id, animal_species_metadata$taxa_id)]
+      animal_data$display_name
     )
 
     # Add to timeseries
@@ -252,7 +389,7 @@ for (loc in sample_locations$Location) {
     )
   }
 
-  # Create plant ID (use location name as ID)
+  # Create plant ID
   plant_id <- paste0("plant_", str_pad(which(sample_locations$Location == loc), 3, pad = "0"))
 
   # Add to plants list (only if coordinates are valid)
@@ -271,26 +408,38 @@ for (loc in sample_locations$Location) {
 
 cat("  - Created data for", length(plants_list), "treatment plants\n")
 
-# Build species metadata with categories
+# Build species metadata with lab's food groups and colors
 all_species_metadata <- bind_rows(
-  plant_species_metadata %>%
-    select(scientific_name, common_name, food_group, category) %>%
+  plant_agg %>%
+    select(display_name, final_food_group, final_category) %>%
+    distinct() %>%
     mutate(type = "plant"),
-  animal_species_metadata %>%
-    select(scientific_name, common_name, food_group, category) %>%
+  animal_agg %>%
+    select(display_name, final_food_group, final_category) %>%
+    distinct() %>%
     mutate(type = "animal")
 ) %>%
-  distinct(scientific_name, .keep_all = TRUE)
+  distinct(display_name, .keep_all = TRUE) %>%
+  # Join with color theme
+  left_join(
+    color_theme %>% select(group_key, color_hex),
+    by = c("final_food_group" = "group_key")
+  ) %>%
+  mutate(
+    # Use color from theme, or default gray for "other"
+    display_color = ifelse(!is.na(color_hex), color_hex, "#9BA4B4")
+  )
 
 # Create nested list structure for each species
 species_metadata_list <- list()
 for (i in 1:nrow(all_species_metadata)) {
   sp <- all_species_metadata[i, ]
-  species_metadata_list[[sp$scientific_name]] <- list(
-    common_name = sp$common_name,
-    food_group = sp$food_group,
-    category = sp$category,
-    type = sp$type
+  species_metadata_list[[sp$display_name]] <- list(
+    common_name = sp$display_name,
+    food_group = sp$final_food_group,
+    category = sp$final_category,
+    type = sp$type,
+    color = sp$display_color
   )
 }
 
@@ -324,19 +473,32 @@ for (date in all_dates) {
   )
 }
 
+# Add color theme to JSON
+color_theme_list <- list()
+for (i in 1:nrow(color_theme)) {
+  theme <- color_theme[i, ]
+  color_theme_list[[theme$group_key]] <- list(
+    display = theme$display,
+    color = theme$color_hex,
+    icon_url = theme$icon_url
+  )
+}
+
 foodseq_json <- list(
   dates = all_dates,
   time_periods = time_periods,
   plants = plants_list,
   species_metadata = species_metadata_list,
+  color_theme = color_theme_list,
   metadata = list(
     generated_date = as.character(Sys.Date()),
     n_locations = length(plants_list),
     n_species = length(species_metadata_list),
-    n_plant_species = sum(plant_species_metadata$scientific_name %in% names(species_metadata_list)),
-    n_animal_species = sum(animal_species_metadata$scientific_name %in% names(species_metadata_list)),
-    data_source = "NCWW manuscript phyloseq objects",
-    date_range = paste(min(all_dates), "to", max(all_dates))
+    n_plant_species = sum(all_species_metadata$type == "plant"),
+    n_animal_species = sum(all_species_metadata$type == "animal"),
+    data_source = "NCWW manuscript phyloseq objects + lab food group mappings",
+    date_range = paste(min(all_dates), "to", max(all_dates)),
+    na_handling = "Smart hybrid: genus-level IDs kept, true unknowns aggregated"
   )
 )
 
@@ -376,9 +538,18 @@ cat("  - Total species:", foodseq_json$metadata$n_species, "\n")
 cat("    - Plant species:", foodseq_json$metadata$n_plant_species, "\n")
 cat("    - Animal species:", foodseq_json$metadata$n_animal_species, "\n")
 cat("  - Date range:", min(all_dates), "to", max(all_dates), "\n")
+cat("  - Food groups:", nrow(color_theme), "\n")
 cat("  - Output file size:", format(file.size(OUTPUT_FILE), units = "KB"), "\n\n")
 
+cat("NA Handling:\n")
+cat("  - Genus-level IDs (kept separate):",
+    sum(!plant_species_metadata$is_unknown_unknown & grepl("NA", plant_species_metadata$scientific_name)), "plants,",
+    sum(!animal_species_metadata$is_unknown_unknown & grepl("NA", animal_species_metadata$scientific_name)), "animals\n")
+cat("  - True unknowns (aggregated):",
+    sum(plant_species_metadata$is_unknown_unknown), "plants,",
+    sum(animal_species_metadata$is_unknown_unknown), "animals\n\n")
+
 cat("Next steps:\n")
-cat("  1. Validate JSON structure\n")
-cat("  2. Test visualization with real data\n")
-cat("  3. Update documentation\n\n")
+cat("  1. Copy JSON to data/ directory: cp", OUTPUT_FILE, "data/foodseq_data.json\n")
+cat("  2. Update visualization colors in index.html\n")
+cat("  3. Test visualization\n\n")
