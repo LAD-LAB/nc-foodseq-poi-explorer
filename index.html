@@ -767,16 +767,16 @@
                 const hasData = plant.timeseries && plant.timeseries[currentDate];
 
                 if (hasData) {
-                    // Active location - red/orange color
+                    // Active location - red color
                     marker.setStyle({
                         fillColor: '#e53e3e',
                         fillOpacity: 0.9
                     });
                 } else {
-                    // Inactive location - gray color
+                    // Inactive location - green color (default)
                     marker.setStyle({
-                        fillColor: '#a0aec0',
-                        fillOpacity: 0.6
+                        fillColor: '#48bb78',
+                        fillOpacity: 0.9
                     });
                 }
             });
