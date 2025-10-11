@@ -32,7 +32,7 @@ library(jsonlite)
 
 # Set paths relative to project root
 # Assumes script is run from project root: nc-foodseq-viz/
-MANUSCRIPT_DATA_DIR <- "../Wastewater/NCWastewaterManuscript/20250408_NewFormatting/NCWW_ms_code/Data"
+RAW_DATA_DIR <- "data/raw"
 OUTPUT_FILE <- "data/processed/foodseq_data.json"
 
 # Lab food group mapping files
@@ -41,7 +41,7 @@ ANIMAL_FOOD_MAP <- "data/raw/asv_to_foodgroup_12S.csv"
 COLOR_THEME <- "data/raw/food_group_theme.csv"
 
 cat("Starting phyloseq to JSON conversion...\n")
-cat("Input directory:", MANUSCRIPT_DATA_DIR, "\n")
+cat("Input directory:", RAW_DATA_DIR, "\n")
 cat("Output file:", OUTPUT_FILE, "\n\n")
 
 # ============================================================================
@@ -123,7 +123,7 @@ normalize_food_group <- function(fg) {
 cat("Loading phyloseq objects...\n")
 
 # Load animal data
-animal_path <- file.path(MANUSCRIPT_DATA_DIR, "NCWW_allsamples_animal.rds")
+animal_path <- file.path(RAW_DATA_DIR, "NCWW_allsamples_animal.rds")
 if (!file.exists(animal_path)) {
   stop("Animal RDS file not found at: ", animal_path)
 }
@@ -131,7 +131,7 @@ NCWW_animal <- readRDS(animal_path)
 cat("  - Animal data loaded:", ntaxa(NCWW_animal), "taxa,", nsamples(NCWW_animal), "samples\n")
 
 # Load plant data (trnL)
-plant_path <- file.path(MANUSCRIPT_DATA_DIR, "NCWW_allsamples_trnL.rds")
+plant_path <- file.path(RAW_DATA_DIR, "NCWW_allsamples_trnL.rds")
 if (!file.exists(plant_path)) {
   stop("Plant RDS file not found at: ", plant_path)
 }

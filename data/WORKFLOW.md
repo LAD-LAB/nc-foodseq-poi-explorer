@@ -21,7 +21,7 @@ Interactive Web Visualization
 ## Source Data
 
 ### Location
-`../Wastewater/NCWastewaterManuscript/20250408_NewFormatting/NCWW_ms_code/Data/`
+`data/raw/` (local project directory)
 
 ### Files
 - **NCWW_allsamples_animal.rds**: Phyloseq object with animal food species
@@ -33,6 +33,11 @@ Interactive Web Visualization
   - 793 taxa (185 food plants after filtering to Streptophyta phylum)
   - 182 samples
   - Contains crops, fruits, vegetables, nuts, herbs
+
+### Additional Files
+- **asv_to_foodgroup_trnL.csv**: Lab's plant ASV to food group mappings (237 entries)
+- **asv_to_foodgroup_12S.csv**: Lab's animal ASV to food group mappings (43 entries)
+- **food_group_theme.csv**: Lab's color theme for food groups (9 groups)
 
 ### Data Collection
 - **Study period**: May-December 2020 (8 months)
@@ -144,12 +149,12 @@ python3 -m http.server 8000
 
 ## Output Summary
 
-### Real Data Statistics (2020 Manuscript Data)
-- **Treatment Plants**: 21 locations across NC
-- **Species Detected**: 248 total (185 plants, 116 animals)
-- **Temporal Coverage**: 8 months (May-December 2020)
+### Real Data Statistics (Current Data)
+- **Treatment Plants**: 20 locations across NC (Charlotte 4 excluded due to missing coordinates)
+- **Species Detected**: 292 total (179 plants, 113 animals)
+- **Temporal Coverage**: 9 months (May-December 2020, June 2021)
 - **Geographic Coverage**: Coastal to mountain regions
-- **File Size**: ~700KB JSON
+- **File Size**: 576KB JSON
 
 ### Key Locations
 - Charlotte (4 separate plants)
@@ -218,5 +223,5 @@ This pipeline preserves the data processing decisions from the manuscript:
 
 ---
 
-*Last updated: 2025-10-09*
+*Last updated: 2025-10-11*
 *Author: Anna Bauer*
