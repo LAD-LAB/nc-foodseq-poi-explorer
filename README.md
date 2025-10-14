@@ -1,272 +1,137 @@
 # NC FoodSeq Wastewater Visualization
 
-Interactive web-based visualization of FoodSeq data from 39 wastewater treatment plants across North Carolina.
-
-![NC FoodSeq Demo](https://img.shields.io/badge/status-MVP-green)
-
-## Overview
-
-This tool enables exploration of plant and animal species detected in wastewater treatment plants across North Carolina. Users can click on counties to view the most abundant species and scrub through time to see temporal patterns.
-
-## Features
-
-- **Interactive Map**: Click on NC counties or treatment plant markers to view data
-- **Dual Species Views**: Toggle between plant and animal species detection
-- **Top 25 Display**: Color-coded bar charts using **lab's standardized food group colors**
-- **Temporal Navigation**: Discrete time period selector with data availability indicators
-- **Dynamic Marker Colors**: Location markers change color based on data availability
-  - **Green markers**: Default/no data for selected time period
-  - **Red markers**: Has data available for selected time period
-- **Census Data Overlays**: Multiple layers providing social/economic context
-  - **Population Density**: Block group-level density (YlGnBu color scheme)
-  - **Demographic Layers**: Census tract-level data (ACS 2019-2023)
-    - Median Household Income (Purple scale)
-    - % Foreign Born (Orange scale)
-    - % White (Blue scale)
-    - % Black (Green scale)
-    - % Asian (Red scale)
-    - % Hispanic/Latino (Teal scale)
-- **Multi-Panel**: View multiple counties simultaneously for comparison
-- **Draggable Panels**: Rearrange panels for custom layouts
-- **Responsive Design**: Professional appearance suitable for presentations
+Interactive web-based visualization of FoodSeq data from wastewater treatment plants across North Carolina.
 
 ## Quick Start
 
-### 1. Generate Data
+### Run Locally
 
 ```bash
-# Activate virtual environment
-source venv/bin/activate
+# Clone the repository
+git clone https://github.com/LAD-LAB/nc-foodseq-viz.git
+cd nc-foodseq-viz
 
-# Generate toy FoodSeq data
-python3 generate_toy_data.py
-```
+# Checkout the web-deploy branch
+git checkout web-deploy
 
-### 2. View Visualization
-
-Start a local web server (required to avoid CORS issues):
-
-```bash
-# Start server
+# Start a local web server
 python3 -m http.server 8000
 
 # Open in browser
-open http://localhost:8000/index.html
+open http://localhost:8000
 ```
 
-Or visit `http://localhost:8000/index.html` in your browser.
+Visit `http://localhost:8000` in your browser.
 
-## Data
+## Features
 
-### Current Dataset (Real FoodSeq Data - 2020-2021)
-
-The visualization uses **real FoodSeq data** from the NC Wastewater manuscript:
-
-- **20 wastewater treatment plants** across NC (Charlotte 4 excluded due to missing coordinates)
-- **292 species total:**
-  - **179 plant species** (Streptophyta phylum - food plants)
-  - **113 animal species** (food animals marked as IsFood = "Y")
-- **9 standardized food groups** using lab's color palette (91.1% color coverage):
-  - Seafood (85 species) - Pink (#EB88D1)
-  - Vegetable (39 species) - Purple (#B26EB6)
-  - Fruit (35 species) - Blue (#8593C6)
-  - Meat & Poultry (28 species) - Red (#DC7775)
-  - Herb & Spice (25 species) - Brown (#B79888)
-  - Seed & Nut (24 species) - Yellow (#FFEA99)
-  - Legume (17 species) - Green (#9CAF6A)
-  - Grain (13 species) - Orange (#FCC77C)
-  - Other (26 species) - Gray (#9BA4B4)
-- **9 timepoints** (May-December 2020, June 2021)
-  - Default view: **June 2021** (most comprehensive with 19/20 locations)
-  - Visual indicators show data sparsity for early months
-- **Geographic coverage**: Coastal (Wilmington, Beaufort) to Mountain (Asheville, Marion) regions
-- **Species metadata**: Common names, standardized food groups, categories
-
-### Data Processing Pipeline
-
-Real FoodSeq data is processed from phyloseq format (RDS files) to JSON using an R script:
-
-**Input**:
-- `NCWW_allsamples_animal.rds` (animal species from manuscript)
-- `NCWW_allsamples_trnL.rds` (plant species from manuscript)
-
-**Output**: `data/processed/foodseq_data.json` → `data/foodseq_data.json`
-
-**Script**: `data/scripts/01_convert_phyloseq_to_json.R`
-
-**Design Decisions**:
-1. **Missing coordinates**: Use county centroid as fallback for treatment plants without lat/long
-2. **Sample aggregation**: Average read counts when multiple samples exist for same location/month
-3. **Normalization**: Apply CLR (Centered Log-Ratio) transformation for compositional data
-4. **Location handling**: Keep all Charlotte treatment plants (1-4) as separate locations
-
-**Species Classification**:
-- **Plants**: Taxa with phylum = "Streptophyta"
-- **Animals**: Taxa with phylum = "Chordata"
-
-#### JSON Format
-
-To use real FoodSeq data, modify `generate_toy_data.py` or create a new conversion script that outputs JSON in the following format:
-
-```json
-{
-  "dates": ["2024-01", "2024-02", ...],
-  "plants": {
-    "plant_001": {
-      "name": "Durham WWTP",
-      "lat": 35.99,
-      "lng": -78.90,
-      "county": "Durham",
-      "timeseries": {
-        "2024-01": {
-          "plants": {"Species name": abundance, ...},
-          "animals": {"Species name": abundance, ...}
-        }
-      }
-    }
-  },
-  "species_metadata": {
-    "Scientific name": "Common name"
-  }
-}
-```
+- **Interactive Map**: Click on NC counties or treatment plant markers to view species data
+- **Dual Species Views**: Toggle between plant and animal species detection
+- **Top 25 Display**: Color-coded bar charts showing most abundant species
+- **Temporal Navigation**: Time period selector (May 2020 - June 2021)
+- **Dynamic Markers**: Location markers change color based on data availability
+  - Green: No data for selected time period
+  - Red: Has data for selected time period
+- **Census Data Overlays**: Multiple demographic and population layers
+  - Population Density (block group level)
+  - Median Income (census tract)
+  - Race/Ethnicity percentages (census tract)
+- **Multi-Panel Comparison**: View multiple counties simultaneously
+- **Draggable Panels**: Rearrange panels for custom layouts
 
 ## Project Structure
 
 ```
 nc-foodseq-viz/
-├── index.html                           # Main visualization (single-file app)
+├── index.html                         # Main application (single-file)
 ├── data/
-│   ├── foodseq_data.json               # Real FoodSeq data (2020-2021, 703KB)
-│   ├── nc_counties.geojson             # NC county boundaries
-│   ├── nc_population_density.geojson   # Census block groups with density (5.5MB)
-│   ├── nc_demographics.geojson         # Census tracts with demographic data (3.6MB)
-│   ├── raw/                            # Raw data (git-ignored)
-│   │   └── NCWW_allsamples_02142025.rds
-│   ├── processed/                      # Processed data outputs
-│   │   └── foodseq_data.json
-│   ├── scripts/                        # Data processing scripts
-│   │   ├── 01_convert_phyloseq_to_json.R
-│   │   ├── 02_create_population_density_geojson.R
-│   │   └── 03_create_demographic_geojson.R
-│   └── WORKFLOW.md                     # Data processing documentation
-├── generate_toy_data.py                 # Toy data generation (testing)
-├── create_nc_geojson.py                 # GeoJSON filter script
-├── DESIGN.md                            # Design documentation
-├── CLAUDE.md                            # Development workflow guide
-├── REMINDME.md                          # Session notes and next steps
-├── TODO_POPULATION_DATA.md              # Instructions for real Census data
-└── README.md                            # This file
+│   ├── foodseq_data.json             # FoodSeq species data (2020-2021)
+│   ├── nc_counties.geojson           # NC county boundaries
+│   ├── nc_population_density.geojson # Population density by block group
+│   └── nc_demographics.geojson       # Census demographic data
+├── .gitignore
+└── README.md
 ```
 
 ## Technology Stack
 
-- **Leaflet.js** - Interactive mapping
-- **Chart.js** - Data visualization
+- **Leaflet.js 1.9.4** - Interactive mapping
+- **Chart.js 4.4.0** - Data visualization
 - **Vanilla JavaScript** - Application logic
-- **Python** - Data generation/processing
+- No build tools required - runs entirely in the browser
 
-No build tools or server required - runs entirely in the browser!
+## Data Files
+
+### foodseq_data.json (576 KB)
+Real FoodSeq surveillance data containing:
+- 20 wastewater treatment plants across NC
+- 292 species (179 plants, 113 animals)
+- 9 time periods (May 2020 - June 2021)
+- Species metadata with common names and food group classifications
+
+### nc_counties.geojson (82 KB)
+North Carolina county boundaries for map overlay.
+
+### nc_population_density.geojson (5.5 MB)
+2020 Census block group-level population density data.
+
+### nc_demographics.geojson (3.6 MB)
+Census tract-level demographic data (ACS 2019-2023):
+- Median household income
+- Foreign born percentage
+- Race/ethnicity percentages (White, Black, Asian, Hispanic/Latino)
 
 ## Usage
 
-1. **View County Data**: Click on any NC county or treatment plant marker
-2. **Switch Species Type**: Use the "Plants" / "Animals" tabs in the panel
+1. **View County Data**: Click any county or treatment plant marker
+2. **Switch Species**: Use "Plants"/"Animals" tabs in the panel
 3. **Compare Counties**: Click multiple counties to open multiple panels
-4. **Navigate Time**: Click time period buttons to switch between May 2020 - June 2021
-5. **View Census Data**: Use the map layer buttons on the right to view:
-   - **Topology**: County boundaries (default view)
-   - **Population Density**: Rural/suburban/urban classification
-   - **Median Income**: Economic status by census tract (purple: darker = wealthier)
-   - **% Foreign Born**: Immigration patterns (orange: darker = higher %)
-   - **% White**: Racial composition (blue: darker = higher %)
-   - **% Black**: Racial composition (green: darker = higher %)
-   - **% Asian**: Racial composition (red: darker = higher %)
-   - **% Hispanic/Latino**: Ethnic composition (teal: darker = higher %)
-6. **Rearrange Panels**: Drag panels by their headers to reposition
-7. **Close Panels**: Click the × button on any panel
+4. **Navigate Time**: Click time period buttons at bottom
+5. **Change Map View**: Use layer buttons on the right side
+6. **Rearrange Panels**: Drag panels by their headers
+7. **Close Panels**: Click the × button
 
-**Note**: June 2021 is the default view (19 of 20 treatment plants). Earlier months have fewer locations (indicated by dashed borders on time buttons).
+## Development Notes
 
-## Development
+### Running the Application
 
-### Setup
+The application **requires a local web server** to avoid CORS issues when loading JSON files. Options:
 
 ```bash
-# Create virtual environment
-python3 -m venv venv
+# Python 3
+python3 -m http.server 8000
 
-# Activate it
-source venv/bin/activate  # Mac/Linux
-# or
-venv\Scripts\activate     # Windows
+# Python 2
+python -m SimpleHTTPServer 8000
 
-# Install dependencies (if needed)
-pip install -r requirements.txt
+# Node.js (if you have http-server installed)
+npx http-server -p 8000
 ```
 
-### Process Real Data
+### Browser Compatibility
 
-**FoodSeq Data:**
-```bash
-# Run R script to convert manuscript phyloseq data to JSON
-Rscript data/scripts/01_convert_phyloseq_to_json.R
+Tested on:
+- Chrome/Edge (latest)
+- Safari (latest)
+- Firefox (latest)
 
-# Copy processed data to visualization directory
-cp data/processed/foodseq_data.json data/foodseq_data.json
+### File Paths
+
+All data files are loaded relative to `index.html`:
+```javascript
+fetch('data/foodseq_data.json')
+fetch('data/nc_counties.geojson')
+fetch('data/nc_population_density.geojson')
+fetch('data/nc_demographics.geojson')
 ```
 
-**Census Data:**
+Ensure data files remain in the `data/` directory.
 
-✅ **Using Real Census Data**: The visualization includes multiple census layers:
-- **Population Density** (2020 Census): Block group-level data matching manuscript Figure 1a methodology
-- **Demographics** (ACS 2019-2023): Census tract-level socioeconomic data
+### External Dependencies
 
-To regenerate the census GeoJSON files:
-```bash
-# Population density (block groups)
-Rscript data/scripts/02_create_population_density_geojson.R
-
-# Demographics (census tracts)
-Rscript data/scripts/03_create_demographic_geojson.R
-```
-
-Both scripts fetch data from the Census API using your API key stored in `.env`.
-
-**Census Variables Used:**
-- B19013_001: Median household income
-- B05002_013/B05002_001: Foreign born population percentage
-- B02001_002/B02001_001: White alone percentage
-- B02001_003/B02001_001: Black or African American alone percentage
-- B02001_005/B02001_001: Asian alone percentage
-- B03003_003/B03003_001: Hispanic or Latino percentage
-
-### Generate Toy Data (for testing)
-
-```bash
-# Generate synthetic data (optional, for testing)
-python3 generate_toy_data.py
-```
-
-## Future Enhancements
-
-**Completed:**
-- [x] Real FoodSeq data integration ✅
-- [x] Time period selector with data availability indicators ✅
-- [x] Lab's standardized food group classifications and colors ✅
-- [x] Dynamic marker colors showing data availability ✅
-- [x] Population density heatmap overlay ✅
-- [x] Draggable multi-panel comparison ✅
-- [x] Real Census population data (2020 Census via API) ✅
-- [x] 6 demographic layers (income, race/ethnicity) at census tract level ✅
-
-**Planned:**
-- [ ] Interactive legend showing color scales for each layer (recommended next)
-- [ ] Species search and filtering
-- [ ] Data export functionality
-- [ ] Animation mode for temporal visualization
-- [ ] Side-by-side panel comparison view
-- [ ] Weekly/daily temporal resolution (if data available)
+Loaded via CDN (no local installation needed):
+- Leaflet CSS/JS: `unpkg.com/leaflet@1.9.4`
+- Chart.js: `cdn.jsdelivr.net/npm/chart.js@4.4.0`
 
 ## Credits
 
@@ -277,7 +142,3 @@ python3 generate_toy_data.py
 ## License
 
 Research use only. Contact the David Lab for collaboration opportunities.
-
----
-
-*For detailed design decisions and implementation notes, see [DESIGN.md](DESIGN.md)*
