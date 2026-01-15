@@ -8,6 +8,10 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
+    <!-- Leaflet.markercluster CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
     <style>
         * {
             margin: 0;
@@ -53,12 +57,12 @@
         /* Timeline slider */
         .timeline-container {
             position: absolute;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
             background: white;
-            padding: 20px 40px;
+            padding: 10px 30px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             width: 60%;
@@ -67,62 +71,85 @@
 
         .timeline-label {
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: #1a365d;
-            margin-bottom: 12px;
+            margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
-        .timeline-selector {
-            display: flex;
-            gap: 8px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 10px;
-        }
-
-        .time-period-button {
-            padding: 8px 12px;
-            border: 2px solid #e2e8f0;
-            background: white;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: 600;
-            color: #4a5568;
-            cursor: pointer;
-            transition: all 0.2s;
+        .timeline-slider-wrapper {
             position: relative;
+            padding: 5px 0 20px 0;
         }
 
-        .time-period-button.active {
+        .timeline-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e2e8f0;
+            border-radius: 4px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .timeline-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
             background: #4299e1;
-            border-color: #4299e1;
-            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s;
         }
 
-        .time-period-button.sparse {
-            opacity: 0.6;
-            border-style: dashed;
+        .timeline-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
         }
 
-        .time-period-button:hover:not(.active) {
-            border-color: #4299e1;
+        .timeline-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #4299e1;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-ticks {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+            padding: 0 10px;
+        }
+
+        .timeline-tick {
+            font-size: 10px;
+            color: #718096;
+            text-align: center;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .timeline-tick:hover {
             color: #4299e1;
         }
 
-        .time-period-button .location-count {
-            font-size: 10px;
-            opacity: 0.8;
-            display: block;
+        .timeline-tick.active {
+            color: #4299e1;
+            font-weight: 600;
         }
 
         .timeline-info {
             text-align: center;
-            font-size: 13px;
+            font-size: 12px;
             color: #666;
-            margin-top: 8px;
+            margin-top: 4px;
         }
 
         /* Data panel */
@@ -209,31 +236,8 @@
             margin-top: 15px;
         }
 
-        canvas {
+        .chart-container canvas {
             max-height: 400px;
-        }
-
-        /* Instructions */
-        .instructions {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            max-width: 250px;
-            font-size: 13px;
-            line-height: 1.6;
-            color: #4a5568;
-        }
-
-        .instructions strong {
-            color: #1a365d;
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
         }
 
         /* Map controls */
@@ -318,6 +322,385 @@
             border-radius: 50%;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         }
+
+        /* POI Controls Panel */
+        .poi-controls {
+            position: absolute;
+            top: 300px;
+            left: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            max-width: 220px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .poi-controls-header {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a365d;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .poi-category-group {
+            margin-bottom: 12px;
+        }
+
+        .poi-category-header {
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .poi-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 13px;
+            color: #2d3748;
+            cursor: pointer;
+        }
+
+        .poi-toggle input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .poi-toggle span:first-of-type {
+            flex: 1;
+        }
+
+        .poi-count {
+            font-size: 11px;
+            color: #718096;
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .poi-controls-footer {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .poi-controls-footer button {
+            flex: 1;
+            padding: 6px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .poi-controls-footer button:hover {
+            background: #f7fafc;
+            border-color: #cbd5e0;
+        }
+
+        /* POI Marker Icons */
+        .poi-icon {
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .poi-icon-grocery { border: 2px solid #48bb78; }
+        .poi-icon-restaurant { border: 2px solid #ed8936; }
+        .poi-icon-fast_food { border: 2px solid #f56565; }
+        .poi-icon-seafood { border: 2px solid #4299e1; }
+        .poi-icon-butcher { border: 2px solid #e53e3e; }
+        .poi-icon-bakery { border: 2px solid #d69e2e; }
+        .poi-icon-greengrocer { border: 2px solid #38b2ac; }
+        .poi-icon-marketplace { border: 2px solid #9f7aea; }
+        .poi-icon-university { border: 2px solid #6366f1; }
+        .poi-icon-ev_charging { border: 2px solid #10b981; }
+        .poi-icon-gym { border: 2px solid #f97316; }
+
+        /* Census Tract Labels */
+        .tract-label {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #667;
+            border-radius: 4px;
+            padding: 3px 6px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        /* POI Clusters */
+        .poi-cluster {
+            background: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .poi-cluster-grocery {
+            background: #c6f6d5;
+            color: #22543d;
+            border: 3px solid #48bb78;
+        }
+
+        .poi-cluster-restaurant {
+            background: #feebc8;
+            color: #7c2d12;
+            border: 3px solid #ed8936;
+        }
+
+        .poi-cluster-fast_food {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 3px solid #f56565;
+        }
+
+        .poi-cluster-seafood {
+            background: #bee3f8;
+            color: #1e4e8c;
+            border: 3px solid #4299e1;
+        }
+
+        .poi-cluster-butcher {
+            background: #fed7d7;
+            color: #742a2a;
+            border: 3px solid #e53e3e;
+        }
+
+        .poi-cluster-bakery {
+            background: #fefcbf;
+            color: #744210;
+            border: 3px solid #d69e2e;
+        }
+
+        .poi-cluster-greengrocer {
+            background: #b2f5ea;
+            color: #234e52;
+            border: 3px solid #38b2ac;
+        }
+
+        .poi-cluster-marketplace {
+            background: #e9d8fd;
+            color: #44337a;
+            border: 3px solid #9f7aea;
+        }
+
+        .poi-cluster-university {
+            background: #e0e7ff;
+            color: #3730a3;
+            border: 3px solid #6366f1;
+        }
+
+        .poi-cluster-ev_charging {
+            background: #d1fae5;
+            color: #065f46;
+            border: 3px solid #10b981;
+        }
+
+        .poi-cluster-gym {
+            background: #ffedd5;
+            color: #9a3412;
+            border: 3px solid #f97316;
+        }
+
+        /* POI Popup */
+        .poi-popup {
+            font-family: inherit;
+            min-width: 180px;
+        }
+
+        .poi-popup-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .poi-popup-type {
+            color: #718096;
+            font-size: 12px;
+            text-transform: capitalize;
+            margin-bottom: 8px;
+        }
+
+        .poi-popup-address {
+            font-size: 12px;
+            color: #4a5568;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            padding: 8px;
+            background: #f7fafc;
+            border-radius: 4px;
+        }
+
+        .poi-popup-footer {
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .poi-popup-footer a {
+            font-size: 11px;
+            color: #4299e1;
+            text-decoration: none;
+        }
+
+        /* Species Panel */
+        .species-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 280px;
+            max-height: 500px;
+        }
+
+        .species-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        .species-panel-header button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #718096;
+        }
+
+        .species-search-container {
+            position: relative;
+        }
+
+        #species-search {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .species-list {
+            max-height: 250px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            display: none;
+            background: white;
+        }
+
+        .species-list.active {
+            display: block;
+        }
+
+        .species-item {
+            padding: 10px 12px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .species-item:hover {
+            background: #f7fafc;
+        }
+
+        .species-item.selected {
+            background: #ebf8ff;
+            font-weight: 600;
+        }
+
+        .species-item-name {
+            flex: 1;
+        }
+
+        .species-item-type {
+            font-size: 11px;
+            color: #718096;
+            background: #edf2f7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            text-transform: capitalize;
+        }
+
+        .species-info {
+            margin-top: 12px;
+            padding: 10px;
+            background: #f7fafc;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #4a5568;
+        }
+
+        /* Heat map legend */
+        .heatmap-legend {
+            position: absolute;
+            top: 20px;
+            right: 310px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .heatmap-legend-title {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .heatmap-legend-gradient {
+            width: 150px;
+            height: 15px;
+            background: linear-gradient(to right, #0000ff, #00ffff, #00ff00, #ffff00, #ff0000);
+            border-radius: 3px;
+        }
+
+        .heatmap-legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #718096;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
@@ -333,15 +716,9 @@
         <p>Interactive Dietary Species Detection Across North Carolina</p>
     </div>
 
-    <!-- Instructions -->
-    <div class="instructions">
-        <strong>How to use:</strong>
-        Click on any county to view detected plant and animal species. Use the timeline slider to explore different months. Multiple counties can be viewed simultaneously.
-    </div>
-
     <!-- Map controls -->
     <div class="map-controls">
-        <button id="topoButton" class="active" onclick="switchMapView('topo')">Topology</button>
+        <button id="topoButton" onclick="switchMapView('topo')">Topology</button>
         <button id="densityButton" onclick="switchMapView('density')">Population Density</button>
         <button id="incomeButton" onclick="switchMapView('income')">Median Income</button>
         <button id="foreignButton" onclick="switchMapView('foreign')">% Foreign Born</button>
@@ -349,22 +726,125 @@
         <button id="blackButton" onclick="switchMapView('black')">% Black</button>
         <button id="asianButton" onclick="switchMapView('asian')">% Asian</button>
         <button id="hispanicButton" onclick="switchMapView('hispanic')">% Hispanic/Latino</button>
+        <button id="tractsButton" onclick="toggleDurhamTracts()">Census Tracts</button>
+        <button id="speciesButton" onclick="toggleSpeciesPanel()">Species Abundance</button>
+    </div>
+
+    <!-- POI Layer Controls -->
+    <div class="poi-controls">
+        <div class="poi-controls-header">Food Points of Interest</div>
+
+        <div class="poi-category-group">
+            <div class="poi-category-header">Grocery & Markets</div>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-grocery" onchange="togglePOILayer('grocery')">
+                <span>Grocery Stores</span>
+                <span class="poi-count" id="count-grocery">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-marketplace" onchange="togglePOILayer('marketplace')">
+                <span>Farmers Markets</span>
+                <span class="poi-count" id="count-marketplace">0</span>
+            </label>
+        </div>
+
+        <div class="poi-category-group">
+            <div class="poi-category-header">Restaurants</div>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-restaurant" onchange="togglePOILayer('restaurant')">
+                <span>Restaurants</span>
+                <span class="poi-count" id="count-restaurant">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-fast_food" onchange="togglePOILayer('fast_food')">
+                <span>Fast Food</span>
+                <span class="poi-count" id="count-fast_food">0</span>
+            </label>
+        </div>
+
+        <div class="poi-category-group">
+            <div class="poi-category-header">Specialty Food</div>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-seafood" onchange="togglePOILayer('seafood')">
+                <span>Seafood</span>
+                <span class="poi-count" id="count-seafood">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-butcher" onchange="togglePOILayer('butcher')">
+                <span>Butcher</span>
+                <span class="poi-count" id="count-butcher">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-bakery" onchange="togglePOILayer('bakery')">
+                <span>Bakery</span>
+                <span class="poi-count" id="count-bakery">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-greengrocer" onchange="togglePOILayer('greengrocer')">
+                <span>Produce</span>
+                <span class="poi-count" id="count-greengrocer">0</span>
+            </label>
+        </div>
+
+        <div class="poi-category-group">
+            <div class="poi-category-header">Infrastructure</div>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-university" onchange="togglePOILayer('university')">
+                <span>Universities</span>
+                <span class="poi-count" id="count-university">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-ev_charging" onchange="togglePOILayer('ev_charging')">
+                <span>EV Charging</span>
+                <span class="poi-count" id="count-ev_charging">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-gym" onchange="togglePOILayer('gym')">
+                <span>Gyms</span>
+                <span class="poi-count" id="count-gym">0</span>
+            </label>
+        </div>
+
+        <div class="poi-controls-footer">
+            <button onclick="toggleAllPOIs(true)">Show All</button>
+            <button onclick="toggleAllPOIs(false)">Hide All</button>
+        </div>
+    </div>
+
+    <!-- Species Abundance Panel -->
+    <div id="species-panel" class="species-panel" style="display: none;">
+        <div class="species-panel-header">
+            <span>Species Abundance</span>
+            <button onclick="closeSpeciesPanel()">&times;</button>
+        </div>
+        <div class="species-search-container">
+            <input type="text" id="species-search" placeholder="Search species..." oninput="filterSpeciesList(this.value)">
+            <div id="species-list" class="species-list"></div>
+        </div>
+        <div class="species-info" id="species-info">
+            Select a species to show abundance heat map
+        </div>
     </div>
 
     <!-- Map container -->
     <div id="map"></div>
 
-    <!-- Timeline selector -->
+    <!-- Timeline slider -->
     <div class="timeline-container">
         <div class="timeline-label">Time Period</div>
-        <div class="timeline-selector" id="timelineSelector">
-            <!-- Buttons will be dynamically generated -->
+        <div class="timeline-slider-wrapper">
+            <input type="range" id="timelineSlider" min="0" max="8" value="8" class="timeline-slider" oninput="onTimelineSliderChange(this.value)">
+            <div class="timeline-ticks" id="timelineTicks"></div>
         </div>
         <div class="timeline-info" id="timelineInfo">Loading...</div>
     </div>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Leaflet.markercluster JS -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <!-- Leaflet.heat JS -->
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
@@ -382,6 +862,20 @@
         let openPanels = [];
         let plantMarkers = [];
         let currentMapView = 'topo';
+        let poiData = null;
+        let poiClusters = {};
+        let activePOILayers = new Set();
+        let durhamTractsGeoJSON = null;
+        let durhamTractsLayer = null;
+        let tractLabelsLayer = null;
+        let tractsVisible = false;
+        let tractLabelsVisible = false;
+        const POI_ZOOM_THRESHOLD = 11; // Show POI markers only at zoom >= 11
+
+        // Species heat map variables
+        let speciesHeatLayer = null;
+        let selectedSpecies = null;
+        let allSpeciesList = [];
 
         // Month names for display
         const monthNames = [
@@ -389,24 +883,721 @@
             'July', 'August', 'September', 'October', 'November', 'December'
         ];
 
+        // USDA Dietary Guidelines food group mapping (plants only)
+        const USDA_FOOD_GROUPS = {
+            'Grains': ['grain'],
+            'Vegetables': ['vegetable'],
+            'Fruits': ['fruit'],
+            'Protein (plant)': ['legume', 'seed_nut'],
+            'Other': ['herb_spice', 'other']
+        };
+
+        const USDA_COLORS = {
+            'Grains': '#FCC77C',         // Golden/wheat color
+            'Vegetables': '#4CAF50',      // Green
+            'Fruits': '#8593C6',          // Purple-blue
+            'Protein (plant)': '#8B4513', // Brown/legume color
+            'Other': '#9BA4B4'            // Gray
+        };
+
+        // POI icon definitions
+        const poiIcons = {
+            grocery: L.divIcon({
+                className: 'poi-icon poi-icon-grocery',
+                html: '<div>🛒</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            restaurant: L.divIcon({
+                className: 'poi-icon poi-icon-restaurant',
+                html: '<div>🍽️</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            fast_food: L.divIcon({
+                className: 'poi-icon poi-icon-fast_food',
+                html: '<div>🍔</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            seafood: L.divIcon({
+                className: 'poi-icon poi-icon-seafood',
+                html: '<div>🐟</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            butcher: L.divIcon({
+                className: 'poi-icon poi-icon-butcher',
+                html: '<div>🥩</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            bakery: L.divIcon({
+                className: 'poi-icon poi-icon-bakery',
+                html: '<div>🥖</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            greengrocer: L.divIcon({
+                className: 'poi-icon poi-icon-greengrocer',
+                html: '<div>🥬</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            marketplace: L.divIcon({
+                className: 'poi-icon poi-icon-marketplace',
+                html: '<div>🏪</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            university: L.divIcon({
+                className: 'poi-icon poi-icon-university',
+                html: '<div>🎓</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            ev_charging: L.divIcon({
+                className: 'poi-icon poi-icon-ev_charging',
+                html: '<div>⚡</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            gym: L.divIcon({
+                className: 'poi-icon poi-icon-gym',
+                html: '<div>🏋️</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            })
+        };
+
+        // POI Functions
+        async function loadPOIData() {
+            try {
+                // Add cache-busting parameter to force fresh data
+                const response = await fetch('data/nc_pois.json?v=' + Date.now());
+                if (response.ok) {
+                    console.log('Loaded POI data from static file');
+                    return await response.json();
+                }
+            } catch (e) {
+                console.log('Static POI file not found');
+            }
+
+            const cached = localStorage.getItem('nc_pois_cache');
+            if (cached) {
+                const data = JSON.parse(cached);
+                const cacheAge = Date.now() - data.timestamp;
+                if (cacheAge < 30 * 24 * 60 * 60 * 1000) {
+                    console.log('Using cached POI data');
+                    return data.pois;
+                }
+            }
+
+            console.log('POI data not available. Use fetch_pois.js script to generate data.');
+            return null;
+        }
+
+        function initPOILayers(poiData) {
+            if (!poiData || !poiData.categories) {
+                console.log('No POI data to initialize');
+                return;
+            }
+
+            if (!map.getPane('poiPane')) {
+                map.createPane('poiPane');
+                map.getPane('poiPane').style.zIndex = 600;
+            }
+
+            Object.keys(poiData.categories).forEach(category => {
+                // Create marker cluster layer
+                poiClusters[category] = L.markerClusterGroup({
+                    maxClusterRadius: 50,
+                    iconCreateFunction: (cluster) => createClusterIcon(cluster, category),
+                    spiderfyOnMaxZoom: true,
+                    showCoverageOnHover: false,
+                    zoomToBoundsOnClick: true
+                });
+
+                poiData.categories[category].forEach(poi => {
+                    const marker = L.marker([poi.lat, poi.lon], {
+                        icon: poiIcons[category],
+                        pane: 'poiPane'
+                    });
+
+                    marker.bindPopup(createPOIPopup(poi));
+                    poiClusters[category].addLayer(marker);
+                });
+
+                const countElement = document.getElementById(`count-${category}`);
+                if (countElement) {
+                    countElement.textContent = poiData.categories[category].length;
+                }
+            });
+        }
+
+        function createClusterIcon(cluster, category) {
+            const count = cluster.getChildCount();
+            return L.divIcon({
+                html: `<div class="poi-cluster poi-cluster-${category}">${count}</div>`,
+                className: 'poi-cluster-container',
+                iconSize: L.point(40, 40)
+            });
+        }
+
+        function createPOIPopup(poi) {
+            const address = poi.address && (poi.address.street || poi.address.city) ?
+                `<div class="poi-popup-address">
+                  ${poi.address.street || ''}<br>
+                  ${poi.address.city || ''}, NC ${poi.address.postcode || ''}
+                </div>` : '';
+
+            const formatType = (type) => {
+                return type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+            };
+
+            // Ethnic group badge for restaurants
+            const ethnicBadge = (poi.cuisine && poi.ethnic_group && poi.ethnic_group !== 'Other') ?
+                `<div style="display: inline-block; background: #edf2f7; padding: 3px 8px; border-radius: 4px; font-size: 11px; margin: 5px 0;">
+                  <strong>Cuisine:</strong> ${poi.cuisine} (${poi.ethnic_group})
+                </div>` :
+                (poi.cuisine ? `<div style="font-size: 11px; color: #666; margin: 5px 0;">Cuisine: ${poi.cuisine}</div>` : '');
+
+            // Additional info for specific categories
+            const extraInfo = poi.type === 'charging_station' && poi.operator ?
+                `<div style="font-size: 11px; color: #666; margin: 5px 0;">Operator: ${poi.operator}</div>` :
+                (poi.capacity ? `<div style="font-size: 11px; color: #666; margin: 5px 0;">Capacity: ${poi.capacity}</div>` : '');
+
+            return `
+                <div class="poi-popup">
+                  <div class="poi-popup-header">
+                    <strong>${poi.name || 'Unnamed'}</strong>
+                  </div>
+                  <div class="poi-popup-type">${formatType(poi.type)}</div>
+                  ${ethnicBadge}
+                  ${extraInfo}
+                  ${address}
+                  <div class="poi-popup-footer">
+                    <a href="https://www.openstreetmap.org/node/${poi.id}" target="_blank">View on OpenStreetMap</a>
+                  </div>
+                </div>
+            `;
+        }
+
+        function togglePOILayer(category) {
+            const checkbox = document.getElementById(`poi-${category}`);
+
+            if (!poiClusters[category]) {
+                console.log(`POI cluster for ${category} not initialized`);
+                return;
+            }
+
+            if (checkbox.checked) {
+                activePOILayers.add(category);
+                updatePOILayerForZoom(category);
+            } else {
+                activePOILayers.delete(category);
+                map.removeLayer(poiClusters[category]);
+            }
+        }
+
+        function updatePOILayerForZoom(category) {
+            const currentZoom = map.getZoom();
+            const isActive = activePOILayers.has(category);
+
+            if (!isActive) return;
+
+            // Remove layer first
+            map.removeLayer(poiClusters[category]);
+
+            // Only add layer if zoomed in enough
+            if (currentZoom >= POI_ZOOM_THRESHOLD) {
+                map.addLayer(poiClusters[category]);
+            }
+        }
+
+        function updateAllPOILayersForZoom() {
+            activePOILayers.forEach(category => {
+                updatePOILayerForZoom(category);
+            });
+        }
+
+        function toggleAllPOIs(show) {
+            Object.keys(poiClusters).forEach(category => {
+                const checkbox = document.getElementById(`poi-${category}`);
+                if (checkbox) {
+                    checkbox.checked = show;
+
+                    if (show) {
+                        activePOILayers.add(category);
+                        updatePOILayerForZoom(category);
+                    } else {
+                        activePOILayers.delete(category);
+                        map.removeLayer(poiClusters[category]);
+                    }
+                }
+            });
+        }
+
+        function toggleDurhamTracts() {
+            const button = document.getElementById('tractsButton');
+
+            if (!durhamTractsLayer) {
+                console.log('Durham tracts layer not initialized');
+                return;
+            }
+
+            if (tractsVisible) {
+                map.removeLayer(durhamTractsLayer);
+                tractsVisible = false;
+                button.classList.remove('active');
+            } else {
+                durhamTractsLayer.addTo(map);
+                durhamTractsLayer.bringToFront();
+                tractsVisible = true;
+                button.classList.add('active');
+            }
+        }
+
+        function toggleTractLabels() {
+            const button = document.getElementById('tractLabelsButton');
+
+            if (!tractLabelsLayer) {
+                console.log('Tract labels layer not initialized');
+                return;
+            }
+
+            if (tractLabelsVisible) {
+                map.removeLayer(tractLabelsLayer);
+                tractLabelsVisible = false;
+                button.classList.remove('active');
+            } else {
+                tractLabelsLayer.addTo(map);
+                tractLabelsVisible = true;
+                button.classList.add('active');
+            }
+        }
+
+        // Species Heat Map Functions
+        function initSpeciesList() {
+            if (!foodseqData || !foodseqData.species_metadata) return;
+
+            allSpeciesList = Object.entries(foodseqData.species_metadata).map(([key, meta]) => ({
+                key: key,
+                name: meta.common_name,
+                type: meta.type,
+                foodGroup: meta.food_group,
+                color: meta.color
+            }));
+
+            // Sort alphabetically
+            allSpeciesList.sort((a, b) => a.name.localeCompare(b.name));
+
+            renderSpeciesList(allSpeciesList);
+        }
+
+        function renderSpeciesList(species) {
+            const listEl = document.getElementById('species-list');
+            if (!listEl) return;
+
+            listEl.innerHTML = species.map(s => `
+                <div class="species-item ${selectedSpecies === s.key ? 'selected' : ''}"
+                     onclick="selectSpecies('${s.key}')">
+                    <span class="species-item-name">${s.name}</span>
+                    <span class="species-item-type">${s.type}</span>
+                </div>
+            `).join('');
+        }
+
+        function filterSpeciesList(query) {
+            const listEl = document.getElementById('species-list');
+
+            if (!query) {
+                listEl.classList.remove('active');
+                return;
+            }
+
+            listEl.classList.add('active');
+            const filtered = allSpeciesList.filter(s =>
+                s.name.toLowerCase().includes(query.toLowerCase())
+            );
+            renderSpeciesList(filtered);
+        }
+
+        function selectSpecies(speciesKey) {
+            selectedSpecies = speciesKey;
+            const species = allSpeciesList.find(s => s.key === speciesKey);
+
+            // Update UI
+            document.getElementById('species-search').value = species.name;
+            document.getElementById('species-list').classList.remove('active');
+
+            // Update info
+            document.getElementById('species-info').innerHTML = `
+                <strong>${species.name}</strong><br>
+                Type: ${species.type}<br>
+                Food Group: ${species.foodGroup}
+            `;
+
+            // Update heat map
+            updateSpeciesHeatmap();
+
+            // Show legend
+            showHeatmapLegend(species.name);
+        }
+
+        function getSpeciesHeatData() {
+            if (!selectedSpecies || !foodseqData) return [];
+
+            const currentDate = foodseqData.dates[currentTimeIndex];
+            const heatData = [];
+
+            Object.values(foodseqData.plants).forEach(plant => {
+                const timeData = plant.timeseries[currentDate];
+                if (!timeData) return;
+
+                // Get species abundance
+                const speciesType = foodseqData.species_metadata[selectedSpecies].type;
+                const categoryData = speciesType === 'plant' ? timeData.plants : timeData.animals;
+                const speciesAbundance = categoryData[selectedSpecies] || 0;
+
+                // Calculate total abundance for this location
+                let totalAbundance = 0;
+                Object.values(timeData.plants || {}).forEach(v => totalAbundance += v);
+                Object.values(timeData.animals || {}).forEach(v => totalAbundance += v);
+
+                if (totalAbundance === 0) return;
+
+                // Calculate relative abundance (0-1 scale)
+                const relativeAbundance = speciesAbundance / totalAbundance;
+
+                // Only include if species was detected
+                if (speciesAbundance > 0) {
+                    heatData.push([
+                        plant.lat,
+                        plant.lng,
+                        relativeAbundance * 100  // Scale for heat intensity
+                    ]);
+                }
+            });
+
+            return heatData;
+        }
+
+        function updateSpeciesHeatmap() {
+            // Remove existing layer
+            if (speciesHeatLayer) {
+                map.removeLayer(speciesHeatLayer);
+            }
+
+            const heatData = getSpeciesHeatData();
+            const species = allSpeciesList.find(s => s.key === selectedSpecies);
+
+            if (heatData.length === 0) {
+                document.getElementById('species-info').innerHTML = `
+                    <strong>${species ? species.name : 'Unknown'}</strong><br>
+                    Type: ${species ? species.type : 'N/A'}<br>
+                    Food Group: ${species ? species.foodGroup : 'N/A'}<br>
+                    <em style="color: #e53e3e;">No data for this species at current time period</em>
+                `;
+                return;
+            }
+
+            // Create heat layer
+            speciesHeatLayer = L.heatLayer(heatData, {
+                radius: 50,
+                blur: 30,
+                maxZoom: 7,
+                minOpacity: 0.5,
+                max: 1.0,
+                gradient: {
+                    0.0: 'blue',
+                    0.25: 'cyan',
+                    0.5: 'lime',
+                    0.75: 'yellow',
+                    1.0: 'red'
+                }
+            }).addTo(map);
+
+            // Update info with data count
+            document.getElementById('species-info').innerHTML = `
+                <strong>${species.name}</strong><br>
+                Type: ${species.type}<br>
+                Food Group: ${species.foodGroup}<br>
+                <em style="color: #38a169;">Showing data from ${heatData.length} location(s)</em>
+            `;
+        }
+
+        function clearSpeciesHeatmap() {
+            if (speciesHeatLayer) {
+                map.removeLayer(speciesHeatLayer);
+                speciesHeatLayer = null;
+            }
+
+            selectedSpecies = null;
+            document.getElementById('species-search').value = '';
+            document.getElementById('species-info').textContent = 'Select a species to show abundance heat map';
+            hideHeatmapLegend();
+        }
+
+        function toggleSpeciesPanel() {
+            const panel = document.getElementById('species-panel');
+            const button = document.getElementById('speciesButton');
+
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                button.classList.add('active');
+            } else {
+                panel.style.display = 'none';
+                button.classList.remove('active');
+            }
+        }
+
+        function closeSpeciesPanel() {
+            document.getElementById('species-panel').style.display = 'none';
+            document.getElementById('speciesButton').classList.remove('active');
+
+            // Clear the heat map when closing the panel
+            clearSpeciesHeatmap();
+        }
+
+        function showHeatmapLegend(speciesName) {
+            let legend = document.getElementById('heatmap-legend');
+            if (!legend) {
+                legend = document.createElement('div');
+                legend.id = 'heatmap-legend';
+                legend.className = 'heatmap-legend';
+                document.body.appendChild(legend);
+            }
+
+            legend.innerHTML = `
+                <div class="heatmap-legend-title">${speciesName} Abundance</div>
+                <div class="heatmap-legend-gradient"></div>
+                <div class="heatmap-legend-labels">
+                    <span>Low</span>
+                    <span>High</span>
+                </div>
+            `;
+            legend.style.display = 'block';
+        }
+
+        function hideHeatmapLegend() {
+            const legend = document.getElementById('heatmap-legend');
+            if (legend) {
+                legend.style.display = 'none';
+            }
+        }
+
+        function initDurhamTractsLayer() {
+            if (!durhamTractsGeoJSON) return;
+
+            // Create custom pane for tracts (above counties)
+            if (!map.getPane('tractsPane')) {
+                map.createPane('tractsPane');
+                map.getPane('tractsPane').style.zIndex = 450;
+            }
+
+            console.log('Calculating POI counts for Durham tracts...');
+
+            // First, calculate POI counts for all tracts
+            durhamTractsGeoJSON.features.forEach(feature => {
+                const geoid = feature.properties.GEOID;
+                tractPOICounts[geoid] = countPOIsInTract(feature.geometry);
+            });
+
+            console.log('POI counts calculated for', Object.keys(tractPOICounts).length, 'tracts');
+
+            // Create tract boundaries layer
+            durhamTractsLayer = L.geoJSON(durhamTractsGeoJSON, {
+                pane: 'tractsPane',
+                style: {
+                    color: '#c0392b',
+                    weight: 1.5,
+                    opacity: 1,
+                    fillColor: '#e74c3c',
+                    fillOpacity: 0.1
+                },
+                onEachFeature: function(feature, layer) {
+                    const tractNum = feature.properties.tract_number || 'Unknown';
+                    const geoid = feature.properties.GEOID;
+                    const income = feature.properties.median_income ? '$' + feature.properties.median_income.toLocaleString() : 'N/A';
+                    const counts = tractPOICounts[geoid] || { total: 0 };
+
+                    // Build POI breakdown HTML - only show categories with POIs
+                    const poiCategories = [
+                        { key: 'grocery', icon: '🛒', label: 'Grocery' },
+                        { key: 'restaurant', icon: '🍽️', label: 'Restaurant' },
+                        { key: 'fast_food', icon: '🍔', label: 'Fast Food' },
+                        { key: 'seafood', icon: '🐟', label: 'Seafood' },
+                        { key: 'butcher', icon: '🥩', label: 'Butcher' },
+                        { key: 'bakery', icon: '🥖', label: 'Bakery' },
+                        { key: 'greengrocer', icon: '🥬', label: 'Produce' },
+                        { key: 'marketplace', icon: '🏪', label: 'Marketplace' },
+                        { key: 'university', icon: '🎓', label: 'University' },
+                        { key: 'ev_charging', icon: '⚡', label: 'EV Charging' },
+                        { key: 'gym', icon: '🏋️', label: 'Gym' }
+                    ];
+
+                    const categoryLines = poiCategories
+                        .filter(cat => counts[cat.key] > 0)
+                        .map(cat => `${cat.icon} ${cat.label}: ${counts[cat.key]}`)
+                        .join('<br>');
+
+                    const poiBreakdown = counts.total > 0 ? `
+                        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd;">
+                            <strong>POIs in Tract: ${counts.total}</strong><br>
+                            <div style="font-size: 11px; margin-top: 4px; line-height: 1.6;">
+                                ${categoryLines}
+                            </div>
+                        </div>
+                    ` : `
+                        <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #ddd;">
+                            <strong>POIs in Tract: 0</strong>
+                        </div>
+                    `;
+
+                    layer.bindPopup(`
+                        <strong>Census Tract ${tractNum}</strong><br>
+                        <small>Durham County, NC</small><br>
+                        <hr style="margin: 5px 0;">
+                        Median Income: ${income}<br>
+                        % Foreign Born: ${(feature.properties.pct_foreign_born || 0).toFixed(1)}%
+                        ${poiBreakdown}
+                    `, { autoClose: false, closeOnClick: false });
+                }
+            });
+
+            // Create tract labels layer
+            tractLabelsLayer = L.layerGroup();
+
+            durhamTractsGeoJSON.features.forEach(feature => {
+                const tractNum = feature.properties.tract_number || '';
+                if (!tractNum) return;
+
+                const geoid = feature.properties.GEOID;
+                const counts = tractPOICounts[geoid] || { total: 0 };
+
+                // Calculate centroid for label placement
+                const coords = feature.geometry.coordinates;
+                let centroid;
+
+                if (feature.geometry.type === 'Polygon') {
+                    centroid = calculatePolygonCentroid(coords[0]);
+                } else if (feature.geometry.type === 'MultiPolygon') {
+                    centroid = calculatePolygonCentroid(coords[0][0]);
+                }
+
+                if (centroid) {
+                    const label = L.marker([centroid.lat, centroid.lon], {
+                        icon: L.divIcon({
+                            className: 'tract-label',
+                            html: `${tractNum}<br><span style="font-size: 9px; font-weight: normal;">(${counts.total} POIs)</span>`,
+                            iconSize: null
+                        })
+                    });
+                    tractLabelsLayer.addLayer(label);
+                }
+            });
+        }
+
+        function calculatePolygonCentroid(ring) {
+            let xSum = 0, ySum = 0;
+            const len = ring.length;
+            for (let i = 0; i < len; i++) {
+                xSum += ring[i][0];
+                ySum += ring[i][1];
+            }
+            return { lon: xSum / len, lat: ySum / len };
+        }
+
+        // Check if a point is inside a polygon (ray casting algorithm)
+        function pointInPolygon(point, polygon) {
+            const [x, y] = point;
+            let inside = false;
+
+            for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+                const xi = polygon[i][0], yi = polygon[i][1];
+                const xj = polygon[j][0], yj = polygon[j][1];
+
+                const intersect = ((yi > y) !== (yj > y))
+                    && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+                if (intersect) inside = !inside;
+            }
+
+            return inside;
+        }
+
+        // Count POIs within a tract's geometry
+        function countPOIsInTract(geometry) {
+            if (!poiData || !poiData.categories) return { total: 0 };
+
+            const counts = {
+                grocery: 0,
+                restaurant: 0,
+                fast_food: 0,
+                seafood: 0,
+                butcher: 0,
+                bakery: 0,
+                greengrocer: 0,
+                marketplace: 0,
+                university: 0,
+                ev_charging: 0,
+                gym: 0,
+                total: 0
+            };
+
+            // Get polygon coordinates
+            let polygons = [];
+            if (geometry.type === 'Polygon') {
+                polygons = [geometry.coordinates[0]];
+            } else if (geometry.type === 'MultiPolygon') {
+                polygons = geometry.coordinates.map(poly => poly[0]);
+            }
+
+            // Check each POI against all polygons
+            Object.entries(poiData.categories).forEach(([category, pois]) => {
+                pois.forEach(poi => {
+                    for (const polygon of polygons) {
+                        if (pointInPolygon([poi.lon, poi.lat], polygon)) {
+                            if (counts[category] !== undefined) {
+                                counts[category]++;
+                            }
+                            counts.total++;
+                            break; // Found in one polygon, no need to check others
+                        }
+                    }
+                });
+            });
+
+            return counts;
+        }
+
+        // Store POI counts for each tract (computed once)
+        let tractPOICounts = {};
+
         // Initialize the application
         async function init() {
             try {
                 // Load data
-                const [foodseqResponse, countiesResponse, densityResponse, demographicsResponse] = await Promise.all([
+                const [foodseqResponse, countiesResponse, densityResponse, demographicsResponse, durhamTractsResponse] = await Promise.all([
                     fetch('data/foodseq_data.json'),
                     fetch('data/nc_counties.geojson'),
                     fetch('data/nc_population_density.geojson'),
-                    fetch('data/nc_demographics.geojson')
+                    fetch('data/nc_demographics.geojson'),
+                    fetch('data/durham_census_tracts.geojson')
                 ]);
 
                 foodseqData = await foodseqResponse.json();
                 countiesGeoJSON = await countiesResponse.json();
                 populationDensityGeoJSON = await densityResponse.json();
                 demographicsGeoJSON = await demographicsResponse.json();
+                durhamTractsGeoJSON = await durhamTractsResponse.json();
 
                 console.log('Loaded', populationDensityGeoJSON.features.length, 'block groups');
                 console.log('Loaded', demographicsGeoJSON.features.length, 'census tracts');
+                console.log('Loaded', durhamTractsGeoJSON.features.length, 'Durham census tracts');
+
+                // Load POI data
+                poiData = await loadPOIData();
 
                 // Hide loading indicator
                 document.getElementById('loading').style.display = 'none';
@@ -419,6 +1610,22 @@
 
                 // Add plant markers
                 addPlantMarkers();
+
+                // Initialize POI layers
+                if (poiData) {
+                    initPOILayers(poiData);
+                    console.log('POI layers initialized');
+                }
+
+                // Initialize Durham census tracts layer
+                if (durhamTractsGeoJSON) {
+                    initDurhamTractsLayer();
+                    console.log('Durham tracts layer initialized');
+                }
+
+                // Initialize species list for heat map feature
+                initSpeciesList();
+                console.log('Species list initialized with', allSpeciesList.length, 'species');
 
             } catch (error) {
                 console.error('Error loading data:', error);
@@ -441,11 +1648,13 @@
                 maxZoom: 19
             }).addTo(map);
 
-            // Add counties layer
-            countiesLayer = L.geoJSON(countiesGeoJSON, {
-                style: countyStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
+            // Set topology button as active (default view - just base map)
+            document.getElementById('topoButton').classList.add('active');
+
+            // Add zoom event listener for POI layer switching
+            map.on('zoomend', function() {
+                updateAllPOILayersForZoom();
+            });
         }
 
         function addPlantMarkers() {
@@ -455,15 +1664,13 @@
 
                 const marker = L.circleMarker([plant.lat, plant.lng], {
                     radius: 8,
-                    fillColor: '#48bb78',
+                    fillColor: '#e53e3e',
                     color: '#ffffff',
                     weight: 3,
                     opacity: 1,
                     fillOpacity: 0.9,
                     pane: 'markerPane'  // Use custom pane with higher z-index
-                }).addTo(map);
-
-                marker.bindPopup(`<strong>${plant.name}</strong><br>${plant.county} County`);
+                });
 
                 marker.on('click', (e) => {
                     openDataPanel(plant, e.latlng);
@@ -476,8 +1683,8 @@
                 plantMarkers.push(marker);
             });
 
-            // Set initial marker colors based on default time period
-            updatePlantMarkerColors();
+            // Show only markers with data for current time period
+            updatePlantMarkerVisibility();
         }
 
         function getCountyName(countyFeature) {
@@ -524,6 +1731,7 @@
                 <div class="tab-container">
                     <button class="tab-button active" onclick="switchTab(this, 'plants')">Plants</button>
                     <button class="tab-button" onclick="switchTab(this, 'animals')">Animals</button>
+                    <button class="tab-button" onclick="switchTab(this, 'foodgroups')">Food Groups</button>
                 </div>
                 <div class="chart-container">
                     <canvas id="chart-${plant.name.replace(/\s/g, '-')}"></canvas>
@@ -588,40 +1796,84 @@
             });
         }
 
+        // Aggregate species abundance by USDA food groups (plants only)
+        function aggregateByFoodGroup(plantData) {
+            const totals = {
+                'Grains': 0,
+                'Vegetables': 0,
+                'Fruits': 0,
+                'Protein (plant)': 0,
+                'Other': 0
+            };
+
+            // Process only plant species
+            Object.entries(plantData).forEach(([species, abundance]) => {
+                if (abundance <= 0) return;
+
+                const metadata = foodseqData.species_metadata[species];
+                if (!metadata) return;
+
+                const foodGroup = metadata.food_group;
+
+                // Map to USDA group
+                for (const [usdaGroup, sourceGroups] of Object.entries(USDA_FOOD_GROUPS)) {
+                    if (sourceGroups.includes(foodGroup)) {
+                        totals[usdaGroup] += abundance;
+                        break;
+                    }
+                }
+            });
+
+            return totals;
+        }
+
         function updatePanelChart(panelInfo) {
             const canvas = panelInfo.panel.querySelector('canvas');
             const ctx = canvas.getContext('2d');
 
-            // Get data for current time and tab
+            // Get data for current time
             const date = foodseqData.dates[currentTimeIndex];
             const timeseriesData = panelInfo.plant.timeseries[date];
-            const speciesData = timeseriesData[panelInfo.currentTab];
 
-            // Filter out zero values, sort by abundance, and take top 25
-            const sortedSpecies = Object.entries(speciesData)
-                .filter(([species, abundance]) => abundance > 0)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 25);
+            let labels, values, backgroundColors, chartTitle;
 
-            // Get labels and prepare color-coding by food group
-            const chartData = sortedSpecies.map(([species, abundance]) => {
-                const metadata = foodseqData.species_metadata[species];
-                return {
-                    label: metadata ? metadata.common_name : species,
-                    value: abundance,
-                    food_group: metadata ? metadata.food_group : 'Other',
-                    category: metadata ? metadata.category : 'Other'
-                };
-            });
+            let xAxisLabel = 'Abundance';
 
-            const labels = chartData.map(d => d.label);
-            const values = chartData.map(d => d.value);
+            if (panelInfo.currentTab === 'foodgroups') {
+                // Aggregate by USDA food groups (plants only)
+                const foodGroupTotals = aggregateByFoodGroup(timeseriesData.plants);
 
-            // Assign colors using species metadata color (from lab's color theme)
-            const backgroundColors = sortedSpecies.map(([species, abundance]) => {
-                const metadata = foodseqData.species_metadata[species];
-                return metadata && metadata.color ? metadata.color : '#9BA4B4'; // Default gray
-            });
+                // Filter out zero values and sort by percentage
+                const sortedGroups = Object.entries(foodGroupTotals)
+                    .filter(([group, total]) => total > 0)
+                    .sort((a, b) => b[1] - a[1]);
+
+                labels = sortedGroups.map(([group]) => group);
+                values = sortedGroups.map(([, total]) => total);
+                backgroundColors = sortedGroups.map(([group]) => USDA_COLORS[group]);
+                chartTitle = 'USDA Food Groups';
+                xAxisLabel = 'Abundance';
+            } else {
+                // Existing logic for plants/animals tabs
+                const speciesData = timeseriesData[panelInfo.currentTab];
+
+                // Filter out zero values, sort by abundance, and take top 25
+                const sortedSpecies = Object.entries(speciesData)
+                    .filter(([species, abundance]) => abundance > 0)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 25);
+
+                labels = sortedSpecies.map(([species]) => {
+                    const metadata = foodseqData.species_metadata[species];
+                    return metadata ? metadata.common_name : species;
+                });
+                values = sortedSpecies.map(([, abundance]) => abundance);
+                backgroundColors = sortedSpecies.map(([species]) => {
+                    const metadata = foodseqData.species_metadata[species];
+                    return metadata && metadata.color ? metadata.color : '#9BA4B4';
+                });
+                chartTitle = `Top 25 ${panelInfo.currentTab === 'plants' ? 'Plant' : 'Animal'} Species`;
+            }
 
             // Destroy existing chart if it exists
             if (panelInfo.chart) {
@@ -637,7 +1889,6 @@
                         label: 'Abundance',
                         data: values,
                         backgroundColor: backgroundColors,
-                        borderColor: backgroundColors.map(c => c.replace(')', ', 0.8)').replace('rgb', 'rgba')),
                         borderWidth: 1
                     }]
                 },
@@ -651,7 +1902,7 @@
                         },
                         title: {
                             display: true,
-                            text: `Top 25 ${panelInfo.currentTab === 'plants' ? 'Plant' : 'Animal'} Species`,
+                            text: chartTitle,
                             font: {
                                 size: 16,
                                 weight: 'bold'
@@ -663,7 +1914,7 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Abundance'
+                                text: xAxisLabel
                             }
                         }
                     }
@@ -710,48 +1961,48 @@
         }
 
         function initTimeline() {
-            const selector = document.getElementById('timelineSelector');
-            const info = document.getElementById('timelineInfo');
+            const slider = document.getElementById('timelineSlider');
+            const ticks = document.getElementById('timelineTicks');
 
-            // Create button for each time period
+            // Set slider max to number of dates - 1
+            slider.max = foodseqData.dates.length - 1;
+            slider.value = currentTimeIndex;
+
+            // Create tick labels for each time period
             foodseqData.dates.forEach((date, index) => {
                 const periodInfo = foodseqData.time_periods[date];
-                const button = document.createElement('button');
-                button.className = 'time-period-button';
-
-                // Mark sparse periods (< 5 locations)
-                if (periodInfo.n_locations < 5) {
-                    button.classList.add('sparse');
-                }
-
-                // Set active state for default (June 2021)
+                const tick = document.createElement('div');
+                tick.className = 'timeline-tick';
                 if (index === currentTimeIndex) {
-                    button.classList.add('active');
+                    tick.classList.add('active');
                 }
-
-                button.innerHTML = `
-                    ${periodInfo.label}
-                    <span class="location-count">${periodInfo.n_locations} locations</span>
-                `;
-
-                button.addEventListener('click', () => {
-                    // Remove active from all buttons
-                    document.querySelectorAll('.time-period-button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-
-                    // Set new active
-                    button.classList.add('active');
-                    currentTimeIndex = index;
-                    updateTimelineInfo();
-                    updateAllPanels();
-                    updatePlantMarkerColors();  // Update marker colors when time period changes
+                tick.textContent = periodInfo.label;
+                tick.addEventListener('click', () => {
+                    slider.value = index;
+                    onTimelineSliderChange(index);
                 });
-
-                selector.appendChild(button);
+                ticks.appendChild(tick);
             });
 
             updateTimelineInfo();
+        }
+
+        function onTimelineSliderChange(value) {
+            currentTimeIndex = parseInt(value);
+
+            // Update tick labels
+            document.querySelectorAll('.timeline-tick').forEach((tick, index) => {
+                tick.classList.toggle('active', index === currentTimeIndex);
+            });
+
+            updateTimelineInfo();
+            updateAllPanels();
+            updatePlantMarkerVisibility();
+
+            // Update species heat map if active
+            if (selectedSpecies) {
+                updateSpeciesHeatmap();
+            }
         }
 
         function updateTimelineInfo() {
@@ -767,8 +2018,8 @@
             });
         }
 
-        function updatePlantMarkerColors() {
-            // Update marker colors based on data availability for current time period
+        function updatePlantMarkerVisibility() {
+            // Show/hide markers based on data availability for current time period
             const currentDate = foodseqData.dates[currentTimeIndex];
 
             plantMarkers.forEach(marker => {
@@ -785,17 +2036,15 @@
                 }
 
                 if (hasData) {
-                    // Active location - red color
-                    marker.setStyle({
-                        fillColor: '#e53e3e',
-                        fillOpacity: 0.9
-                    });
+                    // Show marker with data
+                    if (!map.hasLayer(marker)) {
+                        marker.addTo(map);
+                    }
                 } else {
-                    // Inactive location - green color (default)
-                    marker.setStyle({
-                        fillColor: '#48bb78',
-                        fillOpacity: 0.9
-                    });
+                    // Hide marker without data
+                    if (map.hasLayer(marker)) {
+                        map.removeLayer(marker);
+                    }
                 }
             });
         }
@@ -825,11 +2074,8 @@
             }
 
             if (view === 'topo') {
-                // Show topology view with county boundaries
-                countiesLayer = L.geoJSON(countiesGeoJSON, {
-                    style: countyStyle,
-                    onEachFeature: onEachFeature
-                }).addTo(map);
+                // Show just the base map (no overlay layers)
+                // Base OpenStreetMap tile layer is always present
             } else if (view === 'density') {
                 // Show population density (block groups)
                 densityLayer = L.geoJSON(populationDensityGeoJSON, {
