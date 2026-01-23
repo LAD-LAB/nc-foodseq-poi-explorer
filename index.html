@@ -243,7 +243,7 @@
         /* Map controls */
         .map-controls {
             position: absolute;
-            top: 300px;
+            bottom: 30px;
             right: 20px;
             z-index: 1000;
             background: white;
@@ -280,6 +280,42 @@
         .map-controls button:hover:not(.active) {
             border-color: #4299e1;
             color: #4299e1;
+        }
+
+        .layer-select-label {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .map-controls select {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #4a5568;
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+
+        .map-controls select:hover {
+            border-color: #4299e1;
+        }
+
+        .map-controls select:focus {
+            outline: none;
+            border-color: #4299e1;
         }
 
         /* Loading indicator */
@@ -326,7 +362,7 @@
         /* POI Controls Panel */
         .poi-controls {
             position: absolute;
-            top: 300px;
+            bottom: 30px;
             left: 20px;
             z-index: 1000;
             background: white;
@@ -410,6 +446,47 @@
             border-color: #cbd5e0;
         }
 
+        .poi-radius-section {
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .poi-radius-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #4a5568;
+            margin-bottom: 6px;
+        }
+
+        .poi-radius-toggle {
+            display: flex;
+            gap: 4px;
+        }
+
+        .poi-radius-toggle button {
+            flex: 1;
+            padding: 5px 8px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            color: #4a5568;
+        }
+
+        .poi-radius-toggle button:hover {
+            background: #f7fafc;
+            border-color: #cbd5e0;
+        }
+
+        .poi-radius-toggle button.active {
+            background: #4299e1;
+            border-color: #4299e1;
+            color: white;
+        }
+
         /* POI Marker Icons */
         .poi-icon {
             background: white;
@@ -451,80 +528,92 @@
         .poi-cluster {
             background: white;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 22px;
+            height: 22px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 700;
-            font-size: 14px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            font-size: 10px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
         }
 
         .poi-cluster-grocery {
             background: #c6f6d5;
             color: #22543d;
-            border: 3px solid #48bb78;
+            border: 2px solid #48bb78;
         }
 
         .poi-cluster-restaurant {
             background: #feebc8;
             color: #7c2d12;
-            border: 3px solid #ed8936;
+            border: 2px solid #ed8936;
         }
 
         .poi-cluster-fast_food {
             background: #fed7d7;
             color: #742a2a;
-            border: 3px solid #f56565;
+            border: 2px solid #f56565;
         }
 
         .poi-cluster-seafood {
             background: #bee3f8;
             color: #1e4e8c;
-            border: 3px solid #4299e1;
+            border: 2px solid #4299e1;
         }
 
         .poi-cluster-butcher {
             background: #fed7d7;
             color: #742a2a;
-            border: 3px solid #e53e3e;
+            border: 2px solid #e53e3e;
         }
 
         .poi-cluster-bakery {
             background: #fefcbf;
             color: #744210;
-            border: 3px solid #d69e2e;
+            border: 2px solid #d69e2e;
         }
 
         .poi-cluster-greengrocer {
             background: #b2f5ea;
             color: #234e52;
-            border: 3px solid #38b2ac;
+            border: 2px solid #38b2ac;
         }
 
         .poi-cluster-marketplace {
             background: #e9d8fd;
             color: #44337a;
-            border: 3px solid #9f7aea;
+            border: 2px solid #9f7aea;
         }
 
         .poi-cluster-university {
             background: #e0e7ff;
             color: #3730a3;
-            border: 3px solid #6366f1;
+            border: 2px solid #6366f1;
         }
 
         .poi-cluster-ev_charging {
             background: #d1fae5;
             color: #065f46;
-            border: 3px solid #10b981;
+            border: 2px solid #10b981;
         }
 
         .poi-cluster-gym {
             background: #ffedd5;
             color: #9a3412;
-            border: 3px solid #f97316;
+            border: 2px solid #f97316;
+        }
+
+        .poi-cluster-bar {
+            background: #fce7f3;
+            color: #831843;
+            border: 2px solid #ec4899;
+        }
+
+        .poi-cluster-brewery {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #f59e0b;
         }
 
         /* POI Popup */
@@ -669,6 +758,170 @@
             color: #4a5568;
         }
 
+        /* UPF Heatmap Panel */
+        .upf-panel {
+            position: absolute;
+            top: 100px;
+            right: 180px;
+            z-index: 1001;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 420px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .upf-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .upf-panel-title {
+            font-weight: 700;
+            color: #1a365d;
+            font-size: 15px;
+        }
+
+        .upf-panel-header button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #718096;
+        }
+
+        .upf-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .upf-controls button {
+            flex: 1;
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .upf-controls button.active {
+            background: #ed8936;
+            border-color: #ed8936;
+            color: white;
+        }
+
+        .upf-controls button:hover:not(.active) {
+            border-color: #ed8936;
+            color: #ed8936;
+        }
+
+        .upf-sort-control {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #4a5568;
+        }
+
+        .upf-sort-control input[type="checkbox"] {
+            cursor: pointer;
+        }
+
+        .upf-heatmap-container {
+            overflow-x: auto;
+        }
+
+        .upf-heatmap-table {
+            border-collapse: collapse;
+            font-size: 11px;
+            width: 100%;
+        }
+
+        .upf-heatmap-table th {
+            padding: 4px 6px;
+            text-align: center;
+            font-weight: 600;
+            color: #4a5568;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+        }
+
+        .upf-heatmap-table th.plant-header {
+            text-align: left;
+            min-width: 120px;
+        }
+
+        .upf-heatmap-table td {
+            padding: 4px 6px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+
+        .upf-heatmap-table td:hover {
+            transform: scale(1.1);
+            z-index: 10;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .upf-heatmap-table td.plant-name {
+            text-align: left;
+            font-weight: 500;
+            color: #2d3748;
+            background: #f7fafc;
+            cursor: default;
+        }
+
+        .upf-heatmap-table td.plant-name:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        .upf-heatmap-table td.no-data {
+            background: #f0f0f0;
+            color: #999;
+        }
+
+        .upf-legend {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 11px;
+            color: #718096;
+        }
+
+        .upf-legend-gradient {
+            flex: 1;
+            height: 12px;
+            background: linear-gradient(to right, #ffffd9, #fee391, #fec44f, #fe9929, #d95f0e, #993404);
+            border-radius: 3px;
+        }
+
+        .upf-legend-labels {
+            display: flex;
+            justify-content: space-between;
+            flex: 1;
+        }
+
         /* Heat map legend */
         .heatmap-legend {
             position: absolute;
@@ -701,6 +954,318 @@
             color: #718096;
             margin-top: 4px;
         }
+
+        /* Prediction Panel */
+        .prediction-panel {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            width: 300px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .prediction-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .prediction-panel-title {
+            font-weight: 700;
+            color: #1a365d;
+            font-size: 15px;
+        }
+
+        .prediction-panel-header button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #718096;
+        }
+
+        .prediction-section {
+            margin-bottom: 15px;
+        }
+
+        .prediction-section-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #4a5568;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .prediction-search-container {
+            position: relative;
+        }
+
+        .prediction-search {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #2d3748;
+            background: white;
+            box-sizing: border-box;
+        }
+
+        .prediction-search:focus {
+            outline: none;
+            border-color: #4299e1;
+        }
+
+        .prediction-species-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            border-radius: 0 0 6px 6px;
+            z-index: 1002;
+            display: none;
+        }
+
+        .prediction-species-list.active {
+            display: block;
+        }
+
+        .prediction-species-item {
+            padding: 8px 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .prediction-species-item:hover {
+            background: #f7fafc;
+        }
+
+        .prediction-species-item.selected {
+            background: #ebf8ff;
+            font-weight: 600;
+        }
+
+        .prediction-species-type {
+            font-size: 10px;
+            color: #718096;
+            background: #edf2f7;
+            padding: 2px 6px;
+            border-radius: 3px;
+            text-transform: capitalize;
+        }
+
+        .prediction-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prediction-slider {
+            flex: 1;
+            height: 6px;
+            -webkit-appearance: none;
+            appearance: none;
+            background: #e2e8f0;
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .prediction-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background: #4299e1;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .prediction-slider-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4299e1;
+            min-width: 45px;
+            text-align: right;
+        }
+
+        .prediction-poi-settings {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .prediction-poi-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #2d3748;
+            cursor: pointer;
+        }
+
+        .prediction-poi-toggle input[type="checkbox"] {
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        .prediction-poi-indicator {
+            font-size: 12px;
+            color: #718096;
+            background: #f7fafc;
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .prediction-poi-indicator.filtered {
+            background: #fff5f5;
+            border-color: #feb2b2;
+            color: #c53030;
+        }
+
+        .prediction-generate-btn {
+            width: 100%;
+            padding: 10px;
+            background: #48bb78;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+        }
+
+        .prediction-generate-btn:hover {
+            background: #38a169;
+        }
+
+        .prediction-generate-btn:disabled {
+            background: #a0aec0;
+            cursor: not-allowed;
+        }
+
+        .prediction-stats {
+            margin-top: 15px;
+            padding-top: 12px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .prediction-stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            padding: 4px 0;
+        }
+
+        .prediction-stat-label {
+            color: #718096;
+        }
+
+        .prediction-stat-value {
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .prediction-clear-btn {
+            width: 100%;
+            padding: 8px;
+            background: white;
+            border: 1px solid #e53e3e;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #e53e3e;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 10px;
+        }
+
+        .prediction-clear-btn:hover {
+            background: #fed7d7;
+        }
+
+        .prediction-legend {
+            position: absolute;
+            top: 20px;
+            right: 330px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .prediction-legend-title {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: #1a365d;
+        }
+
+        .prediction-legend-gradient {
+            width: 150px;
+            height: 15px;
+            background: linear-gradient(to right, #0000ff, #00ffff, #00ff00, #ffff00, #ff0000);
+            border-radius: 3px;
+        }
+
+        .prediction-legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #718096;
+            margin-top: 4px;
+        }
+
+        .prediction-progress {
+            margin-top: 10px;
+            padding: 10px;
+            background: #ebf8ff;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .prediction-progress-text {
+            font-size: 12px;
+            color: #2b6cb0;
+            margin-bottom: 8px;
+        }
+
+        .prediction-progress-bar {
+            height: 6px;
+            background: #bee3f8;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .prediction-progress-fill {
+            height: 100%;
+            background: #4299e1;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -718,16 +1283,21 @@
 
     <!-- Map controls -->
     <div class="map-controls">
-        <button id="topoButton" onclick="switchMapView('topo')">Topology</button>
-        <button id="densityButton" onclick="switchMapView('density')">Population Density</button>
-        <button id="incomeButton" onclick="switchMapView('income')">Median Income</button>
-        <button id="foreignButton" onclick="switchMapView('foreign')">% Foreign Born</button>
-        <button id="whiteButton" onclick="switchMapView('white')">% White</button>
-        <button id="blackButton" onclick="switchMapView('black')">% Black</button>
-        <button id="asianButton" onclick="switchMapView('asian')">% Asian</button>
-        <button id="hispanicButton" onclick="switchMapView('hispanic')">% Hispanic/Latino</button>
+        <label for="layerSelect" class="layer-select-label">Map Layer</label>
+        <select id="layerSelect" onchange="switchMapView(this.value)">
+            <option value="topo">Topology</option>
+            <option value="density">Population Density</option>
+            <option value="income">Median Income</option>
+            <option value="foreign">% Foreign Born</option>
+            <option value="white">% White</option>
+            <option value="black">% Black</option>
+            <option value="asian">% Asian</option>
+            <option value="hispanic">% Hispanic/Latino</option>
+        </select>
         <button id="tractsButton" onclick="toggleDurhamTracts()">Census Tracts</button>
         <button id="speciesButton" onclick="toggleSpeciesPanel()">Species Abundance</button>
+        <button id="upfButton" onclick="toggleUPFPanel()">UPF Heatmap</button>
+        <button id="predictionButton" onclick="togglePredictionPanel()">Hotspot Prediction</button>
     </div>
 
     <!-- POI Layer Controls -->
@@ -759,6 +1329,20 @@
                 <input type="checkbox" id="poi-fast_food" onchange="togglePOILayer('fast_food')">
                 <span>Fast Food</span>
                 <span class="poi-count" id="count-fast_food">0</span>
+            </label>
+        </div>
+
+        <div class="poi-category-group">
+            <div class="poi-category-header">Drinks</div>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-bar" onchange="togglePOILayer('bar')">
+                <span>Bars</span>
+                <span class="poi-count" id="count-bar">0</span>
+            </label>
+            <label class="poi-toggle">
+                <input type="checkbox" id="poi-brewery" onchange="togglePOILayer('brewery')">
+                <span>Breweries</span>
+                <span class="poi-count" id="count-brewery">0</span>
             </label>
         </div>
 
@@ -805,9 +1389,45 @@
             </label>
         </div>
 
+        <div class="poi-radius-section">
+            <div class="poi-radius-label">Click Radius</div>
+            <div class="poi-radius-toggle">
+                <button id="radius-off" onclick="setPOIRadius(null)">Off</button>
+                <button id="radius-1" onclick="setPOIRadius(1)">1 mi</button>
+                <button id="radius-5" class="active" onclick="setPOIRadius(5)">5 mi</button>
+                <button id="radius-10" onclick="setPOIRadius(10)">10 mi</button>
+            </div>
+        </div>
+
         <div class="poi-controls-footer">
             <button onclick="toggleAllPOIs(true)">Show All</button>
             <button onclick="toggleAllPOIs(false)">Hide All</button>
+        </div>
+    </div>
+
+    <!-- UPF Heatmap Panel -->
+    <div id="upf-panel" class="upf-panel" style="display: none;">
+        <div class="upf-panel-header">
+            <span class="upf-panel-title">UPF Signal Heatmap</span>
+            <button onclick="closeUPFPanel()">&times;</button>
+        </div>
+        <div class="upf-controls">
+            <button id="upf-binary-btn" class="active" onclick="setUPFScoreMode('binary')">Binary</button>
+            <button id="upf-weighted-btn" onclick="setUPFScoreMode('weighted')">Weighted</button>
+        </div>
+        <div class="upf-sort-control">
+            <input type="checkbox" id="upf-sort-checkbox" onchange="toggleUPFSort()">
+            <label for="upf-sort-checkbox">Sort by average UPF score</label>
+        </div>
+        <div class="upf-heatmap-container">
+            <table class="upf-heatmap-table" id="upf-heatmap-table">
+                <!-- Dynamically generated -->
+            </table>
+        </div>
+        <div class="upf-legend">
+            <span>Low</span>
+            <div class="upf-legend-gradient"></div>
+            <span>High</span>
         </div>
     </div>
 
@@ -824,6 +1444,73 @@
         <div class="species-info" id="species-info">
             Select a species to show abundance heat map
         </div>
+    </div>
+
+    <!-- Prediction Panel -->
+    <div id="prediction-panel" class="prediction-panel" style="display: none;">
+        <div class="prediction-panel-header">
+            <span class="prediction-panel-title">Food Hotspot Prediction</span>
+            <button onclick="closePredictionPanel()">&times;</button>
+        </div>
+
+        <div class="prediction-section">
+            <div class="prediction-section-label">Select Food</div>
+            <div class="prediction-search-container">
+                <input type="text" id="prediction-species-search" class="prediction-search" placeholder="Type to search foods..." oninput="filterPredictionSpecies(this.value)" onfocus="showPredictionSpeciesList()">
+                <div id="prediction-species-list" class="prediction-species-list"></div>
+            </div>
+        </div>
+
+        <div class="prediction-section">
+            <div class="prediction-section-label">Analysis Radius</div>
+            <div class="prediction-slider-container">
+                <input type="range" id="prediction-radius-slider" class="prediction-slider" min="1" max="15" value="5" oninput="onPredictionRadiusChange(this.value)">
+                <span class="prediction-slider-value" id="prediction-radius-value">5 mi</span>
+            </div>
+        </div>
+
+        <div class="prediction-section">
+            <div class="prediction-section-label">POI Categories</div>
+            <div class="prediction-poi-settings">
+                <label class="prediction-poi-toggle">
+                    <input type="checkbox" id="prediction-use-all-pois" checked onchange="toggleUseAllPOIs(this.checked)">
+                    <span>Use All POI Categories</span>
+                </label>
+                <div class="prediction-poi-indicator" id="prediction-poi-indicator">
+                    Using all 13 categories
+                </div>
+            </div>
+        </div>
+
+        <button id="prediction-generate-btn" class="prediction-generate-btn" onclick="generatePrediction()" disabled>
+            Generate Prediction
+        </button>
+
+        <div id="prediction-progress" class="prediction-progress" style="display: none;">
+            <div class="prediction-progress-text" id="prediction-progress-text">Analyzing...</div>
+            <div class="prediction-progress-bar">
+                <div class="prediction-progress-fill" id="prediction-progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="prediction-stats" id="prediction-stats">
+            <div class="prediction-stat-row">
+                <span class="prediction-stat-label">Known Sites:</span>
+                <span class="prediction-stat-value" id="stat-known-sites">--</span>
+            </div>
+            <div class="prediction-stat-row">
+                <span class="prediction-stat-label">Sites with detection:</span>
+                <span class="prediction-stat-value" id="stat-sites-with-detection">--</span>
+            </div>
+            <div class="prediction-stat-row">
+                <span class="prediction-stat-label">Correlation strength:</span>
+                <span class="prediction-stat-value" id="stat-correlation">--</span>
+            </div>
+        </div>
+
+        <button id="prediction-clear-btn" class="prediction-clear-btn" onclick="clearPrediction()" style="display: none;">
+            Clear Prediction
+        </button>
     </div>
 
     <!-- Map container -->
@@ -876,6 +1563,132 @@
         let speciesHeatLayer = null;
         let selectedSpecies = null;
         let allSpeciesList = [];
+
+        // Prediction hotspot variables
+        let predictionHeatLayer = null;
+        let predictionConfig = {
+            radiusMiles: 5,
+            resolution: 'high',  // Always use high resolution
+            selectedSpecies: null,
+            useAllPOIs: true  // Whether to use all POIs or only active ones
+        };
+        let syncingPanels = false;  // Prevent infinite loops when syncing panels
+        let predictionStats = {
+            knownSites: 0,
+            sitesWithDetection: 0,
+            correlationStrength: 0
+        };
+
+        // Species consolidation mapping - groups related entries under a single display name
+        // Keys are the display names, values are arrays of original data keys to sum
+        const SPECIES_CONSOLIDATION = {
+            // Cabbage family
+            'Cabbage': ['Cabbage relatives 1', 'Cabbage  relatives 2', 'Cabbage, Canola'],
+            'Canola': ['Canola', 'Canola, Broccoli', 'Canola, Mustard'],
+            // Mint
+            'Mint': ['Mint 1', 'Mint 2'],
+            // Beans
+            'Lima bean': ['Lima bean', 'Lima bean, Common bean'],
+            'Black-eyed pea': ['Black-eyed pea', 'Mung bean, black eye peas'],
+            // Rice
+            'Rice': ['Rice', 'Rice, Wild rice', 'Wild rice'],
+            // Herbs with overlaps
+            'Basil': ['Basil', 'Sweet basil'],
+            'Turmeric': ['Turmeric', 'Zedoary, Turmeric'],
+            'Rosemary': ['Rosemary', 'Anise Hyssop, Lemon Balm, Rosemary'],
+            'Lavender & Sage': ['French Lavender, Sage', 'Common Lavender, Pineapple Sage, Chia seed'],
+            // Root vegetables
+            'Taro': ['Taro', 'Konjac, yam, taro'],
+            'Celery': ['Celery', 'Celery/Carrot'],
+            // Onion family
+            'Onion': ['Onion', 'Leek, Onion, Chives'],
+            // Fruits
+            'Grapes': ['Grapes', 'Muscadine grape'],
+            'Apples & Pears': ['Apples, Pears', 'Pear'],
+            'Coconut': ['Coconut', 'Palm/Coconut'],
+            // Sunflower family
+            'Sunflower': ['Sunflower family', 'Dahlia, mums, sunflower', 'Dandelion, Sunflower'],
+            // Legumes
+            'Soybean': ['Soybean, Guar'],
+            'Guar': ['Guar'],
+            // Tamarind
+            'Tamarind': ['Tamarind', 'River tamarind'],
+            // Daisy family
+            'Daisy': ['Daisy', 'Crown daisy'],
+            // Scientific names to common names
+            'Custard apple': ['Annona'],
+            'Pinfish': ['Lagodon'],
+            'Sardine': ['Sardinops'],
+            // Catfish consolidation
+            'Catfish': ['Catfish', 'Bullhead catfish', 'Walking catfish', 'White bullhead', 'Yellow bullhead'],
+            // Salmon consolidation
+            'Salmon': ['Atlantic salmon', 'Chinook salmon', 'Coho salmon', 'Sockeye or pink salmon'],
+            // Mackerel consolidation
+            'Mackerel': ['Mackerel', 'Atlantic mackerel', 'Atlantic horse mackerel', 'King mackerel', 'Short mackerel', 'Spanish mackerel'],
+            // Tilapia consolidation
+            'Tilapia': ['Tilapia', 'Nile tilapia'],
+            // Snapper consolidation
+            'Snapper': ['Red snapper', 'Lane snapper', 'Other snapper'],
+            // Herring consolidation
+            'Herring': ['Atlantic herring', 'Shad or herring'],
+            // Duck consolidation
+            'Duck': ['Duck, Goose', 'Muscovy duck'],
+            // Pigeon consolidation
+            'Pigeon': ['Pigeon', 'Pigeon, Dove'],
+            // Anchovy consolidation
+            'Anchovy': ['Californian anchovy', 'European anchovy'],
+            // Pompano consolidation
+            'Pompano': ['Pompano', 'Snubnose pompano'],
+            // Bass consolidation
+            'Bass': ['Black bass', 'Largemouth bass', 'Striped bass', 'White bass', 'Black sea bass'],
+            // Sunfish consolidation
+            'Sunfish': ['Bluegill', 'Green sunfish', 'Redbreast sunfish', 'Pumpkinseed/ pond perch'],
+            // Mullet consolidation
+            'Mullet': ['Striped mullet', 'White mullet'],
+            // Perch consolidation
+            'Perch': ['White perch', 'Pacific ocean perch'],
+            // Drum consolidation
+            'Drum': ['Red drum', 'Black drums'],
+            // Croaker consolidation
+            'Croaker': ['Atlantic croaker', 'Gulf kingcroaker', 'Yellow croaker'],
+            // Rockfish consolidation
+            'Rockfish': ['Red fish, Rock fish']
+        };
+
+        // Function to check if a string is a DNA sequence (only ATCG characters)
+        function isDNASequence(str) {
+            return /^[ATCG]+$/i.test(str) && str.length > 10;
+        }
+
+        // Species to exclude (non-food items, environmental contaminants, etc.)
+        const SPECIES_EXCLUDE = new Set([
+            'Bearded iris', 'Chinese hibiscus', 'Tiger lily', 'Wild pansy',
+            'Shameplant', 'Southern magnolia', 'Yulan magnolia', 'Water lily',
+            'Honeysuckle', 'Kratom', 'Opium poppy', 'Hemp', 'Oak', 'Pine',
+            'Blue Ridge two-lined salamander', 'Two-toed amphiuma', 'Siamese fighting fish',
+            'Southern platyfish', 'Southern puffer', 'Rat', 'Muskrat', 'Raccoon',
+            'Virginia opossum', 'Eastern gray squirrel', 'Greater cane rat'
+        ]);
+
+        // Build reverse lookup: original key -> consolidated display name
+        const SPECIES_REVERSE_LOOKUP = {};
+        Object.entries(SPECIES_CONSOLIDATION).forEach(([displayName, originalKeys]) => {
+            originalKeys.forEach(key => {
+                SPECIES_REVERSE_LOOKUP[key] = displayName;
+            });
+        });
+
+        // UPF heatmap variables
+        let upfScoreMode = 'binary';  // 'binary' or 'weighted'
+        let upfSortByScore = false;
+        let upfMaxWeighted = 0;  // For normalization
+
+        // UPF marker species
+        const UPF_MARKERS = {
+            wheat: "Rye, Wheat",
+            soybeanGuar: "Soybean, Guar",
+            guar: "Guar"
+        };
 
         // Month names for display
         const monthNames = [
@@ -967,6 +1780,18 @@
                 html: '<div>🏋️</div>',
                 iconSize: [24, 24],
                 iconAnchor: [12, 12]
+            }),
+            bar: L.divIcon({
+                className: 'poi-icon poi-icon-bar',
+                html: '<div>🍺</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
+            }),
+            brewery: L.divIcon({
+                className: 'poi-icon poi-icon-brewery',
+                html: '<div>🍻</div>',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12]
             })
         };
 
@@ -1040,7 +1865,7 @@
             return L.divIcon({
                 html: `<div class="poi-cluster poi-cluster-${category}">${count}</div>`,
                 className: 'poi-cluster-container',
-                iconSize: L.point(40, 40)
+                iconSize: L.point(22, 22)
             });
         }
 
@@ -1098,6 +1923,9 @@
                 activePOILayers.delete(category);
                 map.removeLayer(poiClusters[category]);
             }
+
+            // Update prediction panel POI indicator
+            updatePOIIndicator();
         }
 
         function updatePOILayerForZoom(category) {
@@ -1136,6 +1964,9 @@
                     }
                 }
             });
+
+            // Update prediction panel POI indicator
+            updatePOIIndicator();
         }
 
         function toggleDurhamTracts() {
@@ -1181,13 +2012,51 @@
         function initSpeciesList() {
             if (!foodseqData || !foodseqData.species_metadata) return;
 
-            allSpeciesList = Object.entries(foodseqData.species_metadata).map(([key, meta]) => ({
-                key: key,
-                name: meta.common_name,
-                type: meta.type,
-                foodGroup: meta.food_group,
-                color: meta.color
-            }));
+            // Build consolidated species list
+            const consolidatedMap = new Map();
+            const processedKeys = new Set();
+
+            Object.entries(foodseqData.species_metadata).forEach(([key, meta]) => {
+                // Skip DNA sequences
+                if (isDNASequence(key)) {
+                    return;
+                }
+
+                // Skip excluded species (non-food items)
+                if (SPECIES_EXCLUDE.has(key)) {
+                    return;
+                }
+
+                // Check if this key is part of a consolidation group
+                const consolidatedName = SPECIES_REVERSE_LOOKUP[key];
+
+                if (consolidatedName) {
+                    // This key belongs to a consolidated group
+                    if (!consolidatedMap.has(consolidatedName)) {
+                        consolidatedMap.set(consolidatedName, {
+                            key: consolidatedName,
+                            name: consolidatedName,
+                            originalKeys: SPECIES_CONSOLIDATION[consolidatedName],
+                            type: meta.type,
+                            foodGroup: meta.food_group,
+                            color: meta.color
+                        });
+                    }
+                    processedKeys.add(key);
+                } else {
+                    // Not part of any consolidation - add directly
+                    consolidatedMap.set(key, {
+                        key: key,
+                        name: meta.common_name,
+                        originalKeys: [key],
+                        type: meta.type,
+                        foodGroup: meta.food_group,
+                        color: meta.color
+                    });
+                }
+            });
+
+            allSpeciesList = Array.from(consolidatedMap.values());
 
             // Sort alphabetically
             allSpeciesList.sort((a, b) => a.name.localeCompare(b.name));
@@ -1243,6 +2112,17 @@
 
             // Show legend
             showHeatmapLegend(species.name);
+
+            // Sync with prediction panel (if not already syncing)
+            if (!syncingPanels) {
+                syncingPanels = true;
+                document.getElementById('prediction-species-search').value = species.name;
+                predictionConfig.selectedSpecies = speciesKey;
+                document.getElementById('prediction-generate-btn').disabled = false;
+                updatePredictionStats(speciesKey);
+                updatePOIIndicator();
+                syncingPanels = false;
+            }
         }
 
         function getSpeciesHeatData() {
@@ -1251,14 +2131,25 @@
             const currentDate = foodseqData.dates[currentTimeIndex];
             const heatData = [];
 
+            // Get the species object to find original keys
+            const species = allSpeciesList.find(s => s.key === selectedSpecies);
+            if (!species) return [];
+
+            const originalKeys = species.originalKeys || [selectedSpecies];
+
             Object.values(foodseqData.plants).forEach(plant => {
                 const timeData = plant.timeseries[currentDate];
                 if (!timeData) return;
 
-                // Get species abundance
-                const speciesType = foodseqData.species_metadata[selectedSpecies].type;
-                const categoryData = speciesType === 'plant' ? timeData.plants : timeData.animals;
-                const speciesAbundance = categoryData[selectedSpecies] || 0;
+                // Sum abundance from all original keys in this consolidated group
+                let speciesAbundance = 0;
+                originalKeys.forEach(key => {
+                    const meta = foodseqData.species_metadata[key];
+                    if (meta) {
+                        const categoryData = meta.type === 'plant' ? timeData.plants : timeData.animals;
+                        speciesAbundance += (categoryData && categoryData[key]) || 0;
+                    }
+                });
 
                 // Calculate total abundance for this location
                 let totalAbundance = 0;
@@ -1341,9 +2232,15 @@
 
         function toggleSpeciesPanel() {
             const panel = document.getElementById('species-panel');
+            const upfPanel = document.getElementById('upf-panel');
             const button = document.getElementById('speciesButton');
 
             if (panel.style.display === 'none') {
+                // Hide UPF panel if open (they share similar position)
+                if (upfPanel && upfPanel.style.display !== 'none') {
+                    closeUPFPanel();
+                }
+
                 panel.style.display = 'block';
                 button.classList.add('active');
             } else {
@@ -1370,7 +2267,6 @@
             }
 
             legend.innerHTML = `
-                <div class="heatmap-legend-title">${speciesName} Abundance</div>
                 <div class="heatmap-legend-gradient"></div>
                 <div class="heatmap-legend-labels">
                     <span>Low</span>
@@ -1385,6 +2281,702 @@
             if (legend) {
                 legend.style.display = 'none';
             }
+        }
+
+        // ========== UPF Heatmap Functions ==========
+
+        function calculateUPFScore(plantData, date) {
+            if (!plantData.timeseries || !plantData.timeseries[date]) {
+                return { binary: null, weighted: null };
+            }
+
+            const timeData = plantData.timeseries[date];
+            const plants = timeData.plants || {};
+
+            // Get marker abundances
+            const wheat = plants[UPF_MARKERS.wheat] || 0;
+            const soybeanGuar = plants[UPF_MARKERS.soybeanGuar] || 0;
+            const guar = plants[UPF_MARKERS.guar] || 0;
+
+            // Binary score: 1 if wheat AND (soybeanGuar OR guar) present
+            const binaryScore = (wheat > 0 && (soybeanGuar > 0 || guar > 0)) ? 1 : 0;
+
+            // Weighted score: sum of marker abundances
+            const weightedScore = wheat + soybeanGuar + guar;
+
+            return { binary: binaryScore, weighted: weightedScore };
+        }
+
+        function computeAllUPFScores() {
+            const scores = {};
+            upfMaxWeighted = 0;
+
+            Object.keys(foodseqData.plants).forEach(plantId => {
+                const plant = foodseqData.plants[plantId];
+                scores[plantId] = {
+                    name: plant.name,
+                    dates: {}
+                };
+
+                foodseqData.dates.forEach(date => {
+                    const score = calculateUPFScore(plant, date);
+                    scores[plantId].dates[date] = score;
+
+                    if (score.weighted !== null && score.weighted > upfMaxWeighted) {
+                        upfMaxWeighted = score.weighted;
+                    }
+                });
+
+                // Calculate average weighted score
+                const weightedScores = Object.values(scores[plantId].dates)
+                    .map(s => s.weighted)
+                    .filter(w => w !== null);
+                scores[plantId].avgWeighted = weightedScores.length > 0 ?
+                    weightedScores.reduce((a, b) => a + b, 0) / weightedScores.length : 0;
+
+                // Calculate average binary score
+                const binaryScores = Object.values(scores[plantId].dates)
+                    .map(s => s.binary)
+                    .filter(b => b !== null);
+                scores[plantId].avgBinary = binaryScores.length > 0 ?
+                    binaryScores.reduce((a, b) => a + b, 0) / binaryScores.length : 0;
+            });
+
+            return scores;
+        }
+
+        function getUPFCellColor(score, mode) {
+            if (score === null) return '#f0f0f0';  // No data
+
+            if (mode === 'binary') {
+                return score === 1 ? '#d95f0e' : '#ffffd9';
+            } else {
+                // Weighted: use color scale from yellow to dark orange
+                if (upfMaxWeighted === 0) return '#ffffd9';
+                const normalized = score / upfMaxWeighted;
+
+                // YlOrBr color scale
+                if (normalized >= 0.8) return '#993404';
+                if (normalized >= 0.6) return '#d95f0e';
+                if (normalized >= 0.4) return '#fe9929';
+                if (normalized >= 0.2) return '#fec44f';
+                if (normalized > 0) return '#fee391';
+                return '#ffffd9';
+            }
+        }
+
+        function renderUPFHeatmap() {
+            const table = document.getElementById('upf-heatmap-table');
+            if (!table || !foodseqData) return;
+
+            const scores = computeAllUPFScores();
+            const dates = foodseqData.dates;
+
+            // Sort plants
+            let plantIds = Object.keys(scores);
+            if (upfSortByScore) {
+                plantIds.sort((a, b) => {
+                    const scoreA = upfScoreMode === 'binary' ? scores[a].avgBinary : scores[a].avgWeighted;
+                    const scoreB = upfScoreMode === 'binary' ? scores[b].avgBinary : scores[b].avgWeighted;
+                    return scoreB - scoreA;
+                });
+            } else {
+                // Sort alphabetically by plant name
+                plantIds.sort((a, b) => scores[a].name.localeCompare(scores[b].name));
+            }
+
+            // Build table HTML
+            let html = '<thead><tr><th class="plant-header">Treatment Plant</th>';
+
+            // Date headers - use abbreviated format
+            dates.forEach(date => {
+                const [year, month] = date.split('-');
+                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const abbrev = `${monthNames[parseInt(month) - 1]}'${year.slice(2)}`;
+                html += `<th>${abbrev}</th>`;
+            });
+            html += '</tr></thead><tbody>';
+
+            // Plant rows
+            plantIds.forEach(plantId => {
+                const plantScores = scores[plantId];
+                html += `<tr><td class="plant-name">${plantScores.name}</td>`;
+
+                dates.forEach(date => {
+                    const score = plantScores.dates[date];
+                    const value = upfScoreMode === 'binary' ? score.binary : score.weighted;
+                    const color = getUPFCellColor(value, upfScoreMode);
+
+                    if (value === null) {
+                        html += `<td class="no-data" title="${plantScores.name} - ${date}: No data">-</td>`;
+                    } else {
+                        const displayValue = upfScoreMode === 'binary' ?
+                            (value === 1 ? '1' : '0') :
+                            value.toFixed(1);
+                        const title = `${plantScores.name} - ${date}\n${upfScoreMode === 'binary' ? 'Binary' : 'Weighted'} Score: ${displayValue}`;
+                        html += `<td style="background-color: ${color};" title="${title}" onclick="onUPFCellClick('${plantId}', '${date}')">${displayValue}</td>`;
+                    }
+                });
+
+                html += '</tr>';
+            });
+
+            html += '</tbody>';
+            table.innerHTML = html;
+        }
+
+        function onUPFCellClick(plantId, date) {
+            const plant = foodseqData.plants[plantId];
+            if (!plant) return;
+
+            // Find date index and update timeline
+            const dateIndex = foodseqData.dates.indexOf(date);
+            if (dateIndex !== -1 && dateIndex !== currentTimeIndex) {
+                document.getElementById('timelineSlider').value = dateIndex;
+                onTimelineSliderChange(dateIndex);
+            }
+
+            // Pan to plant location
+            map.setView([plant.lat, plant.lng], 10);
+
+            // Flash the marker
+            const marker = plantMarkers.find(m => m.plantId === plantId);
+            if (marker) {
+                // Visual feedback
+                marker.setStyle({ fillColor: '#4299e1', radius: 12 });
+                setTimeout(() => {
+                    marker.setStyle({ fillColor: '#e53e3e', radius: 8 });
+                }, 500);
+            }
+        }
+
+        function toggleUPFPanel() {
+            // Placeholder - functionality coming soon
+            alert('UPF Heatmap coming soon');
+        }
+
+        function closeUPFPanel() {
+            document.getElementById('upf-panel').style.display = 'none';
+            document.getElementById('upfButton').classList.remove('active');
+        }
+
+        function setUPFScoreMode(mode) {
+            upfScoreMode = mode;
+
+            // Update button states
+            document.getElementById('upf-binary-btn').classList.toggle('active', mode === 'binary');
+            document.getElementById('upf-weighted-btn').classList.toggle('active', mode === 'weighted');
+
+            // Re-render heatmap
+            renderUPFHeatmap();
+        }
+
+        function toggleUPFSort() {
+            upfSortByScore = document.getElementById('upf-sort-checkbox').checked;
+            renderUPFHeatmap();
+        }
+
+        // ========== Food Hotspot Prediction Functions ==========
+
+        function togglePredictionPanel() {
+            const panel = document.getElementById('prediction-panel');
+            const button = document.getElementById('predictionButton');
+
+            if (panel.style.display === 'none') {
+                panel.style.display = 'block';
+                button.classList.add('active');
+                populatePredictionSpeciesDropdown();
+            } else {
+                panel.style.display = 'none';
+                button.classList.remove('active');
+            }
+        }
+
+        function closePredictionPanel() {
+            document.getElementById('prediction-panel').style.display = 'none';
+            document.getElementById('predictionButton').classList.remove('active');
+            document.getElementById('prediction-species-list').classList.remove('active');
+        }
+
+        // Close prediction species list when clicking outside
+        document.addEventListener('click', function(e) {
+            const searchContainer = document.querySelector('.prediction-search-container');
+            const listEl = document.getElementById('prediction-species-list');
+            if (searchContainer && listEl && !searchContainer.contains(e.target)) {
+                listEl.classList.remove('active');
+            }
+        });
+
+        function populatePredictionSpeciesDropdown() {
+            renderPredictionSpeciesList(allSpeciesList);
+        }
+
+        function renderPredictionSpeciesList(speciesList) {
+            const listEl = document.getElementById('prediction-species-list');
+            if (!listEl) return;
+
+            listEl.innerHTML = speciesList.map(s => `
+                <div class="prediction-species-item ${predictionConfig.selectedSpecies === s.key ? 'selected' : ''}"
+                     onclick="selectPredictionSpecies('${s.key}')">
+                    <span>${s.name}</span>
+                    <span class="prediction-species-type">${s.type}</span>
+                </div>
+            `).join('');
+        }
+
+        function filterPredictionSpecies(query) {
+            const listEl = document.getElementById('prediction-species-list');
+
+            if (!query) {
+                listEl.classList.remove('active');
+                return;
+            }
+
+            listEl.classList.add('active');
+            const filtered = allSpeciesList.filter(s =>
+                s.name.toLowerCase().includes(query.toLowerCase())
+            );
+            renderPredictionSpeciesList(filtered);
+        }
+
+        function showPredictionSpeciesList() {
+            const listEl = document.getElementById('prediction-species-list');
+            const searchEl = document.getElementById('prediction-species-search');
+
+            if (searchEl.value) {
+                listEl.classList.add('active');
+            }
+        }
+
+        function selectPredictionSpecies(speciesKey) {
+            const species = allSpeciesList.find(s => s.key === speciesKey);
+            if (!species) return;
+
+            predictionConfig.selectedSpecies = speciesKey;
+
+            // Update search input
+            document.getElementById('prediction-species-search').value = species.name;
+            document.getElementById('prediction-species-list').classList.remove('active');
+
+            // Enable generate button
+            document.getElementById('prediction-generate-btn').disabled = false;
+
+            // Update stats
+            updatePredictionStats(speciesKey);
+            updatePOIIndicator();
+
+            // Sync with species panel (if not already syncing)
+            if (!syncingPanels) {
+                syncingPanels = true;
+                selectedSpecies = speciesKey;
+                document.getElementById('species-search').value = species.name;
+                document.getElementById('species-list').classList.remove('active');
+                document.getElementById('species-info').innerHTML = `
+                    <strong>${species.name}</strong><br>
+                    Type: ${species.type}<br>
+                    Food Group: ${species.foodGroup}
+                `;
+                updateSpeciesHeatmap();
+                showHeatmapLegend(species.name);
+                syncingPanels = false;
+            }
+        }
+
+        function onPredictionSpeciesChange(speciesKey) {
+            predictionConfig.selectedSpecies = speciesKey || null;
+
+            const generateBtn = document.getElementById('prediction-generate-btn');
+            generateBtn.disabled = !speciesKey;
+
+            if (speciesKey) {
+                updatePredictionStats(speciesKey);
+            } else {
+                document.getElementById('stat-known-sites').textContent = '--';
+                document.getElementById('stat-sites-with-detection').textContent = '--';
+                document.getElementById('stat-correlation').textContent = '--';
+            }
+        }
+
+        function onPredictionRadiusChange(value) {
+            predictionConfig.radiusMiles = parseInt(value);
+            document.getElementById('prediction-radius-value').textContent = value + ' mi';
+        }
+
+        function toggleUseAllPOIs(useAll) {
+            predictionConfig.useAllPOIs = useAll;
+            updatePOIIndicator();
+        }
+
+        function updatePOIIndicator() {
+            const indicator = document.getElementById('prediction-poi-indicator');
+            if (!indicator) return;
+
+            const totalCategories = poiData ? Object.keys(poiData.categories).length : 13;
+            const activeCount = activePOILayers.size;
+
+            if (predictionConfig.useAllPOIs) {
+                indicator.textContent = `Using all ${totalCategories} categories`;
+                indicator.classList.remove('filtered');
+            } else {
+                if (activeCount === 0) {
+                    indicator.textContent = 'No POI categories selected - enable some POIs first';
+                    indicator.classList.add('filtered');
+                } else {
+                    indicator.textContent = `Using ${activeCount} of ${totalCategories} active categories`;
+                    indicator.classList.add('filtered');
+                }
+            }
+        }
+
+        function getActivePOICategories() {
+            if (predictionConfig.useAllPOIs || !poiData) {
+                return null; // null means use all
+            }
+            return activePOILayers.size > 0 ? Array.from(activePOILayers) : null;
+        }
+
+        function updatePredictionStats(speciesKey) {
+            if (!foodseqData || !speciesKey) return;
+
+            const species = allSpeciesList.find(s => s.key === speciesKey);
+            if (!species) return;
+
+            const originalKeys = species.originalKeys || [speciesKey];
+            let sitesWithDetection = 0;
+            const totalSites = Object.keys(foodseqData.plants).length;
+
+            // Count sites that have detected this species (across all time periods)
+            Object.values(foodseqData.plants).forEach(plant => {
+                let hasDetection = false;
+                Object.values(plant.timeseries || {}).forEach(timeData => {
+                    originalKeys.forEach(key => {
+                        const meta = foodseqData.species_metadata[key];
+                        if (meta) {
+                            const categoryData = meta.type === 'plant' ? timeData.plants : timeData.animals;
+                            if (categoryData && categoryData[key] > 0) {
+                                hasDetection = true;
+                            }
+                        }
+                    });
+                });
+                if (hasDetection) sitesWithDetection++;
+            });
+
+            document.getElementById('stat-known-sites').textContent = totalSites;
+            document.getElementById('stat-sites-with-detection').textContent = sitesWithDetection;
+            document.getElementById('stat-correlation').textContent = sitesWithDetection > 0 ?
+                (sitesWithDetection / totalSites).toFixed(2) : '0.00';
+        }
+
+        // Profile POIs within a radius of a location
+        // categoryFilter: array of categories to include, or null to include all
+        function profileSite(lat, lon, radiusMiles, categoryFilter = null) {
+            if (!poiData || !poiData.categories) return {};
+
+            const profile = {};
+            const categoriesToUse = categoryFilter || Object.keys(poiData.categories);
+
+            categoriesToUse.forEach(category => {
+                if (!poiData.categories[category]) return;
+                let count = 0;
+                poiData.categories[category].forEach(poi => {
+                    if (haversineDistance(lat, lon, poi.lat, poi.lon) <= radiusMiles) {
+                        count++;
+                    }
+                });
+                profile[category] = count;
+            });
+            return profile;
+        }
+
+        // Get species detection value for a plant (summed across all time periods)
+        function getSpeciesDetection(plant, speciesKey) {
+            const species = allSpeciesList.find(s => s.key === speciesKey);
+            if (!species) return 0;
+
+            const originalKeys = species.originalKeys || [speciesKey];
+            let totalDetection = 0;
+
+            Object.values(plant.timeseries || {}).forEach(timeData => {
+                originalKeys.forEach(key => {
+                    const meta = foodseqData.species_metadata[key];
+                    if (meta) {
+                        const categoryData = meta.type === 'plant' ? timeData.plants : timeData.animals;
+                        totalDetection += (categoryData && categoryData[key]) || 0;
+                    }
+                });
+            });
+
+            return totalDetection;
+        }
+
+        // Learn hotspot signature from known detection sites
+        function learnHotspotSignature(speciesKey, radiusMiles, categoryFilter = null) {
+            const profiles = [];
+            const weights = [];
+
+            Object.values(foodseqData.plants).forEach(plant => {
+                const detection = getSpeciesDetection(plant, speciesKey);
+                if (detection > 0) {
+                    profiles.push(profileSite(plant.lat, plant.lng, radiusMiles, categoryFilter));
+                    weights.push(detection);
+                }
+            });
+
+            if (profiles.length === 0) return null;
+
+            // Calculate weighted average profile
+            return weightedAverageProfile(profiles, weights);
+        }
+
+        // Calculate weighted average of multiple POI profiles
+        function weightedAverageProfile(profiles, weights) {
+            const totalWeight = weights.reduce((a, b) => a + b, 0);
+            if (totalWeight === 0) return null;
+
+            const avgProfile = {};
+
+            // Get all categories
+            const categories = new Set();
+            profiles.forEach(p => Object.keys(p).forEach(c => categories.add(c)));
+
+            categories.forEach(category => {
+                let weightedSum = 0;
+                profiles.forEach((profile, i) => {
+                    weightedSum += (profile[category] || 0) * weights[i];
+                });
+                avgProfile[category] = weightedSum / totalWeight;
+            });
+
+            return avgProfile;
+        }
+
+        // Calculate cosine similarity between two POI profiles
+        function scoreSimilarity(profile, signature) {
+            if (!signature) return 0;
+
+            let dotProduct = 0;
+            let normA = 0;
+            let normB = 0;
+
+            Object.keys(signature).forEach(category => {
+                const a = profile[category] || 0;
+                const b = signature[category] || 0;
+                dotProduct += a * b;
+                normA += a * a;
+                normB += b * b;
+            });
+
+            if (normA === 0 || normB === 0) return 0;
+            return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+        }
+
+        // Generate prediction grid covering NC
+        async function generatePrediction() {
+            if (!predictionConfig.selectedSpecies) return;
+
+            const generateBtn = document.getElementById('prediction-generate-btn');
+            const progressDiv = document.getElementById('prediction-progress');
+            const progressText = document.getElementById('prediction-progress-text');
+            const progressFill = document.getElementById('prediction-progress-fill');
+            const clearBtn = document.getElementById('prediction-clear-btn');
+
+            generateBtn.disabled = true;
+            progressDiv.style.display = 'block';
+            clearBtn.style.display = 'none';
+
+            // Store reference to old layers - we'll remove them when new one is ready
+            const oldPredictionLayer = predictionHeatLayer;
+            const oldSpeciesLayer = speciesHeatLayer;
+
+            // NC bounding box (approximate)
+            const ncBounds = {
+                minLat: 33.8,
+                maxLat: 36.6,
+                minLon: -84.3,
+                maxLon: -75.5
+            };
+
+            // Resolution settings (degrees per cell)
+            const resolutions = {
+                low: 0.3,
+                medium: 0.15,
+                high: 0.08
+            };
+
+            const cellSize = resolutions[predictionConfig.resolution];
+            const radiusMiles = predictionConfig.radiusMiles;
+            const categoryFilter = getActivePOICategories();
+
+            progressText.textContent = 'Learning hotspot signature...';
+            progressFill.style.width = '10%';
+
+            // Use setTimeout to allow UI to update
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            // Learn signature from known sites
+            const signature = learnHotspotSignature(predictionConfig.selectedSpecies, radiusMiles, categoryFilter);
+
+            if (!signature) {
+                progressText.textContent = 'No detection data for this species';
+                progressFill.style.width = '100%';
+                generateBtn.disabled = false;
+                setTimeout(() => {
+                    progressDiv.style.display = 'none';
+                }, 2000);
+                return;
+            }
+
+            progressText.textContent = 'Generating prediction grid...';
+            progressFill.style.width = '30%';
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            // Generate grid points
+            const gridPoints = [];
+            const latSteps = Math.ceil((ncBounds.maxLat - ncBounds.minLat) / cellSize);
+            const lonSteps = Math.ceil((ncBounds.maxLon - ncBounds.minLon) / cellSize);
+            const totalCells = latSteps * lonSteps;
+
+            let processedCells = 0;
+            const heatData = [];
+
+            // Calculate signature strength to set minimum POI requirement
+            const signatureStrength = Object.values(signature).reduce((a, b) => a + b, 0);
+            const minPOIsRequired = Math.max(3, Math.floor(signatureStrength * 0.25));
+
+            for (let lat = ncBounds.minLat; lat <= ncBounds.maxLat; lat += cellSize) {
+                for (let lon = ncBounds.minLon; lon <= ncBounds.maxLon; lon += cellSize) {
+                    // Profile this location
+                    const profile = profileSite(lat, lon, radiusMiles, categoryFilter);
+
+                    // Check if there are enough POIs nearby (stricter requirement)
+                    const totalPOIs = Object.values(profile).reduce((a, b) => a + b, 0);
+
+                    if (totalPOIs >= minPOIsRequired) {
+                        // Calculate similarity score
+                        const score = scoreSimilarity(profile, signature);
+
+                        // Stricter threshold - only high confidence matches (was 0.1)
+                        if (score > 0.35) {
+                            // Scale score to emphasize differences (0.35-1.0 -> 0-1)
+                            const scaledScore = (score - 0.35) / 0.65;
+                            heatData.push([lat, lon, scaledScore]);
+                        }
+                    }
+
+                    processedCells++;
+
+                    // Update progress periodically
+                    if (processedCells % 50 === 0) {
+                        const progress = 30 + (processedCells / totalCells) * 60;
+                        progressFill.style.width = progress + '%';
+                        progressText.textContent = `Analyzing grid... ${Math.round(processedCells / totalCells * 100)}%`;
+                        await new Promise(resolve => setTimeout(resolve, 0));
+                    }
+                }
+            }
+
+            progressText.textContent = 'Rendering heatmap...';
+            progressFill.style.width = '95%';
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            // Clear old layers right before showing new one (for smooth transition)
+            if (oldPredictionLayer) {
+                map.removeLayer(oldPredictionLayer);
+            }
+            if (oldSpeciesLayer) {
+                map.removeLayer(oldSpeciesLayer);
+                speciesHeatLayer = null;
+            }
+            hideHeatmapLegend();
+
+            // Create heatmap layer
+            if (heatData.length > 0) {
+                predictionHeatLayer = L.heatLayer(heatData, {
+                    radius: 35,
+                    blur: 25,
+                    maxZoom: 10,
+                    minOpacity: 0.2,
+                    max: 1.0,
+                    gradient: {
+                        0.0: 'rgba(0, 0, 255, 0.5)',
+                        0.25: 'rgba(0, 255, 255, 0.55)',
+                        0.5: 'rgba(0, 255, 0, 0.6)',
+                        0.75: 'rgba(255, 255, 0, 0.65)',
+                        1.0: 'rgba(255, 0, 0, 0.7)'
+                    }
+                }).addTo(map);
+
+                showPredictionLegend();
+            }
+
+            progressFill.style.width = '100%';
+            progressText.textContent = `Complete! ${heatData.length} prediction points`;
+
+            setTimeout(() => {
+                progressDiv.style.display = 'none';
+                generateBtn.disabled = false;
+                clearBtn.style.display = 'block';
+            }, 1500);
+
+            // Update correlation stat with actual data points
+            const detectionSites = parseInt(document.getElementById('stat-sites-with-detection').textContent) || 0;
+            if (detectionSites > 0 && heatData.length > 0) {
+                // Calculate average similarity of grid points near known detection sites
+                let avgSimilarity = 0;
+                let count = 0;
+                Object.values(foodseqData.plants).forEach(plant => {
+                    const detection = getSpeciesDetection(plant, predictionConfig.selectedSpecies);
+                    if (detection > 0) {
+                        const plantProfile = profileSite(plant.lat, plant.lng, radiusMiles);
+                        avgSimilarity += scoreSimilarity(plantProfile, signature);
+                        count++;
+                    }
+                });
+                if (count > 0) {
+                    document.getElementById('stat-correlation').textContent = (avgSimilarity / count).toFixed(2);
+                }
+            }
+        }
+
+        function showPredictionLegend() {
+            let legend = document.getElementById('prediction-legend');
+            if (!legend) {
+                legend = document.createElement('div');
+                legend.id = 'prediction-legend';
+                legend.className = 'prediction-legend';
+                document.body.appendChild(legend);
+            }
+
+            const speciesName = predictionConfig.selectedSpecies ?
+                (allSpeciesList.find(s => s.key === predictionConfig.selectedSpecies)?.name || 'Unknown') :
+                'Food';
+
+            legend.innerHTML = `
+                <div class="prediction-legend-title">Predicted ${speciesName} Consumption</div>
+                <div class="prediction-legend-gradient"></div>
+                <div class="prediction-legend-labels">
+                    <span>Low</span>
+                    <span>High</span>
+                </div>
+            `;
+            legend.style.display = 'block';
+        }
+
+        function hidePredictionLegend() {
+            const legend = document.getElementById('prediction-legend');
+            if (legend) {
+                legend.style.display = 'none';
+            }
+        }
+
+        function clearPrediction() {
+            if (predictionHeatLayer) {
+                map.removeLayer(predictionHeatLayer);
+                predictionHeatLayer = null;
+            }
+            hidePredictionLegend();
+            document.getElementById('prediction-clear-btn').style.display = 'none';
         }
 
         function initDurhamTractsLayer() {
@@ -1526,6 +3118,126 @@
             return inside;
         }
 
+        // Calculate distance between two points using Haversine formula (returns miles)
+        function haversineDistance(lat1, lon1, lat2, lon2) {
+            const R = 3959; // Earth's radius in miles
+            const dLat = (lat2 - lat1) * Math.PI / 180;
+            const dLon = (lon2 - lon1) * Math.PI / 180;
+            const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                      Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        // Count POIs within a radius of a point (for map click feature)
+        function countPOIsWithinRadius(centerLat, centerLon, radiusMiles) {
+            if (!poiData || !poiData.categories) return { total: 0, byCategory: {} };
+            const counts = { total: 0, byCategory: {} };
+
+            activePOILayers.forEach(category => {
+                const pois = poiData.categories[category] || [];
+                let categoryCount = 0;
+                pois.forEach(poi => {
+                    if (haversineDistance(centerLat, centerLon, poi.lat, poi.lon) <= radiusMiles) {
+                        categoryCount++;
+                    }
+                });
+                if (categoryCount > 0) {
+                    counts.byCategory[category] = categoryCount;
+                    counts.total += categoryCount;
+                }
+            });
+            return counts;
+        }
+
+        // Store radius circle for map click feature
+        let radiusCircle = null;
+        let poiClickRadius = 5; // Default 5 miles, null = off
+
+        // Set POI click radius
+        function setPOIRadius(radius) {
+            poiClickRadius = radius;
+
+            // Update button states
+            document.querySelectorAll('.poi-radius-toggle button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            if (radius === null) {
+                document.getElementById('radius-off').classList.add('active');
+                // Remove any existing radius circle
+                if (radiusCircle) {
+                    map.removeLayer(radiusCircle);
+                    radiusCircle = null;
+                }
+                map.closePopup();
+            } else if (radius === 1) {
+                document.getElementById('radius-1').classList.add('active');
+            } else if (radius === 5) {
+                document.getElementById('radius-5').classList.add('active');
+            } else if (radius === 10) {
+                document.getElementById('radius-10').classList.add('active');
+            }
+        }
+
+        // Show popup with POI count within radius
+        function showPOIRadiusPopup(latlng, counts, radiusMiles) {
+            // Remove existing radius circle
+            if (radiusCircle) {
+                map.removeLayer(radiusCircle);
+            }
+
+            // Create radius circle
+            radiusCircle = L.circle(latlng, {
+                radius: radiusMiles * 1609.34, // Convert miles to meters
+                color: '#4299e1',
+                fillColor: '#4299e1',
+                fillOpacity: 0.1,
+                weight: 2,
+                dashArray: '5, 5'
+            }).addTo(map);
+
+            // Build popup content
+            let content = `<div style="min-width: 180px; font-family: system-ui, sans-serif;">`;
+            content += `<div style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: #2d3748;">POIs within ${radiusMiles} miles</div>`;
+            content += `<div style="font-size: 24px; font-weight: 700; color: #4299e1; margin-bottom: 8px;">${counts.total}</div>`;
+
+            if (counts.total === 0) {
+                content += `<div style="color: #718096; font-size: 12px;">No selected POIs found in this area</div>`;
+            } else {
+                content += `<div style="border-top: 1px solid #e2e8f0; padding-top: 8px; margin-top: 4px;">`;
+                const categoryIcons = {
+                    grocery: '🛒', restaurant: '🍽️', fast_food: '🍔', seafood: '🦐',
+                    butcher: '🥩', bakery: '🥖', greengrocer: '🥬', marketplace: '🏪',
+                    university: '🎓', ev_charging: '⚡', gym: '💪'
+                };
+                Object.entries(counts.byCategory).forEach(([category, count]) => {
+                    const icon = categoryIcons[category] || '📍';
+                    const displayName = category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    content += `<div style="display: flex; justify-content: space-between; font-size: 12px; padding: 2px 0;">`;
+                    content += `<span>${icon} ${displayName}</span><span style="font-weight: 600;">${count}</span></div>`;
+                });
+                content += `</div>`;
+            }
+            content += `</div>`;
+
+            // Create and open popup
+            const popup = L.popup()
+                .setLatLng(latlng)
+                .setContent(content)
+                .openOn(map);
+
+            // Remove circle when popup closes
+            map.on('popupclose', function onPopupClose(e) {
+                if (e.popup === popup && radiusCircle) {
+                    map.removeLayer(radiusCircle);
+                    radiusCircle = null;
+                    map.off('popupclose', onPopupClose);
+                }
+            });
+        }
+
         // Count POIs within a tract's geometry
         function countPOIsInTract(geometry) {
             if (!poiData || !poiData.categories) return { total: 0 };
@@ -1579,7 +3291,7 @@
             try {
                 // Load data
                 const [foodseqResponse, countiesResponse, densityResponse, demographicsResponse, durhamTractsResponse] = await Promise.all([
-                    fetch('data/foodseq_data.json'),
+                    fetch('data/foodseq_data.json?v=' + Date.now()),
                     fetch('data/nc_counties.geojson'),
                     fetch('data/nc_population_density.geojson'),
                     fetch('data/nc_demographics.geojson'),
@@ -1648,19 +3360,30 @@
                 maxZoom: 19
             }).addTo(map);
 
-            // Set topology button as active (default view - just base map)
-            document.getElementById('topoButton').classList.add('active');
+            // Set topology as default in dropdown
+            document.getElementById('layerSelect').value = 'topo';
 
             // Add zoom event listener for POI layer switching
             map.on('zoomend', function() {
                 updateAllPOILayersForZoom();
             });
+
+            // Add click handler for POI radius counting
+            map.on('click', function(e) {
+                // Only show POI count if radius is enabled and POI layers are active
+                if (poiClickRadius === null) return;
+                if (activePOILayers.size === 0) return;
+                const counts = countPOIsWithinRadius(e.latlng.lat, e.latlng.lng, poiClickRadius);
+                showPOIRadiusPopup(e.latlng, counts, poiClickRadius);
+            });
         }
 
         function addPlantMarkers() {
             // Add markers for each treatment plant
+            console.log('Creating markers for', Object.keys(foodseqData.plants).length, 'plants');
             Object.keys(foodseqData.plants).forEach(plantId => {
                 const plant = foodseqData.plants[plantId];
+                console.log(`  ${plantId}: ${plant.name} at (${plant.lat}, ${plant.lng})`);
 
                 const marker = L.circleMarker([plant.lat, plant.lng], {
                     radius: 8,
@@ -1835,13 +3558,28 @@
             const date = foodseqData.dates[currentTimeIndex];
             const timeseriesData = panelInfo.plant.timeseries[date];
 
+            // Handle missing data for this time period
+            if (!timeseriesData) {
+                // Destroy existing chart if it exists
+                if (panelInfo.chart) {
+                    panelInfo.chart.destroy();
+                    panelInfo.chart = null;
+                }
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = '14px sans-serif';
+                ctx.fillStyle = '#666';
+                ctx.textAlign = 'center';
+                ctx.fillText('No data for this time period', canvas.width / 2, canvas.height / 2);
+                return;
+            }
+
             let labels, values, backgroundColors, chartTitle;
 
             let xAxisLabel = 'Abundance';
 
             if (panelInfo.currentTab === 'foodgroups') {
                 // Aggregate by USDA food groups (plants only)
-                const foodGroupTotals = aggregateByFoodGroup(timeseriesData.plants);
+                const foodGroupTotals = aggregateByFoodGroup(timeseriesData.plants || {});
 
                 // Filter out zero values and sort by percentage
                 const sortedGroups = Object.entries(foodGroupTotals)
@@ -1861,7 +3599,7 @@
                 const sortedSpecies = Object.entries(speciesData)
                     .filter(([species, abundance]) => abundance > 0)
                     .sort((a, b) => b[1] - a[1])
-                    .slice(0, 25);
+                    .slice(0, 20);
 
                 labels = sortedSpecies.map(([species]) => {
                     const metadata = foodseqData.species_metadata[species];
@@ -1872,7 +3610,7 @@
                     const metadata = foodseqData.species_metadata[species];
                     return metadata && metadata.color ? metadata.color : '#9BA4B4';
                 });
-                chartTitle = `Top 25 ${panelInfo.currentTab === 'plants' ? 'Plant' : 'Animal'} Species`;
+                chartTitle = `Top 20 ${panelInfo.currentTab === 'plants' ? 'Plant' : 'Animal'} Species`;
             }
 
             // Destroy existing chart if it exists
@@ -1915,6 +3653,11 @@
                             title: {
                                 display: true,
                                 text: xAxisLabel
+                            }
+                        },
+                        y: {
+                            ticks: {
+                                autoSkip: false
                             }
                         }
                     }
@@ -2003,6 +3746,12 @@
             if (selectedSpecies) {
                 updateSpeciesHeatmap();
             }
+
+            // Update UPF heatmap if visible (highlight current time column)
+            const upfPanel = document.getElementById('upf-panel');
+            if (upfPanel && upfPanel.style.display !== 'none') {
+                renderUPFHeatmap();
+            }
         }
 
         function updateTimelineInfo() {
@@ -2021,6 +3770,7 @@
         function updatePlantMarkerVisibility() {
             // Show/hide markers based on data availability for current time period
             const currentDate = foodseqData.dates[currentTimeIndex];
+            let visibleCount = 0;
 
             plantMarkers.forEach(marker => {
                 const plant = marker.plant;
@@ -2040,6 +3790,7 @@
                     if (!map.hasLayer(marker)) {
                         marker.addTo(map);
                     }
+                    visibleCount++;
                 } else {
                     // Hide marker without data
                     if (map.hasLayer(marker)) {
@@ -2047,20 +3798,14 @@
                     }
                 }
             });
+            console.log(`Date: ${currentDate}, Visible markers: ${visibleCount}`);
         }
 
         function switchMapView(view) {
             currentMapView = view;
 
-            // Update button states
-            document.getElementById('topoButton').classList.toggle('active', view === 'topo');
-            document.getElementById('densityButton').classList.toggle('active', view === 'density');
-            document.getElementById('incomeButton').classList.toggle('active', view === 'income');
-            document.getElementById('foreignButton').classList.toggle('active', view === 'foreign');
-            document.getElementById('whiteButton').classList.toggle('active', view === 'white');
-            document.getElementById('blackButton').classList.toggle('active', view === 'black');
-            document.getElementById('asianButton').classList.toggle('active', view === 'asian');
-            document.getElementById('hispanicButton').classList.toggle('active', view === 'hispanic');
+            // Update dropdown selection
+            document.getElementById('layerSelect').value = view;
 
             // Remove existing layers
             if (countiesLayer) {
