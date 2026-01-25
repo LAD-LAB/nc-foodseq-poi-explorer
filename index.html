@@ -1239,6 +1239,48 @@
             margin-top: 4px;
         }
 
+        /* UPF Map Heatmap Legend */
+        .upf-map-legend {
+            position: absolute;
+            bottom: 305px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 12px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+        }
+
+        .upf-map-legend-title {
+            font-weight: 700;
+            font-size: 13px;
+            color: #1a365d;
+            margin-bottom: 8px;
+        }
+
+        .upf-map-legend-gradient {
+            width: 150px;
+            height: 15px;
+            background: linear-gradient(to right, #0000ff, #00ffff, #00ff00, #ffff00, #ff8000, #ff0000);
+            border-radius: 3px;
+        }
+
+        .upf-map-legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #718096;
+            margin-top: 4px;
+        }
+
+        .upf-map-legend-info {
+            margin-top: 8px;
+            font-size: 10px;
+            color: #a0aec0;
+            line-height: 1.4;
+        }
+
         .prediction-progress {
             margin-top: 10px;
             padding: 10px;
@@ -1296,7 +1338,7 @@
         </select>
         <button id="tractsButton" onclick="toggleDurhamTracts()">Census Tracts</button>
         <button id="speciesButton" onclick="toggleSpeciesPanel()">Species Abundance</button>
-        <button id="upfButton" onclick="toggleUPFPanel()">UPF Heatmap</button>
+        <button id="upfMapButton" onclick="toggleUPFMapHeatmap()">UPF Heatmap</button>
         <button id="predictionButton" onclick="togglePredictionPanel()">Hotspot Prediction</button>
     </div>
 
@@ -1405,32 +1447,6 @@
         </div>
     </div>
 
-    <!-- UPF Heatmap Panel -->
-    <div id="upf-panel" class="upf-panel" style="display: none;">
-        <div class="upf-panel-header">
-            <span class="upf-panel-title">UPF Signal Heatmap</span>
-            <button onclick="closeUPFPanel()">&times;</button>
-        </div>
-        <div class="upf-controls">
-            <button id="upf-binary-btn" class="active" onclick="setUPFScoreMode('binary')">Binary</button>
-            <button id="upf-weighted-btn" onclick="setUPFScoreMode('weighted')">Weighted</button>
-        </div>
-        <div class="upf-sort-control">
-            <input type="checkbox" id="upf-sort-checkbox" onchange="toggleUPFSort()">
-            <label for="upf-sort-checkbox">Sort by average UPF score</label>
-        </div>
-        <div class="upf-heatmap-container">
-            <table class="upf-heatmap-table" id="upf-heatmap-table">
-                <!-- Dynamically generated -->
-            </table>
-        </div>
-        <div class="upf-legend">
-            <span>Low</span>
-            <div class="upf-legend-gradient"></div>
-            <span>High</span>
-        </div>
-    </div>
-
     <!-- Species Abundance Panel -->
     <div id="species-panel" class="species-panel" style="display: none;">
         <div class="species-panel-header">
@@ -1513,6 +1529,19 @@
         </button>
     </div>
 
+    <!-- UPF Map Heatmap Legend -->
+    <div id="upf-map-legend" class="upf-map-legend">
+        <div class="upf-map-legend-title">UPF Indicator Score</div>
+        <div class="upf-map-legend-gradient"></div>
+        <div class="upf-map-legend-labels">
+            <span>Low</span>
+            <span>High</span>
+        </div>
+        <div class="upf-map-legend-info">
+            Based on corn, guar,<br>and soy markers
+        </div>
+    </div>
+
     <!-- Map container -->
     <div id="map"></div>
 
@@ -1566,6 +1595,11 @@
 
         // Prediction hotspot variables
         let predictionHeatLayer = null;
+
+        // UPF map heatmap variables
+        let upfHeatLayer = null;
+        let upfHeatmapActive = false;
+
         let predictionConfig = {
             radiusMiles: 5,
             resolution: 'high',  // Always use high resolution
@@ -1685,7 +1719,7 @@
 
         // UPF marker species
         const UPF_MARKERS = {
-            wheat: "Rye, Wheat",
+            corn: "Corn",
             soybeanGuar: "Soybean, Guar",
             guar: "Guar"
         };
@@ -2294,15 +2328,15 @@
             const plants = timeData.plants || {};
 
             // Get marker abundances
-            const wheat = plants[UPF_MARKERS.wheat] || 0;
+            const corn = plants[UPF_MARKERS.corn] || 0;
             const soybeanGuar = plants[UPF_MARKERS.soybeanGuar] || 0;
             const guar = plants[UPF_MARKERS.guar] || 0;
 
-            // Binary score: 1 if wheat AND (soybeanGuar OR guar) present
-            const binaryScore = (wheat > 0 && (soybeanGuar > 0 || guar > 0)) ? 1 : 0;
+            // Binary score: 1 if corn AND (soybeanGuar OR guar) present
+            const binaryScore = (corn > 0 && (soybeanGuar > 0 || guar > 0)) ? 1 : 0;
 
             // Weighted score: sum of marker abundances
-            const weightedScore = wheat + soybeanGuar + guar;
+            const weightedScore = corn + soybeanGuar + guar;
 
             return { binary: binaryScore, weighted: weightedScore };
         }
@@ -2451,8 +2485,22 @@
         }
 
         function toggleUPFPanel() {
-            // Placeholder - functionality coming soon
-            alert('UPF Heatmap coming soon');
+            const panel = document.getElementById('upf-panel');
+            const speciesPanel = document.getElementById('species-panel');
+            const button = document.getElementById('upfButton');
+
+            if (panel.style.display === 'none') {
+                // Hide species panel if open (they share similar position)
+                if (speciesPanel && speciesPanel.style.display !== 'none') {
+                    closeSpeciesPanel();
+                }
+
+                panel.style.display = 'block';
+                button.classList.add('active');
+                renderUPFHeatmap();
+            } else {
+                closeUPFPanel();
+            }
         }
 
         function closeUPFPanel() {
@@ -2474,6 +2522,113 @@
         function toggleUPFSort() {
             upfSortByScore = document.getElementById('upf-sort-checkbox').checked;
             renderUPFHeatmap();
+        }
+
+        // ========== UPF Map Heatmap Functions ==========
+
+        function toggleUPFMapHeatmap() {
+            if (upfHeatmapActive) {
+                hideUPFMapHeatmap();
+            } else {
+                showUPFMapHeatmap();
+            }
+        }
+
+        function showUPFMapHeatmap() {
+            // Hide other heat layers
+            if (speciesHeatLayer) {
+                map.removeLayer(speciesHeatLayer);
+                speciesHeatLayer = null;
+                document.getElementById('speciesButton').classList.remove('active');
+                document.getElementById('species-panel').style.display = 'none';
+            }
+            if (predictionHeatLayer) {
+                map.removeLayer(predictionHeatLayer);
+                predictionHeatLayer = null;
+            }
+
+            upfHeatmapActive = true;
+            document.getElementById('upfMapButton').classList.add('active');
+            document.getElementById('upf-map-legend').style.display = 'block';
+
+            updateUPFMapHeatmap();
+        }
+
+        // Global max UPF score across all dates (computed once)
+        let globalUPFMax = 0;
+
+        function computeGlobalUPFMax() {
+            globalUPFMax = 0;
+            foodseqData.dates.forEach(date => {
+                Object.keys(foodseqData.plants).forEach(plantId => {
+                    const plant = foodseqData.plants[plantId];
+                    const score = calculateUPFScore(plant, date);
+                    if (score.weighted !== null && score.weighted > globalUPFMax) {
+                        globalUPFMax = score.weighted;
+                    }
+                });
+            });
+            console.log('Global UPF max computed:', globalUPFMax);
+        }
+
+        function updateUPFMapHeatmap() {
+            if (!upfHeatmapActive || !foodseqData) return;
+
+            // Remove existing layer
+            if (upfHeatLayer) {
+                map.removeLayer(upfHeatLayer);
+            }
+
+            // Compute global max if not yet done
+            if (globalUPFMax === 0) {
+                computeGlobalUPFMax();
+            }
+
+            // Get current date from timeline
+            const currentDate = foodseqData.dates[currentTimeIndex];
+
+            // Build heat data normalized by global max
+            const heatData = [];
+            Object.keys(foodseqData.plants).forEach(plantId => {
+                const plant = foodseqData.plants[plantId];
+                const score = calculateUPFScore(plant, currentDate);
+
+                if (score.weighted !== null && score.weighted > 0) {
+                    const intensity = globalUPFMax > 0 ? score.weighted / globalUPFMax : 0;
+                    heatData.push([plant.lat, plant.lng, intensity]);
+                }
+            });
+
+            // Create heat layer with high contrast gradient
+            upfHeatLayer = L.heatLayer(heatData, {
+                radius: 35,
+                blur: 15,
+                maxZoom: 12,
+                max: 1.0,
+                minOpacity: 0.5,
+                gradient: {
+                    0.0: '#0000ff',
+                    0.2: '#00ffff',
+                    0.4: '#00ff00',
+                    0.6: '#ffff00',
+                    0.8: '#ff8000',
+                    1.0: '#ff0000'
+                }
+            }).addTo(map);
+
+            console.log('UPF map heatmap updated for', currentDate, 'with', heatData.length, 'points, globalMax:', globalUPFMax);
+            console.log('Heat data:', heatData);
+        }
+
+        function hideUPFMapHeatmap() {
+            if (upfHeatLayer) {
+                map.removeLayer(upfHeatLayer);
+                upfHeatLayer = null;
+            }
+
+            upfHeatmapActive = false;
+            document.getElementById('upfMapButton').classList.remove('active');
+            document.getElementById('upf-map-legend').style.display = 'none';
         }
 
         // ========== Food Hotspot Prediction Functions ==========
@@ -3751,6 +3906,11 @@
             const upfPanel = document.getElementById('upf-panel');
             if (upfPanel && upfPanel.style.display !== 'none') {
                 renderUPFHeatmap();
+            }
+
+            // Update UPF map heatmap if active
+            if (upfHeatmapActive) {
+                updateUPFMapHeatmap();
             }
         }
 
