@@ -926,7 +926,7 @@
         .heatmap-legend {
             position: absolute;
             top: 20px;
-            right: 310px;
+            right: 330px;
             background: white;
             padding: 10px 15px;
             border-radius: 6px;
@@ -1478,14 +1478,6 @@
         </div>
 
         <div class="prediction-section">
-            <div class="prediction-section-label">Analysis Radius</div>
-            <div class="prediction-slider-container">
-                <input type="range" id="prediction-radius-slider" class="prediction-slider" min="1" max="15" value="5" oninput="onPredictionRadiusChange(this.value)">
-                <span class="prediction-slider-value" id="prediction-radius-value">5 mi</span>
-            </div>
-        </div>
-
-        <div class="prediction-section">
             <div class="prediction-section-label">POI Categories</div>
             <div class="prediction-poi-settings">
                 <label class="prediction-poi-toggle">
@@ -1601,7 +1593,7 @@
         let upfHeatmapActive = false;
 
         let predictionConfig = {
-            radiusMiles: 5,
+            radiusMiles: 10,  // Fixed at 10mi for optimal correlation
             resolution: 'high',  // Always use high resolution
             selectedSpecies: null,
             useAllPOIs: true  // Whether to use all POIs or only active ones
@@ -2707,6 +2699,14 @@
             const species = allSpeciesList.find(s => s.key === speciesKey);
             if (!species) return;
 
+            // Clear previous prediction heatmap when selecting new species
+            if (predictionHeatLayer) {
+                map.removeLayer(predictionHeatLayer);
+                predictionHeatLayer = null;
+                hidePredictionLegend();
+                document.getElementById('prediction-clear-btn').style.display = 'none';
+            }
+
             predictionConfig.selectedSpecies = speciesKey;
 
             // Update search input
@@ -2750,11 +2750,6 @@
                 document.getElementById('stat-sites-with-detection').textContent = '--';
                 document.getElementById('stat-correlation').textContent = '--';
             }
-        }
-
-        function onPredictionRadiusChange(value) {
-            predictionConfig.radiusMiles = parseInt(value);
-            document.getElementById('prediction-radius-value').textContent = value + ' mi';
         }
 
         function toggleUseAllPOIs(useAll) {
@@ -2865,65 +2860,94 @@
             return totalDetection;
         }
 
-        // Learn hotspot signature from known detection sites
-        function learnHotspotSignature(speciesKey, radiusMiles, categoryFilter = null) {
-            const profiles = [];
-            const weights = [];
+        // Learn POI weights from correlation with species abundance at training sites
+        function learnPOIWeights(speciesKey, radiusMiles, categoryFilter = null) {
+            const siteData = [];
 
+            // Collect POI profiles and abundance for all sites
             Object.values(foodseqData.plants).forEach(plant => {
-                const detection = getSpeciesDetection(plant, speciesKey);
-                if (detection > 0) {
-                    profiles.push(profileSite(plant.lat, plant.lng, radiusMiles, categoryFilter));
-                    weights.push(detection);
-                }
+                const abundance = getSpeciesDetection(plant, speciesKey);
+                const profile = profileSite(plant.lat, plant.lng, radiusMiles, categoryFilter);
+                siteData.push({ abundance, profile });
             });
 
-            if (profiles.length === 0) return null;
-
-            // Calculate weighted average profile
-            return weightedAverageProfile(profiles, weights);
-        }
-
-        // Calculate weighted average of multiple POI profiles
-        function weightedAverageProfile(profiles, weights) {
-            const totalWeight = weights.reduce((a, b) => a + b, 0);
-            if (totalWeight === 0) return null;
-
-            const avgProfile = {};
+            if (siteData.length < 3) return null;
 
             // Get all categories
-            const categories = new Set();
-            profiles.forEach(p => Object.keys(p).forEach(c => categories.add(c)));
+            const categories = categoryFilter || Object.keys(poiData.categories);
+
+            // Convert raw counts to PROPORTIONS to normalize for overall POI density
+            // This prevents urban areas from dominating just because they have more of everything
+            const siteProportions = siteData.map(d => {
+                const total = Object.values(d.profile).reduce((a, b) => a + b, 0);
+                const proportions = {};
+                categories.forEach(cat => {
+                    proportions[cat] = total > 0 ? (d.profile[cat] || 0) / total : 0;
+                });
+                return { proportions, abundance: d.abundance };
+            });
+
+            // Calculate correlation-based weight for each POI category using PROPORTIONS
+            const weights = {};
+            const meanProp = {};
+            const stdProp = {};
+            const meanAbundance = siteData.reduce((s, d) => s + d.abundance, 0) / siteData.length;
 
             categories.forEach(category => {
-                let weightedSum = 0;
-                profiles.forEach((profile, i) => {
-                    weightedSum += (profile[category] || 0) * weights[i];
+                const props = siteProportions.map(d => d.proportions[category]);
+                const mean = props.reduce((a, b) => a + b, 0) / props.length;
+                meanProp[category] = mean;
+
+                // Calculate correlation coefficient between proportion and abundance
+                let num = 0, denProp = 0, denAbund = 0;
+                siteProportions.forEach((d, i) => {
+                    const propDev = props[i] - mean;
+                    const abundDev = d.abundance - meanAbundance;
+                    num += propDev * abundDev;
+                    denProp += propDev * propDev;
+                    denAbund += abundDev * abundDev;
                 });
-                avgProfile[category] = weightedSum / totalWeight;
+
+                const denom = Math.sqrt(denProp) * Math.sqrt(denAbund);
+                const correlation = denom > 0 ? num / denom : 0;
+
+                // Use correlation as weight (can be negative)
+                weights[category] = correlation;
+
+                // Store standard deviation of proportions for z-score calculation
+                stdProp[category] = Math.sqrt(denProp / siteProportions.length) || 0.001;
             });
 
-            return avgProfile;
+            // Calculate abundance statistics for prediction scaling
+            const abundances = siteData.map(d => d.abundance);
+            const stdAbundance = Math.sqrt(abundances.reduce((sum, a) => sum + Math.pow(a - meanAbundance, 2), 0) / abundances.length) || 1;
+            const maxAbundance = Math.max(...abundances);
+
+            // Log weights
+            console.log('POI weights (correlation with abundance):');
+            Object.entries(weights)
+                .sort((a, b) => b[1] - a[1])
+                .forEach(([cat, w]) => console.log(`  ${cat}: ${w.toFixed(3)}`));
+
+            // Log weight summary to verify they change between species
+            const weightSum = Object.values(weights).reduce((a, b) => a + Math.abs(b), 0);
+            console.log(`Weight sum (absolute): ${weightSum.toFixed(3)}`);
+
+            return { weights, categories, siteData, meanProp, stdProp, meanAbundance, stdAbundance, maxAbundance };
         }
 
-        // Calculate cosine similarity between two POI profiles
-        function scoreSimilarity(profile, signature) {
-            if (!signature) return 0;
+        // Score a location using weighted POI counts (preserves magnitude)
+        function scoreWeightedPOI(profile, model) {
+            if (!model || !model.weights) return 0;
 
-            let dotProduct = 0;
-            let normA = 0;
-            let normB = 0;
-
-            Object.keys(signature).forEach(category => {
-                const a = profile[category] || 0;
-                const b = signature[category] || 0;
-                dotProduct += a * b;
-                normA += a * a;
-                normB += b * b;
+            let score = 0;
+            model.categories.forEach(category => {
+                const count = profile[category] || 0;
+                const weight = model.weights[category] || 0;
+                score += count * weight;
             });
 
-            if (normA === 0 || normB === 0) return 0;
-            return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+            return score;
         }
 
         // Generate prediction grid covering NC
@@ -2963,17 +2987,17 @@
             const radiusMiles = predictionConfig.radiusMiles;
             const categoryFilter = getActivePOICategories();
 
-            progressText.textContent = 'Learning hotspot signature...';
+            progressText.textContent = 'Learning POI weights...';
             progressFill.style.width = '10%';
 
             // Use setTimeout to allow UI to update
             await new Promise(resolve => setTimeout(resolve, 50));
 
-            // Learn signature from known sites
-            const signature = learnHotspotSignature(predictionConfig.selectedSpecies, radiusMiles, categoryFilter);
+            // Learn correlation-based weights for each POI category
+            const model = learnPOIWeights(predictionConfig.selectedSpecies, radiusMiles, categoryFilter);
 
-            if (!signature) {
-                progressText.textContent = 'No detection data for this species';
+            if (!model) {
+                progressText.textContent = 'Insufficient data for this species';
                 progressFill.style.width = '100%';
                 generateBtn.disabled = false;
                 setTimeout(() => {
@@ -2987,48 +3011,101 @@
             await new Promise(resolve => setTimeout(resolve, 50));
 
             // Generate grid points
-            const gridPoints = [];
             const latSteps = Math.ceil((ncBounds.maxLat - ncBounds.minLat) / cellSize);
             const lonSteps = Math.ceil((ncBounds.maxLon - ncBounds.minLon) / cellSize);
             const totalCells = latSteps * lonSteps;
 
-            let processedCells = 0;
-            const heatData = [];
+            // Minimum POIs required for meaningful prediction
+            const minPOIsRequired = 30;
 
-            // Calculate signature strength to set minimum POI requirement
-            const signatureStrength = Object.values(signature).reduce((a, b) => a + b, 0);
-            const minPOIsRequired = Math.max(3, Math.floor(signatureStrength * 0.25));
+            // First pass: collect all profiles to calculate z-score statistics
+            let processedCells = 0;
+            const gridProfiles = [];
 
             for (let lat = ncBounds.minLat; lat <= ncBounds.maxLat; lat += cellSize) {
                 for (let lon = ncBounds.minLon; lon <= ncBounds.maxLon; lon += cellSize) {
-                    // Profile this location
                     const profile = profileSite(lat, lon, radiusMiles, categoryFilter);
-
-                    // Check if there are enough POIs nearby (stricter requirement)
                     const totalPOIs = Object.values(profile).reduce((a, b) => a + b, 0);
 
                     if (totalPOIs >= minPOIsRequired) {
-                        // Calculate similarity score
-                        const score = scoreSimilarity(profile, signature);
-
-                        // Stricter threshold - only high confidence matches (was 0.1)
-                        if (score > 0.35) {
-                            // Scale score to emphasize differences (0.35-1.0 -> 0-1)
-                            const scaledScore = (score - 0.35) / 0.65;
-                            heatData.push([lat, lon, scaledScore]);
-                        }
+                        gridProfiles.push({ lat, lon, profile });
                     }
 
                     processedCells++;
-
-                    // Update progress periodically
-                    if (processedCells % 50 === 0) {
-                        const progress = 30 + (processedCells / totalCells) * 60;
+                    if (processedCells % 100 === 0) {
+                        const progress = 30 + (processedCells / totalCells) * 30;
                         progressFill.style.width = progress + '%';
-                        progressText.textContent = `Analyzing grid... ${Math.round(processedCells / totalCells * 100)}%`;
+                        progressText.textContent = `Collecting profiles... ${Math.round(processedCells / totalCells * 100)}%`;
                         await new Promise(resolve => setTimeout(resolve, 0));
                     }
                 }
+            }
+
+            // Score each grid cell using correlation-weighted z-scores of PROPORTIONS
+            // This compares POI composition, not raw counts, so urban/rural doesn't dominate
+            progressText.textContent = 'Calculating predictions...';
+            const predictions = [];
+
+            console.log('Using proportion-based correlation-weighted z-score prediction');
+            console.log(`Training stats: meanAbundance=${model.meanAbundance.toFixed(2)}, stdAbundance=${model.stdAbundance.toFixed(2)}, maxAbundance=${model.maxAbundance.toFixed(2)}`);
+
+            // Calculate mean total POIs at training sites for density normalization
+            const trainingTotals = model.siteData.map(d => Object.values(d.profile).reduce((a, b) => a + b, 0));
+            const meanTrainingTotal = trainingTotals.reduce((a, b) => a + b, 0) / trainingTotals.length;
+
+            gridProfiles.forEach((g, idx) => {
+                // Convert grid cell counts to proportions
+                const totalPOIs = Object.values(g.profile).reduce((a, b) => a + b, 0);
+                let zScoreSum = 0;
+
+                model.categories.forEach(cat => {
+                    const proportion = totalPOIs > 0 ? (g.profile[cat] || 0) / totalPOIs : 0;
+                    // Z-score of proportion relative to training site proportion distribution
+                    const z = (proportion - model.meanProp[cat]) / model.stdProp[cat];
+                    // Weight by Pearson correlation (between proportion and abundance)
+                    zScoreSum += model.weights[cat] * z;
+                });
+
+                // Transform to predicted abundance scale
+                let predictedAbundance = model.meanAbundance + zScoreSum * model.stdAbundance;
+
+                // Apply density factor - boost score based on POI density relative to training sites
+                const densityFactor = Math.log(1 + totalPOIs) / Math.log(1 + meanTrainingTotal);
+                predictedAbundance *= densityFactor;
+
+                predictions.push({ lat: g.lat, lon: g.lon, score: predictedAbundance });
+
+                if (idx % 100 === 0) {
+                    const progress = 60 + (idx / gridProfiles.length) * 30;
+                    progressFill.style.width = progress + '%';
+                }
+            });
+
+            // Normalize to 0-1 range for heatmap using training abundance range
+            const heatData = [];
+            if (predictions.length > 0) {
+                const scores = predictions.map(p => p.score);
+                const minScore = Math.min(...scores);
+                const maxScore = Math.max(...scores);
+
+                console.log(`Predicted abundance range: ${minScore.toFixed(2)} to ${maxScore.toFixed(2)}`);
+
+                // Log top 5 scoring locations to verify they differ between species
+                const sortedPreds = [...predictions].sort((a, b) => b.score - a.score);
+                console.log('Top 5 predicted abundance locations:');
+                sortedPreds.slice(0, 5).forEach((p, i) => {
+                    console.log(`  ${i+1}. (${p.lat.toFixed(2)}, ${p.lon.toFixed(2)}): ${p.score.toFixed(2)}`);
+                });
+
+                predictions.forEach(p => {
+                    // Clamp to reasonable range and normalize by training max abundance
+                    const clampedAbundance = Math.max(0, Math.min(p.score, model.maxAbundance * 1.5));
+                    const normalizedScore = clampedAbundance / (model.maxAbundance * 1.5);
+                    // Only show predictions above threshold
+                    if (normalizedScore > 0.1) {
+                        heatData.push([p.lat, p.lon, normalizedScore]);
+                    }
+                });
             }
 
             progressText.textContent = 'Rendering heatmap...';
@@ -3074,23 +3151,29 @@
                 clearBtn.style.display = 'block';
             }, 1500);
 
-            // Update correlation stat with actual data points
-            const detectionSites = parseInt(document.getElementById('stat-sites-with-detection').textContent) || 0;
-            if (detectionSites > 0 && heatData.length > 0) {
-                // Calculate average similarity of grid points near known detection sites
-                let avgSimilarity = 0;
-                let count = 0;
-                Object.values(foodseqData.plants).forEach(plant => {
-                    const detection = getSpeciesDetection(plant, predictionConfig.selectedSpecies);
-                    if (detection > 0) {
-                        const plantProfile = profileSite(plant.lat, plant.lng, radiusMiles);
-                        avgSimilarity += scoreSimilarity(plantProfile, signature);
-                        count++;
-                    }
-                });
-                if (count > 0) {
-                    document.getElementById('stat-correlation').textContent = (avgSimilarity / count).toFixed(2);
+            // Calculate and display model quality (R at training sites)
+            if (model.siteData && model.siteData.length > 0) {
+                const actualAbundances = model.siteData.map(d => d.abundance);
+                const predictedScores = model.siteData.map(d => scoreWeightedPOI(d.profile, model));
+
+                // Calculate correlation (R)
+                const n = actualAbundances.length;
+                const meanActual = actualAbundances.reduce((a, b) => a + b, 0) / n;
+                const meanPred = predictedScores.reduce((a, b) => a + b, 0) / n;
+
+                let num = 0, denActual = 0, denPred = 0;
+                for (let i = 0; i < n; i++) {
+                    const devActual = actualAbundances[i] - meanActual;
+                    const devPred = predictedScores[i] - meanPred;
+                    num += devActual * devPred;
+                    denActual += devActual * devActual;
+                    denPred += devPred * devPred;
                 }
+                const denom = Math.sqrt(denActual) * Math.sqrt(denPred);
+                const r = denom > 0 ? num / denom : 0;
+
+                console.log(`Training site correlation: R = ${r.toFixed(3)}`);
+                document.getElementById('stat-correlation').textContent = r.toFixed(2);
             }
         }
 
