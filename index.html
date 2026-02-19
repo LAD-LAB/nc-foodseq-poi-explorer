@@ -1308,6 +1308,284 @@
             border-radius: 3px;
             transition: width 0.3s ease;
         }
+
+        /* Food Desert styles */
+        .food-desert-legend {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            max-width: 260px;
+        }
+
+        .food-desert-legend.visible {
+            display: block;
+        }
+
+        .food-desert-legend-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a365d;
+            margin-bottom: 10px;
+        }
+
+        .food-desert-legend-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            font-size: 12px;
+            color: #4a5568;
+        }
+
+        .food-desert-legend-swatch {
+            width: 18px;
+            height: 18px;
+            border-radius: 3px;
+            margin-right: 8px;
+            flex-shrink: 0;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .food-desert-legend-gradient {
+            width: 100%;
+            height: 16px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .food-desert-legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .food-desert-legend-info {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #888;
+            line-height: 1.4;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 8px;
+        }
+
+        .food-desert-legend-stats {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #4a5568;
+            background: #f7fafc;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .food-desert-legend-stats div {
+            margin-bottom: 3px;
+        }
+
+        .food-desert-legend-stats strong {
+            color: #1a365d;
+        }
+
+        .food-desert-progress {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: white;
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: none;
+        }
+
+        .food-desert-progress.visible {
+            display: block;
+        }
+
+        .food-desert-progress-title {
+            font-weight: 600;
+            color: #1a365d;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .food-desert-progress-bar {
+            width: 250px;
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+
+        .food-desert-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4299e1, #38a169);
+            border-radius: 4px;
+            transition: width 0.3s;
+            width: 0%;
+        }
+
+        .food-desert-progress-text {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .food-desert-panel {
+            position: absolute;
+            top: 100px;
+            left: 20px;
+            z-index: 1001;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            width: 420px;
+            max-height: 80vh;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .food-desert-panel.visible {
+            display: block;
+        }
+
+        .food-desert-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .food-desert-panel-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1a365d;
+        }
+
+        .food-desert-section {
+            margin-bottom: 15px;
+        }
+
+        .food-desert-section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .food-desert-bar-container {
+            margin-bottom: 6px;
+        }
+
+        .food-desert-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #4a5568;
+            margin-bottom: 2px;
+        }
+
+        .food-desert-bar-track {
+            width: 100%;
+            height: 14px;
+            background: #edf2f7;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .food-desert-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.5s;
+            min-width: 2px;
+        }
+
+        .food-desert-bar.positive {
+            background: #38a169;
+        }
+
+        .food-desert-bar.negative {
+            background: #e53e3e;
+        }
+
+        .food-desert-bar-sig {
+            font-size: 10px;
+            color: #e53e3e;
+            font-weight: 700;
+            margin-left: 4px;
+        }
+
+        .food-desert-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #edf2f7;
+            font-size: 13px;
+        }
+
+        .food-desert-stat-label {
+            color: #4a5568;
+        }
+
+        .food-desert-stat-value {
+            font-weight: 600;
+            color: #1a365d;
+        }
+
+        .food-desert-species-table {
+            width: 100%;
+            font-size: 12px;
+            border-collapse: collapse;
+        }
+
+        .food-desert-species-table th {
+            text-align: left;
+            padding: 6px 4px;
+            border-bottom: 2px solid #e2e8f0;
+            color: #1a365d;
+            font-weight: 600;
+        }
+
+        .food-desert-species-table td {
+            padding: 5px 4px;
+            border-bottom: 1px solid #edf2f7;
+            color: #4a5568;
+        }
+
+        .food-desert-species-table .sig {
+            color: #e53e3e;
+            font-weight: 700;
+        }
+
+        .food-desert-export-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: #4299e1;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .food-desert-export-btn:hover {
+            background: #3182ce;
+        }
     </style>
 </head>
 <body>
@@ -1335,11 +1613,14 @@
             <option value="black">% Black</option>
             <option value="asian">% Asian</option>
             <option value="hispanic">% Hispanic/Latino</option>
+            <option value="usda_desert">USDA Food Desert</option>
+            <option value="predicted_desert">Predicted Food Desert</option>
+            <option value="desert_agreement">Food Desert Agreement</option>
         </select>
         <button id="tractsButton" onclick="toggleDurhamTracts()">Census Tracts</button>
         <button id="speciesButton" onclick="toggleSpeciesPanel()">Species Abundance</button>
-        <button id="upfMapButton" onclick="toggleUPFMapHeatmap()">UPF Heatmap</button>
         <button id="predictionButton" onclick="togglePredictionPanel()">Hotspot Prediction</button>
+        <button id="fdAnalysisButton" onclick="toggleFoodDesertPanel()">Food Desert Analysis</button>
     </div>
 
     <!-- POI Layer Controls -->
@@ -1521,16 +1802,29 @@
         </button>
     </div>
 
-    <!-- UPF Map Heatmap Legend -->
-    <div id="upf-map-legend" class="upf-map-legend">
-        <div class="upf-map-legend-title">UPF Indicator Score</div>
-        <div class="upf-map-legend-gradient"></div>
-        <div class="upf-map-legend-labels">
-            <span>Low</span>
-            <span>High</span>
+
+    <!-- Food Desert Legend -->
+    <div class="food-desert-legend" id="foodDesertLegend"></div>
+
+    <!-- Food Desert Progress -->
+    <div class="food-desert-progress" id="foodDesertProgress">
+        <div class="food-desert-progress-title">Computing Food Desert Index...</div>
+        <div class="food-desert-progress-bar">
+            <div class="food-desert-progress-fill" id="foodDesertProgressFill"></div>
         </div>
-        <div class="upf-map-legend-info">
-            Based on corn, guar,<br>and soy markers
+        <div class="food-desert-progress-text" id="foodDesertProgressText">Initializing...</div>
+    </div>
+
+    <!-- Food Desert Analysis Panel -->
+    <div class="food-desert-panel" id="foodDesertPanel">
+        <div class="food-desert-panel-header">
+            <div class="food-desert-panel-title">Food Desert Analysis</div>
+            <button class="close-button" onclick="toggleFoodDesertPanel()">&times;</button>
+        </div>
+        <div id="foodDesertPanelContent">
+            <div style="text-align:center;color:#888;padding:20px;">
+                Select a food desert layer to compute analysis.
+            </div>
         </div>
     </div>
 
@@ -1591,6 +1885,14 @@
         // UPF map heatmap variables
         let upfHeatLayer = null;
         let upfHeatmapActive = false;
+
+        // Food Desert variables
+        let usdaDesertData = null;
+        let foodDesertComputed = false;
+        let foodDesertCorrelations = null;
+        let plantServiceAreas = {};
+        let tractCentroidCache = [];
+        let foodDesertLayer = null;
 
         let predictionConfig = {
             radiusMiles: 10,  // Fixed at 10mi for optimal correlation
@@ -3528,12 +3830,13 @@
         async function init() {
             try {
                 // Load data
-                const [foodseqResponse, countiesResponse, densityResponse, demographicsResponse, durhamTractsResponse] = await Promise.all([
+                const [foodseqResponse, countiesResponse, densityResponse, demographicsResponse, durhamTractsResponse, usdaResponse] = await Promise.all([
                     fetch('data/foodseq_data.json?v=' + Date.now()),
                     fetch('data/nc_counties.geojson'),
                     fetch('data/nc_population_density.geojson'),
                     fetch('data/nc_demographics.geojson'),
-                    fetch('data/durham_census_tracts.geojson')
+                    fetch('data/durham_census_tracts.geojson'),
+                    fetch('data/usda_food_deserts.json')
                 ]);
 
                 foodseqData = await foodseqResponse.json();
@@ -3541,10 +3844,12 @@
                 populationDensityGeoJSON = await densityResponse.json();
                 demographicsGeoJSON = await demographicsResponse.json();
                 durhamTractsGeoJSON = await durhamTractsResponse.json();
+                usdaDesertData = await usdaResponse.json();
 
                 console.log('Loaded', populationDensityGeoJSON.features.length, 'block groups');
                 console.log('Loaded', demographicsGeoJSON.features.length, 'census tracts');
                 console.log('Loaded', durhamTractsGeoJSON.features.length, 'Durham census tracts');
+                console.log('Loaded USDA food desert data for', Object.keys(usdaDesertData.tracts).length, 'tracts');
 
                 // Load POI data
                 poiData = await loadPOIData();
@@ -4044,6 +4349,853 @@
             console.log(`Date: ${currentDate}, Visible markers: ${visibleCount}`);
         }
 
+        // ========== Food Desert Functions ==========
+
+        function getTractCentroids() {
+            if (tractCentroidCache.length > 0) return tractCentroidCache;
+            demographicsGeoJSON.features.forEach((feat, idx) => {
+                const geoid = feat.properties.GEOID;
+                if (!geoid) return;
+                let ring;
+                if (feat.geometry.type === 'Polygon') {
+                    ring = feat.geometry.coordinates[0];
+                } else if (feat.geometry.type === 'MultiPolygon') {
+                    let maxLen = 0;
+                    feat.geometry.coordinates.forEach(poly => {
+                        if (poly[0].length > maxLen) { maxLen = poly[0].length; ring = poly[0]; }
+                    });
+                }
+                if (!ring) return;
+                const c = calculatePolygonCentroid(ring);
+                tractCentroidCache.push({ lat: c.lat, lon: c.lon, geoid, featureIdx: idx });
+            });
+            return tractCentroidCache;
+        }
+
+        function buildPlantServiceAreas() {
+            if (Object.keys(plantServiceAreas).length > 0) return plantServiceAreas;
+            const centroids = getTractCentroids();
+            const plants = foodseqData.plants;
+            const plantIds = Object.keys(plants);
+            plantIds.forEach(id => { plantServiceAreas[id] = []; });
+            centroids.forEach(tract => {
+                let minDist = Infinity, nearestPlant = null;
+                plantIds.forEach(id => {
+                    const p = plants[id];
+                    const d = haversineDistance(tract.lat, tract.lon, p.lat, p.lng);
+                    if (d < minDist) { minDist = d; nearestPlant = id; }
+                });
+                if (nearestPlant) {
+                    plantServiceAreas[nearestPlant].push({ geoid: tract.geoid, distance: minDist, featureIdx: tract.featureIdx });
+                }
+            });
+            console.log('Built service areas for', plantIds.length, 'plants');
+            return plantServiceAreas;
+        }
+
+        function pearsonCorrelation(x, y) {
+            const n = x.length;
+            if (n < 3) return { r: 0, p: 1, n };
+            const mx = x.reduce((a, b) => a + b, 0) / n;
+            const my = y.reduce((a, b) => a + b, 0) / n;
+            let num = 0, dx2 = 0, dy2 = 0;
+            for (let i = 0; i < n; i++) {
+                const dx = x[i] - mx, dy = y[i] - my;
+                num += dx * dy; dx2 += dx * dx; dy2 += dy * dy;
+            }
+            if (dx2 === 0 || dy2 === 0) return { r: 0, p: 1, n };
+            const r = num / Math.sqrt(dx2 * dy2);
+            const t = r * Math.sqrt((n - 2) / (1 - r * r + 1e-10));
+            const p = Math.min(1, Math.max(0, 2 * (1 - normalCDF(Math.abs(t)))));
+            return { r, p, n };
+        }
+
+        function normalCDF(x) {
+            const a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741;
+            const a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+            const sign = x < 0 ? -1 : 1;
+            x = Math.abs(x) / Math.sqrt(2);
+            const t = 1.0 / (1.0 + p * x);
+            const y = 1.0 - (((((a5 * t + a4) * t) + a3) * t + a2) * t + a1) * t * Math.exp(-x * x);
+            return 0.5 * (1.0 + sign * y);
+        }
+
+        function computeFoodDesertCorrelations() {
+            if (foodDesertCorrelations) return foodDesertCorrelations;
+            const serviceAreas = buildPlantServiceAreas();
+            const plantIds = Object.keys(foodseqData.plants);
+
+            // Per-plant food desert rate
+            const plantDesertRates = {};
+            plantIds.forEach(id => {
+                const tracts = serviceAreas[id] || [];
+                let desertCount = 0, totalCount = 0;
+                tracts.forEach(t => {
+                    const usda = usdaDesertData.tracts[t.geoid];
+                    if (usda) { totalCount++; if (usda.foodDesert) desertCount++; }
+                });
+                plantDesertRates[id] = totalCount > 0 ? desertCount / totalCount : 0;
+            });
+
+            // Per-plant species abundance (averaged across all dates)
+            const plantSpeciesAbundance = {};
+            plantIds.forEach(id => {
+                const plant = foodseqData.plants[id];
+                const speciesSums = {}, speciesCounts = {};
+                foodseqData.dates.forEach(date => {
+                    const ts = plant.timeseries[date];
+                    if (!ts) return;
+                    ['plants', 'animals'].forEach(type => {
+                        const data = ts[type] || {};
+                        Object.entries(data).forEach(([species, abundance]) => {
+                            if (!speciesSums[species]) { speciesSums[species] = 0; speciesCounts[species] = 0; }
+                            speciesSums[species] += abundance;
+                            speciesCounts[species]++;
+                        });
+                    });
+                });
+                const avgAbundance = {};
+                Object.keys(speciesSums).forEach(sp => { avgAbundance[sp] = speciesSums[sp] / speciesCounts[sp]; });
+                plantSpeciesAbundance[id] = avgAbundance;
+            });
+
+            // Per-species correlation
+            const allSpecies = new Set();
+            plantIds.forEach(id => { Object.keys(plantSpeciesAbundance[id] || {}).forEach(sp => allSpecies.add(sp)); });
+            const desertRateVector = plantIds.map(id => plantDesertRates[id]);
+
+            const bySpecies = [];
+            allSpecies.forEach(species => {
+                const detectedAt = plantIds.filter(id => (plantSpeciesAbundance[id][species] || 0) > 0).length;
+                if (detectedAt < 5) return;
+                const abundanceVector = plantIds.map(id => plantSpeciesAbundance[id][species] || 0);
+                const corr = pearsonCorrelation(abundanceVector, desertRateVector);
+                const meta = foodseqData.species_metadata[species];
+                bySpecies.push({
+                    name: meta ? meta.common_name : species, species,
+                    r: corr.r, p: corr.p, n: corr.n,
+                    meanAbundance: abundanceVector.reduce((a, b) => a + b, 0) / abundanceVector.length,
+                    foodGroup: meta ? meta.food_group : 'other', detectedAt
+                });
+            });
+            bySpecies.sort((a, b) => Math.abs(b.r) - Math.abs(a.r));
+
+            // Per-food-group correlation
+            const foodGroups = ['grain', 'vegetable', 'fruit', 'legume', 'seed_nut', 'herb_spice', 'meat_poultry', 'seafood', 'other'];
+            const byFoodGroup = [];
+            foodGroups.forEach(group => {
+                const groupAbundance = plantIds.map(id => {
+                    let total = 0;
+                    Object.entries(plantSpeciesAbundance[id] || {}).forEach(([sp, ab]) => {
+                        const meta = foodseqData.species_metadata[sp];
+                        if (meta && meta.food_group === group) total += ab;
+                    });
+                    return total;
+                });
+                const nonZero = groupAbundance.filter(v => v > 0).length;
+                if (nonZero < 3) return;
+                const corr = pearsonCorrelation(groupAbundance, desertRateVector);
+                byFoodGroup.push({ name: group.replace('_', '/'), r: corr.r, p: corr.p, n: corr.n,
+                    meanAbundance: groupAbundance.reduce((a, b) => a + b, 0) / groupAbundance.length });
+            });
+            byFoodGroup.sort((a, b) => Math.abs(b.r) - Math.abs(a.r));
+
+            // USDA-style group aggregation
+            const usdaGroupMap = {
+                'Grains': ['grain'], 'Vegetables': ['vegetable'], 'Fruits': ['fruit'],
+                'Protein (plant)': ['legume', 'seed_nut'], 'Herbs/Spices': ['herb_spice'],
+                'Meat/Poultry': ['meat_poultry'], 'Seafood': ['seafood']
+            };
+            const byUSDAGroup = [];
+            Object.entries(usdaGroupMap).forEach(([groupName, subGroups]) => {
+                const groupAbundance = plantIds.map(id => {
+                    let total = 0;
+                    Object.entries(plantSpeciesAbundance[id] || {}).forEach(([sp, ab]) => {
+                        const meta = foodseqData.species_metadata[sp];
+                        if (meta && subGroups.includes(meta.food_group)) total += ab;
+                    });
+                    return total;
+                });
+                const corr = pearsonCorrelation(groupAbundance, desertRateVector);
+                byUSDAGroup.push({ name: groupName, r: corr.r, p: corr.p, n: corr.n,
+                    meanAbundance: groupAbundance.reduce((a, b) => a + b, 0) / groupAbundance.length });
+            });
+            byUSDAGroup.sort((a, b) => Math.abs(b.r) - Math.abs(a.r));
+
+            foodDesertCorrelations = { bySpecies, byFoodGroup, byUSDAGroup, plantDesertRates, plantSpeciesAbundance };
+            console.log('Computed food desert correlations:', bySpecies.length, 'species,', byFoodGroup.length, 'food groups');
+            return foodDesertCorrelations;
+        }
+
+        // Compute dietary quality metrics per plant
+        function computePlantDietaryMetrics() {
+            const plantIds = Object.keys(foodseqData.plants);
+            const metrics = {};
+
+            plantIds.forEach(id => {
+                const plant = foodseqData.plants[id];
+                const groupTotals = { fruit: 0, vegetable: 0, grain: 0, legume: 0,
+                    seed_nut: 0, herb_spice: 0, meat_poultry: 0, seafood: 0, other: 0 };
+                let totalAbundance = 0;
+                let speciesCounts = {};  // for diversity
+                let animalSpeciesDetected = {};
+                let dateCount = 0;
+
+                foodseqData.dates.forEach(date => {
+                    const ts = plant.timeseries[date];
+                    if (!ts) return;
+                    dateCount++;
+                    ['plants', 'animals'].forEach(type => {
+                        const data = ts[type] || {};
+                        Object.entries(data).forEach(([species, abundance]) => {
+                            if (abundance <= 0) return;
+                            const meta = foodseqData.species_metadata[species];
+                            if (!meta) return;
+                            const group = meta.food_group || 'other';
+                            groupTotals[group] = (groupTotals[group] || 0) + abundance;
+                            totalAbundance += abundance;
+                            speciesCounts[species] = (speciesCounts[species] || 0) + abundance;
+                            if (type === 'animals') {
+                                animalSpeciesDetected[species] = (animalSpeciesDetected[species] || 0) + abundance;
+                            }
+                        });
+                    });
+                });
+
+                // #2: Fresh produce ratio
+                const freshProduce = (groupTotals.fruit || 0) + (groupTotals.vegetable || 0);
+                const freshProduceRatio = totalAbundance > 0 ? freshProduce / totalAbundance : 0;
+
+                // #3: Dietary diversity (Shannon index)
+                let shannonH = 0;
+                const speciesValues = Object.values(speciesCounts);
+                const totalForDiversity = speciesValues.reduce((a, b) => a + b, 0);
+                if (totalForDiversity > 0) {
+                    speciesValues.forEach(count => {
+                        const p = count / totalForDiversity;
+                        if (p > 0) shannonH -= p * Math.log(p);
+                    });
+                }
+
+                // #5: Food group ratios — grain-to-vegetable ratio (higher = more processed-heavy)
+                const vegAbundance = (groupTotals.vegetable || 0) + (groupTotals.fruit || 0) + (groupTotals.legume || 0);
+                const grainAbundance = groupTotals.grain || 0;
+                const grainToFreshRatio = vegAbundance > 0 ? grainAbundance / vegAbundance : grainAbundance > 0 ? 10 : 1;
+
+                // #6: Protein source diversity — unique animal species / total animal abundance
+                const uniqueAnimalSpecies = Object.keys(animalSpeciesDetected).length;
+                const totalAnimalAbundance = Object.values(animalSpeciesDetected).reduce((a, b) => a + b, 0);
+                const seafoodAbundance = groupTotals.seafood || 0;
+                const meatAbundance = groupTotals.meat_poultry || 0;
+                const seafoodToMeatRatio = (meatAbundance + seafoodAbundance) > 0
+                    ? seafoodAbundance / (meatAbundance + seafoodAbundance) : 0.5;
+                const proteinDiversity = uniqueAnimalSpecies; // raw count of unique species
+
+                metrics[id] = {
+                    freshProduceRatio,
+                    shannonH,
+                    grainToFreshRatio,
+                    proteinDiversity,
+                    seafoodToMeatRatio,
+                    totalAbundance,
+                    groupTotals,
+                    uniqueSpecies: Object.keys(speciesCounts).length
+                };
+            });
+
+            // Log summary
+            console.log('Plant dietary metrics:');
+            plantIds.forEach(id => {
+                const m = metrics[id];
+                console.log(`  ${foodseqData.plants[id].name}: produce=${m.freshProduceRatio.toFixed(3)}, diversity=${m.shannonH.toFixed(2)}, grain/fresh=${m.grainToFreshRatio.toFixed(2)}, proteinDiv=${m.proteinDiversity}, seafood%=${m.seafoodToMeatRatio.toFixed(2)}`);
+            });
+
+            return metrics;
+        }
+
+        async function computePredictedFoodDesert() {
+            if (foodDesertComputed) return;
+            const progress = document.getElementById('foodDesertProgress');
+            const fill = document.getElementById('foodDesertProgressFill');
+            const text = document.getElementById('foodDesertProgressText');
+            progress.classList.add('visible');
+            fill.style.width = '0%';
+            text.textContent = 'Building service areas...';
+            await new Promise(r => setTimeout(r, 50));
+
+            buildPlantServiceAreas();
+            fill.style.width = '10%';
+            text.textContent = 'Computing dietary metrics...';
+            await new Promise(r => setTimeout(r, 50));
+
+            const corr = computeFoodDesertCorrelations();
+            const dietaryMetrics = computePlantDietaryMetrics();
+            fill.style.width = '25%';
+            text.textContent = 'Normalizing metrics...';
+            await new Promise(r => setTimeout(r, 50));
+
+            const plantIds = Object.keys(foodseqData.plants);
+
+            // Normalize each metric across plants to 0-1
+            function normalizeMetric(getter) {
+                const vals = plantIds.map(getter);
+                const min = Math.min(...vals), max = Math.max(...vals);
+                const range = max - min || 1;
+                return plantIds.map((id, i) => (vals[i] - min) / range);
+            }
+
+            const normProduce = normalizeMetric(id => dietaryMetrics[id].freshProduceRatio);
+            const normDiversity = normalizeMetric(id => dietaryMetrics[id].shannonH);
+            const normGrainRatio = normalizeMetric(id => dietaryMetrics[id].grainToFreshRatio);
+            const normProteinDiv = normalizeMetric(id => dietaryMetrics[id].proteinDiversity);
+            const normSeafood = normalizeMetric(id => dietaryMetrics[id].seafoodToMeatRatio);
+
+            // Per-plant dietary quality score (higher = healthier)
+            // Fresh produce: higher is healthier (+)
+            // Diversity: higher is healthier (+)
+            // Grain-to-fresh ratio: higher is worse (-)
+            // Protein diversity: higher is healthier (+)
+            // Seafood ratio: higher is healthier (+)
+            const plantDietaryScores = {};
+            plantIds.forEach((id, i) => {
+                plantDietaryScores[id] =
+                    0.30 * normProduce[i] +
+                    0.25 * normDiversity[i] +
+                    0.20 * (1 - normGrainRatio[i]) +
+                    0.15 * normProteinDiv[i] +
+                    0.10 * normSeafood[i];
+            });
+
+            fill.style.width = '40%';
+            text.textContent = 'Scoring census tracts...';
+            await new Promise(r => setTimeout(r, 50));
+
+            // Score each tract
+            const centroids = getTractCentroids();
+            const scores = [];
+
+            for (let i = 0; i < centroids.length; i++) {
+                const tract = centroids[i];
+                const feat = demographicsGeoJSON.features[tract.featureIdx];
+                const props = feat.properties;
+
+                // Find nearest plant
+                let minDist = Infinity, nearestPlantId = null;
+                plantIds.forEach(id => {
+                    const p = foodseqData.plants[id];
+                    const d = haversineDistance(tract.lat, tract.lon, p.lat, p.lng);
+                    if (d < minDist) { minDist = d; nearestPlantId = id; }
+                });
+
+                const dietaryScore = nearestPlantId ? plantDietaryScores[nearestPlantId] : 0.5;
+                const income = props.median_income || 50000;
+                const incomeScore = Math.max(0, Math.min(1, 1 - (income / 100000)));
+                const desertRate = nearestPlantId ? (corr.plantDesertRates[nearestPlantId] || 0) : 0;
+
+                // Combined: 60% dietary quality + 40% income
+                const combined = 0.6 * dietaryScore + 0.4 * (1 - incomeScore);
+                const predictedScore = Math.round(combined * 100);
+
+                scores.push({ featureIdx: tract.featureIdx, geoid: tract.geoid,
+                    dietaryScore, incomeScore, predictedScore, desertRate,
+                    nearestPlant: nearestPlantId ? foodseqData.plants[nearestPlantId].name : 'Unknown',
+                    metrics: nearestPlantId ? dietaryMetrics[nearestPlantId] : null });
+
+                if (i % 200 === 0) {
+                    fill.style.width = (40 + (i / centroids.length) * 45) + '%';
+                    text.textContent = `Scoring tract ${i + 1} of ${centroids.length}...`;
+                    await new Promise(r => setTimeout(r, 10));
+                }
+            }
+
+            fill.style.width = '90%';
+            text.textContent = 'Classifying tracts...';
+            await new Promise(r => setTimeout(r, 50));
+
+            // Classification: predicted desert if score <= 20 OR (score <= 50 AND income < 50k) OR income < 30k
+            scores.forEach(s => {
+                const feat = demographicsGeoJSON.features[s.featureIdx];
+                feat.properties._predictedDesertScore = s.predictedScore;
+                const income = feat.properties.median_income || 100000;
+                feat.properties._isPredictedDesert =
+                    s.predictedScore <= 20 ||
+                    (s.predictedScore <= 50 && income < 50000) ||
+                    income < 30000;
+                feat.properties._nearestPlant = s.nearestPlant;
+                feat.properties._desertRate = s.desertRate;
+                feat.properties._dietaryMetrics = s.metrics;
+                const usda = usdaDesertData.tracts[s.geoid];
+                feat.properties._usdaFoodDesert = usda ? usda.foodDesert : false;
+                feat.properties._usdaPovertyRate = usda ? usda.povertyRate : null;
+                feat.properties._usdaMFI = usda ? usda.medianFamilyIncome : null;
+                feat.properties._usdaUrban = usda ? usda.urban : null;
+            });
+
+            // Classification breakdown
+            let byScoreAlone = 0, byScoreAndIncome = 0, byIncomeAlone = 0, totalPredicted = 0;
+            scores.forEach(s => {
+                const feat = demographicsGeoJSON.features[s.featureIdx];
+                const income = feat.properties.median_income || 100000;
+                if (s.predictedScore <= 20) byScoreAlone++;
+                else if (s.predictedScore <= 50 && income < 50000) byScoreAndIncome++;
+                else if (income < 30000) byIncomeAlone++;
+                if (feat.properties._isPredictedDesert) totalPredicted++;
+            });
+            console.log(`Classification breakdown: score<=20: ${byScoreAlone}, score<=50 & income<50k: ${byScoreAndIncome}, income<30k: ${byIncomeAlone}, total predicted: ${totalPredicted} / ${scores.length}`);
+
+            fill.style.width = '100%';
+            text.textContent = 'Complete!';
+            foodDesertComputed = true;
+            await new Promise(r => setTimeout(r, 300));
+            progress.classList.remove('visible');
+            console.log('Computed predicted food desert for', scores.length, 'tracts');
+            console.log('Dietary quality scores by plant:');
+            plantIds.forEach(id => {
+                console.log(`  ${foodseqData.plants[id].name}: ${(plantDietaryScores[id] * 100).toFixed(1)}/100`);
+            });
+        }
+
+        async function renderFoodDesertLayer(mode) {
+            if ((mode === 'predicted_desert' || mode === 'desert_agreement') && !foodDesertComputed) {
+                await computePredictedFoodDesert();
+            } else if (mode === 'usda_desert' && !foodDesertComputed) {
+                buildPlantServiceAreas();
+                computeFoodDesertCorrelations();
+                getTractCentroids().forEach(tract => {
+                    const feat = demographicsGeoJSON.features[tract.featureIdx];
+                    const usda = usdaDesertData.tracts[tract.geoid];
+                    feat.properties._usdaFoodDesert = usda ? usda.foodDesert : false;
+                    feat.properties._usdaPovertyRate = usda ? usda.povertyRate : null;
+                    feat.properties._usdaMFI = usda ? usda.medianFamilyIncome : null;
+                    feat.properties._usdaUrban = usda ? usda.urban : null;
+                });
+            }
+
+            if (foodDesertLayer) { map.removeLayer(foodDesertLayer); }
+
+            foodDesertLayer = L.geoJSON(demographicsGeoJSON, {
+                style: feature => getFoodDesertStyle(feature, mode),
+                onEachFeature: (feature, layer) => {
+                    layer.on({
+                        mouseover: e => { e.target.setStyle({ weight: 2, color: '#2b6cb0', opacity: 1 }); e.target.bringToFront(); },
+                        mouseout: e => { foodDesertLayer.resetStyle(e.target); },
+                        click: e => { showFoodDesertPopup(feature, e, mode); }
+                    });
+                }
+            }).addTo(map);
+
+            countiesLayer = L.geoJSON(countiesGeoJSON, {
+                style: { fillColor: 'none', fillOpacity: 0, weight: 1, opacity: 0.5, color: '#666666' },
+                onEachFeature: onEachFeature
+            }).addTo(map);
+
+            updateFoodDesertLegend(mode);
+        }
+
+        function getFoodDesertStyle(feature, mode) {
+            const props = feature.properties;
+            let color = '#cccccc';
+            if (mode === 'usda_desert') {
+                const usda = usdaDesertData.tracts[props.GEOID];
+                if (!usda) color = '#cccccc';
+                else if (usda.foodDesert) color = '#e53e3e';
+                else color = '#38a169';
+            } else if (mode === 'predicted_desert') {
+                const score = props._predictedDesertScore;
+                if (score == null) { color = '#cccccc'; }
+                else if (score <= 50) {
+                    const t = score / 50;
+                    color = `rgb(${Math.round(229+(221-229)*t)},${Math.round(62+(214-62)*t)},${Math.round(62+(48-62)*t)})`;
+                } else {
+                    const t = (score - 50) / 50;
+                    color = `rgb(${Math.round(221+(56-221)*t)},${Math.round(214+(161-214)*t)},${Math.round(48+(105-48)*t)})`;
+                }
+            } else if (mode === 'desert_agreement') {
+                const usdaD = props._usdaFoodDesert, predD = props._isPredictedDesert;
+                if (usdaD && predD) color = '#e53e3e';
+                else if (!usdaD && !predD) color = '#38a169';
+                else if (predD && !usdaD) color = '#dd6b20';
+                else color = '#805ad5';
+            }
+            return { fillColor: color, weight: 0.5, opacity: 0.3, color: '#999999', fillOpacity: 0.75 };
+        }
+
+        function showFoodDesertPopup(feature, e, mode) {
+            const props = feature.properties;
+            const usda = usdaDesertData.tracts[props.GEOID];
+            let content = `<div style="max-width:280px;"><strong>${props.NAME || props.GEOID}</strong><br>`;
+            if (mode === 'usda_desert') {
+                content += `<b>USDA Status:</b> ${usda && usda.foodDesert ? '<span style="color:#e53e3e">Food Desert</span>' : '<span style="color:#38a169">Not a Food Desert</span>'}<br>`;
+                if (usda) {
+                    content += `<b>Low Income:</b> ${usda.lowIncome ? 'Yes' : 'No'}<br>`;
+                    content += `<b>Low Access (1/10mi):</b> ${usda.lowAccess_1_10 ? 'Yes' : 'No'}<br>`;
+                    content += `<b>Urban:</b> ${usda.urban ? 'Yes' : 'No'}<br>`;
+                    content += `<b>Poverty Rate:</b> ${usda.povertyRate}%<br>`;
+                    content += `<b>Median Family Income:</b> $${(usda.medianFamilyIncome || 0).toLocaleString()}<br>`;
+                }
+                content += `<b>Median HH Income:</b> $${(props.median_income || 0).toLocaleString()}`;
+            } else if (mode === 'predicted_desert') {
+                content += `<b>Predicted Score:</b> ${props._predictedDesertScore != null ? props._predictedDesertScore + '/100' : 'N/A'}<br>`;
+                content += `<b>Classification:</b> ${props._isPredictedDesert ? '<span style="color:#e53e3e">Predicted Desert</span>' : '<span style="color:#38a169">Not Predicted Desert</span>'}<br>`;
+                content += `<b>Nearest Plant:</b> ${props._nearestPlant || 'N/A'}<br>`;
+                content += `<b>Service Area Desert Rate:</b> ${((props._desertRate || 0) * 100).toFixed(1)}%<br>`;
+                content += `<b>Median Income:</b> $${(props.median_income || 0).toLocaleString()}`;
+                const dm = props._dietaryMetrics;
+                if (dm) {
+                    content += `<hr style="margin:4px 0;border-color:#ddd;">`;
+                    content += `<b style="font-size:11px;">Dietary Metrics (from plant)</b><br>`;
+                    content += `<span style="font-size:11px;">Fresh Produce Ratio: <b>${(dm.freshProduceRatio * 100).toFixed(1)}%</b></span><br>`;
+                    content += `<span style="font-size:11px;">Dietary Diversity (H): <b>${dm.shannonH.toFixed(2)}</b></span><br>`;
+                    content += `<span style="font-size:11px;">Grain-to-Fresh Ratio: <b>${dm.grainToFreshRatio.toFixed(2)}</b></span><br>`;
+                    content += `<span style="font-size:11px;">Protein Diversity: <b>${dm.proteinDiversity} species</b></span><br>`;
+                    content += `<span style="font-size:11px;">Seafood Ratio: <b>${(dm.seafoodToMeatRatio * 100).toFixed(1)}%</b></span>`;
+                }
+            } else if (mode === 'desert_agreement') {
+                const usdaD = props._usdaFoodDesert, predD = props._isPredictedDesert;
+                let agreement;
+                if (usdaD && predD) agreement = '<span style="color:#e53e3e">Both: Desert (TP)</span>';
+                else if (!usdaD && !predD) agreement = '<span style="color:#38a169">Both: Not Desert (TN)</span>';
+                else if (predD && !usdaD) agreement = '<span style="color:#dd6b20">False Positive</span>';
+                else agreement = '<span style="color:#805ad5">False Negative</span>';
+                content += `<b>Agreement:</b> ${agreement}<br>`;
+                content += `<b>Predicted Score:</b> ${props._predictedDesertScore != null ? props._predictedDesertScore + '/100' : 'N/A'}<br>`;
+                content += `<b>USDA Desert:</b> ${props._usdaFoodDesert ? 'Yes' : 'No'}<br>`;
+                content += `<b>Predicted Desert:</b> ${props._isPredictedDesert ? 'Yes' : 'No'}<br>`;
+                content += `<b>Median Income:</b> $${(props.median_income || 0).toLocaleString()}`;
+                const dm2 = props._dietaryMetrics;
+                if (dm2) {
+                    content += `<hr style="margin:4px 0;border-color:#ddd;">`;
+                    content += `<b style="font-size:11px;">Dietary Metrics (from plant)</b><br>`;
+                    content += `<span style="font-size:11px;">Fresh Produce Ratio: <b>${(dm2.freshProduceRatio * 100).toFixed(1)}%</b></span><br>`;
+                    content += `<span style="font-size:11px;">Dietary Diversity (H): <b>${dm2.shannonH.toFixed(2)}</b></span><br>`;
+                    content += `<span style="font-size:11px;">Grain-to-Fresh Ratio: <b>${dm2.grainToFreshRatio.toFixed(2)}</b></span><br>`;
+                    content += `<span style="font-size:11px;">Protein Diversity: <b>${dm2.proteinDiversity} species</b></span><br>`;
+                    content += `<span style="font-size:11px;">Seafood Ratio: <b>${(dm2.seafoodToMeatRatio * 100).toFixed(1)}%</b></span>`;
+                }
+            }
+            content += '</div>';
+            L.popup().setLatLng(e.latlng).setContent(content).openOn(map);
+        }
+
+        function updateFoodDesertLegend(mode) {
+            const legend = document.getElementById('foodDesertLegend');
+            const tracts = usdaDesertData.tracts;
+            const features = demographicsGeoJSON.features;
+            let html = '';
+            if (mode === 'usda_desert') {
+                const desertCount = Object.values(tracts).filter(t => t.foodDesert).length;
+                html = `<div class="food-desert-legend-title">USDA Food Desert</div>
+                    <div class="food-desert-legend-item"><div class="food-desert-legend-swatch" style="background:#e53e3e"></div>Food Desert</div>
+                    <div class="food-desert-legend-item"><div class="food-desert-legend-swatch" style="background:#38a169"></div>Not a Food Desert</div>
+                    <div class="food-desert-legend-item"><div class="food-desert-legend-swatch" style="background:#cccccc"></div>No Data</div>
+                    <div class="food-desert-legend-info">${desertCount} food deserts / ${Object.keys(tracts).length} tracts<br>Source: ${usdaDesertData.source}</div>`;
+            } else if (mode === 'predicted_desert') {
+                const predictedCount = features.filter(f => f.properties._isPredictedDesert).length;
+                html = `<div class="food-desert-legend-title">Predicted Food Desert</div>
+                    <div class="food-desert-legend-gradient" style="background:linear-gradient(to right, #e53e3e, #ddd630, #38a169)"></div>
+                    <div class="food-desert-legend-labels"><span>Desert (0)</span><span>50</span><span>Healthy (100)</span></div>
+                    <div class="food-desert-legend-info">${predictedCount} predicted food deserts<br>Based on dietary quality metrics + income</div>`;
+            } else if (mode === 'desert_agreement') {
+                let tp=0,tn=0,fp=0,fn=0;
+                features.forEach(f => {
+                    const p = f.properties;
+                    if (p._usdaFoodDesert && p._isPredictedDesert) tp++;
+                    else if (!p._usdaFoodDesert && !p._isPredictedDesert) tn++;
+                    else if (p._isPredictedDesert && !p._usdaFoodDesert) fp++;
+                    else if (p._usdaFoodDesert && !p._isPredictedDesert) fn++;
+                });
+                const total = tp+tn+fp+fn;
+                const accuracy = total>0 ? ((tp+tn)/total*100).toFixed(1) : 0;
+                const sensitivity = (tp+fn)>0 ? (tp/(tp+fn)*100).toFixed(1) : 0;
+                const specificity = (tn+fp)>0 ? (tn/(tn+fp)*100).toFixed(1) : 0;
+                const f1 = tp>0 ? (2*tp/(2*tp+fp+fn)*100).toFixed(1) : 0;
+                const pe = ((tp+fn)*(tp+fp)+(tn+fp)*(tn+fn))/(total*total);
+                const po = (tp+tn)/total;
+                const kappa = pe<1 ? ((po-pe)/(1-pe)).toFixed(3) : 1;
+                html = `<div class="food-desert-legend-title">Food Desert Agreement</div>
+                    <div class="food-desert-legend-item"><div class="food-desert-legend-swatch" style="background:#e53e3e"></div>Both Desert (TP): ${tp}</div>
+                    <div class="food-desert-legend-item"><div class="food-desert-legend-swatch" style="background:#38a169"></div>Both Not Desert (TN): ${tn}</div>
+                    <div class="food-desert-legend-item"><div class="food-desert-legend-swatch" style="background:#dd6b20"></div>False Positive: ${fp}</div>
+                    <div class="food-desert-legend-item"><div class="food-desert-legend-swatch" style="background:#805ad5"></div>False Negative: ${fn}</div>
+                    <div class="food-desert-legend-stats">
+                        <div><strong>Accuracy:</strong> ${accuracy}%</div>
+                        <div><strong>Sensitivity:</strong> ${sensitivity}%</div>
+                        <div><strong>Specificity:</strong> ${specificity}%</div>
+                        <div><strong>F1 Score:</strong> ${f1}%</div>
+                        <div><strong>Cohen's Kappa:</strong> ${kappa}</div>
+                    </div>`;
+            }
+            legend.innerHTML = html;
+            legend.classList.add('visible');
+        }
+
+        function toggleFoodDesertPanel() {
+            const panel = document.getElementById('foodDesertPanel');
+            const btn = document.getElementById('fdAnalysisButton');
+            if (panel.classList.contains('visible')) {
+                panel.classList.remove('visible');
+                btn.classList.remove('active');
+                return;
+            }
+            buildPlantServiceAreas();
+            computeFoodDesertCorrelations();
+            btn.classList.add('active');
+            panel.classList.add('visible');
+            renderFoodDesertAnalysis();
+        }
+
+        function computeROC() {
+            if (!foodDesertComputed) return null;
+            const features = demographicsGeoJSON.features;
+            // Collect (score, isActualDesert) pairs
+            const pairs = [];
+            features.forEach(f => {
+                const p = f.properties;
+                if (p._predictedDesertScore == null) return;
+                pairs.push({ score: p._predictedDesertScore, actual: p._usdaFoodDesert ? 1 : 0 });
+            });
+            const totalPos = pairs.filter(p => p.actual === 1).length;
+            const totalNeg = pairs.filter(p => p.actual === 0).length;
+            if (totalPos === 0 || totalNeg === 0) return null;
+
+            // Sweep thresholds from 0 to 100 — predict desert if score <= threshold
+            const points = [];
+            for (let t = -1; t <= 101; t++) {
+                let tp = 0, fp = 0;
+                pairs.forEach(p => {
+                    const predicted = p.score <= t ? 1 : 0;
+                    if (predicted === 1 && p.actual === 1) tp++;
+                    else if (predicted === 1 && p.actual === 0) fp++;
+                });
+                const tpr = tp / totalPos;
+                const fpr = fp / totalNeg;
+                points.push({ threshold: t, tpr, fpr });
+            }
+            // Sort by FPR for AUC calculation
+            points.sort((a, b) => a.fpr - b.fpr || a.tpr - b.tpr);
+
+            // AUC via trapezoidal rule
+            let auc = 0;
+            for (let i = 1; i < points.length; i++) {
+                const dx = points[i].fpr - points[i - 1].fpr;
+                const avgY = (points[i].tpr + points[i - 1].tpr) / 2;
+                auc += dx * avgY;
+            }
+            return { points, auc, totalPos, totalNeg };
+        }
+
+        function drawROCCurve(canvasId, rocData) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas || !rocData) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width, h = canvas.height;
+            const pad = 30;
+            const pw = w - pad * 2, ph = h - pad * 2;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Background
+            ctx.fillStyle = '#f7f7f7';
+            ctx.fillRect(pad, pad, pw, ph);
+
+            // Diagonal (random classifier)
+            ctx.strokeStyle = '#ccc';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.beginPath();
+            ctx.moveTo(pad, pad + ph);
+            ctx.lineTo(pad + pw, pad);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // ROC curve
+            ctx.strokeStyle = '#e53e3e';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            let first = true;
+            rocData.points.forEach(p => {
+                const x = pad + p.fpr * pw;
+                const y = pad + ph - p.tpr * ph;
+                if (first) { ctx.moveTo(x, y); first = false; }
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+
+            // Fill under curve
+            ctx.fillStyle = 'rgba(229, 62, 62, 0.1)';
+            ctx.beginPath();
+            ctx.moveTo(pad, pad + ph);
+            rocData.points.forEach(p => {
+                ctx.lineTo(pad + p.fpr * pw, pad + ph - p.tpr * ph);
+            });
+            ctx.lineTo(pad + pw, pad + ph);
+            ctx.closePath();
+            ctx.fill();
+
+            // Axes
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(pad, pad);
+            ctx.lineTo(pad, pad + ph);
+            ctx.lineTo(pad + pw, pad + ph);
+            ctx.stroke();
+
+            // Labels
+            ctx.fillStyle = '#333';
+            ctx.font = '10px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('False Positive Rate', pad + pw / 2, h - 2);
+            [0, 0.25, 0.5, 0.75, 1].forEach(v => {
+                const x = pad + v * pw;
+                ctx.fillText(v.toFixed(2), x, pad + ph + 12);
+            });
+            ctx.save();
+            ctx.translate(10, pad + ph / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.fillText('True Positive Rate', 0, 0);
+            ctx.restore();
+            [0, 0.25, 0.5, 0.75, 1].forEach(v => {
+                const y = pad + ph - v * ph;
+                ctx.textAlign = 'right';
+                ctx.fillText(v.toFixed(2), pad - 3, y + 3);
+            });
+
+            // AUC text
+            ctx.fillStyle = '#e53e3e';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText(`AUC = ${rocData.auc.toFixed(3)}`, pad + 8, pad + 16);
+        }
+
+        function renderFoodDesertAnalysis() {
+            const content = document.getElementById('foodDesertPanelContent');
+            const corr = foodDesertCorrelations;
+            if (!corr) { content.innerHTML = '<div style="text-align:center;color:#888;padding:20px;">No data.</div>'; return; }
+            let html = '';
+
+            const totalDeserts = Object.values(usdaDesertData.tracts).filter(t => t.foodDesert).length;
+            const totalTracts = Object.keys(usdaDesertData.tracts).length;
+            const predictedDeserts = foodDesertComputed ? demographicsGeoJSON.features.filter(f => f.properties._isPredictedDesert).length : 'N/A';
+
+            html += `<div class="food-desert-section"><div class="food-desert-section-title">Summary</div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">USDA Food Deserts</span><span class="food-desert-stat-value">${totalDeserts} / ${totalTracts}</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Predicted Food Deserts</span><span class="food-desert-stat-value">${predictedDeserts}</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Treatment Plants</span><span class="food-desert-stat-value">${Object.keys(foodseqData.plants).length}</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Species Analyzed</span><span class="food-desert-stat-value">${corr.bySpecies.length}</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Prediction Method</span><span class="food-desert-stat-value" style="font-size:10px;">60% dietary + 40% income</span></div>
+            </div>`;
+            html += `<div class="food-desert-section"><div class="food-desert-section-title">Prediction Weights</div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Fresh Produce Ratio</span><span class="food-desert-stat-value">30%</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Dietary Diversity (Shannon)</span><span class="food-desert-stat-value">25%</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Grain-to-Fresh Ratio (inv)</span><span class="food-desert-stat-value">20%</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Protein Diversity</span><span class="food-desert-stat-value">15%</span></div>
+                <div class="food-desert-stat"><span class="food-desert-stat-label">Seafood-to-Meat Ratio</span><span class="food-desert-stat-value">10%</span></div>
+            </div>`;
+
+            // USDA Group correlations
+            html += `<div class="food-desert-section"><div class="food-desert-section-title">USDA Group Correlations</div>`;
+            const maxR1 = Math.max(...corr.byUSDAGroup.map(g => Math.abs(g.r)), 0.01);
+            corr.byUSDAGroup.forEach(g => {
+                const w = Math.abs(g.r)/maxR1*100, cls = g.r>=0?'positive':'negative';
+                const sig = g.p<0.05?' *':g.p<0.10?' ~':'';
+                html += `<div class="food-desert-bar-container"><div class="food-desert-bar-label"><span>${g.name}</span><span>r=${g.r.toFixed(3)}${sig?'<span class="food-desert-bar-sig">'+sig+'</span>':''}</span></div>
+                    <div class="food-desert-bar-track"><div class="food-desert-bar ${cls}" style="width:${w}%"></div></div></div>`;
+            });
+            html += `<div style="font-size:10px;color:#888;margin-top:4px;">Negative r = less in desert areas. * p&lt;0.05, ~ p&lt;0.10</div></div>`;
+
+            // Food group correlations
+            html += `<div class="food-desert-section"><div class="food-desert-section-title">Food Group Correlations</div>`;
+            const maxR2 = Math.max(...corr.byFoodGroup.map(g => Math.abs(g.r)), 0.01);
+            corr.byFoodGroup.forEach(g => {
+                const w = Math.abs(g.r)/maxR2*100, cls = g.r>=0?'positive':'negative';
+                const sig = g.p<0.05?' *':g.p<0.10?' ~':'';
+                html += `<div class="food-desert-bar-container"><div class="food-desert-bar-label"><span>${g.name}</span><span>r=${g.r.toFixed(3)}${sig?'<span class="food-desert-bar-sig">'+sig+'</span>':''}</span></div>
+                    <div class="food-desert-bar-track"><div class="food-desert-bar ${cls}" style="width:${w}%"></div></div></div>`;
+            });
+            html += `</div>`;
+
+            // Top species table
+            html += `<div class="food-desert-section"><div class="food-desert-section-title">Top 10 Species by |r|</div>
+                <table class="food-desert-species-table"><thead><tr><th>Species</th><th>Group</th><th>r</th><th>p</th></tr></thead><tbody>`;
+            corr.bySpecies.slice(0, 10).forEach(s => {
+                const sc = s.p<0.05?' class="sig"':'';
+                html += `<tr><td>${s.name}</td><td>${s.foodGroup}</td><td${sc}>${s.r.toFixed(3)}</td><td${sc}>${s.p.toFixed(3)}</td></tr>`;
+            });
+            html += `</tbody></table></div>`;
+
+            // Dietary quality metrics by plant
+            if (foodDesertComputed) {
+                html += `<div class="food-desert-section"><div class="food-desert-section-title">Dietary Quality by Plant</div>`;
+                html += `<table class="food-desert-species-table"><thead><tr><th>Plant</th><th>Produce</th><th>Diversity</th><th>Grain/Fresh</th><th>Protein</th></tr></thead><tbody>`;
+                const plantIds = Object.keys(foodseqData.plants);
+                plantIds.forEach(id => {
+                    const feat0 = demographicsGeoJSON.features.find(f => f.properties._nearestPlant === foodseqData.plants[id].name);
+                    const dm = feat0 ? feat0.properties._dietaryMetrics : null;
+                    if (!dm) return;
+                    html += `<tr><td style="font-size:10px;">${foodseqData.plants[id].name}</td>`;
+                    html += `<td>${(dm.freshProduceRatio * 100).toFixed(0)}%</td>`;
+                    html += `<td>${dm.shannonH.toFixed(1)}</td>`;
+                    html += `<td>${dm.grainToFreshRatio.toFixed(1)}</td>`;
+                    html += `<td>${dm.proteinDiversity}</td></tr>`;
+                });
+                html += `</tbody></table>`;
+                html += `<div style="font-size:10px;color:#888;margin-top:4px;">Produce = fruit+veg %, Diversity = Shannon H, Grain/Fresh = grain/(veg+fruit+legume)</div>`;
+                html += `</div>`;
+            }
+
+            // Accuracy metrics
+            if (foodDesertComputed) {
+                let tp=0,tn=0,fp=0,fn=0;
+                demographicsGeoJSON.features.forEach(f => {
+                    const p=f.properties;
+                    if(p._usdaFoodDesert&&p._isPredictedDesert)tp++;
+                    else if(!p._usdaFoodDesert&&!p._isPredictedDesert)tn++;
+                    else if(p._isPredictedDesert&&!p._usdaFoodDesert)fp++;
+                    else if(p._usdaFoodDesert&&!p._isPredictedDesert)fn++;
+                });
+                const total=tp+tn+fp+fn;
+                html += `<div class="food-desert-section"><div class="food-desert-section-title">Accuracy Metrics</div>
+                    <div class="food-desert-stat"><span class="food-desert-stat-label">Accuracy</span><span class="food-desert-stat-value">${total>0?((tp+tn)/total*100).toFixed(1):0}%</span></div>
+                    <div class="food-desert-stat"><span class="food-desert-stat-label">Sensitivity</span><span class="food-desert-stat-value">${(tp+fn)>0?(tp/(tp+fn)*100).toFixed(1):0}%</span></div>
+                    <div class="food-desert-stat"><span class="food-desert-stat-label">Specificity</span><span class="food-desert-stat-value">${(tn+fp)>0?(tn/(tn+fp)*100).toFixed(1):0}%</span></div>
+                    <div class="food-desert-stat"><span class="food-desert-stat-label">True Pos / False Pos / False Neg</span><span class="food-desert-stat-value">${tp} / ${fp} / ${fn}</span></div>
+                </div>`;
+
+                // ROC Curve
+                const rocData = computeROC();
+                if (rocData) {
+                    html += `<div class="food-desert-section"><div class="food-desert-section-title">ROC Curve</div>
+                        <canvas id="rocCurveCanvas" width="280" height="240" style="width:100%;max-width:280px;display:block;margin:0 auto;"></canvas>
+                        <div class="food-desert-stat"><span class="food-desert-stat-label">AUC (Area Under Curve)</span><span class="food-desert-stat-value">${rocData.auc.toFixed(3)}</span></div>
+                        <div class="food-desert-stat"><span class="food-desert-stat-label">Positive (USDA deserts)</span><span class="food-desert-stat-value">${rocData.totalPos}</span></div>
+                        <div class="food-desert-stat"><span class="food-desert-stat-label">Negative (non-deserts)</span><span class="food-desert-stat-value">${rocData.totalNeg}</span></div>
+                        <div style="font-size:10px;color:#888;margin-top:4px;">Score threshold swept 0-100. AUC=0.5 is random, 1.0 is perfect.</div>
+                    </div>`;
+                }
+            }
+
+            html += `<button class="food-desert-export-btn" onclick="exportFoodDesertCSV()">Export CSV</button>`;
+            content.innerHTML = html;
+            // Draw ROC curve after DOM update
+            if (foodDesertComputed) {
+                const rocData = computeROC();
+                if (rocData) setTimeout(() => drawROCCurve('rocCurveCanvas', rocData), 50);
+            }
+        }
+
+        function exportFoodDesertCSV() {
+            const corr = foodDesertCorrelations;
+            if (!corr) return;
+            let csv = 'Type,Name,FoodGroup,r,p,n,MeanAbundance\n';
+            corr.byUSDAGroup.forEach(g => { csv += `USDA_Group,${g.name},,${g.r.toFixed(4)},${g.p.toFixed(4)},${g.n},${g.meanAbundance.toFixed(2)}\n`; });
+            corr.byFoodGroup.forEach(g => { csv += `Food_Group,${g.name},,${g.r.toFixed(4)},${g.p.toFixed(4)},${g.n},${g.meanAbundance.toFixed(2)}\n`; });
+            corr.bySpecies.forEach(s => { csv += `Species,"${s.name}",${s.foodGroup},${s.r.toFixed(4)},${s.p.toFixed(4)},${s.n},${s.meanAbundance.toFixed(2)}\n`; });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+            a.download = 'food_desert_correlations.csv'; a.click();
+        }
+
         function switchMapView(view) {
             currentMapView = view;
 
@@ -4059,6 +5211,16 @@
             }
             if (demographicLayer) {
                 map.removeLayer(demographicLayer);
+            }
+            if (foodDesertLayer) {
+                map.removeLayer(foodDesertLayer);
+                foodDesertLayer = null;
+            }
+
+            // Hide food desert legend unless showing a food desert layer
+            const fdLegend = document.getElementById('foodDesertLegend');
+            if (!['usda_desert', 'predicted_desert', 'desert_agreement'].includes(view)) {
+                fdLegend.classList.remove('visible');
             }
 
             if (view === 'topo') {
@@ -4081,6 +5243,9 @@
                     },
                     onEachFeature: onEachFeature
                 }).addTo(map);
+            } else if (['usda_desert', 'predicted_desert', 'desert_agreement'].includes(view)) {
+                // Food desert layers
+                renderFoodDesertLayer(view);
             } else {
                 // Show demographic layer (census tracts)
                 demographicLayer = L.geoJSON(demographicsGeoJSON, {
