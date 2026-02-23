@@ -381,6 +381,34 @@
             margin-bottom: 10px;
             padding-bottom: 8px;
             border-bottom: 2px solid #e2e8f0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .poi-controls-header:hover {
+            color: #4299e1;
+        }
+
+        .poi-controls-toggle {
+            font-size: 12px;
+            color: #a0aec0;
+            transition: transform 0.2s;
+        }
+
+        .poi-controls.collapsed .poi-controls-toggle {
+            transform: rotate(-90deg);
+        }
+
+        .poi-controls.collapsed .poi-controls-body {
+            display: none;
+        }
+
+        .poi-controls.collapsed {
+            max-height: none;
+            overflow: visible;
         }
 
         .poi-category-group {
@@ -1777,8 +1805,12 @@
     </div>
 
     <!-- POI Layer Controls -->
-    <div class="poi-controls">
-        <div class="poi-controls-header">Food Points of Interest</div>
+    <div class="poi-controls" id="poiControls">
+        <div class="poi-controls-header" onclick="togglePOIControls()">
+            <span>Food Points of Interest</span>
+            <span class="poi-controls-toggle">&#9660;</span>
+        </div>
+        <div class="poi-controls-body" id="poiControlsBody">
 
         <div class="poi-category-group">
             <div class="poi-category-header">Grocery & Markets</div>
@@ -1878,6 +1910,7 @@
         <div class="poi-controls-footer">
             <button onclick="toggleAllPOIs(true)">Show All</button>
             <button onclick="toggleAllPOIs(false)">Hide All</button>
+        </div>
         </div>
     </div>
 
@@ -2460,6 +2493,10 @@
             activePOILayers.forEach(category => {
                 updatePOILayerForZoom(category);
             });
+        }
+
+        function togglePOIControls() {
+            document.getElementById('poiControls').classList.toggle('collapsed');
         }
 
         function toggleAllPOIs(show) {
