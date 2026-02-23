@@ -1393,6 +1393,149 @@
             color: #1a365d;
         }
 
+        /* Cuisine Hotspot Controls */
+        .cuisine-controls {
+            display: none;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .cuisine-controls select {
+            padding: 6px 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #4a5568;
+            background: white;
+            cursor: pointer;
+        }
+
+        .cuisine-mode-btn {
+            padding: 5px 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #4a5568;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .cuisine-mode-btn:hover {
+            border-color: #cbd5e0;
+            background: #f7fafc;
+        }
+
+        .cuisine-mode-btn.active {
+            background: #4299e1;
+            color: white;
+            border-color: #4299e1;
+        }
+
+        /* Cuisine Legend */
+        .cuisine-legend {
+            position: absolute;
+            top: 100px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            max-width: 260px;
+        }
+
+        .cuisine-legend.visible {
+            display: block;
+        }
+
+        .cuisine-legend-title {
+            font-weight: 700;
+            font-size: 14px;
+            color: #1a365d;
+            margin-bottom: 4px;
+        }
+
+        .cuisine-legend-mode {
+            font-size: 11px;
+            color: #718096;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .cuisine-legend-gradient {
+            width: 100%;
+            height: 16px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .cuisine-legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .cuisine-legend-species {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #4a5568;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 8px;
+        }
+
+        .cuisine-legend-species-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #2d3748;
+        }
+
+        .cuisine-legend-species-list {
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .cuisine-legend-correlations {
+            margin-top: 8px;
+            font-size: 11px;
+            color: #4a5568;
+            background: #f7fafc;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .cuisine-legend-correlations-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #2d3748;
+        }
+
+        .cuisine-progress {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            background: white;
+            padding: 25px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            display: none;
+        }
+
+        .cuisine-progress.visible {
+            display: block;
+        }
+
         .food-desert-progress {
             position: absolute;
             top: 50%;
@@ -1616,7 +1759,17 @@
             <option value="usda_desert">USDA Food Desert</option>
             <option value="predicted_desert">Predicted Food Desert</option>
             <option value="desert_agreement">Food Desert Agreement</option>
+            <option value="cuisine_hotspot">Cuisine Hotspot</option>
         </select>
+        <div class="cuisine-controls" id="cuisineControls">
+            <select id="cuisineSelect" onchange="generateCuisineHotspot()">
+                <option value="Chinese">Chinese</option>
+                <option value="Indian">Indian</option>
+                <option value="Italian">Italian</option>
+            </select>
+            <button class="cuisine-mode-btn active" id="cuisineActualBtn" onclick="setCuisineMode('actual')">Actual</button>
+            <button class="cuisine-mode-btn" id="cuisinePredictedBtn" onclick="setCuisineMode('predicted')">Predicted</button>
+        </div>
         <button id="tractsButton" onclick="toggleDurhamTracts()">Census Tracts</button>
         <button id="speciesButton" onclick="toggleSpeciesPanel()">Species Abundance</button>
         <button id="predictionButton" onclick="togglePredictionPanel()">Hotspot Prediction</button>
@@ -1806,6 +1959,18 @@
     <!-- Food Desert Legend -->
     <div class="food-desert-legend" id="foodDesertLegend"></div>
 
+    <!-- Cuisine Hotspot Legend -->
+    <div class="cuisine-legend" id="cuisineLegend"></div>
+
+    <!-- Cuisine Hotspot Progress -->
+    <div class="cuisine-progress" id="cuisineProgress">
+        <div class="food-desert-progress-title">Generating Cuisine Prediction...</div>
+        <div class="food-desert-progress-bar">
+            <div class="food-desert-progress-fill" id="cuisineProgressFill"></div>
+        </div>
+        <div class="food-desert-progress-text" id="cuisineProgressText">Initializing...</div>
+    </div>
+
     <!-- Food Desert Progress -->
     <div class="food-desert-progress" id="foodDesertProgress">
         <div class="food-desert-progress-title">Computing Food Desert Index...</div>
@@ -1893,6 +2058,10 @@
         let plantServiceAreas = {};
         let tractCentroidCache = [];
         let foodDesertLayer = null;
+
+        // Cuisine Hotspot variables
+        let cuisineHeatLayer = null;
+        let cuisineMode = 'actual';
 
         let predictionConfig = {
             radiusMiles: 10,  // Fixed at 10mi for optimal correlation
@@ -2039,6 +2208,22 @@
             'Fruits': '#8593C6',          // Purple-blue
             'Protein (plant)': '#8B4513', // Brown/legume color
             'Other': '#9BA4B4'            // Gray
+        };
+
+        // Cuisine bundle definitions — species associated with each cuisine type
+        const CUISINE_BUNDLES = {
+            'Chinese': {
+                species: ['Soybean', 'Black-eyed pea', 'Duck', 'Carp', 'Cabbage', 'Bamboo', 'Ginger'],
+                color: '#e53e3e'
+            },
+            'Indian': {
+                species: ['Turmeric', 'Coriander', 'Chickpea', 'Lentil', 'Black peppers', 'Water buffalo', 'Tamarind'],
+                color: '#dd6b20'
+            },
+            'Italian': {
+                species: ['Olive', 'Wheat', 'Tomato', 'Basil', 'Grapes', 'Anchovy', 'Onion'],
+                color: '#38a169'
+            }
         };
 
         // POI icon definitions
@@ -3250,6 +3435,290 @@
             });
 
             return score;
+        }
+
+        // --- Cuisine Hotspot Functions ---
+
+        // Compute cuisine affinity score for a plant
+        function getCuisineScore(plant, cuisineName) {
+            const bundle = CUISINE_BUNDLES[cuisineName];
+            if (!bundle) return 0;
+
+            let totalPlantAbundance = 0;
+            allSpeciesList.forEach(s => {
+                totalPlantAbundance += getSpeciesDetection(plant, s.key);
+            });
+
+            if (totalPlantAbundance === 0) return 0;
+
+            let score = 0;
+            bundle.species.forEach(speciesName => {
+                score += getSpeciesDetection(plant, speciesName);
+            });
+
+            return score / totalPlantAbundance;
+        }
+
+        // Main dispatcher for cuisine hotspot rendering
+        function generateCuisineHotspot() {
+            const cuisineName = document.getElementById('cuisineSelect').value;
+            if (!cuisineName || !CUISINE_BUNDLES[cuisineName]) return;
+
+            // Remove existing cuisine heat layer
+            if (cuisineHeatLayer) {
+                map.removeLayer(cuisineHeatLayer);
+                cuisineHeatLayer = null;
+            }
+
+            if (cuisineMode === 'actual') {
+                generateCuisineActual(cuisineName);
+            } else {
+                generateCuisinePredicted(cuisineName);
+            }
+        }
+
+        // Actual mode: heatmap from real wastewater detections at plant locations
+        function generateCuisineActual(cuisineName) {
+            const bundle = CUISINE_BUNDLES[cuisineName];
+            const heatData = [];
+
+            console.log(`--- Cuisine Hotspot: ${cuisineName} (Actual) ---`);
+
+            Object.values(foodseqData.plants).forEach(plant => {
+                const score = getCuisineScore(plant, cuisineName);
+                if (score > 0) {
+                    heatData.push([plant.lat, plant.lng, score]);
+                }
+                console.log(`  ${plant.name}: score = ${score.toFixed(4)}`);
+            });
+
+            if (heatData.length > 0) {
+                const maxScore = Math.max(...heatData.map(d => d[2]));
+                const normalizedData = heatData.map(d => [d[0], d[1], d[2] / maxScore]);
+
+                cuisineHeatLayer = L.heatLayer(normalizedData, {
+                    radius: 40,
+                    blur: 30,
+                    maxZoom: 10,
+                    minOpacity: 0.3,
+                    max: 1.0,
+                    gradient: {
+                        0.0: 'rgba(0, 128, 0, 0.4)',
+                        0.35: 'rgba(255, 255, 0, 0.55)',
+                        0.65: 'rgba(255, 165, 0, 0.7)',
+                        1.0: 'rgba(255, 0, 0, 0.85)'
+                    }
+                }).addTo(map);
+            }
+
+            updateCuisineLegend(cuisineName, 'actual');
+        }
+
+        // Predicted mode: POI-weighted grid prediction extending coverage statewide
+        async function generateCuisinePredicted(cuisineName) {
+            const bundle = CUISINE_BUNDLES[cuisineName];
+            const progressDiv = document.getElementById('cuisineProgress');
+            const progressFill = document.getElementById('cuisineProgressFill');
+            const progressText = document.getElementById('cuisineProgressText');
+
+            progressFill.style.width = '0%';
+            progressText.textContent = 'Learning POI weights...';
+            progressDiv.classList.add('visible');
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            console.log(`--- Cuisine Hotspot: ${cuisineName} (Predicted) ---`);
+
+            // Step 1: Learn POI weights using cuisine score as target variable
+            const siteData = [];
+            Object.values(foodseqData.plants).forEach(plant => {
+                const abundance = getCuisineScore(plant, cuisineName);
+                const profile = profileSite(plant.lat, plant.lng, 10);
+                siteData.push({ abundance, profile });
+            });
+
+            if (siteData.length < 3) return;
+
+            const categories = Object.keys(poiData.categories);
+
+            // Convert raw counts to proportions
+            const siteProportions = siteData.map(d => {
+                const total = Object.values(d.profile).reduce((a, b) => a + b, 0);
+                const proportions = {};
+                categories.forEach(cat => {
+                    proportions[cat] = total > 0 ? (d.profile[cat] || 0) / total : 0;
+                });
+                return { proportions, abundance: d.abundance };
+            });
+
+            // Calculate Pearson correlation per POI category
+            const weights = {};
+            const meanProp = {};
+            const stdProp = {};
+            const meanAbundance = siteData.reduce((s, d) => s + d.abundance, 0) / siteData.length;
+
+            categories.forEach(category => {
+                const props = siteProportions.map(d => d.proportions[category]);
+                const mean = props.reduce((a, b) => a + b, 0) / props.length;
+                meanProp[category] = mean;
+
+                let num = 0, denProp = 0, denAbund = 0;
+                siteProportions.forEach((d, i) => {
+                    const propDev = props[i] - mean;
+                    const abundDev = d.abundance - meanAbundance;
+                    num += propDev * abundDev;
+                    denProp += propDev * propDev;
+                    denAbund += abundDev * abundDev;
+                });
+
+                const denom = Math.sqrt(denProp) * Math.sqrt(denAbund);
+                weights[category] = denom > 0 ? num / denom : 0;
+                stdProp[category] = Math.sqrt(denProp / siteProportions.length) || 0.001;
+            });
+
+            const abundances = siteData.map(d => d.abundance);
+            const stdAbundance = Math.sqrt(abundances.reduce((sum, a) => sum + Math.pow(a - meanAbundance, 2), 0) / abundances.length) || 1;
+            const maxAbundance = Math.max(...abundances);
+
+            // Log top correlated POI categories
+            const sortedWeights = Object.entries(weights).sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+            console.log(`POI weights for ${cuisineName} cuisine:`);
+            sortedWeights.slice(0, 6).forEach(([cat, w]) => console.log(`  ${cat}: ${w.toFixed(3)}`));
+
+            // Step 2: Generate grid across NC
+            progressFill.style.width = '10%';
+            progressText.textContent = 'Collecting POI profiles...';
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            const ncBounds = { minLat: 33.8, maxLat: 36.6, minLon: -84.3, maxLon: -75.5 };
+            const cellSize = 0.08;
+            const minPOIsRequired = 30;
+            const radiusMiles = 10;
+
+            const latSteps = Math.ceil((ncBounds.maxLat - ncBounds.minLat) / cellSize);
+            let latIdx = 0;
+
+            const gridProfiles = [];
+            for (let lat = ncBounds.minLat; lat <= ncBounds.maxLat; lat += cellSize) {
+                for (let lon = ncBounds.minLon; lon <= ncBounds.maxLon; lon += cellSize) {
+                    const profile = profileSite(lat, lon, radiusMiles);
+                    const totalPOIs = Object.values(profile).reduce((a, b) => a + b, 0);
+                    if (totalPOIs >= minPOIsRequired) {
+                        gridProfiles.push({ lat, lon, profile });
+                    }
+                }
+                latIdx++;
+                if (latIdx % 3 === 0) {
+                    const pct = 10 + (latIdx / latSteps) * 70;
+                    progressFill.style.width = pct + '%';
+                    progressText.textContent = `Collecting POI profiles... ${Math.round(latIdx / latSteps * 100)}%`;
+                    await new Promise(resolve => setTimeout(resolve, 0));
+                }
+            }
+
+            // Step 3: Score each grid cell
+            progressFill.style.width = '85%';
+            progressText.textContent = 'Calculating predictions...';
+            await new Promise(resolve => setTimeout(resolve, 50));
+
+            const trainingTotals = siteData.map(d => Object.values(d.profile).reduce((a, b) => a + b, 0));
+            const meanTrainingTotal = trainingTotals.reduce((a, b) => a + b, 0) / trainingTotals.length;
+
+            const predictions = [];
+            gridProfiles.forEach(g => {
+                const totalPOIs = Object.values(g.profile).reduce((a, b) => a + b, 0);
+                let zScoreSum = 0;
+
+                categories.forEach(cat => {
+                    const proportion = totalPOIs > 0 ? (g.profile[cat] || 0) / totalPOIs : 0;
+                    const z = (proportion - meanProp[cat]) / stdProp[cat];
+                    zScoreSum += weights[cat] * z;
+                });
+
+                let predictedAbundance = meanAbundance + zScoreSum * stdAbundance;
+                const densityFactor = Math.log(1 + totalPOIs) / Math.log(1 + meanTrainingTotal);
+                predictedAbundance *= densityFactor;
+
+                predictions.push({ lat: g.lat, lon: g.lon, score: predictedAbundance });
+            });
+
+            // Step 4: Normalize and create heatmap
+            const heatData = [];
+            if (predictions.length > 0) {
+                predictions.forEach(p => {
+                    const clampedAbundance = Math.max(0, Math.min(p.score, maxAbundance * 1.5));
+                    const normalizedScore = clampedAbundance / (maxAbundance * 1.5);
+                    if (normalizedScore > 0.1) {
+                        heatData.push([p.lat, p.lon, normalizedScore]);
+                    }
+                });
+            }
+
+            if (heatData.length > 0) {
+                cuisineHeatLayer = L.heatLayer(heatData, {
+                    radius: 35,
+                    blur: 25,
+                    maxZoom: 10,
+                    minOpacity: 0.2,
+                    max: 1.0,
+                    gradient: {
+                        0.0: 'rgba(0, 128, 0, 0.4)',
+                        0.35: 'rgba(255, 255, 0, 0.55)',
+                        0.65: 'rgba(255, 165, 0, 0.7)',
+                        1.0: 'rgba(255, 0, 0, 0.85)'
+                    }
+                }).addTo(map);
+
+                console.log(`Cuisine predicted: ${heatData.length} grid points rendered`);
+            }
+
+            progressFill.style.width = '100%';
+            progressText.textContent = `Complete! ${heatData.length} prediction points`;
+            setTimeout(() => { progressDiv.classList.remove('visible'); }, 1200);
+
+            // Store top correlations for legend
+            const topCorrelations = sortedWeights.slice(0, 5).map(([cat, w]) => ({ category: cat, weight: w }));
+            updateCuisineLegend(cuisineName, 'predicted', topCorrelations);
+        }
+
+        // Toggle between actual and predicted mode
+        function setCuisineMode(mode) {
+            cuisineMode = mode;
+            document.getElementById('cuisineActualBtn').classList.toggle('active', mode === 'actual');
+            document.getElementById('cuisinePredictedBtn').classList.toggle('active', mode === 'predicted');
+            generateCuisineHotspot();
+        }
+
+        // Update the cuisine legend panel
+        function updateCuisineLegend(cuisineName, mode, topCorrelations) {
+            const legend = document.getElementById('cuisineLegend');
+            const bundle = CUISINE_BUNDLES[cuisineName];
+
+            let html = `<div class="cuisine-legend-title">${cuisineName} Cuisine Hotspot</div>`;
+            html += `<div class="cuisine-legend-mode">Mode: ${mode === 'actual' ? 'Actual (Wastewater)' : 'Predicted (POI-weighted)'}</div>`;
+
+            // Gradient bar
+            html += `<div class="cuisine-legend-gradient" style="background:linear-gradient(to right, rgba(0,128,0,0.6), rgba(255,255,0,0.7), rgba(255,165,0,0.8), rgba(255,0,0,0.9))"></div>`;
+            html += `<div class="cuisine-legend-labels"><span>Low</span><span>Medium</span><span>High</span></div>`;
+
+            // Species list
+            html += `<div class="cuisine-legend-species">`;
+            html += `<div class="cuisine-legend-species-title">Species in Bundle</div>`;
+            html += `<div class="cuisine-legend-species-list">${bundle.species.join(', ')}</div>`;
+            html += `</div>`;
+
+            // Top correlated POI categories (predicted mode only)
+            if (mode === 'predicted' && topCorrelations && topCorrelations.length > 0) {
+                html += `<div class="cuisine-legend-correlations">`;
+                html += `<div class="cuisine-legend-correlations-title">Top POI Correlations</div>`;
+                topCorrelations.forEach(c => {
+                    const sign = c.weight >= 0 ? '+' : '';
+                    html += `<div>${c.category}: <strong>${sign}${c.weight.toFixed(3)}</strong></div>`;
+                });
+                html += `</div>`;
+            }
+
+            legend.innerHTML = html;
+            legend.classList.add('visible');
         }
 
         // Generate prediction grid covering NC
@@ -5217,15 +5686,34 @@
                 foodDesertLayer = null;
             }
 
+            // Remove cuisine heat layer when switching away
+            if (cuisineHeatLayer) {
+                map.removeLayer(cuisineHeatLayer);
+                cuisineHeatLayer = null;
+            }
+
             // Hide food desert legend unless showing a food desert layer
             const fdLegend = document.getElementById('foodDesertLegend');
             if (!['usda_desert', 'predicted_desert', 'desert_agreement'].includes(view)) {
                 fdLegend.classList.remove('visible');
             }
 
+            // Show/hide cuisine controls and legend
+            const cuisineControls = document.getElementById('cuisineControls');
+            const cuisineLegend = document.getElementById('cuisineLegend');
+            if (view === 'cuisine_hotspot') {
+                cuisineControls.style.display = 'flex';
+            } else {
+                cuisineControls.style.display = 'none';
+                cuisineLegend.classList.remove('visible');
+            }
+
             if (view === 'topo') {
                 // Show just the base map (no overlay layers)
                 // Base OpenStreetMap tile layer is always present
+            } else if (view === 'cuisine_hotspot') {
+                // Cuisine hotspot layer — render the heatmap
+                generateCuisineHotspot();
             } else if (view === 'density') {
                 // Show population density (block groups)
                 densityLayer = L.geoJSON(populationDensityGeoJSON, {
