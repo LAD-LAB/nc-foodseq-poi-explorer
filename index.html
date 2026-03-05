@@ -182,6 +182,40 @@
             color: #1a365d;
         }
 
+        .panel-subtitle {
+            font-size: 11px;
+            color: #718096;
+            margin-top: 2px;
+        }
+
+        .marker-legend {
+            position: absolute;
+            bottom: 100px;
+            right: 12px;
+            z-index: 1000;
+            background: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .marker-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .marker-legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0 0 2px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+
         .close-button {
             background: none;
             border: none;
@@ -1770,6 +1804,18 @@
     <div class="title-container">
         <h1>NC FoodSeq Wastewater Monitoring</h1>
         <p>Interactive Dietary Species Detection Across North Carolina</p>
+    </div>
+
+    <!-- Marker legend -->
+    <div class="marker-legend">
+        <div class="marker-legend-item">
+            <div class="marker-legend-dot" style="background:#e53e3e;width:14px;height:14px;"></div>
+            <span>WWTP</span>
+        </div>
+        <div class="marker-legend-item">
+            <div class="marker-legend-dot" style="background:#3182ce;width:10px;height:10px;"></div>
+            <span>Manhole / Lift Station</span>
+        </div>
     </div>
 
     <!-- Map controls -->
@@ -4428,17 +4474,18 @@
         }
 
         function addPlantMarkers() {
-            // Add markers for each treatment plant
+            // Add markers for each treatment plant and manhole
             console.log('Creating markers for', Object.keys(foodseqData.plants).length, 'plants');
             Object.keys(foodseqData.plants).forEach(plantId => {
                 const plant = foodseqData.plants[plantId];
                 console.log(`  ${plantId}: ${plant.name} at (${plant.lat}, ${plant.lng})`);
 
+                const isManhole = plant.location_type === 'manhole';
                 const marker = L.circleMarker([plant.lat, plant.lng], {
-                    radius: 8,
-                    fillColor: '#e53e3e',
+                    radius: isManhole ? 6 : 8,
+                    fillColor: isManhole ? '#3182ce' : '#e53e3e',
                     color: '#ffffff',
-                    weight: 3,
+                    weight: isManhole ? 2 : 3,
                     opacity: 1,
                     fillOpacity: 0.9,
                     pane: 'markerPane'  // Use custom pane with higher z-index
@@ -4495,9 +4542,14 @@
             panel.style.top = (point.y + offset) + 'px';
 
             // Panel HTML
+            const isManhole = plant.location_type === 'manhole';
+            const subtitle = isManhole && plant.census_tract && plant.census_tract !== 'unknown'
+                ? `<div class="panel-subtitle">Census Tract ${plant.census_tract} &bull; Durham County</div>`
+                : '';
             panel.innerHTML = `
                 <div class="panel-header">
                     <div class="panel-title">${plant.name}</div>
+                    ${subtitle}
                     <button class="close-button" onclick="closePanel(this)">×</button>
                 </div>
                 <div class="tab-container">
