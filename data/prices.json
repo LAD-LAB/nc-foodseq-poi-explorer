@@ -1,0 +1,4000 @@
+{
+  "scraped_at": "2026-05-18T13:40:51.930819",
+  "generated_note": "Prices are based on USDA average retail data with store-tier adjustments. Run this scraper to refresh.",
+  "stores": {
+    "food-lion": {
+      "name": "Food Lion",
+      "brand": "Food Lion",
+      "tier": "budget"
+    },
+    "aldi": {
+      "name": "ALDI",
+      "brand": "ALDI",
+      "tier": "budget"
+    },
+    "walmart": {
+      "name": "Walmart",
+      "brand": "Walmart",
+      "tier": "budget"
+    },
+    "harris-teeter": {
+      "name": "Harris Teeter",
+      "brand": "Harris Teeter",
+      "tier": "mid"
+    },
+    "publix": {
+      "name": "Publix",
+      "brand": "Publix",
+      "tier": "mid"
+    },
+    "lowes-foods": {
+      "name": "Lowes Foods",
+      "brand": "Lowes Foods",
+      "tier": "mid"
+    },
+    "fresh-market": {
+      "name": "The Fresh Market",
+      "brand": "The Fresh Market",
+      "tier": "premium"
+    },
+    "whole-foods": {
+      "name": "Whole Foods Market",
+      "brand": "Whole Foods Market",
+      "tier": "premium"
+    },
+    "weaver-street": {
+      "name": "Weaver Street Market",
+      "brand": "Weaver Street Market",
+      "tier": "premium"
+    },
+    "compare-foods": {
+      "name": "Compare Foods",
+      "brand": "Compare Foods",
+      "tier": "budget"
+    }
+  },
+  "prices": [
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "food-lion",
+      "product_name": "Bananas",
+      "price": 0.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "aldi",
+      "product_name": "Bananas",
+      "price": 0.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "walmart",
+      "product_name": "Bananas",
+      "price": 0.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "harris-teeter",
+      "product_name": "Bananas",
+      "price": 0.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "publix",
+      "product_name": "Bananas",
+      "price": 0.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "lowes-foods",
+      "product_name": "Bananas",
+      "price": 0.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "fresh-market",
+      "product_name": "Bananas",
+      "price": 0.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "whole-foods",
+      "product_name": "Bananas",
+      "price": 0.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "weaver-street",
+      "product_name": "Bananas",
+      "price": 0.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Banana",
+      "food_search": "banana",
+      "store_id": "compare-foods",
+      "product_name": "Bananas",
+      "price": 0.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "food-lion",
+      "product_name": "Tomatoes, red round",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "aldi",
+      "product_name": "Tomatoes, red round",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "walmart",
+      "product_name": "Tomatoes, red round",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "harris-teeter",
+      "product_name": "Tomatoes, red round",
+      "price": 2.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "publix",
+      "product_name": "Tomatoes, red round",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "lowes-foods",
+      "product_name": "Tomatoes, red round",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "fresh-market",
+      "product_name": "Tomatoes, red round",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "whole-foods",
+      "product_name": "Tomatoes, red round",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "weaver-street",
+      "product_name": "Tomatoes, red round",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tomato",
+      "food_search": "tomatoes",
+      "store_id": "compare-foods",
+      "product_name": "Tomatoes, red round",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "food-lion",
+      "product_name": "Chicken breast, boneless",
+      "price": 3.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "aldi",
+      "product_name": "Chicken breast, boneless",
+      "price": 3.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "walmart",
+      "product_name": "Chicken breast, boneless",
+      "price": 3.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "harris-teeter",
+      "product_name": "Chicken breast, boneless",
+      "price": 3.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "publix",
+      "product_name": "Chicken breast, boneless",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "lowes-foods",
+      "product_name": "Chicken breast, boneless",
+      "price": 3.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "fresh-market",
+      "product_name": "Chicken breast, boneless",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "whole-foods",
+      "product_name": "Chicken breast, boneless",
+      "price": 5.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "weaver-street",
+      "product_name": "Chicken breast, boneless",
+      "price": 5.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chicken",
+      "food_search": "chicken breast",
+      "store_id": "compare-foods",
+      "product_name": "Chicken breast, boneless",
+      "price": 3.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "food-lion",
+      "product_name": "White rice, long grain",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "aldi",
+      "product_name": "White rice, long grain",
+      "price": 0.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "walmart",
+      "product_name": "White rice, long grain",
+      "price": 0.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "harris-teeter",
+      "product_name": "White rice, long grain",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "publix",
+      "product_name": "White rice, long grain",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "lowes-foods",
+      "product_name": "White rice, long grain",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "fresh-market",
+      "product_name": "White rice, long grain",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "whole-foods",
+      "product_name": "White rice, long grain",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "weaver-street",
+      "product_name": "White rice, long grain",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rice",
+      "food_search": "white rice",
+      "store_id": "compare-foods",
+      "product_name": "White rice, long grain",
+      "price": 0.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "food-lion",
+      "product_name": "Romaine lettuce hearts",
+      "price": 2.29,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "aldi",
+      "product_name": "Romaine lettuce hearts",
+      "price": 1.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "walmart",
+      "product_name": "Romaine lettuce hearts",
+      "price": 2.09,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "harris-teeter",
+      "product_name": "Romaine lettuce hearts",
+      "price": 2.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "publix",
+      "product_name": "Romaine lettuce hearts",
+      "price": 2.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "lowes-foods",
+      "product_name": "Romaine lettuce hearts",
+      "price": 2.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "fresh-market",
+      "product_name": "Romaine lettuce hearts",
+      "price": 2.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "whole-foods",
+      "product_name": "Romaine lettuce hearts",
+      "price": 3.29,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "weaver-street",
+      "product_name": "Romaine lettuce hearts",
+      "price": 3.29,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lettuce",
+      "food_search": "romaine lettuce",
+      "store_id": "compare-foods",
+      "product_name": "Romaine lettuce hearts",
+      "price": 2.09,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "food-lion",
+      "product_name": "Atlantic salmon fillet",
+      "price": 8.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "aldi",
+      "product_name": "Atlantic salmon fillet",
+      "price": 7.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "walmart",
+      "product_name": "Atlantic salmon fillet",
+      "price": 8.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "harris-teeter",
+      "product_name": "Atlantic salmon fillet",
+      "price": 11.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "publix",
+      "product_name": "Atlantic salmon fillet",
+      "price": 11.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "lowes-foods",
+      "product_name": "Atlantic salmon fillet",
+      "price": 10.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "fresh-market",
+      "product_name": "Atlantic salmon fillet",
+      "price": 11.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "whole-foods",
+      "product_name": "Atlantic salmon fillet",
+      "price": 13.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "weaver-street",
+      "product_name": "Atlantic salmon fillet",
+      "price": 12.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Salmon",
+      "food_search": "atlantic salmon fillet",
+      "store_id": "compare-foods",
+      "product_name": "Atlantic salmon fillet",
+      "price": 8.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "food-lion",
+      "product_name": "Pork chops, bone-in",
+      "price": 4.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "aldi",
+      "product_name": "Pork chops, bone-in",
+      "price": 3.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "walmart",
+      "product_name": "Pork chops, bone-in",
+      "price": 3.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "harris-teeter",
+      "product_name": "Pork chops, bone-in",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "publix",
+      "product_name": "Pork chops, bone-in",
+      "price": 4.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "lowes-foods",
+      "product_name": "Pork chops, bone-in",
+      "price": 4.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "fresh-market",
+      "product_name": "Pork chops, bone-in",
+      "price": 5.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "whole-foods",
+      "product_name": "Pork chops, bone-in",
+      "price": 5.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "weaver-street",
+      "product_name": "Pork chops, bone-in",
+      "price": 5.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pig (Pork)",
+      "food_search": "pork chops",
+      "store_id": "compare-foods",
+      "product_name": "Pork chops, bone-in",
+      "price": 3.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "food-lion",
+      "product_name": "Ground beef, 80/20",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "aldi",
+      "product_name": "Ground beef, 80/20",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "walmart",
+      "product_name": "Ground beef, 80/20",
+      "price": 4.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "harris-teeter",
+      "product_name": "Ground beef, 80/20",
+      "price": 5.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "publix",
+      "product_name": "Ground beef, 80/20",
+      "price": 6.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "lowes-foods",
+      "product_name": "Ground beef, 80/20",
+      "price": 5.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "fresh-market",
+      "product_name": "Ground beef, 80/20",
+      "price": 7.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "whole-foods",
+      "product_name": "Ground beef, 80/20",
+      "price": 7.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "weaver-street",
+      "product_name": "Ground beef, 80/20",
+      "price": 6.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cattle (Beef)",
+      "food_search": "ground beef",
+      "store_id": "compare-foods",
+      "product_name": "Ground beef, 80/20",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "food-lion",
+      "product_name": "Sesame seeds",
+      "price": 0.29,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "aldi",
+      "product_name": "Sesame seeds",
+      "price": 0.29,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "walmart",
+      "product_name": "Sesame seeds",
+      "price": 0.29,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "harris-teeter",
+      "product_name": "Sesame seeds",
+      "price": 0.49,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "publix",
+      "product_name": "Sesame seeds",
+      "price": 0.49,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "lowes-foods",
+      "product_name": "Sesame seeds",
+      "price": 0.29,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "fresh-market",
+      "product_name": "Sesame seeds",
+      "price": 0.49,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "whole-foods",
+      "product_name": "Sesame seeds",
+      "price": 0.49,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "weaver-street",
+      "product_name": "Sesame seeds",
+      "price": 0.49,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sesamum",
+      "food_search": "sesame seeds",
+      "store_id": "compare-foods",
+      "product_name": "Sesame seeds",
+      "price": 0.29,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "food-lion",
+      "product_name": "Blueberries, fresh",
+      "price": 3.49,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "aldi",
+      "product_name": "Blueberries, fresh",
+      "price": 3.29,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "walmart",
+      "product_name": "Blueberries, fresh",
+      "price": 3.49,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "harris-teeter",
+      "product_name": "Blueberries, fresh",
+      "price": 4.09,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "publix",
+      "product_name": "Blueberries, fresh",
+      "price": 4.09,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "lowes-foods",
+      "product_name": "Blueberries, fresh",
+      "price": 3.99,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "fresh-market",
+      "product_name": "Blueberries, fresh",
+      "price": 5.49,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "whole-foods",
+      "product_name": "Blueberries, fresh",
+      "price": 5.49,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "weaver-street",
+      "product_name": "Blueberries, fresh",
+      "price": 5.49,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Vaccinium",
+      "food_search": "blueberries",
+      "store_id": "compare-foods",
+      "product_name": "Blueberries, fresh",
+      "price": 3.79,
+      "unit": "per pint",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "food-lion",
+      "product_name": "Rolled oats",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "aldi",
+      "product_name": "Rolled oats",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "walmart",
+      "product_name": "Rolled oats",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "harris-teeter",
+      "product_name": "Rolled oats",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "publix",
+      "product_name": "Rolled oats",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "lowes-foods",
+      "product_name": "Rolled oats",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "fresh-market",
+      "product_name": "Rolled oats",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "whole-foods",
+      "product_name": "Rolled oats",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "weaver-street",
+      "product_name": "Rolled oats",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Oat",
+      "food_search": "oats",
+      "store_id": "compare-foods",
+      "product_name": "Rolled oats",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "food-lion",
+      "product_name": "Broccoli crowns",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "aldi",
+      "product_name": "Broccoli crowns",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "walmart",
+      "product_name": "Broccoli crowns",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "harris-teeter",
+      "product_name": "Broccoli crowns",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "publix",
+      "product_name": "Broccoli crowns",
+      "price": 2.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "lowes-foods",
+      "product_name": "Broccoli crowns",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "fresh-market",
+      "product_name": "Broccoli crowns",
+      "price": 2.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "whole-foods",
+      "product_name": "Broccoli crowns",
+      "price": 3.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "weaver-street",
+      "product_name": "Broccoli crowns",
+      "price": 3.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cabbage/Broccoli",
+      "food_search": "broccoli",
+      "store_id": "compare-foods",
+      "product_name": "Broccoli crowns",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "food-lion",
+      "product_name": "Asparagus",
+      "price": 3.29,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "aldi",
+      "product_name": "Asparagus",
+      "price": 2.99,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "walmart",
+      "product_name": "Asparagus",
+      "price": 3.09,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "harris-teeter",
+      "product_name": "Asparagus",
+      "price": 3.79,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "publix",
+      "product_name": "Asparagus",
+      "price": 3.49,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "lowes-foods",
+      "product_name": "Asparagus",
+      "price": 3.49,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "fresh-market",
+      "product_name": "Asparagus",
+      "price": 4.09,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "whole-foods",
+      "product_name": "Asparagus",
+      "price": 5.09,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "weaver-street",
+      "product_name": "Asparagus",
+      "price": 4.79,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Asparagus",
+      "food_search": "asparagus",
+      "store_id": "compare-foods",
+      "product_name": "Asparagus",
+      "price": 3.29,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "food-lion",
+      "product_name": "Green tea, 20 bags",
+      "price": 3.79,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "aldi",
+      "product_name": "Green tea, 20 bags",
+      "price": 3.29,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "walmart",
+      "product_name": "Green tea, 20 bags",
+      "price": 3.99,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "harris-teeter",
+      "product_name": "Green tea, 20 bags",
+      "price": 4.79,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "publix",
+      "product_name": "Green tea, 20 bags",
+      "price": 4.29,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "lowes-foods",
+      "product_name": "Green tea, 20 bags",
+      "price": 4.49,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "fresh-market",
+      "product_name": "Green tea, 20 bags",
+      "price": 4.99,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "whole-foods",
+      "product_name": "Green tea, 20 bags",
+      "price": 6.09,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "weaver-street",
+      "product_name": "Green tea, 20 bags",
+      "price": 5.79,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Tea",
+      "food_search": "green tea",
+      "store_id": "compare-foods",
+      "product_name": "Green tea, 20 bags",
+      "price": 3.49,
+      "unit": "per box",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "food-lion",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "aldi",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "walmart",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "harris-teeter",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "publix",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "lowes-foods",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.29,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "fresh-market",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.79,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "whole-foods",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.79,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "weaver-street",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chickpea",
+      "food_search": "chickpeas canned",
+      "store_id": "compare-foods",
+      "product_name": "Chickpeas, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "food-lion",
+      "product_name": "Lentils, dry",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "aldi",
+      "product_name": "Lentils, dry",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "walmart",
+      "product_name": "Lentils, dry",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "harris-teeter",
+      "product_name": "Lentils, dry",
+      "price": 2.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "publix",
+      "product_name": "Lentils, dry",
+      "price": 2.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "lowes-foods",
+      "product_name": "Lentils, dry",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "fresh-market",
+      "product_name": "Lentils, dry",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "whole-foods",
+      "product_name": "Lentils, dry",
+      "price": 2.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "weaver-street",
+      "product_name": "Lentils, dry",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Lentil",
+      "food_search": "lentils dry",
+      "store_id": "compare-foods",
+      "product_name": "Lentils, dry",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "food-lion",
+      "product_name": "Whole wheat bread",
+      "price": 2.99,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "aldi",
+      "product_name": "Whole wheat bread",
+      "price": 2.99,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "walmart",
+      "product_name": "Whole wheat bread",
+      "price": 2.79,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "harris-teeter",
+      "product_name": "Whole wheat bread",
+      "price": 3.99,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "publix",
+      "product_name": "Whole wheat bread",
+      "price": 3.99,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "lowes-foods",
+      "product_name": "Whole wheat bread",
+      "price": 3.29,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "fresh-market",
+      "product_name": "Whole wheat bread",
+      "price": 4.29,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "whole-foods",
+      "product_name": "Whole wheat bread",
+      "price": 4.79,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "weaver-street",
+      "product_name": "Whole wheat bread",
+      "price": 4.29,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Grass family",
+      "food_search": "wheat bread",
+      "store_id": "compare-foods",
+      "product_name": "Whole wheat bread",
+      "price": 2.99,
+      "unit": "per loaf",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "food-lion",
+      "product_name": "Turkey breast, deli",
+      "price": 5.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "aldi",
+      "product_name": "Turkey breast, deli",
+      "price": 4.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "walmart",
+      "product_name": "Turkey breast, deli",
+      "price": 5.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "harris-teeter",
+      "product_name": "Turkey breast, deli",
+      "price": 6.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "publix",
+      "product_name": "Turkey breast, deli",
+      "price": 6.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "lowes-foods",
+      "product_name": "Turkey breast, deli",
+      "price": 5.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "fresh-market",
+      "product_name": "Turkey breast, deli",
+      "price": 7.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "whole-foods",
+      "product_name": "Turkey breast, deli",
+      "price": 8.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "weaver-street",
+      "product_name": "Turkey breast, deli",
+      "price": 7.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Turkey",
+      "food_search": "turkey breast",
+      "store_id": "compare-foods",
+      "product_name": "Turkey breast, deli",
+      "price": 5.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "food-lion",
+      "product_name": "Peanuts, dry roasted",
+      "price": 3.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "aldi",
+      "product_name": "Peanuts, dry roasted",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "walmart",
+      "product_name": "Peanuts, dry roasted",
+      "price": 3.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "harris-teeter",
+      "product_name": "Peanuts, dry roasted",
+      "price": 3.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "publix",
+      "product_name": "Peanuts, dry roasted",
+      "price": 3.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "lowes-foods",
+      "product_name": "Peanuts, dry roasted",
+      "price": 3.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "fresh-market",
+      "product_name": "Peanuts, dry roasted",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "whole-foods",
+      "product_name": "Peanuts, dry roasted",
+      "price": 4.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "weaver-street",
+      "product_name": "Peanuts, dry roasted",
+      "price": 4.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Peanut",
+      "food_search": "peanuts",
+      "store_id": "compare-foods",
+      "product_name": "Peanuts, dry roasted",
+      "price": 3.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "food-lion",
+      "product_name": "Tofu, firm 14oz",
+      "price": 2.29,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "aldi",
+      "product_name": "Tofu, firm 14oz",
+      "price": 1.99,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "walmart",
+      "product_name": "Tofu, firm 14oz",
+      "price": 2.09,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "harris-teeter",
+      "product_name": "Tofu, firm 14oz",
+      "price": 2.79,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "publix",
+      "product_name": "Tofu, firm 14oz",
+      "price": 2.79,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "lowes-foods",
+      "product_name": "Tofu, firm 14oz",
+      "price": 2.79,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "fresh-market",
+      "product_name": "Tofu, firm 14oz",
+      "price": 3.09,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "whole-foods",
+      "product_name": "Tofu, firm 14oz",
+      "price": 3.09,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "weaver-street",
+      "product_name": "Tofu, firm 14oz",
+      "price": 3.49,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Soybean",
+      "food_search": "tofu",
+      "store_id": "compare-foods",
+      "product_name": "Tofu, firm 14oz",
+      "price": 2.29,
+      "unit": "per block",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "food-lion",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 1.79,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "aldi",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 1.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "walmart",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 1.79,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "harris-teeter",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 1.79,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "publix",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 1.99,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "lowes-foods",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 1.79,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "fresh-market",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 2.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "whole-foods",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 2.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "weaver-street",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 2.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pea",
+      "food_search": "green peas frozen",
+      "store_id": "compare-foods",
+      "product_name": "Green peas, frozen 12oz",
+      "price": 1.79,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "food-lion",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "aldi",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "walmart",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "harris-teeter",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.29,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "publix",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "lowes-foods",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.29,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "fresh-market",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "whole-foods",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.79,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "weaver-street",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beans",
+      "food_search": "black beans canned",
+      "store_id": "compare-foods",
+      "product_name": "Black beans, canned 15oz",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "food-lion",
+      "product_name": "Garlic, whole head",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "aldi",
+      "product_name": "Garlic, whole head",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "walmart",
+      "product_name": "Garlic, whole head",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "harris-teeter",
+      "product_name": "Garlic, whole head",
+      "price": 0.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "publix",
+      "product_name": "Garlic, whole head",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "lowes-foods",
+      "product_name": "Garlic, whole head",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "fresh-market",
+      "product_name": "Garlic, whole head",
+      "price": 0.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "whole-foods",
+      "product_name": "Garlic, whole head",
+      "price": 1.09,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "weaver-street",
+      "product_name": "Garlic, whole head",
+      "price": 0.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Garlic",
+      "food_search": "garlic",
+      "store_id": "compare-foods",
+      "product_name": "Garlic, whole head",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "food-lion",
+      "product_name": "Yellow onions",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "aldi",
+      "product_name": "Yellow onions",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "walmart",
+      "product_name": "Yellow onions",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "harris-teeter",
+      "product_name": "Yellow onions",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "publix",
+      "product_name": "Yellow onions",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "lowes-foods",
+      "product_name": "Yellow onions",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "fresh-market",
+      "product_name": "Yellow onions",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "whole-foods",
+      "product_name": "Yellow onions",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "weaver-street",
+      "product_name": "Yellow onions",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Onion/Garlic",
+      "food_search": "yellow onion",
+      "store_id": "compare-foods",
+      "product_name": "Yellow onions",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "food-lion",
+      "product_name": "Gala apples",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "aldi",
+      "product_name": "Gala apples",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "walmart",
+      "product_name": "Gala apples",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "harris-teeter",
+      "product_name": "Gala apples",
+      "price": 2.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "publix",
+      "product_name": "Gala apples",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "lowes-foods",
+      "product_name": "Gala apples",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "fresh-market",
+      "product_name": "Gala apples",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "whole-foods",
+      "product_name": "Gala apples",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "weaver-street",
+      "product_name": "Gala apples",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Apple/Pear/Cherry",
+      "food_search": "apples",
+      "store_id": "compare-foods",
+      "product_name": "Gala apples",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "food-lion",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "aldi",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "walmart",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "harris-teeter",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 2.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "publix",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "lowes-foods",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "fresh-market",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "whole-foods",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "weaver-street",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Chili peppers",
+      "food_search": "jalapeno peppers",
+      "store_id": "compare-foods",
+      "product_name": "Jalape\u00f1o peppers",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "food-lion",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 4.79,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "aldi",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 4.29,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "walmart",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 4.09,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "harris-teeter",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 4.99,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "publix",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 5.79,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "lowes-foods",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 5.29,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "fresh-market",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 6.29,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "whole-foods",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 7.29,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "weaver-street",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 6.79,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Cocoa",
+      "food_search": "cocoa powder",
+      "store_id": "compare-foods",
+      "product_name": "Cocoa powder, 8oz",
+      "price": 4.09,
+      "unit": "per container",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "food-lion",
+      "product_name": "Flax seeds, 16oz",
+      "price": 5.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "aldi",
+      "product_name": "Flax seeds, 16oz",
+      "price": 4.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "walmart",
+      "product_name": "Flax seeds, 16oz",
+      "price": 4.79,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "harris-teeter",
+      "product_name": "Flax seeds, 16oz",
+      "price": 6.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "publix",
+      "product_name": "Flax seeds, 16oz",
+      "price": 5.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "lowes-foods",
+      "product_name": "Flax seeds, 16oz",
+      "price": 5.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "fresh-market",
+      "product_name": "Flax seeds, 16oz",
+      "price": 6.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "whole-foods",
+      "product_name": "Flax seeds, 16oz",
+      "price": 7.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "weaver-street",
+      "product_name": "Flax seeds, 16oz",
+      "price": 6.99,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Flax",
+      "food_search": "flax seeds",
+      "store_id": "compare-foods",
+      "product_name": "Flax seeds, 16oz",
+      "price": 4.99,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "food-lion",
+      "product_name": "Pearl barley",
+      "price": 2.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "aldi",
+      "product_name": "Pearl barley",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "walmart",
+      "product_name": "Pearl barley",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "harris-teeter",
+      "product_name": "Pearl barley",
+      "price": 2.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "publix",
+      "product_name": "Pearl barley",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "lowes-foods",
+      "product_name": "Pearl barley",
+      "price": 2.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "fresh-market",
+      "product_name": "Pearl barley",
+      "price": 3.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "whole-foods",
+      "product_name": "Pearl barley",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "weaver-street",
+      "product_name": "Pearl barley",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Barley",
+      "food_search": "barley",
+      "store_id": "compare-foods",
+      "product_name": "Pearl barley",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "food-lion",
+      "product_name": "Beets, red",
+      "price": 2.49,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "aldi",
+      "product_name": "Beets, red",
+      "price": 2.49,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "walmart",
+      "product_name": "Beets, red",
+      "price": 2.49,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "harris-teeter",
+      "product_name": "Beets, red",
+      "price": 3.09,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "publix",
+      "product_name": "Beets, red",
+      "price": 3.29,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "lowes-foods",
+      "product_name": "Beets, red",
+      "price": 3.09,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "fresh-market",
+      "product_name": "Beets, red",
+      "price": 3.79,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "whole-foods",
+      "product_name": "Beets, red",
+      "price": 3.79,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "weaver-street",
+      "product_name": "Beets, red",
+      "price": 3.79,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Beet",
+      "food_search": "beets",
+      "store_id": "compare-foods",
+      "product_name": "Beets, red",
+      "price": 2.79,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "food-lion",
+      "product_name": "Lamb loin chops",
+      "price": 11.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "aldi",
+      "product_name": "Lamb loin chops",
+      "price": 10.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "harris-teeter",
+      "product_name": "Lamb loin chops",
+      "price": 12.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "publix",
+      "product_name": "Lamb loin chops",
+      "price": 13.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "lowes-foods",
+      "product_name": "Lamb loin chops",
+      "price": 14.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "fresh-market",
+      "product_name": "Lamb loin chops",
+      "price": 17.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "whole-foods",
+      "product_name": "Lamb loin chops",
+      "price": 18.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Sheep (Lamb)",
+      "food_search": "lamb chops",
+      "store_id": "weaver-street",
+      "product_name": "Lamb loin chops",
+      "price": 17.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "food-lion",
+      "product_name": "Bell pepper, green",
+      "price": 1.09,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "aldi",
+      "product_name": "Bell pepper, green",
+      "price": 0.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "walmart",
+      "product_name": "Bell pepper, green",
+      "price": 1.09,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "harris-teeter",
+      "product_name": "Bell pepper, green",
+      "price": 1.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "publix",
+      "product_name": "Bell pepper, green",
+      "price": 1.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "lowes-foods",
+      "product_name": "Bell pepper, green",
+      "price": 1.29,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "fresh-market",
+      "product_name": "Bell pepper, green",
+      "price": 1.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "whole-foods",
+      "product_name": "Bell pepper, green",
+      "price": 1.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "weaver-street",
+      "product_name": "Bell pepper, green",
+      "price": 1.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Capsicum",
+      "food_search": "bell peppers",
+      "store_id": "compare-foods",
+      "product_name": "Bell pepper, green",
+      "price": 1.29,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "food-lion",
+      "product_name": "Strawberries, fresh",
+      "price": 3.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "aldi",
+      "product_name": "Strawberries, fresh",
+      "price": 3.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "walmart",
+      "product_name": "Strawberries, fresh",
+      "price": 2.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "harris-teeter",
+      "product_name": "Strawberries, fresh",
+      "price": 3.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "publix",
+      "product_name": "Strawberries, fresh",
+      "price": 3.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "lowes-foods",
+      "product_name": "Strawberries, fresh",
+      "price": 3.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "fresh-market",
+      "product_name": "Strawberries, fresh",
+      "price": 4.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "whole-foods",
+      "product_name": "Strawberries, fresh",
+      "price": 4.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "weaver-street",
+      "product_name": "Strawberries, fresh",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Rose family",
+      "food_search": "strawberries",
+      "store_id": "compare-foods",
+      "product_name": "Strawberries, fresh",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "food-lion",
+      "product_name": "Carrots, whole",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "aldi",
+      "product_name": "Carrots, whole",
+      "price": 0.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "walmart",
+      "product_name": "Carrots, whole",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "harris-teeter",
+      "product_name": "Carrots, whole",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "publix",
+      "product_name": "Carrots, whole",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "lowes-foods",
+      "product_name": "Carrots, whole",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "fresh-market",
+      "product_name": "Carrots, whole",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "whole-foods",
+      "product_name": "Carrots, whole",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "weaver-street",
+      "product_name": "Carrots, whole",
+      "price": 1.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Carrot/Celery family",
+      "food_search": "carrots",
+      "store_id": "compare-foods",
+      "product_name": "Carrots, whole",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "food-lion",
+      "product_name": "Kale, curly",
+      "price": 2.09,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "aldi",
+      "product_name": "Kale, curly",
+      "price": 1.99,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "walmart",
+      "product_name": "Kale, curly",
+      "price": 2.09,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "harris-teeter",
+      "product_name": "Kale, curly",
+      "price": 2.79,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "publix",
+      "product_name": "Kale, curly",
+      "price": 2.99,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "lowes-foods",
+      "product_name": "Kale, curly",
+      "price": 2.49,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "fresh-market",
+      "product_name": "Kale, curly",
+      "price": 3.29,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "whole-foods",
+      "product_name": "Kale, curly",
+      "price": 3.29,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "weaver-street",
+      "product_name": "Kale, curly",
+      "price": 3.49,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Mustard family",
+      "food_search": "kale",
+      "store_id": "compare-foods",
+      "product_name": "Kale, curly",
+      "price": 2.29,
+      "unit": "per bunch",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "food-lion",
+      "product_name": "Russet potatoes",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "aldi",
+      "product_name": "Russet potatoes",
+      "price": 0.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "walmart",
+      "product_name": "Russet potatoes",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "harris-teeter",
+      "product_name": "Russet potatoes",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "publix",
+      "product_name": "Russet potatoes",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "lowes-foods",
+      "product_name": "Russet potatoes",
+      "price": 1.09,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "fresh-market",
+      "product_name": "Russet potatoes",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "whole-foods",
+      "product_name": "Russet potatoes",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "weaver-street",
+      "product_name": "Russet potatoes",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Nightshade family",
+      "food_search": "potatoes",
+      "store_id": "compare-foods",
+      "product_name": "Russet potatoes",
+      "price": 0.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "food-lion",
+      "product_name": "Lima beans, canned",
+      "price": 1.29,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "aldi",
+      "product_name": "Lima beans, canned",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "walmart",
+      "product_name": "Lima beans, canned",
+      "price": 1.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "harris-teeter",
+      "product_name": "Lima beans, canned",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "publix",
+      "product_name": "Lima beans, canned",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "lowes-foods",
+      "product_name": "Lima beans, canned",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "fresh-market",
+      "product_name": "Lima beans, canned",
+      "price": 1.49,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "whole-foods",
+      "product_name": "Lima beans, canned",
+      "price": 2.09,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "weaver-street",
+      "product_name": "Lima beans, canned",
+      "price": 1.79,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Legume family",
+      "food_search": "lima beans",
+      "store_id": "compare-foods",
+      "product_name": "Lima beans, canned",
+      "price": 1.29,
+      "unit": "per can",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "food-lion",
+      "product_name": "Okra, fresh",
+      "price": 3.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "aldi",
+      "product_name": "Okra, fresh",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "walmart",
+      "product_name": "Okra, fresh",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "harris-teeter",
+      "product_name": "Okra, fresh",
+      "price": 3.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "publix",
+      "product_name": "Okra, fresh",
+      "price": 3.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "lowes-foods",
+      "product_name": "Okra, fresh",
+      "price": 3.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "fresh-market",
+      "product_name": "Okra, fresh",
+      "price": 4.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "whole-foods",
+      "product_name": "Okra, fresh",
+      "price": 4.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "weaver-street",
+      "product_name": "Okra, fresh",
+      "price": 4.79,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Abelmoschus esculentus",
+      "food_search": "okra",
+      "store_id": "compare-foods",
+      "product_name": "Okra, fresh",
+      "price": 2.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "food-lion",
+      "product_name": "Kiwi fruit",
+      "price": 0.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "aldi",
+      "product_name": "Kiwi fruit",
+      "price": 0.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "walmart",
+      "product_name": "Kiwi fruit",
+      "price": 0.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "harris-teeter",
+      "product_name": "Kiwi fruit",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "publix",
+      "product_name": "Kiwi fruit",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "lowes-foods",
+      "product_name": "Kiwi fruit",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "fresh-market",
+      "product_name": "Kiwi fruit",
+      "price": 0.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "whole-foods",
+      "product_name": "Kiwi fruit",
+      "price": 0.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "weaver-street",
+      "product_name": "Kiwi fruit",
+      "price": 0.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Actinidia",
+      "food_search": "kiwi",
+      "store_id": "compare-foods",
+      "product_name": "Kiwi fruit",
+      "price": 0.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "food-lion",
+      "product_name": "Pistachios, 12oz",
+      "price": 7.79,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "aldi",
+      "product_name": "Pistachios, 12oz",
+      "price": 7.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "walmart",
+      "product_name": "Pistachios, 12oz",
+      "price": 7.09,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "harris-teeter",
+      "product_name": "Pistachios, 12oz",
+      "price": 9.09,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "publix",
+      "product_name": "Pistachios, 12oz",
+      "price": 9.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "lowes-foods",
+      "product_name": "Pistachios, 12oz",
+      "price": 9.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "fresh-market",
+      "product_name": "Pistachios, 12oz",
+      "price": 11.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "whole-foods",
+      "product_name": "Pistachios, 12oz",
+      "price": 12.09,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "weaver-street",
+      "product_name": "Pistachios, 12oz",
+      "price": 11.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Pistacia vera",
+      "food_search": "pistachios",
+      "store_id": "compare-foods",
+      "product_name": "Pistachios, 12oz",
+      "price": 7.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "food-lion",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 7.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "aldi",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 6.99,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "walmart",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 7.09,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "harris-teeter",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 7.99,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "publix",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 8.09,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "lowes-foods",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 8.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "fresh-market",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 10.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "whole-foods",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 10.49,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "weaver-street",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 10.99,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Anacardium occidentale",
+      "food_search": "cashews",
+      "store_id": "compare-foods",
+      "product_name": "Cashews, roasted 10oz",
+      "price": 7.29,
+      "unit": "per bag",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "food-lion",
+      "product_name": "Sweet potatoes",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "aldi",
+      "product_name": "Sweet potatoes",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "walmart",
+      "product_name": "Sweet potatoes",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "harris-teeter",
+      "product_name": "Sweet potatoes",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "publix",
+      "product_name": "Sweet potatoes",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "lowes-foods",
+      "product_name": "Sweet potatoes",
+      "price": 1.49,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "fresh-market",
+      "product_name": "Sweet potatoes",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "whole-foods",
+      "product_name": "Sweet potatoes",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "weaver-street",
+      "product_name": "Sweet potatoes",
+      "price": 1.99,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ipomoea",
+      "food_search": "sweet potato",
+      "store_id": "compare-foods",
+      "product_name": "Sweet potatoes",
+      "price": 1.29,
+      "unit": "per lb",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "food-lion",
+      "product_name": "Turmeric, ground",
+      "price": 0.79,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "aldi",
+      "product_name": "Turmeric, ground",
+      "price": 0.79,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "walmart",
+      "product_name": "Turmeric, ground",
+      "price": 0.79,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "harris-teeter",
+      "product_name": "Turmeric, ground",
+      "price": 1.09,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "publix",
+      "product_name": "Turmeric, ground",
+      "price": 1.09,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "lowes-foods",
+      "product_name": "Turmeric, ground",
+      "price": 0.99,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "fresh-market",
+      "product_name": "Turmeric, ground",
+      "price": 1.29,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "whole-foods",
+      "product_name": "Turmeric, ground",
+      "price": 1.49,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "weaver-street",
+      "product_name": "Turmeric, ground",
+      "price": 1.29,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Curcuma",
+      "food_search": "turmeric",
+      "store_id": "compare-foods",
+      "product_name": "Turmeric, ground",
+      "price": 0.99,
+      "unit": "per oz",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "food-lion",
+      "product_name": "Pineapple, whole",
+      "price": 2.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "aldi",
+      "product_name": "Pineapple, whole",
+      "price": 3.09,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "walmart",
+      "product_name": "Pineapple, whole",
+      "price": 2.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "harris-teeter",
+      "product_name": "Pineapple, whole",
+      "price": 3.49,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "publix",
+      "product_name": "Pineapple, whole",
+      "price": 3.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "lowes-foods",
+      "product_name": "Pineapple, whole",
+      "price": 3.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "fresh-market",
+      "product_name": "Pineapple, whole",
+      "price": 4.29,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "whole-foods",
+      "product_name": "Pineapple, whole",
+      "price": 4.99,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "weaver-street",
+      "product_name": "Pineapple, whole",
+      "price": 4.79,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    },
+    {
+      "food_id": "Ananas comosus",
+      "food_search": "pineapple",
+      "store_id": "compare-foods",
+      "product_name": "Pineapple, whole",
+      "price": 3.29,
+      "unit": "each",
+      "scraped_at": "2026-05-18"
+    }
+  ]
+}
