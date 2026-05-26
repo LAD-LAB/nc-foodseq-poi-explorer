@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NC FoodSeq Wastewater Visualization</title>
 
+    <!-- Google Fonts for Trends redesign -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 
@@ -700,6 +705,450 @@
             background: #111827;
             color: #fff;
             font-weight: 600;
+        }
+
+        /* ========== TRENDS REDESIGN TOKENS ========== */
+        :root {
+            --t-ink:        #0b1220;
+            --t-text:       #1f2937;
+            --t-muted:      #64748b;
+            --t-muted-2:    #94a3b8;
+            --t-line:       #e5e7eb;
+            --t-line-2:     #eef0f3;
+            --t-bg:         #faf9f5;
+            --t-surface:    #ffffff;
+            --t-surface-2:  #f5f3ee;
+            --t-tint:       #eef2fb;
+            --t-navy:       #1e3a8a;
+            --t-navy-soft:  #c7d2f0;
+            --t-rust:       #b8612a;
+            --t-green:      #15803d;
+            --t-red:        #b91c1c;
+            --t-r-card:     14px;
+            --t-r-pill:     999px;
+            --t-sans:  "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --t-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+            --t-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+        }
+
+        /* ========== TRENDS VIEW REDESIGNED ========== */
+        #trendsView {
+            background: var(--t-bg) !important;
+            font-family: var(--t-sans);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+        #trendsView .trends-page {
+            max-width: 1380px;
+            margin: 0 auto;
+        }
+
+        /* Top bar / breadcrumb override */
+        #trendsView .trends-topbar {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 24px; margin-bottom: 32px;
+        }
+        #trendsView .trends-crumb {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-size: 13px; color: var(--t-muted);
+        }
+        #trendsView .trends-crumb a {
+            color: var(--t-muted); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 6px 10px 6px 8px;
+            border-radius: var(--t-r-pill);
+            transition: background .15s ease, color .15s ease;
+        }
+        #trendsView .trends-crumb a:hover { background: var(--t-surface); color: var(--t-ink); }
+        #trendsView .trends-crumb .sep { color: var(--t-muted-2); }
+        #trendsView .trends-crumb .here { color: var(--t-ink); font-weight: 500; }
+
+        /* Hero */
+        #trendsView .trends-hero {
+            display: grid;
+            grid-template-columns: 1.25fr 1fr;
+            gap: 44px;
+            align-items: end;
+            padding-bottom: 26px;
+            border-bottom: 1px solid var(--t-line);
+            margin-bottom: 26px;
+        }
+        #trendsView .trends-eyebrow {
+            font: 500 11px/1 var(--t-mono);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--t-muted);
+            margin-bottom: 14px;
+        }
+        #trendsView .trends-h1 {
+            font-family: var(--t-serif);
+            font-weight: 400;
+            font-size: clamp(34px, 3.6vw, 48px);
+            line-height: 1.1;
+            letter-spacing: -0.01em;
+            color: var(--t-ink);
+            margin: 0 0 18px;
+            text-wrap: balance;
+        }
+        #trendsView .trends-h1 em { font-style: italic; color: var(--t-navy); }
+        #trendsView .trends-h1-sub {
+            color: var(--t-muted); font-size: 15px; max-width: 56ch; margin: 0;
+        }
+        #trendsView .trends-h1-sub b { color: var(--t-text); font-weight: 600; }
+
+        /* KPIs */
+        #trendsView .trends-kpis {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        #trendsView .trends-kpi-label {
+            font: 500 10.5px/1 var(--t-mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--t-muted);
+            margin-bottom: 8px;
+        }
+        #trendsView .trends-kpi-val {
+            font-family: var(--t-serif);
+            font-weight: 400;
+            font-size: 34px;
+            line-height: 1;
+            color: var(--t-ink);
+            letter-spacing: -0.01em;
+            display: flex; align-items: baseline; gap: 8px;
+            flex-wrap: wrap;
+        }
+        #trendsView .trends-kpi-val .unit {
+            font-family: var(--t-sans); font-size: 13px; color: var(--t-muted-2); font-weight: 400; letter-spacing: 0;
+        }
+        #trendsView .trends-kpi-val.pos { color: var(--t-green); }
+        #trendsView .trends-kpi-val.neg { color: var(--t-red); }
+        #trendsView .trends-kpi-foot {
+            margin-top: 8px; font-size: 12px; color: var(--t-muted);
+        }
+
+        /* Toolbar */
+        #trendsView .trends-toolbar {
+            display: flex; flex-wrap: wrap; gap: 8px 22px;
+            align-items: center;
+            margin-bottom: 26px;
+            padding: 12px 16px;
+            background: var(--t-surface);
+            border: 1px solid var(--t-line);
+            border-radius: var(--t-r-card);
+        }
+        #trendsView .trends-field {
+            display: inline-flex; align-items: center; gap: 10px; min-height: 32px;
+        }
+        #trendsView .trends-field-label {
+            font: 500 10.5px/1 var(--t-mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--t-muted-2);
+        }
+
+        /* Segmented pill control */
+        #trendsView .trends-seg {
+            display: inline-flex;
+            background: var(--t-surface-2);
+            padding: 3px;
+            border-radius: var(--t-r-pill);
+            gap: 2px;
+        }
+        #trendsView .trends-seg button {
+            border: 0; background: transparent;
+            padding: 6px 11px;
+            border-radius: var(--t-r-pill);
+            font: 500 12.5px/1 var(--t-sans);
+            color: var(--t-muted);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        #trendsView .trends-seg button:hover { color: var(--t-ink); }
+        #trendsView .trends-seg button[aria-pressed="true"] {
+            background: var(--t-ink); color: #fff;
+            box-shadow: 0 1px 2px rgba(15,23,42,.18);
+        }
+
+        /* Chips */
+        #trendsView .trends-chip {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 5px 10px 5px 8px;
+            border-radius: var(--t-r-pill);
+            background: var(--t-tint);
+            color: var(--t-navy);
+            font: 500 12.5px/1 var(--t-sans);
+            border: 1px solid #d8dffa;
+        }
+        #trendsView .trends-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+        #trendsView .trends-chip .x {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 16px; height: 16px; border-radius: 50%;
+            color: var(--t-navy); opacity: .55; cursor: pointer;
+            font-size: 14px;
+        }
+        #trendsView .trends-chip .x:hover { opacity: 1; background: rgba(30,58,138,.1); }
+        #trendsView .trends-chip.rust { background: #fbf0e6; color: #8a4413; border-color: #f0d8be; }
+        #trendsView .trends-chip.rust .x { color: #8a4413; }
+
+        #trendsView .trends-add-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            height: 28px; padding: 0 12px;
+            border-radius: var(--t-r-pill);
+            border: 1px dashed #cbd5e1;
+            background: transparent;
+            color: var(--t-muted);
+            font: 500 12.5px/1 var(--t-sans);
+            cursor: pointer; white-space: nowrap;
+        }
+        #trendsView .trends-add-btn:hover { color: var(--t-ink); border-color: var(--t-muted); }
+        #trendsView .trends-sep-v { width: 1px; height: 22px; background: var(--t-line); margin: 0 4px; }
+
+        /* Chart grid */
+        #trendsView .trends-grid {
+            display: grid;
+            grid-template-columns: 1.62fr 1fr;
+            gap: 20px;
+        }
+        #trendsView .trends-card {
+            background: var(--t-surface);
+            border: 1px solid var(--t-line);
+            border-radius: var(--t-r-card);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        #trendsView .trends-card-body { flex: 1; }
+        #trendsView .trends-card-head {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            gap: 16px;
+            padding: 18px 22px 6px;
+        }
+        #trendsView .trends-card-title {
+            margin: 0;
+            font: 600 15px/1.25 var(--t-sans);
+            color: var(--t-ink);
+            letter-spacing: -0.005em;
+            display: flex; align-items: center; gap: 8px;
+        }
+        #trendsView .trends-badge {
+            font: 500 10px/1 var(--t-mono);
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 4px 7px;
+            border-radius: 4px;
+            background: var(--t-surface-2);
+            color: var(--t-muted);
+        }
+        #trendsView .trends-badge.primary {
+            background: var(--t-ink); color: #fff;
+        }
+        #trendsView .trends-card-desc {
+            margin: 4px 0 0; color: var(--t-muted); font-size: 12.5px;
+            max-width: 52ch;
+        }
+        #trendsView .trends-card-meta {
+            text-align: right;
+            font: 500 11px/1.3 var(--t-mono);
+            color: var(--t-muted-2);
+            letter-spacing: .04em;
+            white-space: nowrap;
+        }
+        #trendsView .trends-card-meta .v {
+            color: var(--t-ink); font-family: var(--t-sans); font-weight: 600;
+            font-size: 13px; letter-spacing: 0;
+        }
+        #trendsView .trends-card-body { padding: 14px 12px 18px; }
+        #trendsView .trends-card-body svg { width: 100%; display: block; }
+        #trendsView .trends-card-body #trends-slope-svg { height: 340px; }
+        #trendsView .trends-card-body #trends-line-svg { height: 340px; }
+
+        /* X-axis labels */
+        #trendsView .trends-x-axis {
+            position: relative;
+            padding: 6px 0 0 0;
+            height: 16px;
+        }
+        #trendsView .trends-x-axis span {
+            position: absolute;
+            transform: translateX(-50%);
+            font-family: var(--t-mono);
+            font-size: 10.5px;
+            color: var(--t-muted-2);
+            letter-spacing: .04em;
+        }
+
+        /* Card footer */
+        #trendsView .trends-icon-btn {
+            width: 30px; height: 30px;
+            display: inline-flex; align-items: center; justify-content: center;
+            border-radius: 8px; border: 1px solid var(--t-line);
+            background: #fff; color: var(--t-muted);
+            font-size: 14px; cursor: pointer; flex-shrink: 0;
+            transition: color .15s, border-color .15s;
+        }
+        #trendsView .trends-icon-btn:hover { color: var(--t-ink); border-color: #cbd5e1; }
+        #trendsView .trends-card-foot {
+            border-top: 1px dashed var(--t-line);
+            padding: 12px 22px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px;
+            background: #fcfbf7;
+        }
+        #trendsView .trends-legend {
+            display: inline-flex; align-items: center; gap: 14px;
+            font-size: 12px; color: var(--t-muted);
+        }
+        #trendsView .trends-legend .lg-item {
+            display: inline-flex; align-items: center; gap: 7px; color: var(--t-text);
+        }
+        #trendsView .trends-legend .sw { width: 16px; height: 3px; border-radius: 2px; }
+        #trendsView .trends-foot-note {
+            font: 500 11px/1.4 var(--t-mono);
+            color: var(--t-muted);
+            letter-spacing: .02em;
+        }
+
+        /* Data-quality note */
+        #trendsView .trends-note {
+            margin-top: 18px;
+            display: flex; gap: 12px; align-items: flex-start;
+            padding: 14px 18px;
+            border-radius: var(--t-r-card);
+            background: #fff8e1;
+            border: 1px solid #f7e7a8;
+            color: #5d4a0a;
+            font-size: 13px;
+        }
+        #trendsView .trends-note .ic {
+            flex: 0 0 auto;
+            width: 22px; height: 22px;
+            display: inline-flex; align-items: center; justify-content: center;
+            background: #f3c43a; border-radius: 50%; color: #fff;
+            font: 700 13px/1 var(--t-mono);
+        }
+        #trendsView .trends-note b { color: #3d2f06; font-weight: 600; }
+
+        /* Species search (existing elements inside new toolbar) */
+        #trendsView #trendsSpeciesSearch {
+            padding: 5px 10px; border: 1px solid #cbd5e1; border-radius: var(--t-r-pill);
+            font: 500 12.5px/1 var(--t-sans); width: 140px;
+            color: var(--t-ink); background: var(--t-surface);
+        }
+        #trendsView #trendsSpeciesSuggestions {
+            border-radius: 0 0 10px 10px !important;
+        }
+
+        /* Site add select styled */
+        #trendsView #trends-site-add {
+            height: 28px; padding: 0 10px;
+            border-radius: var(--t-r-pill) !important;
+            border: 1px dashed #cbd5e1 !important;
+            background: transparent !important;
+            color: var(--t-muted) !important;
+            font: 500 12.5px/1 var(--t-sans) !important;
+            cursor: pointer;
+        }
+
+        /* Comparison table (multi-species mode) */
+        #trendsView .trends-comp-table {
+            background: #fff;
+            border: 1px solid var(--t-line);
+            border-radius: 14px;
+            padding: 10px 4px 4px;
+        }
+        #trendsView .trends-comp-header {
+            display: grid;
+            grid-template-columns: 1fr 64px 80px 76px 56px;
+            padding: 4px 16px 8px;
+            border-bottom: 1px solid var(--t-line);
+        }
+        #trendsView .trends-comp-header span {
+            font: 500 10.5px/1 var(--t-mono);
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--t-muted-2);
+        }
+        #trendsView .trends-comp-header span:not(:first-child) {
+            text-align: right;
+        }
+        #trendsView .trends-comp-row {
+            display: grid;
+            grid-template-columns: 1fr 64px 80px 76px 56px;
+            padding: 10px 16px;
+            align-items: center;
+            border-bottom: 1px solid var(--t-line-2);
+        }
+        #trendsView .trends-comp-row:last-child {
+            border-bottom: none;
+        }
+        #trendsView .trends-comp-series {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        #trendsView .trends-comp-swatch {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+        #trendsView .trends-comp-name {
+            font: 500 14px/1.3 var(--t-sans);
+            color: var(--t-ink);
+        }
+        #trendsView .trends-comp-sub {
+            font: 400 12px/1.3 var(--t-sans);
+            color: var(--t-muted-2);
+            margin-left: 6px;
+        }
+        #trendsView .trends-comp-trend {
+            text-align: right;
+        }
+        #trendsView .trends-comp-latest {
+            text-align: right;
+            display: flex;
+            align-items: baseline;
+            justify-content: flex-end;
+            gap: 3px;
+        }
+        #trendsView .trends-comp-latest .val {
+            font-family: var(--t-serif);
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--t-ink);
+        }
+        #trendsView .trends-comp-latest .suffix {
+            font: 400 11px/1 var(--t-sans);
+            color: var(--t-muted-2);
+        }
+        #trendsView .trends-comp-change {
+            text-align: right;
+            font: 600 13px/1 var(--t-sans);
+        }
+        #trendsView .trends-comp-change.pos { color: var(--t-green); }
+        #trendsView .trends-comp-change.flat { color: var(--t-muted); }
+        #trendsView .trends-comp-change.neg { color: var(--t-red); }
+        #trendsView .trends-comp-rank {
+            text-align: right;
+            font: 500 13px/1 var(--t-mono);
+            color: var(--t-text);
+        }
+
+        /* Multi-species hero layout override */
+        #trendsView .trends-hero.multi {
+            grid-template-columns: 1.1fr 1.1fr;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            #trendsView .trends-grid { grid-template-columns: 1fr; }
+            #trendsView .trends-hero { grid-template-columns: 1fr; gap: 22px; }
+        }
+        @media (max-width: 720px) {
+            #trendsView .trends-kpis { gap: 12px; }
+            #trendsView .trends-kpi-val { font-size: 26px; }
         }
 
         /* Custom Leaflet styles */
@@ -2123,7 +2572,7 @@
             <button class="header-tab active" onclick="switchView('map')">Map</button>
             <button class="header-tab" onclick="switchView('trends')">Trends</button>
             <button class="header-tab" onclick="switchView('find-food')">Food Near Me</button>
-            <button class="header-tab" onclick="switchView('about')">About</button>
+            <button class="header-tab" onclick="window.open('https://edibleatlas.org/','_blank')">About</button>
         </div>
         <div class="header-utils">
             <button class="header-icon-btn" title="Share" onclick="shareMap()">&#8599;</button>
@@ -2286,56 +2735,146 @@
 
     <!-- Food Near Me view (hidden by default) -->
     <!-- Trends view -->
-    <div id="trendsView" style="display:none;position:absolute;top:50px;left:0;right:0;bottom:0;z-index:999;background:#f9fafb;overflow:auto;padding:28px 32px 60px;">
-        <div class="trends-breadcrumb" id="trendsBreadcrumb" style="display:none;"></div>
-        <h1 style="font-size:20px;margin:0 0 4px;color:#111827;letter-spacing:-0.01em;">Line vs Slopegraph</h1>
-        <p style="color:#6b7280;font-size:13px;margin-bottom:18px;max-width:720px;">
-            Visualize how food detection trends change over time across sampling sites.
-            Select a <b style="color:#1f2937;">site or tract</b> and toggle between time windows to compare chart types.
-        </p>
+    <div id="trendsView" style="display:none;position:absolute;top:50px;left:0;right:0;bottom:0;z-index:999;overflow:auto;padding:28px 32px 60px;">
+        <div class="trends-page">
+            <!-- Breadcrumb (populated by navigateToTrends) -->
+            <div class="trends-breadcrumb" id="trendsBreadcrumb" style="display:none;"></div>
 
-        <div style="display:flex;gap:8px;align-items:center;margin-bottom:18px;flex-wrap:wrap;">
-            <span style="font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;margin-right:4px;">Points</span>
-            <div class="toggle-group" id="trends-n-toggle" role="group" aria-label="Number of months">
-                <button data-n="2" aria-pressed="false" onclick="setTrendsN(2,this)">2 mo</button>
-                <button data-n="6" aria-pressed="false" onclick="setTrendsN(6,this)">6 mo</button>
-                <button data-n="12" aria-pressed="true" onclick="setTrendsN(12,this)">12 mo</button>
-                <button data-n="24" aria-pressed="false" onclick="setTrendsN(24,this)">24 mo</button>
+            <!-- Hero: headline + KPI band -->
+            <section class="trends-hero" id="trendsHero" style="display:none;">
+                <div>
+                    <div class="trends-eyebrow" id="trendsHeroEyebrow"></div>
+                    <h1 class="trends-h1" id="trendsHeroHeadline"></h1>
+                    <p class="trends-h1-sub" id="trendsHeroSub"></p>
+                </div>
+                <div class="trends-kpis" id="trendsKpis">
+                    <div>
+                        <div class="trends-kpi-label">Latest</div>
+                        <div class="trends-kpi-val" id="trendsKpiLatest"></div>
+                        <div class="trends-kpi-foot" id="trendsKpiLatestFoot"></div>
+                    </div>
+                    <div>
+                        <div class="trends-kpi-label">Change</div>
+                        <div class="trends-kpi-val" id="trendsKpiChange"></div>
+                        <div class="trends-kpi-foot" id="trendsKpiChangeFoot"></div>
+                    </div>
+                    <div>
+                        <div class="trends-kpi-label">Rank in Durham</div>
+                        <div class="trends-kpi-val" id="trendsKpiRank"></div>
+                        <div class="trends-kpi-foot" id="trendsKpiRankFoot"></div>
+                    </div>
+                </div>
+                <!-- Comparison table (multi-species mode, hidden by default) -->
+                <div class="trends-comp-table" id="trendsCompTable" style="display:none;">
+                    <div class="trends-comp-header">
+                        <span>Series</span>
+                        <span>Trend</span>
+                        <span>Latest</span>
+                        <span>Change</span>
+                        <span>Rank</span>
+                    </div>
+                    <div id="trendsCompRows"></div>
+                </div>
+            </section>
+
+            <!-- Toolbar -->
+            <div class="trends-toolbar" role="toolbar" aria-label="Trend filters">
+                <div class="trends-field">
+                    <span class="trends-field-label">Window</span>
+                    <div class="trends-seg" id="trends-n-toggle" role="group" aria-label="Number of months">
+                        <button data-n="2" aria-pressed="false" onclick="setTrendsN(2,this)">2 mo</button>
+                        <button data-n="6" aria-pressed="false" onclick="setTrendsN(6,this)">6 mo</button>
+                        <button data-n="12" aria-pressed="true" onclick="setTrendsN(12,this)">12 mo</button>
+                        <button data-n="24" aria-pressed="false" onclick="setTrendsN(24,this)">24 mo</button>
+                        <button data-n="9999" aria-pressed="false" onclick="setTrendsN(9999,this)">All</button>
+                    </div>
+                </div>
+
+                <span class="trends-sep-v"></span>
+
+                <div class="trends-field">
+                    <span class="trends-field-label">Sites</span>
+                    <div id="trendsSiteTags" style="display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
+                    <select id="trends-site-add" onchange="addTrendsSite(this.value);this.value=''">
+                        <option value="">+ Add site</option>
+                    </select>
+                </div>
+
+                <span class="trends-sep-v"></span>
+
+                <div class="trends-field">
+                    <span class="trends-field-label">Species</span>
+                    <div id="trendsSpeciesTags" style="display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
+                    <div style="position:relative;">
+                        <input type="text" id="trendsSpeciesSearch" placeholder="+ Add species" autocomplete="off"
+                            oninput="onTrendsSpeciesSearch(this.value)" onkeydown="onTrendsSpeciesKeydown(event)">
+                        <div id="trendsSpeciesSuggestions" style="display:none;position:absolute;top:100%;left:0;z-index:10;background:#fff;border:1.5px solid #d1d5db;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:220px;"></div>
+                    </div>
+                </div>
             </div>
-            <span style="width:16px"></span>
-            <span style="font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;margin-right:4px;">Sites</span>
-            <select id="trends-site-add" onchange="addTrendsSite(this.value);this.value=''" style="padding:5px 10px;border:1px solid #d1d5db;border-radius:6px;font:inherit;font-size:12.5px;color:#111827;">
-                <option value="">+ Add site...</option>
-            </select>
-            <div id="trendsSiteTags" style="display:flex;flex-wrap:wrap;gap:4px;"></div>
-        </div>
 
-        <div style="display:flex;gap:8px;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;">
-            <span style="font-size:12px;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;padding-top:6px;">Species</span>
-            <div id="trendsSpeciesTags" style="display:flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
-            <div style="position:relative;">
-                <input type="text" id="trendsSpeciesSearch" placeholder="Add species..." autocomplete="off"
-                    style="padding:5px 10px;border:1px solid #d1d5db;border-radius:6px;font:inherit;font-size:12.5px;width:160px;"
-                    oninput="onTrendsSpeciesSearch(this.value)" onkeydown="onTrendsSpeciesKeydown(event)">
-                <div id="trendsSpeciesSuggestions" style="display:none;position:absolute;top:100%;left:0;z-index:10;background:#fff;border:1.5px solid #d1d5db;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);width:220px;"></div>
+            <!-- Chart grid -->
+            <div class="trends-grid" id="trends-grid">
+                <!-- LINE CHART card -->
+                <article class="trends-card" id="trendsLineCard">
+                    <header class="trends-card-head">
+                        <div>
+                            <h2 class="trends-card-title" id="trendsLineCardTitle">Line chart <span class="trends-badge primary" id="trendsLineBadge">Primary</span></h2>
+                            <p class="trends-card-desc" id="trendsLineCardDesc">Every monthly value is plotted — seasonality, dips, and noise are all visible as more samples come in.</p>
+                        </div>
+                        <div style="display:flex;align-items:flex-start;gap:8px;">
+                            <div class="trends-card-meta" id="trendsLineCardMeta">
+                                <div class="v" id="trendsLineMetaRange"></div>
+                                <div id="trendsLineMetaSamples"></div>
+                            </div>
+                            <button class="trends-icon-btn" title="Download PNG" onclick="downloadChart('trends-line-svg','line-chart')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8m0 0l-3-3m3 3l3-3"/><path d="M3 12h10"/></svg></button>
+                            <button class="trends-icon-btn" title="Copy chart link" onclick="shareChart('line')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="7" height="8" rx="1.5"/><path d="M4 11V3.5A1.5 1.5 0 0 1 5.5 2H10"/></svg></button>
+                        </div>
+                    </header>
+                    <div class="trends-card-body">
+                        <svg id="trends-line-svg" viewBox="0 0 760 360" preserveAspectRatio="none" aria-label="Line chart of food trends"></svg>
+                        <div class="trends-x-axis" id="trends-line-x"></div>
+                    </div>
+                    <footer class="trends-card-foot">
+                        <div class="trends-legend" id="trends-line-legend"></div>
+                        <div class="trends-foot-note" id="trendsLineFootNote"></div>
+                    </footer>
+                </article>
+
+                <!-- SLOPEGRAPH card -->
+                <article class="trends-card" id="trendsSlopeCard">
+                    <header class="trends-card-head">
+                        <div>
+                            <h2 class="trends-card-title">Slopegraph <span class="trends-badge">Alt view</span></h2>
+                            <p class="trends-card-desc">Only the <b>first</b> and <b>last</b> values plotted — collapses the path to net change.</p>
+                        </div>
+                        <div style="display:flex;align-items:flex-start;gap:8px;">
+                            <div class="trends-card-meta" id="trendsSlopeCardMeta">
+                                <div class="v" id="trendsSlopeMetaRange"></div>
+                                <div id="trendsSlopeMetaSamples">net change</div>
+                            </div>
+                            <button class="trends-icon-btn" title="Download PNG" onclick="downloadChart('trends-slope-svg','slopegraph')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8m0 0l-3-3m3 3l3-3"/><path d="M3 12h10"/></svg></button>
+                            <button class="trends-icon-btn" title="Copy chart link" onclick="shareChart('slope')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="7" height="8" rx="1.5"/><path d="M4 11V3.5A1.5 1.5 0 0 1 5.5 2H10"/></svg></button>
+                        </div>
+                    </header>
+                    <div class="trends-card-body">
+                        <svg id="trends-slope-svg" viewBox="0 0 520 360" preserveAspectRatio="none" aria-label="Slopegraph of food trends" style="aspect-ratio:520/360;"></svg>
+                    </div>
+                    <footer class="trends-card-foot">
+                        <div class="trends-legend" id="trends-slope-legend"></div>
+                        <div class="trends-foot-note"></div>
+                    </footer>
+                </article>
             </div>
-        </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" id="trends-grid">
-            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px 20px 22px;">
-                <h2 style="margin:0 0 2px;font-size:15px;font-weight:700;color:#111827;">Line chart</h2>
-                <div style="color:#6b7280;font-size:12.5px;margin-bottom:14px;">Every monthly value is plotted — seasonality, dips, and noise are all visible.</div>
-                <div><svg id="trends-line-svg" viewBox="0 0 560 360" preserveAspectRatio="none" aria-label="Line chart of food trends" style="width:100%;height:auto;display:block;"></svg></div>
-                <div id="trends-line-x" style="display:flex;justify-content:space-between;font-size:10.5px;color:#6b7280;padding:6px 6px 0;"></div>
-                <div id="trends-line-legend" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:12px;"></div>
+            <!-- Data-quality note (shown when sampleCount < 4) -->
+            <div class="trends-note" id="trendsDataNote" role="note" style="display:none;">
+                <span class="ic">i</span>
+                <div id="trendsDataNoteBody"></div>
             </div>
 
-            <div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:18px 20px 22px;">
-                <h2 style="margin:0 0 2px;font-size:15px;font-weight:700;color:#111827;">Slopegraph</h2>
-                <div style="color:#6b7280;font-size:12.5px;margin-bottom:14px;">Only the <b style="color:#1f2937;">first</b> and <b style="color:#1f2937;">last</b> values are plotted — everything in between is collapsed to a straight line.</div>
-                <div><svg id="trends-slope-svg" viewBox="0 0 700 360" preserveAspectRatio="none" aria-label="Slopegraph of food trends" style="width:100%;height:auto;display:block;"></svg></div>
-                <div id="trends-slope-x" style="display:flex;justify-content:space-between;font-size:10.5px;color:#6b7280;padding:6px 6px 0;"></div>
-                <div id="trends-slope-legend" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px;font-size:12px;"></div>
+            <div style="text-align:center;padding:24px 0 0;font-size:13px;color:#64748b;">
+                Want the raw numbers? <a href="data/foodseq_data.json" download="foodseq_data.json" style="color:#1e3a8a;font-weight:600;text-decoration:none;border-bottom:1px solid #1e3a8a40;">Download the dataset</a> <span style="color:#94a3b8;">(JSON, 1.2 MB) — last updated Feb 2026</span>
             </div>
         </div>
     </div>
@@ -5819,70 +6358,107 @@
             const plants = getPlantsInTract(tractNum);
             if (!plants.length) return [];
 
+            const MIN_ABUNDANCE = 5;  // minimum normalized reads to consider
+            const PCT_CAP = 500;      // cap displayed percentage
+            const PCT_THRESHOLD = 100; // minimum % change to flag
+
             const dates = foodseqData.dates.filter(d => {
                 return plants.some(p => p.timeseries[d]);
             }).sort();
 
             if (dates.length < 2) return [];
 
-            const prevDate = dates[dates.length - 2];
             const currDate = dates[dates.length - 1];
-            const agg = aggregatePlantsData(plants);
-            const allSpecies = { ...agg.plants, ...agg.animals };
+            const prevDates = dates.slice(0, -1); // all dates except the latest
 
-            // Get previous period data
-            const prevPlants = {};
-            const prevAnimals = {};
-            plants.forEach(p => {
-                const td = p.timeseries[prevDate];
-                if (!td) return;
-                Object.entries(td.plants || {}).forEach(([sp, v]) => { if (v > 0) prevPlants[sp] = (prevPlants[sp] || 0) + v; });
-                Object.entries(td.animals || {}).forEach(([sp, v]) => { if (v > 0) prevAnimals[sp] = (prevAnimals[sp] || 0) + v; });
-            });
-            const prevAll = { ...prevPlants, ...prevAnimals };
-
-            // Get current period data
-            const currPlants = {};
-            const currAnimals = {};
+            // Get current period data (aggregated across sites)
+            const currAll = {};
             plants.forEach(p => {
                 const td = p.timeseries[currDate];
                 if (!td) return;
-                Object.entries(td.plants || {}).forEach(([sp, v]) => { if (v > 0) currPlants[sp] = (currPlants[sp] || 0) + v; });
-                Object.entries(td.animals || {}).forEach(([sp, v]) => { if (v > 0) currAnimals[sp] = (currAnimals[sp] || 0) + v; });
+                Object.entries(td.plants || {}).forEach(([sp, v]) => { if (v > 0) currAll[sp] = (currAll[sp] || 0) + v; });
+                Object.entries(td.animals || {}).forEach(([sp, v]) => { if (v > 0) currAll[sp] = (currAll[sp] || 0) + v; });
             });
-            const currAll = { ...currPlants, ...currAnimals };
+
+            // Get historical average across ALL previous dates
+            const prevTotals = {};  // sp -> sum of values across previous months
+            const prevCounts = {};  // sp -> number of months where species was present
+            const prevMonthsWithData = new Set(); // months where tract had any data
+
+            prevDates.forEach(date => {
+                let monthHasData = false;
+                plants.forEach(p => {
+                    const td = p.timeseries[date];
+                    if (!td) return;
+                    const allEntries = { ...(td.plants || {}), ...(td.animals || {}) };
+                    Object.entries(allEntries).forEach(([sp, v]) => {
+                        if (v > 0) {
+                            monthHasData = true;
+                            prevTotals[sp] = (prevTotals[sp] || 0) + v;
+                            prevCounts[sp] = (prevCounts[sp] || 0) + 1;
+                        }
+                    });
+                });
+                if (monthHasData) prevMonthsWithData.add(date);
+            });
+
+            const nPrevMonths = prevMonthsWithData.size;
+            if (nPrevMonths === 0) return [];
 
             const flagged = [];
-            const allKeys = new Set([...Object.keys(prevAll), ...Object.keys(currAll)]);
+            const allKeys = new Set([...Object.keys(prevTotals), ...Object.keys(currAll)]);
 
             allKeys.forEach(sp => {
-                const prev = prevAll[sp] || 0;
                 const curr = currAll[sp] || 0;
-                if (prev === 0 && curr === 0) return;
+                const prevAvg = prevTotals[sp] ? prevTotals[sp] / nPrevMonths : 0;
+                const monthsSeen = prevCounts[sp] || 0;
 
-                let pctChange = 0;
-                if (prev > 0) pctChange = ((curr - prev) / prev) * 100;
-                else if (curr > 0) pctChange = 999; // new appearance
+                // Skip if both current and historical are below minimum
+                if (curr < MIN_ABUNDANCE && prevAvg < MIN_ABUNDANCE) return;
 
                 const meta = foodseqData.species_metadata[sp];
                 const label = meta ? meta.common_name : sp;
                 if (label.length > 50) return; // skip DNA sequences
 
-                if (Math.abs(pctChange) >= 100) {
+                // New detection — species never seen before in this tract
+                if (monthsSeen === 0 && curr >= MIN_ABUNDANCE) {
+                    flagged.push({
+                        foodId: sp, foodLabel: label, variant: 'spike',
+                        pctChange: 'New', arrow: '\u2605', isNew: true,
+                        focusMonth: currDate,
+                        caption: 'new detection in ' + currDate.slice(5),
+                    });
+                    return;
+                }
+
+                if (prevAvg <= 0) return;
+
+                let pctChange = ((curr - prevAvg) / prevAvg) * 100;
+
+                if (Math.abs(pctChange) >= PCT_THRESHOLD) {
+                    // Cap the display value
+                    const displayPct = Math.min(Math.abs(Math.round(pctChange)), PCT_CAP);
                     const variant = pctChange > 0 ? 'spike' : 'recovery';
                     const arrow = pctChange > 0 ? '\u25B2' : '\u25BC';
-                    const sign = pctChange > 0 ? '+' : '';
-                    const months = prevDate.slice(5) + ' \u2192 ' + currDate.slice(5);
+                    const sign = pctChange > 0 ? '+' : '-';
+                    const baselineLabel = nPrevMonths === 1 ? 'vs prev month' : `vs ${nPrevMonths}-mo avg`;
                     flagged.push({
                         foodId: sp, foodLabel: label, variant,
-                        pctChange: Math.round(pctChange), arrow,
+                        pctChange: displayPct, arrow,
                         focusMonth: currDate,
-                        caption: months,
+                        caption: `${sign}${displayPct}% ${baselineLabel}`,
                     });
                 }
             });
 
-            flagged.sort((a, b) => Math.abs(b.pctChange) - Math.abs(a.pctChange));
+            // Sort: real changes first (by magnitude), new detections last
+            flagged.sort((a, b) => {
+                if (a.isNew && !b.isNew) return 1;
+                if (!a.isNew && b.isNew) return -1;
+                const aPct = typeof a.pctChange === 'number' ? a.pctChange : 0;
+                const bPct = typeof b.pctChange === 'number' ? b.pctChange : 0;
+                return bPct - aPct;
+            });
             return flagged.slice(0, 4);
         }
 
@@ -5906,9 +6482,10 @@
 
             strip.style.display = '';
             strip.innerHTML = flagged.map(f => {
-                const sign = f.pctChange > 0 ? '+' : '';
-                return `<div class="tp-flagged-item ${f.variant}" onclick="navigateToTrends('${tractNum}','${f.foodId}','${f.focusMonth}')" role="button" tabindex="0" aria-label="Open ${f.foodLabel} trend, ${sign}${f.pctChange}% in ${f.focusMonth}">
-                    <span><b>${f.foodLabel} ${f.arrow} ${sign}${f.pctChange}%</b> ${f.caption}</span>
+                const isNew = f.isNew;
+                const changeText = isNew ? `${f.arrow} New` : `${f.arrow} ${f.caption}`;
+                return `<div class="tp-flagged-item ${f.variant}" onclick="navigateToTrends('${tractNum}','${f.foodId}','${f.focusMonth}')" role="button" tabindex="0" aria-label="Open ${f.foodLabel} trend in ${f.focusMonth}">
+                    <span><b>${f.foodLabel}</b> ${changeText}</span>
                     <span class="flag-arrow">\u2192</span>
                 </div>`;
             }).join('');
@@ -6001,6 +6578,11 @@
                 }
             }
 
+            // Auto-select "All" time window so trends match the sparkline's full range
+            trendsN = 9999;
+            document.querySelectorAll('#trends-n-toggle button').forEach(b =>
+                b.setAttribute('aria-pressed', String(b.dataset.n) === '9999'));
+
             // Ensure trends view is initialized first
             switchView('trends');
 
@@ -6012,12 +6594,32 @@
             const navPlantsInTract = getPlantsInTract(tractOrSiteId);
             if (navPlantsInTract.length > 0) {
                 breadcrumbLabel = `Tract ${tractOrSiteId}`;
-                navPlantsInTract.forEach(p => {
-                    if (Object.keys(p.timeseries).length >= 2) {
-                        const pid = Object.entries(foodseqData.plants).find(([, pl]) => pl === p)?.[0];
-                        if (pid) addTrendsSite(pid);
+                // Check which sites are currently toggled on in the tract panel
+                // tractSiteStates keys are name-based (e.g. "Manhole-17863"), convert to plant IDs
+                const activeNames = Object.entries(tractSiteStates)
+                    .filter(([, on]) => on)
+                    .map(([nameKey]) => nameKey.replace(/-/g, ' '));
+                const allNames = Object.keys(tractSiteStates);
+                const allOn = allNames.length === 0 || activeNames.length === allNames.length;
+
+                if (allOn) {
+                    // All sites selected — add as aggregated tract
+                    addTrendsSite('tract_' + tractOrSiteId);
+                } else {
+                    // Only some sites selected — find their plant IDs and add individually
+                    const activePlantIds = [];
+                    activeNames.forEach(name => {
+                        const entry = Object.entries(foodseqData.plants).find(([, p]) => p.name === name);
+                        if (entry) activePlantIds.push(entry[0]);
+                    });
+                    activePlantIds.forEach(pid => addTrendsSite(pid));
+                    if (activePlantIds.length === 1) {
+                        const p = foodseqData.plants[activePlantIds[0]];
+                        if (p) breadcrumbLabel = p.name;
+                    } else if (activePlantIds.length > 1) {
+                        breadcrumbLabel = `Tract ${tractOrSiteId} (${activePlantIds.length} sites)`;
                     }
-                });
+                }
             } else {
                 // It's a site name — find the plant ID
                 const entry = Object.entries(foodseqData.plants).find(([, p]) => p.name === tractOrSiteId);
@@ -6071,13 +6673,54 @@
             const sel = document.getElementById('trends-site-add');
             sel.innerHTML = '<option value="">+ Add site...</option>';
 
-            // Group by type
+            // Build set of pids covered by already-selected tracts
+            const coveredByTract = new Set();
+            trendsSelectedSites.forEach(s => {
+                if (s.isTract && s.tractSites) s.tractSites.forEach(pid => coveredByTract.add(pid));
+            });
+
+            // --- Tracts optgroup (at the top) ---
+            const tractGroups = {};
+            Object.entries(foodseqData.plants).forEach(([pid, p]) => {
+                if (!p.census_tract || p.census_tract === 'unknown') return;
+                const ct = String(p.census_tract);
+                if (!tractGroups[ct]) tractGroups[ct] = [];
+                tractGroups[ct].push({ pid, plant: p });
+            });
+
+            const tracts = [];
+            Object.entries(tractGroups).forEach(([ct, sites]) => {
+                // Only include sites with >= 2 timepoints
+                const qualifiedSites = sites.filter(s => Object.keys(s.plant.timeseries).length >= 2);
+                if (qualifiedSites.length < 2) return;
+                const tractPid = 'tract_' + ct;
+                if (trendsSelectedSites.some(s => s.pid === tractPid)) return;
+                const hood = TRACT_NEIGHBORHOODS[ct] || '';
+                const label = 'Tract ' + ct + (hood ? ' \u00b7 ' + hood : '') + ' (' + qualifiedSites.length + ' sites)';
+                tracts.push({ pid: tractPid, label, ct, siteCount: qualifiedSites.length });
+            });
+
+            if (tracts.length > 0) {
+                tracts.sort((a, b) => a.ct.localeCompare(b.ct, undefined, { numeric: true }));
+                const grp = document.createElement('optgroup');
+                grp.label = 'Tracts (summed)';
+                tracts.forEach(t => {
+                    const opt = document.createElement('option');
+                    opt.value = t.pid;
+                    opt.textContent = t.label;
+                    grp.appendChild(opt);
+                });
+                sel.appendChild(grp);
+            }
+
+            // --- Group individual sites by type ---
             const manholes = [];
             const wwtps = [];
 
             Object.entries(foodseqData.plants).forEach(([pid, p]) => {
                 if (Object.keys(p.timeseries).length < 2) return;
                 if (trendsSelectedSites.some(s => s.pid === pid)) return;
+                if (coveredByTract.has(pid)) return; // skip sites covered by a selected tract
 
                 let label = p.name;
                 const isManhole = p.location_type === 'manhole';
@@ -6117,15 +6760,39 @@
 
         function addTrendsSite(pid) {
             if (!pid || trendsSelectedSites.some(s => s.pid === pid)) return;
-            const p = foodseqData.plants[pid];
-            if (!p) return;
+
             const color = SITE_COLORS[trendsSelectedSites.length % SITE_COLORS.length];
-            let label = p.name;
-            if (p.location_type === 'manhole' && p.census_tract && p.census_tract !== 'unknown') {
-                const hood = TRACT_NEIGHBORHOODS[String(p.census_tract)] || '';
-                if (hood) label += ' \u00b7 ' + hood;
+
+            // Handle tract aggregate entries
+            if (typeof pid === 'string' && pid.startsWith('tract_')) {
+                const tractNum = pid.replace('tract_', '');
+                const hood = TRACT_NEIGHBORHOODS[tractNum] || '';
+                const label = 'Tract ' + tractNum + (hood ? ' \u00b7 ' + hood : '') + ' (summed)';
+                // Collect ALL plant IDs in this tract (include single-timepoint sites for complete aggregation)
+                const tractSites = [];
+                Object.entries(foodseqData.plants).forEach(([plantPid, p]) => {
+                    if (String(p.census_tract) === tractNum && Object.keys(p.timeseries).length >= 1) {
+                        tractSites.push(plantPid);
+                    }
+                });
+                if (tractSites.length === 0) return;
+                // Remove any individually-selected sites that are now covered by this tract
+                trendsSelectedSites = trendsSelectedSites.filter(s => !tractSites.includes(s.pid));
+                trendsSelectedSites.push({ pid, name: label, color, isTract: true, tractSites });
+                // Reassign colors after filtering
+                trendsSelectedSites.forEach((s, i) => s.color = SITE_COLORS[i % SITE_COLORS.length]);
+            } else {
+                const p = foodseqData.plants[pid];
+                if (!p) return;
+                // Don't add if this site is already covered by a selected tract
+                if (trendsSelectedSites.some(s => s.isTract && s.tractSites && s.tractSites.includes(pid))) return;
+                let label = p.name;
+                if (p.location_type === 'manhole' && p.census_tract && p.census_tract !== 'unknown') {
+                    const hood = TRACT_NEIGHBORHOODS[String(p.census_tract)] || '';
+                    if (hood) label += ' \u00b7 ' + hood;
+                }
+                trendsSelectedSites.push({ pid, name: label, color });
             }
-            trendsSelectedSites.push({ pid, name: label, color });
 
             // Keep trendsSiteA/B in sync for getTrendsSeries
             trendsSiteA = trendsSelectedSites[0]?.pid || null;
@@ -6152,13 +6819,13 @@
 
         function renderTrendsSiteTags() {
             const container = document.getElementById('trendsSiteTags');
-            container.innerHTML = trendsSelectedSites.map(s =>
-                `<span style="display:inline-flex;align-items:center;gap:4px;background:${s.color}18;color:${s.color};border:1px solid ${s.color}40;font-size:11px;font-weight:600;padding:3px 8px;border-radius:999px;">
-                    <span style="width:6px;height:6px;border-radius:50%;background:${s.color};"></span>
+            container.innerHTML = trendsSelectedSites.map(s => {
+                return `<span class="trends-chip">
+                    <span class="dot"></span>
                     ${s.name}
-                    <span onclick="removeTrendsSite('${s.pid}')" style="cursor:pointer;opacity:0.6;font-size:13px;">&times;</span>
-                </span>`
-            ).join('');
+                    <span class="x" onclick="removeTrendsSite('${s.pid}')">&times;</span>
+                </span>`;
+            }).join('');
         }
 
         function addTrendsSpecies(id, label) {
@@ -6180,10 +6847,10 @@
         function renderTrendsSpeciesTags() {
             const container = document.getElementById('trendsSpeciesTags');
             container.innerHTML = trendsSelectedFoods.map(f =>
-                `<span style="display:inline-flex;align-items:center;gap:4px;background:${f.color}20;color:${f.color};border:1px solid ${f.color}40;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;">
-                    <span style="width:8px;height:8px;border-radius:50%;background:${f.color};"></span>
+                `<span class="trends-chip rust">
+                    <span class="dot"></span>
                     ${f.label}
-                    <span onclick="removeTrendsSpecies('${f.id}')" style="cursor:pointer;opacity:0.6;font-size:14px;">&times;</span>
+                    <span class="x" onclick="removeTrendsSpecies('${f.id}')">&times;</span>
                 </span>`
             ).join('');
         }
@@ -6196,9 +6863,12 @@
 
             if (!foodseqData || !foodseqData.species_metadata) return;
             const q = query.toLowerCase();
+            const isDNA = s => /^[ATCGatcg]+$/.test(s);
             const matches = Object.entries(foodseqData.species_metadata)
                 .filter(([key, meta]) => {
                     const name = meta.common_name || key;
+                    if (isDNA(key) || isDNA(name)) return false;
+                    if (key.startsWith('NA_Plant_') || key.startsWith('NA_Animal_')) return false;
                     return name.length < 50 && name.toLowerCase().includes(q)
                         && !trendsSelectedFoods.some(f => f.id === key);
                 })
@@ -6263,10 +6933,19 @@
             // Union of all dates across selected sites
             const allDates = new Set();
             trendsSelectedSites.forEach(s => {
-                const plant = foodseqData.plants[s.pid];
-                if (plant) Object.keys(plant.timeseries).forEach(d => allDates.add(d));
+                if (s.isTract && s.tractSites) {
+                    s.tractSites.forEach(pid => {
+                        const plant = foodseqData.plants[pid];
+                        if (plant) Object.keys(plant.timeseries).forEach(d => allDates.add(d));
+                    });
+                } else {
+                    const plant = foodseqData.plants[s.pid];
+                    if (plant) Object.keys(plant.timeseries).forEach(d => allDates.add(d));
+                }
             });
-            const dates = [...allDates].sort().slice(-trendsN);
+            // When "All" is selected, use every date in the dataset (matches sparkline behavior)
+            const datePool = trendsN >= 9999 ? new Set([...foodseqData.dates, ...allDates]) : allDates;
+            const dates = [...datePool].sort().slice(-trendsN);
 
             const months = dates.map(d => {
                 const [y, m] = d.split('-').map(Number);
@@ -6276,34 +6955,79 @@
             const series = [];
             const multiSite = trendsSelectedSites.length > 1;
 
-            trendsSelectedFoods.forEach(food => {
+            // When both multi-site and multi-food, assign a unique color per series
+            // and use dash patterns to differentiate foods at the same site
+            const multiFood = trendsSelectedFoods.length > 1;
+            const MULTI_COLORS = ['#1e3a8a', '#b8612a', '#059669', '#7c3aed', '#dc2626', '#0891b2', '#ca8a04', '#be185d', '#4f46e5', '#ea580c'];
+            const DASH_PATTERNS = ['', '8 4', '4 4', '2 4', '12 4 4 4'];
+            let seriesIdx = 0;
+
+            trendsSelectedFoods.forEach((food, fIdx) => {
                 trendsSelectedSites.forEach((site, sIdx) => {
-                    const plant = foodseqData.plants[site.pid];
-                    if (!plant) return;
+                    let rawData;
 
-                    const rawData = dates.map(date => {
-                        const td = plant.timeseries[date];
-                        if (!td) return null;
-                        // Check if the site has ANY real data this month (not just empty timeseries entry)
-                        const hasAnyData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
-                                           (td.animals && Object.values(td.animals).some(v => v > 0));
-                        if (!hasAnyData) return null; // site has timeseries entry but no actual species data
-                        return (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
-                    });
+                    if (site.isTract && site.tractSites) {
+                        rawData = dates.map(date => {
+                            let sum = 0;
+                            let anyData = false;
+                            site.tractSites.forEach(pid => {
+                                const plant = foodseqData.plants[pid];
+                                if (!plant) return;
+                                const td = plant.timeseries[date];
+                                if (!td) return;
+                                const hasAnyData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
+                                                   (td.animals && Object.values(td.animals).some(v => v > 0));
+                                if (!hasAnyData) return;
+                                anyData = true;
+                                const val = (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                                sum += val;
+                            });
+                            return anyData ? sum : null;
+                        });
+                    } else {
+                        const plant = foodseqData.plants[site.pid];
+                        if (!plant) return;
 
-                    // Trim leading nulls/zeros — only start from first non-zero detection
+                        rawData = dates.map(date => {
+                            const td = plant.timeseries[date];
+                            if (!td) return null;
+                            const hasAnyData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
+                                               (td.animals && Object.values(td.animals).some(v => v > 0));
+                            if (!hasAnyData) return null;
+                            return (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                        });
+                    }
+
                     let firstNonZero = rawData.findIndex(v => v !== null && v > 0);
                     const data = rawData.map((v, i) => {
-                        if (firstNonZero < 0) return null; // never detected
-                        if (i < firstNonZero) return null; // before first detection
+                        if (firstNonZero < 0) return null;
+                        if (i < firstNonZero) return null;
                         return v;
                     });
 
-                    const label = multiSite ? `${food.label} · ${plant.name}` : food.label;
-                    const color = multiSite ? site.color : food.color;
-                    const dashed = multiSite && sIdx > 0;
+                    const siteName = site.isTract ? site.name : (foodseqData.plants[site.pid]?.name || site.name);
+                    let label, color, dashed;
+
+                    if (multiSite && multiFood) {
+                        // Both multi: unique color per series, label shows both
+                        label = `${food.label} \u00b7 ${siteName}`;
+                        color = MULTI_COLORS[seriesIdx % MULTI_COLORS.length];
+                        // Same food = same dash pattern across sites
+                        dashed = DASH_PATTERNS[fIdx % DASH_PATTERNS.length];
+                    } else if (multiSite) {
+                        // Multi-site only: color by site, dash for 2nd+ site
+                        label = `${food.label} \u00b7 ${siteName}`;
+                        color = site.color;
+                        dashed = sIdx > 0 ? '8 4' : '';
+                    } else {
+                        // Single site: color by food
+                        label = food.label;
+                        color = food.color;
+                        dashed = '';
+                    }
 
                     series.push({ label, color, dashed, data });
+                    seriesIdx++;
                 });
             });
 
@@ -6315,116 +7039,295 @@
             return names[m-1] + (m === 1 ? " '" + String(y).slice(2) : '');
         }
 
+        function trendsMonthLabel(mo, includeYear) {
+            const names = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            return names[mo.m-1] + (includeYear ? " '" + String(mo.y).slice(2) : '');
+        }
+
         function renderTrendsLine() {
+            const svgEl = document.getElementById('trends-line-svg');
+            const xAxisEl = document.getElementById('trends-line-x');
+            const legendEl = document.getElementById('trends-line-legend');
             if (trendsSelectedSites.length === 0) {
-                document.getElementById('trends-line-svg').innerHTML = '<text x="280" y="180" text-anchor="middle" fill="#6b7280" font-size="14">Select a site above to begin</text>';
-                document.getElementById('trends-line-x').innerHTML = '';
-                document.getElementById('trends-line-legend').innerHTML = '';
+                svgEl.innerHTML = '<text x="350" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Select a site above to begin</text>';
+                xAxisEl.innerHTML = '';
+                legendEl.innerHTML = '';
                 return;
             }
             if (trendsSelectedFoods.length === 0) {
-                document.getElementById('trends-line-svg').innerHTML = '<text x="280" y="180" text-anchor="middle" fill="#6b7280" font-size="14">Add species to see trends</text>';
-                document.getElementById('trends-line-x').innerHTML = '';
-                document.getElementById('trends-line-legend').innerHTML = '';
+                svgEl.innerHTML = '<text x="350" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Add species to see trends</text>';
+                xAxisEl.innerHTML = '';
+                legendEl.innerHTML = '';
                 return;
             }
             const { months, series } = getTrendsSeries();
             const N = months.length;
             if (N === 0) {
-                document.getElementById('trends-line-svg').innerHTML = '<text x="280" y="180" text-anchor="middle" fill="#6b7280" font-size="14">No data for this site</text>';
+                svgEl.innerHTML = '<text x="350" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">No data for this site</text>';
                 return;
             }
-            const W = 560, H = 360;
-            const padL = 36, padR = 18, padT = 14, padB = 14;
-            const yMax = Math.max(1, ...series.flatMap(s => s.data).filter(v => v !== null)) * 1.1;
+            const isMultiSpeciesLine = trendsSelectedFoods.length >= 2 || trendsSelectedSites.length >= 2;
+            const W = 760, H = 360;
+            svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+            const padL = 50, padR = isMultiSpeciesLine ? 124 : 80, padT = 28, padB = 30;
+            const allVals = series.flatMap(s => s.data).filter(v => v !== null);
+            const rawMax = Math.max(1, ...allVals);
+            // Compute nice Y ticks
+            const yTickStep = rawMax <= 5 ? 1 : rawMax <= 20 ? 5 : rawMax <= 50 ? 10 : rawMax <= 200 ? 25 : Math.ceil(rawMax / 5 / 10) * 10;
+            const yMax = Math.ceil(rawMax / yTickStep) * yTickStep * 1.05;
+            const yTicks = [];
+            for (let t = 0; t <= rawMax * 1.05; t += yTickStep) yTicks.push(t);
+
             const xStep = (W - padL - padR) / Math.max(1, N - 1);
             const xAt = i => padL + i * xStep;
             const yAt = v => padT + (1 - v / yMax) * (H - padT - padB);
             let out = '';
 
-            // Y gridlines
-            [0, .25, .5, .75, 1].forEach(t => {
-                const y = padT + (1 - t) * (H - padT - padB);
-                out += `<text x="${padL - 6}" y="${y + 3}" font-size="10" fill="#9ca3af" text-anchor="end">${Math.round(yMax * t)}</text>`;
-                out += `<line x1="${padL}" x2="${W - padR}" y1="${y}" y2="${y}" stroke="#eef0f3"/>`;
+            // Hatch pattern definition
+            out += `<defs>
+              <pattern id="trends-hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#e5e7eb" stroke-width="2"/>
+              </pattern>
+            </defs>`;
+
+            // Y-axis gridlines & labels
+            yTicks.forEach(t => {
+                const y = yAt(t);
+                const isZero = t === 0;
+                out += `<line x1="${padL}" x2="${W - padR}" y1="${y}" y2="${y}" stroke="${isZero ? '#cbd5e1' : '#eef0f3'}" stroke-width="${isZero ? 1.2 : 1}"/>`;
+                out += `<text x="${padL - 10}" y="${y + 3}" text-anchor="end" font-family="Geist Mono, monospace" font-size="10.5" fill="#94a3b8">${t}</text>`;
             });
 
-            // X ticks
-            const labelEvery = Math.ceil(N / 8);
+            // Y-axis unit caption
+            out += `<text x="${padL - 36}" y="${padT + 6}" font-size="10" fill="#94a3b8" letter-spacing=".08em" font-family="Geist Mono, monospace">DET/MO</text>`;
+
+            // X ticks every 3 months
+            const labelEvery = Math.max(1, Math.ceil(N / 8));
             months.forEach((mo, i) => {
                 if (i % labelEvery !== 0 && i !== N - 1) return;
-                out += `<line x1="${xAt(i)}" x2="${xAt(i)}" y1="${H - padB}" y2="${H - padB + 3}" stroke="#9ca3af"/>`;
+                out += `<line x1="${xAt(i)}" x2="${xAt(i)}" y1="${H - padB}" y2="${H - padB + 4}" stroke="#cbd5e1"/>`;
             });
 
-            // Series paths — connect only non-null points with a straight line, no dots at gaps
+            // No-samples hatch overlay (detect large gaps in each series)
+            series.forEach(s => {
+                const valid = s.data.map((v, i) => v !== null ? i : null).filter(v => v !== null);
+                for (let j = 1; j < valid.length; j++) {
+                    const gapSize = valid[j] - valid[j-1];
+                    if (gapSize >= 3) {
+                        const gx0 = xAt(valid[j-1]) + 8;
+                        const gx1 = xAt(valid[j]) - 8;
+                        if (gx1 > gx0) {
+                            out += `<rect x="${gx0}" y="${padT}" width="${gx1 - gx0}" height="${H - padT - padB}" fill="url(#trends-hatch)" opacity=".55"/>`;
+                            out += `<text x="${(gx0 + gx1) / 2}" y="${padT - 10}" text-anchor="middle" font-size="10" fill="#94a3b8" letter-spacing=".06em" font-family="Geist Mono, monospace">NO SAMPLES COLLECTED</text>`;
+                        }
+                    }
+                }
+            });
+
+            // Durham baseline (dashed) — average across all sampled sites for the selected species
+            // Only counts sites that were actually sampled in each period (had any food data)
+            let baselineLabelDeferred = '';
+            if (foodseqData && trendsSelectedFoods.length > 0) {
+                const food = trendsSelectedFoods[0];
+                const bDates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
+                if (bDates.length >= 2) {
+                    const durhamAvgs = bDates.map(date => {
+                        let sum = 0, count = 0;
+                        Object.values(foodseqData.plants).forEach(plant => {
+                            const td = plant.timeseries[date];
+                            if (!td) return;
+                            // Only count sites that have any real data this period
+                            const hasData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
+                                            (td.animals && Object.values(td.animals).some(v => v > 0));
+                            if (!hasData) return;
+                            const val = (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                            sum += val; count++;
+                        });
+                        return count > 0 ? sum / count : null;
+                    });
+                    const validBaseline = durhamAvgs.map((v, i) => v !== null ? { x: xAt(i), y: yAt(v), v } : null).filter(Boolean);
+                    if (validBaseline.length >= 2) {
+                        const bPath = validBaseline.map((p, j) => `${j ? 'L' : 'M'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+                        out += `<path d="${bPath}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" fill="none" stroke-linecap="round"/>`;
+                        // Defer label to render AFTER series lines so it's not covered
+                        const lastB = validBaseline[validBaseline.length - 1];
+                        baselineLabelDeferred = `<text x="${W - padR}" y="${Math.min(lastB.y - 6, padT + 10)}" text-anchor="end" font-size="10" fill="#94a3b8" font-family="Geist Mono, monospace" style="paint-order:stroke;stroke:#faf9f5;stroke-width:3px;">Durham avg \u2248 ${lastB.v.toFixed(1)}</text>`;
+                    }
+                }
+            }
+
+            // Series paths
             series.forEach(s => {
                 const valid = s.data.map((v, i) => v !== null ? { x: xAt(i), y: yAt(v), v, i } : null).filter(Boolean);
                 if (valid.length < 2) return;
                 const d = valid.map((p, j) => `${j ? 'L' : 'M'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
-                const dash = s.dashed ? 'stroke-dasharray="5 4"' : '';
-                out += `<path d="${d}" stroke="${s.color}" stroke-width="2" fill="none" ${dash} stroke-linecap="round" stroke-linejoin="round"/>`;
+                const dash = s.dashed ? `stroke-dasharray="${s.dashed}"` : '';
+                out += `<path d="${d}" stroke="${s.color}" stroke-width="2.5" fill="none" ${dash} stroke-linecap="round" stroke-linejoin="round"/>`;
             });
 
-            // Dots (only when N <= 12) — only on non-null values
-            if (N <= 12) {
-                series.forEach(s => {
-                    if (s.dashed) return;
-                    s.data.forEach((v, i) => {
-                        if (v !== null && v > 0) out += `<circle cx="${xAt(i)}" cy="${yAt(v)}" r="${N <= 6 ? 3.5 : 2.5}" fill="${s.color}"/>`;
-                    });
-                });
+            // Endpoint annotations
+            const singleSeries = series.length === 1;
+            const isMultiSpecies = trendsSelectedFoods.length >= 2 || trendsSelectedSites.length >= 2;
+            series.forEach(s => {
+                const valid = s.data.map((v, i) => v !== null ? { x: xAt(i), y: yAt(v), v, i } : null).filter(Boolean);
+                if (valid.length === 0) return;
+
+                // First point
+                const first = valid[0];
+                out += `<circle cx="${first.x}" cy="${first.y}" r="10" fill="${s.color}" opacity=".12"/>`;
+                out += `<circle cx="${first.x}" cy="${first.y}" r="5" fill="#fff" stroke="${s.color}" stroke-width="2"/>`;
+                if (singleSeries && !isMultiSpecies) {
+                    out += `<text x="${first.x}" y="${first.y + 22}" text-anchor="middle" font-size="10" fill="#64748b" font-family="Geist Mono, monospace">${first.v.toFixed(1)} \u00b7 ${trendsMonthLabel(months[first.i], true)}</text>`;
+                }
+
+                // Last point (annotated)
+                const last = valid[valid.length - 1];
+                if (last !== first) {
+                    out += `<circle cx="${last.x}" cy="${last.y}" r="10" fill="${s.color}" opacity=".12"/>`;
+                    out += `<circle cx="${last.x}" cy="${last.y}" r="5" fill="#fff" stroke="${s.color}" stroke-width="2"/>`;
+                    if (singleSeries && !isMultiSpecies) {
+                        // Leader line + annotation
+                        out += `<line x1="${last.x}" y1="${last.y - 8}" x2="${last.x}" y2="${last.y - 30}" stroke="${s.color}" stroke-width="1" stroke-dasharray="2 2"/>`;
+                        out += `<text x="${last.x}" y="${last.y - 36}" text-anchor="middle" font-size="11" font-weight="600" fill="#0b1220" font-family="Geist, sans-serif">${Math.round(last.v)} detections</text>`;
+                        out += `<text x="${last.x}" y="${last.y - 22}" text-anchor="middle" font-size="9.5" fill="#64748b" font-family="Geist Mono, monospace">${trendsMonthLabel(months[last.i], true)}</text>`;
+                    }
+                }
+
+                // Multi-species end labels: "{Name} · {value}" positioned 12px right of last point
+                if (isMultiSpecies) {
+                    const endPt = valid[valid.length - 1];
+                    const labelName = s.label.split(' \u00b7 ')[0];
+                    out += `<text x="${endPt.x + 12}" y="${endPt.y + 4}" text-anchor="start" font-size="12" font-weight="600" fill="${s.color}" font-family="Geist, sans-serif" style="paint-order:stroke;stroke:#faf9f5;stroke-width:3px;">${labelName} \u00b7 ${Math.round(endPt.v)}</text>`;
+                }
+            });
+
+            // Append Durham baseline label on top of everything
+            out += baselineLabelDeferred;
+
+            svgEl.innerHTML = out;
+
+            // X-axis labels as HTML overlay
+            xAxisEl.innerHTML = '';
+            const innerW = W - padL - padR;
+            months.forEach((mo, i) => {
+                if (i % labelEvery !== 0 && i !== N - 1) return;
+                const xPx = padL + (i / Math.max(1, N - 1)) * innerW;
+                const span = document.createElement('span');
+                span.style.left = `${(xPx / W) * 100}%`;
+                const includeYear = mo.m === 1 || i === 0 || i === N - 1;
+                span.textContent = trendsMonthLabel(mo, includeYear);
+                xAxisEl.appendChild(span);
+            });
+
+            // Update card meta
+            if (N >= 1) {
+                const first = months[0], last = months[N - 1];
+                document.getElementById('trendsLineMetaRange').textContent = trendsMonthLabel(first, true) + ' \u2014 ' + trendsMonthLabel(last, true);
+                const sampleCount = series.length > 0 ? series[0].data.filter(v => v !== null).length : 0;
+                document.getElementById('trendsLineMetaSamples').textContent = sampleCount + ' monthly sample' + (sampleCount !== 1 ? 's' : '');
             }
 
-            document.getElementById('trends-line-svg').innerHTML = out;
-
-            // X-axis labels
-            const xLabels = months.map((mo, i) =>
-                (i % labelEvery === 0 || i === N - 1) ? trendsMonthShort(mo) : ''
-            );
-            document.getElementById('trends-line-x').innerHTML = xLabels.map(s => `<span>${s}</span>`).join('');
-
             // Legend
-            document.getElementById('trends-line-legend').innerHTML = series.filter(s => !s.data.every(v => v === 0)).map(s => {
+            legendEl.innerHTML = series.filter(s => !s.data.every(v => v === 0 || v === null)).map(s => {
                 const swatchStyle = s.dashed
-                    ? `background-image:repeating-linear-gradient(90deg,${s.color} 0 4px,transparent 4px 7px);background-color:transparent;width:14px;height:3px;border-radius:1px;`
-                    : `background:${s.color};width:14px;height:3px;border-radius:1px;`;
-                return `<span style="display:inline-flex;align-items:center;gap:6px;"><span style="${swatchStyle}"></span>${s.label}</span>`;
+                    ? `background-image:repeating-linear-gradient(90deg,${s.color} 0 4px,transparent 4px 7px);background-color:transparent;width:16px;height:2px;`
+                    : `background:${s.color};width:16px;height:3px;border-radius:2px;`;
+                return `<span class="lg-item"><span class="sw" style="${swatchStyle}"></span>${s.label}</span>`;
             }).join('');
+
+            // Add Durham baseline legend item
+            if (foodseqData && trendsSelectedFoods.length > 0) {
+                legendEl.innerHTML += `<span class="lg-item"><span class="sw" style="background-image:repeating-linear-gradient(90deg,#94a3b8 0 4px,transparent 4px 7px);background-color:transparent;height:2px;width:16px;"></span>Durham baseline</span>`;
+            }
+        }
+
+        function downloadChart(svgId, filename) {
+            const svgEl = document.getElementById(svgId);
+            if (!svgEl) return;
+            const svgData = svgEl.outerHTML;
+            const vb = svgEl.getAttribute('viewBox')?.split(' ').map(Number) || [0, 0, 700, 360];
+            const w = vb[2] * 2, h = vb[3] * 2; // 2x for retina
+
+            const canvas = document.createElement('canvas');
+            canvas.width = w; canvas.height = h;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = '#faf9f5';
+            ctx.fillRect(0, 0, w, h);
+
+            const svgBlob = new Blob([
+                `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="${vb.join(' ')}">`,
+                svgEl.innerHTML,
+                '</svg>'
+            ], { type: 'image/svg+xml;charset=utf-8' });
+            const url = URL.createObjectURL(svgBlob);
+            const img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0, w, h);
+                URL.revokeObjectURL(url);
+                const a = document.createElement('a');
+                const date = new Date().toISOString().slice(0, 10);
+                const sites = trendsSelectedSites.map(s => s.name).join('_').replace(/[^a-zA-Z0-9_]/g, '');
+                const foods = trendsSelectedFoods.map(f => f.label).join('_').replace(/[^a-zA-Z0-9_]/g, '');
+                a.download = `${filename}_${foods}_${sites}_${date}.png`;
+                a.href = canvas.toDataURL('image/png');
+                a.click();
+            };
+            img.src = url;
+        }
+
+        function shareChart(chartType) {
+            const params = new URLSearchParams();
+            params.set('view', 'trends');
+            if (trendsSelectedSites.length > 0) params.set('sites', trendsSelectedSites.map(s => s.pid).join(','));
+            if (trendsSelectedFoods.length > 0) params.set('foods', trendsSelectedFoods.map(f => f.id).join(','));
+            params.set('window', trendsN);
+            params.set('chart', chartType);
+            const url = window.location.origin + window.location.pathname + '?' + params.toString();
+            navigator.clipboard.writeText(url).then(() => {
+                const btn = event.target.closest('.trends-icon-btn');
+                if (btn) {
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = '&#10003;';
+                    btn.style.color = '#15803d';
+                    btn.style.borderColor = '#15803d';
+                    setTimeout(() => { btn.innerHTML = orig; btn.style.color = ''; btn.style.borderColor = ''; }, 1500);
+                }
+            }).catch(() => {
+                prompt('Copy this link:', url);
+            });
         }
 
         function renderTrendsSlope() {
+            const svgEl = document.getElementById('trends-slope-svg');
+            const legendEl = document.getElementById('trends-slope-legend');
             if (trendsSelectedSites.length === 0) {
-                document.getElementById('trends-slope-svg').innerHTML = '<text x="280" y="180" text-anchor="middle" fill="#6b7280" font-size="14">Select a site above to begin</text>';
-                document.getElementById('trends-slope-x').innerHTML = '';
-                document.getElementById('trends-slope-legend').innerHTML = '';
+                svgEl.innerHTML = '<text x="230" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Select a site above to begin</text>';
+                legendEl.innerHTML = '';
                 return;
             }
             if (trendsSelectedFoods.length === 0) {
-                document.getElementById('trends-slope-svg').innerHTML = '<text x="280" y="180" text-anchor="middle" fill="#6b7280" font-size="14">Add species to see trends</text>';
-                document.getElementById('trends-slope-x').innerHTML = '';
-                document.getElementById('trends-slope-legend').innerHTML = '';
+                svgEl.innerHTML = '<text x="230" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Add species to see trends</text>';
+                legendEl.innerHTML = '';
                 return;
             }
             const { months, series } = getTrendsSeries();
             const N = months.length;
             if (N < 2) {
-                document.getElementById('trends-slope-svg').innerHTML = '<text x="280" y="180" text-anchor="middle" fill="#6b7280" font-size="14">Need at least 2 time periods</text>';
+                svgEl.innerHTML = '<text x="230" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Need at least 2 time periods</text>';
                 return;
             }
-            const W = 700;
+            const W = 520, H = 360;
+            svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+            const padL = 120, padR = 110, padT = 50, padB = 50;
+            const x0 = padL, x1 = W - padR;
+            const yMin = padT, yMaxH = H - padB;
+
             const activeSeries = series.filter(s => {
                 const nonNull = s.data.filter(v => v !== null);
                 return nonNull.length >= 2 && nonNull.some(v => v > 0);
             });
-            const ROW_GAP = 38;
-            const H = Math.max(300, activeSeries.length * ROW_GAP + 80);
-            const svg = document.getElementById('trends-slope-svg');
-            svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-            const padL = 160, padR = 140, padT = 28, padB = 40;
-            const x0 = padL, x1 = W - padR;
-            const yMin = padT, yMaxH = H - padB;
 
-            // Compute v0/v1 first to get correct valMax
+            // Compute v0/v1
             const preEnriched = activeSeries.map(s => {
                 const v0val = s.data.find(v => v !== null);
                 const v1val = [...s.data].reverse().find(v => v !== null);
@@ -6435,10 +7338,35 @@
             const yScale = v => yMaxH - (v / valMax) * (yMaxH - yMin);
 
             let out = '';
-            out += `<line x1="${x0}" x2="${x0}" y1="${yMin-4}" y2="${yMaxH+4}" stroke="#d1d5db"/>`;
-            out += `<line x1="${x1}" x2="${x1}" y1="${yMin-4}" y2="${yMaxH+4}" stroke="#d1d5db"/>`;
-            out += `<text x="${x0}" y="${yMin-8}" text-anchor="middle" font-size="11" fill="#6b7280" font-weight="600">${trendsMonthShort(months[0])}</text>`;
-            out += `<text x="${x1}" y="${yMin-8}" text-anchor="middle" font-size="11" fill="#6b7280" font-weight="600">${trendsMonthShort(months[months.length-1])}</text>`;
+
+            // Vertical dashed rails
+            out += `<line x1="${x0}" x2="${x0}" y1="${yMin - 20}" y2="${yMaxH + 20}" stroke="#e5e7eb" stroke-dasharray="2 4"/>`;
+            out += `<line x1="${x1}" x2="${x1}" y1="${yMin - 20}" y2="${yMaxH + 20}" stroke="#e5e7eb" stroke-dasharray="2 4"/>`;
+
+            // Period labels above rails
+            const firstLabel = trendsMonthLabel(months[0], true).toUpperCase();
+            const lastLabel = trendsMonthLabel(months[N - 1], true).toUpperCase();
+            out += `<text x="${x0}" y="${yMin - 30}" text-anchor="middle" font-size="11" fill="#64748b" letter-spacing=".06em" font-weight="500" font-family="Geist Mono, monospace">${firstLabel}</text>`;
+            out += `<text x="${x1}" y="${yMin - 30}" text-anchor="middle" font-size="11" fill="#64748b" letter-spacing=".06em" font-weight="500" font-family="Geist Mono, monospace">${lastLabel}</text>`;
+
+            // Durham baseline rail
+            if (foodseqData && trendsSelectedFoods.length > 0) {
+                const food = trendsSelectedFoods[0];
+                const dates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
+                const firstDate = dates[0], lastDate = dates[dates.length - 1];
+                let bStart = 0, bEnd = 0, bCount0 = 0, bCount1 = 0;
+                Object.values(foodseqData.plants).forEach(plant => {
+                    const td0 = plant.timeseries[firstDate];
+                    if (td0) { bStart += (td0.plants && td0.plants[food.id]) || (td0.animals && td0.animals[food.id]) || 0; bCount0++; }
+                    const td1 = plant.timeseries[lastDate];
+                    if (td1) { bEnd += (td1.plants && td1.plants[food.id]) || (td1.animals && td1.animals[food.id]) || 0; bCount1++; }
+                });
+                if (bCount0 > 0 && bCount1 > 0) {
+                    const bv0 = bStart / bCount0, bv1 = bEnd / bCount1;
+                    out += `<line x1="${x0}" y1="${yScale(bv0)}" x2="${x1}" y2="${yScale(bv1)}" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4"/>`;
+                    out += `<text x="${x1 + 8}" y="${yScale(bv1) + 4}" font-size="10" fill="#94a3b8" font-family="Geist Mono, monospace">avg ${bv1.toFixed(1)}</text>`;
+                }
+            }
 
             const enriched = activeSeries.map((s, idx) => ({
                 ...s,
@@ -6448,8 +7376,10 @@
                 y1: yScale(preEnriched[idx].v1),
             }));
 
-            // Label anti-collision
-            const LABEL_MIN_GAP = 14;
+            // Label anti-collision — need enough gap for multi-line labels (name + site + value)
+            const slopeMultiSite = trendsSelectedSites.length > 1;
+            const slopeMultiFood = trendsSelectedFoods.length > 1;
+            const LABEL_MIN_GAP = slopeMultiSite || slopeMultiFood ? 40 : 14;
             function resolve(items, key) {
                 const sorted = items.map((s, i) => ({ s, i, y: s[key], adj: s[key] })).sort((a, b) => a.y - b.y);
                 for (let i = 1; i < sorted.length; i++)
@@ -6467,34 +7397,375 @@
 
             // Slope lines
             enriched.forEach(s => {
-                const dash = s.dashed ? 'stroke-dasharray="5 4"' : '';
-                out += `<line x1="${x0}" y1="${s.y0}" x2="${x1}" y2="${s.y1}" stroke="${s.color}" stroke-width="2" ${dash} stroke-linecap="round"/>`;
+                const dash = s.dashed ? `stroke-dasharray="${s.dashed}"` : '';
+                out += `<line x1="${x0}" y1="${s.y0}" x2="${x1}" y2="${s.y1}" stroke="${s.color}" stroke-width="2.5" ${dash} stroke-linecap="round"/>`;
             });
 
-            // Dots
+            // End points with styled halos
             enriched.forEach(s => {
-                out += `<circle cx="${x0}" cy="${s.y0}" r="3.5" fill="${s.color}"/>`;
-                out += `<circle cx="${x1}" cy="${s.y1}" r="4" fill="${s.color}" stroke="#fff" stroke-width="2"/>`;
+                // Left (start): white-filled circle with navy stroke
+                out += `<circle cx="${x0}" cy="${s.y0}" r="6" fill="#fff" stroke="${s.color}" stroke-width="2.5"/>`;
+                // Right (end): halo + solid circle
+                out += `<circle cx="${x1}" cy="${s.y1}" r="11" fill="${s.color}" opacity=".15"/>`;
+                out += `<circle cx="${x1}" cy="${s.y1}" r="7" fill="${s.color}"/>`;
             });
 
-            // Labels
+            // Left label block — use series label (includes site name when multi-site)
             enriched.forEach((s, i) => {
-                out += `<text x="${x0-10}" y="${lY[i]+3.5}" text-anchor="end" font-size="11" fill="${s.color}" font-weight="500">${s.label}</text>`;
-                const pct = s.v0 > 0 ? Math.round(((s.v1 - s.v0) / s.v0) * 100) : (s.v1 > 0 ? 'new' : 0);
-                const pctColor = pct === 'new' ? '#059669' : pct > 0 ? '#059669' : pct < 0 ? '#b91c1c' : '#6b7280';
-                const pctLabel = pct === 'new' ? 'new' : `${pct > 0 ? '+' : ''}${pct}%`;
-                out += `<text x="${x1+10}" y="${rY[i]+3.5}" font-size="11" fill="#111827" font-weight="600">${s.v1.toFixed(0)}</text>`;
-                out += `<text x="${x1+52}" y="${rY[i]+3.5}" font-size="10" fill="${pctColor}" font-weight="600">${pctLabel}</text>`;
+                // s.label is "Food" for single site, "Food · Site" for multi-site
+                const parts = s.label.split(' \u00b7 ');
+                const mainName = parts[0];
+                const subName = parts.length > 1 ? parts[1] : '';
+                out += `<text x="${x0 - 14}" y="${lY[i] - 6}" text-anchor="end" font-size="13" font-weight="600" fill="#0b1220" font-family="Geist, sans-serif">${mainName}</text>`;
+                if (subName) out += `<text x="${x0 - 14}" y="${lY[i] + 10}" text-anchor="end" font-size="11" fill="#64748b" font-family="Geist, sans-serif">${subName}</text>`;
+                out += `<text x="${x0 - 14}" y="${lY[i] + (subName ? 26 : 14)}" text-anchor="end" font-size="11" font-family="Geist Mono, monospace" fill="#94a3b8">${s.v0.toFixed(1)}</text>`;
             });
 
-            svg.innerHTML = out;
-            document.getElementById('trends-slope-x').innerHTML = '';
-            document.getElementById('trends-slope-legend').innerHTML = '';
+            // Right label block — delta percentage only, "new" for 0→value
+            enriched.forEach((s, i) => {
+                let pctLabel, pctColor;
+                if (s.v0 <= 0 && s.v1 > 0) {
+                    pctLabel = '\u2605 New'; pctColor = '#15803d';
+                } else if (s.v0 > 0 && s.v1 <= 0) {
+                    pctLabel = 'Gone'; pctColor = '#b91c1c';
+                } else if (s.v0 > 0) {
+                    const pct = Math.round(((s.v1 - s.v0) / s.v0) * 100);
+                    const capped = Math.min(Math.abs(pct), 500);
+                    pctLabel = `${pct > 0 ? '+' : '-'}${capped}%`;
+                    pctColor = pct > 0 ? '#15803d' : pct < 0 ? '#b91c1c' : '#64748b';
+                } else {
+                    pctLabel = '—'; pctColor = '#64748b';
+                }
+                out += `<text x="${x1 + 14}" y="${rY[i] + 5}" font-size="12" font-weight="600" fill="${pctColor}" font-family="Geist, sans-serif">${pctLabel}</text>`;
+            });
+
+            svgEl.innerHTML = out;
+
+            // Update slope card meta
+            document.getElementById('trendsSlopeMetaRange').textContent = trendsMonthLabel(months[0], true) + ' \u2192 ' + trendsMonthLabel(months[N - 1], true);
+
+            // Legend
+            legendEl.innerHTML = activeSeries.map(s => {
+                const dash = s.dashed ? `background-image:repeating-linear-gradient(90deg,${s.color} 0 4px,transparent 4px 7px);background-color:transparent;width:16px;height:2px;` : `background:${s.color};width:16px;height:3px;border-radius:2px;`;
+                return `<span class="lg-item"><span class="sw" style="${dash}"></span>${s.label}</span>`;
+            }).join('');
+        }
+
+        function computeTrendsRankForFood(food, months) {
+            if (!foodseqData) return { rank: 0, totalTracts: 0, percentile: 0 };
+            const dates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
+            const tractTotals = {};
+            Object.entries(foodseqData.plants).forEach(([pid, plant]) => {
+                const ct = plant.census_tract;
+                if (!ct || ct === 'unknown') return;
+                if (!tractTotals[ct]) tractTotals[ct] = 0;
+                dates.forEach(date => {
+                    const td = plant.timeseries[date];
+                    if (!td) return;
+                    tractTotals[ct] += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                });
+            });
+            const currentSite = trendsSelectedSites[0];
+            let currentTotal = 0;
+            if (currentSite.isTract) {
+                const ct = currentSite.pid.replace('tract_', '');
+                currentTotal = tractTotals[ct] || 0;
+            } else {
+                const plant = foodseqData.plants[currentSite.pid];
+                if (plant) {
+                    dates.forEach(date => {
+                        const td = plant.timeseries[date];
+                        if (td) currentTotal += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                    });
+                }
+            }
+            const sortedTotals = Object.values(tractTotals).sort((a, b) => b - a);
+            const rank = sortedTotals.findIndex(v => currentTotal >= v) + 1;
+            const totalTracts = sortedTotals.length;
+            const percentile = totalTracts > 0 ? Math.round((1 - (rank - 1) / totalTracts) * 100) : 0;
+            return { rank, totalTracts, percentile };
+        }
+
+        function renderComparisonTable(months, series) {
+            const rowsEl = document.getElementById('trendsCompRows');
+            if (!rowsEl) return;
+            const dates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
+
+            let html = '';
+            series.forEach((s, idx) => {
+                const nonNull = s.data.filter(v => v !== null);
+                if (nonNull.length === 0) return;
+                const firstVal = nonNull[0];
+                const lastVal = nonNull[nonNull.length - 1];
+
+                // Series cell
+                const parts = s.label.split(' \u00b7 ');
+                const mainName = parts[0];
+                const subName = parts.length > 1 ? parts[1] : '';
+
+                // Sparkline SVG (52x22): line from first to last value
+                const allVals = series.flatMap(ss => ss.data.filter(v => v !== null));
+                const sparkMax = Math.max(1, ...allVals) * 1.05;
+                const sy0 = 20 - (firstVal / sparkMax) * 16;
+                const sy1 = 20 - (lastVal / sparkMax) * 16;
+                const sparkSvg = `<svg width="52" height="22" viewBox="0 0 52 22" style="display:block;margin-left:auto;">
+                    <line x1="4" y1="${sy0.toFixed(1)}" x2="48" y2="${sy1.toFixed(1)}" stroke="${s.color}" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="4" cy="${sy0.toFixed(1)}" r="2.5" fill="#fff" stroke="${s.color}" stroke-width="1.5"/>
+                    <circle cx="48" cy="${sy1.toFixed(1)}" r="3" fill="${s.color}"/>
+                </svg>`;
+
+                // Change
+                let changeTxt = '', changeCls = 'flat';
+                if (firstVal > 0) {
+                    const changePct = Math.round(((lastVal - firstVal) / firstVal) * 100);
+                    const sign = changePct >= 0 ? '+' : '';
+                    changeTxt = sign + changePct + '%';
+                    changeCls = changePct > 10 ? 'pos' : changePct < -10 ? 'neg' : 'flat';
+                } else if (firstVal === 0 && lastVal > 0) {
+                    changeTxt = 'New';
+                    changeCls = 'pos';
+                } else {
+                    changeTxt = '\u2014';
+                }
+
+                // Rank — map series index back to food index
+                // Series are built as: food0×site0, food0×site1, ..., food1×site0, food1×site1, ...
+                const numSites = trendsSelectedSites.length;
+                const foodIdx = Math.floor(idx / numSites);
+                const food = trendsSelectedFoods[foodIdx] || trendsSelectedFoods[0];
+                const rankInfo = computeTrendsRankForFood(food, months);
+                const rankTxt = rankInfo.rank > 0 ? '#' + rankInfo.rank : '\u2014';
+
+                html += `<div class="trends-comp-row">
+                    <div class="trends-comp-series">
+                        <span class="trends-comp-swatch" style="background:${s.color};"></span>
+                        <span class="trends-comp-name">${mainName}</span>
+                        ${subName ? '<span class="trends-comp-sub">' + subName + '</span>' : ''}
+                    </div>
+                    <div class="trends-comp-trend">${sparkSvg}</div>
+                    <div class="trends-comp-latest"><span class="val">${Math.round(lastVal)}</span><span class="suffix">/mo</span></div>
+                    <div class="trends-comp-change ${changeCls}">${changeTxt}</div>
+                    <div class="trends-comp-rank">${rankTxt}</div>
+                </div>`;
+            });
+            rowsEl.innerHTML = html;
+        }
+
+        function updateTrendsHero() {
+            const heroEl = document.getElementById('trendsHero');
+            if (trendsSelectedSites.length === 0 || trendsSelectedFoods.length === 0) {
+                heroEl.style.display = 'none';
+                return;
+            }
+            const { months, series } = getTrendsSeries();
+            if (months.length === 0 || series.length === 0) {
+                heroEl.style.display = 'none';
+                return;
+            }
+            heroEl.style.display = '';
+
+            const isMulti = trendsSelectedFoods.length >= 2 || trendsSelectedSites.length >= 2;
+            const kpisEl = document.getElementById('trendsKpis');
+            const compTableEl = document.getElementById('trendsCompTable');
+
+            if (isMulti) {
+                heroEl.classList.add('multi');
+                kpisEl.style.display = 'none';
+                compTableEl.style.display = '';
+            } else {
+                heroEl.classList.remove('multi');
+                kpisEl.style.display = '';
+                compTableEl.style.display = 'none';
+            }
+
+            const s = series[0];
+            const nonNull = s.data.filter(v => v !== null);
+            if (nonNull.length === 0) { heroEl.style.display = 'none'; return; }
+
+            const firstVal = nonNull[0];
+            const lastVal = nonNull[nonNull.length - 1];
+            const firstIdx = s.data.indexOf(firstVal);
+            const lastIdx = s.data.lastIndexOf(lastVal);
+
+            const speciesLabel = trendsSelectedFoods[0].label;
+            const siteLabel = trendsSelectedSites[0].name;
+            const nFoods = trendsSelectedFoods.length;
+            const nSites = trendsSelectedSites.length;
+
+            const headlineEl = document.getElementById('trendsHeroHeadline');
+            const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+            if (isMulti) {
+                // Multi eyebrow
+                const eyebrowParts = [];
+                if (nFoods >= 2) eyebrowParts.push(nFoods + ' species');
+                else eyebrowParts.push(speciesLabel);
+                if (nSites >= 2) eyebrowParts.push(nSites + ' sites');
+                else eyebrowParts.push(siteLabel);
+                document.getElementById('trendsHeroEyebrow').textContent = eyebrowParts.join(' \u00b7 ');
+
+                // Classify each series as rising / flat / falling
+                let risingCount = 0, fallingCount = 0, flatCount = 0;
+                let leadName = '', leadRatio = 0;
+                series.forEach(sr => {
+                    const nn = sr.data.filter(v => v !== null);
+                    if (nn.length < 2) { flatCount++; return; }
+                    const fv = nn[0], lv = nn[nn.length - 1];
+                    if (fv > 0) {
+                        const ratio = lv / fv;
+                        if (ratio > 1.1) {
+                            risingCount++;
+                            if (ratio > leadRatio) { leadRatio = ratio; leadName = sr.label.split(' \u00b7 ')[0]; }
+                        } else if (ratio < 0.9) {
+                            fallingCount++;
+                        } else {
+                            flatCount++;
+                        }
+                    } else if (lv > 0) {
+                        risingCount++;
+                    } else {
+                        flatCount++;
+                    }
+                });
+
+                const nSeries = series.length;
+                const numWord = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'][nSeries] || nSeries;
+                const whatLabel = nFoods >= 2 && nSites >= 2 ? 'series'
+                    : nFoods >= 2 ? 'species' : 'sites';
+                const whereLabel = nSites >= 2 && nFoods < 2 ? speciesLabel
+                    : nFoods >= 2 && nSites < 2 ? siteLabel
+                    : '';
+                const atWhere = whereLabel ? ` at ${whereLabel}` : '';
+
+                if (risingCount === nSeries) {
+                    headlineEl.innerHTML = `All <em>${numWord.toLowerCase()}</em> are climbing \u2014 ${leadName} by the largest factor.`;
+                } else if (risingCount === 0) {
+                    headlineEl.innerHTML = `None of the selected ${whatLabel} are climbing meaningfully.`;
+                } else {
+                    const risingWord = risingCount === 1 ? 'one is' : risingCount + ' are';
+                    headlineEl.innerHTML = `<em>${numWord}</em> ${whatLabel}${atWhere} \u2014 only <em>${risingWord}</em> climbing fast.`;
+                }
+
+                // Subtitle: plain-language summary
+                let subtitleParts = [];
+                if (leadName && leadRatio > 1) subtitleParts.push(`${leadName} jumped ${Math.round(leadRatio)}\u00d7`);
+                if (flatCount > 0) subtitleParts.push(`${flatCount} held roughly steady`);
+                const otherRising = leadName ? risingCount - 1 : risingCount;
+                if (otherRising > 0) subtitleParts.push(`${otherRising} other${otherRising > 1 ? 's' : ''} rose more modestly`);
+                if (fallingCount > 0) subtitleParts.push(`${fallingCount} declined`);
+                const sampleCount0 = nonNull.length;
+                const subtxt = subtitleParts.join('; ') + `. Sparse data \u2014 ${sampleCount0} monthly samples per series \u2014 so changes are directional, not precise.`;
+                document.getElementById('trendsHeroSub').innerHTML = subtxt;
+
+                // Render comparison table
+                renderComparisonTable(months, series);
+
+            } else {
+                // Single-species mode (original behavior)
+                document.getElementById('trendsHeroEyebrow').textContent = speciesLabel + ' \u00b7 ' + siteLabel;
+
+                if (firstVal > 0 && lastVal > 0) {
+                    const ratio = lastVal / firstVal;
+                    if (ratio >= 1) {
+                        headlineEl.innerHTML = `Detections climbed nearly <em>${Math.round(ratio)}\u00d7</em> between sampling windows.`;
+                    } else {
+                        const pct = Math.round(ratio * 100);
+                        headlineEl.innerHTML = `Detections fell to <em>${pct}%</em> of the early reading.`;
+                    }
+                } else if (firstVal === 0 && lastVal > 0) {
+                    headlineEl.innerHTML = `Detections emerged from <em>zero</em> to <em>${Math.round(lastVal)}</em> between sampling windows.`;
+                } else {
+                    headlineEl.innerHTML = `Detection data available for this window.`;
+                }
+
+                const sampleCount = nonNull.length;
+                document.getElementById('trendsHeroSub').innerHTML = `<b>${sampleCount} monthly sample${sampleCount !== 1 ? 's' : ''}</b> have been collected at this site so far. <b>More samples will sharpen this picture.</b>`;
+
+                // KPI: Latest
+                document.getElementById('trendsKpiLatest').innerHTML = `${Math.round(lastVal)}<span class="unit">detections / mo</span>`;
+                const lastMonth = months[lastIdx];
+                document.getElementById('trendsKpiLatestFoot').textContent = monthNames[lastMonth.m - 1] + ' ' + lastMonth.y;
+
+                // KPI: Change
+                const changeEl = document.getElementById('trendsKpiChange');
+                const firstMonth = months[firstIdx];
+                if (firstVal > 0) {
+                    const changePct = Math.round(((lastVal - firstVal) / firstVal) * 100);
+                    const sign = changePct >= 0 ? '+' : '';
+                    changeEl.className = 'trends-kpi-val ' + (changePct >= 0 ? 'pos' : 'neg');
+                    changeEl.innerHTML = `${sign}${changePct}<span class="unit">% vs first reading</span>`;
+                } else {
+                    changeEl.className = 'trends-kpi-val';
+                    changeEl.innerHTML = `\u2014<span class="unit">no baseline</span>`;
+                }
+                document.getElementById('trendsKpiChangeFoot').textContent = monthNames[firstMonth.m - 1] + ' ' + firstMonth.y + ' \u2192 ' + monthNames[lastMonth.m - 1] + ' ' + lastMonth.y;
+
+                // KPI: Rank in Durham
+                const rankEl = document.getElementById('trendsKpiRank');
+                const rankFootEl = document.getElementById('trendsKpiRankFoot');
+                const rankInfo = computeTrendsRankForFood(trendsSelectedFoods[0], months);
+                if (rankInfo.rank > 0) {
+                    rankEl.innerHTML = `#${rankInfo.rank}<span class="unit">of ${rankInfo.totalTracts} tracts</span>`;
+                    const p = rankInfo.percentile;
+                    rankFootEl.textContent = p + (p === 1 ? 'st' : p === 2 ? 'nd' : p === 3 ? 'rd' : 'th') + ' percentile';
+                } else {
+                    rankEl.innerHTML = `\u2014<span class="unit"></span>`;
+                    rankFootEl.textContent = '';
+                }
+            }
+
+            // Data-quality note (both modes)
+            const allSampleCounts = series.map(sr => sr.data.filter(v => v !== null).length);
+            const maxSampleCount = Math.max(0, ...allSampleCounts);
+            const noteEl = document.getElementById('trendsDataNote');
+            const noteBody = document.getElementById('trendsDataNoteBody');
+            if (maxSampleCount < 4) {
+                noteEl.style.display = '';
+                if (isMulti) {
+                    noteBody.innerHTML = `<b>Only ${maxSampleCount} monthly sample${maxSampleCount !== 1 ? 's have' : ' has'} been collected at this site.</b> The comparison table reads net change directly \u2014 best for sparse data. Once 4+ samples land, the line chart will start to reveal the in-between shape for each series.`;
+                } else {
+                    noteBody.innerHTML = `<b>Only ${maxSampleCount} monthly sample${maxSampleCount !== 1 ? 's have' : ' has'} been collected at this site.</b> The line and slopegraph tell the same story right now. Once 4+ samples land, the line will start to reveal the in-between shape (a steady climb? a single spike?).`;
+                }
+            } else {
+                noteEl.style.display = 'none';
+            }
         }
 
         function renderTrendsCharts() {
+            const isMulti = trendsSelectedFoods.length >= 2 || trendsSelectedSites.length >= 2;
+            const gridEl = document.getElementById('trends-grid');
+            const slopeCard = document.getElementById('trendsSlopeCard');
+            const lineCard = document.getElementById('trendsLineCard');
+            const lineBadge = document.getElementById('trendsLineBadge');
+            const lineDesc = document.getElementById('trendsLineCardDesc');
+            const lineFootNote = document.getElementById('trendsLineFootNote');
+            const lineTitle = document.getElementById('trendsLineCardTitle');
+
+            if (isMulti) {
+                slopeCard.style.display = '';
+                gridEl.style.gridTemplateColumns = '';
+                const nFoods = trendsSelectedFoods.length;
+                const nSites = trendsSelectedSites.length;
+                const badgeText = nFoods >= 2 && nSites >= 2 ? nFoods + ' species \u00b7 ' + nSites + ' sites'
+                    : nFoods >= 2 ? nFoods + ' species'
+                    : nSites + ' sites';
+                const descText = nFoods >= 2 && nSites >= 2 ? 'All selected species across all selected sites.'
+                    : nFoods >= 2 ? 'All selected species at ' + (trendsSelectedSites[0]?.name || '') + '.'
+                    : trendsSelectedFoods[0]?.label + ' across all selected sites.';
+                lineTitle.innerHTML = 'Detections over time <span class="trends-badge primary" id="trendsLineBadge">' + badgeText.toUpperCase() + '</span>';
+                lineDesc.textContent = descText;
+                lineFootNote.textContent = '';
+            } else {
+                slopeCard.style.display = '';
+                gridEl.style.gridTemplateColumns = '';
+                lineTitle.innerHTML = 'Line chart <span class="trends-badge primary" id="trendsLineBadge">Primary</span>';
+                lineDesc.textContent = 'Every monthly value is plotted \u2014 seasonality, dips, and noise are all visible as more samples come in.';
+                lineFootNote.textContent = '';
+            }
+
             renderTrendsLine();
             renderTrendsSlope();
+            updateTrendsHero();
         }
 
         function getPeriodLabel(plant) {
