@@ -25072,7 +25072,8 @@
             "Turkey": 0.449
           }
         }
-      }
+      },
+      "location_type": "manhole"
     },
     "plant_051": {
       "name": "Manhole 11069",
@@ -25251,7 +25252,8 @@
             "Phocidae": 0.0226
           }
         }
-      }
+      },
+      "location_type": "manhole"
     },
     "plant_052": {
       "name": "Manhole 24430",
@@ -25305,7 +25307,8 @@
             "Ocyphaps lophotes": 0.2448
           }
         }
-      }
+      },
+      "location_type": "manhole"
     },
     "plant_053": {
       "name": "Manhole 29962",
@@ -25449,7 +25452,8 @@
             "Trachinotus": 0.0814
           }
         }
-      }
+      },
+      "location_type": "manhole"
     }
   },
   "species_metadata": {
