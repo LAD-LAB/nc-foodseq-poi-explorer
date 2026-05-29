@@ -80,6 +80,7 @@ function processPOIs(rawData) {
 
   const categories = {
     grocery: [],
+    convenience: [],
     restaurant: [],
     fast_food: [],
     seafood: [],
@@ -151,9 +152,10 @@ function processPOIs(rawData) {
     if (!poi.lat || !poi.lon) return;
 
     // Categorize
-    if (element.tags?.shop === 'supermarket' ||
-        element.tags?.shop === 'grocery' ||
-        element.tags?.shop === 'convenience') {
+    if (element.tags?.shop === 'convenience') {
+      categories.convenience.push(poi);
+    } else if (element.tags?.shop === 'supermarket' ||
+        element.tags?.shop === 'grocery') {
       categories.grocery.push(poi);
     } else if (element.tags?.amenity === 'restaurant') {
       categories.restaurant.push(poi);

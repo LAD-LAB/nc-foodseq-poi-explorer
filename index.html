@@ -33,168 +33,200 @@
             width: 100vw;
             height: 100vh;
         }
+        /* Desaturate only the base tile layer, not data overlays */
+        .leaflet-tile-pane {
+            filter: saturate(0.70);
+        }
 
-        /* Row 1: Primary header */
+        /* Row 1: Brand bar */
         .header-row1 {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: white;
-            padding: 0 20px;
+            background: #1e3a8a;
+            padding: 0 24px;
+            height: 52px;
             display: flex;
-            align-items: flex-end;
-            border-bottom: 2px solid #1a365d;
+            align-items: center;
+            border-bottom: none;
+        }
+
+        /* Row 1b: Page navigation */
+        .header-nav {
+            position: absolute;
+            top: 52px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: #fff;
+            padding: 0 24px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e7e4dc;
         }
 
         .header-brand {
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 0;
             flex-shrink: 0;
         }
 
         .header-mark {
-            width: 28px;
-            height: 28px;
-            border: 2.5px solid #1a365d;
-            border-radius: 6px;
+            width: 30px;
+            height: 30px;
+            background: rgba(255,255,255,.15);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
             display: inline-grid;
             place-items: center;
-            font-size: 16px;
+            font-size: 13px;
             font-weight: 700;
-            color: #1a365d;
-            transform: rotate(-4deg);
+            letter-spacing: -.02em;
+            transform: none;
         }
 
         .header-wordmark {
-            font-size: 22px;
-            font-weight: 700;
-            color: #1a365d;
-            letter-spacing: 0.3px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: -.01em;
         }
 
         .header-tabs {
             display: flex;
-            gap: 18px;
-            margin-left: 32px;
+            gap: 4px;
+            margin-left: 0;
         }
 
         .header-tab {
             background: transparent;
             border: none;
-            border-bottom: 3px solid transparent;
-            padding: 12px 4px 8px;
+            border-bottom: none;
+            padding: 7px 12px;
+            border-radius: 9px;
             font-family: inherit;
-            font-size: 14px;
-            font-weight: 600;
-            color: #718096;
+            font-size: 13.5px;
+            font-weight: 500;
+            color: #64748b;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: background .15s, color .15s;
         }
 
         .header-tab:hover {
-            color: #2d3748;
+            color: #1f2937;
+            background: #f5f3ee;
         }
 
         .header-tab.active {
-            color: #1a365d;
-            border-bottom-color: #1a365d;
+            color: #0b1220;
+            font-weight: 600;
+            background: #f5f3ee;
+            border-bottom-color: transparent;
         }
 
         .header-utils {
             margin-left: auto;
             display: flex;
             gap: 8px;
-            padding-bottom: 8px;
+            align-items: center;
         }
 
         .header-icon-btn {
             width: 32px;
             height: 32px;
-            border: 1.5px solid #d2d6dc;
-            border-radius: 6px;
-            background: white;
+            border: 1px solid #e7e4dc;
+            border-radius: 9px;
+            background: #fff;
             display: inline-grid;
             place-items: center;
             font-size: 16px;
-            color: #4a5568;
+            color: #64748b;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: border-color .15s, color .15s;
         }
 
         .header-icon-btn:hover {
-            border-color: #4299e1;
-            color: #2b6cb0;
+            border-color: #cbbfa8;
+            color: #0b1220;
         }
 
         /* Row 2: Map controls strip */
         .header-row2 {
             position: absolute;
-            top: 50px;
+            top: 94px;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: #f7fafc;
-            padding: 7px 20px;
+            background: #fff;
+            padding: 10px 22px;
             display: flex;
             align-items: center;
-            gap: 14px;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            gap: 16px;
+            border-bottom: 1px solid #e7e4dc;
             transition: max-height 0.15s ease-out, opacity 0.15s ease-out, padding 0.15s ease-out;
             overflow: visible;
+            flex-wrap: wrap;
         }
 
         .header-row2.hidden {
             max-height: 0;
             opacity: 0;
-            padding: 0 20px;
+            padding: 0 22px;
             border-bottom: none;
             overflow: hidden;
         }
 
         .ctrl-label {
-            font-size: 13px;
-            color: #718096;
+            font: 600 10.5px/1 'Geist Mono', ui-monospace, monospace;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #94a3b8;
             white-space: nowrap;
         }
 
         .header-row2 select {
-            padding: 5px 26px 5px 10px;
-            border: 1.5px solid #d2d6dc;
-            border-radius: 6px;
-            font-size: 13px;
-            font-family: inherit;
-            color: #1a365d;
-            background: white;
+            height: 34px;
+            padding: 0 32px 0 13px;
+            border: 1px solid #e7e4dc;
+            border-radius: 10px;
+            font: 500 13px 'Geist', -apple-system, sans-serif;
+            color: #0b1220;
+            background: #fff;
             cursor: pointer;
             appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 8px center;
+            background-position: right 12px center;
+            transition: border-color .15s;
+        }
+
+        .header-row2 select:hover {
+            border-color: #cbbfa8;
         }
 
         .header-row2 select:focus {
             outline: none;
-            border-color: #4299e1;
+            border-color: #cbbfa8;
         }
 
         .marker-chip {
-            padding: 3px 14px;
-            border: 1.5px solid #d2d6dc;
+            height: 34px;
+            padding: 0 14px;
+            border: 1px solid #e7e4dc;
             border-radius: 999px;
-            font-size: 13px;
-            font-family: inherit;
-            font-weight: 600;
-            color: #4a5568;
-            background: white;
+            font: 500 13px 'Geist', -apple-system, sans-serif;
+            color: #64748b;
+            background: #fff;
             cursor: pointer;
-            transition: all 0.15s;
+            transition: all .15s;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
         }
 
         .marker-chip .chip-dot {
@@ -205,28 +237,33 @@
         }
 
         .marker-chip.active {
-            background: #ebf4ff;
-            border-color: #4299e1;
-            color: #2b6cb0;
+            background: #dbe4fb;
+            border-color: transparent;
+            color: #1e3a8a;
+        }
+
+        .marker-chip.active[data-kind="wwtp"],
+        .marker-chip.active[style*="manhole"] {
+            /* WWTP toggle uses rust */
         }
 
         .marker-chip:hover:not(.active) {
-            border-color: #a0aec0;
+            border-color: #cbbfa8;
         }
 
         /* Right tract panel */
         .detail-panel {
             position: absolute;
-            top: 0;
+            top: 148px;
             right: 0;
-            width: 380px;
-            height: 100vh;
-            z-index: 1001;
+            width: 416px;
+            height: calc(100vh - 148px);
+            z-index: 999;
             background: #fff;
-            border-left: 1px solid #e5e7eb;
-            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+            border-left: 1px solid #e7e4dc;
+            box-shadow: -8px 0 30px rgba(15,23,42,.05);
             transform: translateX(100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.6s ease;
             display: flex;
             flex-direction: column;
         }
@@ -237,39 +274,41 @@
 
         /* Tract panel header */
         .tp-head {
-            padding: 16px 18px 14px;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px 15px;
+            border-bottom: 1px solid #e7e4dc;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 8px;
+            gap: 12px;
         }
-        .tp-crumb { font-size: 12px; color: #6b7280; letter-spacing: .01em; }
-        .tp-title { margin: 2px 0 4px; font-size: 20px; font-weight: 700; color: #1e3a8a; line-height: 1.2; }
-        .tp-sub { font-size: 12.5px; color: #6b7280; }
+        .tp-crumb { font: 600 10.5px/1 'Geist Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: #64748b; }
+        .tp-title { margin: 2px 0 4px; font-family: 'Instrument Serif', Georgia, serif; font-size: 27px; font-weight: 400; color: #0b1220; line-height: 1.05; }
+        .tp-sub { font-size: 12px; color: #64748b; margin-top: 6px; }
         .tp-close {
-            border: 0; background: transparent; color: #6b7280;
-            width: 28px; height: 28px; border-radius: 6px;
-            cursor: pointer; font-size: 18px; line-height: 1; flex-shrink: 0;
+            width: 32px; height: 32px; flex-shrink: 0;
+            border: 1px solid #e7e4dc; border-radius: 9px; background: #fff; color: #64748b;
+            cursor: pointer; font-size: 16px; line-height: 1;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: border-color .15s, color .15s;
         }
-        .tp-close:hover { background: #f3f4f6; color: #111827; }
+        .tp-close:hover { border-color: #cbbfa8; color: #0b1220; }
 
         /* Site filter */
         .tp-sites {
-            padding: 12px 18px 14px;
-            background: #f9fafb;
-            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 20px;
+            border-bottom: 1px solid #f0ede6;
         }
         .tp-sites-head {
-            display: flex; align-items: baseline; justify-content: space-between;
-            margin-bottom: 8px;
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 10px;
         }
         .tp-sites-label {
-            font-size: 11px; text-transform: uppercase; letter-spacing: .07em;
-            font-weight: 600; color: #6b7280;
+            font: 600 10.5px/1 'Geist Mono', monospace; letter-spacing: .15em;
+            text-transform: uppercase; color: #64748b;
         }
         .tp-sites-actions {
-            display: inline-flex; gap: 4px; font-size: 12px; color: #6b7280;
+            font: 500 11.5px 'Geist Mono', monospace; color: #94a3b8;
+            display: inline-flex; align-items: center; gap: 7px;
         }
         .tp-sites-count { font-weight: 600; color: #1f2937; }
         .tp-sites-actions button {
@@ -277,26 +316,28 @@
             cursor: pointer; padding: 0 4px; font: inherit;
         }
         .tp-sites-actions button:hover { text-decoration: underline; }
-        .tp-sites-list { display: flex; flex-direction: column; gap: 2px; }
+        .tp-sites-list { display: flex; flex-direction: column; gap: 4px; }
 
         .tp-site {
             display: flex; align-items: center; gap: 10px;
-            padding: 6px 4px; border-radius: 6px; cursor: pointer; user-select: none;
+            padding: 8px 10px; border: 1px solid #e7e4dc; border-radius: 10px;
+            cursor: pointer; user-select: none; background: #fff; transition: background .12s;
         }
-        .tp-site:hover { background: rgba(0,0,0,.03); }
+        .tp-site:hover { background: #f5f3ee; }
+        .tp-site[data-on="true"] { background: #eef2fb; border-color: #dbe4fb; }
         .tp-checkbox {
-            width: 16px; height: 16px; flex: 0 0 auto;
-            border: 1.5px solid #d1d5db; border-radius: 4px;
+            width: 17px; height: 17px; flex: 0 0 auto;
+            border: 1.6px solid #cbc4b4; border-radius: 5px;
             background: #fff; display: inline-flex; align-items: center; justify-content: center;
-            transition: background .12s, border-color .12s;
+            transition: all .12s;
         }
-        .tp-checkbox svg { width: 11px; height: 11px; stroke: #fff; stroke-width: 3; fill: none; opacity: 0; }
+        .tp-checkbox svg { width: 11px; height: 11px; stroke: #fff; stroke-width: 2; fill: none; opacity: 0; }
         .tp-site[data-on="true"] .tp-checkbox { background: #1e3a8a; border-color: #1e3a8a; }
         .tp-site[data-on="true"] .tp-checkbox svg { opacity: 1; }
-        .tp-site-dot { width: 8px; height: 8px; border-radius: 50%; border: 1px solid rgba(0,0,0,.15); flex-shrink: 0; }
-        .tp-site-dot.wwtp { background: #ef4444; }
-        .tp-site-dot.manhole { background: #3b82f6; }
-        .tp-site-name { flex: 1; font-size: 13.5px; }
+        .tp-site-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .tp-site-dot.wwtp { background: #b8612a; }
+        .tp-site-dot.manhole { background: #1e3a8a; }
+        .tp-site-name { flex: 1; font-size: 13px; font-weight: 500; color: #0b1220; }
 
         /* Tract panel tabs */
         .tp-tabs {
@@ -313,100 +354,98 @@
         .tp-tab.active { color: #111827; font-weight: 600; border-bottom-color: #1e3a8a; }
 
         /* Tract panel body */
-        .tp-body { flex: 1; overflow-y: auto; }
-        .tp-pane { padding: 14px 18px; }
+        .tp-body { }
+        .tp-pane { padding: 16px 20px; }
         .tp-pane[hidden] { display: none; }
 
         /* Bar list */
         .tp-bars { display: flex; flex-direction: column; gap: 6px; margin: 0; padding: 0; list-style: none; }
         .tp-bar {
-            display: grid; grid-template-columns: 100px 1fr 52px;
+            display: grid; grid-template-columns: 104px 1fr 34px;
             gap: 10px; align-items: center;
         }
         .tp-bar .name {
-            display: block; font-size: 13px; text-align: right; color: #1f2937;
+            display: block; font-size: 12.5px; color: #0b1220;
             white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
-        .tp-bar .track { display: block; height: 10px; border-radius: 4px; background: #eef0fa; overflow: hidden; }
-        .tp-bar.animals .track { background: #fdecec; }
-        .tp-bar .fill { display: block; height: 100%; background: #818cf8; border-radius: 4px; transition: width .4s ease; }
-        .tp-bar.animals .fill { background: #f87171; }
-        .tp-bar .val { display: block; font-size: 12px; color: #6b7280; text-align: right; font-variant-numeric: tabular-nums; }
+        .tp-bar .track { display: block; height: 7px; border-radius: 5px; background: #e6e8fb; overflow: hidden; }
+        .tp-bar.animals .track { background: #f5e0d2; }
+        .tp-bar .fill { display: block; height: 100%; background: #5b6cf0; border-radius: 5px; transition: width .4s ease; }
+        .tp-bar.animals .fill { background: #c8612e; }
+        .tp-bar .val { display: block; font: 600 12px 'Geist Mono', monospace; color: #0b1220; text-align: right; font-variant-numeric: tabular-nums; }
 
         .tp-link {
-            display: block; text-align: center; margin-top: 14px;
+            display: block; text-align: center; margin-top: 12px;
             font-size: 12.5px; color: #1e3a8a; text-decoration: none;
-            padding: 6px 0; border-top: 1px solid #f3f4f6;
+            font-weight: 500;
         }
         .tp-link:hover { text-decoration: underline; }
 
         /* Demographics */
-        .tp-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; font-size: 13.5px; }
-        .tp-stat .k { color: #6b7280; }
-        .tp-stat .v { font-weight: 600; color: #111827; font-variant-numeric: tabular-nums; }
-        .tp-demo-bar { display: flex; height: 10px; border-radius: 4px; overflow: hidden; background: #e5e7eb; margin: 14px 0 8px; }
+        .tp-stat { display: flex; justify-content: space-between; align-items: baseline; padding: 4px 0; font-size: 13px; }
+        .tp-stat .k { color: #64748b; }
+        .tp-stat .v { font-weight: 600; color: #0b1220; font-variant-numeric: tabular-nums; }
+        .tp-demo-bar { display: flex; height: 7px; border-radius: 5px; overflow: hidden; background: #e7e4dc; margin: 14px 0 8px; }
         .tp-demo-bar span { display: block; height: 100%; }
-        .tp-demo-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: 12px; color: #6b7280; }
+        .tp-demo-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; font-size: 12px; color: #64748b; }
         .tp-demo-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
 
         /* CTAs */
-        .tp-ctas { padding: 14px 18px 16px; border-top: 1px solid #e5e7eb; display: flex; flex-direction: column; gap: 8px; background: #fff; }
+        .tp-ctas { padding: 13px 16px 16px; border-top: 1px solid #e7e4dc; display: flex; flex-direction: column; gap: 8px; background: #fff; flex-shrink: 0; }
         .tp-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-            padding: 10px 14px; font: inherit; font-size: 13.5px; font-weight: 600;
-            border-radius: 8px; cursor: pointer; border: 1px solid transparent;
-            transition: background .12s, border-color .12s;
+            display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+            font: inherit; font-size: 13.5px; font-weight: 600;
+            border-radius: 11px; cursor: pointer; border: 1px solid transparent;
+            transition: background .15s, border-color .15s;
         }
-        .tp-btn-primary { background: #1e3a8a; color: #fff; }
-        .tp-btn-primary:hover { background: #15306f; }
-        .tp-btn-outline { background: #fff; color: #1f2937; border-color: #d1d5db; }
-        .tp-btn-outline:hover { background: #f3f4f6; border-color: #6b7280; }
+        .tp-btn-primary { height: 42px; background: #1e3a8a; color: #fff; }
+        .tp-btn-primary:hover { background: #18306e; }
+        .tp-btn-outline { height: 40px; background: #fff; color: #0b1220; border-color: #e7e4dc; font-weight: 500; }
+        .tp-btn-outline:hover { border-color: #cbbfa8; }
 
-        /* Flagged trends strip (Pattern C) */
-        .tp-flagged { padding: 10px 18px 8px; border-bottom: 1px solid #e5e7eb; }
+        /* Flagged trends strip */
+        .tp-flagged { padding: 16px 20px; border-bottom: 1px solid #f0ede6; }
         .tp-flagged-item {
-            display: flex; align-items: center; gap: 8px;
-            padding: 6px 10px; margin-bottom: 4px;
-            border-radius: 0 6px 6px 0; cursor: pointer;
-            font-size: 12.5px; color: #1f2937; transition: background 0.12s;
+            display: flex; align-items: center; gap: 10px;
+            padding: 5px 0; cursor: pointer;
+            font-size: 13px; color: #1f2937; transition: background 0.12s;
         }
-        .tp-flagged-item.spike { border-left: 3px solid #c44a2b; background: rgba(196,74,43,0.08); }
-        .tp-flagged-item.spike:hover { background: rgba(196,74,43,0.16); }
-        .tp-flagged-item.recovery { border-left: 3px solid #4a7a48; background: rgba(74,122,72,0.08); }
-        .tp-flagged-item.recovery:hover { background: rgba(74,122,72,0.16); }
-        .tp-flagged-item b { color: #111827; }
-        .tp-flagged-item .flag-arrow { margin-left: auto; opacity: 0.4; transition: opacity 0.12s; font-size: 13px; }
-        .tp-flagged-item.spike .flag-arrow { color: #c44a2b; }
-        .tp-flagged-item.recovery .flag-arrow { color: #4a7a48; }
-        .tp-flagged-item:hover .flag-arrow { opacity: 1; }
-        .tp-flagged-empty { font-size: 12px; color: #9ca3af; font-style: italic; padding: 4px 0; }
+        .tp-flagged-item.spike { }
+        .tp-flagged-item.spike:hover { background: rgba(196,74,43,0.06); border-radius: 6px; }
+        .tp-flagged-item.recovery { }
+        .tp-flagged-item.recovery:hover { background: rgba(74,122,72,0.06); border-radius: 6px; }
+        .tp-flagged-item b { color: #0b1220; }
+        .tp-flagged-item .flag-arrow { margin-left: auto; font: 600 12px 'Geist Mono', monospace; }
+        .tp-flagged-item.spike .flag-arrow { color: #b8612a; }
+        .tp-flagged-item.recovery .flag-arrow { color: #15803d; }
+        .tp-flagged-empty { font-size: 12px; color: #94a3b8; font-style: italic; padding: 4px 0; }
 
-        /* Sparkline food rows (Pattern A) */
+        /* Sparkline food rows */
         .tp-bar-linked {
             display: grid;
-            grid-template-columns: 100px 1fr auto 30px;
-            column-gap: 8px; align-items: center;
-            padding: 5px 0; cursor: pointer; border-radius: 4px;
-            transition: background 0.1s;
+            grid-template-columns: 104px 1fr auto 34px;
+            column-gap: 10px; align-items: center;
+            padding: 4px 0; cursor: pointer; border-radius: 6px;
+            transition: background 0.12s;
         }
-        .tp-bar-linked:hover { background: #f9fafb; }
+        .tp-bar-linked:hover { background: #f5f3ee; }
         .tp-bar-linked:focus { outline: 2px solid #1e3a8a; outline-offset: 2px; }
         .tp-bar-linked .row-arrow { opacity: 0; color: #6b7280; font-size: 13px; text-align: right; transition: opacity 0.12s; }
         .tp-bar-linked:hover .row-arrow { opacity: 1; }
-        .tp-spark { display: block; width: 60px; height: 22px; flex-shrink: 0; }
-        .tp-spark .area { fill: #1e3a8a; opacity: 0.18; }
-        .tp-spark .line { stroke: #1e3a8a; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-        .tp-spark .dot { fill: #1e3a8a; }
-        .tp-spark .dot.end { fill: #1e3a8a; }
-        .tp-spark .dot.end.flagged { fill: #c44a2b; }
+        .tp-spark { display: block; width: 26px; height: 16px; flex-shrink: 0; }
+        .tp-spark .area { fill: #5b6cf0; opacity: 0.12; }
+        .tp-spark .line { stroke: #5b6cf0; stroke-width: 1.4; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: .55; }
+        .tp-spark .dot { fill: #5b6cf0; opacity: .55; }
+        .tp-spark .dot.end { fill: #5b6cf0; }
+        .tp-spark .dot.end.flagged { fill: #b8612a; }
 
         /* ── Report Card tab ── */
         .rc-score-grid {
-            display: grid; grid-template-columns: 120px 1fr; overflow: hidden;
-            margin-bottom: 18px; border: 1px solid #e5e7eb; border-radius: 14px;
+            display: grid; grid-template-columns: 112px 1fr; overflow: hidden;
+            margin-bottom: 18px; border: 1px solid #e7e4dc; border-radius: 12px;
         }
         .rc-score-left {
-            padding: 16px 14px; border-right: 1px solid #e5e7eb; background: #eef2fb;
+            padding: 14px 12px; border-right: 1px solid #dbe4fb; background: #eef2fb;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
         }
         .rc-kicker {
@@ -417,20 +456,20 @@
         .rc-kicker.animal { color: #c8612e; }
         .rc-kicker.navy { color: #1e3a8a; }
         .rc-score-num {
-            font-family: "Instrument Serif", Georgia, serif; font-size: 44px; line-height: 1;
+            font-family: "Instrument Serif", Georgia, serif; font-size: 46px; line-height: .9;
             color: #1e3a8a; margin-top: 6px;
         }
-        .rc-score-num small { font: 400 11px "Geist Mono", monospace; color: #94a3b8; }
-        .rc-score-label { font-size: 12px; font-weight: 500; color: #0b1220; margin-top: 4px; }
-        .rc-score-marker { font: 400 9px "Geist Mono", monospace; color: #94a3b8; margin-top: 3px; letter-spacing: .04em; }
-        .rc-score-right { padding: 16px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+        .rc-score-num small { font: 500 11px "Geist Mono", monospace; color: #64748b; }
+        .rc-score-label { font-size: 11.5px; font-weight: 600; color: #0b1220; margin-top: 7px; }
+        .rc-score-marker { font: 500 9px "Geist Mono", monospace; color: #94a3b8; margin-top: 2px; letter-spacing: .05em; }
+        .rc-score-right { padding: 14px 15px; display: flex; flex-direction: column; justify-content: center; gap: 13px; }
 
         .rc-marker-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12.5px; }
         .rc-marker-label { font-weight: 600; }
-        .rc-marker-label .marker-tag { font: 400 10px "Geist Mono", monospace; color: #64748b; }
+        .rc-marker-label .marker-tag { font: 400 10px "Geist Mono", monospace; color: #64748b; margin-left: 3px; }
         .rc-marker-count { color: #64748b; font-variant-numeric: tabular-nums; }
         .rc-marker-count b { color: #0b1220; }
-        .rc-marker-track { height: 8px; border-radius: 5px; overflow: hidden; }
+        .rc-marker-track { height: 7px; border-radius: 5px; overflow: hidden; }
         .rc-marker-track .rc-marker-fill { height: 100%; border-radius: 5px; }
         .rc-marker-track.plant { background: #e6e8fb; }
         .rc-marker-track.plant .rc-marker-fill { background: #5b6cf0; }
@@ -633,15 +672,16 @@
         .bottom-left-container {
             position: absolute;
             bottom: 20px;
-            left: 12px;
+            left: 20px;
             z-index: 1000;
         }
 
         .map-legend {
-            background: white;
+            background: #fff;
             padding: 10px 14px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            border-radius: 14px;
+            border: 1px solid #e7e4dc;
+            box-shadow: 0 2px 10px rgba(15,23,42,.07);
             font-size: 12px;
             margin-bottom: 8px;
         }
@@ -1242,8 +1282,14 @@
         }
 
         /* Custom Leaflet styles */
+        /* Leaflet zoom restyle */
+        .leaflet-control-zoom { border: 1px solid #e7e4dc !important; border-radius: 11px !important; overflow: hidden; box-shadow: 0 2px 10px rgba(15,23,42,.08) !important; }
+        .leaflet-control-zoom a { width: 32px !important; height: 32px !important; line-height: 32px !important; color: #1f2937 !important; background: #fff !important; font-size: 17px !important; font-weight: 400 !important; }
+        .leaflet-control-zoom a:hover { background: #f5f3ee !important; }
+        .leaflet-bar a:first-child { border-bottom: 1px solid #e7e4dc !important; }
         .leaflet-top.leaflet-left {
-            top: 120px;
+            top: 148px;
+            left: 16px;
         }
 
         .leaflet-popup-content-wrapper {
@@ -1259,36 +1305,40 @@
 
         /* POI Controls Panel — now inside bottom-left-container */
         .poi-controls {
-            background: white;
-            padding: 10px 12px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            max-width: 220px;
-            max-height: 350px;
-            overflow-y: auto;
+            background: #fff;
+            padding: 0;
+            border-radius: 14px;
+            border: 1px solid #e7e4dc;
+            box-shadow: 0 8px 30px rgba(15,23,42,.12);
+            max-width: 244px;
+            max-height: 240px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .poi-controls-header {
-            font-weight: 700;
-            font-size: 14px;
-            color: #1a365d;
-            margin-bottom: 10px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #0b1220;
+            letter-spacing: -.01em;
+            padding: 13px 15px;
+            border-bottom: 1px solid #f0ede6;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
             user-select: none;
+            flex-shrink: 0;
         }
 
         .poi-controls-header:hover {
-            color: #4299e1;
+            color: #1e3a8a;
         }
 
         .poi-controls-toggle {
             font-size: 12px;
-            color: #a0aec0;
+            color: #94a3b8;
             transition: transform 0.2s;
         }
 
@@ -1305,31 +1355,42 @@
             overflow: visible;
         }
 
+        .poi-controls-body {
+            overflow-y: auto;
+            padding: 6px 0 10px;
+        }
+
         .poi-category-group {
-            margin-bottom: 12px;
+            padding: 0 15px;
         }
 
         .poi-category-header {
-            font-size: 12px;
-            font-weight: 600;
-            color: #4a5568;
-            margin-bottom: 6px;
+            font: 600 9.5px/1 'Geist Mono', monospace;
+            letter-spacing: .14em;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            color: #94a3b8;
+            margin: 14px 0 4px;
         }
 
         .poi-toggle {
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 4px 0;
+            gap: 10px;
+            padding: 6px 4px;
+            border-radius: 8px;
             font-size: 13px;
-            color: #2d3748;
+            color: #1f2937;
             cursor: pointer;
+            transition: background .12s;
+        }
+
+        .poi-toggle:hover {
+            background: #f5f3ee;
         }
 
         .poi-toggle input[type="checkbox"] {
             cursor: pointer;
+            accent-color: #1e3a8a;
         }
 
         .poi-toggle span:first-of-type {
@@ -1337,35 +1398,33 @@
         }
 
         .poi-count {
-            font-size: 11px;
-            color: #718096;
-            background: #edf2f7;
-            padding: 2px 6px;
-            border-radius: 4px;
+            font: 500 11.5px 'Geist Mono', monospace;
+            color: #94a3b8;
         }
 
         .poi-controls-footer {
             display: flex;
             gap: 6px;
-            margin-top: 12px;
-            padding-top: 8px;
-            border-top: 1px solid #e2e8f0;
+            padding: 10px 15px;
+            border-top: 1px solid #f0ede6;
+            flex-shrink: 0;
         }
 
         .poi-controls-footer button {
             flex: 1;
             padding: 6px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
+            background: #fff;
+            border: 1px solid #e7e4dc;
+            border-radius: 8px;
+            font: 500 11px 'Geist', sans-serif;
+            color: #64748b;
             cursor: pointer;
+            transition: border-color .15s;
         }
 
         .poi-controls-footer button:hover {
-            background: #f7fafc;
-            border-color: #cbd5e0;
+            border-color: #cbbfa8;
+            color: #0b1220;
         }
 
         .poi-radius-section {
@@ -1412,24 +1471,32 @@
         /* POI Marker Icons */
         .poi-icon {
             background: white;
-            border-radius: 50%;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            font-size: 12px;
+            box-shadow: 0 1px 4px rgba(15,23,42,.18);
+            border: 1.5px solid rgba(255,255,255,.9);
+        }
+        .poi-icon > div {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
         }
 
-        .poi-icon-grocery { border: 2px solid #48bb78; }
-        .poi-icon-restaurant { border: 2px solid #ed8936; }
-        .poi-icon-fast_food { border: 2px solid #f56565; }
-        .poi-icon-seafood { border: 2px solid #4299e1; }
-        .poi-icon-butcher { border: 2px solid #e53e3e; }
-        .poi-icon-bakery { border: 2px solid #d69e2e; }
-        .poi-icon-greengrocer { border: 2px solid #38b2ac; }
-        .poi-icon-marketplace { border: 2px solid #9f7aea; }
-        .poi-icon-university { border: 2px solid #6366f1; }
-        .poi-icon-ev_charging { border: 2px solid #10b981; }
-        .poi-icon-gym { border: 2px solid #f97316; }
+        .poi-icon-grocery { background: #15803d; color: #fff; }
+        .poi-icon-convenience { background: #d97706; color: #fff; }
+        .poi-icon-restaurant { background: #6366f1; color: #fff; }
+        .poi-icon-fast_food { background: #dc2626; color: #fff; }
+        .poi-icon-seafood { background: #0891b2; color: #fff; }
+        .poi-icon-butcher { background: #b8612a; color: #fff; }
+        .poi-icon-bakery { background: #a16207; color: #fff; }
+        .poi-icon-greengrocer { background: #0e9488; color: #fff; }
+        .poi-icon-marketplace { background: #7c3aed; color: #fff; }
+        .poi-icon-university { background: #1e3a8a; color: #fff; }
+        .poi-icon-ev_charging { background: #059669; color: #fff; }
+        .poi-icon-gym { background: #ea580c; color: #fff; }
+        .poi-icon-bar { background: #7c3aed; color: #fff; }
+        .poi-icon-brewery { background: #a16207; color: #fff; }
 
         /* Census Tract Labels */
         .tract-label {
@@ -1448,95 +1515,32 @@
 
         /* POI Clusters */
         .poi-cluster {
-            background: white;
-            border-radius: 50%;
-            width: 22px;
-            height: 22px;
+            border-radius: 20px;
+            width: 24px;
+            height: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 10px;
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+            font: 700 10px 'Geist Mono', monospace;
+            color: #fff;
+            box-shadow: 0 1px 4px rgba(15,23,42,.18);
+            border: 1.5px solid rgba(255,255,255,.9);
         }
 
-        .poi-cluster-grocery {
-            background: #c6f6d5;
-            color: #22543d;
-            border: 2px solid #48bb78;
-        }
-
-        .poi-cluster-restaurant {
-            background: #feebc8;
-            color: #7c2d12;
-            border: 2px solid #ed8936;
-        }
-
-        .poi-cluster-fast_food {
-            background: #fed7d7;
-            color: #742a2a;
-            border: 2px solid #f56565;
-        }
-
-        .poi-cluster-seafood {
-            background: #bee3f8;
-            color: #1e4e8c;
-            border: 2px solid #4299e1;
-        }
-
-        .poi-cluster-butcher {
-            background: #fed7d7;
-            color: #742a2a;
-            border: 2px solid #e53e3e;
-        }
-
-        .poi-cluster-bakery {
-            background: #fefcbf;
-            color: #744210;
-            border: 2px solid #d69e2e;
-        }
-
-        .poi-cluster-greengrocer {
-            background: #b2f5ea;
-            color: #234e52;
-            border: 2px solid #38b2ac;
-        }
-
-        .poi-cluster-marketplace {
-            background: #e9d8fd;
-            color: #44337a;
-            border: 2px solid #9f7aea;
-        }
-
-        .poi-cluster-university {
-            background: #e0e7ff;
-            color: #3730a3;
-            border: 2px solid #6366f1;
-        }
-
-        .poi-cluster-ev_charging {
-            background: #d1fae5;
-            color: #065f46;
-            border: 2px solid #10b981;
-        }
-
-        .poi-cluster-gym {
-            background: #ffedd5;
-            color: #9a3412;
-            border: 2px solid #f97316;
-        }
-
-        .poi-cluster-bar {
-            background: #fce7f3;
-            color: #831843;
-            border: 2px solid #ec4899;
-        }
-
-        .poi-cluster-brewery {
-            background: #fef3c7;
-            color: #92400e;
-            border: 2px solid #f59e0b;
-        }
+        .poi-cluster-grocery { background: #15803d; }
+        .poi-cluster-convenience { background: #d97706; }
+        .poi-cluster-restaurant { background: #6366f1; }
+        .poi-cluster-fast_food { background: #dc2626; }
+        .poi-cluster-seafood { background: #0891b2; }
+        .poi-cluster-butcher { background: #b8612a; }
+        .poi-cluster-bakery { background: #a16207; }
+        .poi-cluster-greengrocer { background: #0e9488; }
+        .poi-cluster-marketplace { background: #7c3aed; }
+        .poi-cluster-university { background: #1e3a8a; }
+        .poi-cluster-ev_charging { background: #059669; }
+        .poi-cluster-gym { background: #ea580c; }
+        .poi-cluster-bar { background: #7c3aed; }
+        .poi-cluster-brewery { background: #a16207; }
 
         /* POI Popup */
         .poi-popup {
@@ -1583,9 +1587,9 @@
         /* Species Panel */
         .species-panel {
             position: absolute;
-            top: 100px;
+            top: 150px;
             right: 20px;
-            z-index: 1001;
+            z-index: 998;
             background: white;
             padding: 15px;
             border-radius: 8px;
@@ -2644,6 +2648,113 @@
         .food-desert-export-btn:hover {
             background: #3182ce;
         }
+        /* ── Home landing overlay ── */
+        #homeOverlay {
+            position: fixed; inset: 0; z-index: 10000;
+            background: radial-gradient(120% 90% at 50% -10%, #fffdf8 0%, rgba(255,253,248,0) 55%), #faf9f5;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; transition: opacity .8s ease, transform .8s ease;
+            font-family: 'Geist', -apple-system, sans-serif;
+        }
+        #homeOverlay.hidden {
+            opacity: 0; transform: translateY(-30px); pointer-events: none;
+        }
+        #homeOverlay .home-brand {
+            position: absolute; top: 26px; left: 30px; display: flex; align-items: center; gap: 10px;
+        }
+        #homeOverlay .home-brand .mark {
+            width: 28px; height: 28px; background: #1e3a8a; color: #fff; border-radius: 8px;
+            display: grid; place-items: center; font-weight: 700; font-size: 13px;
+        }
+        #homeOverlay .home-brand .bname { font-size: 14px; font-weight: 600; color: #0b1220; }
+        #homeOverlay .home-stage { width: 100%; max-width: 600px; padding: 0 24px; }
+        #homeOverlay .home-dots { display: flex; gap: 7px; justify-content: center; margin-bottom: 26px; }
+        #homeOverlay .home-dots span { width: 9px; height: 9px; border-radius: 50%; }
+        #homeOverlay .home-eyebrow {
+            font: 500 12px/1 'Geist Mono', monospace; letter-spacing: .26em; text-transform: uppercase;
+            color: #64748b; margin-bottom: 18px;
+        }
+        #homeOverlay h1 {
+            font-family: 'Instrument Serif', Georgia, serif; font-weight: 400;
+            font-size: clamp(50px, 7.5vw, 80px); line-height: 1.07; letter-spacing: -.015em;
+            color: #0b1220; margin: 0;
+        }
+        #homeOverlay h1 .l { display: block; }
+        #homeOverlay h1 .l2 { font-style: italic; color: #1e3a8a; }
+        #homeOverlay .home-lede {
+            margin: 30px auto 0; max-width: 46ch; font-size: 16.5px; line-height: 1.55; color: #64748b;
+        }
+        #homeOverlay .home-loc {
+            margin: 40px auto 0; max-width: 580px;
+            display: flex; align-items: center; gap: 8px;
+            background: #fff; border: 1px solid #e5e7eb;
+            border-radius: 999px; padding: 7px 7px 7px 18px;
+            box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 12px 30px rgba(15,23,42,.06);
+            transition: border-color .15s, box-shadow .15s;
+        }
+        #homeOverlay .home-loc:focus-within { border-color: #c3ccdd; box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 0 0 4px rgba(30,58,138,.10); }
+        #homeOverlay .home-loc .pin { color: #64748b; flex-shrink: 0; display: flex; }
+        #homeOverlay .home-loc input {
+            flex: 1; min-width: 0; border: 0; outline: 0; background: transparent;
+            font: 16px 'Geist', sans-serif; color: #0b1220; padding: 10px 2px;
+        }
+        #homeOverlay .home-loc input::placeholder { color: #94a3b8; }
+        #homeOverlay .home-loc button {
+            flex-shrink: 0; height: 44px; padding: 0 20px; border: 0; border-radius: 999px;
+            background: #0b1220; color: #fff; font: 600 14px 'Geist', sans-serif; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 8px; transition: background .15s;
+        }
+        #homeOverlay .home-loc button:hover { background: #1b2433; }
+        #homeOverlay .home-explore {
+            display: inline-flex; align-items: center; gap: 7px;
+            margin-top: 20px; background: 0; border: 0; cursor: pointer;
+            font: 500 14.5px 'Geist', sans-serif; color: #64748b;
+            padding: 6px 8px; border-radius: 8px; transition: color .15s;
+        }
+        #homeOverlay .home-explore:hover { color: #0b1220; }
+        #homeOverlay .home-footer {
+            position: absolute; bottom: 22px; font-size: 12px; color: #94a3b8; letter-spacing: .02em;
+        }
+        #homeOverlay .home-footer b { color: #64748b; font-weight: 500; }
+
+        /* Landing info panel — sits to the left of the detail panel */
+        #landingInfoPanel {
+            position: absolute;
+            top: 148px;
+            right: 416px;
+            width: 360px;
+            height: calc(100vh - 148px);
+            z-index: 998;
+            background: #faf9f5;
+            border-left: 1px solid #e7e4dc;
+            box-shadow: -8px 0 30px rgba(15,23,42,.05);
+            font-family: 'Geist', -apple-system, sans-serif;
+            overflow-y: auto;
+            transform: translateX(0);
+            transition: transform .7s ease;
+        }
+        #landingInfoPanel.hidden {
+            transform: translateX(calc(360px + 416px));
+            pointer-events: none;
+        }
+        /* When info panel is dismissed, detail panel also slides right */
+        .detail-panel.slide-away {
+            transform: translateX(100%) !important;
+        }
+        .landing-dismiss-bar {
+            position: absolute; bottom: 24px; left: calc((100vw - 776px) / 2); transform: translateX(-50%); z-index: 998;
+            transition: opacity .6s ease, transform .6s ease;
+        }
+        .landing-dismiss-bar.hidden { opacity: 0; transform: translateX(-50%) translateY(10px); pointer-events: none; }
+        .landing-dismiss-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 24px; border-radius: 999px; border: 1px solid #e7e4dc;
+            background: #fff; color: #0b1220; font: 600 14px 'Geist', sans-serif;
+            cursor: pointer; box-shadow: 0 4px 16px rgba(15,23,42,.12);
+            transition: background .15s, box-shadow .15s;
+        }
+        .landing-dismiss-btn:hover { background: #f8fafc; box-shadow: 0 6px 24px rgba(15,23,42,.16); }
+
     </style>
 </head>
 <body>
@@ -2653,20 +2764,64 @@
         <div>Loading FoodSeq data...</div>
     </div>
 
-    <!-- Row 1: Primary header -->
+    <!-- Home landing overlay -->
+    <div id="homeOverlay">
+        <div class="home-brand">
+            <span class="mark">FS</span>
+            <span class="bname">NC&nbsp;FoodSeq</span>
+        </div>
+        <div class="home-stage">
+            <div class="home-dots">
+                <span style="background:#d4541f;"></span>
+                <span style="background:#f5f3ee;border:1px solid #e5e7eb;"></span>
+                <span style="background:#0e9488;"></span>
+            </div>
+            <div class="home-eyebrow">Welcome to</div>
+            <h1><span class="l">FoodSeq</span><span class="l l2">Explorer</span></h1>
+            <p class="home-lede">See what Durham neighborhoods actually eat — read from the city's wastewater, not from surveys.</p>
+            <form class="home-loc" onsubmit="submitHomeAddress(event)">
+                <span class="pin">
+                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 1.5c-2.8 0-5 2.2-5 5C4 10.5 9 16.5 9 16.5s5-6 5-10c0-2.8-2.2-5-5-5z"/><circle cx="9" cy="6.5" r="1.9"/></svg>
+                </span>
+                <input id="homeAddr" type="text" placeholder="Enter your address or neighborhood" autocomplete="off">
+                <button type="submit">
+                    Find my area
+                    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
+                </button>
+            </form>
+            <button class="home-explore" onclick="dismissHome()">
+                or explore without entering a location
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
+            </button>
+        </div>
+        <div class="home-footer">Durham, NC &nbsp;&middot;&nbsp; wastewater-based diet signal &nbsp;&middot;&nbsp; <b>research prototype</b></div>
+    </div>
+
+    <!-- Landing info panel (slides in to the left of detail panel) -->
+    <div id="landingInfoPanel" class="hidden"></div>
+    <div class="landing-dismiss-bar hidden" id="landingDismissBar">
+        <button class="landing-dismiss-btn" onclick="dismissLandingPanels()">
+            Explore the whole map
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
+        </button>
+    </div>
+
+    <!-- Row 1: Brand bar -->
     <div class="header-row1">
         <div class="header-brand">
-            <span class="header-wordmark">NC FoodSeq Explorer</span>
+            <span class="header-mark">FS</span>
+            <span class="header-wordmark">NC FoodSeq <span style="color:rgba(255,255,255,.6);font-weight:500;">Explorer</span></span>
         </div>
+    </div>
+
+    <!-- Row 1b: Page navigation tabs -->
+    <div class="header-nav">
         <div class="header-tabs">
             <button class="header-tab active" onclick="switchView('map')">Map</button>
             <button class="header-tab" onclick="switchView('trends')">Trends</button>
             <button class="header-tab" onclick="switchView('find-food')">Food Near Me</button>
+            <button class="header-tab" onclick="switchView('gap-explorer')">Gap Explorer</button>
             <button class="header-tab" onclick="window.open('https://edibleatlas.org/','_blank')">About</button>
-        </div>
-        <div class="header-utils">
-            <button class="header-icon-btn" title="Share" onclick="shareMap()">&#8599;</button>
-            <button class="header-icon-btn" title="Help" onclick="showHelp()">?</button>
         </div>
     </div>
 
@@ -2683,14 +2838,15 @@
             <option value="other">% Other Race</option>
             <option value="usda_desert">USDA Food Desert</option>
             <option value="predicted_desert">Predicted Food Desert</option>
+            <option value="gap_score">Gap Score (Diet vs. Environment)</option>
         </select>
         <span class="ctrl-label">Period</span>
         <select id="timeSelect" onchange="onTimeSelectChange(this.value)"></select>
         <button class="marker-chip active" id="chip-manhole" onclick="toggleMarkerChip('manhole')">
-            <span class="chip-dot" style="background:#3182ce;"></span>Manhole
+            <span class="chip-dot" style="background:#1e3a8a;"></span>Manhole
         </button>
         <button class="marker-chip active" id="chip-wwtp" onclick="toggleMarkerChip('wwtp')">
-            <span class="chip-dot" style="background:#e53e3e;"></span>WWTP
+            <span class="chip-dot" style="background:#b8612a;"></span>WWTP
         </button>
         <button class="marker-chip" id="speciesButton" onclick="toggleSpeciesPanel()" style="margin-left:8px;">
             Species Abundance
@@ -2832,7 +2988,7 @@
 
     <!-- Food Near Me view (hidden by default) -->
     <!-- Trends view -->
-    <div id="trendsView" style="display:none;position:absolute;top:50px;left:0;right:0;bottom:0;z-index:999;overflow:auto;padding:28px 32px 60px;">
+    <div id="trendsView" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;overflow:auto;padding:28px 32px 60px;">
         <div class="trends-page">
             <!-- Breadcrumb (populated by navigateToTrends) -->
             <div class="trends-breadcrumb" id="trendsBreadcrumb" style="display:none;"></div>
@@ -2963,86 +3119,107 @@
         </div>
     </div>
 
-    <div id="findFoodView" style="display:none;position:absolute;top:50px;left:0;right:0;bottom:0;z-index:999;background:#f3f4f6;overflow:auto;">
+    <!-- Gap Explorer View -->
+    <div id="gapExplorerView" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;background:#faf9f5;overflow:auto;font-family:'Geist',-apple-system,sans-serif;padding:28px 32px 60px;"></div>
+
+    <div id="findFoodView" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;background:#faf9f5;overflow:hidden;">
         <div style="display:flex;height:100%;">
-            <!-- Left filter panel -->
-            <div style="width:340px;flex-shrink:0;background:#fff;border-right:1px solid #e5e7eb;padding:24px 20px;overflow-y:auto;">
-                <h3 style="font-size:18px;font-weight:700;color:#111827;margin:0 0 16px;">Food Near Me</h3>
+            <!-- Left rail -->
+            <aside style="width:320px;flex-shrink:0;background:#fff;border-right:1px solid #e7e4dc;display:flex;flex-direction:column;">
+                <div style="flex:1;overflow-y:auto;padding:22px 22px 16px;">
+                    <h1 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:30px;line-height:1.05;color:#0b1220;margin:0 0 4px;">Food Near Me</h1>
+                    <div style="font-size:12.5px;color:#64748b;margin-bottom:22px;">Food access options in my area.</div>
 
-                <div style="margin-bottom:16px;position:relative;">
-                    <label style="font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px;">Foods to compare</label>
-                    <div id="foodTagsInput" style="border:1.5px solid #d1d5db;border-radius:8px;padding:6px 8px;display:flex;flex-wrap:wrap;gap:4px;min-height:38px;cursor:text;position:relative;" onclick="document.getElementById('foodSearchInput').focus()">
-                        <input id="foodSearchInput" type="text" placeholder="Search foods..." autocomplete="off" style="border:none;outline:none;font:inherit;font-size:13px;flex:1;min-width:100px;padding:2px 4px;" oninput="onFoodSearchInput(this.value)" onkeydown="onFoodSearchKeydown(event)">
+                    <div style="margin-bottom:22px;position:relative;">
+                        <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">Foods to compare</span>
+                        <div id="foodTagsInput" style="display:flex;align-items:center;gap:9px;height:44px;padding:0 13px;border:1px solid #e7e4dc;border-radius:11px;background:#fff;cursor:text;transition:border-color .15s,box-shadow .15s;" onclick="document.getElementById('foodSearchInput').focus()">
+                            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#94a3b8" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
+                            <input id="foodSearchInput" type="text" placeholder="Search foods…" autocomplete="off" style="border:none;outline:none;font:14px 'Geist',sans-serif;flex:1;min-width:80px;padding:0;color:#0b1220;background:transparent;" oninput="onFoodSearchInput(this.value)" onkeydown="onFoodSearchKeydown(event)">
+                        </div>
+                        <div id="foodSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10;background:#fff;border:1px solid #e7e4dc;border-top:none;border-radius:0 0 11px 11px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(15,23,42,.1);"></div>
                     </div>
-                    <div id="foodSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10;background:#fff;border:1.5px solid #d1d5db;border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
-                </div>
 
-                <div style="margin-bottom:16px;position:relative;">
-                    <label style="font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px;">Location</label>
-                    <input id="foodLocation" type="text" placeholder="Enter an address..." autocomplete="off" style="width:100%;padding:8px 12px;border:1.5px solid #d1d5db;border-radius:8px;font:inherit;font-size:13px;" oninput="onLocationInput(this.value)">
-                    <div id="locationSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10;background:#fff;border:1.5px solid #d1d5db;border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
-                </div>
+                    <div style="margin-bottom:22px;position:relative;">
+                        <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">Location</span>
+                        <label style="display:flex;align-items:center;gap:9px;height:44px;padding:0 13px;border:1px solid #e7e4dc;border-radius:11px;background:#fff;transition:border-color .15s,box-shadow .15s;">
+                            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#94a3b8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s5-4.2 5-8A5 5 0 1 0 3 6c0 3.8 5 8 5 8z"/><circle cx="8" cy="6" r="1.8"/></svg>
+                            <input id="foodLocation" type="text" placeholder="Enter an address…" autocomplete="off" style="border:none;outline:none;font:14px 'Geist',sans-serif;flex:1;min-width:0;padding:0;color:#0b1220;background:transparent;" oninput="onLocationInput(this.value)">
+                        </label>
+                        <div id="locationSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10;background:#fff;border:1px solid #e7e4dc;border-top:none;border-radius:0 0 11px 11px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(15,23,42,.1);"></div>
+                    </div>
 
-                <div style="margin-bottom:16px;">
-                    <label style="font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px;">Within <span id="radiusLabel" style="color:#111827;">2 mi</span></label>
-                    <input type="range" id="foodRadius" min="0.5" max="10" step="0.5" value="2" style="width:100%;" oninput="document.getElementById('radiusLabel').textContent=this.value+' mi'; updateFoodRadius();">
-                </div>
+                    <div style="margin-bottom:22px;">
+                        <div style="display:flex;align-items:baseline;gap:7px;margin-bottom:12px;">
+                            <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;">Within</span>
+                            <span id="radiusLabel" style="font:600 13px 'Geist Mono',monospace;color:#0b1220;">2 mi</span>
+                        </div>
+                        <input type="range" id="foodRadius" min="1" max="10" step="1" value="2" style="width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:5px;background:#f5f3ee;outline:0;cursor:pointer;" oninput="document.getElementById('radiusLabel').textContent=this.value+' mi'; this.style.setProperty('--fill',((this.value-this.min)/(this.max-this.min)*100)+'%'); updateFoodRadius();">
+                        <div style="display:flex;justify-content:space-between;font:500 10.5px 'Geist Mono',monospace;color:#94a3b8;margin-top:8px;"><span>1 mi</span><span>10 mi</span></div>
+                    </div>
 
-                <div style="margin-bottom:20px;">
-                    <label style="font-size:12px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:.05em;display:block;margin-bottom:6px;">POI types</label>
-                    <div id="foodPOIChips" style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
-                        <button class="marker-chip active" data-cat="grocery" onclick="this.classList.toggle('active')">Grocery</button>
-                        <button class="marker-chip active" data-cat="marketplace" onclick="this.classList.toggle('active')">Farmers market</button>
-                        <button class="marker-chip" data-cat="restaurant" onclick="this.classList.toggle('active')">Restaurant</button>
-                        <div style="position:relative;display:inline-block;">
-                            <button class="marker-chip" id="morePOIBtn" onclick="toggleMorePOI()" style="gap:4px;">More <span style="font-size:10px;">&#9660;</span></button>
-                            <div id="morePOIDropdown" style="display:none;position:absolute;top:100%;left:0;z-index:10;background:#fff;border:1.5px solid #d1d5db;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.1);padding:6px 0;min-width:160px;margin-top:4px;">
-                                <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#1f2937;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                                    <input type="checkbox" data-cat="fast_food" style="accent-color:#1e3a8a;"> Fast Food
-                                </label>
-                                <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#1f2937;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                                    <input type="checkbox" data-cat="seafood"> Seafood
-                                </label>
-                                <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#1f2937;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                                    <input type="checkbox" data-cat="butcher"> Butcher
-                                </label>
-                                <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#1f2937;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                                    <input type="checkbox" data-cat="bakery"> Bakery
-                                </label>
-                                <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#1f2937;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                                    <input type="checkbox" data-cat="greengrocer"> Produce
-                                </label>
-                                <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#1f2937;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                                    <input type="checkbox" data-cat="bar"> Bar
-                                </label>
-                                <label style="display:flex;align-items:center;gap:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#1f2937;" onmouseover="this.style.background='#f3f4f6'" onmouseout="this.style.background=''">
-                                    <input type="checkbox" data-cat="brewery"> Brewery
-                                </label>
+                    <div style="margin-bottom:0;">
+                        <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">POI types</span>
+                        <div id="foodPOIChips" style="display:flex;flex-wrap:wrap;gap:8px;">
+                            <button class="marker-chip active" data-cat="grocery" onclick="this.classList.toggle('active')" style="height:36px;border-radius:999px;">Grocery</button>
+                            <button class="marker-chip active" data-cat="marketplace" onclick="this.classList.toggle('active')" style="height:36px;border-radius:999px;">Farmers market</button>
+                            <button class="marker-chip" data-cat="restaurant" onclick="this.classList.toggle('active')" style="height:36px;border-radius:999px;">Restaurant</button>
+                            <div style="position:relative;display:inline-block;">
+                                <button class="marker-chip" id="morePOIBtn" onclick="toggleMorePOI()" style="height:36px;border-radius:999px;gap:6px;">More <span style="font-size:9px;">&#9660;</span></button>
+                                <div id="morePOIDropdown" style="display:none;position:absolute;top:100%;left:0;z-index:10;background:#fff;border:1px solid #e7e4dc;border-radius:12px;box-shadow:0 8px 24px rgba(15,23,42,.12);padding:6px 0;min-width:170px;margin-top:4px;">
+                                    <label style="display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:#1f2937;border-radius:8px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                                        <input type="checkbox" data-cat="fast_food" style="accent-color:#1e3a8a;"> Fast Food
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:#1f2937;border-radius:8px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                                        <input type="checkbox" data-cat="seafood" style="accent-color:#1e3a8a;"> Seafood
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:#1f2937;border-radius:8px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                                        <input type="checkbox" data-cat="butcher" style="accent-color:#1e3a8a;"> Butcher
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:#1f2937;border-radius:8px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                                        <input type="checkbox" data-cat="bakery" style="accent-color:#1e3a8a;"> Bakery
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:#1f2937;border-radius:8px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                                        <input type="checkbox" data-cat="greengrocer" style="accent-color:#1e3a8a;"> Produce
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:#1f2937;border-radius:8px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                                        <input type="checkbox" data-cat="bar" style="accent-color:#1e3a8a;"> Bar
+                                    </label>
+                                    <label style="display:flex;align-items:center;gap:8px;padding:7px 14px;cursor:pointer;font-size:13px;color:#1f2937;border-radius:8px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                                        <input type="checkbox" data-cat="brewery" style="accent-color:#1e3a8a;"> Brewery
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <button onclick="refreshPricesAndResults()" style="width:100%;padding:10px;background:#1e3a8a;color:#fff;border:none;border-radius:8px;font:inherit;font-size:14px;font-weight:600;cursor:pointer;" id="updateResultsBtn">Update results</button>
-                <div id="findFoodStatus" style="margin-top:8px;font-size:12px;color:#6b7280;text-align:center;"></div>
-            </div>
-
-            <!-- Right content -->
-            <div style="flex:1;padding:24px;overflow-y:auto;">
-                <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
-                    <div style="display:inline-flex;border:1.5px solid #d1d5db;border-radius:8px;overflow:hidden;">
-                        <button class="marker-chip active" style="border:none;border-radius:0;border-right:1px solid #d1d5db;">Map</button>
-                        <button class="marker-chip" style="border:none;border-radius:0;border-right:1px solid #d1d5db;">Prices</button>
-                        <button class="marker-chip" style="border:none;border-radius:0;">Both</button>
-                    </div>
-                    <span id="findFoodMapStatus" style="font-size:13px;color:#6b7280;">Set location and click Update results</span>
+                <div style="padding:16px 22px;border-top:1px solid #e7e4dc;flex-shrink:0;">
+                    <button onclick="refreshPricesAndResults()" id="updateResultsBtn" style="width:100%;height:46px;border-radius:12px;border:0;background:#1e3a8a;color:#fff;font:600 14px 'Geist',sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:background .15s;">
+                        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9"/><path d="M13.5 3v3h-3"/></svg>
+                        Update results
+                    </button>
+                    <div id="findFoodStatus" style="margin-top:8px;font-size:12px;color:#64748b;text-align:center;"></div>
                 </div>
+            </aside>
 
-                <div id="findFoodMap" style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;height:400px;"></div>
+            <!-- Main content -->
+            <div style="flex:1;min-width:0;display:flex;flex-direction:column;">
+                <span id="findFoodMapStatus" style="display:none;"></span>
+                <div style="flex:1;overflow-y:auto;padding:18px 24px 24px;display:flex;flex-direction:column;gap:18px;">
+                    <div id="ffMapContent">
+                        <div id="findFoodMap" style="position:relative;height:56%;min-height:380px;border:1px solid #e7e4dc;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(15,23,42,.05);"></div>
 
-                <div id="foodCompareTable" style="margin-top:20px;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;">
-                    <div style="font-size:15px;font-weight:600;color:#111827;margin-bottom:12px;">Food Comparison</div>
-                    <p style="color:#6b7280;font-size:13px;">Select foods above to compare detection across nearby sampling sites.</p>
+                        <div id="foodCompareTable" style="margin-top:18px;border:1px solid #e7e4dc;border-radius:14px;background:#fff;padding:22px 24px;">
+                            <div style="display:flex;align-items:center;gap:16px;padding:4px 0;">
+                                <span style="width:46px;height:46px;border-radius:12px;background:#f5f3ee;color:#94a3b8;display:grid;place-items:center;flex-shrink:0;">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+                                </span>
+                                <p style="margin:0;font-size:13.5px;line-height:1.5;color:#64748b;">Select foods and a location above, then press <b style="color:#1f2937;font-weight:600;">Update results</b> to compare food options nearby.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ffGapContent" style="display:none;"></div>
                 </div>
             </div>
         </div>
@@ -3071,8 +3248,10 @@
             </div>
             <div class="tp-sites-list" id="tpSitesList"></div>
         </section>
-        <div class="tp-flagged" id="tpFlagged" style="display:none;"></div>
-        <div class="tp-body" id="tpBody"></div>
+        <div style="flex:1;overflow-y:auto;min-height:0;">
+            <div class="tp-flagged" id="tpFlagged" style="display:none;"></div>
+            <div class="tp-body" id="tpBody"></div>
+        </div>
         <footer class="tp-ctas" id="tpCtas" style="display:none;">
             <button class="tp-btn tp-btn-primary" onclick="goToFindFood()">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 1 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
@@ -3185,6 +3364,11 @@
         let plantServiceAreas = {};
         let tractCentroidCache = [];
         let foodDesertLayer = null;
+
+        // Gap Score variables
+        let gapScoreLayer = null;
+        let gapScoreComputed = false;
+        let gapScoreData = {}; // keyed by saId: { name, envRaw, consRaw, envPct, consPct, gap }
 
         // Cuisine Hotspot variables
         let cuisineHeatLayer = null;
@@ -3354,83 +3538,91 @@
         };
 
         // POI icon definitions
+        // SVG icon helpers for POI markers
+        const poiSvg = (path) => `<div><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${path}</svg></div>`;
         const poiIcons = {
             grocery: L.divIcon({
                 className: 'poi-icon poi-icon-grocery',
-                html: '<div>🛒</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M1 1h2l2 9h8l2-6H5"/><circle cx="6" cy="13" r="1.2"/><circle cx="12" cy="13" r="1.2"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
+            }),
+            convenience: L.divIcon({
+                className: 'poi-icon poi-icon-convenience',
+                html: poiSvg('<rect x="2" y="4" width="12" height="9" rx="1.5"/><path d="M5 4V2.5M11 4V2.5M2 8h12"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             restaurant: L.divIcon({
                 className: 'poi-icon poi-icon-restaurant',
-                html: '<div>🍽️</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M3 2v5a3 3 0 0 0 3 3h0V15M3 7h4M13 2v13M13 2c0 2-2 4-2 6s2 3 2 3"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             fast_food: L.divIcon({
                 className: 'poi-icon poi-icon-fast_food',
-                html: '<div>🍔</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M2 8h12M3 8l1 6h8l1-6M4 8c0-3 2-5 4-5s4 2 4 5"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             seafood: L.divIcon({
                 className: 'poi-icon poi-icon-seafood',
-                html: '<div>🐟</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M2 8c2-2 4-2 6 0s4 2 6 0M2 11c2-2 4-2 6 0s4 2 6 0M2 5c2-2 4-2 6 0s4 2 6 0"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             butcher: L.divIcon({
                 className: 'poi-icon poi-icon-butcher',
-                html: '<div>🥩</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M8 2L3 7l3 3 5-5M6 10l-3 4M12 4l2 2"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             bakery: L.divIcon({
                 className: 'poi-icon poi-icon-bakery',
-                html: '<div>🥖</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M4 12c0-2 1-3 4-3s4 1 4 3M3 12h10v2H3zM6 9c0-2 1-3 2-3s2 1 2 3"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             greengrocer: L.divIcon({
                 className: 'poi-icon poi-icon-greengrocer',
-                html: '<div>🥬</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M8 14V7M8 7c-3-1-5 1-5 4M8 7c3-1 5 1 5 4M8 7c-1-3 0-5 0-5"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             marketplace: L.divIcon({
                 className: 'poi-icon poi-icon-marketplace',
-                html: '<div>🏪</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M2 7l2-4h8l2 4M2 7h12M4 7v6M12 7v6M3 13h10"/><circle cx="8" cy="10" r="1.5"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             university: L.divIcon({
                 className: 'poi-icon poi-icon-university',
-                html: '<div>🎓</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M8 2L1 6l7 4 7-4-7-4zM3 8v4l5 3 5-3V8"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             ev_charging: L.divIcon({
                 className: 'poi-icon poi-icon-ev_charging',
-                html: '<div>⚡</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M9 2L5 9h3l-1 5 5-7H9l1-5z"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             gym: L.divIcon({
                 className: 'poi-icon poi-icon-gym',
-                html: '<div>🏋️</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M4 6v4M12 6v4M2 7v2M14 7v2M4 8h8"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             bar: L.divIcon({
                 className: 'poi-icon poi-icon-bar',
-                html: '<div>🍺</div>',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12]
+                html: poiSvg('<path d="M4 2h8L8 8v4M5 14h6M8 12v2"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             }),
             brewery: L.divIcon({
                 className: 'poi-icon poi-icon-brewery',
-                html: '<div>🍻</div>',
-                iconSize: [24, 24],
+                html: poiSvg('<path d="M3 3h8v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V3zM11 5h2a2 2 0 0 1 0 4h-2"/>'),
+                iconSize: [22, 22],
                 iconAnchor: [12, 12]
             })
         };
@@ -3466,6 +3658,19 @@
             if (!poiData || !poiData.categories) {
                 console.log('No POI data to initialize');
                 return;
+            }
+
+            // Split convenience stores out of grocery (OSM shop=convenience was lumped in)
+            if (poiData.categories.grocery && !poiData.categories.convenience) {
+                poiData.categories.convenience = [];
+                poiData.categories.grocery = poiData.categories.grocery.filter(poi => {
+                    if (poi.type === 'convenience') {
+                        poiData.categories.convenience.push(poi);
+                        return false;
+                    }
+                    return true;
+                });
+                console.log(`Split ${poiData.categories.convenience.length} convenience stores from grocery`);
             }
 
             if (!map.getPane('poiPane')) {
@@ -5195,10 +5400,10 @@
                 const tractNum = String(layer.feature.properties.Sample_ID || '');
                 const hasData = tractsWithData.has(tractNum);
                 layer.setStyle({
-                    color: hasData ? '#2b6cb0' : '#a0aec0',
+                    color: hasData ? '#5670c4' : '#a0aec0',
                     weight: hasData ? 2 : 0.8,
                     opacity: hasData ? 1 : 0.5,
-                    fillColor: hasData ? '#3182ce' : 'transparent',
+                    fillColor: hasData ? '#7e93d6' : 'transparent',
                     fillOpacity: hasData ? 0.25 : 0
                 });
             });
@@ -5240,10 +5445,10 @@
                     const tractNum = String(feature.properties.Sample_ID || '');
                     const hasData = tractsWithData.has(tractNum);
                     return {
-                        color: hasData ? '#2b6cb0' : '#a0aec0',
+                        color: hasData ? '#5670c4' : '#a0aec0',
                         weight: hasData ? 2 : 0.8,
                         opacity: hasData ? 1 : 0.5,
-                        fillColor: hasData ? '#3182ce' : 'transparent',
+                        fillColor: hasData ? '#7e93d6' : 'transparent',
                         fillOpacity: hasData ? 0.25 : 0
                     };
                 },
@@ -5459,6 +5664,7 @@
 
             const counts = {
                 grocery: 0,
+                convenience: 0,
                 restaurant: 0,
                 fast_food: 0,
                 seafood: 0,
@@ -5633,7 +5839,7 @@
                 const isManhole = plant.location_type === 'manhole';
                 const marker = L.circleMarker([plant.lat, plant.lng], {
                     radius: isManhole ? 6 : 8,
-                    fillColor: isManhole ? '#3182ce' : '#e53e3e',
+                    fillColor: isManhole ? '#1e3a8a' : '#b8612a',
                     color: '#ffffff',
                     weight: isManhole ? 2 : 3,
                     opacity: 1,
@@ -5677,6 +5883,7 @@
         let currentDetailPlant = null;
 
         function openDataPanel(plant, latlng) {
+            hideLandingPopups();
             const panel = document.getElementById('detailPanel');
             const wasOpen = panel.classList.contains('open');
             panel.classList.remove('open');
@@ -5684,7 +5891,7 @@
                 currentDetailPlant = plant;
                 populateDetailPanel(plant);
                 panel.classList.add('open');
-            }, wasOpen ? 300 : 10);
+            }, wasOpen ? 600 : 10);
         }
 
         // --- Service area / manhole highlight linking ---
@@ -5702,7 +5909,7 @@
             highlightedMarkers.forEach(m => {
                 const isManhole = m.plant && m.plant.location_type === 'manhole';
                 m.setStyle({
-                    fillColor: isManhole ? '#3182ce' : '#e53e3e',
+                    fillColor: isManhole ? '#1e3a8a' : '#b8612a',
                     color: '#ffffff',
                     weight: isManhole ? 2 : 3,
                     radius: isManhole ? 6 : 8
@@ -5747,6 +5954,7 @@
 
         function closeDetailPanel() {
             document.getElementById('detailPanel').classList.remove('open');
+            hideLandingPopups();
             currentDetailPlant = null;
             clearHighlights();
             // Remove find-me marker
@@ -5850,6 +6058,9 @@
                     findMeMarker.bindTooltip(`You are here (nearest: SA ${nearest.properties.Sample_ID})`, { permanent: false, direction: 'top', offset: [0, -36] });
                 }
             }
+
+            // Show landing popups for this location after the panel opens
+            setTimeout(() => showLandingPanels(lat, lon), 800);
         }
 
         // Close find-me suggestions on blur
@@ -5859,7 +6070,7 @@
 
         // Tab switching
         let currentView = 'map';
-        const VIEW_TAB_MAP = { 'map': 'Map', 'trends': 'Trends', 'find-food': 'Food Near Me', 'about': 'About' };
+        const VIEW_TAB_MAP = { 'map': 'Map', 'trends': 'Trends', 'gap-explorer': 'Gap Explorer', 'find-food': 'Food Near Me', 'about': 'About' };
 
         function switchView(view) {
             currentView = view;
@@ -5883,7 +6094,13 @@
             if (trendsView) trendsView.style.display = view === 'trends' ? '' : 'none';
             const findFoodView = document.getElementById('findFoodView');
             if (findFoodView) findFoodView.style.display = view === 'find-food' ? '' : 'none';
+            const gapView = document.getElementById('gapExplorerView');
+            if (gapView) gapView.style.display = view === 'gap-explorer' ? '' : 'none';
 
+            // Initialize Gap Explorer
+            if (view === 'gap-explorer') {
+                initGapExplorer();
+            }
             // Initialize Trends view
             if (view === 'trends') {
                 initTrendsView();
@@ -6026,28 +6243,27 @@
 
             // Add "you are here" marker
             foodLocationMarker = L.circleMarker([lat, lon], {
-                radius: 10,
-                fillColor: '#e53e3e',
+                radius: 7,
+                fillColor: '#1e3a8a',
                 color: '#ffffff',
-                weight: 3,
+                weight: 2.5,
                 opacity: 1,
-                fillOpacity: 0.9
+                fillOpacity: 1
             }).addTo(findFoodMap);
             foodLocationMarker.bindTooltip('You are here', { permanent: false, direction: 'top' });
 
             // Add radius circle
             foodRadiusCircle = L.circle([lat, lon], {
                 radius: radiusMeters,
-                color: '#e53e3e',
-                weight: 2,
-                opacity: 0.5,
-                fillColor: '#e53e3e',
-                fillOpacity: 0.06,
-                dashArray: '6, 4'
+                color: '#1e3a8a',
+                weight: 1.4,
+                opacity: 0.6,
+                fillColor: '#1e3a8a',
+                fillOpacity: 0.06
             }).addTo(findFoodMap);
 
             // Fit map to the radius circle
-            findFoodMap.fitBounds(foodRadiusCircle.getBounds(), { padding: [20, 20] });
+            findFoodMap.setView([lat, lon], Math.max(13, findFoodMap.getBoundsZoom(foodRadiusCircle.getBounds(), false) - 1));
 
             // Store coords for radius updates
             foodLocationMarker._latlng_stored = { lat, lon };
@@ -6290,13 +6506,11 @@
             document.getElementById('foodSearchInput').value = '';
             document.getElementById('foodSuggestions').style.display = 'none';
             document.getElementById('foodSearchInput').focus();
-            updateFoodCompareTable();
         }
 
         function removeFoodTag(id) {
             selectedFoods = selectedFoods.filter(f => f.id !== id);
             renderFoodTags();
-            updateFoodCompareTable();
         }
 
         function renderFoodTags() {
@@ -6395,20 +6609,22 @@
         function updateFoodCompareTable() {
             const tableDiv = document.getElementById('foodCompareTable');
             if (selectedFoods.length === 0) {
-                tableDiv.innerHTML = `
-                    <div style="font-size:15px;font-weight:600;color:#111827;margin-bottom:12px;">Prices</div>
-                    <p style="color:#6b7280;font-size:13px;">Select foods above to compare prices across stores.</p>`;
+                tableDiv.innerHTML = `<div style="display:flex;align-items:center;gap:16px;padding:4px 0;">
+                    <span style="width:46px;height:46px;border-radius:12px;background:#f5f3ee;color:#94a3b8;display:grid;place-items:center;flex-shrink:0;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg>
+                    </span>
+                    <p style="margin:0;font-size:13.5px;line-height:1.5;color:#64748b;">Select foods and a location above, then press <b style="color:#1f2937;font-weight:600;">Update results</b> to compare food options nearby.</p>
+                </div>`;
                 return;
             }
 
             if (!priceData || !priceData.prices) {
-                tableDiv.innerHTML = `
-                    <div style="font-size:15px;font-weight:600;color:#111827;margin-bottom:12px;">Prices</div>
-                    <p style="color:#6b7280;font-size:13px;">No price data available. Run <code>python scripts/scrape_prices.py</code> to generate.</p>`;
+                tableDiv.innerHTML = `<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;">
+                    <span style="font-size:18px;font-weight:600;letter-spacing:-.01em;color:#0b1220;">Prices</span>
+                </div><p style="color:#64748b;font-size:13px;">No price data available.</p>`;
                 return;
             }
 
-            // Find nearby grocery stores from POI data
             let nearbyStores = [];
             if (foodLocationMarker && foodLocationMarker._latlng_stored) {
                 const { lat, lon } = foodLocationMarker._latlng_stored;
@@ -6418,20 +6634,17 @@
             }
 
             if (nearbyStores.length === 0) {
-                tableDiv.innerHTML = `
-                    <div style="font-size:15px;font-weight:600;color:#111827;margin-bottom:12px;">Prices</div>
-                    <p style="color:#6b7280;font-size:13px;">No grocery stores found within the selected radius. Try increasing the distance.</p>`;
+                tableDiv.innerHTML = `<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;">
+                    <span style="font-size:18px;font-weight:600;letter-spacing:-.01em;color:#0b1220;">Prices</span>
+                </div><p style="color:#64748b;font-size:13px;">No grocery stores found within the selected radius. Try increasing the distance.</p>`;
                 return;
             }
 
-            // Build price lookup: storeId -> foodId -> price entry
-            // Also build brand lookup for POI-matched stores
             const priceLookup = {};
-            const brandPriceLookup = {}; // brand -> foodId -> price (first found)
+            const brandPriceLookup = {};
             priceData.prices.forEach(p => {
                 if (!priceLookup[p.store_id]) priceLookup[p.store_id] = {};
                 priceLookup[p.store_id][p.food_id] = p;
-                // Brand-level lookup as fallback
                 const brand = p.store_brand || '';
                 if (brand) {
                     if (!brandPriceLookup[brand]) brandPriceLookup[brand] = {};
@@ -6439,7 +6652,6 @@
                 }
             });
 
-            // Find lowest price per food across nearby stores
             const lowestPrice = {};
             selectedFoods.forEach(f => {
                 let min = Infinity;
@@ -6452,70 +6664,71 @@
                 if (min < Infinity) lowestPrice[f.id] = min;
             });
 
-            // Check which foods have no price data at all
-            const foodsNoPrices = selectedFoods.filter(f => {
-                return !priceData.prices.some(p => p.food_id === f.id || p.food_id === f.name);
-            });
+            const foodNames = selectedFoods.map(f => f.name).join(', ');
 
-            let html = `<div style="font-size:15px;font-weight:600;color:#111827;margin-bottom:12px;">Prices <span style="font-size:12px;font-weight:400;color:#6b7280;">${nearbyStores.length} stores nearby</span></div>`;
+            let html = `<div style="display:flex;align-items:baseline;gap:14px;margin-bottom:6px;">
+                <span style="font-size:18px;font-weight:600;letter-spacing:-.01em;color:#0b1220;">Prices</span>
+                <span style="font-size:13px;color:#64748b;">${nearbyStores.length} stores nearby</span>
+            </div>`;
 
-            if (foodsNoPrices.length > 0) {
-                html += `<div style="background:#fef3c7;border:1px solid #fde68a;border-radius:6px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#92400e;">No price data available for: <strong>${foodsNoPrices.map(f => f.name).join(', ')}</strong>. Run the scraper to add more foods.</div>`;
-            }
+            // Table header
+            html += `<div style="display:grid;grid-template-columns:1fr 84px 116px;align-items:center;gap:14px;padding:11px 4px;border-bottom:1px solid #e7e4dc;">
+                <span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:#94a3b8;">Store</span>
+                <span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:#94a3b8;text-align:right;">Dist</span>
+                <span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:#1e3a8a;text-align:right;">${selectedFoods[0]?.name || 'Price'}</span>
+            </div>`;
 
-            html += `<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:13px;">`;
-
-            // Header
-            html += `<thead><tr style="border-bottom:2px solid #e5e7eb;">`;
-            html += `<th style="text-align:left;padding:8px 6px;color:#6b7280;font-weight:600;">Store</th>`;
-            html += `<th style="text-align:right;padding:8px 6px;color:#6b7280;font-weight:600;width:50px;">Dist</th>`;
-            selectedFoods.forEach(f => {
-                html += `<th style="text-align:right;padding:8px 6px;color:#1e3a8a;font-weight:600;min-width:80px;">${f.name}</th>`;
-            });
-            html += `</tr></thead><tbody>`;
-
-            // Rows — sorted by distance (already sorted)
+            // Rows
             nearbyStores.forEach(store => {
                 const storeInfo = priceData.stores[store.storeId] || {};
                 const tier = storeInfo.tier || '';
-                const tierBadge = tier === 'budget' ? '<span style="font-size:10px;color:#059669;margin-left:4px;">$</span>'
-                    : tier === 'premium' ? '<span style="font-size:10px;color:#b91c1c;margin-left:4px;">$$$</span>'
-                    : '<span style="font-size:10px;color:#6b7280;margin-left:4px;">$$</span>';
+                const tierClass = tier === 'budget' ? 'color:#15803d;' : tier === 'premium' ? 'color:#b8612a;' : 'color:#1e3a8a;';
+                const tierLabel = tier === 'budget' ? '$' : tier === 'premium' ? '$$$' : '$$';
+                const isEstStore = storeInfo.source === 'usda_estimate';
+                const estBadge = isEstStore ? ' <span style="font:600 9px/1 \'Geist Mono\',monospace;letter-spacing:.07em;text-transform:uppercase;background:#f6eccf;color:#876a1d;padding:3px 6px;border-radius:5px;">est.</span>' : '';
 
-                const addrLine = store.address ? `<div style="font-size:10px;color:#9ca3af;font-weight:400;">${store.address}</div>` : '';
-                const isEstimate = storeInfo.source === 'usda_estimate';
-                const estBadge = isEstimate ? '<span style="font-size:9px;color:#b45309;background:#fef3c7;padding:1px 5px;border-radius:3px;margin-left:4px;">est.</span>' : '';
+                const addrLine = store.address ? `<div style="font:500 11.5px 'Geist Mono',monospace;color:#94a3b8;margin-top:4px;">${store.address}</div>` : '';
 
-                html += `<tr style="border-bottom:1px solid #f3f4f6;">`;
-                html += `<td style="padding:8px 6px;color:#1f2937;font-weight:500;">${store.name}${tierBadge}${estBadge}${addrLine}</td>`;
-                html += `<td style="padding:8px 6px;text-align:right;color:#6b7280;font-size:12px;">${store.distMi.toFixed(1)} mi</td>`;
+                // Get price for first selected food
+                const f = selectedFoods[0];
+                const storePrices = priceLookup[store.storeId] || {};
+                const brandPrices = brandPriceLookup[store.brand] || {};
+                const p = f ? (storePrices[f.id] || storePrices[f.name] || brandPrices[f.id] || brandPrices[f.name]) : null;
 
-                selectedFoods.forEach(f => {
-                    const storePrices = priceLookup[store.storeId] || {};
-                    const brandPrices = brandPriceLookup[store.brand] || {};
-                    const p = storePrices[f.id] || storePrices[f.name] || brandPrices[f.id] || brandPrices[f.name];
-                    if (p) {
-                        const isLowest = p.price === lowestPrice[f.id];
-                        const isEst = p.source === 'usda_estimate';
-                        const estStyle = isEst ? 'font-style:italic;' : '';
-                        const style = isLowest ? `color:#059669;font-weight:700;${estStyle}` : isEst ? `color:#6b7280;${estStyle}` : 'color:#1f2937;';
-                        const arrow = isLowest ? ' <span style="font-size:10px;">&#8595;</span>' : '';
-                        const prefix = isEst ? '~' : '';
-                        html += `<td style="padding:8px 6px;text-align:right;${style}">${prefix}$${p.price.toFixed(2)}${arrow}<div style="font-size:10px;color:#9ca3af;font-weight:400;">${p.unit}</div></td>`;
-                    } else {
-                        html += `<td style="padding:8px 6px;text-align:right;color:#d1d5db;">&mdash;</td>`;
-                    }
-                });
-                html += `</tr>`;
+                let priceHtml = '<div style="text-align:right;color:#d1d5db;">&mdash;</div>';
+                if (p) {
+                    const isLowest = p.price === lowestPrice[f.id];
+                    const isEst = p.source === 'usda_estimate';
+                    const prefix = isEst ? '~' : '';
+                    const arrow = isLowest ? ' ↓' : '';
+                    const vClass = isLowest ? 'color:#15803d;font-style:italic;font-weight:600;' : isEst ? 'color:#15803d;font-style:italic;font-weight:600;' : 'font-weight:700;color:#0b1220;';
+                    priceHtml = `<div style="text-align:right;">
+                        <div style="font:700 13px 'Geist Mono',monospace;${vClass}">${prefix}$${p.price.toFixed(2)}${arrow}</div>
+                        <div style="font:500 10.5px 'Geist Mono',monospace;color:#94a3b8;margin-top:3px;">${p.unit}</div>
+                    </div>`;
+                }
+
+                html += `<div style="display:grid;grid-template-columns:1fr 84px 116px;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #f0ede6;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                    <div>
+                        <div style="font-size:14px;font-weight:600;color:#0b1220;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                            ${store.name} <span style="font:700 12px 'Geist Mono',monospace;letter-spacing:-.02em;${tierClass}">${tierLabel}</span>${estBadge}
+                        </div>
+                        ${addrLine}
+                    </div>
+                    <div style="text-align:right;font:500 13px 'Geist Mono',monospace;color:#64748b;">${store.distMi.toFixed(1)} mi</div>
+                    ${priceHtml}
+                </div>`;
             });
 
-            html += `</tbody></table></div>`;
+            // Legend
             const scraped = priceData.scraped_at ? priceData.scraped_at.split('T')[0] : 'unknown';
-            const sources = priceData.sources ? priceData.sources.join(' | ') : 'USDA estimates';
-            html += `<div style="font-size:11px;color:#9ca3af;margin-top:12px;line-height:1.6;">
-                <div><span style="color:#1f2937;">$X.XX</span> = live price &nbsp; <span style="color:#6b7280;font-style:italic;">~$X.XX</span> = USDA estimate &nbsp; <span style="font-size:9px;color:#b45309;background:#fef3c7;padding:1px 5px;border-radius:3px;">est.</span> = estimated store</div>
-                <div>Sources: ${sources}. Last updated: ${scraped}.</div>
+            const sources = priceData.sources ? priceData.sources.join(' · ') : 'USDA estimates';
+            html += `<div style="display:flex;flex-wrap:wrap;gap:18px;margin-top:16px;padding-top:14px;border-top:1px solid #f0ede6;font-size:12px;color:#64748b;">
+                <span style="display:inline-flex;align-items:center;gap:6px;"><code style="font:600 11px 'Geist Mono',monospace;color:#1f2937;">$X.XX</code> live price</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;"><code style="font:600 11px 'Geist Mono',monospace;color:#1f2937;">~$X.XX</code> USDA estimate</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;"><span style="font:600 9px/1 'Geist Mono',monospace;background:#f6eccf;color:#876a1d;padding:3px 6px;border-radius:5px;">est.</span> estimated store</span>
             </div>`;
+            html += `<div style="margin-top:11px;font:500 11px 'Geist Mono',monospace;color:#94a3b8;line-height:1.6;">Sources: ${sources}. Last updated ${scraped}.</div>`;
 
             tableDiv.innerHTML = html;
         }
@@ -6548,8 +6761,18 @@
 
             // Update POIs on map
             updateFindFoodResults();
-            // Update price table
+            // Update price table with animation
+            const tableDiv = document.getElementById('foodCompareTable');
+            tableDiv.style.transition = 'opacity .3s ease, transform .3s ease';
+            tableDiv.style.opacity = '0';
+            tableDiv.style.transform = 'translateY(8px)';
             updateFoodCompareTable();
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    tableDiv.style.opacity = '1';
+                    tableDiv.style.transform = 'translateY(0)';
+                });
+            });
 
             btn.textContent = origText;
             btn.disabled = false;
@@ -7983,21 +8206,9 @@
                 }
             }
 
-            // Data-quality note (both modes)
-            const allSampleCounts = series.map(sr => sr.data.filter(v => v !== null).length);
-            const maxSampleCount = Math.max(0, ...allSampleCounts);
+            // Hide data-quality note (no longer needed)
             const noteEl = document.getElementById('trendsDataNote');
-            const noteBody = document.getElementById('trendsDataNoteBody');
-            if (maxSampleCount < 4) {
-                noteEl.style.display = '';
-                if (isMulti) {
-                    noteBody.innerHTML = `<b>Only ${maxSampleCount} monthly sample${maxSampleCount !== 1 ? 's have' : ' has'} been collected at this site.</b> The comparison table reads net change directly \u2014 best for sparse data. Once 4+ samples land, the line chart will start to reveal the in-between shape for each series.`;
-                } else {
-                    noteBody.innerHTML = `<b>Only ${maxSampleCount} monthly sample${maxSampleCount !== 1 ? 's have' : ' has'} been collected at this site.</b> The line and slopegraph tell the same story right now. Once 4+ samples land, the line will start to reveal the in-between shape (a steady climb? a single spike?).`;
-                }
-            } else {
-                noteEl.style.display = 'none';
-            }
+            if (noteEl) noteEl.style.display = 'none';
         }
 
         function renderTrendsCharts() {
@@ -8400,10 +8611,7 @@
                 return s;
             }
 
-            if (d.allPlants.length > 0) html += renderBars(d.allPlants, 'plant', rcShowAllPlants);
-            if (d.allAnimals.length > 0) html += renderBars(d.allAnimals, 'animal', rcShowAllAnimals);
-
-            // What's surprising
+            // What's surprising (shown first, above species bars)
             if (d.insights.length > 0) {
                 html += `<div class="rc-section">
                     <span class="rc-kicker" style="margin-bottom:9px;display:block;">What's surprising</span>`;
@@ -8412,6 +8620,9 @@
                 });
                 html += `</div>`;
             }
+
+            if (d.allPlants.length > 0) html += renderBars(d.allPlants, 'plant', rcShowAllPlants);
+            if (d.allAnimals.length > 0) html += renderBars(d.allAnimals, 'animal', rcShowAllAnimals);
 
             // Demographics section (when tract properties are available)
             if (demoProps) {
@@ -8587,6 +8798,7 @@
         let tractShowAll = false;
 
         function openTractDetailPanel(feature) {
+            hideLandingPopups();
             currentTractFeature = feature;
             currentDetailPlant = null;
             const tractNum = feature.properties.Sample_ID || 'Unknown';
@@ -8667,7 +8879,7 @@
             const panel = document.getElementById('detailPanel');
             const wasOpen = panel.classList.contains('open');
             panel.classList.remove('open');
-            setTimeout(() => { panel.classList.add('open'); }, wasOpen ? 300 : 10);
+            setTimeout(() => { panel.classList.add('open'); }, wasOpen ? 600 : 10);
         }
 
         function reRenderTractReportCard() {
@@ -8832,9 +9044,15 @@
         }
 
         function goToFindFood() {
-            const saId = currentTractFeature ? currentTractFeature.properties.Sample_ID : '';
+            // Capture address and coords before switchView clears findMeMarker
+            const address = document.getElementById('findMeInput').value;
+            const ll = findMeMarker ? findMeMarker.getLatLng() : null;
             switchView('find-food');
-            console.log('Navigate to Find Food for service area', saId);
+            if (address && ll) {
+                document.getElementById('foodLocation').value = address;
+                updateFoodLocationMarker(ll.lat, ll.lng);
+                updateFindFoodResults();
+            }
         }
 
         // ========== Compare Tracts ==========
@@ -8953,6 +9171,12 @@
 
             // Build full panel HTML
             let html = `
+                <div style="padding:10px 20px;border-bottom:1px solid #e7e4dc;flex-shrink:0;">
+                    <button onclick="closeCompare()" style="display:inline-flex;align-items:center;gap:6px;border:0;background:0;color:#1e3a8a;font:500 13px 'Geist',sans-serif;cursor:pointer;padding:4px 0;">
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                        Back to ${nameA}
+                    </button>
+                </div>
                 <header class="cp-head">
                     <div class="cp-head-top">
                         <span class="ttl">${compareLabel}</span>
@@ -8960,7 +9184,7 @@
                             <button class="cp-iconbtn" title="Swap A and B" onclick="swapCompareTracts()">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
                             </button>
-                            <button class="cp-iconbtn" title="Close" onclick="closeCompare()">
+                            <button class="cp-iconbtn" title="Clear selection" onclick="clearCompareSelection()">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                             </button>
                         </div>
@@ -9007,10 +9231,10 @@
                 // No message — picker list is shown above
             }
 
-            // Replace panel contents
-            // Hide normal tract panel elements
+            // Replace panel contents — hide ALL normal tract panel elements
             document.querySelector('.tp-head').style.display = 'none';
             document.getElementById('tpSites').style.display = 'none';
+            document.getElementById('tpFlagged').style.display = 'none';
             document.getElementById('tpBody').style.display = 'none';
             document.getElementById('tpCtas').style.display = 'none';
 
@@ -9271,6 +9495,12 @@
             renderComparePanel();
         }
 
+        function clearCompareSelection() {
+            compareState.tractB = null;
+            compareState.siteB = null;
+            renderComparePanel();
+        }
+
         function closeCompare() {
             const panel = document.getElementById('detailPanel');
             panel.classList.remove('compare-mode');
@@ -9279,6 +9509,7 @@
 
             // Restore normal tract panel
             document.querySelector('.tp-head').style.display = '';
+            document.getElementById('tpFlagged').style.display = '';
             document.getElementById('tpBody').style.display = '';
 
             if (currentTractFeature) {
@@ -10118,6 +10349,551 @@
             });
         }
 
+        // ── Gap Score: "Available vs. Eaten" ──
+        // NOTE: The gap is a correlation, not proof of causation.
+        // Percentiles chosen over z-scores for this proof of concept because they're
+        // easier to interpret; a z-score version can be added later as a more
+        // research-standard alternative. Score definitions are adjustable.
+        function computeGapScores() {
+            if (gapScoreComputed) return;
+            if (!durhamTractsGeoJSON || !poiData) return;
+
+            const savedTimeIndex = currentTimeIndex;
+            currentTimeIndex = 'all'; // use all time periods for max data
+
+            const entries = []; // collect { saId, feature, envRaw, consRaw }
+
+            durhamTractsGeoJSON.features.forEach(feature => {
+                const saId = String(feature.properties.Sample_ID);
+                const hood = TRACT_NEIGHBORHOODS[saId] || 'Durham';
+                const poiCounts = tractPOICounts[saId];
+                if (!poiCounts) return;
+
+                // Environment score: ratio of healthy food retail to total food retail
+                // Healthy: grocery, seafood, greengrocer, marketplace, butcher
+                // Unhealthy: fast_food, convenience
+                // Neutral (excluded): restaurant, bakery, university, etc.
+                const healthy = (poiCounts.grocery || 0) + (poiCounts.seafood || 0) +
+                                (poiCounts.greengrocer || 0) + (poiCounts.marketplace || 0) +
+                                (poiCounts.butcher || 0);
+                const unhealthy = (poiCounts.fast_food || 0) + (poiCounts.convenience || 0);
+                const totalFood = Math.max(1, healthy + unhealthy);
+                const envRaw = healthy / totalFood;
+
+                // Consumption score: Shannon H on plant species (trnL marker)
+                const plantsInTract = getPlantsInTract(saId);
+                if (plantsInTract.length === 0) {
+                    entries.push({ saId, feature, hood, envRaw, consRaw: null });
+                    return;
+                }
+                const agg = aggregatePlantsData(plantsInTract);
+                const plantEntries = Object.entries(agg.plants).filter(([, v]) => v > 0);
+                let shannonH = 0;
+                if (plantEntries.length > 1) {
+                    const total = plantEntries.reduce((s, [, v]) => s + v, 0);
+                    plantEntries.forEach(([, v]) => {
+                        const p = v / total;
+                        if (p > 0) shannonH -= p * Math.log(p);
+                    });
+                }
+                entries.push({ saId, feature, hood, envRaw, consRaw: shannonH });
+            });
+
+            currentTimeIndex = savedTimeIndex; // restore
+
+            // Convert to percentiles (rank-based, ties use average rank)
+            function toPercentiles(values) {
+                const valid = values.map((v, i) => ({ v, i })).filter(x => x.v !== null);
+                valid.sort((a, b) => a.v - b.v);
+                const pcts = new Array(values.length).fill(null);
+                let i = 0;
+                while (i < valid.length) {
+                    let j = i;
+                    while (j < valid.length && valid[j].v === valid[i].v) j++;
+                    const avgRank = (i + j + 1) / 2; // 1-based average rank for ties
+                    for (let k = i; k < j; k++) {
+                        pcts[valid[k].i] = Math.round((avgRank / valid.length) * 100);
+                    }
+                    i = j;
+                }
+                return pcts;
+            }
+
+            const envPcts = toPercentiles(entries.map(e => e.envRaw));
+            const consPcts = toPercentiles(entries.map(e => e.consRaw));
+
+            entries.forEach((e, i) => {
+                const envPct = envPcts[i];
+                const consPct = consPcts[i];
+                const gap = (envPct != null && consPct != null) ? consPct - envPct : null;
+
+                e.feature.properties._envRaw = e.envRaw;
+                e.feature.properties._consRaw = e.consRaw;
+                e.feature.properties._envPercentile = envPct;
+                e.feature.properties._consPercentile = consPct;
+                e.feature.properties._gapScore = gap;
+
+                gapScoreData[e.saId] = {
+                    saId: e.saId,
+                    name: e.hood,
+                    envRaw: e.envRaw,
+                    consRaw: e.consRaw,
+                    envPct: envPct,
+                    consPct: consPct,
+                    gap: gap
+                };
+            });
+
+            gapScoreComputed = true;
+            console.log('Gap scores computed for', Object.keys(gapScoreData).length, 'service areas');
+        }
+
+        function getGapScoreColor(gap) {
+            if (gap == null) return '#cccccc';
+            const t = Math.max(-100, Math.min(100, gap));
+            if (t <= 0) {
+                const f = (t + 100) / 100; // 0 at -100, 1 at 0
+                return lerpRGB([212,84,31], [254,243,199], f);
+            } else {
+                const f = t / 100; // 0 at 0, 1 at +100
+                return lerpRGB([254,243,199], [14,148,136], f);
+            }
+        }
+
+        function lerpRGB(a, b, t) {
+            return `rgb(${Math.round(a[0]+(b[0]-a[0])*t)},${Math.round(a[1]+(b[1]-a[1])*t)},${Math.round(a[2]+(b[2]-a[2])*t)})`;
+        }
+
+        function gapVerdict(gap) {
+            if (gap == null) return 'No data';
+            if (gap >= 30) return 'Eats far better than environment predicts';
+            if (gap >= 10) return 'Eats better than surroundings predict';
+            if (gap > -10) return 'Eats about as environment predicts';
+            if (gap > -30) return 'Eats worse than surroundings predict';
+            return 'Eats far worse than environment predicts';
+        }
+
+        // ── Gap View (inside Find Food Near Me) ──
+        // NOTE: Gap is a correlation, not proof of causation. Score definitions are
+        // adjustable; E1×C1 (healthy ratio × Shannon H) chosen after robustness
+        // testing across 9 method combinations. Percentiles over z-scores for PoC.
+        const GAP_CATEGORIES = [
+            { label: 'Fast food',               poiKeys: ['fast_food'],                                    wwGroups: [],                     side: 'unhealthy' },
+            { label: 'Convenience / processed',  poiKeys: ['convenience'],                                  wwGroups: [],                     side: 'unhealthy' },
+            { label: 'Fresh produce',            poiKeys: ['grocery', 'greengrocer', 'marketplace'],         wwGroups: ['vegetable', 'fruit'], side: 'healthy' },
+            { label: 'Whole grains',             poiKeys: ['grocery', 'bakery'],                             wwGroups: ['grain'],              side: 'healthy' },
+            { label: 'Seafood',                  poiKeys: ['seafood'],                                      wwGroups: ['seafood'],            side: 'healthy' },
+            { label: 'Meat & poultry',           poiKeys: ['butcher'],                                      wwGroups: ['meat_poultry'],       side: 'neutral' },
+        ];
+
+        function switchFindFoodMode(mode) {
+            const mapBtn = document.getElementById('ffViewMap');
+            const gapBtn = document.getElementById('ffViewGap');
+            mapBtn.setAttribute('aria-pressed', mode === 'map');
+            gapBtn.setAttribute('aria-pressed', mode === 'gap');
+            mapBtn.style.background = mode === 'map' ? '#1e3a8a' : 'transparent';
+            mapBtn.style.color = mode === 'map' ? '#fff' : '#64748b';
+            gapBtn.style.background = mode === 'gap' ? '#1e3a8a' : 'transparent';
+            gapBtn.style.color = mode === 'gap' ? '#fff' : '#64748b';
+            document.getElementById('ffMapContent').style.display = mode === 'map' ? '' : 'none';
+            document.getElementById('ffGapContent').style.display = mode === 'gap' ? '' : 'none';
+            if (mode === 'gap') {
+                gapRenderTarget = 'ffGapContent';
+                renderGapView();
+            }
+        }
+
+        function computeGapCategories(saId) {
+            if (!gapScoreComputed) computeGapScores();
+            const poiCounts = tractPOICounts[saId];
+            if (!poiCounts) return null;
+
+            // Get wastewater data for this tract
+            const savedTimeIndex = currentTimeIndex;
+            currentTimeIndex = 'all';
+            const plants = getPlantsInTract(saId);
+            const agg = plants.length > 0 ? aggregatePlantsData(plants) : { plants: {}, animals: {} };
+            currentTimeIndex = savedTimeIndex;
+
+            // Compute total abundance by food group
+            const groupTotals = {};
+            const allSpecies = Object.entries(agg.plants).concat(Object.entries(agg.animals));
+            const totalAbundance = allSpecies.reduce((s, [, v]) => s + v, 0) || 1;
+            allSpecies.forEach(([sp, val]) => {
+                if (val <= 0) return;
+                const meta = foodseqData.species_metadata[sp];
+                if (!meta) return;
+                const fg = meta.food_group || 'other';
+                groupTotals[fg] = (groupTotals[fg] || 0) + val;
+            });
+
+            // Total food POIs
+            const totalPOIs = Math.max(1, (poiCounts.grocery || 0) + (poiCounts.fast_food || 0) +
+                (poiCounts.convenience || 0) + (poiCounts.seafood || 0) + (poiCounts.butcher || 0) +
+                (poiCounts.bakery || 0) + (poiCounts.greengrocer || 0) + (poiCounts.marketplace || 0));
+
+            const results = [];
+            GAP_CATEGORIES.forEach(cat => {
+                // POI share (% of nearby stores)
+                const poiCount = cat.poiKeys.reduce((s, k) => s + (poiCounts[k] || 0), 0);
+                const poiPct = Math.round((poiCount / totalPOIs) * 100);
+
+                // Wastewater share (% of diet)
+                const wwTotal = cat.wwGroups.reduce((s, g) => s + (groupTotals[g] || 0), 0);
+                const wwPct = Math.round((wwTotal / totalAbundance) * 100);
+
+                // For categories with no ww mapping (fast food, convenience), estimate diet share
+                // from the unhealthy side: fast food eaten ≈ grain + other not accounted for
+                // For simplicity: if no wwGroups, wwPct stays 0 and we show POI-only
+                const hasWW = cat.wwGroups.length > 0;
+                const hasPOI = cat.poiKeys.length > 0;
+
+                // Gap: positive = eaten more than available, negative = eaten less
+                let gap = null;
+                if (hasWW && hasPOI) {
+                    gap = wwPct - poiPct;
+                } else if (hasPOI && !hasWW) {
+                    // Unhealthy POI categories — show as negative gap (available but hopefully not eaten as much)
+                    gap = -poiPct;
+                } else if (hasWW && !hasPOI) {
+                    // Detected in diet but no dedicated stores (e.g., whole grains)
+                    gap = wwPct;
+                }
+
+                results.push({
+                    label: cat.label,
+                    side: cat.side,
+                    poiPct, wwPct, gap,
+                    poiCount, hasWW, hasPOI
+                });
+            });
+
+            // Sort by |gap| descending
+            results.sort((a, b) => Math.abs(b.gap || 0) - Math.abs(a.gap || 0));
+            return results;
+        }
+
+        let gapExpandedArea = null; // saId of area with breakdown expanded
+        let gapRenderTarget = 'ffGapContent'; // which container to render into
+
+        function initGapExplorer() {
+            if (!gapScoreComputed) computeGapScores();
+            gapRenderTarget = 'gapExplorerView';
+            renderGapView();
+        }
+
+        function toggleGapExpand(saId) {
+            gapExpandedArea = (gapExpandedArea === saId) ? null : saId;
+            renderGapView();
+        }
+
+        function renderGapView() {
+            if (!gapScoreComputed) computeGapScores();
+            const container = document.getElementById(gapRenderTarget);
+            const areas = Object.values(gapScoreData).filter(a => a.gap != null).sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap));
+
+            if (areas.length === 0) {
+                container.innerHTML = `<div style="text-align:center;padding:60px 20px;color:#64748b;">
+                    <div style="font-size:15px;font-weight:500;">No gap data available</div>
+                    <div style="font-size:13px;margin-top:6px;">Gap scores require both POI and wastewater data.</div>
+                </div>`;
+                return;
+            }
+
+            let html = '';
+
+            // Header
+            html += `<div style="margin-bottom:20px;">
+                <div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:8px;">The available-vs-eaten gap</div>
+                <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:26px;line-height:1.05;color:#0b1220;margin:0;">
+                    Who eats <em style="font-style:italic;color:#0e9488;">better</em> — or <em style="font-style:italic;color:#d4541f;">worse</em> — than their neighborhood predicts?
+                </h2>
+                <p style="margin:8px 0 0;font-size:13px;color:#64748b;max-width:68ch;">
+                    Each area scored two ways: its <b>food environment</b> (healthy retail vs. fast food &amp; convenience) and what's
+                    <b>actually eaten</b> (diet diversity from wastewater). The gap is the difference.
+                </p>
+            </div>`;
+
+            // Scatter plot
+            html += `<div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;margin-bottom:20px;position:relative;">`;
+            html += renderGapScatter(areas);
+            html += `</div>`;
+
+            // Area cards
+            html += `<div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:10px;">All service areas by gap</div>`;
+            html += `<div style="display:flex;flex-direction:column;gap:10px;">`;
+
+            areas.forEach(a => {
+                const gapColor = a.gap >= 0 ? '#0e9488' : '#d4541f';
+                const gapStr = a.gap >= 0 ? '+' + a.gap : String(a.gap);
+                const expanded = gapExpandedArea === a.saId;
+
+                // Card
+                html += `<div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">`;
+
+                // Card header
+                html += `<div style="padding:12px 15px 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+                    <div>
+                        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1;color:#0b1220;">${a.name}</div>
+                        <div style="font-size:11.5px;color:#64748b;margin-top:4px;font-variant-numeric:tabular-nums;">SA ${a.saId}</div>
+                    </div>
+                </div>`;
+
+                // Score bars
+                html += `<div style="display:flex;gap:16px;padding:2px 15px 12px;">
+                    <div style="flex:1;">
+                        <div style="font:600 9.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:4px;">Food environment</div>
+                        <div style="display:flex;align-items:baseline;gap:3px;">
+                            <span style="font-family:'Instrument Serif',serif;font-size:34px;line-height:.9;color:#0b1220;">${a.envPct}</span>
+                            <span style="font:400 10px 'Geist Mono',monospace;color:#64748b;">/100</span>
+                        </div>
+                        <div style="height:6px;background:#f5f3ee;border-radius:4px;overflow:hidden;margin:7px 0 4px;">
+                            <div style="width:${a.envPct}%;height:100%;background:#64748b;border-radius:4px;"></div>
+                        </div>
+                        <div style="font-size:10.5px;color:#64748b;">healthy retail ratio</div>
+                    </div>
+                    <div style="width:1px;background:#e5e7eb;align-self:stretch;"></div>
+                    <div style="flex:1;">
+                        <div style="font:600 9.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:4px;">What's eaten</div>
+                        <div style="display:flex;align-items:baseline;gap:3px;">
+                            <span style="font-family:'Instrument Serif',serif;font-size:34px;line-height:.9;color:#0b1220;">${a.consPct}</span>
+                            <span style="font:400 10px 'Geist Mono',monospace;color:#64748b;">/100</span>
+                        </div>
+                        <div style="height:6px;background:#e9edf8;border-radius:4px;overflow:hidden;margin:7px 0 4px;">
+                            <div style="width:${a.consPct}%;height:100%;background:#1e3a8a;border-radius:4px;"></div>
+                        </div>
+                        <div style="font-size:10.5px;color:#64748b;">diet diversity (wastewater)</div>
+                    </div>
+                </div>`;
+
+                // Gap verdict bar
+                const tint = a.gap >= 0 ? 'rgba(14,148,136,.08)' : 'rgba(212,84,31,.08)';
+                const bd = a.gap >= 0 ? 'rgba(14,148,136,.25)' : 'rgba(212,84,31,.25)';
+                html += `<div style="background:${tint};border-top:1px solid ${bd};padding:10px 15px;display:flex;align-items:center;gap:12px;">
+                    <div style="font-family:'Instrument Serif',serif;font-size:24px;color:${gapColor};line-height:1;min-width:48px;text-align:center;">${gapStr}</div>
+                    <div style="font-size:12.5px;color:#0b1220;line-height:1.35;font-weight:500;">${gapVerdict(a.gap)}</div>
+                </div>`;
+
+                // Expand/collapse button
+                html += `<button onclick="toggleGapExpand('${a.saId}')" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;border:0;border-top:1px solid #e5e7eb;background:${expanded ? '#f5f3ee' : '#fff'};color:#1e3a8a;font-family:inherit;font-weight:600;font-size:12.5px;padding:10px 0;cursor:pointer;">
+                    ${expanded ? 'Hide breakdown' : 'See category breakdown'}
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${expanded ? 'M4 10l4-4 4 4' : 'M4 6l4 4 4-4'}"/></svg>
+                </button>`;
+
+                // Expanded breakdown
+                if (expanded) {
+                    const cats = computeGapCategories(a.saId);
+                    if (cats) {
+                        html += `<div style="border-top:1px solid #e5e7eb;padding:16px;">`;
+
+                        // Slope chart + mismatches side by side
+                        html += `<div style="display:grid;grid-template-columns:1.15fr .85fr;gap:16px;">`;
+
+                        // Slope chart
+                        html += `<div style="border-right:1px solid #e5e7eb;padding-right:16px;">`;
+                        html += renderSlopeChart(cats);
+                        html += `</div>`;
+
+                        // Mismatches
+                        html += `<div>`;
+                        html += `<div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#64748b;margin-bottom:8px;">Biggest mismatches</div>`;
+                        cats.forEach(c => {
+                            const col = (c.gap||0) > 0 ? '#0e9488' : '#d4541f';
+                            const gs = c.gap != null ? ((c.gap >= 0 ? '+' : '') + c.gap) : '—';
+                            const desc = c.hasPOI && c.hasWW ? `${c.poiPct}% of stores → ${c.wwPct}% of diet`
+                                : c.hasPOI ? `${c.poiPct}% of nearby stores` : `${c.wwPct}% of diet`;
+                            html += `<div style="display:grid;grid-template-columns:12px 1fr auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9;">
+                                <span style="width:9px;height:9px;border-radius:3px;background:${col};"></span>
+                                <div>
+                                    <div style="font-size:13px;font-weight:500;color:#0b1220;">${c.label}</div>
+                                    <div style="font-size:11px;color:#64748b;font-variant-numeric:tabular-nums;">${desc}</div>
+                                </div>
+                                <span style="font-size:15px;font-weight:600;color:${col};font-variant-numeric:tabular-nums;">${gs}</span>
+                            </div>`;
+                        });
+
+                        // Insight callout
+                        const topPos = cats.find(c => c.gap > 5 && c.side === 'healthy');
+                        const topNeg = cats.find(c => c.gap < -5);
+                        if (topPos) {
+                            html += `<div style="margin-top:12px;padding:10px 12px;background:rgba(14,148,136,.08);border:1px solid rgba(14,148,136,.2);border-radius:10px;font-size:12.5px;color:#1f2937;line-height:1.5;">
+                                <b>${topPos.label}</b> shows the widest gap — eaten far more than its shelf space predicts.
+                            </div>`;
+                        } else if (topNeg) {
+                            html += `<div style="margin-top:12px;padding:10px 12px;background:rgba(212,84,31,.08);border:1px solid rgba(212,84,31,.2);border-radius:10px;font-size:12.5px;color:#1f2937;line-height:1.5;">
+                                <b>${topNeg.label}</b> shows the widest gap — far more available than what people actually eat.
+                            </div>`;
+                        }
+                        html += `</div>`; // mismatches
+                        html += `</div>`; // grid
+                        html += `</div>`; // expanded container
+                    }
+                }
+
+                html += `</div>`; // card
+            });
+
+            html += `</div>`; // cards container
+
+            // Disclaimer
+            html += `<div style="font-size:11px;color:#94a3b8;font-style:italic;margin-top:16px;padding-top:10px;border-top:1px solid #e5e7eb;line-height:1.5;">
+                Retail mix from POI data · diet from wastewater · correlation, not causation · percentile ranking (E1×C1)
+            </div>`;
+
+            container.innerHTML = html;
+        }
+
+        function renderGapScatter(areas) {
+            const W = 560, H = 400, ml = 52, mr = 20, mt = 20, mb = 42;
+            const pw = W - ml - mr, ph = H - mt - mb;
+            const sx = v => ml + (v / 100) * pw;
+            const sy = v => mt + (1 - v / 100) * ph;
+            const ticks = [0, 20, 40, 60, 80, 100];
+
+            let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block;">`;
+            svg += `<polygon points="${ml},${mt} ${sx(100)},${sy(100)} ${ml},${sy(0)}" fill="#0e9488" opacity="0.04"/>`;
+            svg += `<polygon points="${sx(0)},${sy(0)} ${sx(100)},${sy(100)} ${sx(100)},${sy(0)}" fill="#d4541f" opacity="0.04"/>`;
+            ticks.forEach(t => {
+                svg += `<line x1="${sx(t)}" y1="${mt}" x2="${sx(t)}" y2="${mt+ph}" stroke="#e5e7eb" stroke-width="1"/>`;
+                svg += `<line x1="${ml}" y1="${sy(t)}" x2="${ml+pw}" y2="${sy(t)}" stroke="#e5e7eb" stroke-width="1"/>`;
+                svg += `<text x="${sx(t)}" y="${mt+ph+16}" text-anchor="middle" style="font:400 10px 'Geist Mono',monospace;fill:#94a3b8;">${t}</text>`;
+                svg += `<text x="${ml-8}" y="${sy(t)+3.5}" text-anchor="end" style="font:400 10px 'Geist Mono',monospace;fill:#94a3b8;">${t}</text>`;
+            });
+            svg += `<line x1="${ml}" y1="${mt}" x2="${ml}" y2="${mt+ph}" stroke="#94a3b8" stroke-width="1.2"/>`;
+            svg += `<line x1="${ml}" y1="${mt+ph}" x2="${ml+pw}" y2="${mt+ph}" stroke="#94a3b8" stroke-width="1.2"/>`;
+            svg += `<text x="${ml+pw/2}" y="${H-4}" text-anchor="middle" style="font:600 11px 'Geist Mono',monospace;letter-spacing:.1em;fill:#64748b;text-transform:uppercase;">Food environment →</text>`;
+            svg += `<text transform="rotate(-90 14 ${mt+ph/2})" x="14" y="${mt+ph/2}" text-anchor="middle" style="font:600 11px 'Geist Mono',monospace;letter-spacing:.1em;fill:#64748b;text-transform:uppercase;">What's eaten →</text>`;
+            svg += `<line x1="${sx(0)}" y1="${sy(0)}" x2="${sx(100)}" y2="${sy(100)}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+
+            // Glow + dots
+            areas.forEach(a => {
+                const g = Math.max(0, (Math.abs(a.gap) - 10) / 50);
+                if (g > 0.1) {
+                    const col = a.gap >= 0 ? '#0e9488' : '#d4541f';
+                    svg += `<circle cx="${sx(a.envPct)}" cy="${sy(a.consPct)}" r="11" fill="${col}" opacity="${0.15+0.3*g}"/>`;
+                }
+            });
+            areas.forEach(a => {
+                const cx = sx(a.envPct), cy = sy(a.consPct);
+                svg += `<circle cx="${cx}" cy="${cy}" r="6.5" fill="${getGapScoreColor(a.gap)}" stroke="#fff" stroke-width="1.5" style="cursor:pointer;" onclick="toggleGapExpand('${a.saId}')">
+                    <title>SA ${a.saId} · ${a.name}  Env:${a.envPct}  Cons:${a.consPct}  Gap:${a.gap>=0?'+':''}${a.gap}</title>
+                </circle>`;
+                if (Math.abs(a.gap) >= 20) {
+                    const right = cx > ml + pw * 0.6;
+                    svg += `<text x="${cx+(right?-10:10)}" y="${cy+(a.gap>=0?-9:14)}" text-anchor="${right?'end':'start'}" style="font:500 11px 'Geist',sans-serif;fill:#0b1220;paint-order:stroke;stroke:#fff;stroke-width:3px;">${a.name}</text>`;
+                }
+            });
+            svg += `</svg>`;
+
+            // Legend overlay
+            svg += `<div style="position:absolute;top:20px;right:24px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,.05);width:180px;">
+                <div style="font:600 10px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#64748b;margin-bottom:7px;">Eaten vs. environment</div>
+                <div style="height:7px;border-radius:4px;background:linear-gradient(90deg,#d4541f,#fef3c7 50%,#0e9488);margin-bottom:5px;"></div>
+                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;"><span>Eats worse</span><span>Eats better</span></div>
+            </div>`;
+            return svg;
+        }
+
+        function renderSlopeChart(cats) {
+            const rows = cats.filter(c => c.hasPOI || c.hasWW);
+            const maxV = Math.max(36, ...rows.map(c => Math.max(c.poiPct, c.wwPct))) + 2;
+            const W = 420, H = 320, padTop = 40, plotH = 260, xL = 170, xR = 340;
+            const yAt = v => padTop + (1 - v / maxV) * plotH;
+
+            let svg = `<div style="display:flex;justify-content:space-between;margin-bottom:2px;">
+                <span style="font:600 10.5px 'Geist Mono',monospace;letter-spacing:.12em;color:#64748b;">STORE SHELVES</span>
+                <span style="font:600 10.5px 'Geist Mono',monospace;letter-spacing:.12em;color:#64748b;">WASTEWATER</span>
+            </div>`;
+            svg += `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block;">`;
+            svg += `<text x="${xL}" y="${padTop-18}" text-anchor="middle" style="font:600 10px 'Geist Mono',monospace;fill:#64748b;letter-spacing:.1em;">AVAILABLE</text>`;
+            svg += `<text x="${xR}" y="${padTop-18}" text-anchor="middle" style="font:600 10px 'Geist Mono',monospace;fill:#64748b;letter-spacing:.1em;">EATEN</text>`;
+            svg += `<line x1="${xL}" y1="${padTop-8}" x2="${xL}" y2="${padTop+plotH+8}" stroke="#e5e7eb" stroke-width="1.5"/>`;
+            svg += `<line x1="${xR}" y1="${padTop-8}" x2="${xR}" y2="${padTop+plotH+8}" stroke="#e5e7eb" stroke-width="1.5"/>`;
+
+            const sorted = [...rows].sort((a, b) => b.poiPct - a.poiPct);
+            sorted.forEach(c => {
+                const up = (c.hasWW ? c.wwPct : c.poiPct) >= c.poiPct;
+                const col = up ? '#0e9488' : '#d4541f';
+                const yl = yAt(c.poiPct), yr = yAt(c.hasWW ? c.wwPct : c.poiPct);
+                svg += `<line x1="${xL}" y1="${yl}" x2="${xR}" y2="${yr}" stroke="${col}" stroke-width="2.5" stroke-opacity="0.85" stroke-linecap="round"/>`;
+                svg += `<circle cx="${xL}" cy="${yl}" r="4.5" fill="${col}"/>`;
+                if (c.hasWW) svg += `<circle cx="${xR}" cy="${yr}" r="4.5" fill="${col}"/>`;
+                svg += `<text x="${xL-14}" y="${yl+4}" text-anchor="end" style="font:500 12px 'Geist',sans-serif;fill:#1f2937;">${c.label}</text>`;
+            });
+
+            // Legend
+            svg += `<line x1="20" y1="${H-8}" x2="40" y2="${H-8}" stroke="#0e9488" stroke-width="2.5" stroke-linecap="round"/>`;
+            svg += `<text x="46" y="${H-5}" style="font:400 10.5px 'Geist',sans-serif;fill:#64748b;">eaten more than sold</text>`;
+            svg += `<line x1="210" y1="${H-8}" x2="230" y2="${H-8}" stroke="#d4541f" stroke-width="2.5" stroke-linecap="round"/>`;
+            svg += `<text x="236" y="${H-5}" style="font:400 10.5px 'Geist',sans-serif;fill:#64748b;">eaten less than sold</text>`;
+            svg += `</svg>`;
+            return svg;
+        }
+
+        function renderGapScoreLayer() {
+            if (!gapScoreComputed) computeGapScores();
+            if (gapScoreLayer) { map.removeLayer(gapScoreLayer); }
+
+            gapScoreLayer = L.geoJSON(durhamTractsGeoJSON, {
+                style: feature => ({
+                    fillColor: getGapScoreColor(feature.properties._gapScore),
+                    weight: 0.5,
+                    opacity: 0.3,
+                    color: '#999999',
+                    fillOpacity: 0.75
+                }),
+                onEachFeature: (feature, layer) => {
+                    layer.on({
+                        mouseover: e => { e.target.setStyle({ weight: 2, color: '#2b6cb0', opacity: 1 }); e.target.bringToFront(); },
+                        mouseout: e => { gapScoreLayer.resetStyle(e.target); },
+                        click: e => {
+                            const p = feature.properties;
+                            const saId = String(p.Sample_ID);
+                            const hood = TRACT_NEIGHBORHOODS[saId] || 'Durham';
+                            const gap = p._gapScore;
+                            const pop = p.total_population ? Math.round(p.total_population).toLocaleString() : 'N/A';
+                            const income = p.median_hh_income ? '$' + Math.round(p.median_hh_income).toLocaleString() : 'N/A';
+                            const gapColor = gap != null ? (gap >= 0 ? '#0e9488' : '#d4541f') : '#666';
+                            const gapStr = gap != null ? (gap >= 0 ? '+' + gap : gap) : 'N/A';
+                            L.popup()
+                                .setLatLng(e.latlng)
+                                .setContent(`<div style="font-family:Geist,sans-serif;min-width:200px;">
+                                    <div style="font-weight:700;font-size:14px;margin-bottom:2px;">SA ${saId} · ${hood}</div>
+                                    <div style="font-size:28px;font-weight:700;color:${gapColor};margin:6px 0 2px;">${gapStr}</div>
+                                    <div style="font-size:12px;color:#64748b;margin-bottom:8px;">${gapVerdict(gap)}</div>
+                                    <div style="font-size:12px;color:#475569;line-height:1.7;">
+                                        Environment: <b>${p._envPercentile != null ? p._envPercentile + 'th pctile' : 'N/A'}</b><br>
+                                        Consumption: <b>${p._consPercentile != null ? p._consPercentile + 'th pctile' : 'N/A'}</b><br>
+                                        Population: <b>${pop}</b><br>
+                                        Median income: <b>${income}</b>
+                                    </div>
+                                </div>`)
+                                .openOn(map);
+                        }
+                    });
+                }
+            }).addTo(map);
+
+            // County outlines on top
+            countiesLayer = L.geoJSON(countiesGeoJSON, {
+                style: { fillColor: 'none', fillOpacity: 0, weight: 1, opacity: 0.5, color: '#666666' },
+                onEachFeature: onEachFeature
+            }).addTo(map);
+
+            // Update the layer legend
+            const legend = document.getElementById('layerLegend');
+            const title = document.getElementById('layerLegendTitle');
+            const items = document.getElementById('layerLegendItems');
+            title.textContent = 'Gap Score';
+            items.innerHTML = `
+                <div style="height:10px;border-radius:5px;background:linear-gradient(90deg,#d4541f,#fef3c7 50%,#0e9488);margin-bottom:6px;"></div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin-bottom:8px;">
+                    <span>Eats worse</span><span>0</span><span>Eats better</span>
+                </div>
+                <div style="font-size:11px;color:#94a3b8;font-style:italic;">Gap = consumption pctile − environment pctile. Correlation, not causation.</div>`;
+            legend.style.display = '';
+        }
+
         async function renderFoodDesertLayer(mode) {
             if ((mode === 'predicted_desert' || mode === 'desert_agreement') && !foodDesertComputed) {
                 await computePredictedFoodDesert();
@@ -10688,6 +11464,10 @@
                 map.removeLayer(foodDesertLayer);
                 foodDesertLayer = null;
             }
+            if (gapScoreLayer) {
+                map.removeLayer(gapScoreLayer);
+                gapScoreLayer = null;
+            }
 
             // Hide food desert legend unless showing a food desert layer
             const fdLegend = document.getElementById('foodDesertLegend');
@@ -10721,6 +11501,8 @@
             } else if (['usda_desert', 'predicted_desert'].includes(view)) {
                 // Food desert layers
                 renderFoodDesertLayer(view);
+            } else if (view === 'gap_score') {
+                renderGapScoreLayer();
             } else {
                 // Show demographic layer (service areas)
                 demographicLayer = L.geoJSON(durhamTractsGeoJSON, {
@@ -10923,6 +11705,183 @@
                 mouseout: resetHighlight,
                 click: onCountyClick
             });
+        }
+
+        // ── Home landing overlay ──
+        function dismissHome() {
+            document.getElementById('homeOverlay').classList.add('hidden');
+            setTimeout(() => { document.getElementById('homeOverlay').style.display = 'none'; }, 900);
+        }
+
+        function submitHomeAddress(e) {
+            e.preventDefault();
+            const addr = document.getElementById('homeAddr').value.trim();
+            if (!addr) return;
+
+            // Geocode via Nominatim
+            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(addr)}&countrycodes=us&viewbox=-79.1,-78.7,35.85,36.15&bounded=1&limit=1`, {
+                headers: { 'Accept-Language': 'en' }
+            })
+            .then(r => r.json())
+            .then(results => {
+                // Dismiss the home overlay
+                dismissHome();
+
+                if (results.length === 0) return;
+                const r = results[0];
+                const lat = parseFloat(r.lat), lon = parseFloat(r.lon);
+
+                // Auto-fill the map's Find Me input
+                document.getElementById('findMeInput').value = r.display_name;
+
+                // Wait for overlay to fade, then animate the map
+                setTimeout(() => {
+                    // Place the Find Me marker and open the tract panel
+                    findMeResults = [r];
+                    findMeSelect(0);
+
+                    // Show landing panels after a beat
+                    setTimeout(() => showLandingPanels(lat, lon), 800);
+                }, 400);
+            })
+            .catch(() => {
+                dismissHome();
+            });
+        }
+
+        function showLandingPanels(lat, lon) {
+            // Find which tract we're in
+            let saId = null;
+            if (durhamTractsGeoJSON) {
+                for (const feat of durhamTractsGeoJSON.features) {
+                    const geom = feat.geometry;
+                    const polys = geom.type === 'Polygon' ? [geom.coordinates[0]] : geom.coordinates.map(p => p[0]);
+                    for (const poly of polys) {
+                        if (pointInPolygon([lon, lat], poly)) {
+                            saId = String(feat.properties.Sample_ID);
+                            break;
+                        }
+                    }
+                    if (saId) break;
+                }
+            }
+
+            const infoPanel = document.getElementById('landingInfoPanel');
+            const poiCounts = saId ? tractPOICounts[saId] : null;
+            if (!gapScoreComputed) computeGapScores();
+            const gapData = saId ? gapScoreData[saId] : null;
+            const hood = saId ? (TRACT_NEIGHBORHOODS[saId] || 'Durham') : 'Durham';
+
+            let h = `<div style="padding:20px;">`;
+
+            // Gap section
+            if (gapData && gapData.gap != null) {
+                const gapColor = gapData.gap >= 0 ? '#0e9488' : '#d4541f';
+                const gapStr = gapData.gap >= 0 ? '+' + gapData.gap : String(gapData.gap);
+                const eatingBetter = gapData.gap > 0;
+                h += `<div style="margin-bottom:24px;">`;
+                h += `<div style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:10px;">The available-vs-eaten gap</div>`;
+                h += `<div style="font-family:'Instrument Serif',serif;font-size:22px;line-height:1.15;color:#0b1220;margin-bottom:4px;">`;
+                h += eatingBetter ? `Eating <span style="color:#0e9488;font-style:italic;">better</span> than predicted.`
+                                  : `Eating <span style="color:#d4541f;font-style:italic;">worse</span> than predicted.`;
+                h += `</div>`;
+                h += `<div style="display:flex;align-items:center;gap:14px;margin:14px 0;">
+                    <div style="display:flex;flex-direction:column;align-items:center;">
+                        <div style="font-family:'Instrument Serif',serif;font-size:38px;color:${gapColor};line-height:1;">${gapStr}</div>
+                        <div style="font:400 10px 'Geist Mono',monospace;color:#94a3b8;margin-top:2px;">gap score</div>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#64748b;margin-bottom:3px;">
+                            <span>Food access: ${gapData.envPct}th</span><span>Diet diversity: ${gapData.consPct}th</span>
+                        </div>
+                        <div style="height:7px;border-radius:5px;background:linear-gradient(90deg,#d4541f,#fef3c7 50%,#0e9488);position:relative;">
+                            <div style="position:absolute;left:${50 + gapData.gap/2}%;top:-2px;width:4px;height:11px;background:#0b1220;border-radius:2px;transform:translateX(-50%);"></div>
+                        </div>
+                    </div>
+                </div>`;
+                h += `<div style="font-size:10.5px;color:#94a3b8;line-height:1.5;margin-bottom:14px;">
+                    <b style="color:#64748b;">Food access</b> = healthy retail vs. fast food &amp; convenience.<br>
+                    <b style="color:#64748b;">Diet diversity</b> = Shannon diversity of plant species (trnL).
+                </div>`;
+                h += `<button onclick="dismissLandingPanels();switchView('gap-explorer');" style="width:100%;padding:10px;border:1px solid #1e3a8a;border-radius:10px;background:#fff;color:#1e3a8a;font:600 13px 'Geist',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .12s;">
+                    See full gap breakdown
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
+                </button>`;
+                h += `</div>`;
+            }
+
+            // Divider
+            h += `<div style="height:1px;background:#e7e4dc;margin:0 -20px;"></div>`;
+
+            // POI section
+            if (poiCounts) {
+                const cats = [
+                    { label: 'Grocery', count: poiCounts.grocery || 0, color: '#38a169' },
+                    { label: 'Fast food', count: poiCounts.fast_food || 0, color: '#d4541f' },
+                    { label: 'Convenience', count: poiCounts.convenience || 0, color: '#d97706' },
+                    { label: 'Restaurants', count: poiCounts.restaurant || 0, color: '#6366f1' },
+                    { label: 'Seafood', count: poiCounts.seafood || 0, color: '#0891b2' },
+                    { label: 'Bakery', count: poiCounts.bakery || 0, color: '#a855f7' },
+                ].filter(c => c.count > 0);
+                const total = cats.reduce((s, c) => s + c.count, 0);
+                h += `<div style="padding-top:20px;">`;
+                h += `<div style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:10px;">Nearby food · ${hood}</div>`;
+                h += `<div style="font-family:'Instrument Serif',serif;font-size:30px;color:#0b1220;line-height:1;">${total}</div>`;
+                h += `<div style="font-size:12px;color:#64748b;margin:4px 0 12px;">food retailers in this area</div>`;
+                cats.forEach(c => {
+                    const pct = Math.round((c.count / total) * 100);
+                    h += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+                        <span style="width:8px;height:8px;border-radius:2px;background:${c.color};flex-shrink:0;"></span>
+                        <span style="flex:1;font-size:12.5px;color:#1f2937;">${c.label}</span>
+                        <span style="font:500 11.5px 'Geist Mono',monospace;color:#64748b;">${c.count}</span>
+                        <div style="width:50px;height:5px;background:#f0ede6;border-radius:3px;overflow:hidden;">
+                            <div style="width:${pct}%;height:100%;background:${c.color};border-radius:3px;"></div>
+                        </div>
+                    </div>`;
+                });
+                h += `</div>`;
+            }
+
+            h += `</div>`;
+            infoPanel.innerHTML = h;
+            infoPanel.classList.remove('hidden');
+
+            // Show dismiss bar
+            document.getElementById('landingDismissBar').classList.remove('hidden');
+
+            // Pan map so the marker is centered in the visible area (left of panels)
+            // Panels: detail 416 + info 360 = 776px on right
+            setTimeout(() => {
+                if (map) map.panBy([776 / 2, 0], { animate: true, duration: 0.8 });
+            }, 200);
+        }
+
+        function hideLandingPopups() {
+            document.getElementById('landingInfoPanel').classList.add('hidden');
+            document.getElementById('landingDismissBar').classList.add('hidden');
+        }
+
+        function dismissLandingPanels() {
+            // Slide both panels right together
+            const infoPanel = document.getElementById('landingInfoPanel');
+            const detailPanel = document.getElementById('detailPanel');
+            infoPanel.classList.add('hidden');
+            detailPanel.classList.add('slide-away');
+            document.getElementById('landingDismissBar').classList.add('hidden');
+
+            // After slide completes, clean up detail panel
+            setTimeout(() => {
+                detailPanel.classList.remove('open');
+                detailPanel.classList.remove('slide-away');
+                currentDetailPlant = null;
+                clearHighlights();
+                if (findMeMarker) { map.removeLayer(findMeMarker); findMeMarker = null; }
+            }, 700);
+
+            // Zoom back out
+            if (map) {
+                map.flyTo([35.98, -78.9], 11, { duration: 1.2 });
+            }
         }
 
         // Start the application
