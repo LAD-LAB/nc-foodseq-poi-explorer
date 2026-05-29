@@ -144,7 +144,7 @@
             gap: 14px;
             border-bottom: 1px solid rgba(0,0,0,0.1);
             transition: max-height 0.15s ease-out, opacity 0.15s ease-out, padding 0.15s ease-out;
-            overflow: hidden;
+            overflow: visible;
         }
 
         .header-row2.hidden {
@@ -152,6 +152,7 @@
             opacity: 0;
             padding: 0 20px;
             border-bottom: none;
+            overflow: hidden;
         }
 
         .ctrl-label {
@@ -299,13 +300,14 @@
 
         /* Tract panel tabs */
         .tp-tabs {
-            display: flex; padding: 0 6px;
+            display: flex; padding: 0 4px;
             border-bottom: 1px solid #e5e7eb; background: #fff;
         }
         .tp-tab {
-            padding: 10px 12px; font: inherit; font-size: 13px; font-weight: 500;
+            padding: 10px 8px; font: inherit; font-size: 12.5px; font-weight: 500;
             color: #6b7280; background: transparent; border: 0;
             border-bottom: 2px solid transparent; cursor: pointer; margin-bottom: -1px;
+            white-space: nowrap;
         }
         .tp-tab:hover { color: #1f2937; }
         .tp-tab.active { color: #111827; font-weight: 600; border-bottom-color: #1e3a8a; }
@@ -397,6 +399,94 @@
         .tp-spark .dot { fill: #1e3a8a; }
         .tp-spark .dot.end { fill: #1e3a8a; }
         .tp-spark .dot.end.flagged { fill: #c44a2b; }
+
+        /* ── Report Card tab ── */
+        .rc-score-grid {
+            display: grid; grid-template-columns: 120px 1fr; overflow: hidden;
+            margin-bottom: 18px; border: 1px solid #e5e7eb; border-radius: 14px;
+        }
+        .rc-score-left {
+            padding: 16px 14px; border-right: 1px solid #e5e7eb; background: #eef2fb;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .rc-kicker {
+            font: 600 11px/1 "Geist Mono", ui-monospace, Menlo, monospace;
+            letter-spacing: .15em; text-transform: uppercase; color: #64748b;
+        }
+        .rc-kicker.plant { color: #5b6cf0; }
+        .rc-kicker.animal { color: #c8612e; }
+        .rc-kicker.navy { color: #1e3a8a; }
+        .rc-score-num {
+            font-family: "Instrument Serif", Georgia, serif; font-size: 44px; line-height: 1;
+            color: #1e3a8a; margin-top: 6px;
+        }
+        .rc-score-num small { font: 400 11px "Geist Mono", monospace; color: #94a3b8; }
+        .rc-score-label { font-size: 12px; font-weight: 500; color: #0b1220; margin-top: 4px; }
+        .rc-score-marker { font: 400 9px "Geist Mono", monospace; color: #94a3b8; margin-top: 3px; letter-spacing: .04em; }
+        .rc-score-right { padding: 16px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+
+        .rc-marker-row { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 12.5px; }
+        .rc-marker-label { font-weight: 600; }
+        .rc-marker-label .marker-tag { font: 400 10px "Geist Mono", monospace; color: #64748b; }
+        .rc-marker-count { color: #64748b; font-variant-numeric: tabular-nums; }
+        .rc-marker-count b { color: #0b1220; }
+        .rc-marker-track { height: 8px; border-radius: 5px; overflow: hidden; }
+        .rc-marker-track .rc-marker-fill { height: 100%; border-radius: 5px; }
+        .rc-marker-track.plant { background: #e6e8fb; }
+        .rc-marker-track.plant .rc-marker-fill { background: #5b6cf0; }
+        .rc-marker-track.animal { background: #f5e0d2; }
+        .rc-marker-track.animal .rc-marker-fill { background: #c8612e; }
+
+        .rc-bars { display: flex; flex-direction: column; gap: 7px; }
+        .rc-bar-row {
+            display: grid; grid-template-columns: 74px 1fr 50px 26px; align-items: center; gap: 6px;
+            cursor: pointer; padding: 3px 0; border-radius: 4px; transition: background 0.1s;
+        }
+        .rc-bar-row:hover { background: #f9fafb; }
+        .rc-bar-row .rc-bar-name {
+            font-size: 12.5px; font-weight: 500; color: #0b1220;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .rc-bar-track { height: 8px; border-radius: 5px; overflow: hidden; }
+        .rc-bar-track.plant { background: #e6e8fb; }
+        .rc-bar-track.plant .rc-bar-fill { background: #5b6cf0; }
+        .rc-bar-track.animal { background: #f5e0d2; }
+        .rc-bar-track.animal .rc-bar-fill { background: #c8612e; }
+        .rc-bar-fill { height: 100%; border-radius: 5px; }
+        .rc-bar-val { font-size: 11.5px; color: #64748b; text-align: right; font-variant-numeric: tabular-nums; }
+        .rc-bar-row .tp-spark { width: 50px; height: 18px; }
+        .rc-view-all {
+            display: block; text-align: center; margin-top: 10px;
+            font-size: 12.5px; color: #1e3a8a; text-decoration: none;
+            padding: 6px 0; border-top: 1px solid #f3f4f6; cursor: pointer;
+        }
+        .rc-view-all:hover { text-decoration: underline; }
+
+        .rc-section { margin-bottom: 18px; }
+        .rc-section-head {
+            display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 11px;
+        }
+        .rc-section-head .rc-hint { font: 400 10.5px "Geist Mono", monospace; color: #64748b; }
+
+        .rc-callout {
+            padding: 13px 15px; border-radius: 12px; font-size: 14px; line-height: 1.5;
+            color: #1f2937; margin-bottom: 9px;
+        }
+        .rc-callout.navy { background: #eef2fb; border: 1px solid #dbe4fb; }
+        .rc-callout.green { background: #d9efe1; border: 1px solid #bfe0cb; }
+        .rc-callout b { color: #0b1220; }
+
+        .rc-share-footer {
+            padding: 12px 18px; border-top: 1px solid #e5e7eb;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .rc-share-btn {
+            flex: 1; height: 36px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+            border-radius: 10px; border: 1px solid #0b1220; background: #0b1220; color: #fff;
+            font: 500 13px inherit; cursor: pointer;
+        }
+        .rc-share-btn:hover { background: #1f2937; }
+        .rc-share-note { font-size: 11px; color: #94a3b8; }
 
         /* Trends breadcrumb (Pattern E) */
         .trends-breadcrumb { font-size: 13px; margin-bottom: 8px; }
@@ -1153,7 +1243,7 @@
 
         /* Custom Leaflet styles */
         .leaflet-top.leaflet-left {
-            top: 88px;
+            top: 120px;
         }
 
         .leaflet-popup-content-wrapper {
@@ -2586,12 +2676,11 @@
         <select id="layerSelect" onchange="switchMapView(this.value)">
             <option value="topo">None (Topology)</option>
             <option value="density">Total Population</option>
-            <option value="income">Median Income</option>
-            <option value="foreign">% Foreign Born</option>
+            <option value="income">Median HH Income</option>
             <option value="white">% White</option>
             <option value="black">% Black</option>
             <option value="asian">% Asian</option>
-            <option value="hispanic">% Hispanic/Latino</option>
+            <option value="other">% Other Race</option>
             <option value="usda_desert">USDA Food Desert</option>
             <option value="predicted_desert">Predicted Food Desert</option>
         </select>
@@ -2606,6 +2695,14 @@
         <button class="marker-chip" id="speciesButton" onclick="toggleSpeciesPanel()" style="margin-left:8px;">
             Species Abundance
         </button>
+        <span style="flex:1;"></span>
+        <div style="position:relative;display:inline-flex;align-items:center;gap:4px;">
+            <input type="text" id="findMeInput" placeholder="Enter address to find your service area" autocomplete="off"
+                   style="padding:5px 10px;border:1.5px solid #d2d6dc;border-radius:6px;font-size:13px;font-family:inherit;color:#1a365d;width:260px;"
+                   oninput="onFindMeInput(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();selectFirstFindMe();}">
+            <button class="marker-chip" onclick="selectFirstFindMe()" style="padding:5px 10px;">Find me</button>
+            <div id="findMeSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100000;background:#fff;border:1.5px solid #d2d6dc;border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);"></div>
+        </div>
     </div>
 
     <!-- POI controls moved to bottom-left-container -->
@@ -2779,19 +2876,6 @@
 
             <!-- Toolbar -->
             <div class="trends-toolbar" role="toolbar" aria-label="Trend filters">
-                <div class="trends-field">
-                    <span class="trends-field-label">Window</span>
-                    <div class="trends-seg" id="trends-n-toggle" role="group" aria-label="Number of months">
-                        <button data-n="2" aria-pressed="false" onclick="setTrendsN(2,this)">2 mo</button>
-                        <button data-n="6" aria-pressed="false" onclick="setTrendsN(6,this)">6 mo</button>
-                        <button data-n="12" aria-pressed="true" onclick="setTrendsN(12,this)">12 mo</button>
-                        <button data-n="24" aria-pressed="false" onclick="setTrendsN(24,this)">24 mo</button>
-                        <button data-n="9999" aria-pressed="false" onclick="setTrendsN(9999,this)">All</button>
-                    </div>
-                </div>
-
-                <span class="trends-sep-v"></span>
-
                 <div class="trends-field">
                     <span class="trends-field-label">Sites</span>
                     <div id="trendsSiteTags" style="display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
@@ -2988,11 +3072,6 @@
             <div class="tp-sites-list" id="tpSitesList"></div>
         </section>
         <div class="tp-flagged" id="tpFlagged" style="display:none;"></div>
-        <div class="tp-tabs" id="tpTabs" style="display:none;">
-            <button class="tp-tab active" onclick="switchPanelTab(this,'plants')">Plants</button>
-            <button class="tp-tab" onclick="switchPanelTab(this,'animals')">Animals</button>
-            <button class="tp-tab" onclick="switchPanelTab(this,'demo')">Demographics</button>
-        </div>
         <div class="tp-body" id="tpBody"></div>
         <footer class="tp-ctas" id="tpCtas" style="display:none;">
             <button class="tp-btn tp-btn-primary" onclick="goToFindFood()">
@@ -3069,7 +3148,7 @@
         let countiesLayer;
         let countiesGeoJSON;
         let populationDensityGeoJSON;
-        let demographicsGeoJSON;
+        // demographicsGeoJSON removed — now using durhamTractsGeoJSON (service areas) for demographics
         let densityLayer;
         let demographicLayer;
         let currentTimeIndex = 'all'; // Default to All Times
@@ -3080,7 +3159,7 @@
         let priceData = null;
         let poiClusters = {};
         let activePOILayers = new Set();
-        let durhamTractsGeoJSON = null;
+        let durhamTractsGeoJSON = null; // now stores service area polygons
         let durhamTractsLayer = null;
         let tractLabelsLayer = null;
         let tractsVisible = false;
@@ -5075,7 +5154,7 @@
             document.getElementById('prediction-clear-btn').style.display = 'none';
         }
 
-        // Build set of tract numbers that contain sampling sites
+        // Build set of service area Sample_IDs that contain sampling sites with data
         function getTractsWithDatapoints() {
             const tracts = new Set();
             Object.values(foodseqData.plants).forEach(plant => {
@@ -5113,7 +5192,7 @@
             if (!durhamTractsLayer) return;
             tractsWithData = getTractsWithDatapoints();
             durhamTractsLayer.eachLayer(function(layer) {
-                const tractNum = String(layer.feature.properties.tract_number || '');
+                const tractNum = String(layer.feature.properties.Sample_ID || '');
                 const hasData = tractsWithData.has(tractNum);
                 layer.setStyle({
                     color: hasData ? '#2b6cb0' : '#a0aec0',
@@ -5140,25 +5219,25 @@
                 map.getPane('heatPane').style.zIndex = 500;
             }
 
-            // Determine which tracts have sampling datapoints
+            // Determine which service areas have sampling datapoints
             tractsWithData = getTractsWithDatapoints();
-            console.log('Tracts with datapoints:', [...tractsWithData]);
+            console.log('Service areas with datapoints:', [...tractsWithData]);
 
-            console.log('Calculating POI counts for Durham tracts...');
+            console.log('Calculating POI counts for Durham service areas...');
 
-            // First, calculate POI counts for all tracts
+            // First, calculate POI counts for all service areas
             durhamTractsGeoJSON.features.forEach(feature => {
-                const geoid = feature.properties.GEOID;
-                tractPOICounts[geoid] = countPOIsInTract(feature.geometry);
+                const saId = String(feature.properties.Sample_ID);
+                tractPOICounts[saId] = countPOIsInTract(feature.geometry);
             });
 
-            console.log('POI counts calculated for', Object.keys(tractPOICounts).length, 'tracts');
+            console.log('POI counts calculated for', Object.keys(tractPOICounts).length, 'service areas');
 
-            // Create tract boundaries layer — shade only tracts with datapoints
+            // Create service area boundaries layer — shade only areas with datapoints
             durhamTractsLayer = L.geoJSON(durhamTractsGeoJSON, {
                 pane: 'tractsPane',
                 style: function(feature) {
-                    const tractNum = String(feature.properties.tract_number || '');
+                    const tractNum = String(feature.properties.Sample_ID || '');
                     const hasData = tractsWithData.has(tractNum);
                     return {
                         color: hasData ? '#2b6cb0' : '#a0aec0',
@@ -5171,12 +5250,10 @@
                 onEachFeature: function(feature, layer) {
                     layer.on('click', function(e) {
                         if (e.originalEvent.shiftKey) {
-                            // Shift-click: compare this tract
+                            // Shift-click: compare this service area
                             if (compareState.tractA || compareState.siteA) {
-                                // Already in compare mode — set as B
-                                onCompareTractSelect(String(feature.properties.tract_number));
+                                onCompareTractSelect(String(feature.properties.Sample_ID));
                             } else if (currentTractFeature) {
-                                // Have a tract open — start compare with it as A, clicked as B
                                 compareState.tractA = currentTractFeature;
                                 compareState.siteA = null;
                                 compareState.tractB = null;
@@ -5185,9 +5262,8 @@
                                 compareState.expanded = { plants: false, animals: false };
                                 compareState.tab = 'plants';
                                 renderComparePanel();
-                                onCompareTractSelect(String(feature.properties.tract_number));
+                                onCompareTractSelect(String(feature.properties.Sample_ID));
                             } else {
-                                // No tract open — just open this one
                                 openTractDetailPanel(feature);
                             }
                         } else {
@@ -5201,11 +5277,11 @@
             tractLabelsLayer = L.layerGroup();
 
             durhamTractsGeoJSON.features.forEach(feature => {
-                const tractNum = feature.properties.tract_number || '';
+                const tractNum = feature.properties.Sample_ID || '';
                 if (!tractNum) return;
 
-                const geoid = feature.properties.GEOID;
-                const counts = tractPOICounts[geoid] || { total: 0 };
+                const saId = String(tractNum);
+                const counts = tractPOICounts[saId] || { total: 0 };
 
                 // Calculate centroid for label placement
                 const coords = feature.geometry.coordinates;
@@ -5221,7 +5297,7 @@
                     const label = L.marker([centroid.lat, centroid.lon], {
                         icon: L.divIcon({
                             className: 'tract-label',
-                            html: `${tractNum}<br><span style="font-size: 9px; font-weight: normal;">(${counts.total} POIs)</span>`,
+                            html: `SA ${tractNum}<br><span style="font-size: 9px; font-weight: normal;">(${counts.total} POIs)</span>`,
                             iconSize: null
                         })
                     });
@@ -5429,25 +5505,22 @@
         async function init() {
             try {
                 // Load data
-                const [foodseqResponse, countiesResponse, densityResponse, demographicsResponse, durhamTractsResponse, usdaResponse] = await Promise.all([
+                const [foodseqResponse, countiesResponse, densityResponse, durhamTractsResponse, usdaResponse] = await Promise.all([
                     fetch('data/foodseq_data.json?v=' + Date.now()),
                     fetch('data/nc_counties.geojson'),
                     fetch('data/nc_population_density.geojson'),
-                    fetch('data/nc_demographics.geojson'),
-                    fetch('data/durham_census_tracts.geojson'),
+                    fetch('data/durham_service_areas.geojson'),
                     fetch('data/usda_food_deserts.json')
                 ]);
 
                 foodseqData = await foodseqResponse.json();
                 countiesGeoJSON = await countiesResponse.json();
                 populationDensityGeoJSON = await densityResponse.json();
-                demographicsGeoJSON = await demographicsResponse.json();
                 durhamTractsGeoJSON = await durhamTractsResponse.json();
                 usdaDesertData = await usdaResponse.json();
 
                 console.log('Loaded', populationDensityGeoJSON.features.length, 'block groups');
-                console.log('Loaded', demographicsGeoJSON.features.length, 'census tracts');
-                console.log('Loaded', durhamTractsGeoJSON.features.length, 'Durham census tracts');
+                console.log('Loaded', durhamTractsGeoJSON.features.length, 'Durham service areas');
                 console.log('Loaded USDA food desert data for', Object.keys(usdaDesertData.tracts).length, 'tracts');
 
                 // Load POI data
@@ -5485,7 +5558,7 @@
                     initDurhamTractsLayer();
                     durhamTractsLayer.addTo(map);
                     tractsVisible = true;
-                    console.log('Durham tracts layer initialized and shown');
+                    console.log('Durham service areas layer initialized and shown');
                 }
 
                 // Add faint Durham county outline
@@ -5614,10 +5687,175 @@
             }, wasOpen ? 300 : 10);
         }
 
+        // --- Service area / manhole highlight linking ---
+        let highlightedSALayer = null;   // the Leaflet layer currently highlighted
+        let highlightedMarkers = [];     // manhole markers currently highlighted
+
+        function clearHighlights() {
+            // Reset service area highlight
+            if (highlightedSALayer && durhamTractsLayer) {
+                durhamTractsLayer.resetStyle(highlightedSALayer);
+            }
+            highlightedSALayer = null;
+
+            // Reset manhole marker highlights
+            highlightedMarkers.forEach(m => {
+                const isManhole = m.plant && m.plant.location_type === 'manhole';
+                m.setStyle({
+                    fillColor: isManhole ? '#3182ce' : '#e53e3e',
+                    color: '#ffffff',
+                    weight: isManhole ? 2 : 3,
+                    radius: isManhole ? 6 : 8
+                });
+            });
+            highlightedMarkers = [];
+        }
+
+        function highlightServiceArea(sampleId) {
+            clearHighlights();
+            if (!durhamTractsLayer) return;
+            const saId = String(sampleId);
+            durhamTractsLayer.eachLayer(function(layer) {
+                if (String(layer.feature.properties.Sample_ID) === saId) {
+                    layer.setStyle({
+                        color: '#ecc94b',
+                        weight: 2,
+                        opacity: 1,
+                        fillColor: '#fefcbf',
+                        fillOpacity: 0.3
+                    });
+                    layer.bringToFront();
+                    highlightedSALayer = layer;
+                }
+            });
+        }
+
+        function highlightManholesInArea(sampleId) {
+            const saId = String(sampleId);
+            plantMarkers.forEach(m => {
+                if (m.plant && String(m.plant.census_tract) === saId) {
+                    m.setStyle({
+                        fillColor: '#ecc94b',
+                        color: '#ffffff',
+                        weight: 2
+                    });
+                    m.bringToFront();
+                    highlightedMarkers.push(m);
+                }
+            });
+        }
+
         function closeDetailPanel() {
             document.getElementById('detailPanel').classList.remove('open');
             currentDetailPlant = null;
+            clearHighlights();
+            // Remove find-me marker
+            if (findMeMarker) { map.removeLayer(findMeMarker); findMeMarker = null; }
         }
+
+        // --- Find Me: locate address and select its service area ---
+        let findMeDebounce = null;
+        let findMeMarker = null;
+        let findMeResults = []; // cached Nominatim results
+
+        function onFindMeInput(query) {
+            clearTimeout(findMeDebounce);
+            const box = document.getElementById('findMeSuggestions');
+            if (query.length < 3) { box.style.display = 'none'; findMeResults = []; return; }
+            findMeDebounce = setTimeout(() => {
+                fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=us&viewbox=-79.1,-78.7,35.85,36.15&bounded=1&limit=5`, {
+                    headers: { 'Accept-Language': 'en' }
+                })
+                .then(r => r.json())
+                .then(results => {
+                    findMeResults = results;
+                    if (results.length === 0) { box.style.display = 'none'; return; }
+                    box.innerHTML = results.map((r, i) =>
+                        `<div style="padding:8px 12px;cursor:pointer;font-size:13px;color:#1f2937;border-bottom:1px solid #f3f4f6;"
+                              onmouseover="this.style.background='#f3f4f6'"
+                              onmouseout="this.style.background=''"
+                              onmousedown="event.preventDefault();findMeSelect(${i})">
+                            ${r.display_name}
+                        </div>`
+                    ).join('');
+                    box.style.display = '';
+                })
+                .catch(() => { box.style.display = 'none'; });
+            }, 300);
+        }
+
+        function selectFirstFindMe() {
+            if (findMeResults.length > 0) findMeSelect(0);
+        }
+
+        function findMeSelect(idx) {
+            const r = findMeResults[idx];
+            if (!r) return;
+            const lat = parseFloat(r.lat), lon = parseFloat(r.lon);
+
+            // Autofill the input and close suggestions
+            document.getElementById('findMeInput').value = r.display_name;
+            document.getElementById('findMeSuggestions').style.display = 'none';
+
+            // Create top pane for find-me marker if needed
+            if (!map.getPane('findMePane')) {
+                map.createPane('findMePane');
+                map.getPane('findMePane').style.zIndex = 700;
+            }
+
+            // Drop a red teardrop marker on top of everything
+            if (findMeMarker) map.removeLayer(findMeMarker);
+            const redIcon = L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            });
+            findMeMarker = L.marker([lat, lon], { icon: redIcon, pane: 'findMePane' })
+                .addTo(map)
+                .bindTooltip('You are here', { permanent: false, direction: 'top', offset: [0, -36] });
+
+            map.setView([lat, lon], 14);
+
+            // Find which service area contains this point
+            if (!durhamTractsGeoJSON) return;
+            let matched = null;
+            for (const feat of durhamTractsGeoJSON.features) {
+                const geom = feat.geometry;
+                if (geom.type === 'Polygon') {
+                    if (pointInPolygon([lon, lat], geom.coordinates[0])) { matched = feat; break; }
+                } else if (geom.type === 'MultiPolygon') {
+                    for (const poly of geom.coordinates) {
+                        if (pointInPolygon([lon, lat], poly[0])) { matched = feat; break; }
+                    }
+                    if (matched) break;
+                }
+            }
+
+            if (matched) {
+                openTractDetailPanel(matched);
+            } else {
+                // Not in any service area — find nearest one
+                let minDist = Infinity, nearest = null;
+                durhamTractsGeoJSON.features.forEach(feat => {
+                    const coords = feat.geometry.type === 'Polygon' ? feat.geometry.coordinates[0] : feat.geometry.coordinates[0][0];
+                    const c = calculatePolygonCentroid(coords);
+                    const d = haversineDistance(lat, lon, c.lat, c.lon);
+                    if (d < minDist) { minDist = d; nearest = feat; }
+                });
+                if (nearest) {
+                    openTractDetailPanel(nearest);
+                    findMeMarker.bindTooltip(`You are here (nearest: SA ${nearest.properties.Sample_ID})`, { permanent: false, direction: 'top', offset: [0, -36] });
+                }
+            }
+        }
+
+        // Close find-me suggestions on blur
+        document.getElementById('findMeInput')?.addEventListener('blur', function() {
+            setTimeout(() => { document.getElementById('findMeSuggestions').style.display = 'none'; }, 200);
+        });
 
         // Tab switching
         let currentView = 'map';
@@ -5699,7 +5937,7 @@
 
         // Help modal placeholder
         function showHelp() {
-            alert('NC FoodSeq Explorer\\n\\nVisualize wastewater-based dietary surveillance data across Durham, NC.\\n\\nClick census tracts or sampling sites to view species detection data.\\nUse Layers to overlay demographic data.\\nUse Period to change the time window.');
+            alert('NC FoodSeq Explorer\\n\\nVisualize wastewater-based dietary surveillance data across Durham, NC.\\n\\nClick service areas or sampling sites to view species detection data.\\nUse Layers to overlay demographic data.\\nUse Period to change the time window.');
         }
 
         // Find Food map
@@ -5725,7 +5963,7 @@
                     }
                 }
 
-                // Add Durham tracts (faint)
+                // Add Durham service areas (faint)
                 if (durhamTractsGeoJSON) {
                     L.geoJSON(durhamTractsGeoJSON, {
                         style: { color: '#a0aec0', weight: 0.8, opacity: 0.5, fillColor: 'transparent', fillOpacity: 0 }
@@ -6593,7 +6831,7 @@
             // Check if it's a tract number
             const navPlantsInTract = getPlantsInTract(tractOrSiteId);
             if (navPlantsInTract.length > 0) {
-                breadcrumbLabel = `Tract ${tractOrSiteId}`;
+                breadcrumbLabel = `SA ${tractOrSiteId}`;
                 // Check which sites are currently toggled on in the tract panel
                 // tractSiteStates keys are name-based (e.g. "Manhole-17863"), convert to plant IDs
                 const activeNames = Object.entries(tractSiteStates)
@@ -6617,7 +6855,7 @@
                         const p = foodseqData.plants[activePlantIds[0]];
                         if (p) breadcrumbLabel = p.name;
                     } else if (activePlantIds.length > 1) {
-                        breadcrumbLabel = `Tract ${tractOrSiteId} (${activePlantIds.length} sites)`;
+                        breadcrumbLabel = `SA ${tractOrSiteId} (${activePlantIds.length} sites)`;
                     }
                 }
             } else {
@@ -6642,14 +6880,14 @@
             switchView('map');
             if (durhamTractsGeoJSON) {
                 const feature = durhamTractsGeoJSON.features.find(f =>
-                    String(f.properties.tract_number) === String(tractId)
+                    String(f.properties.Sample_ID) === String(tractId)
                 );
                 if (feature) openTractDetailPanel(feature);
             }
         }
 
         // ========== TRENDS VIEW ==========
-        let trendsN = 12;
+        let trendsN = 9999;
         let trendsMode = 'single';
         let trendsSiteA = null;
         let trendsSiteB = null;
@@ -6673,54 +6911,62 @@
             const sel = document.getElementById('trends-site-add');
             sel.innerHTML = '<option value="">+ Add site...</option>';
 
+            // Determine current selection type: null (nothing), 'manhole', or 'wwtp'
+            let selectionType = null;
+            if (trendsSelectedSites.length > 0) {
+                const hasWWTP = trendsSelectedSites.some(s => !s.isTract && isTrendsSiteWWTP(s.pid));
+                selectionType = hasWWTP ? 'wwtp' : 'manhole';
+            }
+
             // Build set of pids covered by already-selected tracts
             const coveredByTract = new Set();
             trendsSelectedSites.forEach(s => {
                 if (s.isTract && s.tractSites) s.tractSites.forEach(pid => coveredByTract.add(pid));
             });
 
-            // --- Tracts optgroup (at the top) ---
-            const tractGroups = {};
-            Object.entries(foodseqData.plants).forEach(([pid, p]) => {
-                if (!p.census_tract || p.census_tract === 'unknown') return;
-                const ct = String(p.census_tract);
-                if (!tractGroups[ct]) tractGroups[ct] = [];
-                tractGroups[ct].push({ pid, plant: p });
-            });
-
-            const tracts = [];
-            Object.entries(tractGroups).forEach(([ct, sites]) => {
-                // Only include sites with >= 2 timepoints
-                const qualifiedSites = sites.filter(s => Object.keys(s.plant.timeseries).length >= 2);
-                if (qualifiedSites.length < 2) return;
-                const tractPid = 'tract_' + ct;
-                if (trendsSelectedSites.some(s => s.pid === tractPid)) return;
-                const hood = TRACT_NEIGHBORHOODS[ct] || '';
-                const label = 'Tract ' + ct + (hood ? ' \u00b7 ' + hood : '') + ' (' + qualifiedSites.length + ' sites)';
-                tracts.push({ pid: tractPid, label, ct, siteCount: qualifiedSites.length });
-            });
-
-            if (tracts.length > 0) {
-                tracts.sort((a, b) => a.ct.localeCompare(b.ct, undefined, { numeric: true }));
-                const grp = document.createElement('optgroup');
-                grp.label = 'Tracts (summed)';
-                tracts.forEach(t => {
-                    const opt = document.createElement('option');
-                    opt.value = t.pid;
-                    opt.textContent = t.label;
-                    grp.appendChild(opt);
+            // --- Tracts optgroup — only when no WWTPs selected ---
+            if (selectionType !== 'wwtp') {
+                const tractGroups = {};
+                Object.entries(foodseqData.plants).forEach(([pid, p]) => {
+                    if (!p.census_tract || p.census_tract === 'unknown') return;
+                    const ct = String(p.census_tract);
+                    if (!tractGroups[ct]) tractGroups[ct] = [];
+                    tractGroups[ct].push({ pid, plant: p });
                 });
-                sel.appendChild(grp);
+
+                const tracts = [];
+                Object.entries(tractGroups).forEach(([ct, sites]) => {
+                    const qualifiedSites = sites.filter(s => Object.keys(s.plant.timeseries).length >= 2);
+                    if (qualifiedSites.length < 2) return;
+                    const tractPid = 'tract_' + ct;
+                    if (trendsSelectedSites.some(s => s.pid === tractPid)) return;
+                    const hood = TRACT_NEIGHBORHOODS[ct] || '';
+                    const label = 'SA ' + ct + (hood ? ' \u00b7 ' + hood : '') + ' (' + qualifiedSites.length + ' sites)';
+                    tracts.push({ pid: tractPid, label, ct, siteCount: qualifiedSites.length });
+                });
+
+                if (tracts.length > 0) {
+                    tracts.sort((a, b) => a.ct.localeCompare(b.ct, undefined, { numeric: true }));
+                    const grp = document.createElement('optgroup');
+                    grp.label = 'Service Areas (summed)';
+                    tracts.forEach(t => {
+                        const opt = document.createElement('option');
+                        opt.value = t.pid;
+                        opt.textContent = t.label;
+                        grp.appendChild(opt);
+                    });
+                    sel.appendChild(grp);
+                }
             }
 
-            // --- Group individual sites by type ---
+            // --- Individual sites, filtered by selection type ---
             const manholes = [];
             const wwtps = [];
 
             Object.entries(foodseqData.plants).forEach(([pid, p]) => {
                 if (Object.keys(p.timeseries).length < 2) return;
                 if (trendsSelectedSites.some(s => s.pid === pid)) return;
-                if (coveredByTract.has(pid)) return; // skip sites covered by a selected tract
+                if (coveredByTract.has(pid)) return;
 
                 let label = p.name;
                 const isManhole = p.location_type === 'manhole';
@@ -6733,7 +6979,8 @@
                 else wwtps.push({ pid, label });
             });
 
-            if (manholes.length > 0) {
+            // Show manholes only when no WWTPs selected
+            if (selectionType !== 'wwtp' && manholes.length > 0) {
                 const grp = document.createElement('optgroup');
                 grp.label = 'Manholes';
                 manholes.forEach(m => {
@@ -6745,7 +6992,8 @@
                 sel.appendChild(grp);
             }
 
-            if (wwtps.length > 0) {
+            // Show WWTPs only when no manholes/tracts selected
+            if (selectionType !== 'manhole' && wwtps.length > 0) {
                 const grp = document.createElement('optgroup');
                 grp.label = 'WWTPs';
                 wwtps.forEach(w => {
@@ -6758,6 +7006,12 @@
             }
         }
 
+        function isTrendsSiteWWTP(pid) {
+            if (typeof pid === 'string' && pid.startsWith('tract_')) return false;
+            const p = foodseqData.plants[pid];
+            return p && p.location_type !== 'manhole';
+        }
+
         function addTrendsSite(pid) {
             if (!pid || trendsSelectedSites.some(s => s.pid === pid)) return;
 
@@ -6767,7 +7021,7 @@
             if (typeof pid === 'string' && pid.startsWith('tract_')) {
                 const tractNum = pid.replace('tract_', '');
                 const hood = TRACT_NEIGHBORHOODS[tractNum] || '';
-                const label = 'Tract ' + tractNum + (hood ? ' \u00b7 ' + hood : '') + ' (summed)';
+                const label = 'SA ' + tractNum + (hood ? ' \u00b7 ' + hood : '') + ' (summed)';
                 // Collect ALL plant IDs in this tract (include single-timepoint sites for complete aggregation)
                 const tractSites = [];
                 Object.entries(foodseqData.plants).forEach(([plantPid, p]) => {
@@ -6930,22 +7184,30 @@
         function getTrendsSeries() {
             if (trendsSelectedSites.length === 0 || !foodseqData) return { months: [], series: [] };
 
-            // Union of all dates across selected sites
+            // Union of all dates across selected sites (only dates with actual data)
             const allDates = new Set();
             trendsSelectedSites.forEach(s => {
                 if (s.isTract && s.tractSites) {
                     s.tractSites.forEach(pid => {
                         const plant = foodseqData.plants[pid];
-                        if (plant) Object.keys(plant.timeseries).forEach(d => allDates.add(d));
+                        if (!plant) return;
+                        Object.entries(plant.timeseries).forEach(([d, td]) => {
+                            const hasData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
+                                            (td.animals && Object.values(td.animals).some(v => v > 0));
+                            if (hasData) allDates.add(d);
+                        });
                     });
                 } else {
                     const plant = foodseqData.plants[s.pid];
-                    if (plant) Object.keys(plant.timeseries).forEach(d => allDates.add(d));
+                    if (!plant) return;
+                    Object.entries(plant.timeseries).forEach(([d, td]) => {
+                        const hasData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
+                                        (td.animals && Object.values(td.animals).some(v => v > 0));
+                        if (hasData) allDates.add(d);
+                    });
                 }
             });
-            // When "All" is selected, use every date in the dataset (matches sparkline behavior)
-            const datePool = trendsN >= 9999 ? new Set([...foodseqData.dates, ...allDates]) : allDates;
-            const dates = [...datePool].sort().slice(-trendsN);
+            const dates = [...allDates].sort().slice(-trendsN);
 
             const months = dates.map(d => {
                 const [y, m] = d.split('-').map(Number);
@@ -7124,19 +7386,27 @@
                 }
             });
 
-            // Durham baseline (dashed) — average across all sampled sites for the selected species
-            // Only counts sites that were actually sampled in each period (had any food data)
+            // Baseline average (dashed) — Durham avg for manholes/tracts, NC avg for WWTPs
+            // Determines type from currently selected sites
             let baselineLabelDeferred = '';
-            if (foodseqData && trendsSelectedFoods.length > 0) {
+            if (foodseqData && trendsSelectedFoods.length > 0 && trendsSelectedSites.length > 0) {
+                const selectedIsWWTP = trendsSelectedSites.some(s => !s.isTract && isTrendsSiteWWTP(s.pid));
+                const baselineLabel = selectedIsWWTP ? 'NC avg' : 'Durham avg';
                 const food = trendsSelectedFoods[0];
                 const bDates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
                 if (bDates.length >= 2) {
-                    const durhamAvgs = bDates.map(date => {
+                    const baselineAvgs = bDates.map(date => {
                         let sum = 0, count = 0;
                         Object.values(foodseqData.plants).forEach(plant => {
+                            if (selectedIsWWTP) {
+                                // NC avg: only WWTPs
+                                if (plant.location_type === 'manhole') return;
+                            } else {
+                                // Durham avg: only Durham service area sites
+                                if (!plant.census_tract || plant.census_tract === 'unknown') return;
+                            }
                             const td = plant.timeseries[date];
                             if (!td) return;
-                            // Only count sites that have any real data this period
                             const hasData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
                                             (td.animals && Object.values(td.animals).some(v => v > 0));
                             if (!hasData) return;
@@ -7145,13 +7415,12 @@
                         });
                         return count > 0 ? sum / count : null;
                     });
-                    const validBaseline = durhamAvgs.map((v, i) => v !== null ? { x: xAt(i), y: yAt(v), v } : null).filter(Boolean);
+                    const validBaseline = baselineAvgs.map((v, i) => v !== null ? { x: xAt(i), y: yAt(v), v } : null).filter(Boolean);
                     if (validBaseline.length >= 2) {
                         const bPath = validBaseline.map((p, j) => `${j ? 'L' : 'M'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
                         out += `<path d="${bPath}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4" fill="none" stroke-linecap="round"/>`;
-                        // Defer label to render AFTER series lines so it's not covered
                         const lastB = validBaseline[validBaseline.length - 1];
-                        baselineLabelDeferred = `<text x="${W - padR}" y="${Math.min(lastB.y - 6, padT + 10)}" text-anchor="end" font-size="10" fill="#94a3b8" font-family="Geist Mono, monospace" style="paint-order:stroke;stroke:#faf9f5;stroke-width:3px;">Durham avg \u2248 ${lastB.v.toFixed(1)}</text>`;
+                        baselineLabelDeferred = `<text x="${W - padR}" y="${Math.min(lastB.y - 6, padT + 10)}" text-anchor="end" font-size="10" fill="#94a3b8" font-family="Geist Mono, monospace" style="paint-order:stroke;stroke:#faf9f5;stroke-width:3px;">${baselineLabel} \u2248 ${lastB.v.toFixed(1)}</text>`;
                     }
                 }
             }
@@ -7796,22 +8065,22 @@
         let currentSiteTab = 'plants';
 
         function populateDetailPanel(plant) {
-            // For individual site clicks, if it's in a tract, open tract panel instead
+            // For individual site clicks, if it's in a service area, open service area panel instead
             if (plant.census_tract && plant.census_tract !== 'unknown' && durhamTractsGeoJSON) {
-                const tractFeature = durhamTractsGeoJSON.features.find(f =>
-                    String(f.properties.tract_number) === String(plant.census_tract)
+                const saFeature = durhamTractsGeoJSON.features.find(f =>
+                    String(f.properties.Sample_ID) === String(plant.census_tract)
                 );
-                if (tractFeature) {
-                    openTractDetailPanel(tractFeature);
+                if (saFeature) {
+                    openTractDetailPanel(saFeature);
                     return;
                 }
             }
 
-            // For non-tract sites (WWTPs), use full panel with tabs
+            // For non-tract sites (WWTPs), render report card directly
             currentTractFeature = null;
             currentSitePlant = plant;
-            currentSiteTab = 'plants';
-            siteShowAll = false;
+            rcShowAllPlants = false;
+            rcShowAllAnimals = false;
 
             const isWWTP = plant.location_type !== 'manhole';
             document.getElementById('tpCrumb').textContent = isWWTP ? 'WWTP' : 'Manhole';
@@ -7821,17 +8090,12 @@
 
             document.getElementById('tpSub').textContent = getPeriodLabel(plant);
 
-            // Hide site filter (no sub-sites for a WWTP), show tabs and CTAs
             document.getElementById('tpSites').style.display = 'none';
-            document.getElementById('tpTabs').style.display = '';
             document.getElementById('tpCtas').style.display = '';
             document.getElementById('compareBtn').textContent = 'Compare with another site';
 
-            // Reset tabs
-            document.querySelectorAll('.tp-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
-
-            // Render
-            renderSiteTabContent(plant);
+            // Render report card with demographics
+            renderReportCard(document.getElementById('tpBody'), [plant], plant.name, null);
         }
 
         function switchSiteTab(btn, tab) {
@@ -7849,6 +8113,11 @@
 
         function renderSiteTabContent(plant) {
             const body = document.getElementById('tpBody');
+
+            if (currentSiteTab === 'reportcard') {
+                renderReportCard(body, [plant], plant.name);
+                return;
+            }
 
             if (currentSiteTab === 'demo') {
                 // No demographics for WWTPs — show basic info
@@ -7913,6 +8182,290 @@
             body.innerHTML = html;
         }
 
+        // ── Report Card renderer ──
+        let rcShowAllPlants = false;
+        let rcShowAllAnimals = false;
+
+        function toggleRcShowAll(kind) {
+            if (kind === 'plants') rcShowAllPlants = !rcShowAllPlants;
+            else rcShowAllAnimals = !rcShowAllAnimals;
+            // Re-render
+            if (currentTractFeature) {
+                reRenderTractReportCard();
+            } else if (currentSitePlant) {
+                renderReportCard(document.getElementById('tpBody'), [currentSitePlant], currentSitePlant.name, null);
+            }
+        }
+
+        function computeReportCardData(plants, areaName) {
+            const agg = aggregatePlantsData(plants);
+            const plantEntries = Object.entries(agg.plants).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+            const animalEntries = Object.entries(agg.animals).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+
+            let totalPlantTaxa = 0, totalAnimalTaxa = 0;
+            Object.values(foodseqData.species_metadata).forEach(m => {
+                if (m.type === 'plant') totalPlantTaxa++;
+                else totalAnimalTaxa++;
+            });
+
+            // Shannon diversity on plant abundances (trnL), normalized 0–100
+            let shannonH = 0;
+            if (plantEntries.length > 1) {
+                const totalAbundance = plantEntries.reduce((s, [, v]) => s + v, 0);
+                plantEntries.forEach(([, v]) => {
+                    const p = v / totalAbundance;
+                    if (p > 0) shannonH -= p * Math.log(p);
+                });
+                const maxH = Math.log(plantEntries.length);
+                shannonH = maxH > 0 ? Math.round((shannonH / maxH) * 100) : 0;
+            }
+
+            let gradeLabel = 'Low plant diversity';
+            if (shannonH >= 80) gradeLabel = 'Varied plant diet';
+            else if (shannonH >= 60) gradeLabel = 'Moderate variety';
+            else if (shannonH >= 40) gradeLabel = 'Limited variety';
+
+            // Build full lists with species IDs (for sparklines + navigation)
+            const mapEntry = (entries) => entries.map(([sp, val]) => {
+                const meta = foodseqData.species_metadata[sp];
+                return { id: sp, name: meta ? meta.common_name : sp, value: Math.round((val / entries[0][1]) * 100), raw: val };
+            });
+
+            // "What's surprising" — compare to median across all sites
+            const insights = [];
+            const allPlantsList = Object.values(foodseqData.plants);
+            if (allPlantsList.length > 1) {
+                const categories = [
+                    { label: 'Seafood', match: ['tilapia','shrimp','salmon','tuna','catfish','trout','crab','lobster','cod','pangasius','squid','clam','mussel','oyster','scallop'], tone: 'navy' },
+                    { label: 'Leafy greens', match: ['lettuce','spinach','kale','cabbage','arugula','collard','chard','romaine'], tone: 'green' },
+                ];
+
+                // Build a species→category lookup once
+                const speciesCatMap = {};
+                Object.entries(foodseqData.species_metadata).forEach(([sp, meta]) => {
+                    const cn = (meta.common_name || sp).toLowerCase();
+                    categories.forEach((cat, ci) => {
+                        if (cat.match.some(m => cn.includes(m))) {
+                            speciesCatMap[sp] = ci;
+                        }
+                    });
+                });
+
+                // This site's totals per category
+                const siteTotals = categories.map(() => 0);
+                plantEntries.concat(animalEntries).forEach(([sp, v]) => {
+                    if (sp in speciesCatMap) siteTotals[speciesCatMap[sp]] += v;
+                });
+
+                // All sites' totals per category (single pass over all plants)
+                const allSiteTotals = categories.map(() => []);
+                allPlantsList.forEach(p => {
+                    const catSums = categories.map(() => 0);
+                    foodseqData.dates.forEach(date => {
+                        const td = p.timeseries[date];
+                        if (!td) return;
+                        const all = Object.entries(td.plants || {}).concat(Object.entries(td.animals || {}));
+                        all.forEach(([sp, v]) => {
+                            if (v > 0 && sp in speciesCatMap) catSums[speciesCatMap[sp]] += v;
+                        });
+                    });
+                    const nDates = foodseqData.dates.filter(d => p.timeseries[d]).length || 1;
+                    catSums.forEach((s, ci) => allSiteTotals[ci].push(s / nDates));
+                });
+
+                categories.forEach((cat, ci) => {
+                    if (siteTotals[ci] === 0) return;
+                    const sorted = allSiteTotals[ci].slice().sort((a, b) => a - b);
+                    const median = sorted[Math.floor(sorted.length / 2)] || 0;
+                    if (median > 0 && siteTotals[ci] > median * 1.5) {
+                        const ratio = (siteTotals[ci] / median).toFixed(1);
+                        insights.push({ tone: cat.tone, text: `${cat.label} runs <b>${ratio}\u00d7 the Durham median</b> here.` });
+                    } else if (median > 0) {
+                        const rank = sorted.filter(t => t <= siteTotals[ci]).length;
+                        const pctile = Math.round((rank / sorted.length) * 100);
+                        if (pctile >= 70) {
+                            insights.push({ tone: cat.tone, text: `${cat.label} appears more than in <b>${pctile}% of Durham neighborhoods</b>.` });
+                        }
+                    }
+                });
+            }
+
+            return {
+                area: areaName,
+                score: shannonH,
+                gradeLabel,
+                plantTaxa: { detected: plantEntries.length, total: totalPlantTaxa },
+                animalTaxa: { detected: animalEntries.length, total: totalAnimalTaxa },
+                allPlants: mapEntry(plantEntries),
+                allAnimals: mapEntry(animalEntries),
+                insights,
+            };
+        }
+
+        function rcBuildSparkline(speciesId, plants) {
+            // Build sparkline from the provided plant(s) data
+            if (currentTimeIndex !== 'all') return '';
+            // For tract panels, use tract sparkline; for single site, use site sparkline
+            if (plants.length === 1) {
+                return buildSiteSparklineSVG(plants[0], speciesId);
+            }
+            // Multi-site: aggregate across plants per date
+            const dates = foodseqData.dates.slice().sort();
+            const data = dates.map(date => {
+                let total = 0;
+                plants.forEach(p => {
+                    const td = p.timeseries[date];
+                    if (!td) return;
+                    total += (td.plants && td.plants[speciesId]) || (td.animals && td.animals[speciesId]) || 0;
+                });
+                return total;
+            }).filter((v, i) => plants.some(p => p.timeseries[dates[i]]));
+            if (data.length === 0) return '';
+            const W = 50, H = 18;
+            const maxV = Math.max(1, ...data);
+            const scale = v => H - 2 - (v / maxV) * 14;
+            if (data.length === 1) {
+                return `<svg class="tp-spark" viewBox="0 0 ${W} ${H}" aria-hidden="true"><circle cx="${W/2}" cy="${H/2}" r="2.5" class="dot end"/></svg>`;
+            }
+            const step = W / (data.length - 1);
+            const points = data.map((v, i) => [Math.round(i * step * 10) / 10, Math.round(scale(v) * 10) / 10]);
+            const pathD = points.map((p, i) => `${i ? 'L' : 'M'}${p[0]},${p[1]}`).join(' ');
+            const areaD = pathD + ` L${points[points.length-1][0]},${H} L${points[0][0]},${H} Z`;
+            return `<svg class="tp-spark" viewBox="0 0 ${W} ${H}" aria-hidden="true">
+                <path class="area" d="${areaD}"/>
+                <path class="line" d="${pathD}"/>
+                <circle cx="${points[0][0]}" cy="${points[0][1]}" r="1.5" class="dot"/>
+                <circle cx="${points[points.length-1][0]}" cy="${points[points.length-1][1]}" r="2.5" class="dot end"/>
+            </svg>`;
+        }
+
+        function renderReportCard(body, plants, areaName, demoProps, tractNum) {
+            const d = computeReportCardData(plants, areaName);
+            const navId = String(tractNum || (plants.length === 1 ? plants[0].name : areaName));
+
+            let html = `<div class="tp-pane" style="padding:16px 20px 18px;">`;
+
+            // Score + per-marker detection grid
+            html += `<div class="rc-score-grid">
+                <div class="rc-score-left">
+                    <span class="rc-kicker">Diversity</span>
+                    <div class="rc-score-num">${d.score}<small>/100</small></div>
+                    <div class="rc-score-label">${d.gradeLabel}</div>
+                    <div class="rc-score-marker">trnL marker</div>
+                </div>
+                <div class="rc-score-right">
+                    <div>
+                        <div class="rc-marker-row">
+                            <span class="rc-marker-label" style="color:#5b6cf0;">Plants <span class="marker-tag">trnL</span></span>
+                            <span class="rc-marker-count"><b>${d.plantTaxa.detected}</b>/${d.plantTaxa.total}</span>
+                        </div>
+                        <div class="rc-marker-track plant"><div class="rc-marker-fill" style="width:${(d.plantTaxa.detected / d.plantTaxa.total * 100).toFixed(1)}%"></div></div>
+                    </div>
+                    <div>
+                        <div class="rc-marker-row">
+                            <span class="rc-marker-label" style="color:#c8612e;">Animals <span class="marker-tag">12S</span></span>
+                            <span class="rc-marker-count"><b>${d.animalTaxa.detected}</b>/${d.animalTaxa.total}</span>
+                        </div>
+                        <div class="rc-marker-track animal"><div class="rc-marker-fill" style="width:${(d.animalTaxa.detected / d.animalTaxa.total * 100).toFixed(1)}%"></div></div>
+                    </div>
+                </div>
+            </div>`;
+
+            // Helper to render a species bar section with sparklines + view all
+            function renderBars(items, kind, showAll) {
+                const display = showAll ? items : items.slice(0, 6);
+                let s = `<div class="rc-section">
+                    <div class="rc-section-head">
+                        <span class="rc-kicker ${kind}">Top ${kind === 'plant' ? 'plants' : 'animals'}</span>
+                        <span class="rc-hint">${kind === 'plant' ? 'trnL' : '12S'} &middot; 100 = top</span>
+                    </div>
+                    <div class="rc-bars">`;
+                display.forEach(it => {
+                    const spark = rcBuildSparkline(it.id, plants);
+                    const esc = it.id.replace(/'/g, "\\'");
+                    s += `<div class="rc-bar-row" onclick="navigateToTrends('${navId.replace(/'/g, "\\'")}','${esc}','')" title="${it.name} — click for trend">
+                        <span class="rc-bar-name">${it.name}</span>
+                        <div class="rc-bar-track ${kind}"><div class="rc-bar-fill" style="width:${it.value}%"></div></div>
+                        ${spark}
+                        <span class="rc-bar-val">${it.value}</span>
+                    </div>`;
+                });
+                s += `</div>`;
+                if (items.length > 6) {
+                    const toggleKind = kind === 'plant' ? 'plants' : 'animals';
+                    const linkText = showAll ? 'show top 6' : `view all ${items.length} ${toggleKind}`;
+                    s += `<a class="rc-view-all" href="#" onclick="event.preventDefault();toggleRcShowAll('${toggleKind}')">${linkText} &rarr;</a>`;
+                }
+                s += `</div>`;
+                return s;
+            }
+
+            if (d.allPlants.length > 0) html += renderBars(d.allPlants, 'plant', rcShowAllPlants);
+            if (d.allAnimals.length > 0) html += renderBars(d.allAnimals, 'animal', rcShowAllAnimals);
+
+            // What's surprising
+            if (d.insights.length > 0) {
+                html += `<div class="rc-section">
+                    <span class="rc-kicker" style="margin-bottom:9px;display:block;">What's surprising</span>`;
+                d.insights.forEach(ins => {
+                    html += `<div class="rc-callout ${ins.tone}">${ins.text}</div>`;
+                });
+                html += `</div>`;
+            }
+
+            // Demographics section (when tract properties are available)
+            if (demoProps) {
+                const income = demoProps.median_hh_income ? '$' + Math.round(demoProps.median_hh_income).toLocaleString() : 'N/A';
+                const totalPop = demoProps.total_population ? Math.round(demoProps.total_population).toLocaleString() : 'N/A';
+                const totalHH = demoProps.total_households ? Math.round(demoProps.total_households).toLocaleString() : 'N/A';
+                const acres = demoProps.total_acres ? demoProps.total_acres.toLocaleString() : 'N/A';
+
+                html += `<div class="rc-section" style="margin-bottom:0;">
+                    <span class="rc-kicker" style="margin-bottom:10px;display:block;">Demographics</span>
+                    <div class="tp-stat"><span class="k">Population</span><span class="v">${totalPop}</span></div>
+                    <div class="tp-stat"><span class="k">Households</span><span class="v">${totalHH}</span></div>
+                    <div class="tp-stat"><span class="k">Median HH income</span><span class="v">${income}</span></div>
+                    <div class="tp-stat"><span class="k">Area</span><span class="v">${acres} acres</span></div>`;
+
+                const races = [
+                    { key: 'pct_white', label: 'White', color: '#a5b4fc' },
+                    { key: 'pct_black', label: 'Black', color: '#6366f1' },
+                    { key: 'pct_asian', label: 'Asian', color: '#fcd34d' },
+                    { key: 'pct_other', label: 'Other', color: '#86efac' },
+                    { key: 'pct_two_plus', label: 'Two+', color: '#f9a8d4' }
+                ];
+                const hasRace = races.some(r => demoProps[r.key] != null);
+                if (hasRace) {
+                    html += `<div class="tp-demo-bar">`;
+                    races.forEach(r => {
+                        if (demoProps[r.key] != null) {
+                            html += `<span style="width:${demoProps[r.key]}%;background:${r.color};" title="${r.label} ${demoProps[r.key].toFixed(1)}%"></span>`;
+                        }
+                    });
+                    html += `</div><div class="tp-demo-legend">`;
+                    races.forEach(r => {
+                        if (demoProps[r.key] != null) {
+                            html += `<span><i style="background:${r.color}"></i>${r.label} ${demoProps[r.key].toFixed(1)}%</span>`;
+                        }
+                    });
+                    html += `</div>`;
+                }
+                html += `</div>`;
+            } else if (plants.length === 1) {
+                // Single site (WWTP/manhole) — show basic info
+                const plant = plants[0];
+                html += `<div class="rc-section" style="margin-bottom:0;">
+                    <span class="rc-kicker" style="margin-bottom:10px;display:block;">Site info</span>
+                    <div class="tp-stat"><span class="k">Type</span><span class="v">${plant.location_type === 'manhole' ? 'Manhole / Lift Station' : 'Wastewater Treatment Plant'}</span></div>
+                    <div class="tp-stat"><span class="k">Location</span><span class="v">${plant.lat.toFixed(4)}, ${plant.lng.toFixed(4)}</span></div>
+                    <div class="tp-stat"><span class="k">Data periods</span><span class="v">${Object.keys(plant.timeseries).length}</span></div>
+                </div>`;
+            }
+
+            html += `</div>`;
+            body.innerHTML = html;
+        }
+
         function buildBarSection(title, speciesData, type) {
             if (!speciesData) return '';
 
@@ -7947,32 +8500,32 @@
 
         function buildContextSection(plant) {
             // Find matching tract in demographics GeoJSON
-            const tractNum = String(plant.census_tract);
-            let tractFeature = null;
+            const sampleId = String(plant.census_tract);
+            let saFeature = null;
             if (durhamTractsGeoJSON) {
-                tractFeature = durhamTractsGeoJSON.features.find(f =>
-                    String(f.properties.tract_number) === tractNum
+                saFeature = durhamTractsGeoJSON.features.find(f =>
+                    String(f.properties.Sample_ID) === sampleId
                 );
             }
 
-            if (!tractFeature) return '';
+            if (!saFeature) return '';
 
-            const props = tractFeature.properties;
-            const income = props.median_income ? '$' + props.median_income.toLocaleString() : 'N/A';
-            const foreignBorn = (props.pct_foreign_born || 0).toFixed(1);
+            const props = saFeature.properties;
+            const income = props.median_hh_income ? '$' + Math.round(props.median_hh_income).toLocaleString() : 'N/A';
+            const totalPop = props.total_population ? Math.round(props.total_population).toLocaleString() : 'N/A';
 
             let html = `<div class="detail-section">
                 <div class="detail-section-title">SERVICE AREA CONTEXT</div>
                 <div style="font-size:13px;color:#2d3748;line-height:1.8;">
-                    <div>Median Income: <strong>${income}</strong></div>
-                    <div>% Foreign Born: <strong>${foreignBorn}%</strong></div>`;
+                    <div>Population: <strong>${totalPop}</strong></div>
+                    <div>Median HH Income: <strong>${income}</strong></div>`;
 
             // Race/ethnicity breakdown if available
             const races = [
                 { key: 'pct_white', label: 'White' },
                 { key: 'pct_black', label: 'Black' },
                 { key: 'pct_asian', label: 'Asian' },
-                { key: 'pct_hispanic', label: 'Hispanic' }
+                { key: 'pct_other', label: 'Other' }
             ];
 
             const hasRaceData = races.some(r => props[r.key] != null);
@@ -8036,14 +8589,15 @@
         function openTractDetailPanel(feature) {
             currentTractFeature = feature;
             currentDetailPlant = null;
-            const tractNum = feature.properties.tract_number || 'Unknown';
+            const tractNum = feature.properties.Sample_ID || 'Unknown';
             const props = feature.properties;
+            const hood = TRACT_NEIGHBORHOODS[String(tractNum)] || 'Durham';
             const plantsInTract = getPlantsInTract(tractNum);
 
             // Header
-            document.getElementById('tpCrumb').textContent = 'Census Tract \u00b7 Durham Co.';
+            document.getElementById('tpCrumb').textContent = 'Service Area \u00b7 Durham Co.';
             document.getElementById('tpCrumb').style.color = '#6b7280';
-            document.getElementById('tpTitle').textContent = `Tract ${tractNum}`;
+            document.getElementById('tpTitle').textContent = `SA ${tractNum} · ${hood}`;
             document.getElementById('tpTitle').style.color = '#1e3a8a';
             // Site filter
             const sitesSection = document.getElementById('tpSites');
@@ -8094,19 +8648,20 @@
                 sitesSection.style.display = 'none';
             }
 
-            // Show tabs and CTAs
-            document.getElementById('tpTabs').style.display = plantsInTract.length > 0 ? '' : 'none';
+            // Show CTAs
             document.getElementById('tpCtas').style.display = '';
-            document.getElementById('compareBtn').textContent = 'Compare with another tract';
+            document.getElementById('compareBtn').textContent = 'Compare with another service area';
 
-            // Reset to plants tab
-            currentTractTab = 'plants';
-            tractShowAll = false;
-            document.querySelectorAll('.tp-tab').forEach((t, i) => t.classList.toggle('active', i === 0));
+            rcShowAllPlants = false;
+            rcShowAllAnimals = false;
 
-            // Render body
-            renderTractTabContent(feature);
+            // Render report card with demographics
+            renderReportCard(document.getElementById('tpBody'), visiblePlants, hood, feature.properties, tractNum);
             renderFlaggedStrip(tractNum);
+
+            // Highlight this service area and its manholes
+            highlightServiceArea(tractNum);
+            highlightManholesInArea(tractNum);
 
             // Slide animation
             const panel = document.getElementById('detailPanel');
@@ -8115,12 +8670,24 @@
             setTimeout(() => { panel.classList.add('open'); }, wasOpen ? 300 : 10);
         }
 
+        function reRenderTractReportCard() {
+            if (!currentTractFeature) return;
+            const tractNum = currentTractFeature.properties.Sample_ID || 'Unknown';
+            const allPlants = getPlantsInTract(tractNum);
+            const selectedPlants = allPlants.filter(p => {
+                const pid = p.name.replace(/\s/g, '-');
+                return tractSiteStates[pid] !== false;
+            });
+            const hood = TRACT_NEIGHBORHOODS[String(tractNum)] || 'Durham';
+            renderReportCard(document.getElementById('tpBody'), selectedPlants, hood, currentTractFeature.properties, tractNum);
+        }
+
         function toggleTractSite(el) {
             const id = el.dataset.siteId;
             tractSiteStates[id] = !tractSiteStates[id];
             el.dataset.on = tractSiteStates[id];
             updateTractSiteCount();
-            renderTractTabContent(currentTractFeature);
+            reRenderTractReportCard();
         }
 
         function setAllTractSites(on) {
@@ -8129,7 +8696,7 @@
                 el.dataset.on = on;
             });
             updateTractSiteCount();
-            renderTractTabContent(currentTractFeature);
+            reRenderTractReportCard();
         }
 
         function updateTractSiteCount() {
@@ -8160,7 +8727,7 @@
 
         function renderTractTabContent(feature) {
             if (!feature) return;
-            const tractNum = feature.properties.tract_number || 'Unknown';
+            const tractNum = feature.properties.Sample_ID || 'Unknown';
             const props = feature.properties;
             const body = document.getElementById('tpBody');
 
@@ -8171,19 +8738,30 @@
                 return tractSiteStates[pid] !== false;
             });
 
+            if (currentTractTab === 'reportcard') {
+                const hood = TRACT_NEIGHBORHOODS[String(tractNum)] || 'Durham';
+                renderReportCard(body, selectedPlants, hood, feature.properties, tractNum);
+                return;
+            }
+
             if (currentTractTab === 'demo') {
                 // Demographics tab
-                const income = props.median_income ? '$' + props.median_income.toLocaleString() : 'N/A';
-                const foreignBorn = (props.pct_foreign_born || 0).toFixed(1);
+                const income = props.median_hh_income ? '$' + Math.round(props.median_hh_income).toLocaleString() : 'N/A';
+                const totalPop = props.total_population ? Math.round(props.total_population).toLocaleString() : 'N/A';
+                const totalHH = props.total_households ? Math.round(props.total_households).toLocaleString() : 'N/A';
+                const acres = props.total_acres ? props.total_acres.toLocaleString() : 'N/A';
                 let html = `<div class="tp-pane">
-                    <div class="tp-stat"><span class="k">Median income</span><span class="v">${income}</span></div>
-                    <div class="tp-stat"><span class="k">% foreign born</span><span class="v">${foreignBorn}%</span></div>`;
+                    <div class="tp-stat"><span class="k">Population</span><span class="v">${totalPop}</span></div>
+                    <div class="tp-stat"><span class="k">Households</span><span class="v">${totalHH}</span></div>
+                    <div class="tp-stat"><span class="k">Median HH income</span><span class="v">${income}</span></div>
+                    <div class="tp-stat"><span class="k">Area</span><span class="v">${acres} acres</span></div>`;
 
                 const races = [
                     { key: 'pct_white', label: 'White', color: '#a5b4fc' },
                     { key: 'pct_black', label: 'Black', color: '#6366f1' },
                     { key: 'pct_asian', label: 'Asian', color: '#fcd34d' },
-                    { key: 'pct_hispanic', label: 'Hispanic', color: '#86efac' }
+                    { key: 'pct_other', label: 'Other', color: '#86efac' },
+                    { key: 'pct_two_plus', label: 'Two+', color: '#f9a8d4' }
                 ];
                 const hasRace = races.some(r => props[r.key] != null);
                 if (hasRace) {
@@ -8254,21 +8832,21 @@
         }
 
         function goToFindFood() {
-            const tractId = currentTractFeature ? currentTractFeature.properties.tract_number : '';
+            const saId = currentTractFeature ? currentTractFeature.properties.Sample_ID : '';
             switchView('find-food');
-            // Future: pre-fill location with tract info
-            console.log('Navigate to Find Food for tract', tractId);
+            console.log('Navigate to Find Food for service area', saId);
         }
 
         // ========== Compare Tracts ==========
         const TRACT_NEIGHBORHOODS = {
             '3.01': 'Watts-Hillandale', '3.02': 'Watts-Hillandale', '5': 'Downtown',
             '7': 'Morehead Hill', '10.01': 'East Durham', '10.02': 'East Durham',
-            '13.01': 'South Central', '17.05': 'North Durham', '17.09': 'Northgate',
-            '17.12': 'Duke Park', '16.03': 'Bahama', '16.04': 'Northern Durham',
-            '18.02': 'Parkwood', '18.06': 'Research Triangle', '18.08': 'Southeast Durham',
-            '19': 'East Durham', '20.23': 'South Durham', '20.29': 'Southwest Durham',
-            '20.32': 'Southwest Durham', '20.2': 'South Central', '23': 'Central Durham',
+            '13.01': 'South Central', '14': 'South Durham', '16.03': 'Bahama',
+            '16.04': 'Northern Durham', '17.05': 'North Durham', '17.09': 'Northgate',
+            '17.12': 'Duke Park', '18.01': 'Northeast Durham', '18.02': 'Parkwood',
+            '18.06': 'Research Triangle', '18.08': 'Southeast Durham',
+            '19': 'East Durham', '20.2': 'South Central', '20.23': 'South Durham',
+            '20.29': 'Southwest Durham', '22': 'Duke University', '23': 'Central Durham',
         };
 
         function getTractNeighborhood(tractNum) {
@@ -8313,8 +8891,8 @@
                 metaA = compareState.siteA.location_type === 'manhole' ? 'Manhole' : 'WWTP';
             } else {
                 const tractA = compareState.tractA;
-                const tractNumA = tractA ? (tractA.properties.tract_number || '?') : '?';
-                nameA = `Tract ${tractNumA}`;
+                const tractNumA = tractA ? (tractA.properties.Sample_ID || '?') : '?';
+                nameA = `SA ${tractNumA}`;
                 const plantsA = tractA ? getPlantsInTract(tractNumA) : [];
                 metaA = `Durham · ${plantsA.length} sites`;
             }
@@ -8339,38 +8917,39 @@
                 });
                 pickerOnchange = 'onCompareSiteSelect(this.value)';
             } else {
-                // Pick another tract
-                const tractNumA = compareState.tractA ? (compareState.tractA.properties.tract_number || '') : '';
-                pickerOptions = '<option value="">Select a tract...</option>';
+                // Pick another service area
+                const tractNumA = compareState.tractA ? (compareState.tractA.properties.Sample_ID || '') : '';
+                pickerOptions = '<option value="">Select a service area...</option>';
                 if (durhamTractsGeoJSON) {
                     durhamTractsGeoJSON.features
-                        .filter(f => tractsWithData.has(String(f.properties.tract_number)))
-                        .filter(f => String(f.properties.tract_number) !== String(tractNumA))
-                        .sort((a, b) => parseFloat(a.properties.tract_number) - parseFloat(b.properties.tract_number))
+                        .filter(f => tractsWithData.has(String(f.properties.Sample_ID)))
+                        .filter(f => String(f.properties.Sample_ID) !== String(tractNumA))
+                        .sort((a, b) => parseFloat(a.properties.Sample_ID) - parseFloat(b.properties.Sample_ID))
                         .forEach(f => {
-                            const tn = f.properties.tract_number;
-                            const sel = compareState.tractB && String(compareState.tractB.properties.tract_number) === String(tn) ? ' selected' : '';
-                            pickerOptions += `<option value="${tn}"${sel}>Tract ${tn}</option>`;
+                            const tn = f.properties.Sample_ID;
+                            const sel = compareState.tractB && String(compareState.tractB.properties.Sample_ID) === String(tn) ? ' selected' : '';
+                            const hood = TRACT_NEIGHBORHOODS[String(tn)] || 'Durham';
+                            pickerOptions += `<option value="${tn}"${sel}>SA ${tn} · ${hood}</option>`;
                         });
                 }
                 pickerOnchange = 'onCompareTractSelect(this.value)';
             }
 
             // Side B info
-            let nameB = isSiteMode ? 'Select site' : 'Select tract';
+            let nameB = isSiteMode ? 'Select site' : 'Select service area';
             let metaB = '';
             const hasB = isSiteMode ? !!compareState.siteB : !!compareState.tractB;
             if (isSiteMode && compareState.siteB) {
                 nameB = compareState.siteB.name;
                 metaB = compareState.siteB.location_type === 'manhole' ? 'Manhole' : 'WWTP';
             } else if (!isSiteMode && compareState.tractB) {
-                const tractNumB = compareState.tractB.properties.tract_number || '?';
-                nameB = `Tract ${tractNumB}`;
+                const tractNumB = compareState.tractB.properties.Sample_ID || '?';
+                nameB = `SA ${tractNumB}`;
                 const plantsB = getPlantsInTract(tractNumB);
                 metaB = `Durham · ${plantsB.length} sites`;
             }
 
-            const compareLabel = isSiteMode ? 'Comparing sites' : 'Comparing tracts';
+            const compareLabel = isSiteMode ? 'Comparing sites' : 'Comparing service areas';
 
             // Build full panel HTML
             let html = `
@@ -8399,14 +8978,14 @@
                     </div>
                 </header>
                 <div class="cp-picker">
-                    <div class="cp-picker-title">Pick ${isSiteMode ? 'a site' : 'a tract'} to compare</div>
+                    <div class="cp-picker-title">Pick ${isSiteMode ? 'a site' : 'a service area'} to compare</div>
                     <input type="text" class="cp-picker-search" placeholder="search by # or neighborhood" id="cpPickerSearch" oninput="filterComparePicker(this.value)">
                     <div>
                         <span class="cp-picker-current">${nameA}<button onclick="closeCompare()">&times;</button></span>
                         <span class="cp-picker-hint">+ pick one to compare &darr;</span>
                     </div>
                     <div class="cp-picker-list" id="cpPickerList"></div>
-                    <div class="cp-picker-note">Pick from the list, or shift-click a tract on the map.</div>
+                    <div class="cp-picker-note">Pick from the list, or shift-click a service area on the map.</div>
                 </div>`;
 
             if (hasB) {
@@ -8432,7 +9011,6 @@
             // Hide normal tract panel elements
             document.querySelector('.tp-head').style.display = 'none';
             document.getElementById('tpSites').style.display = 'none';
-            document.getElementById('tpTabs').style.display = 'none';
             document.getElementById('tpBody').style.display = 'none';
             document.getElementById('tpCtas').style.display = 'none';
 
@@ -8460,7 +9038,7 @@
         function onCompareTractSelect(tractNum) {
             if (!tractNum) { compareState.tractB = null; renderComparePanel(); return; }
             compareState.tractB = durhamTractsGeoJSON.features.find(f =>
-                String(f.properties.tract_number) === String(tractNum)
+                String(f.properties.Sample_ID) === String(tractNum)
             );
             compareState.expanded = { plants: false, animals: false };
             renderComparePanel();
@@ -8475,9 +9053,9 @@
 
         function getCompareData(featureOrSite) {
             if (!featureOrSite) return { plants: {}, animals: {} };
-            // If it's a tract feature (has properties.tract_number)
-            if (featureOrSite.properties && featureOrSite.properties.tract_number) {
-                const tractNum = featureOrSite.properties.tract_number;
+            // If it's a service area feature (has properties.Sample_ID)
+            if (featureOrSite.properties && featureOrSite.properties.Sample_ID) {
+                const tractNum = featureOrSite.properties.Sample_ID;
                 const plants = getPlantsInTract(tractNum);
                 return aggregatePlantsData(plants);
             }
@@ -8549,8 +9127,8 @@
                 labelA = compareState.siteA.name;
                 labelB = compareState.siteB ? compareState.siteB.name : '?';
             } else {
-                labelA = 'Tract ' + (compareState.tractA ? compareState.tractA.properties.tract_number : '?');
-                labelB = 'Tract ' + (compareState.tractB ? compareState.tractB.properties.tract_number : '?');
+                labelA = 'SA ' + (compareState.tractA ? compareState.tractA.properties.Sample_ID : '?');
+                labelB = 'SA ' + (compareState.tractB ? compareState.tractB.properties.Sample_ID : '?');
             }
 
             if (compareState.tab === 'demo') {
@@ -8565,7 +9143,8 @@
                     { key: 'pct_white', label: 'White', color: '#a5b4fc' },
                     { key: 'pct_black', label: 'Black', color: '#6366f1' },
                     { key: 'pct_asian', label: 'Asian', color: '#fcd34d' },
-                    { key: 'pct_hispanic', label: 'Hispanic', color: '#86efac' }
+                    { key: 'pct_other', label: 'Other', color: '#86efac' },
+                    { key: 'pct_two_plus', label: 'Two+', color: '#f9a8d4' }
                 ];
 
                 function demoDelta(a, b, fmt) {
@@ -8577,24 +9156,27 @@
                 }
 
                 let html = `<div class="cp-pane"><div class="cp-demo">`;
+                // Population
+                const popA = propsA.total_population;
+                const popB = propsB.total_population;
+                html += `<span class="k">Population</span>`;
+                html += `<span class="va">${popA ? Math.round(popA).toLocaleString() : '—'}</span>`;
+                html += demoDelta(popA, popB, d => {
+                    if (!popB) return '—';
+                    return Math.round((d/popB)*100) + '%';
+                });
+                html += `<span class="vb">${popB ? Math.round(popB).toLocaleString() : '—'}</span>`;
+
                 // Income
-                const incA = propsA.median_income;
-                const incB = propsB.median_income;
-                html += `<span class="k">Median income</span>`;
-                html += `<span class="va">${incA ? '$'+incA.toLocaleString() : '—'}</span>`;
+                const incA = propsA.median_hh_income;
+                const incB = propsB.median_hh_income;
+                html += `<span class="k">Median HH income</span>`;
+                html += `<span class="va">${incA ? '$'+Math.round(incA).toLocaleString() : '—'}</span>`;
                 html += demoDelta(incA, incB, d => {
                     if (!incB) return '—';
                     return Math.round((d/incB)*100) + '%';
                 });
-                html += `<span class="vb">${incB ? '$'+incB.toLocaleString() : '—'}</span>`;
-
-                // Foreign born
-                const fbA = propsA.pct_foreign_born;
-                const fbB = propsB.pct_foreign_born;
-                html += `<span class="k">% foreign born</span>`;
-                html += `<span class="va">${fbA != null ? fbA.toFixed(1)+'%' : '—'}</span>`;
-                html += demoDelta(fbA, fbB, d => d.toFixed(1) + 'pp');
-                html += `<span class="vb">${fbB != null ? fbB.toFixed(1)+'%' : '—'}</span>`;
+                html += `<span class="vb">${incB ? '$'+Math.round(incB).toLocaleString() : '—'}</span>`;
 
                 // Race composition bars
                 html += `<div class="cp-demo-race"><span class="k" style="padding-top:0;">Race composition</span>`;
@@ -8730,21 +9312,21 @@
                     </div>`;
                 });
             } else {
-                // List all tracts with data
+                // List all service areas with data
                 if (durhamTractsGeoJSON) {
-                    const tractNumA = compareState.tractA ? String(compareState.tractA.properties.tract_number) : '';
+                    const tractNumA = compareState.tractA ? String(compareState.tractA.properties.Sample_ID) : '';
                     durhamTractsGeoJSON.features
-                        .filter(f => tractsWithData.has(String(f.properties.tract_number)))
-                        .filter(f => String(f.properties.tract_number) !== tractNumA)
-                        .sort((a, b) => parseFloat(a.properties.tract_number) - parseFloat(b.properties.tract_number))
+                        .filter(f => tractsWithData.has(String(f.properties.Sample_ID)))
+                        .filter(f => String(f.properties.Sample_ID) !== tractNumA)
+                        .sort((a, b) => parseFloat(a.properties.Sample_ID) - parseFloat(b.properties.Sample_ID))
                         .forEach(f => {
-                            const tn = f.properties.tract_number;
+                            const tn = f.properties.Sample_ID;
                             const hood = getTractNeighborhood(tn);
                             const nSites = getPlantsInTract(tn).length;
-                            const label = `Tract ${tn}`;
+                            const label = `SA ${tn}`;
                             if (q && !label.toLowerCase().includes(q) && !hood.toLowerCase().includes(q)) return;
                             html += `<div class="cp-picker-item" onclick="onCompareTractSelect('${tn}')">
-                                <div><span class="name">Tract ${tn}</span><span class="hood"> · ${hood}</span></div>
+                                <div><span class="name">SA ${tn}</span><span class="hood"> · ${hood}</span></div>
                                 <span class="sites">${nSites} site${nSites !== 1 ? 's' : ''}</span>
                             </div>`;
                         });
@@ -9134,9 +9716,10 @@
 
         function getTractCentroids() {
             if (tractCentroidCache.length > 0) return tractCentroidCache;
-            demographicsGeoJSON.features.forEach((feat, idx) => {
-                const geoid = feat.properties.GEOID;
-                if (!geoid) return;
+            if (!durhamTractsGeoJSON) return tractCentroidCache;
+            durhamTractsGeoJSON.features.forEach((feat, idx) => {
+                const saId = String(feat.properties.Sample_ID);
+                if (!saId) return;
                 let ring;
                 if (feat.geometry.type === 'Polygon') {
                     ring = feat.geometry.coordinates[0];
@@ -9148,7 +9731,7 @@
                 }
                 if (!ring) return;
                 const c = calculatePolygonCentroid(ring);
-                tractCentroidCache.push({ lat: c.lat, lon: c.lon, geoid, featureIdx: idx });
+                tractCentroidCache.push({ lat: c.lat, lon: c.lon, geoid: saId, featureIdx: idx });
             });
             return tractCentroidCache;
         }
@@ -9448,16 +10031,16 @@
             });
 
             fill.style.width = '40%';
-            text.textContent = 'Scoring census tracts...';
+            text.textContent = 'Scoring service areas...';
             await new Promise(r => setTimeout(r, 50));
 
-            // Score each tract
+            // Score each service area
             const centroids = getTractCentroids();
             const scores = [];
 
             for (let i = 0; i < centroids.length; i++) {
                 const tract = centroids[i];
-                const feat = demographicsGeoJSON.features[tract.featureIdx];
+                const feat = durhamTractsGeoJSON.features[tract.featureIdx];
                 const props = feat.properties;
 
                 // Find nearest plant
@@ -9469,7 +10052,7 @@
                 });
 
                 const dietaryScore = nearestPlantId ? plantDietaryScores[nearestPlantId] : 0.5;
-                const income = props.median_income || 50000;
+                const income = props.median_hh_income || 50000;
                 const incomeScore = Math.max(0, Math.min(1, 1 - (income / 100000)));
                 const desertRate = nearestPlantId ? (corr.plantDesertRates[nearestPlantId] || 0) : 0;
 
@@ -9484,20 +10067,20 @@
 
                 if (i % 200 === 0) {
                     fill.style.width = (40 + (i / centroids.length) * 45) + '%';
-                    text.textContent = `Scoring tract ${i + 1} of ${centroids.length}...`;
+                    text.textContent = `Scoring area ${i + 1} of ${centroids.length}...`;
                     await new Promise(r => setTimeout(r, 10));
                 }
             }
 
             fill.style.width = '90%';
-            text.textContent = 'Classifying tracts...';
+            text.textContent = 'Classifying service areas...';
             await new Promise(r => setTimeout(r, 50));
 
             // Classification: predicted desert if score <= 20 OR (score <= 50 AND income < 50k) OR income < 30k
             scores.forEach(s => {
-                const feat = demographicsGeoJSON.features[s.featureIdx];
+                const feat = durhamTractsGeoJSON.features[s.featureIdx];
                 feat.properties._predictedDesertScore = s.predictedScore;
-                const income = feat.properties.median_income || 100000;
+                const income = feat.properties.median_hh_income || 100000;
                 feat.properties._isPredictedDesert =
                     s.predictedScore <= 20 ||
                     (s.predictedScore <= 50 && income < 50000) ||
@@ -9505,18 +10088,17 @@
                 feat.properties._nearestPlant = s.nearestPlant;
                 feat.properties._desertRate = s.desertRate;
                 feat.properties._dietaryMetrics = s.metrics;
-                const usda = usdaDesertData.tracts[s.geoid];
-                feat.properties._usdaFoodDesert = usda ? usda.foodDesert : false;
-                feat.properties._usdaPovertyRate = usda ? usda.povertyRate : null;
-                feat.properties._usdaMFI = usda ? usda.medianFamilyIncome : null;
-                feat.properties._usdaUrban = usda ? usda.urban : null;
+                feat.properties._usdaFoodDesert = false;
+                feat.properties._usdaPovertyRate = null;
+                feat.properties._usdaMFI = null;
+                feat.properties._usdaUrban = null;
             });
 
             // Classification breakdown
             let byScoreAlone = 0, byScoreAndIncome = 0, byIncomeAlone = 0, totalPredicted = 0;
             scores.forEach(s => {
-                const feat = demographicsGeoJSON.features[s.featureIdx];
-                const income = feat.properties.median_income || 100000;
+                const feat = durhamTractsGeoJSON.features[s.featureIdx];
+                const income = feat.properties.median_hh_income || 100000;
                 if (s.predictedScore <= 20) byScoreAlone++;
                 else if (s.predictedScore <= 50 && income < 50000) byScoreAndIncome++;
                 else if (income < 30000) byIncomeAlone++;
@@ -9543,18 +10125,17 @@
                 buildPlantServiceAreas();
                 computeFoodDesertCorrelations();
                 getTractCentroids().forEach(tract => {
-                    const feat = demographicsGeoJSON.features[tract.featureIdx];
-                    const usda = usdaDesertData.tracts[tract.geoid];
-                    feat.properties._usdaFoodDesert = usda ? usda.foodDesert : false;
-                    feat.properties._usdaPovertyRate = usda ? usda.povertyRate : null;
-                    feat.properties._usdaMFI = usda ? usda.medianFamilyIncome : null;
-                    feat.properties._usdaUrban = usda ? usda.urban : null;
+                    const feat = durhamTractsGeoJSON.features[tract.featureIdx];
+                    feat.properties._usdaFoodDesert = false;
+                    feat.properties._usdaPovertyRate = null;
+                    feat.properties._usdaMFI = null;
+                    feat.properties._usdaUrban = null;
                 });
             }
 
             if (foodDesertLayer) { map.removeLayer(foodDesertLayer); }
 
-            foodDesertLayer = L.geoJSON(demographicsGeoJSON, {
+            foodDesertLayer = L.geoJSON(durhamTractsGeoJSON, {
                 style: feature => getFoodDesertStyle(feature, mode),
                 onEachFeature: (feature, layer) => {
                     layer.on({
@@ -9577,9 +10158,7 @@
             const props = feature.properties;
             let color = '#cccccc';
             if (mode === 'usda_desert') {
-                const usda = usdaDesertData.tracts[props.GEOID];
-                if (!usda) color = '#cccccc';
-                else if (usda.foodDesert) color = '#e53e3e';
+                if (props._usdaFoodDesert) color = '#e53e3e';
                 else color = '#38a169';
             } else if (mode === 'predicted_desert') {
                 const score = props._predictedDesertScore;
@@ -9603,24 +10182,20 @@
 
         function showFoodDesertPopup(feature, e, mode) {
             const props = feature.properties;
-            const usda = usdaDesertData.tracts[props.GEOID];
-            let content = `<div style="max-width:280px;"><strong>${props.NAME || props.GEOID}</strong><br>`;
+            const saId = props.Sample_ID;
+            const hood = TRACT_NEIGHBORHOODS[String(saId)] || 'Durham';
+            let content = `<div style="max-width:280px;"><strong>SA ${saId} · ${hood}</strong><br>`;
             if (mode === 'usda_desert') {
-                content += `<b>USDA Status:</b> ${usda && usda.foodDesert ? '<span style="color:#e53e3e">Food Desert</span>' : '<span style="color:#38a169">Not a Food Desert</span>'}<br>`;
-                if (usda) {
-                    content += `<b>Low Income:</b> ${usda.lowIncome ? 'Yes' : 'No'}<br>`;
-                    content += `<b>Low Access (1/10mi):</b> ${usda.lowAccess_1_10 ? 'Yes' : 'No'}<br>`;
-                    content += `<b>Urban:</b> ${usda.urban ? 'Yes' : 'No'}<br>`;
-                    content += `<b>Poverty Rate:</b> ${usda.povertyRate}%<br>`;
-                    content += `<b>Median Family Income:</b> $${(usda.medianFamilyIncome || 0).toLocaleString()}<br>`;
-                }
-                content += `<b>Median HH Income:</b> $${(props.median_income || 0).toLocaleString()}`;
+                content += `<b>Population:</b> ${props.total_population ? Math.round(props.total_population).toLocaleString() : 'N/A'}<br>`;
+                content += `<b>Median HH Income:</b> $${(props.median_hh_income ? Math.round(props.median_hh_income) : 0).toLocaleString()}<br>`;
+                content += `<b>Parcels:</b> ${props.parcel_count || 'N/A'}<br>`;
+                content += `<b>Area:</b> ${props.total_acres || 'N/A'} acres`;
             } else if (mode === 'predicted_desert') {
                 content += `<b>Predicted Score:</b> ${props._predictedDesertScore != null ? props._predictedDesertScore + '/100' : 'N/A'}<br>`;
                 content += `<b>Classification:</b> ${props._isPredictedDesert ? '<span style="color:#e53e3e">Predicted Desert</span>' : '<span style="color:#38a169">Not Predicted Desert</span>'}<br>`;
                 content += `<b>Nearest Plant:</b> ${props._nearestPlant || 'N/A'}<br>`;
                 content += `<b>Service Area Desert Rate:</b> ${((props._desertRate || 0) * 100).toFixed(1)}%<br>`;
-                content += `<b>Median Income:</b> $${(props.median_income || 0).toLocaleString()}`;
+                content += `<b>Median HH Income:</b> $${(props.median_hh_income ? Math.round(props.median_hh_income) : 0).toLocaleString()}`;
                 const dm = props._dietaryMetrics;
                 if (dm) {
                     content += `<hr style="margin:4px 0;border-color:#ddd;">`;
@@ -9642,7 +10217,7 @@
                 content += `<b>Predicted Score:</b> ${props._predictedDesertScore != null ? props._predictedDesertScore + '/100' : 'N/A'}<br>`;
                 content += `<b>USDA Desert:</b> ${props._usdaFoodDesert ? 'Yes' : 'No'}<br>`;
                 content += `<b>Predicted Desert:</b> ${props._isPredictedDesert ? 'Yes' : 'No'}<br>`;
-                content += `<b>Median Income:</b> $${(props.median_income || 0).toLocaleString()}`;
+                content += `<b>Median HH Income:</b> $${(props.median_hh_income ? Math.round(props.median_hh_income) : 0).toLocaleString()}`;
                 const dm2 = props._dietaryMetrics;
                 if (dm2) {
                     content += `<hr style="margin:4px 0;border-color:#ddd;">`;
@@ -9661,7 +10236,7 @@
         function updateFoodDesertLegend(mode) {
             const legend = document.getElementById('foodDesertLegend');
             const tracts = usdaDesertData.tracts;
-            const features = demographicsGeoJSON.features;
+            const features = durhamTractsGeoJSON.features;
             let html = '';
             if (mode === 'usda_desert') {
                 const desertCount = Object.values(tracts).filter(t => t.foodDesert).length;
@@ -9727,7 +10302,7 @@
 
         function computeROC() {
             if (!foodDesertComputed) return null;
-            const features = demographicsGeoJSON.features;
+            const features = durhamTractsGeoJSON.features;
             // Collect (score, isActualDesert) pairs
             const pairs = [];
             features.forEach(f => {
@@ -9857,7 +10432,7 @@
 
             const totalDeserts = Object.values(usdaDesertData.tracts).filter(t => t.foodDesert).length;
             const totalTracts = Object.keys(usdaDesertData.tracts).length;
-            const predictedDeserts = foodDesertComputed ? demographicsGeoJSON.features.filter(f => f.properties._isPredictedDesert).length : 'N/A';
+            const predictedDeserts = foodDesertComputed ? durhamTractsGeoJSON.features.filter(f => f.properties._isPredictedDesert).length : 'N/A';
 
             html += `<div class="food-desert-section"><div class="food-desert-section-title">Summary</div>
                 <div class="food-desert-stat"><span class="food-desert-stat-label">USDA Food Deserts</span><span class="food-desert-stat-value">${totalDeserts} / ${totalTracts}</span></div>
@@ -9911,7 +10486,7 @@
                 html += `<table class="food-desert-species-table"><thead><tr><th>Plant</th><th>Produce</th><th>Diversity</th><th>Grain/Fresh</th><th>Protein</th></tr></thead><tbody>`;
                 const plantIds = Object.keys(foodseqData.plants);
                 plantIds.forEach(id => {
-                    const feat0 = demographicsGeoJSON.features.find(f => f.properties._nearestPlant === foodseqData.plants[id].name);
+                    const feat0 = durhamTractsGeoJSON.features.find(f => f.properties._nearestPlant === foodseqData.plants[id].name);
                     const dm = feat0 ? feat0.properties._dietaryMetrics : null;
                     if (!dm) return;
                     html += `<tr><td style="font-size:10px;">${foodseqData.plants[id].name}</td>`;
@@ -9928,7 +10503,7 @@
             // Accuracy metrics
             if (foodDesertComputed) {
                 let tp=0,tn=0,fp=0,fn=0;
-                demographicsGeoJSON.features.forEach(f => {
+                durhamTractsGeoJSON.features.forEach(f => {
                     const p=f.properties;
                     if(p._usdaFoodDesert&&p._isPredictedDesert)tp++;
                     else if(!p._usdaFoodDesert&&!p._isPredictedDesert)tn++;
@@ -10147,8 +10722,8 @@
                 // Food desert layers
                 renderFoodDesertLayer(view);
             } else {
-                // Show demographic layer (census tracts)
-                demographicLayer = L.geoJSON(demographicsGeoJSON, {
+                // Show demographic layer (service areas)
+                demographicLayer = L.geoJSON(durhamTractsGeoJSON, {
                     style: feature => getDemographicStyle(feature, view)
                 }).addTo(map);
 
@@ -10172,10 +10747,7 @@
 
             switch(layerType) {
                 case 'income':
-                    color = getIncomeColor(props.median_income);
-                    break;
-                case 'foreign':
-                    color = getForeignBornColor(props.pct_foreign_born);
+                    color = getIncomeColor(props.median_hh_income);
                     break;
                 case 'white':
                     color = getWhiteColor(props.pct_white);
@@ -10186,8 +10758,8 @@
                 case 'asian':
                     color = getAsianColor(props.pct_asian);
                     break;
-                case 'hispanic':
-                    color = getHispanicColor(props.pct_hispanic);
+                case 'other':
+                    color = getHispanicColor(props.pct_other);
                     break;
                 default:
                     color = '#cccccc';
