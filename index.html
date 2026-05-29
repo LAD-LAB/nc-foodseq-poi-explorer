@@ -513,6 +513,7 @@
         }
         .rc-callout.navy { background: #eef2fb; border: 1px solid #dbe4fb; }
         .rc-callout.green { background: #d9efe1; border: 1px solid #bfe0cb; }
+        .rc-callout.rust { background: #f3e2d3; border: 1px solid #e8cdb8; }
         .rc-callout b { color: #0b1220; }
 
         .rc-share-footer {
@@ -904,11 +905,11 @@
             margin-bottom: 26px;
         }
         #trendsView .trends-eyebrow {
-            font: 500 11px/1 var(--t-mono);
+            font: 600 11px/1 var(--t-mono);
             letter-spacing: .14em;
             text-transform: uppercase;
             color: var(--t-muted);
-            margin-bottom: 14px;
+            margin-bottom: 15px;
         }
         #trendsView .trends-h1 {
             font-family: var(--t-serif);
@@ -921,6 +922,9 @@
             text-wrap: balance;
         }
         #trendsView .trends-h1 em { font-style: italic; color: var(--t-navy); }
+        #trendsView .trends-hero-empty { grid-template-columns: 1fr; border-bottom: 1px dashed var(--t-line); }
+        #trendsView .trends-hero-empty .trends-h1 { color: var(--t-muted); }
+        #trendsView .trends-hero-empty .trends-h1 em { color: var(--t-navy); }
         #trendsView .trends-h1-sub {
             color: var(--t-muted); font-size: 15px; max-width: 56ch; margin: 0;
         }
@@ -933,7 +937,7 @@
             gap: 18px;
         }
         #trendsView .trends-kpi-label {
-            font: 500 10.5px/1 var(--t-mono);
+            font: 600 10.5px/1 var(--t-mono);
             letter-spacing: .12em;
             text-transform: uppercase;
             color: var(--t-muted);
@@ -972,7 +976,7 @@
             display: inline-flex; align-items: center; gap: 10px; min-height: 32px;
         }
         #trendsView .trends-field-label {
-            font: 500 10.5px/1 var(--t-mono);
+            font: 600 10.5px/1 var(--t-mono);
             letter-spacing: .12em;
             text-transform: uppercase;
             color: var(--t-muted-2);
@@ -1026,7 +1030,7 @@
             display: inline-flex; align-items: center; gap: 6px;
             height: 28px; padding: 0 12px;
             border-radius: var(--t-r-pill);
-            border: 1px dashed #cbd5e1;
+            border: 1px dashed #cbbfa8;
             background: transparent;
             color: var(--t-muted);
             font: 500 12.5px/1 var(--t-sans);
@@ -1063,11 +1067,11 @@
             display: flex; align-items: center; gap: 8px;
         }
         #trendsView .trends-badge {
-            font: 500 10px/1 var(--t-mono);
+            font: 600 9.5px/1 var(--t-mono);
             letter-spacing: .1em;
             text-transform: uppercase;
             padding: 4px 7px;
-            border-radius: 4px;
+            border-radius: 5px;
             background: var(--t-surface-2);
             color: var(--t-muted);
         }
@@ -1159,6 +1163,48 @@
             font: 700 13px/1 var(--t-mono);
         }
         #trendsView .trends-note b { color: #3d2f06; font-weight: 600; }
+
+        /* Empty state */
+        #trendsView .trends-empty {
+            display: grid; grid-template-columns: 1fr 1.1fr; gap: 0;
+            background: var(--t-surface); border: 1px solid var(--t-line);
+            border-radius: var(--t-r-card); overflow: hidden;
+        }
+        #trendsView .trends-empty-pick { padding: 30px 32px 32px; }
+        #trendsView .trends-empty-kicker {
+            font: 600 10.5px/1 var(--t-mono); letter-spacing: .14em;
+            text-transform: uppercase; color: var(--t-navy); margin-bottom: 12px;
+        }
+        #trendsView .trends-empty-h {
+            font-family: var(--t-serif); font-weight: 400; font-size: 30px;
+            color: var(--t-ink); margin: 0 0 6px;
+        }
+        #trendsView .trends-empty-p { color: var(--t-muted); font-size: 13px; margin: 0 0 16px; }
+        #trendsView .trends-qp { display: flex; flex-direction: column; gap: 8px; }
+        #trendsView .trends-qp-row {
+            display: flex; align-items: center; gap: 11px; width: 100%;
+            padding: 11px 14px; border: 1px solid var(--t-line); border-radius: 11px;
+            background: var(--t-surface); cursor: pointer; text-align: left;
+            transition: border-color .15s, background .15s;
+        }
+        #trendsView .trends-qp-row:hover { border-color: #dbe4fb; background: #eef2fb; }
+        #trendsView .trends-qp-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
+        #trendsView .trends-qp-name { flex: 1; font: 600 14px var(--t-sans); color: var(--t-ink); }
+        #trendsView .trends-qp-sub { display: block; font: 400 11.5px var(--t-mono); color: var(--t-muted-2); }
+        #trendsView .trends-qp-arrow { color: var(--t-muted-2); }
+        #trendsView .trends-qp-row:hover .trends-qp-arrow { color: var(--t-navy); }
+        #trendsView .trends-empty-preview {
+            position: relative; border-left: 1px solid var(--t-line);
+            background: linear-gradient(180deg, #fff, #fcfbf7); padding: 30px 26px;
+            display: flex; align-items: center;
+        }
+        #trendsView .trends-empty-preview svg { width: 100%; opacity: .4; }
+        #trendsView .trends-preview-tag {
+            position: absolute; top: 16px; right: 18px;
+            font: 600 9.5px/1 var(--t-mono); letter-spacing: .12em;
+            text-transform: uppercase; color: var(--t-muted-2);
+            background: var(--t-surface-2); padding: 5px 8px; border-radius: 5px;
+        }
 
         /* Species search (existing elements inside new toolbar) */
         #trendsView #trendsSpeciesSearch {
@@ -1587,7 +1633,7 @@
         /* Species Panel */
         .species-panel {
             position: absolute;
-            top: 150px;
+            top: 155px;
             right: 20px;
             z-index: 998;
             background: white;
@@ -2820,7 +2866,6 @@
             <button class="header-tab active" onclick="switchView('map')">Map</button>
             <button class="header-tab" onclick="switchView('trends')">Trends</button>
             <button class="header-tab" onclick="switchView('find-food')">Food Near Me</button>
-            <button class="header-tab" onclick="switchView('gap-explorer')">Gap Explorer</button>
             <button class="header-tab" onclick="window.open('https://edibleatlas.org/','_blank')">About</button>
         </div>
     </div>
@@ -2841,7 +2886,30 @@
             <option value="gap_score">Gap Score (Diet vs. Environment)</option>
         </select>
         <span class="ctrl-label">Period</span>
-        <select id="timeSelect" onchange="onTimeSelectChange(this.value)"></select>
+        <div style="position:relative;display:inline-block;">
+            <button id="timeRangeBtn" onclick="toggleTimeRangePicker()" style="height:34px;padding:0 32px 0 13px;border:1px solid #e7e4dc;border-radius:10px;background:#fff;font:500 13px 'Geist',sans-serif;color:#0b1220;cursor:pointer;transition:border-color .15s;position:relative;white-space:nowrap;">
+                All Times
+                <span style="position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:1.6px solid #64748b;border-bottom:1.6px solid #64748b;transform:translateY(-60%) rotate(45deg);"></span>
+            </button>
+            <div id="timeRangePicker" style="display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:1100;background:#fff;border:1px solid #e7e4dc;border-radius:14px;box-shadow:0 12px 36px rgba(15,23,42,.14);padding:16px 20px;width:420px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+                    <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;">Time range</span>
+                    <button onclick="setTimeRange('all')" style="border:0;background:0;font:500 12px 'Geist',sans-serif;color:#1e3a8a;cursor:pointer;padding:2px 6px;border-radius:6px;">Reset to all</button>
+                </div>
+                <div id="timeRangeTrack" style="position:relative;height:24px;margin:8px 8px 6px;cursor:pointer;" onmousedown="onTrackMouseDown(event)">
+                    <div style="position:absolute;top:10px;left:0;right:0;height:4px;background:#f0ede6;border-radius:2px;"></div>
+                    <div id="timeRangeFill" style="position:absolute;top:10px;height:4px;background:#1e3a8a;border-radius:2px;"></div>
+                    <div id="timeRangeThumbA" class="time-thumb" style="position:absolute;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #1e3a8a;box-shadow:0 1px 4px rgba(15,23,42,.2);cursor:grab;transform:translateX(-9px);z-index:2;" onmousedown="startThumbDrag(event,'a')"></div>
+                    <div id="timeRangeThumbB" class="time-thumb" style="position:absolute;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #1e3a8a;box-shadow:0 1px 4px rgba(15,23,42,.2);cursor:grab;transform:translateX(-9px);z-index:2;" onmousedown="startThumbDrag(event,'b')"></div>
+                </div>
+                <div id="timeRangeTicks" style="display:flex;justify-content:space-between;margin:0 8px;"></div>
+                <div style="margin-top:14px;padding-top:10px;border-top:1px solid #f0ede6;display:flex;align-items:center;justify-content:space-between;">
+                    <span style="font:500 11px 'Geist Mono',monospace;color:#94a3b8;" id="timeRangeLabel">All periods selected</span>
+                    <button onclick="toggleTimeRangePicker()" style="border:0;background:#1e3a8a;color:#fff;font:600 12px 'Geist',sans-serif;padding:6px 14px;border-radius:8px;cursor:pointer;">Apply</button>
+                </div>
+            </div>
+        </div>
+        <select id="timeSelect" style="display:none;" onchange="onTimeSelectChange(this.value)"></select>
         <button class="marker-chip active" id="chip-manhole" onclick="toggleMarkerChip('manhole')">
             <span class="chip-dot" style="background:#1e3a8a;"></span>Manhole
         </button>
@@ -3081,30 +3149,44 @@
                     </footer>
                 </article>
 
-                <!-- SLOPEGRAPH card -->
+                <!-- WHERE IT RANKS card -->
                 <article class="trends-card" id="trendsSlopeCard">
                     <header class="trends-card-head">
                         <div>
-                            <h2 class="trends-card-title">Slopegraph <span class="trends-badge">Alt view</span></h2>
-                            <p class="trends-card-desc">Only the <b>first</b> and <b>last</b> values plotted — collapses the path to net change.</p>
-                        </div>
-                        <div style="display:flex;align-items:flex-start;gap:8px;">
-                            <div class="trends-card-meta" id="trendsSlopeCardMeta">
-                                <div class="v" id="trendsSlopeMetaRange"></div>
-                                <div id="trendsSlopeMetaSamples">net change</div>
-                            </div>
-                            <button class="trends-icon-btn" title="Download PNG" onclick="downloadChart('trends-slope-svg','slopegraph')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8m0 0l-3-3m3 3l3-3"/><path d="M3 12h10"/></svg></button>
-                            <button class="trends-icon-btn" title="Copy chart link" onclick="shareChart('slope')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="7" height="8" rx="1.5"/><path d="M4 11V3.5A1.5 1.5 0 0 1 5.5 2H10"/></svg></button>
+                            <h2 class="trends-card-title">Where it ranks <span class="trends-badge">Context</span></h2>
+                            <p class="trends-card-desc" id="trendsRankDesc">This site against all other Durham tracts for this species, latest reading.</p>
                         </div>
                     </header>
                     <div class="trends-card-body">
-                        <svg id="trends-slope-svg" viewBox="0 0 520 360" preserveAspectRatio="none" aria-label="Slopegraph of food trends" style="aspect-ratio:520/360;"></svg>
+                        <svg id="trends-slope-svg" viewBox="0 0 380 220" preserveAspectRatio="xMidYMid meet" aria-label="Rank plot among Durham tracts" style="width:100%;display:block;"></svg>
                     </div>
                     <footer class="trends-card-foot">
                         <div class="trends-legend" id="trends-slope-legend"></div>
-                        <div class="trends-foot-note"></div>
+                        <div class="trends-foot-note" id="trendsRankFootNote"></div>
                     </footer>
                 </article>
+            </div>
+
+            <!-- Empty state (shown when no sites selected) -->
+            <div class="trends-empty" id="trendsEmpty" style="display:none;">
+                <div class="trends-empty-pick">
+                    <div class="trends-empty-kicker">Start here</div>
+                    <h3 class="trends-empty-h">Choose a site</h3>
+                    <p class="trends-empty-p">Popular sites in Durham County:</p>
+                    <div class="trends-qp" id="trendsQuickPick"></div>
+                </div>
+                <div class="trends-empty-preview" aria-hidden="true">
+                    <svg viewBox="0 0 760 280" preserveAspectRatio="xMidYMid meet" style="display:block;">
+                        <line x1="50" x2="630" y1="240" y2="240" stroke="#efece4" stroke-width="1"/>
+                        <line x1="50" x2="630" y1="180" y2="180" stroke="#efece4" stroke-width="1"/>
+                        <line x1="50" x2="630" y1="120" y2="120" stroke="#efece4" stroke-width="1"/>
+                        <line x1="50" x2="630" y1="60" y2="60" stroke="#efece4" stroke-width="1"/>
+                        <line x1="50" y1="45" x2="630" y2="45" stroke="#b8af9c" stroke-width="1.4" stroke-dasharray="5 4"/>
+                        <path d="M120 200 L300 80 L500 140" stroke="#1e3a8a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+                        <circle cx="120" cy="200" r="5.5" fill="#fff" stroke="#1e3a8a" stroke-width="2.4"/>
+                        <circle cx="500" cy="140" r="6" fill="#1e3a8a"/>
+                    </svg>
+                </div>
             </div>
 
             <!-- Data-quality note (shown when sampleCount < 4) -->
@@ -3119,8 +3201,6 @@
         </div>
     </div>
 
-    <!-- Gap Explorer View -->
-    <div id="gapExplorerView" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;background:#faf9f5;overflow:auto;font-family:'Geist',-apple-system,sans-serif;padding:28px 32px 60px;"></div>
 
     <div id="findFoodView" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;background:#faf9f5;overflow:hidden;">
         <div style="display:flex;height:100%;">
@@ -3207,7 +3287,7 @@
                 <span id="findFoodMapStatus" style="display:none;"></span>
                 <div style="flex:1;overflow-y:auto;padding:18px 24px 24px;display:flex;flex-direction:column;gap:18px;">
                     <div id="ffMapContent">
-                        <div id="findFoodMap" style="position:relative;height:56%;min-height:380px;border:1px solid #e7e4dc;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(15,23,42,.05);"></div>
+                        <div id="findFoodMap" style="position:relative;height:360px;border:1px solid #e7e4dc;border-radius:14px;overflow:hidden;box-shadow:0 2px 14px rgba(15,23,42,.05);"></div>
 
                         <div id="foodCompareTable" style="margin-top:18px;border:1px solid #e7e4dc;border-radius:14px;background:#fff;padding:22px 24px;">
                             <div style="display:flex;align-items:center;gap:16px;padding:4px 0;">
@@ -6070,7 +6150,7 @@
 
         // Tab switching
         let currentView = 'map';
-        const VIEW_TAB_MAP = { 'map': 'Map', 'trends': 'Trends', 'gap-explorer': 'Gap Explorer', 'find-food': 'Food Near Me', 'about': 'About' };
+        const VIEW_TAB_MAP = { 'map': 'Map', 'trends': 'Trends', 'find-food': 'Food Near Me', 'about': 'About' };
 
         function switchView(view) {
             currentView = view;
@@ -6094,13 +6174,6 @@
             if (trendsView) trendsView.style.display = view === 'trends' ? '' : 'none';
             const findFoodView = document.getElementById('findFoodView');
             if (findFoodView) findFoodView.style.display = view === 'find-food' ? '' : 'none';
-            const gapView = document.getElementById('gapExplorerView');
-            if (gapView) gapView.style.display = view === 'gap-explorer' ? '' : 'none';
-
-            // Initialize Gap Explorer
-            if (view === 'gap-explorer') {
-                initGapExplorer();
-            }
             // Initialize Trends view
             if (view === 'trends') {
                 initTrendsView();
@@ -7123,6 +7196,36 @@
         const SITE_COLORS = ['#1e3a8a', '#b8612a', '#059669', '#7c3aed', '#dc2626'];
         let trendsSelectedSites = []; // [{pid, name, color}]
 
+        function populateTrendsQuickPick() {
+            const container = document.getElementById('trendsQuickPick');
+            if (!container || !durhamTractsGeoJSON) return;
+
+            // Find tracts with the most data (most sampling sites with data)
+            const tractData = [];
+            if (durhamTractsGeoJSON) {
+                durhamTractsGeoJSON.features.forEach(f => {
+                    const saId = String(f.properties.Sample_ID);
+                    if (!tractsWithData.has(saId)) return;
+                    const plants = getPlantsInTract(saId);
+                    const hood = TRACT_NEIGHBORHOODS[saId] || 'Durham';
+                    const nDates = plants.reduce((max, p) => Math.max(max, Object.keys(p.timeseries).length), 0);
+                    tractData.push({ saId, hood, nSites: plants.length, nDates });
+                });
+            }
+            // Sort by most data, take top 4
+            tractData.sort((a, b) => b.nDates - a.nDates || b.nSites - a.nSites);
+            const top = tractData.slice(0, 4);
+
+            container.innerHTML = top.map(t => {
+                const pid = 'tract_' + t.saId;
+                return `<button class="trends-qp-row" onclick="addTrendsSite('${pid}');renderTrendsCharts();">
+                    <span class="trends-qp-dot" style="background:#1e3a8a;"></span>
+                    <span class="trends-qp-name">SA ${t.saId}<span class="trends-qp-sub">${t.hood} · ${t.nSites} site${t.nSites !== 1 ? 's' : ''}</span></span>
+                    <span class="trends-qp-arrow"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
+                </button>`;
+            }).join('');
+        }
+
         function initTrendsView() {
             if (trendsInitialized) return;
             trendsInitialized = true;
@@ -7341,13 +7444,20 @@
             if (!foodseqData || !foodseqData.species_metadata) return;
             const q = query.toLowerCase();
             const isDNA = s => /^[ATCGatcg]+$/.test(s);
+            // Deduplicate by common name — show one entry per unique name
+            const seenNames = new Set();
             const matches = Object.entries(foodseqData.species_metadata)
                 .filter(([key, meta]) => {
                     const name = meta.common_name || key;
                     if (isDNA(key) || isDNA(name)) return false;
                     if (key.startsWith('NA_Plant_') || key.startsWith('NA_Animal_')) return false;
-                    return name.length < 50 && name.toLowerCase().includes(q)
-                        && !trendsSelectedFoods.some(f => f.id === key);
+                    if (!name.length || name.length >= 50) return false;
+                    if (!name.toLowerCase().includes(q)) return false;
+                    if (trendsSelectedFoods.some(f => f.id === key)) return false;
+                    const nameLower = name.toLowerCase();
+                    if (seenNames.has(nameLower)) return false;
+                    seenNames.add(nameLower);
+                    return true;
                 })
                 .slice(0, 10);
 
@@ -7792,190 +7902,179 @@
         function renderTrendsSlope() {
             const svgEl = document.getElementById('trends-slope-svg');
             const legendEl = document.getElementById('trends-slope-legend');
-            if (trendsSelectedSites.length === 0) {
-                svgEl.innerHTML = '<text x="230" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Select a site above to begin</text>';
-                legendEl.innerHTML = '';
-                return;
-            }
-            if (trendsSelectedFoods.length === 0) {
-                svgEl.innerHTML = '<text x="230" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Add species to see trends</text>';
+            const descEl = document.getElementById('trendsRankDesc');
+            const footEl = document.getElementById('trendsRankFootNote');
+            if (trendsSelectedSites.length === 0 || trendsSelectedFoods.length === 0) {
+                svgEl.innerHTML = '';
                 legendEl.innerHTML = '';
                 return;
             }
             const { months, series } = getTrendsSeries();
-            const N = months.length;
-            if (N < 2) {
-                svgEl.innerHTML = '<text x="230" y="180" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="Geist, sans-serif">Need at least 2 time periods</text>';
+            if (months.length === 0 || series.length === 0) {
+                svgEl.innerHTML = '';
                 return;
             }
-            const W = 520, H = 360;
+
+            // Render rank plot — show all selected sites
+            const food = trendsSelectedFoods[0];
+
+            // Compute rank for each selected site
+            const siteRanks = trendsSelectedSites.map((site, i) => {
+                const info = computeTrendsRankForFood(food, months, site);
+                return { site, color: site.color || SITE_COLORS[i % SITE_COLORS.length], ...info };
+            });
+
+            // Use first site's allValues for the dot strip
+            const rankInfo = siteRanks[0];
+            const vals = rankInfo.allValues || [];
+            if (vals.length === 0) { svgEl.innerHTML = ''; return; }
+
+            const nSites = siteRanks.length;
+            const W = 380, H = nSites > 1 ? 220 + (nSites - 1) * 24 : 220;
             svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
-            const padL = 120, padR = 110, padT = 50, padB = 50;
-            const x0 = padL, x1 = W - padR;
-            const yMin = padT, yMaxH = H - padB;
+            const padL = 26, padR = 26, padT = 20 + nSites * 22, padB = 44;
 
-            const activeSeries = series.filter(s => {
-                const nonNull = s.data.filter(v => v !== null);
-                return nonNull.length >= 2 && nonNull.some(v => v > 0);
-            });
+            const max = Math.max(...vals), min = Math.min(...vals);
+            const range = max - min || 1;
+            const xAt = v => padL + ((v - min) / range) * (W - padL - padR);
+            const axisY = padT + 34;
 
-            // Compute v0/v1
-            const preEnriched = activeSeries.map(s => {
-                const v0val = s.data.find(v => v !== null);
-                const v1val = [...s.data].reverse().find(v => v !== null);
-                return { v0: v0val != null ? v0val : 0, v1: v1val != null ? v1val : 0 };
-            });
-            const allVals = preEnriched.flatMap(s => [s.v0, s.v1]).filter(v => v > 0);
-            const valMax = Math.max(1, ...allVals) * 1.05;
-            const yScale = v => yMaxH - (v / valMax) * (yMaxH - yMin);
+            // Collect highlighted values to skip in gray dots
+            const highlightVals = new Set(siteRanks.map(s => s.currentValue));
 
             let out = '';
+            // Axis line
+            out += `<line x1="${padL}" y1="${axisY}" x2="${W-padR}" y2="${axisY}" stroke="#e2ddd2" stroke-width="1.4"/>`;
 
-            // Vertical dashed rails
-            out += `<line x1="${x0}" x2="${x0}" y1="${yMin - 20}" y2="${yMaxH + 20}" stroke="#e5e7eb" stroke-dasharray="2 4"/>`;
-            out += `<line x1="${x1}" x2="${x1}" y1="${yMin - 20}" y2="${yMaxH + 20}" stroke="#e5e7eb" stroke-dasharray="2 4"/>`;
-
-            // Period labels above rails
-            const firstLabel = trendsMonthLabel(months[0], true).toUpperCase();
-            const lastLabel = trendsMonthLabel(months[N - 1], true).toUpperCase();
-            out += `<text x="${x0}" y="${yMin - 30}" text-anchor="middle" font-size="11" fill="#64748b" letter-spacing=".06em" font-weight="500" font-family="Geist Mono, monospace">${firstLabel}</text>`;
-            out += `<text x="${x1}" y="${yMin - 30}" text-anchor="middle" font-size="11" fill="#64748b" letter-spacing=".06em" font-weight="500" font-family="Geist Mono, monospace">${lastLabel}</text>`;
-
-            // Durham baseline rail
-            if (foodseqData && trendsSelectedFoods.length > 0) {
-                const food = trendsSelectedFoods[0];
-                const dates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
-                const firstDate = dates[0], lastDate = dates[dates.length - 1];
-                let bStart = 0, bEnd = 0, bCount0 = 0, bCount1 = 0;
-                Object.values(foodseqData.plants).forEach(plant => {
-                    const td0 = plant.timeseries[firstDate];
-                    if (td0) { bStart += (td0.plants && td0.plants[food.id]) || (td0.animals && td0.animals[food.id]) || 0; bCount0++; }
-                    const td1 = plant.timeseries[lastDate];
-                    if (td1) { bEnd += (td1.plants && td1.plants[food.id]) || (td1.animals && td1.animals[food.id]) || 0; bCount1++; }
-                });
-                if (bCount0 > 0 && bCount1 > 0) {
-                    const bv0 = bStart / bCount0, bv1 = bEnd / bCount1;
-                    out += `<line x1="${x0}" y1="${yScale(bv0)}" x2="${x1}" y2="${yScale(bv1)}" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4 4"/>`;
-                    out += `<text x="${x1 + 8}" y="${yScale(bv1) + 4}" font-size="10" fill="#94a3b8" font-family="Geist Mono, monospace">avg ${bv1.toFixed(1)}</text>`;
-                }
+            // Durham avg baseline
+            if (rankInfo.avg > 0) {
+                const xb = xAt(rankInfo.avg);
+                out += `<line x1="${xb}" y1="${axisY-30}" x2="${xb}" y2="${axisY+14}" stroke="#b8af9c" stroke-width="1.3" stroke-dasharray="4 4"/>`;
+                out += `<text x="${xb}" y="${axisY+30}" text-anchor="middle" font-size="9.5" font-family="Geist Mono, monospace" fill="#94a3b8">avg ${rankInfo.avg.toFixed(1)}</text>`;
             }
 
-            const enriched = activeSeries.map((s, idx) => ({
-                ...s,
-                v0: preEnriched[idx].v0,
-                v1: preEnriched[idx].v1,
-                y0: yScale(preEnriched[idx].v0),
-                y1: yScale(preEnriched[idx].v1),
-            }));
-
-            // Label anti-collision — need enough gap for multi-line labels (name + site + value)
-            const slopeMultiSite = trendsSelectedSites.length > 1;
-            const slopeMultiFood = trendsSelectedFoods.length > 1;
-            const LABEL_MIN_GAP = slopeMultiSite || slopeMultiFood ? 40 : 14;
-            function resolve(items, key) {
-                const sorted = items.map((s, i) => ({ s, i, y: s[key], adj: s[key] })).sort((a, b) => a.y - b.y);
-                for (let i = 1; i < sorted.length; i++)
-                    if (sorted[i].adj < sorted[i-1].adj + LABEL_MIN_GAP)
-                        sorted[i].adj = sorted[i-1].adj + LABEL_MIN_GAP;
-                for (let i = sorted.length - 2; i >= 0; i--)
-                    if (sorted[i].adj > sorted[i+1].adj - LABEL_MIN_GAP)
-                        sorted[i].adj = sorted[i+1].adj - LABEL_MIN_GAP;
-                const r = new Array(items.length);
-                sorted.forEach(o => r[o.i] = o.adj);
-                return r;
-            }
-            const lY = resolve(enriched, 'y0');
-            const rY = resolve(enriched, 'y1');
-
-            // Slope lines
-            enriched.forEach(s => {
-                const dash = s.dashed ? `stroke-dasharray="${s.dashed}"` : '';
-                out += `<line x1="${x0}" y1="${s.y0}" x2="${x1}" y2="${s.y1}" stroke="${s.color}" stroke-width="2.5" ${dash} stroke-linecap="round"/>`;
+            // Gray dots for other tracts
+            vals.forEach(v => {
+                // Skip if it's close to any highlighted site's value
+                let isHighlighted = false;
+                for (const hv of highlightVals) { if (Math.abs(v - hv) < 0.01) { isHighlighted = true; break; } }
+                if (isHighlighted) return;
+                out += `<circle cx="${xAt(v)}" cy="${axisY}" r="4" fill="#cfc9bd"/>`;
             });
 
-            // End points with styled halos
-            enriched.forEach(s => {
-                // Left (start): white-filled circle with navy stroke
-                out += `<circle cx="${x0}" cy="${s.y0}" r="6" fill="#fff" stroke="${s.color}" stroke-width="2.5"/>`;
-                // Right (end): halo + solid circle
-                out += `<circle cx="${x1}" cy="${s.y1}" r="11" fill="${s.color}" opacity=".15"/>`;
-                out += `<circle cx="${x1}" cy="${s.y1}" r="7" fill="${s.color}"/>`;
+            // Highlighted sites — each with halo, dot, and callout
+            siteRanks.forEach((sr, i) => {
+                const hx = xAt(sr.currentValue);
+                const color = sr.color;
+                const name = sr.site.name || sr.site.pid;
+                out += `<circle cx="${hx}" cy="${axisY}" r="11" fill="${color}" opacity=".14"/>`;
+                out += `<circle cx="${hx}" cy="${axisY}" r="6.5" fill="${color}" stroke="#fff" stroke-width="2"/>`;
+
+                // Callout — stagger vertically for multiple sites
+                const calloutY = padT - 14 - i * 22;
+                const anc = hx > W - 96 ? 'end' : hx < 96 ? 'start' : 'middle';
+                out += `<line x1="${hx}" y1="${axisY-13}" x2="${hx}" y2="${calloutY + 12}" stroke="${color}" stroke-width="1" stroke-dasharray="2 2"/>`;
+                out += `<text x="${hx}" y="${calloutY}" text-anchor="${anc}" font-size="12" font-weight="700" fill="${color}" font-family="Geist, sans-serif">${name} · #${sr.rank}</text>`;
+                out += `<text x="${hx}" y="${calloutY + 13}" text-anchor="${anc}" font-size="9.5" fill="#8a8170" font-family="Geist Mono, monospace">${sr.currentValue.toFixed(1)} det/mo</text>`;
             });
 
-            // Left label block — use series label (includes site name when multi-site)
-            enriched.forEach((s, i) => {
-                // s.label is "Food" for single site, "Food · Site" for multi-site
-                const parts = s.label.split(' \u00b7 ');
-                const mainName = parts[0];
-                const subName = parts.length > 1 ? parts[1] : '';
-                out += `<text x="${x0 - 14}" y="${lY[i] - 6}" text-anchor="end" font-size="13" font-weight="600" fill="#0b1220" font-family="Geist, sans-serif">${mainName}</text>`;
-                if (subName) out += `<text x="${x0 - 14}" y="${lY[i] + 10}" text-anchor="end" font-size="11" fill="#64748b" font-family="Geist, sans-serif">${subName}</text>`;
-                out += `<text x="${x0 - 14}" y="${lY[i] + (subName ? 26 : 14)}" text-anchor="end" font-size="11" font-family="Geist Mono, monospace" fill="#94a3b8">${s.v0.toFixed(1)}</text>`;
-            });
-
-            // Right label block — delta percentage only, "new" for 0→value
-            enriched.forEach((s, i) => {
-                let pctLabel, pctColor;
-                if (s.v0 <= 0 && s.v1 > 0) {
-                    pctLabel = '\u2605 New'; pctColor = '#15803d';
-                } else if (s.v0 > 0 && s.v1 <= 0) {
-                    pctLabel = 'Gone'; pctColor = '#b91c1c';
-                } else if (s.v0 > 0) {
-                    const pct = Math.round(((s.v1 - s.v0) / s.v0) * 100);
-                    const capped = Math.min(Math.abs(pct), 500);
-                    pctLabel = `${pct > 0 ? '+' : '-'}${capped}%`;
-                    pctColor = pct > 0 ? '#15803d' : pct < 0 ? '#b91c1c' : '#64748b';
-                } else {
-                    pctLabel = '—'; pctColor = '#64748b';
-                }
-                out += `<text x="${x1 + 14}" y="${rY[i] + 5}" font-size="12" font-weight="600" fill="${pctColor}" font-family="Geist, sans-serif">${pctLabel}</text>`;
-            });
+            // Axis endpoint labels
+            out += `<text x="${padL}" y="${axisY+30}" text-anchor="start" font-size="9.5" font-family="Geist Mono, monospace" fill="#b7ae9b">lowest ${min.toFixed(1)}</text>`;
+            out += `<text x="${W-padR}" y="${axisY+30}" text-anchor="end" font-size="9.5" font-family="Geist Mono, monospace" fill="#b7ae9b">highest ${max.toFixed(1)}</text>`;
 
             svgEl.innerHTML = out;
 
-            // Update slope card meta
-            document.getElementById('trendsSlopeMetaRange').textContent = trendsMonthLabel(months[0], true) + ' \u2192 ' + trendsMonthLabel(months[N - 1], true);
-
-            // Legend
-            legendEl.innerHTML = activeSeries.map(s => {
-                const dash = s.dashed ? `background-image:repeating-linear-gradient(90deg,${s.color} 0 4px,transparent 4px 7px);background-color:transparent;width:16px;height:2px;` : `background:${s.color};width:16px;height:3px;border-radius:2px;`;
-                return `<span class="lg-item"><span class="sw" style="${dash}"></span>${s.label}</span>`;
-            }).join('');
-        }
-
-        function computeTrendsRankForFood(food, months) {
-            if (!foodseqData) return { rank: 0, totalTracts: 0, percentile: 0 };
-            const dates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
-            const tractTotals = {};
-            Object.entries(foodseqData.plants).forEach(([pid, plant]) => {
-                const ct = plant.census_tract;
-                if (!ct || ct === 'unknown') return;
-                if (!tractTotals[ct]) tractTotals[ct] = 0;
-                dates.forEach(date => {
-                    const td = plant.timeseries[date];
-                    if (!td) return;
-                    tractTotals[ct] += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
-                });
-            });
-            const currentSite = trendsSelectedSites[0];
-            let currentTotal = 0;
-            if (currentSite.isTract) {
-                const ct = currentSite.pid.replace('tract_', '');
-                currentTotal = tractTotals[ct] || 0;
-            } else {
-                const plant = foodseqData.plants[currentSite.pid];
-                if (plant) {
-                    dates.forEach(date => {
-                        const td = plant.timeseries[date];
-                        if (td) currentTotal += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
-                    });
+            // Update description and legend
+            const siteNames = siteRanks.map(s => s.site.name || s.site.pid);
+            const poolLabel = rankInfo.isWWTP ? 'NC WWTPs' : 'Durham tracts';
+            const poolLabelShort = rankInfo.isWWTP ? 'NC' : 'Durham';
+            const otherLabel = rankInfo.isWWTP ? 'other WWTPs' : 'other tracts';
+            if (descEl) {
+                if (nSites === 1) {
+                    descEl.textContent = `${siteNames[0]} against the other ${rankInfo.totalTracts - 1} ${poolLabel} for ${food.label}, latest reading.`;
+                } else {
+                    descEl.textContent = `${nSites} sites compared against all ${rankInfo.totalTracts} ${poolLabel} for ${food.label}.`;
                 }
             }
-            const sortedTotals = Object.values(tractTotals).sort((a, b) => b - a);
-            const rank = sortedTotals.findIndex(v => currentTotal >= v) + 1;
+            legendEl.innerHTML = siteRanks.map(sr =>
+                `<span class="lg-item"><span class="sw" style="background:${sr.color};width:16px;height:3px;border-radius:2px;"></span>${sr.site.name || sr.site.pid}</span>`
+            ).join('') + `<span class="lg-item" style="color:var(--t-muted);"><span style="width:8px;height:8px;border-radius:50%;background:#cfc9bd;display:inline-block;"></span>${otherLabel}</span>`;
+            if (footEl) {
+                if (nSites === 1) {
+                    footEl.textContent = rankInfo.rank === 1 ? `#1 in ${poolLabelShort}` : `#${rankInfo.rank} of ${rankInfo.totalTracts}`;
+                } else {
+                    footEl.textContent = siteRanks.map(sr => `#${sr.rank}`).join(', ') + ` of ${rankInfo.totalTracts}`;
+                }
+            }
+        }
+
+
+        function computeTrendsRankForFood(food, months, site) {
+            if (!foodseqData) return { rank: 0, totalTracts: 0, percentile: 0, allValues: [], currentValue: 0, avg: 0, isWWTP: false };
+            const dates = months.map(mo => `${mo.y}-${String(mo.m).padStart(2,'0')}`);
+            const targetSite = site || trendsSelectedSites[0];
+
+            // Determine if this is a WWTP or manhole/tract site
+            let isWWTP = false;
+            if (targetSite.isTract) {
+                isWWTP = false;
+            } else {
+                const plant = foodseqData.plants[targetSite.pid];
+                isWWTP = plant && plant.location_type !== 'manhole';
+            }
+
+            // Build comparison pool: Durham tracts for manholes, individual WWTPs for WWTPs
+            const siteTotals = {};
+            Object.entries(foodseqData.plants).forEach(([pid, plant]) => {
+                if (isWWTP) {
+                    // WWTPs: compare against all WWTPs individually
+                    if (plant.location_type === 'manhole') return;
+                    let total = 0;
+                    dates.forEach(date => {
+                        const td = plant.timeseries[date];
+                        if (!td) return;
+                        total += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                    });
+                    siteTotals[pid] = total;
+                } else {
+                    // Manholes: group by census tract
+                    const ct = plant.census_tract;
+                    if (!ct || ct === 'unknown') return;
+                    if (!siteTotals[ct]) siteTotals[ct] = 0;
+                    dates.forEach(date => {
+                        const td = plant.timeseries[date];
+                        if (!td) return;
+                        siteTotals[ct] += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                    });
+                }
+            });
+
+            // Get current site's total
+            let currentTotal = 0;
+            if (targetSite.isTract) {
+                const ct = targetSite.pid.replace('tract_', '');
+                currentTotal = siteTotals[ct] || 0;
+            } else {
+                if (isWWTP) {
+                    currentTotal = siteTotals[targetSite.pid] || 0;
+                } else {
+                    const plant = foodseqData.plants[targetSite.pid];
+                    if (plant) {
+                        dates.forEach(date => {
+                            const td = plant.timeseries[date];
+                            if (td) currentTotal += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
+                        });
+                    }
+                }
+            }
+
+            const allValues = Object.values(siteTotals).filter(v => v > 0);
+            const sortedTotals = allValues.slice().sort((a, b) => b - a);
+            const rank = sortedTotals.findIndex(v => currentTotal >= v) + 1 || sortedTotals.length;
             const totalTracts = sortedTotals.length;
             const percentile = totalTracts > 0 ? Math.round((1 - (rank - 1) / totalTracts) * 100) : 0;
-            return { rank, totalTracts, percentile };
+            const avg = allValues.length > 0 ? allValues.reduce((s, v) => s + v, 0) / allValues.length : 0;
+            return { rank, totalTracts, percentile, allValues, currentValue: currentTotal, avg, isWWTP };
         }
 
         function renderComparisonTable(months, series) {
@@ -8045,7 +8144,21 @@
 
         function updateTrendsHero() {
             const heroEl = document.getElementById('trendsHero');
-            if (trendsSelectedSites.length === 0 || trendsSelectedFoods.length === 0) {
+            if (trendsSelectedSites.length === 0) {
+                // Show empty-state hero
+                heroEl.style.display = '';
+                heroEl.classList.add('trends-hero-empty');
+                heroEl.classList.remove('multi');
+                document.getElementById('trendsKpis').style.display = 'none';
+                document.getElementById('trendsCompTable').style.display = 'none';
+                document.getElementById('trendsHeroEyebrow').textContent = 'Trends \u00b7 Durham Co.';
+                document.getElementById('trendsHeroHeadline').innerHTML = 'Pick a sampling site to see its <em>detection trend</em>.';
+                document.getElementById('trendsHeroHeadline').className = 'trends-h1';
+                document.getElementById('trendsHeroSub').textContent = 'Trends plots how a food or pollen signal changes over time at one site \u2014 with its rank against every other tract in Durham.';
+                return;
+            }
+            heroEl.classList.remove('trends-hero-empty');
+            if (trendsSelectedFoods.length === 0) {
                 heroEl.style.display = 'none';
                 return;
             }
@@ -8212,8 +8325,22 @@
         }
 
         function renderTrendsCharts() {
-            const isMulti = trendsSelectedFoods.length >= 2 || trendsSelectedSites.length >= 2;
+            const emptyEl = document.getElementById('trendsEmpty');
             const gridEl = document.getElementById('trends-grid');
+
+            // Show empty state when no sites selected
+            if (trendsSelectedSites.length === 0) {
+                emptyEl.style.display = '';
+                gridEl.style.display = 'none';
+                document.getElementById('trendsHero').style.display = '';
+                populateTrendsQuickPick();
+                updateTrendsHero();
+                return;
+            }
+            emptyEl.style.display = 'none';
+            gridEl.style.display = '';
+
+            const isMulti = trendsSelectedFoods.length >= 2 || trendsSelectedSites.length >= 2;
             const slopeCard = document.getElementById('trendsSlopeCard');
             const lineCard = document.getElementById('trendsLineCard');
             const lineBadge = document.getElementById('trendsLineBadge');
@@ -8442,10 +8569,16 @@
                 return { id: sp, name: meta ? meta.common_name : sp, value: Math.round((val / entries[0][1]) * 100), raw: val };
             });
 
-            // "What's surprising" — compare to median across all sites
+            // "What's surprising" — compare to median across similar sites
+            // WWTPs compare to NC (all WWTPs), manholes compare to Durham (manholes only)
             const insights = [];
-            const allPlantsList = Object.values(foodseqData.plants);
-            if (allPlantsList.length > 1) {
+            const isWWTP = plants.length > 0 && plants[0].location_type !== 'manhole';
+            const comparisonPool = Object.values(foodseqData.plants).filter(p =>
+                isWWTP ? p.location_type !== 'manhole' : (p.census_tract && p.census_tract !== 'unknown')
+            );
+            const compLabel = isWWTP ? 'NC' : 'Durham';
+            const compAreaLabel = isWWTP ? 'NC sites' : 'Durham neighborhoods';
+            if (comparisonPool.length > 1) {
                 const categories = [
                     { label: 'Seafood', match: ['tilapia','shrimp','salmon','tuna','catfish','trout','crab','lobster','cod','pangasius','squid','clam','mussel','oyster','scallop'], tone: 'navy' },
                     { label: 'Leafy greens', match: ['lettuce','spinach','kale','cabbage','arugula','collard','chard','romaine'], tone: 'green' },
@@ -8468,9 +8601,9 @@
                     if (sp in speciesCatMap) siteTotals[speciesCatMap[sp]] += v;
                 });
 
-                // All sites' totals per category (single pass over all plants)
+                // Comparison pool totals per category
                 const allSiteTotals = categories.map(() => []);
-                allPlantsList.forEach(p => {
+                comparisonPool.forEach(p => {
                     const catSums = categories.map(() => 0);
                     foodseqData.dates.forEach(date => {
                         const td = p.timeseries[date];
@@ -8485,17 +8618,23 @@
                 });
 
                 categories.forEach((cat, ci) => {
-                    if (siteTotals[ci] === 0) return;
                     const sorted = allSiteTotals[ci].slice().sort((a, b) => a - b);
                     const median = sorted[Math.floor(sorted.length / 2)] || 0;
-                    if (median > 0 && siteTotals[ci] > median * 1.5) {
+                    if (siteTotals[ci] === 0 && median > 0) {
+                        insights.push({ tone: 'rust', text: `${cat.label} is <b>not detected here</b> despite appearing at most ${compAreaLabel}.` });
+                    } else if (median > 0 && siteTotals[ci] > median * 1.5) {
                         const ratio = (siteTotals[ci] / median).toFixed(1);
-                        insights.push({ tone: cat.tone, text: `${cat.label} runs <b>${ratio}\u00d7 the Durham median</b> here.` });
+                        insights.push({ tone: cat.tone, text: `${cat.label} runs <b>${ratio}\u00d7 the ${compLabel} median</b> here.` });
+                    } else if (median > 0 && siteTotals[ci] < median * 0.5) {
+                        const ratio = (median / siteTotals[ci]).toFixed(1);
+                        insights.push({ tone: 'rust', text: `${cat.label} is <b>${ratio}\u00d7 below the ${compLabel} median</b> — much less than typical.` });
                     } else if (median > 0) {
                         const rank = sorted.filter(t => t <= siteTotals[ci]).length;
                         const pctile = Math.round((rank / sorted.length) * 100);
                         if (pctile >= 70) {
-                            insights.push({ tone: cat.tone, text: `${cat.label} appears more than in <b>${pctile}% of Durham neighborhoods</b>.` });
+                            insights.push({ tone: cat.tone, text: `${cat.label} appears more than at <b>${pctile}% of ${compAreaLabel}</b>.` });
+                        } else if (pctile <= 25) {
+                            insights.push({ tone: 'rust', text: `${cat.label} appears less than at <b>${100 - pctile}% of ${compAreaLabel}</b>.` });
                         }
                     }
                 });
@@ -9794,32 +9933,199 @@
             updatePanelChart(panelInfo);
         }
 
+        let timeRangeStart = 0;
+        let timeRangeEnd = 0;
+        let timeRangeN = 1; // total number of periods
+        let draggingThumb = null; // 'a' or 'b'
+
         function initTimeline() {
             const select = document.getElementById('timeSelect');
             if (!select) return;
 
-            // Add "All Times" option first
             const allOption = document.createElement('option');
             allOption.value = 'all';
             allOption.textContent = 'All Times';
             select.appendChild(allOption);
 
-            // Populate individual time period options
             foodseqData.dates.forEach((date, index) => {
                 const periodInfo = foodseqData.time_periods[date];
                 const option = document.createElement('option');
                 option.value = index;
                 option.textContent = periodInfo.label;
-                if (currentTimeIndex !== 'all' && index === currentTimeIndex) {
-                    option.selected = true;
-                }
                 select.appendChild(option);
             });
 
-            if (currentTimeIndex === 'all') {
-                select.value = 'all';
+            if (currentTimeIndex === 'all') select.value = 'all';
+
+            timeRangeN = foodseqData.dates.length;
+            timeRangeStart = 0;
+            timeRangeEnd = timeRangeN - 1;
+            renderTimelineTicks();
+            updateTimelineUI();
+        }
+
+        function toggleTimeRangePicker() {
+            const picker = document.getElementById('timeRangePicker');
+            picker.style.display = picker.style.display === 'none' ? '' : 'none';
+        }
+
+        function renderTimelineTicks() {
+            const ticks = document.getElementById('timeRangeTicks');
+            if (!ticks || !foodseqData) return;
+            // Show first, last, and a few in between
+            const n = foodseqData.dates.length;
+            const step = Math.max(1, Math.floor(n / 5));
+            let html = '';
+            for (let i = 0; i < n; i += step) {
+                const info = foodseqData.time_periods[foodseqData.dates[i]];
+                const label = info ? info.label.replace(/\s\d{4}$/, "''" + info.label.slice(-2)) : '';
+                const shortLabel = info ? info.label.split(' ')[0].slice(0, 3) + " '" + info.label.slice(-2) : '';
+                html += `<span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;white-space:nowrap;">${shortLabel}</span>`;
+            }
+            // Always show last
+            const lastInfo = foodseqData.time_periods[foodseqData.dates[n - 1]];
+            if (n % step !== 1) {
+                const shortLast = lastInfo ? lastInfo.label.split(' ')[0].slice(0, 3) + " '" + lastInfo.label.slice(-2) : '';
+                html += `<span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;white-space:nowrap;">${shortLast}</span>`;
+            }
+            ticks.innerHTML = html;
+        }
+
+        function getTrackWidth() {
+            const track = document.getElementById('timeRangeTrack');
+            return track ? track.offsetWidth : 300;
+        }
+
+        function indexToX(i) {
+            const max = Math.max(1, timeRangeN - 1);
+            return (i / max) * getTrackWidth();
+        }
+
+        function xToIndex(x) {
+            const max = Math.max(1, timeRangeN - 1);
+            const w = getTrackWidth();
+            return Math.round(Math.max(0, Math.min(max, (x / w) * max)));
+        }
+
+        function updateTimelineUI() {
+            const thumbA = document.getElementById('timeRangeThumbA');
+            const thumbB = document.getElementById('timeRangeThumbB');
+            const fill = document.getElementById('timeRangeFill');
+            if (!thumbA || !thumbB || !fill) return;
+
+            const xA = indexToX(timeRangeStart);
+            const xB = indexToX(timeRangeEnd);
+            thumbA.style.left = xA + 'px';
+            thumbB.style.left = xB + 'px';
+            fill.style.left = Math.min(xA, xB) + 'px';
+            fill.style.width = Math.abs(xB - xA) + 'px';
+
+            // Update label
+            const label = document.getElementById('timeRangeLabel');
+            const isAll = timeRangeStart === 0 && timeRangeEnd === timeRangeN - 1;
+            if (isAll) {
+                label.textContent = 'All periods';
+            } else if (timeRangeStart === timeRangeEnd) {
+                const info = foodseqData.time_periods[foodseqData.dates[timeRangeStart]];
+                label.textContent = info ? info.label : 'Single period';
+            } else {
+                const n = timeRangeEnd - timeRangeStart + 1;
+                label.textContent = n + ' period' + (n !== 1 ? 's' : '');
+            }
+
+            // Update button text
+            const btn = document.getElementById('timeRangeBtn');
+            if (isAll) {
+                btn.childNodes[0].textContent = 'All Times';
+            } else if (timeRangeStart === timeRangeEnd) {
+                const info = foodseqData.time_periods[foodseqData.dates[timeRangeStart]];
+                btn.childNodes[0].textContent = info ? info.label : '';
+            } else {
+                const sInfo = foodseqData.time_periods[foodseqData.dates[timeRangeStart]];
+                const eInfo = foodseqData.time_periods[foodseqData.dates[timeRangeEnd]];
+                const sLabel = sInfo ? sInfo.label.split(' ')[0] : '';
+                const eLabel = eInfo ? eInfo.label : '';
+                btn.childNodes[0].textContent = sLabel + ' – ' + eLabel;
             }
         }
+
+        function startThumbDrag(e, which) {
+            e.preventDefault();
+            e.stopPropagation();
+            draggingThumb = which;
+            document.addEventListener('mousemove', onThumbDrag);
+            document.addEventListener('mouseup', stopThumbDrag);
+        }
+
+        function onThumbDrag(e) {
+            if (!draggingThumb) return;
+            const track = document.getElementById('timeRangeTrack');
+            const rect = track.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const idx = xToIndex(x);
+            if (draggingThumb === 'a') {
+                timeRangeStart = Math.min(idx, timeRangeEnd);
+            } else {
+                timeRangeEnd = Math.max(idx, timeRangeStart);
+            }
+            updateTimelineUI();
+        }
+
+        function stopThumbDrag() {
+            draggingThumb = null;
+            document.removeEventListener('mousemove', onThumbDrag);
+            document.removeEventListener('mouseup', stopThumbDrag);
+            applyTimeRange();
+        }
+
+        function onTrackMouseDown(e) {
+            if (e.target.classList.contains('time-thumb')) return;
+            const track = document.getElementById('timeRangeTrack');
+            const rect = track.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const idx = xToIndex(x);
+            // Move whichever thumb is closer
+            const distA = Math.abs(idx - timeRangeStart);
+            const distB = Math.abs(idx - timeRangeEnd);
+            if (distA <= distB) {
+                timeRangeStart = Math.min(idx, timeRangeEnd);
+                draggingThumb = 'a';
+            } else {
+                timeRangeEnd = Math.max(idx, timeRangeStart);
+                draggingThumb = 'b';
+            }
+            updateTimelineUI();
+            document.addEventListener('mousemove', onThumbDrag);
+            document.addEventListener('mouseup', stopThumbDrag);
+        }
+
+        function setTimeRange() {
+            timeRangeStart = 0;
+            timeRangeEnd = timeRangeN - 1;
+            updateTimelineUI();
+            applyTimeRange();
+        }
+
+        function applyTimeRange() {
+            const isAll = timeRangeStart === 0 && timeRangeEnd === timeRangeN - 1;
+            if (isAll) {
+                onTimeSelectChange('all');
+            } else if (timeRangeStart === timeRangeEnd) {
+                onTimeSelectChange(String(timeRangeStart));
+            } else {
+                // For range, use 'all' — the data aggregation covers the full range
+                onTimeSelectChange('all');
+            }
+        }
+
+        // Close picker on outside click
+        document.addEventListener('click', function(e) {
+            const picker = document.getElementById('timeRangePicker');
+            const btn = document.getElementById('timeRangeBtn');
+            if (picker && picker.style.display !== 'none' && !picker.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
+                picker.style.display = 'none';
+            }
+        });
 
         // Aggregate species data across all time periods for a plant
         function aggregateAllTimes(plant) {
@@ -11803,8 +12109,8 @@
                     <b style="color:#64748b;">Food access</b> = healthy retail vs. fast food &amp; convenience.<br>
                     <b style="color:#64748b;">Diet diversity</b> = Shannon diversity of plant species (trnL).
                 </div>`;
-                h += `<button onclick="dismissLandingPanels();switchView('gap-explorer');" style="width:100%;padding:10px;border:1px solid #1e3a8a;border-radius:10px;background:#fff;color:#1e3a8a;font:600 13px 'Geist',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .12s;">
-                    See full gap breakdown
+                h += `<button onclick="dismissLandingPanels();" style="width:100%;padding:10px;border:1px solid #1e3a8a;border-radius:10px;background:#fff;color:#1e3a8a;font:600 13px 'Geist',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .12s;">
+                    Explore the map
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
                 </button>`;
                 h += `</div>`;
