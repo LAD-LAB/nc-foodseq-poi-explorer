@@ -2768,10 +2768,10 @@
             position: absolute;
             top: 148px;
             right: 416px;
-            width: 360px;
+            width: 384px;
             height: calc(100vh - 148px);
             z-index: 998;
-            background: #faf9f5;
+            background: #fff;
             border-left: 1px solid #e7e4dc;
             box-shadow: -8px 0 30px rgba(15,23,42,.05);
             font-family: 'Geist', -apple-system, sans-serif;
@@ -2788,18 +2788,76 @@
             transform: translateX(100%) !important;
         }
         .landing-dismiss-bar {
-            position: absolute; bottom: 24px; left: calc((100vw - 776px) / 2); transform: translateX(-50%); z-index: 998;
+            position: absolute; bottom: 24px; left: calc((100vw - 800px) / 2); transform: translateX(-50%); z-index: 998;
             transition: opacity .6s ease, transform .6s ease;
         }
         .landing-dismiss-bar.hidden { opacity: 0; transform: translateX(-50%) translateY(10px); pointer-events: none; }
         .landing-dismiss-btn {
             display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 24px; border-radius: 999px; border: 1px solid #e7e4dc;
-            background: #fff; color: #0b1220; font: 600 14px 'Geist', sans-serif;
-            cursor: pointer; box-shadow: 0 4px 16px rgba(15,23,42,.12);
-            transition: background .15s, box-shadow .15s;
+            padding: 14px 28px; border-radius: 999px; border: none;
+            background: #1e3a8a; color: #fff; font: 600 14px 'Geist', sans-serif;
+            cursor: pointer; box-shadow: 0 6px 24px rgba(30,58,138,.3);
+            transition: background .15s, box-shadow .15s, transform .15s;
         }
-        .landing-dismiss-btn:hover { background: #f8fafc; box-shadow: 0 6px 24px rgba(15,23,42,.16); }
+        .landing-dismiss-btn:hover { background: #18306e; box-shadow: 0 8px 28px rgba(30,58,138,.35); transform: translateY(-1px); }
+
+        /* ── Story Panel ── */
+        .sp-card { border:1px solid #e7e4dc; border-radius:14px; background:#fff; }
+        .sp-eyebrow { font:600 10.5px/1 'Geist Mono',monospace; letter-spacing:.15em; text-transform:uppercase; color:#64748b; }
+        .sp-gap-head { padding:14px 16px 4px; }
+        .sp-gap-h1 { font-family:'Instrument Serif',Georgia,serif; font-weight:400; font-size:23px; line-height:1.1; color:#0b1220; margin:5px 0 0; letter-spacing:-.01em; }
+        .sp-gap-h1 em { font-style:italic; }
+        .sp-gap-score { display:flex; align-items:baseline; gap:8px; padding:0 17px; }
+        .sp-gap-score .sp-n { font-family:'Instrument Serif',Georgia,serif; font-size:40px; line-height:1; }
+        .sp-gap-score .sp-lab { font:600 9.5px 'Geist Mono',monospace; letter-spacing:.13em; text-transform:uppercase; color:#64748b; }
+        .sp-bars { padding:13px 17px 7px; }
+        .sp-bar-row { display:grid; grid-template-columns:82px 1fr 32px; align-items:center; gap:9px; padding:6px 0; }
+        .sp-bar-row .sp-k { font-size:12px; color:#1f2937; }
+        .sp-bar-track { height:9px; border-radius:5px; background:#f5f3ee; overflow:hidden; }
+        .sp-bar-fill { height:100%; border-radius:5px; }
+        .sp-bar-row .sp-pc { text-align:right; font:600 12px 'Geist',sans-serif; color:#0b1220; font-variant-numeric:tabular-nums; }
+        .sp-bar-row .sp-pc sup { font-size:8px; color:#94a3b8; }
+        .sp-pctl-note { font-size:11px; color:#94a3b8; padding:2px 17px 0; line-height:1.45; }
+        .sp-exp { max-height:0; overflow:hidden; transition:max-height .34s ease; }
+        .sp-exp.sp-open { max-height:520px; }
+        .sp-exp-in { border-top:1px solid #f0ede6; padding:13px 17px 15px; }
+        .sp-disc { display:flex; align-items:center; justify-content:space-between; padding:11px 17px; border-top:1px solid #f0ede6; cursor:pointer; user-select:none; background:none; border-left:0; border-right:0; border-bottom:0; width:100%; text-align:left; font-family:inherit; }
+        .sp-nudge { display:inline-flex; align-items:center; gap:6px; font:600 12px 'Geist',sans-serif; color:#1e3a8a; transition:color .15s; }
+        .sp-disc:hover .sp-nudge { color:#16306f; }
+        .sp-chev { transition:transform .28s; }
+        .sp-disc.sp-open .sp-chev { transform:rotate(180deg); }
+        .sp-hint { font:600 9.5px 'Geist Mono',monospace; letter-spacing:.12em; text-transform:uppercase; color:#94a3b8; }
+        .sp-drow { display:grid; grid-template-columns:11px 1fr auto; align-items:center; gap:10px; padding:8px 0; border-bottom:1px solid #f0ede6; }
+        .sp-drow:last-child { border-bottom:0; }
+        .sp-drow .sp-sw { width:10px; height:10px; border-radius:3px; }
+        .sp-drow .sp-dt { font-size:12.5px; color:#0b1220; font-weight:500; }
+        .sp-drow .sp-ds { font-size:11px; color:#64748b; }
+        .sp-drow .sp-dv { font:600 13px 'Geist',sans-serif; font-variant-numeric:tabular-nums; }
+        .sp-nf-card { padding:15px 17px 16px; }
+        .sp-nf-big { font-family:'Instrument Serif',Georgia,serif; font-size:34px; line-height:1; color:#0b1220; }
+        .sp-nf-seg { display:flex; height:12px; gap:2px; margin:9px 0 10px; }
+        .sp-nf-seg span { height:100%; }
+        .sp-nf-seg span:first-child { border-radius:7px 0 0 7px; }
+        .sp-nf-seg span:last-child { border-radius:0 7px 7px 0; }
+        .sp-nf-item { display:grid; grid-template-columns:11px 1fr auto; align-items:center; gap:9px; padding:6px 9px; border-radius:9px; }
+        .sp-nf-item .sp-dot { width:10px; height:10px; border-radius:3px; }
+        .sp-nf-item .sp-nm { font-size:12.5px; color:#1f2937; }
+        .sp-nf-item .sp-ct { font:600 12.5px 'Geist',sans-serif; color:#0b1220; font-variant-numeric:tabular-nums; }
+        .sp-nf-insight { margin-top:10px; font-size:11.5px; color:#64748b; line-height:1.45; padding:10px 0 0; border-top:1px solid #f0ede6; }
+        .sp-nf-insight b { color:#b8612a; font-weight:600; }
+        .sp-nf-caption { display:flex; align-items:flex-start; gap:7px; margin-top:10px; padding-top:10px; border-top:1px solid #f0ede6; font-size:11.5px; color:#94a3b8; line-height:1.45; }
+        .sp-nf-caption b { color:#64748b; font-weight:600; }
+
+        /* Gap by period dropdown */
+        .gbp-head { font:600 10.5px/1 'Geist Mono',monospace; letter-spacing:.15em; text-transform:uppercase; color:#64748b; margin-bottom:6px; }
+        .gbp-row { display:grid; grid-template-columns:1fr auto 44px; align-items:baseline; column-gap:12px; padding:7px 0; border-bottom:1px solid #f0ede6; }
+        .gbp-row:last-child { border-bottom:0; }
+        .gbp-period { font-size:12px; color:#1f2937; white-space:nowrap; }
+        .gbp-value { font:600 13px 'Geist',sans-serif; color:#0b1220; font-variant-numeric:tabular-nums; text-align:right; }
+        .gbp-delta { font:600 11px 'Geist Mono',monospace; font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+        .gbp-delta.is-down { color:#b8612a; }
+        .gbp-delta.is-up { color:#15803d; }
+        .gbp-delta.is-flat { color:#94a3b8; }
 
     </style>
 </head>
@@ -2883,7 +2941,6 @@
             <option value="other">% Other Race</option>
             <option value="usda_desert">USDA Food Desert</option>
             <option value="predicted_desert">Predicted Food Desert</option>
-            <option value="gap_score">Gap Score (Diet vs. Environment)</option>
         </select>
         <span class="ctrl-label">Period</span>
         <div style="position:relative;display:inline-block;">
@@ -2905,7 +2962,7 @@
                 <div id="timeRangeTicks" style="display:flex;justify-content:space-between;margin:0 8px;"></div>
                 <div style="margin-top:14px;padding-top:10px;border-top:1px solid #f0ede6;display:flex;align-items:center;justify-content:space-between;">
                     <span style="font:500 11px 'Geist Mono',monospace;color:#94a3b8;" id="timeRangeLabel">All periods selected</span>
-                    <button onclick="toggleTimeRangePicker()" style="border:0;background:#1e3a8a;color:#fff;font:600 12px 'Geist',sans-serif;padding:6px 14px;border-radius:8px;cursor:pointer;">Apply</button>
+                    <button onclick="applyTimeRange();toggleTimeRangePicker()" style="border:0;background:#1e3a8a;color:#fff;font:600 12px 'Geist',sans-serif;padding:6px 14px;border-radius:8px;cursor:pointer;">Apply</button>
                 </div>
             </div>
         </div>
@@ -3140,7 +3197,10 @@
                         </div>
                     </header>
                     <div class="trends-card-body">
-                        <svg id="trends-line-svg" viewBox="0 0 760 360" preserveAspectRatio="none" aria-label="Line chart of food trends"></svg>
+                        <div style="position:relative;overflow:visible;">
+                            <svg id="trends-line-svg" viewBox="0 0 760 360" preserveAspectRatio="none" aria-label="Line chart of food trends"></svg>
+                            <div id="trendsTip" style="display:none;position:fixed;pointer-events:none;z-index:9999;background:#0b1220;color:#fff;border-radius:8px;padding:6px 10px;font:600 12px 'Geist',sans-serif;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.2);"></div>
+                        </div>
                         <div class="trends-x-axis" id="trends-line-x"></div>
                     </div>
                     <footer class="trends-card-foot">
@@ -3168,24 +3228,26 @@
             </div>
 
             <!-- Empty state (shown when no sites selected) -->
-            <div class="trends-empty" id="trendsEmpty" style="display:none;">
-                <div class="trends-empty-pick">
-                    <div class="trends-empty-kicker">Start here</div>
-                    <h3 class="trends-empty-h">Choose a site</h3>
-                    <p class="trends-empty-p">Popular sites in Durham County:</p>
-                    <div class="trends-qp" id="trendsQuickPick"></div>
-                </div>
-                <div class="trends-empty-preview" aria-hidden="true">
-                    <svg viewBox="0 0 760 280" preserveAspectRatio="xMidYMid meet" style="display:block;">
-                        <line x1="50" x2="630" y1="240" y2="240" stroke="#efece4" stroke-width="1"/>
-                        <line x1="50" x2="630" y1="180" y2="180" stroke="#efece4" stroke-width="1"/>
-                        <line x1="50" x2="630" y1="120" y2="120" stroke="#efece4" stroke-width="1"/>
-                        <line x1="50" x2="630" y1="60" y2="60" stroke="#efece4" stroke-width="1"/>
-                        <line x1="50" y1="45" x2="630" y2="45" stroke="#b8af9c" stroke-width="1.4" stroke-dasharray="5 4"/>
-                        <path d="M120 200 L300 80 L500 140" stroke="#1e3a8a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-                        <circle cx="120" cy="200" r="5.5" fill="#fff" stroke="#1e3a8a" stroke-width="2.4"/>
-                        <circle cx="500" cy="140" r="6" fill="#1e3a8a"/>
-                    </svg>
+            <div id="trendsEmpty" style="display:none;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+                    <!-- Choose a site -->
+                    <div class="trends-empty" style="grid-template-columns:1fr;">
+                        <div class="trends-empty-pick">
+                            <div class="trends-empty-kicker">Step 1</div>
+                            <h3 class="trends-empty-h">Choose a site</h3>
+                            <p class="trends-empty-p">Popular sites in Durham County:</p>
+                            <div class="trends-qp" id="trendsQuickPick"></div>
+                        </div>
+                    </div>
+                    <!-- Choose a food -->
+                    <div class="trends-empty" style="grid-template-columns:1fr;">
+                        <div class="trends-empty-pick">
+                            <div class="trends-empty-kicker">Step 2</div>
+                            <h3 class="trends-empty-h">Choose a food</h3>
+                            <p class="trends-empty-p">Most detected species:</p>
+                            <div class="trends-qp" id="trendsQuickFood"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -3299,7 +3361,6 @@
                         </div>
                     </div>
 
-                    <div id="ffGapContent" style="display:none;"></div>
                 </div>
             </div>
         </div>
@@ -3328,7 +3389,7 @@
             </div>
             <div class="tp-sites-list" id="tpSitesList"></div>
         </section>
-        <div style="flex:1;overflow-y:auto;min-height:0;">
+        <div style="flex:1;overflow-y:auto;min-height:0;" id="tpScrollWrap">
             <div class="tp-flagged" id="tpFlagged" style="display:none;"></div>
             <div class="tp-body" id="tpBody"></div>
         </div>
@@ -3446,7 +3507,6 @@
         let foodDesertLayer = null;
 
         // Gap Score variables
-        let gapScoreLayer = null;
         let gapScoreComputed = false;
         let gapScoreData = {}; // keyed by saId: { name, envRaw, consRaw, envPct, consPct, gap }
 
@@ -5447,7 +5507,10 @@
 
                 let hasData = false;
                 if (currentTimeIndex === 'all') {
-                    hasData = foodseqData.dates.some(date => {
+                    const datesToCheck = currentTimeRangeFilter
+                        ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
+                        : foodseqData.dates;
+                    hasData = datesToCheck.some(date => {
                         const td = plant.timeseries[date];
                         if (!td) return false;
                         const pv = Object.values(td.plants || {});
@@ -6124,23 +6187,12 @@
 
             if (matched) {
                 openTractDetailPanel(matched);
+                // Show landing popups for this location after the panel opens
+                setTimeout(() => showLandingPanels(lat, lon), 800);
             } else {
-                // Not in any service area — find nearest one
-                let minDist = Infinity, nearest = null;
-                durhamTractsGeoJSON.features.forEach(feat => {
-                    const coords = feat.geometry.type === 'Polygon' ? feat.geometry.coordinates[0] : feat.geometry.coordinates[0][0];
-                    const c = calculatePolygonCentroid(coords);
-                    const d = haversineDistance(lat, lon, c.lat, c.lon);
-                    if (d < minDist) { minDist = d; nearest = feat; }
-                });
-                if (nearest) {
-                    openTractDetailPanel(nearest);
-                    findMeMarker.bindTooltip(`You are here (nearest: SA ${nearest.properties.Sample_ID})`, { permanent: false, direction: 'top', offset: [0, -36] });
-                }
+                // Not in any service area — show friendly no-data panel
+                showNoDataPanel();
             }
-
-            // Show landing popups for this location after the panel opens
-            setTimeout(() => showLandingPanels(lat, lon), 800);
         }
 
         // Close find-me suggestions on blur
@@ -6997,32 +7049,10 @@
         }
 
         function renderFlaggedStrip(tractNum) {
+            // Flagged trends are now rendered inline in the report card
+            // Hide the standalone strip
             const strip = document.getElementById('tpFlagged');
-            const dates = foodseqData.dates.sort();
-
-            if (currentTimeIndex !== 'all' && dates.length < 2) {
-                strip.style.display = '';
-                strip.innerHTML = '<div class="tp-flagged-empty">Not enough data yet to flag standouts. Check back next month.</div>';
-                return;
-            }
-
-            const flagged = getFlaggedTrends(tractNum);
-
-            if (flagged.length === 0) {
-                strip.style.display = '';
-                strip.innerHTML = '<div class="tp-flagged-empty">No standout changes detected this period.</div>';
-                return;
-            }
-
-            strip.style.display = '';
-            strip.innerHTML = flagged.map(f => {
-                const isNew = f.isNew;
-                const changeText = isNew ? `${f.arrow} New` : `${f.arrow} ${f.caption}`;
-                return `<div class="tp-flagged-item ${f.variant}" onclick="navigateToTrends('${tractNum}','${f.foodId}','${f.focusMonth}')" role="button" tabindex="0" aria-label="Open ${f.foodLabel} trend in ${f.focusMonth}">
-                    <span><b>${f.foodLabel}</b> ${changeText}</span>
-                    <span class="flag-arrow">\u2192</span>
-                </div>`;
-            }).join('');
+            strip.style.display = 'none';
         }
 
         // Build sparkline SVG for a food's history at a tract
@@ -7196,34 +7226,92 @@
         const SITE_COLORS = ['#1e3a8a', '#b8612a', '#059669', '#7c3aed', '#dc2626'];
         let trendsSelectedSites = []; // [{pid, name, color}]
 
+        let trendsQuickSite = null; // selected site pid from quick pick
+        let trendsQuickFood = null; // selected food {id, name} from quick pick
+
         function populateTrendsQuickPick() {
-            const container = document.getElementById('trendsQuickPick');
-            if (!container || !durhamTractsGeoJSON) return;
+            const siteContainer = document.getElementById('trendsQuickPick');
+            const foodContainer = document.getElementById('trendsQuickFood');
+            if (!siteContainer || !foodContainer || !durhamTractsGeoJSON) return;
 
-            // Find tracts with the most data (most sampling sites with data)
+            // Sites: find tracts with most data
             const tractData = [];
-            if (durhamTractsGeoJSON) {
-                durhamTractsGeoJSON.features.forEach(f => {
-                    const saId = String(f.properties.Sample_ID);
-                    if (!tractsWithData.has(saId)) return;
-                    const plants = getPlantsInTract(saId);
-                    const hood = TRACT_NEIGHBORHOODS[saId] || 'Durham';
-                    const nDates = plants.reduce((max, p) => Math.max(max, Object.keys(p.timeseries).length), 0);
-                    tractData.push({ saId, hood, nSites: plants.length, nDates });
-                });
-            }
-            // Sort by most data, take top 4
+            durhamTractsGeoJSON.features.forEach(f => {
+                const saId = String(f.properties.Sample_ID);
+                if (!tractsWithData.has(saId)) return;
+                const plants = getPlantsInTract(saId);
+                const hood = TRACT_NEIGHBORHOODS[saId] || 'Durham';
+                const nDates = plants.reduce((max, p) => Math.max(max, Object.keys(p.timeseries).length), 0);
+                tractData.push({ saId, hood, nSites: plants.length, nDates });
+            });
             tractData.sort((a, b) => b.nDates - a.nDates || b.nSites - a.nSites);
-            const top = tractData.slice(0, 4);
+            const topSites = tractData.slice(0, 4);
 
-            container.innerHTML = top.map(t => {
+            siteContainer.innerHTML = topSites.map(t => {
                 const pid = 'tract_' + t.saId;
-                return `<button class="trends-qp-row" onclick="addTrendsSite('${pid}');renderTrendsCharts();">
+                const sel = trendsQuickSite === pid;
+                return `<button class="trends-qp-row" style="${sel ? 'border-color:#1e3a8a;background:#eef2fb;' : ''}" onclick="selectQuickSite('${pid}')">
                     <span class="trends-qp-dot" style="background:#1e3a8a;"></span>
                     <span class="trends-qp-name">SA ${t.saId}<span class="trends-qp-sub">${t.hood} · ${t.nSites} site${t.nSites !== 1 ? 's' : ''}</span></span>
-                    <span class="trends-qp-arrow"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>
+                    ${sel ? '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.5 3.5L13 4"/></svg>' : '<span class="trends-qp-arrow"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>'}
                 </button>`;
             }).join('');
+
+            // Foods: find species with most total abundance
+            const foodTotals = {};
+            const seenNames = new Set();
+            Object.entries(foodseqData.species_metadata).forEach(([key, meta]) => {
+                const name = meta.common_name || key;
+                if (name.length >= 50 || name.length < 2) return;
+                if (/^[ATCGatcg]+$/.test(key) || key.startsWith('NA_')) return;
+                const nameLower = name.toLowerCase();
+                if (seenNames.has(nameLower)) return;
+                seenNames.add(nameLower);
+                let total = 0;
+                Object.values(foodseqData.plants).forEach(p => {
+                    Object.values(p.timeseries).forEach(td => {
+                        total += (td.plants && td.plants[key]) || (td.animals && td.animals[key]) || 0;
+                    });
+                });
+                if (total > 0) foodTotals[key] = { name, total, type: meta.type };
+            });
+            const topFoods = Object.entries(foodTotals)
+                .filter(([key]) => key !== 'Turkey')
+                .sort((a, b) => b[1].total - a[1].total)
+                .slice(0, 4);
+
+            foodContainer.innerHTML = topFoods.map(([key, info]) => {
+                const sel = trendsQuickFood && trendsQuickFood.id === key;
+                const typeLabel = info.type === 'animal' ? 'animal · 12S' : 'plant · trnL';
+                return `<button class="trends-qp-row" style="${sel ? 'border-color:#1e3a8a;background:#eef2fb;' : ''}" onclick="selectQuickFood('${key}','${info.name.replace(/'/g, "\\'")}')">
+                    <span class="trends-qp-dot" style="background:${info.type === 'animal' ? '#c8612e' : '#5b6cf0'};"></span>
+                    <span class="trends-qp-name">${info.name}<span class="trends-qp-sub">${typeLabel}</span></span>
+                    ${sel ? '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.5 3.5L13 4"/></svg>' : '<span class="trends-qp-arrow"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>'}
+                </button>`;
+            }).join('');
+        }
+
+        function selectQuickSite(pid) {
+            trendsQuickSite = pid;
+            populateTrendsQuickPick();
+            tryLaunchTrends();
+        }
+
+        function selectQuickFood(id, name) {
+            trendsQuickFood = { id, name };
+            populateTrendsQuickPick();
+            tryLaunchTrends();
+        }
+
+        function tryLaunchTrends() {
+            if (!trendsQuickSite || !trendsQuickFood) return;
+            // Both selected — add them and render
+            addTrendsSite(trendsQuickSite);
+            trendsSelectedFoods = [];
+            addTrendsSpecies(trendsQuickFood.id, trendsQuickFood.name);
+            trendsQuickSite = null;
+            trendsQuickFood = null;
+            renderTrendsCharts();
         }
 
         function initTrendsView() {
@@ -7639,6 +7727,18 @@
             return names[mo.m-1] + (includeYear ? " '" + String(mo.y).slice(2) : '');
         }
 
+        function showTrendsTip(event, el) {
+            const tip = document.getElementById('trendsTip');
+            tip.textContent = el.getAttribute('data-tip');
+            tip.style.left = (event.clientX + 12) + 'px';
+            tip.style.top = (event.clientY - 30) + 'px';
+            tip.style.display = '';
+        }
+
+        function hideTrendsTip() {
+            document.getElementById('trendsTip').style.display = 'none';
+        }
+
         function renderTrendsLine() {
             const svgEl = document.getElementById('trends-line-svg');
             const xAxisEl = document.getElementById('trends-line-x');
@@ -7774,26 +7874,11 @@
                 const valid = s.data.map((v, i) => v !== null ? { x: xAt(i), y: yAt(v), v, i } : null).filter(Boolean);
                 if (valid.length === 0) return;
 
-                // First point
-                const first = valid[0];
-                out += `<circle cx="${first.x}" cy="${first.y}" r="10" fill="${s.color}" opacity=".12"/>`;
-                out += `<circle cx="${first.x}" cy="${first.y}" r="5" fill="#fff" stroke="${s.color}" stroke-width="2"/>`;
-                if (singleSeries && !isMultiSpecies) {
-                    out += `<text x="${first.x}" y="${first.y + 22}" text-anchor="middle" font-size="10" fill="#64748b" font-family="Geist Mono, monospace">${first.v.toFixed(1)} \u00b7 ${trendsMonthLabel(months[first.i], true)}</text>`;
-                }
-
-                // Last point (annotated)
-                const last = valid[valid.length - 1];
-                if (last !== first) {
-                    out += `<circle cx="${last.x}" cy="${last.y}" r="10" fill="${s.color}" opacity=".12"/>`;
-                    out += `<circle cx="${last.x}" cy="${last.y}" r="5" fill="#fff" stroke="${s.color}" stroke-width="2"/>`;
-                    if (singleSeries && !isMultiSpecies) {
-                        // Leader line + annotation
-                        out += `<line x1="${last.x}" y1="${last.y - 8}" x2="${last.x}" y2="${last.y - 30}" stroke="${s.color}" stroke-width="1" stroke-dasharray="2 2"/>`;
-                        out += `<text x="${last.x}" y="${last.y - 36}" text-anchor="middle" font-size="11" font-weight="600" fill="#0b1220" font-family="Geist, sans-serif">${Math.round(last.v)} detections</text>`;
-                        out += `<text x="${last.x}" y="${last.y - 22}" text-anchor="middle" font-size="9.5" fill="#64748b" font-family="Geist Mono, monospace">${trendsMonthLabel(months[last.i], true)}</text>`;
-                    }
-                }
+                // All data points as same-size circles with hover
+                valid.forEach((pt, j) => {
+                    const label = `${Math.round(pt.v)} det/mo · ${trendsMonthLabel(months[pt.i], true)}`;
+                    out += `<circle cx="${pt.x}" cy="${pt.y}" r="4.5" fill="#fff" stroke="${s.color}" stroke-width="2" style="cursor:pointer;" data-tip="${label}" onmouseenter="showTrendsTip(event,this)" onmouseleave="hideTrendsTip()"/>`;
+                });
 
                 // Multi-species end labels: "{Name} · {value}" positioned 12px right of last point
                 if (isMultiSpecies) {
@@ -7816,8 +7901,7 @@
                 const xPx = padL + (i / Math.max(1, N - 1)) * innerW;
                 const span = document.createElement('span');
                 span.style.left = `${(xPx / W) * 100}%`;
-                const includeYear = mo.m === 1 || i === 0 || i === N - 1;
-                span.textContent = trendsMonthLabel(mo, includeYear);
+                span.textContent = trendsMonthLabel(mo, true);
                 xAxisEl.appendChild(span);
             });
 
@@ -8209,82 +8293,21 @@
                 else eyebrowParts.push(siteLabel);
                 document.getElementById('trendsHeroEyebrow').textContent = eyebrowParts.join(' \u00b7 ');
 
-                // Classify each series as rising / flat / falling
-                let risingCount = 0, fallingCount = 0, flatCount = 0;
-                let leadName = '', leadRatio = 0;
-                series.forEach(sr => {
-                    const nn = sr.data.filter(v => v !== null);
-                    if (nn.length < 2) { flatCount++; return; }
-                    const fv = nn[0], lv = nn[nn.length - 1];
-                    if (fv > 0) {
-                        const ratio = lv / fv;
-                        if (ratio > 1.1) {
-                            risingCount++;
-                            if (ratio > leadRatio) { leadRatio = ratio; leadName = sr.label.split(' \u00b7 ')[0]; }
-                        } else if (ratio < 0.9) {
-                            fallingCount++;
-                        } else {
-                            flatCount++;
-                        }
-                    } else if (lv > 0) {
-                        risingCount++;
-                    } else {
-                        flatCount++;
-                    }
-                });
-
-                const nSeries = series.length;
-                const numWord = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten'][nSeries] || nSeries;
-                const whatLabel = nFoods >= 2 && nSites >= 2 ? 'series'
-                    : nFoods >= 2 ? 'species' : 'sites';
-                const whereLabel = nSites >= 2 && nFoods < 2 ? speciesLabel
-                    : nFoods >= 2 && nSites < 2 ? siteLabel
-                    : '';
-                const atWhere = whereLabel ? ` at ${whereLabel}` : '';
-
-                if (risingCount === nSeries) {
-                    headlineEl.innerHTML = `All <em>${numWord.toLowerCase()}</em> are climbing \u2014 ${leadName} by the largest factor.`;
-                } else if (risingCount === 0) {
-                    headlineEl.innerHTML = `None of the selected ${whatLabel} are climbing meaningfully.`;
-                } else {
-                    const risingWord = risingCount === 1 ? 'one is' : risingCount + ' are';
-                    headlineEl.innerHTML = `<em>${numWord}</em> ${whatLabel}${atWhere} \u2014 only <em>${risingWord}</em> climbing fast.`;
-                }
-
-                // Subtitle: plain-language summary
-                let subtitleParts = [];
-                if (leadName && leadRatio > 1) subtitleParts.push(`${leadName} jumped ${Math.round(leadRatio)}\u00d7`);
-                if (flatCount > 0) subtitleParts.push(`${flatCount} held roughly steady`);
-                const otherRising = leadName ? risingCount - 1 : risingCount;
-                if (otherRising > 0) subtitleParts.push(`${otherRising} other${otherRising > 1 ? 's' : ''} rose more modestly`);
-                if (fallingCount > 0) subtitleParts.push(`${fallingCount} declined`);
+                headlineEl.innerHTML = `Comparing <em>${series.length}</em> series over time.`;
                 const sampleCount0 = nonNull.length;
-                const subtxt = subtitleParts.join('; ') + `. Sparse data \u2014 ${sampleCount0} monthly samples per series \u2014 so changes are directional, not precise.`;
-                document.getElementById('trendsHeroSub').innerHTML = subtxt;
+                document.getElementById('trendsHeroSub').innerHTML = `Detection trends across the selected species and sites. ${sampleCount0} data points per series.`;
 
                 // Render comparison table
                 renderComparisonTable(months, series);
 
             } else {
-                // Single-species mode (original behavior)
+                // Single-species mode
                 document.getElementById('trendsHeroEyebrow').textContent = speciesLabel + ' \u00b7 ' + siteLabel;
 
-                if (firstVal > 0 && lastVal > 0) {
-                    const ratio = lastVal / firstVal;
-                    if (ratio >= 1) {
-                        headlineEl.innerHTML = `Detections climbed nearly <em>${Math.round(ratio)}\u00d7</em> between sampling windows.`;
-                    } else {
-                        const pct = Math.round(ratio * 100);
-                        headlineEl.innerHTML = `Detections fell to <em>${pct}%</em> of the early reading.`;
-                    }
-                } else if (firstVal === 0 && lastVal > 0) {
-                    headlineEl.innerHTML = `Detections emerged from <em>zero</em> to <em>${Math.round(lastVal)}</em> between sampling windows.`;
-                } else {
-                    headlineEl.innerHTML = `Detection data available for this window.`;
-                }
+                headlineEl.innerHTML = `Detection trend for <em>${speciesLabel}</em>.`;
 
                 const sampleCount = nonNull.length;
-                document.getElementById('trendsHeroSub').innerHTML = `<b>${sampleCount} monthly sample${sampleCount !== 1 ? 's' : ''}</b> have been collected at this site so far. <b>More samples will sharpen this picture.</b>`;
+                document.getElementById('trendsHeroSub').innerHTML = `Tracking how this species is detected over time at ${siteLabel}. ${sampleCount} monthly sample${sampleCount !== 1 ? 's' : ''} collected so far.`;
 
                 // KPI: Latest
                 document.getElementById('trendsKpiLatest').innerHTML = `${Math.round(lastVal)}<span class="unit">detections / mo</span>`;
@@ -8580,7 +8603,7 @@
             const compAreaLabel = isWWTP ? 'NC sites' : 'Durham neighborhoods';
             if (comparisonPool.length > 1) {
                 const categories = [
-                    { label: 'Seafood', match: ['tilapia','shrimp','salmon','tuna','catfish','trout','crab','lobster','cod','pangasius','squid','clam','mussel','oyster','scallop'], tone: 'navy' },
+                    { label: 'Seafood', match: ['tilapia','shrimp','salmon','tuna','catfish','trout','crab','lobster','cod','pangasius','squid','clam','mussel','oyster','scallop'], tone: 'green' },
                     { label: 'Leafy greens', match: ['lettuce','spinach','kale','cabbage','arugula','collard','chard','romaine'], tone: 'green' },
                 ];
 
@@ -8601,11 +8624,14 @@
                     if (sp in speciesCatMap) siteTotals[speciesCatMap[sp]] += v;
                 });
 
-                // Comparison pool totals per category
+                // Comparison pool totals per category (respects current time period)
+                const compDates = currentTimeIndex === 'all'
+                    ? foodseqData.dates
+                    : [foodseqData.dates[currentTimeIndex]].filter(Boolean);
                 const allSiteTotals = categories.map(() => []);
                 comparisonPool.forEach(p => {
                     const catSums = categories.map(() => 0);
-                    foodseqData.dates.forEach(date => {
+                    compDates.forEach(date => {
                         const td = p.timeseries[date];
                         if (!td) return;
                         const all = Object.entries(td.plants || {}).concat(Object.entries(td.animals || {}));
@@ -8613,7 +8639,7 @@
                             if (v > 0 && sp in speciesCatMap) catSums[speciesCatMap[sp]] += v;
                         });
                     });
-                    const nDates = foodseqData.dates.filter(d => p.timeseries[d]).length || 1;
+                    const nDates = compDates.filter(d => p.timeseries[d]).length || 1;
                     catSums.forEach((s, ci) => allSiteTotals[ci].push(s / nDates));
                 });
 
@@ -8689,6 +8715,42 @@
             </svg>`;
         }
 
+        function renderDemoDonut(races, props) {
+            // Updated colors to match reference design
+            const colorMap = { White: '#a9b4ec', Black: '#5b63d6', Asian: '#edc24e', Other: '#5ec98f', 'Two+': '#e79ac4' };
+            const segments = races.filter(rc => props[rc.key] != null && props[rc.key] > 0)
+                .map(rc => ({ label: rc.label, pct: props[rc.key], color: colorMap[rc.label] || rc.color }))
+                .sort((a, b) => b.pct - a.pct);
+
+            let html = `<hr style="height:1px;background:#e7e4dc;margin:18px 0;border:0;">`;
+            html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;">
+                <span style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#1f2937;">Race &amp; ethnicity</span>
+                <span style="font:500 10px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;">ACS 5-yr</span>
+            </div>`;
+
+            // Segmented bar
+            html += `<div style="display:flex;height:16px;gap:2px;">`;
+            segments.forEach((seg, i) => {
+                const rLeft = i === 0 ? '8px 0 0 8px' : '0';
+                const rRight = i === segments.length - 1 ? '0 8px 8px 0' : '0';
+                const radius = i === 0 && i === segments.length - 1 ? '8px' : (i === 0 ? '8px 0 0 8px' : (i === segments.length - 1 ? '0 8px 8px 0' : '0'));
+                html += `<span style="width:${seg.pct}%;background:${seg.color};border-radius:${radius};" title="${seg.label} ${seg.pct.toFixed(1)}%"></span>`;
+            });
+            html += `</div>`;
+
+            // Legend grid
+            html += `<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:11px 18px;">`;
+            segments.forEach(seg => {
+                html += `<div style="display:flex;align-items:center;gap:8px;">
+                    <span style="width:10px;height:10px;border-radius:3px;background:${seg.color};flex:0 0 auto;"></span>
+                    <span style="font-size:12.5px;color:#1f2937;">${seg.label}</span>
+                    <span style="margin-left:auto;font:600 12.5px 'Geist',sans-serif;color:#0b1220;font-variant-numeric:tabular-nums;">${seg.pct.toFixed(1)}%</span>
+                </div>`;
+            });
+            html += `</div>`;
+            return html;
+        }
+
         function renderReportCard(body, plants, areaName, demoProps, tractNum) {
             const d = computeReportCardData(plants, areaName);
             const navId = String(tractNum || (plants.length === 1 ? plants[0].name : areaName));
@@ -8760,6 +8822,24 @@
                 html += `</div>`;
             }
 
+            // Notable trends (flagged changes) — rendered inline
+            const rcTractNum = tractNum || (plants.length === 1 && plants[0].census_tract ? plants[0].census_tract : null);
+            if (rcTractNum) {
+                const flagged = getFlaggedTrends(rcTractNum);
+                if (flagged.length > 0) {
+                    html += `<div class="rc-section">
+                        <span class="rc-kicker" style="margin-bottom:9px;display:block;">Notable this month</span>`;
+                    flagged.forEach(f => {
+                        const changeText = f.isNew ? `${f.arrow} New` : `${f.arrow} ${f.caption}`;
+                        html += `<div class="tp-flagged-item ${f.variant}" onclick="navigateToTrends('${rcTractNum}','${f.foodId}','${f.focusMonth}')" role="button" tabindex="0">
+                            <span><b>${f.foodLabel}</b> ${changeText}</span>
+                            <span class="flag-arrow">\u2192</span>
+                        </div>`;
+                    });
+                    html += `</div>`;
+                }
+            }
+
             if (d.allPlants.length > 0) html += renderBars(d.allPlants, 'plant', rcShowAllPlants);
             if (d.allAnimals.length > 0) html += renderBars(d.allAnimals, 'animal', rcShowAllAnimals);
 
@@ -8771,11 +8851,13 @@
                 const acres = demoProps.total_acres ? demoProps.total_acres.toLocaleString() : 'N/A';
 
                 html += `<div class="rc-section" style="margin-bottom:0;">
-                    <span class="rc-kicker" style="margin-bottom:10px;display:block;">Demographics</span>
-                    <div class="tp-stat"><span class="k">Population</span><span class="v">${totalPop}</span></div>
-                    <div class="tp-stat"><span class="k">Households</span><span class="v">${totalHH}</span></div>
-                    <div class="tp-stat"><span class="k">Median HH income</span><span class="v">${income}</span></div>
-                    <div class="tp-stat"><span class="k">Area</span><span class="v">${acres} acres</span></div>`;
+                    <div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#64748b;margin-bottom:4px;">Demographics</div>
+                    <div style="margin-top:12px;">
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #f0ede6;"><span style="font-size:13.5px;color:#64748b;">Population</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${totalPop}</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #f0ede6;"><span style="font-size:13.5px;color:#64748b;">Households</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${totalHH}</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #f0ede6;"><span style="font-size:13.5px;color:#64748b;">Median HH income</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${income}</span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;"><span style="font-size:13.5px;color:#64748b;">Area</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${acres}<span style="font-size:11px;font-weight:500;color:#94a3b8;margin-left:3px;">acres</span></span></div>
+                    </div>`;
 
                 const races = [
                     { key: 'pct_white', label: 'White', color: '#a5b4fc' },
@@ -8786,19 +8868,7 @@
                 ];
                 const hasRace = races.some(r => demoProps[r.key] != null);
                 if (hasRace) {
-                    html += `<div class="tp-demo-bar">`;
-                    races.forEach(r => {
-                        if (demoProps[r.key] != null) {
-                            html += `<span style="width:${demoProps[r.key]}%;background:${r.color};" title="${r.label} ${demoProps[r.key].toFixed(1)}%"></span>`;
-                        }
-                    });
-                    html += `</div><div class="tp-demo-legend">`;
-                    races.forEach(r => {
-                        if (demoProps[r.key] != null) {
-                            html += `<span><i style="background:${r.color}"></i>${r.label} ${demoProps[r.key].toFixed(1)}%</span>`;
-                        }
-                    });
-                    html += `</div>`;
+                    html += renderDemoDonut(races, demoProps);
                 }
                 html += `</div>`;
             } else if (plants.length === 1) {
@@ -9116,19 +9186,7 @@
                 ];
                 const hasRace = races.some(r => props[r.key] != null);
                 if (hasRace) {
-                    html += `<div class="tp-demo-bar">`;
-                    races.forEach(r => {
-                        if (props[r.key] != null) {
-                            html += `<span style="width:${props[r.key]}%;background:${r.color};" title="${r.label} ${props[r.key].toFixed(1)}%"></span>`;
-                        }
-                    });
-                    html += `</div><div class="tp-demo-legend">`;
-                    races.forEach(r => {
-                        if (props[r.key] != null) {
-                            html += `<span><i style="background:${r.color}"></i>${r.label} ${props[r.key].toFixed(1)}%</span>`;
-                        }
-                    });
-                    html += `</div>`;
+                    html += renderDemoDonut(races, props);
                 }
                 html += `</div>`;
                 body.innerHTML = html;
@@ -9373,8 +9431,7 @@
             // Replace panel contents — hide ALL normal tract panel elements
             document.querySelector('.tp-head').style.display = 'none';
             document.getElementById('tpSites').style.display = 'none';
-            document.getElementById('tpFlagged').style.display = 'none';
-            document.getElementById('tpBody').style.display = 'none';
+            document.getElementById('tpScrollWrap').style.display = 'none';
             document.getElementById('tpCtas').style.display = 'none';
 
             // Create or update compare container
@@ -9648,8 +9705,7 @@
 
             // Restore normal tract panel
             document.querySelector('.tp-head').style.display = '';
-            document.getElementById('tpFlagged').style.display = '';
-            document.getElementById('tpBody').style.display = '';
+            document.getElementById('tpScrollWrap').style.display = '';
 
             if (currentTractFeature) {
                 openTractDetailPanel(currentTractFeature);
@@ -10075,7 +10131,6 @@
             draggingThumb = null;
             document.removeEventListener('mousemove', onThumbDrag);
             document.removeEventListener('mouseup', stopThumbDrag);
-            applyTimeRange();
         }
 
         function onTrackMouseDown(e) {
@@ -10109,14 +10164,18 @@
         function applyTimeRange() {
             const isAll = timeRangeStart === 0 && timeRangeEnd === timeRangeN - 1;
             if (isAll) {
+                currentTimeRangeFilter = null;
                 onTimeSelectChange('all');
             } else if (timeRangeStart === timeRangeEnd) {
+                currentTimeRangeFilter = null;
                 onTimeSelectChange(String(timeRangeStart));
             } else {
-                // For range, use 'all' — the data aggregation covers the full range
-                onTimeSelectChange('all');
+                // Range mode — set a filter so visibility/aggregation respects the range
+                currentTimeRangeFilter = { start: timeRangeStart, end: timeRangeEnd };
+                onTimeSelectChange('range');
             }
         }
+        let currentTimeRangeFilter = null; // { start, end } indices into foodseqData.dates
 
         // Close picker on outside click
         document.addEventListener('click', function(e) {
@@ -10132,7 +10191,12 @@
             const plants = {};
             const animals = {};
 
-            foodseqData.dates.forEach(date => {
+            // Respect range filter if set
+            const dates = currentTimeRangeFilter
+                ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
+                : foodseqData.dates;
+
+            dates.forEach(date => {
                 const td = plant.timeseries[date];
                 if (!td) return;
                 if (td.plants) {
@@ -10148,7 +10212,7 @@
             });
 
             // Average by number of periods with data
-            const nDates = foodseqData.dates.filter(d => plant.timeseries[d]).length;
+            const nDates = dates.filter(d => plant.timeseries[d]).length;
             if (nDates > 0) {
                 Object.keys(plants).forEach(k => plants[k] /= nDates);
                 Object.keys(animals).forEach(k => animals[k] /= nDates);
@@ -10158,7 +10222,12 @@
         }
 
         function onTimeSelectChange(value) {
-            currentTimeIndex = value === 'all' ? 'all' : parseInt(value);
+            if (value === 'range') {
+                currentTimeIndex = 'all'; // aggregation uses all, but filtering uses range
+            } else {
+                currentTimeIndex = value === 'all' ? 'all' : parseInt(value);
+                currentTimeRangeFilter = null;
+            }
             updateAllPanels();
             updatePlantMarkerVisibility();
             updateTractStyles();
@@ -10180,7 +10249,11 @@
             }
 
             // Update detail panel if open
-            if (currentDetailPlant) {
+            if (currentTractFeature) {
+                reRenderTractReportCard();
+            } else if (currentSitePlant) {
+                renderReportCard(document.getElementById('tpBody'), [currentSitePlant], currentSitePlant.name, null);
+            } else if (currentDetailPlant) {
                 populateDetailPanel(currentDetailPlant);
             }
         }
@@ -10213,8 +10286,11 @@
 
                 let hasData = false;
                 if (currentTimeIndex === 'all') {
-                    // Show marker if it has data in ANY time period
-                    hasData = foodseqData.dates.some(date => {
+                    // Filter dates to range if set
+                    const datesToCheck = currentTimeRangeFilter
+                        ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
+                        : foodseqData.dates;
+                    hasData = datesToCheck.some(date => {
                         const td = plant.timeseries[date];
                         if (!td) return false;
                         const pv = Object.values(td.plants || {});
@@ -10792,22 +10868,6 @@
             { label: 'Meat & poultry',           poiKeys: ['butcher'],                                      wwGroups: ['meat_poultry'],       side: 'neutral' },
         ];
 
-        function switchFindFoodMode(mode) {
-            const mapBtn = document.getElementById('ffViewMap');
-            const gapBtn = document.getElementById('ffViewGap');
-            mapBtn.setAttribute('aria-pressed', mode === 'map');
-            gapBtn.setAttribute('aria-pressed', mode === 'gap');
-            mapBtn.style.background = mode === 'map' ? '#1e3a8a' : 'transparent';
-            mapBtn.style.color = mode === 'map' ? '#fff' : '#64748b';
-            gapBtn.style.background = mode === 'gap' ? '#1e3a8a' : 'transparent';
-            gapBtn.style.color = mode === 'gap' ? '#fff' : '#64748b';
-            document.getElementById('ffMapContent').style.display = mode === 'map' ? '' : 'none';
-            document.getElementById('ffGapContent').style.display = mode === 'gap' ? '' : 'none';
-            if (mode === 'gap') {
-                gapRenderTarget = 'ffGapContent';
-                renderGapView();
-            }
-        }
 
         function computeGapCategories(saId) {
             if (!gapScoreComputed) computeGapScores();
@@ -10879,326 +10939,7 @@
             return results;
         }
 
-        let gapExpandedArea = null; // saId of area with breakdown expanded
-        let gapRenderTarget = 'ffGapContent'; // which container to render into
 
-        function initGapExplorer() {
-            if (!gapScoreComputed) computeGapScores();
-            gapRenderTarget = 'gapExplorerView';
-            renderGapView();
-        }
-
-        function toggleGapExpand(saId) {
-            gapExpandedArea = (gapExpandedArea === saId) ? null : saId;
-            renderGapView();
-        }
-
-        function renderGapView() {
-            if (!gapScoreComputed) computeGapScores();
-            const container = document.getElementById(gapRenderTarget);
-            const areas = Object.values(gapScoreData).filter(a => a.gap != null).sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap));
-
-            if (areas.length === 0) {
-                container.innerHTML = `<div style="text-align:center;padding:60px 20px;color:#64748b;">
-                    <div style="font-size:15px;font-weight:500;">No gap data available</div>
-                    <div style="font-size:13px;margin-top:6px;">Gap scores require both POI and wastewater data.</div>
-                </div>`;
-                return;
-            }
-
-            let html = '';
-
-            // Header
-            html += `<div style="margin-bottom:20px;">
-                <div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:8px;">The available-vs-eaten gap</div>
-                <h2 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:26px;line-height:1.05;color:#0b1220;margin:0;">
-                    Who eats <em style="font-style:italic;color:#0e9488;">better</em> — or <em style="font-style:italic;color:#d4541f;">worse</em> — than their neighborhood predicts?
-                </h2>
-                <p style="margin:8px 0 0;font-size:13px;color:#64748b;max-width:68ch;">
-                    Each area scored two ways: its <b>food environment</b> (healthy retail vs. fast food &amp; convenience) and what's
-                    <b>actually eaten</b> (diet diversity from wastewater). The gap is the difference.
-                </p>
-            </div>`;
-
-            // Scatter plot
-            html += `<div style="background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:20px;margin-bottom:20px;position:relative;">`;
-            html += renderGapScatter(areas);
-            html += `</div>`;
-
-            // Area cards
-            html += `<div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:10px;">All service areas by gap</div>`;
-            html += `<div style="display:flex;flex-direction:column;gap:10px;">`;
-
-            areas.forEach(a => {
-                const gapColor = a.gap >= 0 ? '#0e9488' : '#d4541f';
-                const gapStr = a.gap >= 0 ? '+' + a.gap : String(a.gap);
-                const expanded = gapExpandedArea === a.saId;
-
-                // Card
-                html += `<div style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;">`;
-
-                // Card header
-                html += `<div style="padding:12px 15px 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
-                    <div>
-                        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1;color:#0b1220;">${a.name}</div>
-                        <div style="font-size:11.5px;color:#64748b;margin-top:4px;font-variant-numeric:tabular-nums;">SA ${a.saId}</div>
-                    </div>
-                </div>`;
-
-                // Score bars
-                html += `<div style="display:flex;gap:16px;padding:2px 15px 12px;">
-                    <div style="flex:1;">
-                        <div style="font:600 9.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:4px;">Food environment</div>
-                        <div style="display:flex;align-items:baseline;gap:3px;">
-                            <span style="font-family:'Instrument Serif',serif;font-size:34px;line-height:.9;color:#0b1220;">${a.envPct}</span>
-                            <span style="font:400 10px 'Geist Mono',monospace;color:#64748b;">/100</span>
-                        </div>
-                        <div style="height:6px;background:#f5f3ee;border-radius:4px;overflow:hidden;margin:7px 0 4px;">
-                            <div style="width:${a.envPct}%;height:100%;background:#64748b;border-radius:4px;"></div>
-                        </div>
-                        <div style="font-size:10.5px;color:#64748b;">healthy retail ratio</div>
-                    </div>
-                    <div style="width:1px;background:#e5e7eb;align-self:stretch;"></div>
-                    <div style="flex:1;">
-                        <div style="font:600 9.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:4px;">What's eaten</div>
-                        <div style="display:flex;align-items:baseline;gap:3px;">
-                            <span style="font-family:'Instrument Serif',serif;font-size:34px;line-height:.9;color:#0b1220;">${a.consPct}</span>
-                            <span style="font:400 10px 'Geist Mono',monospace;color:#64748b;">/100</span>
-                        </div>
-                        <div style="height:6px;background:#e9edf8;border-radius:4px;overflow:hidden;margin:7px 0 4px;">
-                            <div style="width:${a.consPct}%;height:100%;background:#1e3a8a;border-radius:4px;"></div>
-                        </div>
-                        <div style="font-size:10.5px;color:#64748b;">diet diversity (wastewater)</div>
-                    </div>
-                </div>`;
-
-                // Gap verdict bar
-                const tint = a.gap >= 0 ? 'rgba(14,148,136,.08)' : 'rgba(212,84,31,.08)';
-                const bd = a.gap >= 0 ? 'rgba(14,148,136,.25)' : 'rgba(212,84,31,.25)';
-                html += `<div style="background:${tint};border-top:1px solid ${bd};padding:10px 15px;display:flex;align-items:center;gap:12px;">
-                    <div style="font-family:'Instrument Serif',serif;font-size:24px;color:${gapColor};line-height:1;min-width:48px;text-align:center;">${gapStr}</div>
-                    <div style="font-size:12.5px;color:#0b1220;line-height:1.35;font-weight:500;">${gapVerdict(a.gap)}</div>
-                </div>`;
-
-                // Expand/collapse button
-                html += `<button onclick="toggleGapExpand('${a.saId}')" style="display:flex;align-items:center;justify-content:center;gap:6px;width:100%;border:0;border-top:1px solid #e5e7eb;background:${expanded ? '#f5f3ee' : '#fff'};color:#1e3a8a;font-family:inherit;font-weight:600;font-size:12.5px;padding:10px 0;cursor:pointer;">
-                    ${expanded ? 'Hide breakdown' : 'See category breakdown'}
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${expanded ? 'M4 10l4-4 4 4' : 'M4 6l4 4 4-4'}"/></svg>
-                </button>`;
-
-                // Expanded breakdown
-                if (expanded) {
-                    const cats = computeGapCategories(a.saId);
-                    if (cats) {
-                        html += `<div style="border-top:1px solid #e5e7eb;padding:16px;">`;
-
-                        // Slope chart + mismatches side by side
-                        html += `<div style="display:grid;grid-template-columns:1.15fr .85fr;gap:16px;">`;
-
-                        // Slope chart
-                        html += `<div style="border-right:1px solid #e5e7eb;padding-right:16px;">`;
-                        html += renderSlopeChart(cats);
-                        html += `</div>`;
-
-                        // Mismatches
-                        html += `<div>`;
-                        html += `<div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#64748b;margin-bottom:8px;">Biggest mismatches</div>`;
-                        cats.forEach(c => {
-                            const col = (c.gap||0) > 0 ? '#0e9488' : '#d4541f';
-                            const gs = c.gap != null ? ((c.gap >= 0 ? '+' : '') + c.gap) : '—';
-                            const desc = c.hasPOI && c.hasWW ? `${c.poiPct}% of stores → ${c.wwPct}% of diet`
-                                : c.hasPOI ? `${c.poiPct}% of nearby stores` : `${c.wwPct}% of diet`;
-                            html += `<div style="display:grid;grid-template-columns:12px 1fr auto;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f1f5f9;">
-                                <span style="width:9px;height:9px;border-radius:3px;background:${col};"></span>
-                                <div>
-                                    <div style="font-size:13px;font-weight:500;color:#0b1220;">${c.label}</div>
-                                    <div style="font-size:11px;color:#64748b;font-variant-numeric:tabular-nums;">${desc}</div>
-                                </div>
-                                <span style="font-size:15px;font-weight:600;color:${col};font-variant-numeric:tabular-nums;">${gs}</span>
-                            </div>`;
-                        });
-
-                        // Insight callout
-                        const topPos = cats.find(c => c.gap > 5 && c.side === 'healthy');
-                        const topNeg = cats.find(c => c.gap < -5);
-                        if (topPos) {
-                            html += `<div style="margin-top:12px;padding:10px 12px;background:rgba(14,148,136,.08);border:1px solid rgba(14,148,136,.2);border-radius:10px;font-size:12.5px;color:#1f2937;line-height:1.5;">
-                                <b>${topPos.label}</b> shows the widest gap — eaten far more than its shelf space predicts.
-                            </div>`;
-                        } else if (topNeg) {
-                            html += `<div style="margin-top:12px;padding:10px 12px;background:rgba(212,84,31,.08);border:1px solid rgba(212,84,31,.2);border-radius:10px;font-size:12.5px;color:#1f2937;line-height:1.5;">
-                                <b>${topNeg.label}</b> shows the widest gap — far more available than what people actually eat.
-                            </div>`;
-                        }
-                        html += `</div>`; // mismatches
-                        html += `</div>`; // grid
-                        html += `</div>`; // expanded container
-                    }
-                }
-
-                html += `</div>`; // card
-            });
-
-            html += `</div>`; // cards container
-
-            // Disclaimer
-            html += `<div style="font-size:11px;color:#94a3b8;font-style:italic;margin-top:16px;padding-top:10px;border-top:1px solid #e5e7eb;line-height:1.5;">
-                Retail mix from POI data · diet from wastewater · correlation, not causation · percentile ranking (E1×C1)
-            </div>`;
-
-            container.innerHTML = html;
-        }
-
-        function renderGapScatter(areas) {
-            const W = 560, H = 400, ml = 52, mr = 20, mt = 20, mb = 42;
-            const pw = W - ml - mr, ph = H - mt - mb;
-            const sx = v => ml + (v / 100) * pw;
-            const sy = v => mt + (1 - v / 100) * ph;
-            const ticks = [0, 20, 40, 60, 80, 100];
-
-            let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block;">`;
-            svg += `<polygon points="${ml},${mt} ${sx(100)},${sy(100)} ${ml},${sy(0)}" fill="#0e9488" opacity="0.04"/>`;
-            svg += `<polygon points="${sx(0)},${sy(0)} ${sx(100)},${sy(100)} ${sx(100)},${sy(0)}" fill="#d4541f" opacity="0.04"/>`;
-            ticks.forEach(t => {
-                svg += `<line x1="${sx(t)}" y1="${mt}" x2="${sx(t)}" y2="${mt+ph}" stroke="#e5e7eb" stroke-width="1"/>`;
-                svg += `<line x1="${ml}" y1="${sy(t)}" x2="${ml+pw}" y2="${sy(t)}" stroke="#e5e7eb" stroke-width="1"/>`;
-                svg += `<text x="${sx(t)}" y="${mt+ph+16}" text-anchor="middle" style="font:400 10px 'Geist Mono',monospace;fill:#94a3b8;">${t}</text>`;
-                svg += `<text x="${ml-8}" y="${sy(t)+3.5}" text-anchor="end" style="font:400 10px 'Geist Mono',monospace;fill:#94a3b8;">${t}</text>`;
-            });
-            svg += `<line x1="${ml}" y1="${mt}" x2="${ml}" y2="${mt+ph}" stroke="#94a3b8" stroke-width="1.2"/>`;
-            svg += `<line x1="${ml}" y1="${mt+ph}" x2="${ml+pw}" y2="${mt+ph}" stroke="#94a3b8" stroke-width="1.2"/>`;
-            svg += `<text x="${ml+pw/2}" y="${H-4}" text-anchor="middle" style="font:600 11px 'Geist Mono',monospace;letter-spacing:.1em;fill:#64748b;text-transform:uppercase;">Food environment →</text>`;
-            svg += `<text transform="rotate(-90 14 ${mt+ph/2})" x="14" y="${mt+ph/2}" text-anchor="middle" style="font:600 11px 'Geist Mono',monospace;letter-spacing:.1em;fill:#64748b;text-transform:uppercase;">What's eaten →</text>`;
-            svg += `<line x1="${sx(0)}" y1="${sy(0)}" x2="${sx(100)}" y2="${sy(100)}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>`;
-
-            // Glow + dots
-            areas.forEach(a => {
-                const g = Math.max(0, (Math.abs(a.gap) - 10) / 50);
-                if (g > 0.1) {
-                    const col = a.gap >= 0 ? '#0e9488' : '#d4541f';
-                    svg += `<circle cx="${sx(a.envPct)}" cy="${sy(a.consPct)}" r="11" fill="${col}" opacity="${0.15+0.3*g}"/>`;
-                }
-            });
-            areas.forEach(a => {
-                const cx = sx(a.envPct), cy = sy(a.consPct);
-                svg += `<circle cx="${cx}" cy="${cy}" r="6.5" fill="${getGapScoreColor(a.gap)}" stroke="#fff" stroke-width="1.5" style="cursor:pointer;" onclick="toggleGapExpand('${a.saId}')">
-                    <title>SA ${a.saId} · ${a.name}  Env:${a.envPct}  Cons:${a.consPct}  Gap:${a.gap>=0?'+':''}${a.gap}</title>
-                </circle>`;
-                if (Math.abs(a.gap) >= 20) {
-                    const right = cx > ml + pw * 0.6;
-                    svg += `<text x="${cx+(right?-10:10)}" y="${cy+(a.gap>=0?-9:14)}" text-anchor="${right?'end':'start'}" style="font:500 11px 'Geist',sans-serif;fill:#0b1220;paint-order:stroke;stroke:#fff;stroke-width:3px;">${a.name}</text>`;
-                }
-            });
-            svg += `</svg>`;
-
-            // Legend overlay
-            svg += `<div style="position:absolute;top:20px;right:24px;background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:10px 12px;box-shadow:0 2px 8px rgba(0,0,0,.05);width:180px;">
-                <div style="font:600 10px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#64748b;margin-bottom:7px;">Eaten vs. environment</div>
-                <div style="height:7px;border-radius:4px;background:linear-gradient(90deg,#d4541f,#fef3c7 50%,#0e9488);margin-bottom:5px;"></div>
-                <div style="display:flex;justify-content:space-between;font-size:10px;color:#94a3b8;"><span>Eats worse</span><span>Eats better</span></div>
-            </div>`;
-            return svg;
-        }
-
-        function renderSlopeChart(cats) {
-            const rows = cats.filter(c => c.hasPOI || c.hasWW);
-            const maxV = Math.max(36, ...rows.map(c => Math.max(c.poiPct, c.wwPct))) + 2;
-            const W = 420, H = 320, padTop = 40, plotH = 260, xL = 170, xR = 340;
-            const yAt = v => padTop + (1 - v / maxV) * plotH;
-
-            let svg = `<div style="display:flex;justify-content:space-between;margin-bottom:2px;">
-                <span style="font:600 10.5px 'Geist Mono',monospace;letter-spacing:.12em;color:#64748b;">STORE SHELVES</span>
-                <span style="font:600 10.5px 'Geist Mono',monospace;letter-spacing:.12em;color:#64748b;">WASTEWATER</span>
-            </div>`;
-            svg += `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block;">`;
-            svg += `<text x="${xL}" y="${padTop-18}" text-anchor="middle" style="font:600 10px 'Geist Mono',monospace;fill:#64748b;letter-spacing:.1em;">AVAILABLE</text>`;
-            svg += `<text x="${xR}" y="${padTop-18}" text-anchor="middle" style="font:600 10px 'Geist Mono',monospace;fill:#64748b;letter-spacing:.1em;">EATEN</text>`;
-            svg += `<line x1="${xL}" y1="${padTop-8}" x2="${xL}" y2="${padTop+plotH+8}" stroke="#e5e7eb" stroke-width="1.5"/>`;
-            svg += `<line x1="${xR}" y1="${padTop-8}" x2="${xR}" y2="${padTop+plotH+8}" stroke="#e5e7eb" stroke-width="1.5"/>`;
-
-            const sorted = [...rows].sort((a, b) => b.poiPct - a.poiPct);
-            sorted.forEach(c => {
-                const up = (c.hasWW ? c.wwPct : c.poiPct) >= c.poiPct;
-                const col = up ? '#0e9488' : '#d4541f';
-                const yl = yAt(c.poiPct), yr = yAt(c.hasWW ? c.wwPct : c.poiPct);
-                svg += `<line x1="${xL}" y1="${yl}" x2="${xR}" y2="${yr}" stroke="${col}" stroke-width="2.5" stroke-opacity="0.85" stroke-linecap="round"/>`;
-                svg += `<circle cx="${xL}" cy="${yl}" r="4.5" fill="${col}"/>`;
-                if (c.hasWW) svg += `<circle cx="${xR}" cy="${yr}" r="4.5" fill="${col}"/>`;
-                svg += `<text x="${xL-14}" y="${yl+4}" text-anchor="end" style="font:500 12px 'Geist',sans-serif;fill:#1f2937;">${c.label}</text>`;
-            });
-
-            // Legend
-            svg += `<line x1="20" y1="${H-8}" x2="40" y2="${H-8}" stroke="#0e9488" stroke-width="2.5" stroke-linecap="round"/>`;
-            svg += `<text x="46" y="${H-5}" style="font:400 10.5px 'Geist',sans-serif;fill:#64748b;">eaten more than sold</text>`;
-            svg += `<line x1="210" y1="${H-8}" x2="230" y2="${H-8}" stroke="#d4541f" stroke-width="2.5" stroke-linecap="round"/>`;
-            svg += `<text x="236" y="${H-5}" style="font:400 10.5px 'Geist',sans-serif;fill:#64748b;">eaten less than sold</text>`;
-            svg += `</svg>`;
-            return svg;
-        }
-
-        function renderGapScoreLayer() {
-            if (!gapScoreComputed) computeGapScores();
-            if (gapScoreLayer) { map.removeLayer(gapScoreLayer); }
-
-            gapScoreLayer = L.geoJSON(durhamTractsGeoJSON, {
-                style: feature => ({
-                    fillColor: getGapScoreColor(feature.properties._gapScore),
-                    weight: 0.5,
-                    opacity: 0.3,
-                    color: '#999999',
-                    fillOpacity: 0.75
-                }),
-                onEachFeature: (feature, layer) => {
-                    layer.on({
-                        mouseover: e => { e.target.setStyle({ weight: 2, color: '#2b6cb0', opacity: 1 }); e.target.bringToFront(); },
-                        mouseout: e => { gapScoreLayer.resetStyle(e.target); },
-                        click: e => {
-                            const p = feature.properties;
-                            const saId = String(p.Sample_ID);
-                            const hood = TRACT_NEIGHBORHOODS[saId] || 'Durham';
-                            const gap = p._gapScore;
-                            const pop = p.total_population ? Math.round(p.total_population).toLocaleString() : 'N/A';
-                            const income = p.median_hh_income ? '$' + Math.round(p.median_hh_income).toLocaleString() : 'N/A';
-                            const gapColor = gap != null ? (gap >= 0 ? '#0e9488' : '#d4541f') : '#666';
-                            const gapStr = gap != null ? (gap >= 0 ? '+' + gap : gap) : 'N/A';
-                            L.popup()
-                                .setLatLng(e.latlng)
-                                .setContent(`<div style="font-family:Geist,sans-serif;min-width:200px;">
-                                    <div style="font-weight:700;font-size:14px;margin-bottom:2px;">SA ${saId} · ${hood}</div>
-                                    <div style="font-size:28px;font-weight:700;color:${gapColor};margin:6px 0 2px;">${gapStr}</div>
-                                    <div style="font-size:12px;color:#64748b;margin-bottom:8px;">${gapVerdict(gap)}</div>
-                                    <div style="font-size:12px;color:#475569;line-height:1.7;">
-                                        Environment: <b>${p._envPercentile != null ? p._envPercentile + 'th pctile' : 'N/A'}</b><br>
-                                        Consumption: <b>${p._consPercentile != null ? p._consPercentile + 'th pctile' : 'N/A'}</b><br>
-                                        Population: <b>${pop}</b><br>
-                                        Median income: <b>${income}</b>
-                                    </div>
-                                </div>`)
-                                .openOn(map);
-                        }
-                    });
-                }
-            }).addTo(map);
-
-            // County outlines on top
-            countiesLayer = L.geoJSON(countiesGeoJSON, {
-                style: { fillColor: 'none', fillOpacity: 0, weight: 1, opacity: 0.5, color: '#666666' },
-                onEachFeature: onEachFeature
-            }).addTo(map);
-
-            // Update the layer legend
-            const legend = document.getElementById('layerLegend');
-            const title = document.getElementById('layerLegendTitle');
-            const items = document.getElementById('layerLegendItems');
-            title.textContent = 'Gap Score';
-            items.innerHTML = `
-                <div style="height:10px;border-radius:5px;background:linear-gradient(90deg,#d4541f,#fef3c7 50%,#0e9488);margin-bottom:6px;"></div>
-                <div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;margin-bottom:8px;">
-                    <span>Eats worse</span><span>0</span><span>Eats better</span>
-                </div>
-                <div style="font-size:11px;color:#94a3b8;font-style:italic;">Gap = consumption pctile − environment pctile. Correlation, not causation.</div>`;
-            legend.style.display = '';
-        }
 
         async function renderFoodDesertLayer(mode) {
             if ((mode === 'predicted_desert' || mode === 'desert_agreement') && !foodDesertComputed) {
@@ -11770,11 +11511,6 @@
                 map.removeLayer(foodDesertLayer);
                 foodDesertLayer = null;
             }
-            if (gapScoreLayer) {
-                map.removeLayer(gapScoreLayer);
-                gapScoreLayer = null;
-            }
-
             // Hide food desert legend unless showing a food desert layer
             const fdLegend = document.getElementById('foodDesertLegend');
             if (!['usda_desert', 'predicted_desert'].includes(view)) {
@@ -11807,8 +11543,6 @@
             } else if (['usda_desert', 'predicted_desert'].includes(view)) {
                 // Food desert layers
                 renderFoodDesertLayer(view);
-            } else if (view === 'gap_score') {
-                renderGapScoreLayer();
             } else {
                 // Show demographic layer (service areas)
                 demographicLayer = L.geoJSON(durhamTractsGeoJSON, {
@@ -12077,74 +11811,195 @@
             if (!gapScoreComputed) computeGapScores();
             const gapData = saId ? gapScoreData[saId] : null;
             const hood = saId ? (TRACT_NEIGHBORHOODS[saId] || 'Durham') : 'Durham';
+            const cats = saId ? computeGapCategories(saId) : null;
 
-            let h = `<div style="padding:20px;">`;
+            let h = `<div style="padding:18px 18px 22px;display:flex;flex-direction:column;gap:13px;">`;
 
-            // Gap section
+            // 1. GAP CARD
             if (gapData && gapData.gap != null) {
-                const gapColor = gapData.gap >= 0 ? '#0e9488' : '#d4541f';
-                const gapStr = gapData.gap >= 0 ? '+' + gapData.gap : String(gapData.gap);
+                const gapColor = gapData.gap >= 0 ? '#0e9488' : '#b8612a';
+                const gapSign = gapData.gap >= 0 ? '+' : '\u2212';
                 const eatingBetter = gapData.gap > 0;
-                h += `<div style="margin-bottom:24px;">`;
-                h += `<div style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:10px;">The available-vs-eaten gap</div>`;
-                h += `<div style="font-family:'Instrument Serif',serif;font-size:22px;line-height:1.15;color:#0b1220;margin-bottom:4px;">`;
-                h += eatingBetter ? `Eating <span style="color:#0e9488;font-style:italic;">better</span> than predicted.`
-                                  : `Eating <span style="color:#d4541f;font-style:italic;">worse</span> than predicted.`;
-                h += `</div>`;
-                h += `<div style="display:flex;align-items:center;gap:14px;margin:14px 0;">
-                    <div style="display:flex;flex-direction:column;align-items:center;">
-                        <div style="font-family:'Instrument Serif',serif;font-size:38px;color:${gapColor};line-height:1;">${gapStr}</div>
-                        <div style="font:400 10px 'Geist Mono',monospace;color:#94a3b8;margin-top:2px;">gap score</div>
+                const headline = eatingBetter
+                    ? `Eating <em style="color:#0e9488;">better</em> than the<br/>neighborhood predicts.`
+                    : `Eating <em style="color:#b8612a;">worse</em> than the<br/>neighborhood predicts.`;
+                const note = gapData.envPct >= 50
+                    ? `Healthy retail sits in the top half of Durham \u2014 but diet diversity is ${gapData.consPct <= 25 ? 'near the bottom' : 'below average'}. That distance is the gap.`
+                    : `Food access is below average in Durham${gapData.consPct > 50 ? ', yet diet diversity ranks higher than expected' : ' and diet diversity follows suit'}.`;
+
+                h += `<div class="sp-card">
+                    <div class="sp-gap-head">
+                        <div class="sp-eyebrow">The available-vs-eaten gap</div>
+                        <div class="sp-gap-h1">${headline}</div>
                     </div>
-                    <div style="flex:1;">
-                        <div style="display:flex;justify-content:space-between;font-size:10.5px;color:#64748b;margin-bottom:3px;">
-                            <span>Food access: ${gapData.envPct}th</span><span>Diet diversity: ${gapData.consPct}th</span>
+                    <div class="sp-gap-score">
+                        <span class="sp-n" style="color:${gapColor};">${gapSign}${Math.abs(gapData.gap)}</span>
+                        <span class="sp-lab">gap score</span>
+                    </div>
+                    <div class="sp-bars">
+                        <div class="sp-bar-row">
+                            <span class="sp-k">Food access</span>
+                            <div class="sp-bar-track"><div class="sp-bar-fill" style="width:${gapData.envPct}%;background:#1e3a8a;"></div></div>
+                            <span class="sp-pc">${gapData.envPct}<sup>th</sup></span>
                         </div>
-                        <div style="height:7px;border-radius:5px;background:linear-gradient(90deg,#d4541f,#fef3c7 50%,#0e9488);position:relative;">
-                            <div style="position:absolute;left:${50 + gapData.gap/2}%;top:-2px;width:4px;height:11px;background:#0b1220;border-radius:2px;transform:translateX(-50%);"></div>
+                        <div class="sp-bar-row">
+                            <span class="sp-k">Diet diversity</span>
+                            <div class="sp-bar-track"><div class="sp-bar-fill" style="width:${gapData.consPct}%;background:${gapColor};"></div></div>
+                            <span class="sp-pc">${gapData.consPct}<sup>th</sup></span>
                         </div>
                     </div>
-                </div>`;
-                h += `<div style="font-size:10.5px;color:#94a3b8;line-height:1.5;margin-bottom:14px;">
-                    <b style="color:#64748b;">Food access</b> = healthy retail vs. fast food &amp; convenience.<br>
-                    <b style="color:#64748b;">Diet diversity</b> = Shannon diversity of plant species (trnL).
-                </div>`;
-                h += `<button onclick="dismissLandingPanels();" style="width:100%;padding:10px;border:1px solid #1e3a8a;border-radius:10px;background:#fff;color:#1e3a8a;font:600 13px 'Geist',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:background .12s;">
-                    Explore the map
-                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
-                </button>`;
+                    <div class="sp-pctl-note">${note}</div>`;
+
+                // Expandable drivers
+                if (cats && cats.length > 0) {
+                    const topDrivers = cats.filter(c => c.gap != null && c.gap !== 0).slice(0, 3);
+                    h += `<div class="sp-exp" id="spGapExp">
+                        <div class="sp-exp-in">
+                            <div class="sp-eyebrow" style="margin-bottom:6px;">Biggest mismatches · sold vs. eaten</div>`;
+                    topDrivers.forEach(d => {
+                        const tone = (d.gap || 0) > 0 ? '#15803d' : '#b8612a';
+                        const desc = d.hasPOI && d.hasWW ? `${d.poiPct}% of stores \u2192 ${d.wwPct}% of diet` : d.hasPOI ? `${d.poiPct}% of stores` : `${d.wwPct}% of diet`;
+                        h += `<div class="sp-drow">
+                            <span class="sp-sw" style="background:${tone};"></span>
+                            <div><div class="sp-dt">${d.label}</div><div class="sp-ds">${desc}</div></div>
+                            <span class="sp-dv" style="color:${tone};">${d.gap > 0 ? '+' : ''}${d.gap}</span>
+                        </div>`;
+                    });
+                    h += `</div></div>
+                    <button class="sp-disc" onclick="this.classList.toggle('sp-open');document.getElementById('spGapExp').classList.toggle('sp-open');">
+                        <span class="sp-nudge">See what drives this <svg class="sp-chev" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l3.5 3.5L10 5"/></svg></span>
+                        <span class="sp-hint">tap to expand</span>
+                    </button>`;
+                }
                 h += `</div>`;
             }
 
-            // Divider
-            h += `<div style="height:1px;background:#e7e4dc;margin:0 -20px;"></div>`;
+            // 2. GAP OVER TIME CARD
+            if (gapData && gapData.gap != null && saId && foodseqData) {
+                // Compute gap-like score per time period for this tract
+                const dates = foodseqData.dates.slice().sort();
+                const gapOverTime = [];
+                const plants = getPlantsInTract(saId);
 
-            // POI section
-            if (poiCounts) {
-                const cats = [
-                    { label: 'Grocery', count: poiCounts.grocery || 0, color: '#38a169' },
-                    { label: 'Fast food', count: poiCounts.fast_food || 0, color: '#d4541f' },
-                    { label: 'Convenience', count: poiCounts.convenience || 0, color: '#d97706' },
-                    { label: 'Restaurants', count: poiCounts.restaurant || 0, color: '#6366f1' },
-                    { label: 'Seafood', count: poiCounts.seafood || 0, color: '#0891b2' },
-                    { label: 'Bakery', count: poiCounts.bakery || 0, color: '#a855f7' },
-                ].filter(c => c.count > 0);
-                const total = cats.reduce((s, c) => s + c.count, 0);
-                h += `<div style="padding-top:20px;">`;
-                h += `<div style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:10px;">Nearby food · ${hood}</div>`;
-                h += `<div style="font-family:'Instrument Serif',serif;font-size:30px;color:#0b1220;line-height:1;">${total}</div>`;
-                h += `<div style="font-size:12px;color:#64748b;margin:4px 0 12px;">food retailers in this area</div>`;
-                cats.forEach(c => {
-                    const pct = Math.round((c.count / total) * 100);
-                    h += `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-                        <span style="width:8px;height:8px;border-radius:2px;background:${c.color};flex-shrink:0;"></span>
-                        <span style="flex:1;font-size:12.5px;color:#1f2937;">${c.label}</span>
-                        <span style="font:500 11.5px 'Geist Mono',monospace;color:#64748b;">${c.count}</span>
-                        <div style="width:50px;height:5px;background:#f0ede6;border-radius:3px;overflow:hidden;">
-                            <div style="width:${pct}%;height:100%;background:${c.color};border-radius:3px;"></div>
+                // Use the actual gap score (consumption pctile - env pctile) as a baseline,
+                // then show how species richness changes per period as a proxy for diet quality shift
+                const monthNames = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                dates.forEach((date) => {
+                    let speciesCount = 0;
+                    plants.forEach(p => {
+                        const td = p.timeseries[date];
+                        if (!td) return;
+                        const pe = Object.entries(td.plants || {}).filter(([, v]) => v > 0).length;
+                        const ae = Object.entries(td.animals || {}).filter(([, v]) => v > 0).length;
+                        speciesCount += pe + ae;
+                    });
+                    if (speciesCount > 0) {
+                        const m = parseInt(date.split('-')[1]);
+                        const y = date.slice(2, 4);
+                        const label = monthNames[m] + " '" + y;
+                        gapOverTime.push({ date, val: speciesCount, label });
+                    }
+                });
+
+                if (gapOverTime.length >= 2) {
+                    const vals = gapOverTime.map(g => g.val);
+                    const W = 300, H = 64, pad = 6;
+                    const min = Math.min(...vals) - 5, max = Math.max(...vals) + 5;
+                    const xAt = i => pad + (i / (vals.length - 1)) * (W - pad * 2);
+                    const yAt = v => pad + (1 - (v - min) / (max - min)) * (H - pad * 2);
+                    const line = vals.map((v, i) => `${i ? 'L' : 'M'}${xAt(i).toFixed(1)},${yAt(v).toFixed(1)}`).join(' ');
+                    const area = `${line} L${xAt(vals.length - 1).toFixed(1)},${H - pad} L${xAt(0).toFixed(1)},${H - pad} Z`;
+                    const sparkColor = gapData.gap >= 0 ? '#0e9488' : '#b8612a';
+                    const firstVal = vals[0], lastVal = vals[vals.length - 1];
+                    const change = lastVal - firstVal;
+                    const pctChange = firstVal > 0 ? Math.round(((lastVal - firstVal) / firstVal) * 100) : 0;
+                    let footText;
+                    if (change > 5) {
+                        footText = `Diversity rising \u2014 ${lastVal} species detected, up from ${firstVal}.`;
+                    } else if (change < -5) {
+                        footText = `Diversity declining \u2014 ${lastVal} species detected, down from ${firstVal}.`;
+                    } else {
+                        footText = `Diet diversity has held steady at ~${lastVal} species.`;
+                    }
+                    const chevDown = change < -5 ? 'M3 4l3.5 4L10 4' : change > 5 ? 'M3 9l3.5-4L10 9' : 'M3 6.5h7';
+
+                    h += `<div class="sp-card">
+                        <div style="padding:12px 15px 0;">
+                            <div class="sp-eyebrow">Diet diversity over time</div>
+                            <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;margin-top:10px;">
+                                <path d="${area}" fill="${sparkColor}10"/>
+                                <path d="${line}" fill="none" stroke="${sparkColor}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="${xAt(vals.length - 1)}" cy="${yAt(lastVal)}" r="4" fill="${sparkColor}" stroke="#fff" stroke-width="1.5"/>
+                            </svg>
+                            <div style="display:flex;align-items:center;gap:7px;margin:6px 0 0;font-size:11px;color:${sparkColor};font-weight:600;">
+                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${chevDown}"/></svg>
+                                <span>${footText}</span>
+                            </div>
                         </div>
+                        <div class="sp-exp" id="spTrendExp">
+                            <div class="sp-exp-in">
+                                <div class="gbp">
+                                    <div class="gbp-head">Species detected by period</div>`;
+                    gapOverTime.forEach((g, i) => {
+                        const prev = i > 0 ? gapOverTime[i - 1].val : null;
+                        const delta = prev === null ? null : g.val - prev;
+                        const deltaClass = delta === null ? 'is-flat' : delta < 0 ? 'is-down' : 'is-up';
+                        const deltaText = delta === null ? '\u2014' : (delta > 0 ? '+' : '\u2212') + Math.abs(delta);
+                        h += `<div class="gbp-row">
+                            <span class="gbp-period">${g.label}</span>
+                            <span class="gbp-value">${g.val}</span>
+                            <span class="gbp-delta ${deltaClass}">${deltaText}</span>
+                        </div>`;
+                    });
+                    h += `</div></div></div>
+                        <button class="sp-disc" onclick="this.classList.toggle('sp-open');document.getElementById('spTrendExp').classList.toggle('sp-open');">
+                            <span class="sp-nudge">Month-by-month <svg class="sp-chev" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l3.5 3.5L10 5"/></svg></span>
+                            <span class="sp-hint">tap to expand</span>
+                        </button>
+                    </div>`;
+                }
+            }
+
+            // 3. NEARBY FOOD CARD
+            if (poiCounts) {
+                const foodCats = [
+                    { key: 'grocery', name: 'Grocery', count: poiCounts.grocery || 0, color: '#15803d' },
+                    { key: 'fast_food', name: 'Fast food', count: poiCounts.fast_food || 0, color: '#b8612a' },
+                    { key: 'convenience', name: 'Convenience', count: poiCounts.convenience || 0, color: '#d97706' },
+                    { key: 'restaurant', name: 'Restaurants', count: poiCounts.restaurant || 0, color: '#5b63d6' },
+                    { key: 'seafood', name: 'Seafood', count: poiCounts.seafood || 0, color: '#0891b2' },
+                    { key: 'bakery', name: 'Bakery', count: poiCounts.bakery || 0, color: '#a855f7' },
+                ].filter(c => c.count > 0);
+                const total = foodCats.reduce((s, c) => s + c.count, 0);
+                const pop = durhamTractsGeoJSON && saId ? durhamTractsGeoJSON.features.find(f => String(f.properties.Sample_ID) === saId)?.properties.total_population : null;
+                const grocPerCap = pop && (poiCounts.grocery || 0) > 0 ? Math.round(pop / (poiCounts.grocery || 1)).toLocaleString() : null;
+
+                h += `<div class="sp-card sp-nf-card">
+                    <div class="sp-eyebrow">Nearby food · ${hood}</div>
+                    <div style="display:flex;align-items:baseline;gap:8px;margin-top:7px;">
+                        <span class="sp-nf-big">${total}</span>
+                        <span style="font-size:12.5px;color:#64748b;">food retailers</span>
+                    </div>
+                    <div class="sp-nf-seg">`;
+                foodCats.forEach(c => {
+                    h += `<span style="width:${(c.count / total) * 100}%;background:${c.color};"></span>`;
+                });
+                h += `</div><div>`;
+                foodCats.forEach(c => {
+                    h += `<div class="sp-nf-item">
+                        <span class="sp-dot" style="background:${c.color};"></span>
+                        <span class="sp-nm">${c.name}</span>
+                        <span class="sp-ct">${c.count}</span>
                     </div>`;
                 });
+                h += `</div>`;
+                if (grocPerCap) {
+                    h += `<div class="sp-nf-insight">Just <b>1 grocery per ~${grocPerCap} residents</b> in this area.</div>`;
+                }
+                h += `<div class="sp-nf-caption">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5C5 1.5 2.5 4 2.5 7c0 4 5.5 7.5 5.5 7.5S13.5 11 13.5 7C13.5 4 11 1.5 8 1.5z"/><circle cx="8" cy="7" r="2"/></svg>
+                    <span>To see every retailer, switch on <b>Points of Interest</b> at lower-left of the map.</span>
+                </div>`;
                 h += `</div>`;
             }
 
@@ -12155,11 +12010,41 @@
             // Show dismiss bar
             document.getElementById('landingDismissBar').classList.remove('hidden');
 
-            // Pan map so the marker is centered in the visible area (left of panels)
-            // Panels: detail 416 + info 360 = 776px on right
+            // Pan map so the marker is centered in the visible area
+            // Panels: detail 416 + info 384 = 800px on right
             setTimeout(() => {
-                if (map) map.panBy([776 / 2, 0], { animate: true, duration: 0.8 });
+                if (map) map.panBy([800 / 2, 0], { animate: true, duration: 0.8 });
             }, 200);
+        }
+
+        function showNoDataPanel() {
+            const panel = document.getElementById('detailPanel');
+            currentTractFeature = null;
+            currentDetailPlant = null;
+
+            document.getElementById('tpCrumb').textContent = '';
+            document.getElementById('tpTitle').textContent = '';
+            document.getElementById('tpSub').textContent = '';
+            document.getElementById('tpSites').style.display = 'none';
+            document.getElementById('tpCtas').style.display = 'none';
+
+            const body = document.getElementById('tpBody');
+            body.innerHTML = `<div style="padding:40px 24px;text-align:center;">
+                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" style="margin-bottom:20px;">
+                    <circle cx="40" cy="40" r="36" fill="#f5f3ee" stroke="#e7e4dc" stroke-width="1.5"/>
+                    <circle cx="32" cy="34" r="3" fill="#94a3b8"/>
+                    <circle cx="48" cy="34" r="3" fill="#94a3b8"/>
+                    <path d="M30 50 Q40 42 50 50" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                </svg>
+                <div style="font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:#0b1220;margin-bottom:8px;">No data here — yet</div>
+                <p style="font-size:13.5px;color:#64748b;line-height:1.5;max-width:28ch;margin:0 auto;">
+                    This location isn't within a Durham wastewater sampling area. Try an address within a marked service area.
+                </p>
+            </div>`;
+
+            const wasOpen = panel.classList.contains('open');
+            panel.classList.remove('open');
+            setTimeout(() => { panel.classList.add('open'); }, wasOpen ? 600 : 10);
         }
 
         function hideLandingPopups() {
