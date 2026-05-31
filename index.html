@@ -2807,21 +2807,21 @@
         .sp-gap-head { padding:14px 16px 4px; }
         .sp-gap-h1 { font-family:'Instrument Serif',Georgia,serif; font-weight:400; font-size:23px; line-height:1.1; color:#0b1220; margin:5px 0 0; letter-spacing:-.01em; }
         .sp-gap-h1 em { font-style:italic; }
-        .sp-gap-score { display:flex; align-items:baseline; gap:8px; padding:0 17px; }
-        .sp-gap-score .sp-n { font-family:'Instrument Serif',Georgia,serif; font-size:40px; line-height:1; }
+        .sp-gap-score { display:flex; align-items:baseline; gap:8px; padding:0 16px; }
+        .sp-gap-score .sp-n { font-family:'Instrument Serif',Georgia,serif; font-size:38px; line-height:1; }
         .sp-gap-score .sp-lab { font:600 9.5px 'Geist Mono',monospace; letter-spacing:.13em; text-transform:uppercase; color:#64748b; }
-        .sp-bars { padding:13px 17px 7px; }
-        .sp-bar-row { display:grid; grid-template-columns:82px 1fr 32px; align-items:center; gap:9px; padding:6px 0; }
+        .sp-bars { padding:11px 16px 6px; }
+        .sp-bar-row { display:grid; grid-template-columns:82px 1fr 32px; align-items:center; gap:9px; padding:5px 0; }
         .sp-bar-row .sp-k { font-size:12px; color:#1f2937; }
         .sp-bar-track { height:9px; border-radius:5px; background:#f5f3ee; overflow:hidden; }
         .sp-bar-fill { height:100%; border-radius:5px; }
         .sp-bar-row .sp-pc { text-align:right; font:600 12px 'Geist',sans-serif; color:#0b1220; font-variant-numeric:tabular-nums; }
         .sp-bar-row .sp-pc sup { font-size:8px; color:#94a3b8; }
-        .sp-pctl-note { font-size:11px; color:#94a3b8; padding:2px 17px 0; line-height:1.45; }
+        .sp-pctl-note { font-size:11px; color:#94a3b8; padding:2px 16px 0; line-height:1.4; }
         .sp-exp { max-height:0; overflow:hidden; transition:max-height .34s ease; }
         .sp-exp.sp-open { max-height:520px; }
-        .sp-exp-in { border-top:1px solid #f0ede6; padding:13px 17px 15px; }
-        .sp-disc { display:flex; align-items:center; justify-content:space-between; padding:11px 17px; border-top:1px solid #f0ede6; cursor:pointer; user-select:none; background:none; border-left:0; border-right:0; border-bottom:0; width:100%; text-align:left; font-family:inherit; }
+        .sp-exp-in { border-top:1px solid #f0ede6; padding:12px 16px 14px; }
+        .sp-disc { display:flex; align-items:center; justify-content:space-between; padding:10px 16px; border-top:1px solid #f0ede6; cursor:pointer; user-select:none; background:none; border-left:0; border-right:0; border-bottom:0; width:100%; text-align:left; font-family:inherit; }
         .sp-nudge { display:inline-flex; align-items:center; gap:6px; font:600 12px 'Geist',sans-serif; color:#1e3a8a; transition:color .15s; }
         .sp-disc:hover .sp-nudge { color:#16306f; }
         .sp-chev { transition:transform .28s; }
@@ -2833,8 +2833,8 @@
         .sp-drow .sp-dt { font-size:12.5px; color:#0b1220; font-weight:500; }
         .sp-drow .sp-ds { font-size:11px; color:#64748b; }
         .sp-drow .sp-dv { font:600 13px 'Geist',sans-serif; font-variant-numeric:tabular-nums; }
-        .sp-nf-card { padding:15px 17px 16px; }
-        .sp-nf-big { font-family:'Instrument Serif',Georgia,serif; font-size:34px; line-height:1; color:#0b1220; }
+        .sp-nf-card { padding:13px 16px 14px; }
+        .sp-nf-big { font-family:'Instrument Serif',Georgia,serif; font-size:32px; line-height:1; color:#0b1220; }
         .sp-nf-seg { display:flex; height:12px; gap:2px; margin:9px 0 10px; }
         .sp-nf-seg span { height:100%; }
         .sp-nf-seg span:first-child { border-radius:7px 0 0 7px; }
@@ -2843,10 +2843,96 @@
         .sp-nf-item .sp-dot { width:10px; height:10px; border-radius:3px; }
         .sp-nf-item .sp-nm { font-size:12.5px; color:#1f2937; }
         .sp-nf-item .sp-ct { font:600 12.5px 'Geist',sans-serif; color:#0b1220; font-variant-numeric:tabular-nums; }
-        .sp-nf-insight { margin-top:10px; font-size:11.5px; color:#64748b; line-height:1.45; padding:10px 0 0; border-top:1px solid #f0ede6; }
+        .sp-nf-insight { margin-top:9px; font-size:11px; color:#64748b; line-height:1.4; padding:9px 0 0; border-top:1px solid #f0ede6; }
         .sp-nf-insight b { color:#b8612a; font-weight:600; }
-        .sp-nf-caption { display:flex; align-items:flex-start; gap:7px; margin-top:10px; padding-top:10px; border-top:1px solid #f0ede6; font-size:11.5px; color:#94a3b8; line-height:1.45; }
+        .sp-nf-caption { display:flex; align-items:flex-start; gap:7px; margin-top:8px; padding-top:8px; border-top:1px solid #f0ede6; font-size:11px; color:#94a3b8; line-height:1.4; }
         .sp-nf-caption b { color:#64748b; font-weight:600; }
+
+        /* ── Gap bottom sheet + button ── */
+        .gapbtn-bar {
+            position:fixed; left:320px; right:0; bottom:0; z-index:1000;
+            display:none; background:#fff; border-top:1px solid #e7e4dc;
+            padding:14px 24px; justify-content:center; align-items:center;
+            box-shadow:0 -4px 20px rgba(15,23,42,.08);
+            transition:opacity .25s,transform .25s;
+        }
+        .gapbtn-bar.visible { display:flex; }
+        .gapbtn-bar.hidden { opacity:0; pointer-events:none; transform:translateY(100%); }
+        .gapbtn {
+            display:inline-flex; align-items:center; gap:10px; height:50px; padding:0 12px 0 22px;
+            background:#1e3a8a; color:#fff; border:0; border-radius:999px; cursor:pointer;
+            font:600 14px 'Geist',sans-serif; box-shadow:0 8px 24px rgba(30,58,138,.25);
+            transition:transform .18s,box-shadow .18s;
+        }
+        .gapbtn:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(30,58,138,.35); }
+        .gapbtn .mini { display:flex; align-items:flex-end; gap:3px; height:20px; }
+        .gapbtn .mini i { width:5px; border-radius:2px; display:block; }
+        .gapbtn .chev { width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.16); display:grid; place-items:center; }
+
+        .gap-scrim { position:fixed; inset:0; background:rgba(11,18,32,.32); opacity:0; pointer-events:none; transition:opacity .3s; z-index:1100; }
+        .gap-scrim.show { opacity:1; pointer-events:auto; }
+        .gap-sheet { position:fixed; left:0; right:0; bottom:0; z-index:1200; max-height:70vh; background:#fff;
+            border-radius:22px 22px 0 0; box-shadow:0 -18px 60px rgba(11,18,32,.28);
+            transform:translateY(100%); transition:transform .42s cubic-bezier(.22,1,.36,1);
+            display:flex; flex-direction:column; }
+        .gap-sheet.show { transform:translateY(0); }
+        .gap-sheet .grab { width:44px; height:5px; border-radius:3px; background:#d8d4ca; margin:11px auto 0; flex-shrink:0; }
+        .gap-sheet .sheet-x { position:absolute; right:18px; top:16px; width:34px; height:34px; border-radius:50%; border:1px solid #e7e4dc; background:#fff; cursor:pointer; display:grid; place-items:center; color:#64748b; z-index:2; }
+        .gap-sheet .sheet-x:hover { color:#0b1220; border-color:#cbbfa8; }
+        .gap-sheet-scroll { overflow-y:auto; padding:8px 0 40px; flex:1; }
+        .gap-sheet-wrap { max-width:760px; margin:0 auto; padding:0 32px; }
+        .gap-sheet .verdict { font-family:'Instrument Serif',Georgia,serif; font-weight:400; font-size:38px; line-height:1.08; letter-spacing:-.015em; color:#0b1220; margin:16px 0 0; }
+        .gap-sheet .verdict em { font-style:italic; }
+        .gap-sheet .verdict-sub { font-size:14.5px; color:#64748b; line-height:1.5; margin:12px 0 0; max-width:560px; }
+        .gap-sheet .metric { display:grid; grid-template-columns:auto 1fr; gap:30px; align-items:center; margin:28px 0 6px; padding:24px; border:1px solid #e7e4dc; border-radius:18px; background:linear-gradient(180deg,#fff,#fcfbf8); }
+        .gap-sheet .score { text-align:center; padding-right:30px; border-right:1px solid #f0ede6; }
+        .gap-sheet .score .n { font-family:'Instrument Serif',Georgia,serif; font-size:72px; line-height:.9; }
+        .gap-sheet .score .l { font:600 9.5px 'Geist Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#64748b; margin-top:6px; }
+        .gap-sheet .bar-row { display:grid; grid-template-columns:120px 1fr 42px; align-items:center; gap:12px; padding:8px 0; }
+        .gap-sheet .bar-row .k { font-size:13px; color:#1f2937; }
+        .gap-sheet .bar-track { height:11px; border-radius:6px; background:#f5f3ee; overflow:hidden; }
+        .gap-sheet .bar-fill { height:100%; border-radius:6px; }
+        .gap-sheet .bar-row .pc { text-align:right; font:600 14px 'Geist',sans-serif; color:#0b1220; font-variant-numeric:tabular-nums; }
+        .gap-sheet .bar-row .pc sup { font-size:9px; color:#94a3b8; }
+        .gap-sheet .sec-label { font:600 10.5px 'Geist Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#64748b; margin:34px 0 14px; }
+        .gap-sheet .mismatch { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px; }
+        .gap-sheet .mm { border:1px solid #e7e4dc; border-radius:15px; padding:17px; background:#fff; }
+        .gap-sheet .mm .top { display:flex; align-items:center; justify-content:space-between; }
+        .gap-sheet .mm .nm { font-size:14px; font-weight:600; color:#0b1220; }
+        .gap-sheet .mm .dl { font:600 18px 'Instrument Serif',serif; }
+        .gap-sheet .mm .dl.pos { color:#15803d; } .gap-sheet .mm .dl.neg { color:#b8612a; }
+        .gap-sheet .mm .flow { display:flex; align-items:center; gap:7px; margin-top:12px; font:500 11.5px 'Geist Mono',monospace; color:#64748b; }
+        .gap-sheet .mm .flow b { color:#1f2937; font-weight:600; }
+        .gap-sheet .mm .cap { font-size:11.5px; color:#64748b; margin-top:9px; line-height:1.4; }
+        .gap-sheet .tieback { display:flex; gap:14px; align-items:flex-start; margin-top:16px; padding:18px 20px; border-radius:16px; background:#e1f0e4; border:1px solid #cfe6d5; }
+        .gap-sheet .tieback p { margin:0; font-size:13.5px; line-height:1.55; color:#234b32; }
+        .gap-sheet .tieback b { font-weight:600; }
+        .gap-sheet-foot { border-top:1px solid #e7e4dc; background:#fff; padding:16px 0; flex-shrink:0; }
+        .gap-sheet-foot-inner { max-width:760px; margin:0 auto; padding:0 32px; display:flex; align-items:center; gap:14px; }
+        .gap-sheet-foot .note { font-size:12.5px; color:#64748b; flex:1; line-height:1.4; }
+        .btn-gapmap { display:inline-flex; align-items:center; gap:9px; height:46px; padding:0 20px; border:0; border-radius:12px; background:#1e3a8a; color:#fff; font:600 13.5px 'Geist',sans-serif; cursor:pointer; white-space:nowrap; }
+        .btn-gapmap:hover { background:#16306f; }
+
+        /* Gap Map view — scoped reset prevents host styles from bleeding in */
+        #gapMapView {
+            position:absolute; top:94px; left:0; right:0; bottom:0; z-index:999; overflow:hidden;
+            display:flex; flex-direction:column;
+            transform:translateY(-100%); opacity:0; pointer-events:none;
+            transition:transform .45s cubic-bezier(.22,1,.36,1), opacity .3s ease;
+        }
+        #gapMapView.open {
+            transform:translateY(0); opacity:1; pointer-events:auto;
+        }
+        .gm-root {
+            height:100%; display:flex; flex-direction:column;
+            font-family:'Geist',-apple-system,sans-serif; font-size:14px;
+            line-height:1.4; letter-spacing:normal; text-transform:none;
+            font-style:normal; font-weight:400; color:#1f2937; background:#faf9f5;
+            -webkit-font-smoothing:antialiased;
+        }
+        .gm-root *, .gm-root *::before, .gm-root *::after { box-sizing:border-box; }
+        .gm-root h1, .gm-root h2, .gm-root p { margin:0; }
+        .gm-eyebrow { font:600 11px/1 'Geist Mono',monospace; letter-spacing:.15em; text-transform:uppercase; color:#64748b; }
 
         /* Gap by period dropdown */
         .gbp-head { font:600 10.5px/1 'Geist Mono',monospace; letter-spacing:.15em; text-transform:uppercase; color:#64748b; margin-bottom:6px; }
@@ -3366,6 +3452,30 @@
         </div>
     </div>
 
+
+    <!-- Gap Map View (accessible from gap sheet button) -->
+    <div id="gapMapView"></div>
+
+    <!-- Gap persistent button + bottom sheet -->
+    <div class="gapbtn-bar" id="gapBtnBar">
+        <button class="gapbtn" onclick="openGapSheet()">
+            <span class="mini"><i style="height:20px;background:#aab6ee"></i><i style="height:8px;background:#e7a06f"></i></span>
+            See how your food access compares to what's actually eaten
+            <span class="chev"><svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 11V3M4 7l4-4 4 4"/></svg></span>
+        </button>
+    </div>
+    <div class="gap-scrim" id="gapScrim" onclick="closeGapSheet()"></div>
+    <div class="gap-sheet" id="gapSheet" role="dialog" aria-modal="true">
+        <div class="grab"></div>
+        <button class="sheet-x" onclick="closeGapSheet()"><svg width="15" height="15" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg></button>
+        <div class="gap-sheet-scroll" id="gapSheetContent"></div>
+        <div class="gap-sheet-foot">
+            <div class="gap-sheet-foot-inner">
+                <span class="note">See how every Durham neighborhood compares — food access vs. what's actually eaten.</span>
+                <button class="btn-gapmap" onclick="closeGapSheet();setTimeout(()=>openGapMapView(),400);">Explore the gap map <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h8M8 4l4 4-4 4"/></svg></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Right tract panel (slides in on tract/site click) -->
     <div class="detail-panel" id="detailPanel">
@@ -6144,9 +6254,15 @@
             if (!r) return;
             const lat = parseFloat(r.lat), lon = parseFloat(r.lon);
 
-            // Autofill the input and close suggestions
+            // Autofill all address inputs and close suggestions
             document.getElementById('findMeInput').value = r.display_name;
             document.getElementById('findMeSuggestions').style.display = 'none';
+            const foodLocInput = document.getElementById('foodLocation');
+            if (foodLocInput) foodLocInput.value = r.display_name;
+
+            // Store for Food Near Me auto-placement
+            window._homeGeocodedLat = lat;
+            window._homeGeocodedLon = lon;
 
             // Create top pane for find-me marker if needed
             if (!map.getPane('findMePane')) {
@@ -6240,6 +6356,16 @@
             if (view !== 'map') {
                 closeDetailPanel();
             }
+            // Hide gap button and map view when not on Food Near Me
+            if (view !== 'find-food') {
+                hideGapButton();
+                document.getElementById('gapMapView').classList.remove('open');
+            } else {
+                // Show gap button only if results are loaded
+                if (foodLocationMarker && foodLocationMarker._latlng_stored) {
+                    showGapButton();
+                }
+            }
         }
 
         // Marker chip toggles
@@ -6316,7 +6442,16 @@
                 findFoodMap.setView(map.getCenter(), map.getZoom());
             }
             // Fix tile rendering after display:none -> visible
-            setTimeout(() => findFoodMap.invalidateSize(), 100);
+            setTimeout(() => {
+                findFoodMap.invalidateSize();
+                // Auto-place marker if address was entered from home screen
+                if (window._homeGeocodedLat && !foodLocationMarker) {
+                    updateFoodLocationMarker(window._homeGeocodedLat, window._homeGeocodedLon);
+                    updateFindFoodResults();
+                    window._homeGeocodedLat = null;
+                    window._homeGeocodedLon = null;
+                }
+            }, 100);
         }
 
         // Location autocomplete using Nominatim
@@ -6352,6 +6487,7 @@
         function selectLocation(name, lat, lon) {
             document.getElementById('foodLocation').value = name;
             document.getElementById('locationSuggestions').style.display = 'none';
+            document.getElementById('findMeInput').value = name;
             if (findFoodMap) {
                 updateFoodLocationMarker(lat, lon);
                 updateFindFoodResults();
@@ -6471,6 +6607,11 @@
 
             // Also refresh food comparison table
             updateFoodCompareTable();
+
+            // Show gap button if we have a location
+            if (foodLocationMarker && foodLocationMarker._latlng_stored) {
+                showGapButton();
+            }
         }
 
         // Haversine distance in km
@@ -10751,16 +10892,34 @@
                 const poiCounts = tractPOICounts[saId];
                 if (!poiCounts) return;
 
-                // Environment score: ratio of healthy food retail to total food retail
-                // Healthy: grocery, seafood, greengrocer, marketplace, butcher
-                // Unhealthy: fast_food, convenience
-                // Neutral (excluded): restaurant, bakery, university, etc.
-                const healthy = (poiCounts.grocery || 0) + (poiCounts.seafood || 0) +
-                                (poiCounts.greengrocer || 0) + (poiCounts.marketplace || 0) +
-                                (poiCounts.butcher || 0);
-                const unhealthy = (poiCounts.fast_food || 0) + (poiCounts.convenience || 0);
-                const totalFood = Math.max(1, healthy + unhealthy);
-                const envRaw = healthy / totalFood;
+                // Environment score: distance-weighted healthy POI access per capita
+                // For each healthy POI within 5 miles of tract centroid, add 1/distance
+                // Then divide by population per 1,000 residents
+                const geom = feature.geometry;
+                let ring;
+                if (geom.type === 'Polygon') ring = geom.coordinates[0];
+                else if (geom.type === 'MultiPolygon') {
+                    let maxLen = 0;
+                    geom.coordinates.forEach(poly => { if (poly[0].length > maxLen) { maxLen = poly[0].length; ring = poly[0]; } });
+                }
+                if (!ring) return;
+                const centroid = calculatePolygonCentroid(ring);
+                const pop = Math.max(1, feature.properties.total_population || 1);
+
+                const healthyCats = ['grocery', 'seafood', 'greengrocer', 'marketplace', 'butcher'];
+                let weightedHealthy = 0;
+                healthyCats.forEach(cat => {
+                    if (!poiData.categories[cat]) return;
+                    poiData.categories[cat].forEach(poi => {
+                        const dist = haversineDistance(centroid.lat, centroid.lon, poi.lat, poi.lon);
+                        if (dist <= 5) { // within 5 miles
+                            weightedHealthy += 1 / Math.max(0.1, dist); // floor at 0.1 mi to avoid infinity
+                        }
+                    });
+                });
+                // Raw distance-weighted access (no population normalization —
+                // per-capita distorts z-scores for tiny tracts like SA 18.01 pop=50)
+                const envRaw = weightedHealthy;
 
                 // Consumption score: Shannon H on plant species (trnL marker)
                 const plantsInTract = getPlantsInTract(saId);
@@ -10783,31 +10942,29 @@
 
             currentTimeIndex = savedTimeIndex; // restore
 
-            // Convert to percentiles (rank-based, ties use average rank)
-            function toPercentiles(values) {
-                const valid = values.map((v, i) => ({ v, i })).filter(x => x.v !== null);
-                valid.sort((a, b) => a.v - b.v);
-                const pcts = new Array(values.length).fill(null);
-                let i = 0;
-                while (i < valid.length) {
-                    let j = i;
-                    while (j < valid.length && valid[j].v === valid[i].v) j++;
-                    const avgRank = (i + j + 1) / 2; // 1-based average rank for ties
-                    for (let k = i; k < j; k++) {
-                        pcts[valid[k].i] = Math.round((avgRank / valid.length) * 100);
-                    }
-                    i = j;
-                }
-                return pcts;
+            // Convert to z-scores — more conservative than percentiles,
+            // produces more neutrals and only flags true outliers
+            function toZScores(values) {
+                const valid = values.filter(v => v !== null);
+                if (valid.length === 0) return values.map(() => null);
+                const mean = valid.reduce((s, v) => s + v, 0) / valid.length;
+                const variance = valid.reduce((s, v) => s + (v - mean) ** 2, 0) / valid.length;
+                const sd = Math.sqrt(variance) || 1;
+                return values.map(v => v === null ? null : (v - mean) / sd);
             }
 
-            const envPcts = toPercentiles(entries.map(e => e.envRaw));
-            const consPcts = toPercentiles(entries.map(e => e.consRaw));
+            const envZs = toZScores(entries.map(e => e.envRaw));
+            const consZs = toZScores(entries.map(e => e.consRaw));
 
             entries.forEach((e, i) => {
-                const envPct = envPcts[i];
-                const consPct = consPcts[i];
-                const gap = (envPct != null && consPct != null) ? consPct - envPct : null;
+                const envZ = envZs[i];
+                const consZ = consZs[i];
+                const zGap = (envZ != null && consZ != null) ? consZ - envZ : null;
+                // Scale to a readable range: multiply by 25 so ±1 SD ≈ ±25
+                const gap = zGap != null ? Math.round(zGap * 25) : null;
+                // Convert z-scores to 0-100 scale for display bars (50 = mean, ±2 SD = 0-100)
+                const envPct = envZ != null ? Math.round(Math.max(5, Math.min(95, 50 + envZ * 20))) : null;
+                const consPct = consZ != null ? Math.round(Math.max(5, Math.min(95, 50 + consZ * 20))) : null;
 
                 e.feature.properties._envRaw = e.envRaw;
                 e.feature.properties._consRaw = e.consRaw;
@@ -10846,13 +11003,15 @@
             return `rgb(${Math.round(a[0]+(b[0]-a[0])*t)},${Math.round(a[1]+(b[1]-a[1])*t)},${Math.round(a[2]+(b[2]-a[2])*t)})`;
         }
 
+        // Gap thresholds based on z-scores scaled ×25:
+        // ±12 ≈ 0.5 SD (neutral), ±25 ≈ 1 SD (notable), ±37 ≈ 1.5 SD (significant)
         function gapVerdict(gap) {
             if (gap == null) return 'No data';
-            if (gap >= 30) return 'Eats far better than environment predicts';
-            if (gap >= 10) return 'Eats better than surroundings predict';
-            if (gap > -10) return 'Eats about as environment predicts';
-            if (gap > -30) return 'Eats worse than surroundings predict';
-            return 'Eats far worse than environment predicts';
+            if (gap >= 37) return 'Eats significantly better than environment predicts';
+            if (gap >= 12) return 'Eats somewhat better than environment predicts';
+            if (gap > -12) return 'Eats about as environment predicts';
+            if (gap > -37) return 'Eats somewhat worse than environment predicts';
+            return 'Eats significantly worse than environment predicts';
         }
 
         // ── Gap View (inside Find Food Near Me) ──
@@ -11747,6 +11906,288 @@
             });
         }
 
+        // ── Gap bottom sheet + map ──
+        let gapSheetSaId = null;
+
+        function showGapButton() {
+            document.getElementById('gapBtnBar').classList.add('visible');
+            document.getElementById('gapBtnBar').classList.remove('hidden');
+        }
+
+        function hideGapButton() {
+            document.getElementById('gapBtnBar').classList.remove('visible');
+        }
+
+        function openGapSheet() {
+            if (!gapScoreComputed) computeGapScores();
+            // Find the service area from the food location marker
+            let saId = null;
+            const marker = foodLocationMarker;
+            if (marker && marker._latlng_stored && durhamTractsGeoJSON) {
+                const { lat, lon } = marker._latlng_stored;
+                for (const feat of durhamTractsGeoJSON.features) {
+                    const geom = feat.geometry;
+                    const polys = geom.type === 'Polygon' ? [geom.coordinates[0]] : geom.coordinates.map(p => p[0]);
+                    for (const poly of polys) {
+                        if (pointInPolygon([lon, lat], poly)) { saId = String(feat.properties.Sample_ID); break; }
+                    }
+                    if (saId) break;
+                }
+            }
+            gapSheetSaId = saId;
+            renderGapSheet(saId);
+            document.getElementById('gapSheet').classList.add('show');
+            document.getElementById('gapScrim').classList.add('show');
+            document.getElementById('gapBtnBar').classList.add('hidden');
+        }
+
+        function closeGapSheet() {
+            document.getElementById('gapSheet').classList.remove('show');
+            document.getElementById('gapScrim').classList.remove('show');
+            document.getElementById('gapBtnBar').classList.remove('hidden');
+        }
+
+        function renderGapSheet(saId) {
+            const container = document.getElementById('gapSheetContent');
+            const gapData = saId ? gapScoreData[saId] : null;
+            const hood = saId ? (TRACT_NEIGHBORHOODS[saId] || 'Durham') : '';
+            const cats = saId ? computeGapCategories(saId) : null;
+            const poiCounts = saId ? tractPOICounts[saId] : null;
+            const addr = document.getElementById('foodLocation')?.value || hood;
+            const radiusMi = document.getElementById('foodRadius')?.value || '2';
+
+            if (!gapData || gapData.gap == null) {
+                container.innerHTML = `<div class="gap-sheet-wrap" style="padding-top:40px;text-align:center;color:#64748b;">No gap data available for this location.</div>`;
+                return;
+            }
+
+            const eatingBetter = gapData.gap > 0;
+            const gapColor = eatingBetter ? '#0e9488' : '#b8612a';
+            const gapSign = eatingBetter ? '+' : '\u2212';
+
+            let h = `<div class="gap-sheet-wrap">`;
+            // Header
+            h += `<div style="padding:18px 0 6px;">
+                <span class="addr-chip" style="display:inline-flex;align-items:center;gap:7px;background:#f5f3ee;border:1px solid #e7e4dc;border-radius:999px;padding:5px 12px 5px 10px;font:500 12px 'Geist',sans-serif;color:#1f2937;">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#94a3b8" stroke-width="1.5"><path d="M8 1.5C5 1.5 2.5 4 2.5 7c0 4 5.5 7.5 5.5 7.5S13.5 11 13.5 7C13.5 4 11 1.5 8 1.5z"/><circle cx="8" cy="7" r="2"/></svg>
+                    ${addr} · within ${radiusMi} mi
+                </span>
+                <div style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-top:18px;">Available vs. eaten</div>
+                <h2 class="verdict">This neighborhood eats <em style="color:${gapColor};">${eatingBetter ? 'better' : 'worse'}</em> than its food access would predict.</h2>
+                <p class="verdict-sub">${eatingBetter
+                    ? 'Food options are limited here \u2014 but the wastewater signal shows a more diverse diet than you\'d expect. People are finding ways to eat well despite the environment.'
+                    : 'Healthy food is genuinely reachable here \u2014 but the wastewater signal shows diets that look like a place with far fewer options. That distance is the gap.'}</p>
+            </div>`;
+
+            // Metric block
+            h += `<div class="metric">
+                <div class="score">
+                    <div class="n" style="color:${gapColor};">${gapSign}${Math.abs(gapData.gap)}</div>
+                    <div class="l">Gap score</div>
+                </div>
+                <div>
+                    <div class="bar-row"><span class="k">Food you can buy</span><div class="bar-track"><div class="bar-fill" style="width:${gapData.envPct}%;background:#1e3a8a;"></div></div><span class="pc">${gapData.envPct}<sup>th</sup></span></div>
+                    <div class="bar-row"><span class="k">Diet diversity</span><div class="bar-track"><div class="bar-fill" style="width:${gapData.consPct}%;background:${gapColor};"></div></div><span class="pc">${gapData.consPct}<sup>th</sup></span></div>
+                    <div style="font-size:12px;color:#94a3b8;margin-top:8px;line-height:1.45;">Percentile among Durham neighborhoods. The wider the split, the bigger the gap.</div>
+                </div>
+            </div>`;
+
+            // Tieback
+            const grocCount = poiCounts ? (poiCounts.grocery || 0) : 0;
+            if (grocCount > 0) {
+                const pop = durhamTractsGeoJSON ? durhamTractsGeoJSON.features.find(f => String(f.properties.Sample_ID) === saId)?.properties.total_population : null;
+                const perCap = pop ? Math.round(pop / grocCount).toLocaleString() : null;
+                h += `<div class="tieback">
+                    <span style="color:#15803d;flex-shrink:0;margin-top:1px;"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l4 4 8-9"/></svg></span>
+                    <p>Of the <b>${grocCount} grocer${grocCount !== 1 ? 'ies' : 'y'} nearby</b>${perCap ? ' (1 per ~' + perCap + ' residents)' : ''}, the gap between what they stock and what people eat tells a story no store map alone can show.</p>
+                </div>`;
+            }
+
+            h += `</div>`;
+            container.innerHTML = h;
+        }
+
+        function openGapMapView() {
+            if (!gapScoreComputed) computeGapScores();
+            hideGapButton();
+            const view = document.getElementById('gapMapView');
+
+            const areas = Object.values(gapScoreData).filter(a => a.gap != null).sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap));
+
+            let h = `<div class="gm-root"><div style="padding:15px 32px 12px;border-bottom:1px solid #e5e7eb;background:#fff;flex-shrink:0;">
+                <button onclick="closeGapMapView();" style="display:inline-flex;align-items:center;gap:7px;height:32px;padding:0 13px 0 10px;margin-bottom:12px;border-radius:8px;border:1px solid #e5e7eb;background:#fff;color:#1f2937;font:500 12.5px 'Geist',sans-serif;cursor:pointer;text-decoration:none;">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                    Back to Food Near Me
+                </button>
+                <div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:8px;">The available-vs-eaten gap</div>
+                <h1 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;line-height:1.05;color:#0b1220;margin:0;">
+                    Who eats <em style="font-style:italic;color:#0e9488;">better</em> — or <em style="font-style:italic;color:#d4541f;">worse</em> — than their neighborhood predicts?
+                </h1>
+                <p style="margin:10px 0 0;font-size:14px;color:#64748b;max-width:78ch;">
+                    Each area scored two ways: its <b>food environment</b> (healthy retail vs. fast food nearby) and what's <b>actually eaten</b> (diet diversity from wastewater). Distance from the diagonal is the <b>gap</b>.
+                </p>
+            </div>`;
+
+            // Scatter + sidebar
+            h += `<div style="flex:1;min-height:0;display:flex;overflow:hidden;">`;
+
+            // Scatter
+            h += `<div style="position:relative;flex:1;min-width:0;background:#f5f3ee;overflow:hidden;padding:20px 22px;display:flex;flex-direction:column;">`;
+            // Render scatter SVG
+            const W = 620, H = 470, ml = 60, mr = 26, mt = 26, mb = 50;
+            const pw = W - ml - mr, ph = H - mt - mb;
+            const D0 = 0, D1 = 105;
+            const sx = v => ml + ((v - D0) / (D1 - D0)) * pw;
+            const sy = v => mt + (1 - (v - D0) / (D1 - D0)) * ph;
+            const ticks = [0, 20, 40, 60, 80, 100];
+            const dx1 = sx(D0), dy1 = sy(D0), dx2 = sx(D1), dy2 = sy(D1);
+
+            let svg = `<svg viewBox="0 0 ${W} ${H}" style="width:100%;display:block;flex:1;" preserveAspectRatio="xMidYMid meet">`;
+            svg += `<polygon points="${ml},${mt} ${sx(100)},${sy(100)} ${ml},${sy(0)}" fill="#0e9488" opacity="0.04"/>`;
+            svg += `<polygon points="${sx(0)},${sy(0)} ${sx(100)},${sy(100)} ${sx(100)},${sy(0)}" fill="#d4541f" opacity="0.04"/>`;
+            ticks.forEach(t => {
+                svg += `<line x1="${sx(t)}" y1="${mt}" x2="${sx(t)}" y2="${mt+ph}" stroke="#e5e7eb" stroke-width="1"/>`;
+                svg += `<line x1="${ml}" y1="${sy(t)}" x2="${ml+pw}" y2="${sy(t)}" stroke="#e5e7eb" stroke-width="1"/>`;
+                svg += `<text x="${sx(t)}" y="${mt+ph+16}" text-anchor="middle" style="font:400 10px 'Geist Mono',monospace;fill:#94a3b8;">${t}</text>`;
+                svg += `<text x="${ml-8}" y="${sy(t)+3.5}" text-anchor="end" style="font:400 10px 'Geist Mono',monospace;fill:#94a3b8;">${t}</text>`;
+            });
+            svg += `<line x1="${ml}" y1="${mt}" x2="${ml}" y2="${mt+ph}" stroke="#94a3b8" stroke-width="1.2"/>`;
+            svg += `<line x1="${ml}" y1="${mt+ph}" x2="${ml+pw}" y2="${mt+ph}" stroke="#94a3b8" stroke-width="1.2"/>`;
+            svg += `<text x="${ml+pw/2}" y="${H-6}" text-anchor="middle" style="font:600 11px 'Geist Mono',monospace;letter-spacing:.1em;fill:#64748b;text-transform:uppercase;">Food environment →</text>`;
+            svg += `<text transform="rotate(-90 14 ${mt+ph/2})" x="14" y="${mt+ph/2}" text-anchor="middle" style="font:600 11px 'Geist Mono',monospace;letter-spacing:.1em;fill:#64748b;text-transform:uppercase;">What's eaten →</text>`;
+            svg += `<line x1="${sx(0)}" y1="${sy(0)}" x2="${sx(100)}" y2="${sy(100)}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>`;
+            // Diagonal label — hardcoded -45° to match the 45° diagonal line
+            const labelX = sx(70), labelY = sy(70) - 10;
+            svg += `<text x="${labelX}" y="${labelY}" text-anchor="middle" transform="rotate(-37 ${labelX} ${labelY})" style="font:italic 12px 'Instrument Serif',Georgia,serif;fill:#94a3b8;">eats as its environment predicts</text>`;
+
+            areas.forEach(a => {
+                const esc = a.saId.replace(/'/g, "\\'");
+                svg += `<circle cx="${sx(a.envPct)}" cy="${sy(a.consPct)}" r="6.5" fill="${getGapScoreColor(a.gap)}" stroke="#fff" stroke-width="1.5" style="cursor:pointer;" onclick="scrollToGapCard('${esc}')">
+                    <title>SA ${a.saId} · ${a.name}  Env:${a.envPct}  Cons:${a.consPct}  Gap:${a.gap>=0?'+':''}${a.gap}</title>
+                </circle>`;
+            });
+            svg += `</svg>`;
+            h += svg;
+
+            // Legend
+            h += `<div style="position:absolute;top:20px;right:24px;z-index:5;background:#fff;border:1px solid #e7e4dc;border-radius:12px;padding:12px 14px;box-shadow:0 2px 8px rgba(15,23,42,.06);width:220px;">
+                <div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:9px;">Eaten vs. environment</div>
+                <div style="height:9px;border-radius:5px;background:linear-gradient(90deg,#d4541f,#efece4 50%,#0e9488);margin-bottom:7px;"></div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;">
+                    <span>Eats worse</span><span>Eats better</span>
+                </div>
+            </div>`;
+            h += `<div style="position:absolute;bottom:18px;left:24px;z-index:5;background:#fff;border:1px solid #e5e7eb;border-radius:999px;padding:8px 15px;font-size:12.5px;color:#64748b;box-shadow:0 2px 8px rgba(15,23,42,.06);">
+                <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" style="vertical-align:-2px;margin-right:6px;"><path d="M8 2v12M2 8h12" stroke-linecap="round"/></svg>
+                Tap a point to view
+            </div>`;
+            h += `</div>`; // scatter
+
+            // Sidebar
+            h += `<div style="width:384px;flex-shrink:0;border-left:1px solid #e5e7eb;background:#fff;display:flex;flex-direction:column;min-height:0;">`;
+            // Search
+            h += `<div style="padding:13px 16px;border-bottom:1px solid #e5e7eb;flex-shrink:0;">
+                <div style="display:flex;align-items:center;gap:8px;border:1px solid #e5e7eb;border-radius:10px;padding:8px 11px;background:#fff;">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#64748b" stroke-width="1.7"><circle cx="7" cy="7" r="5"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
+                    <input id="gapMapSearch" type="text" placeholder="Search a neighborhood\u2026" oninput="filterGapMapCards(this.value)" style="border:0;outline:0;flex:1;font:14px 'Geist',sans-serif;background:transparent;color:#0b1220;min-width:0;">
+                </div>
+            </div>`;
+            // Header
+            h += `<div style="padding:12px 20px 10px;border-bottom:1px solid #e5e7eb;flex-shrink:0;">
+                <div class="gm-eyebrow"><span id="gapMapCount">${areas.length}</span> areas by gap</div>
+            </div>`;
+            h += `<div id="gapMapCards" style="flex:1;overflow-y:auto;padding:14px 16px 18px;display:flex;flex-direction:column;gap:10px;">`;
+            areas.forEach(a => {
+                const gapColor = a.gap >= 0 ? '#0e9488' : '#d4541f';
+                const gapStr = a.gap >= 0 ? '+' + a.gap : String(a.gap);
+                const tint = a.gap >= 0 ? 'color-mix(in oklab, #0e9488 12%, #fff)' : 'color-mix(in oklab, #d4541f 12%, #fff)';
+                const bd = a.gap >= 0 ? 'color-mix(in oklab, #0e9488 35%, #fff)' : 'color-mix(in oklab, #d4541f 35%, #fff)';
+                h += `<div class="gm-area-card" data-name="${a.name.toLowerCase()}" data-said="${a.saId}" style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;flex-shrink:0;">
+                    <div style="padding:12px 15px 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
+                        <div>
+                            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.15;color:#0b1220;">${a.name}</div>
+                            <div style="font-size:11.5px;color:#64748b;margin-top:4px;font-variant-numeric:tabular-nums;">Tract ${a.saId}</div>
+                        </div>
+                    </div>
+                    <div style="display:flex;gap:16px;padding:2px 15px 12px;">
+                        <div style="flex:1;">
+                            <div class="gm-eyebrow" style="font-size:9.5px;margin-bottom:4px;">Food environment</div>
+                            <div style="display:flex;align-items:baseline;gap:3px;">
+                                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:34px;line-height:.9;color:#0b1220;">${a.envPct}<span style="font:400 12px 'Geist',sans-serif;color:#64748b;">th</span></span>
+                            </div>
+                            <div style="height:6px;background:#f5f3ee;border-radius:4px;overflow:hidden;margin:7px 0 4px;"><div style="width:${a.envPct}%;height:100%;background:#64748b;border-radius:4px;"></div></div>
+                            <div style="font-size:10.5px;color:#64748b;">percentile · healthy access</div>
+                        </div>
+                        <div style="width:1px;background:#e5e7eb;align-self:stretch;"></div>
+                        <div style="flex:1;">
+                            <div class="gm-eyebrow" style="font-size:9.5px;margin-bottom:4px;">What's eaten</div>
+                            <div style="display:flex;align-items:baseline;gap:3px;">
+                                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:34px;line-height:.9;color:#0b1220;">${a.consPct}<span style="font:400 12px 'Geist',sans-serif;color:#64748b;">th</span></span>
+                            </div>
+                            <div style="height:6px;background:#e9edf8;border-radius:4px;overflow:hidden;margin:7px 0 4px;"><div style="width:${a.consPct}%;height:100%;background:#1e3a8a;border-radius:4px;"></div></div>
+                            <div style="font-size:10.5px;color:#64748b;">percentile · diet diversity</div>
+                        </div>
+                    </div>
+                    <div style="background:${tint};border-top:1px solid ${bd};padding:10px 15px;display:flex;align-items:center;gap:12px;">
+                        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:${gapColor};line-height:1;min-width:48px;text-align:center;">${gapStr}</div>
+                        <div style="font-size:12.5px;color:#0b1220;line-height:1.35;font-weight:500;">${gapVerdict(a.gap)}</div>
+                    </div>
+                </div>`;
+            });
+            h += `</div></div>`; // sidebar
+            h += `</div>`; // flex row
+
+            h += `</div>`; // close gm-root
+            view.innerHTML = h;
+            // Trigger slide-down animation
+            requestAnimationFrame(() => requestAnimationFrame(() => view.classList.add('open')));
+        }
+
+        function filterGapMapCards(query) {
+            const q = query.toLowerCase().trim();
+            const cards = document.querySelectorAll('.gm-area-card');
+            let visible = 0;
+            cards.forEach(card => {
+                const name = card.dataset.name || '';
+                const saId = card.dataset.said || '';
+                const show = !q || name.includes(q) || saId.includes(q);
+                card.style.display = show ? '' : 'none';
+                if (show) visible++;
+            });
+            const countEl = document.getElementById('gapMapCount');
+            if (countEl) countEl.textContent = visible;
+        }
+
+        function scrollToGapCard(saId) {
+            const card = document.querySelector(`.gm-area-card[data-said="${saId}"]`);
+            if (card) {
+                // Clear search to show all cards
+                const search = document.getElementById('gapMapSearch');
+                if (search && search.value) { search.value = ''; filterGapMapCards(''); }
+                // Scroll and highlight
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                card.style.boxShadow = '0 0 0 3px #1e3a8a';
+                setTimeout(() => { card.style.boxShadow = ''; }, 2000);
+            }
+        }
+
+        function clearGapMapSelection() {
+            const search = document.getElementById('gapMapSearch');
+            if (search) { search.value = ''; filterGapMapCards(''); }
+        }
+
+        function closeGapMapView() {
+            const view = document.getElementById('gapMapView');
+            view.classList.remove('open');
+            showGapButton();
+        }
+
+        // Show gap button after Food Near Me results update
+        const _origUpdateFindFood = typeof updateFindFoodResults === 'function' ? updateFindFoodResults : null;
+
+        // Listen for escape to close gap sheet
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeGapSheet(); });
+
         // ── Home landing overlay ──
         function dismissHome() {
             document.getElementById('homeOverlay').classList.add('hidden');
@@ -11771,8 +12212,14 @@
                 const r = results[0];
                 const lat = parseFloat(r.lat), lon = parseFloat(r.lon);
 
-                // Auto-fill the map's Find Me input
+                // Auto-fill all address inputs
                 document.getElementById('findMeInput').value = r.display_name;
+                const foodLocInput = document.getElementById('foodLocation');
+                if (foodLocInput) foodLocInput.value = r.display_name;
+
+                // Store geocoded location for Food Near Me
+                window._homeGeocodedLat = lat;
+                window._homeGeocodedLon = lon;
 
                 // Wait for overlay to fade, then animate the map
                 setTimeout(() => {
@@ -11813,7 +12260,7 @@
             const hood = saId ? (TRACT_NEIGHBORHOODS[saId] || 'Durham') : 'Durham';
             const cats = saId ? computeGapCategories(saId) : null;
 
-            let h = `<div style="padding:18px 18px 22px;display:flex;flex-direction:column;gap:13px;">`;
+            let h = `<div style="padding:16px 17px 20px;display:flex;flex-direction:column;gap:12px;">`;
 
             // 1. GAP CARD
             if (gapData && gapData.gap != null) {
@@ -11848,29 +12295,14 @@
                             <span class="sp-pc">${gapData.consPct}<sup>th</sup></span>
                         </div>
                     </div>
-                    <div class="sp-pctl-note">${note}</div>`;
+                    <div class="sp-pctl-note">${note}</div>
+                    <div style="padding:12px 16px 14px;">
+                        <button onclick="dismissLandingPanels();switchView('find-food');setTimeout(()=>openGapMapView(),500);" style="width:100%;height:40px;border:0;border-radius:10px;background:#1e3a8a;color:#fff;font:600 13px 'Geist',sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;">
+                            Explore the gap map
+                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h8M8 4l4 4-4 4"/></svg>
+                        </button>
+                    </div>`;
 
-                // Expandable drivers
-                if (cats && cats.length > 0) {
-                    const topDrivers = cats.filter(c => c.gap != null && c.gap !== 0).slice(0, 3);
-                    h += `<div class="sp-exp" id="spGapExp">
-                        <div class="sp-exp-in">
-                            <div class="sp-eyebrow" style="margin-bottom:6px;">Biggest mismatches · sold vs. eaten</div>`;
-                    topDrivers.forEach(d => {
-                        const tone = (d.gap || 0) > 0 ? '#15803d' : '#b8612a';
-                        const desc = d.hasPOI && d.hasWW ? `${d.poiPct}% of stores \u2192 ${d.wwPct}% of diet` : d.hasPOI ? `${d.poiPct}% of stores` : `${d.wwPct}% of diet`;
-                        h += `<div class="sp-drow">
-                            <span class="sp-sw" style="background:${tone};"></span>
-                            <div><div class="sp-dt">${d.label}</div><div class="sp-ds">${desc}</div></div>
-                            <span class="sp-dv" style="color:${tone};">${d.gap > 0 ? '+' : ''}${d.gap}</span>
-                        </div>`;
-                    });
-                    h += `</div></div>
-                    <button class="sp-disc" onclick="this.classList.toggle('sp-open');document.getElementById('spGapExp').classList.toggle('sp-open');">
-                        <span class="sp-nudge">See what drives this <svg class="sp-chev" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l3.5 3.5L10 5"/></svg></span>
-                        <span class="sp-hint">tap to expand</span>
-                    </button>`;
-                }
                 h += `</div>`;
             }
 
@@ -11924,7 +12356,7 @@
                     const chevDown = change < -5 ? 'M3 4l3.5 4L10 4' : change > 5 ? 'M3 9l3.5-4L10 9' : 'M3 6.5h7';
 
                     h += `<div class="sp-card">
-                        <div style="padding:12px 15px 0;">
+                        <div style="padding:12px 16px 0;">
                             <div class="sp-eyebrow">Diet diversity over time</div>
                             <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;margin-top:10px;">
                                 <path d="${area}" fill="${sparkColor}10"/>
