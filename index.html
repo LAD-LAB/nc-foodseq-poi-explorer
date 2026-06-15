@@ -256,9 +256,9 @@
             position: absolute;
             top: 148px;
             right: 0;
-            width: 460px;
+            width: 420px;
             height: calc(100vh - 148px);
-            z-index: 999;
+            z-index: 1002;
             background: #fff;
             border-left: 1px solid #e7e4dc;
             box-shadow: -8px 0 30px rgba(15,23,42,.05);
@@ -373,6 +373,118 @@
         .nf-didyou { margin-top: 16px; background: #fcf3d4; border: 1px solid #f0e2a8; border-radius: 12px; padding: 13px 16px; font-size: 12.5px; line-height: 1.55; color: #6b5417; }
         .nf-didyou b { color: #50400f; }
 
+        /* What can help */
+        .nf-flag { display: flex; gap: 11px; align-items: flex-start; margin: 4px 0 16px; padding: 13px 15px; background: #eaf5ee; border: 1px solid #bfe0cb; border-radius: 12px; }
+        .nf-flag svg { flex-shrink: 0; margin-top: 1px; stroke: #1f8a5b; }
+        .nf-flag .l1 { font-size: 13px; line-height: 1.45; color: #1f2937; }
+        .nf-flag .l1 b { color: #0b1220; }
+        .nf-flag .l2 { margin-top: 3px; font-size: 13px; line-height: 1.4; font-weight: 600; color: #1f7a52; }
+        .nf-help-grp { margin-top: 16px; }
+        .nf-help-grp-t { font: 600 11px/1 'Geist Mono', monospace; letter-spacing: .13em; text-transform: uppercase; color: #64748b; margin-bottom: 9px; }
+        .nf-rc-list { display: flex; flex-direction: column; gap: 8px; }
+        .nf-rc { display: flex; flex-direction: column; border: 1px solid #e7e4dc; border-radius: 12px; padding: 12px 14px; background: #fff; text-decoration: none; transition: border-color .15s, box-shadow .15s; }
+        .nf-rc:hover { border-color: #c4d0ec; box-shadow: 0 4px 14px rgba(15,23,42,.07); }
+        .nf-rc:focus { outline: 2px solid #1e3a8a; outline-offset: 2px; }
+        .nf-rc-nm { font-size: 13.5px; font-weight: 600; color: #0b1220; letter-spacing: -.01em; }
+        .nf-rc-desc { font-size: 12px; color: #64748b; line-height: 1.45; margin-top: 3px; }
+        .nf-rc-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 14px; margin-top: 9px; }
+        .nf-rc-act { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: #1e3a8a; }
+        .nf-rc:hover .nf-rc-act { color: #16275f; }
+        .nf-rc:hover .nf-rc-arrow { transform: translateX(2px); }
+        .nf-rc-arrow { transition: transform .15s; }
+        .nf-rc-2nd { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: #64748b; text-decoration: none; }
+        .nf-rc-2nd:hover { color: #1e3a8a; }
+        .nf-help-note { margin: 9px 2px 0; font-size: 11.5px; line-height: 1.5; color: #94a3b8; }
+
+        /* Editorial report */
+        .er { max-width: 880px; margin: 0 auto; padding: 30px 32px 40px; }
+        .er-eye { font: 600 11px/1 'Geist Mono', monospace; letter-spacing: .17em; text-transform: uppercase; color: #64748b; }
+        .er-rule { height: 1px; background: #e7e4dc; margin: 20px 0; }
+        .er-h1 { font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 28px; line-height: 1.06; letter-spacing: -.01em; color: #0b1220; margin: 9px 0 0; }
+        .er-h1 .hl { color: #1e3a8a; }
+        .er-lede { font-size: 13px; color: #64748b; line-height: 1.55; margin: 8px 0 0; max-width: 60ch; }
+        .er-kpis { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 16px; }
+        .er-kpi { padding-left: 20px; border-left: 1px solid #e7e4dc; }
+        .er-kpi:first-child { padding-left: 0; border-left: 0; }
+        .er-kpi b { font-family: 'Geist', -apple-system, sans-serif; font-weight: 800; font-size: 24px; line-height: 1; color: #1e3a8a; display: inline-flex; align-items: baseline; }
+        .er-kpi b i { font-style: normal; font-size: 17px; color: #94a3b8; }
+        .er-kpi span { display: block; font-size: 12px; color: #64748b; margin-top: 4px; }
+        .er-sec-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+        .er-note-r { font: 500 10.5px 'Geist Mono', monospace; color: #94a3b8; letter-spacing: .03em; white-space: nowrap; }
+        .er-sub { font-size: 13px; color: #64748b; margin: 8px 0 14px; }
+        .er-p { font-size: 14px; color: #1f2937; line-height: 1.5; margin: 0 0 12px; }
+        .er-variety { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; margin-top: 10px; }
+        .er-variety-fig { text-align: center; }
+        .er-bignum { font-family: 'Geist', -apple-system, sans-serif; font-size: 52px; font-weight: 800; line-height: .8; color: #1e3a8a; }
+        .er-bignum .ord { font-size: 20px; vertical-align: super; }
+        .er-bignum-cap { font: 600 10px 'Geist Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: #94a3b8; margin-top: 8px; }
+        .er-pbar { position: relative; margin: 2px 0 30px; }
+        .er-pbar-track { height: 10px; border-radius: 6px; background: #e3e7f1; overflow: hidden; }
+        .er-pbar-track i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #8b97e6, #1e3a8a); }
+        .er-pbar-marker { position: absolute; top: 5px; width: 15px; height: 15px; border-radius: 50%; background: #1e3a8a; border: 3px solid #fff; box-shadow: 0 1px 5px rgba(30,58,138,.5); transform: translate(-50%,-50%); }
+        .er-pbar-median { position: absolute; top: -3px; height: 16px; border-left: 1.5px dashed #94a3b8; transform: translateX(-50%); }
+        .er-pbar-median span { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); font: 500 9px 'Geist Mono', monospace; color: #94a3b8; white-space: nowrap; text-transform: uppercase; letter-spacing: .04em; }
+        .er-pbar-ends { position: absolute; top: 18px; left: 0; right: 0; display: flex; justify-content: space-between; font: 500 9.5px 'Geist Mono', monospace; color: #94a3b8; text-transform: uppercase; letter-spacing: .03em; }
+        .er-toggle { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 13px 0 5px; border-radius: 999px; border: 1px solid #e7e4dc; background: #fff; font: 600 11.5px 'Geist', sans-serif; color: #64748b; cursor: pointer; flex-shrink: 0; }
+        .er-toggle .knob { width: 30px; height: 18px; border-radius: 999px; background: #d8d4ca; position: relative; transition: background .18s; flex-shrink: 0; }
+        .er-toggle .knob::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .18s; }
+        .er-toggle.on { color: #1e3a8a; border-color: #dbe4fb; }
+        .er-toggle.on .knob { background: #1e3a8a; }
+        .er-toggle.on .knob::after { transform: translateX(12px); }
+        .er-grp-item { border-top: 1px solid #efece4; }
+        .er-grp-item:first-child { border-top: 0; }
+        .er-grp-item.empty { opacity: .5; }
+        .er-grp-row { width: 100%; display: grid; grid-template-columns: 150px 1fr 32px 16px; align-items: center; gap: 16px; padding: 9px 6px; background: none; border: 0; cursor: pointer; text-align: left; font: inherit; border-radius: 8px; transition: background .12s; }
+        .er-grp-row:hover:not(:disabled) { background: #f6f3ec; }
+        .er-grp-row:disabled { cursor: default; }
+        .er-grp-nm { display: flex; align-items: center; gap: 9px; font-size: 13.5px; font-weight: 600; color: #0b1220; white-space: nowrap; }
+        .er-grp-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+        .er-grp-bar { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+        .er-grp-bar .track { position: relative; height: 14px; border-radius: 5px; background: #f2efe8; overflow: hidden; }
+        .er-grp-bar .track i { display: block; height: 100%; border-radius: 5px; min-width: 5px; }
+        .er-grp-bar .track.dur { height: 0; opacity: 0; background: #e7e2d8; transition: height .26s, opacity .2s; }
+        .er-grp-bar .track.dur i { background: #c3bdb0; }
+        .er-grp-bar.cmp .track.dur { height: 9px; opacity: 1; }
+        .er-grp-ct { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+        .er-grp-ct .n { font: 600 13.5px 'Geist', sans-serif; color: #0b1220; line-height: 14px; }
+        .er-grp-ct .dur { display: none; font: 600 11px 'Geist Mono', monospace; color: #a89c86; line-height: 9px; }
+        .er-grp-chev { color: #94a3b8; display: grid; place-items: center; transition: transform .2s; }
+        .er-grp-item.open .er-grp-chev { transform: rotate(180deg); }
+        .er-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 6px 14px 25px; }
+        .er-chips .chip { font-size: 12px; color: #1f2937; background: #fff; border: 1px solid #e7e4dc; border-radius: 999px; padding: 4px 12px; white-space: nowrap; }
+        .er-chips .chip.more { color: #1e3a8a; border-style: dashed; border-color: #dbe4fb; background: transparent; font-weight: 500; cursor: pointer; }
+        .er-seg { display: inline-flex; gap: 3px; background: #f2efe8; border-radius: 10px; padding: 3px; margin: 6px 0 12px; }
+        .er-seg-btn { border: 0; background: transparent; padding: 6px 18px; border-radius: 8px; font: 600 12.5px 'Geist', sans-serif; color: #64748b; cursor: pointer; }
+        .er-seg-btn.on[data-k="plants"] { background: #fff; color: #5b6cf0; box-shadow: 0 1px 3px rgba(15,23,42,.1); }
+        .er-seg-btn.on[data-k="animals"] { background: #fff; color: #c8612e; box-shadow: 0 1px 3px rgba(15,23,42,.1); }
+        .er-abund { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 32px; }
+        .er-arow { display: grid; grid-template-columns: 130px 1fr 40px 30px; align-items: center; gap: 12px; padding: 5px 0; }
+        .er-arow .nm { font-size: 13px; color: #0b1220; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .er-arow .track { height: 9px; border-radius: 5px; overflow: hidden; }
+        .er-arow .track > i { display: block; height: 100%; border-radius: 5px; }
+        .er-arow .v { font: 600 12px 'Geist Mono', monospace; color: #0b1220; text-align: right; }
+        .er-viewall { margin-top: 12px; }
+        .er-viewall a { font-size: 13px; color: #1e3a8a; cursor: pointer; font-weight: 500; }
+        .er-viewall a:hover { text-decoration: underline; }
+        .er-rainbow { display: grid; grid-template-columns: 152px 1fr; gap: 28px; align-items: center; margin-top: 10px; }
+        .er-rlegend { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 32px; }
+        .er-rlegend .rl { display: flex; align-items: center; gap: 9px; }
+        .er-rlegend .sw { width: 13px; height: 13px; border-radius: 4px; flex-shrink: 0; }
+        .er-rlegend .nm { font-size: 12.5px; color: #1f2937; }
+        .er-rlegend .pc { margin-left: auto; font: 600 12.5px 'Geist', sans-serif; color: #0b1220; font-variant-numeric: tabular-nums; }
+        .er-note { margin: 14px 0 0; padding-left: 14px; border-left: 3px solid #ecd98c; font-size: 13px; line-height: 1.55; color: #64748b; }
+        .er-note b { color: #1f2937; font-weight: 600; }
+        .er-demo2 { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 10px; }
+        .er-metric-label { font: 600 10px/1 'Geist Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: #94a3b8; }
+        .er-metric-hero { display: flex; align-items: baseline; justify-content: space-between; margin: 9px 0 14px; }
+        .er-metric-rank { font-size: 21px; font-weight: 600; color: #0b1220; line-height: 1; }
+        .er-metric-fig { font: 600 14px 'Geist', sans-serif; color: #1f2937; font-variant-numeric: tabular-nums; }
+        .er-metric-fig .u { color: #94a3b8; font-weight: 500; font-size: 11px; margin-left: 3px; }
+        .er-metric-foot { margin-top: 12px; font-size: 12px; color: #64748b; font-variant-numeric: tabular-nums; }
+        .er-metric-foot b { color: #1f2937; font-weight: 600; }
+        .er-race { margin-top: 22px; }
+        .er-leg { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; }
+
         /* Abundance rows */
         .arow { display: grid; grid-template-columns: 96px 1fr 40px 26px; align-items: center; gap: 10px; padding: 5px 0; }
         .arow-name { font: 400 12px 'Geist', sans-serif; color: #1f2937; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
@@ -385,6 +497,7 @@
 
         /* Demographics wrapper */
         .spb-demo-card { border: 1px solid #e2e7f3; border-radius: 14px; padding: 14px 16px; margin-top: 10px; }
+
 
         /* Tract panel header */
         .tp-head {
@@ -1745,7 +1858,7 @@
             right: 480px;
         }
         .species-panel.shifted-both {
-            right: 864px;
+            right: calc(80vw + 20px);
         }
 
         .species-panel-header {
@@ -2867,14 +2980,15 @@
         }
         #homeOverlay .home-footer b { color: #64748b; font-weight: 500; }
 
-        /* Landing info panel — sits to the left of the detail panel */
+        /* Landing info panel — full-width drawer to the left of the detail panel */
         #landingInfoPanel {
             position: absolute;
             top: 148px;
-            right: 460px;
-            width: 384px;
+            right: 420px;
+            width: 80vw;
+            max-width: calc(100vw - 440px);
             height: calc(100vh - 148px);
-            z-index: 998;
+            z-index: 1001;
             background: #fff;
             border-left: 1px solid #e7e4dc;
             box-shadow: -8px 0 30px rgba(15,23,42,.05);
@@ -2884,9 +2998,11 @@
             transition: transform .7s ease;
         }
         #landingInfoPanel.hidden {
-            transform: translateX(calc(360px + 460px));
+            transform: translateX(calc(80vw + 420px));
             pointer-events: none;
         }
+
+        /* (drawer grid layout removed — now using flat .er article) */
 
         /* Pull tab on left edge of detail panel to open infographic */
         .info-panel-tab {
@@ -2905,7 +3021,7 @@
             gap: 6px;
             box-shadow: -4px 0 12px rgba(15,23,42,.1);
             transition: background .15s;
-            z-index: 1;
+            z-index: 1002;
         }
         .info-panel-tab:hover {
             background: #15306e;
@@ -3084,6 +3200,80 @@
         .gbp-delta.is-down { color:#b8612a; }
         .gbp-delta.is-up { color:#15803d; }
         .gbp-delta.is-flat { color:#94a3b8; }
+
+        /* Sticker collage panel */
+        .pc-head { position: relative; padding: 18px 20px 16px; background: #1e3a8a; background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px); background-size: 15px 15px; color: #fff; }
+        .pc-eye { font: 600 10px/1 'Geist Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: #dbe4fb; }
+        .pc-title { font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 21px; line-height: 1.1; letter-spacing: -.01em; color: #fff; margin: 7px 0 0; }
+        .pc-title em { font-style: normal; color: #f4d58a; }
+        .pc-sub { font-size: 11.5px; color: #dbe4fb; margin-top: 5px; }
+        .pc-sites { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+        .pc-site { font: 500 10.5px 'Geist', sans-serif; color: #fff; background: rgba(255,255,255,.13); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; padding: 3px 10px; }
+        .pc-body { padding: 15px 20px 3px; }
+        .pc-klabel { font: 600 10px/1 'Geist Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: #94a3b8; }
+        .pc-variety { display: flex; align-items: center; gap: 13px; margin-bottom: 12px; }
+        .pc-bignum { font-family: 'Geist', -apple-system, sans-serif; font-size: 46px; font-weight: 800; line-height: .78; color: #1e3a8a; }
+        .pc-bignum .ord { font-size: 20px; vertical-align: super; }
+        .pc-variety-r { flex: 1; }
+        .pc-rubber { display: inline-block; font: 700 10.5px 'Geist Mono', monospace; letter-spacing: .07em; text-transform: uppercase; color: #c24a2b; border: 2px dashed rgba(194,74,43,.6); border-radius: 7px; padding: 3px 9px; }
+        .pc-rubber.sm { font-size: 9px; padding: 3px 7px; }
+        .pc-segmeter { display: flex; gap: 2px; margin: 10px 0 5px; }
+        .pc-segmeter i { flex: 1; height: 14px; border-radius: 3px; background: rgba(30,58,138,.12); }
+        .pc-segmeter i.on { background: #1e3a8a; }
+        .pc-segmeter-ends { display: flex; justify-content: space-between; font: 500 9px 'Geist Mono', monospace; color: #94a3b8; text-transform: uppercase; letter-spacing: .03em; }
+        .pc-counts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 7px; margin-bottom: 12px; }
+        .pc-count { background: #fff; border: 1px solid #e7e4dc; border-radius: 12px; padding: 12px 10px 10px; text-align: center; }
+        .pc-count-badge { width: 36px; height: 36px; border-radius: 11px; display: grid; place-items: center; margin: 0 auto 7px; box-shadow: 0 3px 9px rgba(15,23,42,.13); color: #fff; }
+        .pc-count.plant .pc-count-badge { background: #5b6cf0; }
+        .pc-count.animal .pc-count-badge { background: #c8612e; }
+        .pc-count.even { display: flex; flex-direction: column; justify-content: center; }
+        .pc-count-num { font-family: 'Geist', -apple-system, sans-serif; font-size: 25px; font-weight: 800; line-height: .9; color: #0b1220; }
+        .pc-count-num.sm { font-size: 22px; }
+        .pc-count-num i { font-style: normal; font-size: 13px; color: #94a3b8; font-weight: 400; }
+        .pc-count-cap { font-size: 11px; font-weight: 600; color: #0b1220; margin-top: 4px; }
+        .pc-count-of { font-size: 10px; color: #94a3b8; margin-top: 1px; }
+        .pc-cuisine { background: #f3f0e6; border: 1px solid #e7e4dc; border-radius: 11px; padding: 10px 13px; margin-bottom: 12px; }
+        .pc-cuisine-top { display: flex; align-items: center; gap: 9px; }
+        .pc-cuisine-ic { width: 30px; height: 30px; border-radius: 10px; background: #b78e2c; color: #fff; display: grid; place-items: center; flex-shrink: 0; box-shadow: 0 3px 8px rgba(183,142,44,.35); }
+        .pc-cuisine-nm { font-size: 13.5px; font-weight: 600; color: #0b1220; margin-top: 1px; }
+        .pc-cuisine-txt { flex: 1; }
+        .pc-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; overflow: hidden; max-height: 28px; }
+        .pc-tag { font-size: 10.5px; color: #1f2937; background: #fff; border: 1px solid #e7e4dc; border-radius: 999px; padding: 3px 9px; white-space: nowrap; max-width: 170px; overflow: hidden; text-overflow: ellipsis; }
+        .pc-stand-lbl { margin-bottom: 9px; }
+        .pc-stand { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+        .pc-stamp { background: #fff; border: 2px dashed rgba(30,58,138,.32); border-radius: 10px; padding: 10px 6px 8px; text-align: center; }
+        .pc-stamp-ic { width: 32px; height: 32px; border-radius: 50%; background: #e6e8fb; color: #5b6cf0; display: grid; place-items: center; margin: 0 auto 6px; }
+        .pc-stamp-mult { font-family: 'Geist', -apple-system, sans-serif; font-size: 20px; font-weight: 800; color: #1e3a8a; line-height: 1; }
+        .pc-stamp-nm { font-size: 10px; font-weight: 600; color: #0b1220; margin-top: 4px; line-height: 1.2; min-height: 24px; display: flex; align-items: center; justify-content: center; }
+        .pc-stamp-pct { font: 600 9px 'Geist Mono', monospace; color: #b78e2c; margin-top: 3px; text-transform: uppercase; letter-spacing: .04em; }
+        .pc-foot { padding: 11px 20px 13px; display: flex; flex-direction: column; gap: 6px; }
+        .pc-btn { height: 40px; border-radius: 11px; font: 600 13.5px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+        .pc-btn.primary { border: 0; background: #1e3a8a; color: #fff; }
+        .pc-btn.primary:hover { background: #16275f; }
+        .pc-btn.ghost { height: 36px; border: 1.5px solid #e7e4dc; background: transparent; color: #0b1220; font-weight: 500; font-size: 12.5px; }
+        .pc-btn.ghost:hover { border-color: #cbbfa8; }
+
+        /* Detail panel header override for sticker collage */
+        .detail-panel .tp-head {
+            background: #1e3a8a;
+            background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px);
+            background-size: 15px 15px;
+            padding: 18px 20px 16px;
+            border-bottom: none;
+        }
+        .detail-panel .tp-crumb { color: #dbe4fb; font-size: 10px; }
+        .detail-panel .tp-title { color: #fff; font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 19px; }
+        .detail-panel .tp-sub { color: #dbe4fb; font-size: 11.5px; }
+        .detail-panel .tp-close { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.2); color: #fff; }
+        .detail-panel .tp-close:hover { background: rgba(255,255,255,.2); }
+
+        /* Sites section override for navy band */
+        .detail-panel .tp-sites { background: #1e3a8a; background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px); background-size: 15px 15px; padding: 0 24px 18px; border-bottom: none; }
+
+        /* Footer button overrides */
+        .detail-panel .tp-ctas { padding: 16px 22px 18px; }
+        .detail-panel .tp-btn-primary { height: 44px; border-radius: 12px; font: 600 14px 'Geist', sans-serif; }
+        .detail-panel .tp-btn-outline { height: 40px; border-radius: 12px; font: 500 13px 'Geist', sans-serif; }
 
     </style>
 </head>
@@ -3861,6 +4051,22 @@
             });
         });
 
+        // Food icon SVG paths for sticker collage panel
+        const FOOD_ICON_PATHS = {
+            leaf: 'M4 20c0-9 6-15 16-16 0 10-5 16-16 16zM4 20c4-6 8-8 12-9',
+            bean: 'M8 5c5-2 10 1 10 6 0 6-5 9-9 8C4 18 3 13 5 10M9.5 8.2c-1.2 1-1.6 2.8-.8 4.4',
+            coffee: 'M12 4c-2 2-2 4 0 6s2 4 0 6M8.5 6.5c-1.2 1.2-1.2 2.5 0 3.7M15.5 11c-1.2 1.2-1.2 2.5 0 3.7',
+            pepper: 'M9 6c0-2 2-3 3-2 3-3 6-1 5 2-1 2-3 2-4 1M9 6c-3 1-4 5-3 9 1 3 4 5 6 3 2-2 1-6-1-9-1-1.5-2-2.5-2-4z',
+            fish: 'M3 12c3-4 8-5 12-3 2 1 4 2 6 3-2 1-4 2-6 3-4 2-9 1-12-3zM3 12l-1-3M3 12l-1 3M17 11.5h.01',
+            sprout: 'M12 21v-9M12 12c0-3-2-5-5-5 0 3 2 5 5 5zM12 12c0-3 2-5 5-5 0 3-2 5-5 5z',
+            pin: 'M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11zM12 10.5h.01',
+            spark: 'M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z',
+        };
+        function foodIconSvg(name, size, strokeW) {
+            const d = FOOD_ICON_PATHS[name] || FOOD_ICON_PATHS.leaf;
+            return '<svg width="'+size+'" height="'+size+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="'+(strokeW||2)+'" stroke-linecap="round" stroke-linejoin="round"><path d="'+d+'"/></svg>';
+        }
+
         // UPF heatmap variables
         let upfScoreMode = 'binary';  // 'binary' or 'weighted'
         let upfSortByScore = false;
@@ -3898,30 +4104,46 @@
 
         // Ethnic food signatures from the wastewater paper (Dong et al.)
         // Each signature defines species (matched against common_name) linked to a demographic pattern
+        // Food signatures from Dong et al. — only patterns with demonstrated
+        // correlations to demographic variables via PLSR/VIP analysis
         const ETHNIC_FOOD_SIGNATURES = {
             'South Asian': {
+                // PC2 negative: correlated with % Asian, % foreign-born (VIP=1.68)
+                // Vigna beans, chickpeas, pigeon peas, mango, coconut — common in South Asian cuisine
                 color: '#d4a017',
                 markers: ['mung', 'chickpea', 'pigeon pea', 'lentil', 'mango', 'coconut', 'palm', 'turmeric', 'coriander', 'cumin', 'tamarind', 'black gram', 'urad', 'vigna', 'cardamom', 'fenugreek'],
                 demoKey: 'pct_asian',
                 desc: 'South Asian cuisine'
             },
-            'East Asian': {
-                color: '#e53e3e',
-                markers: ['soybean', 'soy', 'ginger', 'sesame', 'bamboo', 'bok choy', 'water chestnut', 'millet', 'duck', 'carp'],
-                demoKey: 'pct_asian',
-                desc: 'East Asian cuisine'
-            },
             'Southern US': {
+                // PC1 positive: correlated with rural, less metro areas
+                // Pecans, black-eyed peas, celery, carrot — traditional Southern foods
                 color: '#8B6914',
-                markers: ['pecan', 'black-eyed pea', 'field pea', 'collard', 'okra', 'sweet potato', 'catfish', 'cornbread', 'hominy', 'grits'],
+                markers: ['pecan', 'black-eyed pea', 'field pea', 'collard', 'okra', 'sweet potato', 'catfish'],
                 demoKey: 'pct_black',
                 desc: 'Southern regional foods'
             },
-            'Latin American': {
-                color: '#15803d',
-                markers: ['avocado', 'jalape', 'chili pepper', 'cilantro', 'tomatillo', 'plantain', 'papaya', 'guava', 'black bean', 'pinto bean', 'queso'],
-                demoKey: 'pct_other',
-                desc: 'Latin American cuisine'
+            'Craft beverages': {
+                // PC1 negative: correlated with income, food costs, alcohol consumption (VIP>2.0)
+                // Hops, barley, kratom — indicators of discretionary spending
+                color: '#7c3aed',
+                markers: ['hops', 'barley', 'kratom'],
+                demoKey: null,
+                desc: 'Craft beverage ingredients'
+            },
+            'Local seafood': {
+                // Coastal communities: local Atlantic and freshwater species (r=-0.65 with coast distance)
+                color: '#0891b2',
+                markers: ['menhaden', 'croaker', 'drum', 'flounder', 'mullet', 'spot', 'bluefish', 'shad', 'catfish', 'bass', 'crappie', 'sunfish', 'bluegill'],
+                demoKey: null,
+                desc: 'Local & freshwater seafood'
+            },
+            'Imported seafood': {
+                // Inland urban: nationally distributed farmed species
+                color: '#5b6cf0',
+                markers: ['salmon', 'tilapia', 'tuna', 'shrimp', 'pangasius', 'swai'],
+                demoKey: null,
+                desc: 'Imported & farmed seafood'
             },
         };
 
@@ -6239,6 +6461,7 @@
                         'Cow (Beef)': 'Cow',
                         'Pig (Pork)': 'Pig',
                         'Sheep (Lamb)': 'Sheep',
+                        'Mungbean/Cowpea/Black eye peas': 'Mungbean/Black eye peas',
                     };
                     const MERGE_NAMES = {}; // kept for compatibility
                     Object.entries(sm).forEach(([id, meta]) => {
@@ -6555,58 +6778,86 @@
         function toggleInfoPanel() {
             const panel = document.getElementById('landingInfoPanel');
             const arrow = document.querySelector('#infoPanelTab .tab-arrow');
+            const drawerWidth = Math.min(window.innerWidth * 0.8, window.innerWidth - 480);
             if (panel.classList.contains('hidden')) {
                 panel.classList.remove('hidden');
                 if (arrow) arrow.innerHTML = '&#9654;';
                 // Pan map to keep selected tract visible
-                if (map) map.panBy([384 / 2, 0], { animate: true, duration: 0.5 });
+                if (map) map.panBy([drawerWidth / 2, 0], { animate: true, duration: 0.5 });
             } else {
                 panel.classList.add('hidden');
                 if (arrow) arrow.innerHTML = '&#9664;';
                 // Pan map back
-                if (map) map.panBy([-384 / 2, 0], { animate: true, duration: 0.5 });
+                if (map) map.panBy([-drawerWidth / 2, 0], { animate: true, duration: 0.5 });
             }
         }
 
-        let nfCompareOn = false;
-        function toggleNfCompare() {
-            nfCompareOn = !nfCompareOn;
-            const btn = document.getElementById('nfCmpToggle');
-            const groups = document.getElementById('nfGroupsContainer');
-            const legend = document.getElementById('nfCmpLegend');
-            if (btn) btn.classList.toggle('on', nfCompareOn);
-            if (groups) {
-                groups.classList.toggle('cmp', nfCompareOn);
-                groups.style.gap = nfCompareOn ? '6px' : '4px';
-            }
-            if (legend) legend.style.display = nfCompareOn ? 'flex' : 'none';
-            document.querySelectorAll('.dur-num').forEach(el => { el.style.display = nfCompareOn ? 'block' : 'none'; });
+        // ── Editorial drawer toggles ──
+        let erCompareOn = false;
+        function toggleErCompare() {
+            erCompareOn = !erCompareOn;
+            document.getElementById('erCmpToggle').classList.toggle('on', erCompareOn);
+            document.querySelectorAll('.er-grp-bar').forEach(el => el.classList.toggle('cmp', erCompareOn));
+            document.querySelectorAll('.er-grp-ct .dur').forEach(el => { el.style.display = erCompareOn ? 'block' : 'none'; });
+            // Also toggle rainbow
+            const local = document.getElementById('erRainbowLocal');
+            const compare = document.getElementById('erRainbowCompare');
+            if (local) local.style.display = erCompareOn ? 'none' : '';
+            if (compare) compare.style.display = erCompareOn ? '' : 'none';
+            const rbtn = document.getElementById('erRainbowToggle');
+            if (rbtn) rbtn.classList.toggle('on', erCompareOn);
         }
 
-        let nfAccOpen = {};
-        function toggleNfAccordion(groupName) {
-            nfAccOpen[groupName] = !nfAccOpen[groupName];
-            const item = document.getElementById('nfAcc_' + groupName.replace(/[^a-zA-Z]/g, ''));
+        let erAccOpen = {};
+        function toggleErAccordion(name) {
+            erAccOpen[name] = !erAccOpen[name];
+            const item = document.getElementById('erAcc_' + name.replace(/[^a-zA-Z]/g, ''));
             if (!item) return;
-            item.classList.toggle('open', nfAccOpen[groupName]);
-            const chips = item.querySelector('.nf-chips');
-            const empty = item.querySelector('.nf-acc-empty');
-            if (chips) chips.style.display = nfAccOpen[groupName] ? 'flex' : 'none';
-            if (empty) empty.style.display = nfAccOpen[groupName] ? 'block' : 'none';
+            item.classList.toggle('open', erAccOpen[name]);
+            const chips = item.querySelector('.er-chips');
+            if (chips) chips.style.display = erAccOpen[name] ? 'flex' : 'none';
         }
 
-        let nfRainbowCompare = false;
-        function toggleNfRainbow() {
-            nfRainbowCompare = !nfRainbowCompare;
-            const btn = document.getElementById('nfRainbowToggle');
-            const local = document.getElementById('nfRainbowLocal');
-            const compare = document.getElementById('nfRainbowCompare');
-            if (btn) btn.classList.toggle('on', nfRainbowCompare);
-            if (local) local.style.display = nfRainbowCompare ? 'none' : '';
-            if (compare) compare.style.display = nfRainbowCompare ? '' : 'none';
+        let erTab = 'plants', erViewAll = false;
+        function switchErTab(t) {
+            erTab = t; erViewAll = false;
+            renderErAbundance();
+        }
+        function toggleErViewAll() {
+            erViewAll = !erViewAll;
+            renderErAbundance();
+        }
+        function renderErAbundance() {
+            const container = document.getElementById('erAbundContainer');
+            if (!container || !window._drawerData) return;
+            const { d } = window._drawerData;
+            const items = erTab === 'plants' ? d.allPlants : d.allAnimals;
+            const display = erViewAll ? items : items.slice(0, 10);
+            const trackColor = erTab === 'plants' ? '#5b6cf0' : '#c8612e';
+            let html = '';
+            html += `<div class="er-seg">`;
+            html += `<button class="er-seg-btn${erTab === 'plants' ? ' on' : ''}" data-k="plants" onclick="switchErTab('plants')">Plants</button>`;
+            html += `<button class="er-seg-btn${erTab === 'animals' ? ' on' : ''}" data-k="animals" onclick="switchErTab('animals')">Animals</button>`;
+            html += `</div>`;
+            html += `<div class="er-abund">`;
+            display.forEach(it => {
+                const sparkSvg = rcBuildSparkline(it.id, window._drawerData.plants);
+                html += `<div class="er-arow" onclick="navigateToTrends('${window._drawerData.navId}','${it.id}','')" style="cursor:pointer;border-radius:6px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">`;
+                html += `<span class="nm" title="${it.name}">${it.name}</span>`;
+                html += `<span class="track" style="background:#f2efe8;"><i style="width:${it.value}%;background:${trackColor};"></i></span>`;
+                html += `<span class="sparkline" style="display:flex;align-items:center;justify-content:center;">${sparkSvg}</span>`;
+                html += `<span class="v">${it.value}</span>`;
+                html += `</div>`;
+            });
+            html += `</div>`;
+            if (items.length > 10) {
+                const linkText = erViewAll ? 'Show top 10' : `View all ${items.length}`;
+                html += `<div class="er-viewall"><a href="#" onclick="event.preventDefault();toggleErViewAll()">${linkText} &rarr;</a></div>`;
+            }
+            container.innerHTML = html;
         }
 
-        function expandNfChips(chipsId) {
+        function expandErChips(chipsId) {
             const el = document.getElementById(chipsId);
             const foods = window._nfChipsData && window._nfChipsData[chipsId];
             if (!el || !foods) return;
@@ -8983,6 +9234,8 @@
             rcShowAllPlants = false;
             rcShowAllAnimals = false;
 
+            // Hide map image for non-tract sites
+
             const isWWTP = plant.location_type !== 'manhole';
             document.getElementById('tpCrumb').textContent = isWWTP ? 'Wastewater Plant' : 'Sampling Site';
             document.getElementById('tpTitle').textContent = plant.name;
@@ -9109,21 +9362,10 @@
         function toggleRcShowAll(kind) {
             if (kind === 'plants') rcShowAllPlants = !rcShowAllPlants;
             else rcShowAllAnimals = !rcShowAllAnimals;
-            // Re-render
-            if (currentTractFeature) {
-                reRenderTractReportCard();
-            } else if (currentSitePlant) {
-                renderReportCard(document.getElementById('tpBody'), [currentSitePlant], currentSitePlant.name, null);
-            }
         }
 
         function switchReportTab(tab) {
             rcActiveTab = tab;
-            if (currentTractFeature) {
-                reRenderTractReportCard();
-            } else if (currentSitePlant) {
-                renderReportCard(document.getElementById('tpBody'), [currentSitePlant], currentSitePlant.name, null);
-            }
         }
 
         function computeReportCardData(plants, areaName) {
@@ -9474,154 +9716,100 @@
             const d = computeReportCardData(plants, areaName);
             const navId = String(tractNum || (plants.length === 1 ? plants[0].name : areaName));
 
-            let html = '';
+            let html = '<div class="pc-body">';
 
-            // ── 1. Biodiversity Hero ──
+            // ── 1. Diet Variety ──
             const pSuffix = d.score === 1 ? 'st' : d.score === 2 ? 'nd' : d.score === 3 ? 'rd' : 'th';
-            html += `<div class="spb-hero">
-                <div class="spb-eyebrow">Diet variety</div>
-                <div class="spb-hero-top">
-                    <div class="spb-bignum">${d.score}<span class="ord">${pSuffix}</span></div>
-                    <div class="spb-hero-label">${d.gradeLabel}<br>percentile in Durham</div>
+            const filledSegs = Math.round(d.score / 7.14);
+            const rubberColor = d.score < 40 ? '#c24a2b' : d.score < 75 ? '#b78e2c' : '#1f8a5b';
+            const rubberBorder = d.score < 40 ? 'rgba(194,74,43,.6)' : d.score < 75 ? 'rgba(183,142,44,.6)' : 'rgba(31,138,91,.6)';
+            let segHtml = '';
+            for (let i = 0; i < 14; i++) {
+                segHtml += '<i' + (i < filledSegs ? ' class="on"' : '') + '></i>';
+            }
+
+            html += `<div class="pc-klabel" style="margin-bottom:10px;">Diet variety</div>
+            <div class="pc-variety">
+                <div class="pc-bignum">${d.score}<span class="ord">${pSuffix}</span></div>
+                <div class="pc-variety-r">
+                    <span class="pc-rubber" style="color:${rubberColor};border-color:${rubberBorder};">${d.gradeLabel}</span>
+                    <div class="pc-segmeter">${segHtml}</div>
+                    <div class="pc-segmeter-ends"><span>Less diverse</span><span>More diverse</span></div>
                 </div>
-                <div class="spb-pbar">
-                    <div class="spb-pbar-track"><i style="width:${d.score}%"></i></div>
-                    <div class="spb-pbar-marker" style="left:${d.score}%"></div>
-                    <div class="spb-pbar-median" style="left:50%"><span>Durham median</span></div>
-                    <div class="spb-pbar-ends"><span>Less diverse</span><span>More diverse</span></div>
-                </div>
-                <div class="spb-detect2">
-                    <div class="spb-dcard">
-                        <div class="spb-dcard-label" style="color:#5b6cf0;">Plants</div>
-                        <div class="spb-dcard-num">${d.plantTaxa.detected} <small>of ${d.plantTaxa.total} foods tracked</small></div>
-                    </div>
-                    <div class="spb-dcard">
-                        <div class="spb-dcard-label" style="color:#c8612e;">Animals</div>
-                        <div class="spb-dcard-num">${d.animalTaxa.detected} <small>of ${d.animalTaxa.total} foods tracked</small></div>
-                    </div>
-                </div>
-                <div class="spb-evenness">Evenness ${d.evenness}/100 &middot; how evenly foods are distributed</div>
             </div>`;
 
-            // ── 2. Cultural Food Signatures ──
+            // ── 2. Plant / Animal / Evenness counts ──
+            html += `<div class="pc-counts">
+                <div class="pc-count plant">
+                    <div class="pc-count-badge">${foodIconSvg('leaf', 22)}</div>
+                    <div class="pc-count-num">${d.plantTaxa.detected}</div>
+                    <div class="pc-count-cap">plant foods</div>
+                    <div class="pc-count-of">of ${d.plantTaxa.total}</div>
+                </div>
+                <div class="pc-count animal">
+                    <div class="pc-count-badge">${foodIconSvg('fish', 22)}</div>
+                    <div class="pc-count-num">${d.animalTaxa.detected}</div>
+                    <div class="pc-count-cap">animal foods</div>
+                    <div class="pc-count-of">of ${d.animalTaxa.total}</div>
+                </div>
+                <div class="pc-count even">
+                    <div class="pc-count-num sm">${d.evenness}<i>/100</i></div>
+                    <div class="pc-count-cap">evenness</div>
+                    <div class="pc-count-of">how evenly spread</div>
+                </div>
+            </div>`;
+
+            // ── 3. Cuisine Signature (top one) ──
             if (d.ethnicSignatures && d.ethnicSignatures.length > 0) {
-                const sigColorMap = {
-                    green: '#d9efe1', rust: '#f3e2d3', orange: '#f3e2d3',
-                    blue: '#dce6f7', purple: '#e8dff5', red: '#f5d9d9',
-                    yellow: '#f5f0d3', teal: '#d3f0ed'
-                };
-                html += `<div class="spb-section">
-                    <div style="display:flex;align-items:baseline;justify-content:space-between;">
-                        <div class="spb-eyebrow">We're detecting in your area</div>
-                        <span style="font:500 10px 'Geist Mono',monospace;color:#94a3b8;">food patterns</span>
+                const sig = d.ethnicSignatures[0];
+                const rp = sig.relPct || 0;
+                const conf = rp >= 1 ? 'Strong' : rp >= 0.4 ? 'Moderate' : 'Weak';
+                const tagsHtml = sig.topFoods.map(f => `<span class="pc-tag">${f}</span>`).join('');
+                html += `<div class="pc-klabel" style="margin-bottom:10px;">We're detecting in your area</div>
+                <div class="pc-cuisine">
+                    <div class="pc-cuisine-top">
+                        <div class="pc-cuisine-ic">${foodIconSvg('pepper', 18)}</div>
+                        <div class="pc-cuisine-txt">
+                            <div class="pc-cuisine-nm">${sig.desc}</div>
+                            <span class="pc-rubber sm" style="color:${rubberColor};border-color:${rubberBorder};margin-top:4px;">${conf}</span>
+                        </div>
                     </div>
-                    <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">`;
-                d.ethnicSignatures.forEach(sig => {
-                    const rp = sig.relPct || 0;
-                    const conf = rp >= 1 ? 'Strong' : rp >= 0.4 ? 'Moderate' : 'Weak';
-                    const sigColorMap = { '#d4a017': '#faf0d4', '#e53e3e': '#fde8e8', '#8B6914': '#f5eedd', '#15803d': '#d9efe1' };
-                    const bgColor = sigColorMap[sig.color] || sig.color + '18';
-                    const textColor = sig.color || '#64748b';
-                    html += `<div style="background:${bgColor};border-radius:10px;padding:10px 12px;">
-                        <div style="display:flex;align-items:center;gap:7px;">
-                            <span style="width:8px;height:8px;border-radius:3px;background:${sig.color};flex:0 0 auto;"></span>
-                            <span style="font-size:13px;font-weight:600;color:#0b1220;">${sig.desc}</span>
-                            <span style="font:600 9.5px 'Geist Mono',monospace;color:${textColor};margin-left:auto;text-transform:uppercase;letter-spacing:.05em;">${conf}</span>
-                        </div>
-                        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;">
-                            ${sig.topFoods.map(f => `<span style="font-size:11px;color:#1f2937;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:3px 9px;white-space:nowrap;">${f}</span>`).join('')}
-                        </div>
-                    </div>`;
-                });
-                html += `</div></div>`;
-            }
-
-            // ── 3. What Stands Out ──
-            if (d.insights.length > 0) {
-                html += `<div class="spb-section">
-                    <div class="spb-eyebrow">What stands out in ${areaName}</div>
-                    <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">`;
-                d.insights.forEach(ins => {
-                    const isAnimal = ins.tone === 'rust';
-                    const accent = isAnimal ? '#c8612e' : '#5b6cf0';
-                    const softBg = isAnimal ? '#f5e0d2' : '#e6e8fb';
-                    const mult = ins.ratio ? (ins.ratio >= 100 ? Math.round(ins.ratio) + '\u00d7' : ins.ratio + '\u00d7') : '';
-                    const pct = ins.pctile || 0;
-                    html += `<div style="display:grid;grid-template-columns:56px 1fr;align-items:center;gap:10px;background:${softBg};border-radius:10px;padding:9px 12px;">
-                        <span style="font:600 ${mult.length > 5 ? '13' : '15'}px 'Geist Mono',monospace;color:${accent};text-align:center;">${mult}</span>
-                        <div>
-                            <div style="display:flex;align-items:baseline;justify-content:space-between;">
-                                <span style="font-size:12.5px;font-weight:600;color:#0b1220;">${ins.name || ''} <span style="font-weight:400;color:#94a3b8;font-size:10.5px;">vs median</span></span>
-                                <span style="font-size:10px;color:#64748b;white-space:nowrap;margin-left:8px;">top <b style="color:${accent};">${100 - pct > 0 ? 100 - pct : 1}%</b></span>
-                            </div>
-                            <div style="height:4px;border-radius:3px;background:rgba(0,0,0,.07);overflow:hidden;margin-top:5px;"><div style="height:100%;width:${pct}%;background:${accent};border-radius:3px;"></div></div>
-                        </div>
-                    </div>`;
-                });
-                html += `</div></div>`;
-            }
-
-            // Notable trends (flagged changes)
-            const rcTractNum = tractNum || (plants.length === 1 && plants[0].census_tract ? plants[0].census_tract : null);
-            if (rcTractNum) {
-                const flagged = getFlaggedTrends(rcTractNum);
-                if (flagged.length > 0) {
-                    html += `<div class="spb-section">
-                        <div class="spb-eyebrow">Notable this month</div>`;
-                    flagged.forEach(f => {
-                        const changeText = f.isNew ? `${f.arrow} New` : `${f.arrow} ${f.caption}`;
-                        html += `<div class="tp-flagged-item ${f.variant}" onclick="navigateToTrends('${rcTractNum}','${f.foodId}','${f.focusMonth}')" role="button" tabindex="0">
-                            <span><b>${f.foodLabel}</b> ${changeText}</span>
-                            <span class="flag-arrow">\u2192</span>
-                        </div>`;
-                    });
-                    html += `</div>`;
-                }
-            }
-
-            // ── 4. Most Abundant (tabbed Plants / Animals) ──
-            if (d.allPlants.length > 0 || d.allAnimals.length > 0) {
-                const tab = rcActiveTab; // 'plants' or 'animals'
-                const items = tab === 'plants' ? d.allPlants : d.allAnimals;
-                const showAll = tab === 'plants' ? rcShowAllPlants : rcShowAllAnimals;
-                const display = showAll ? items : items.slice(0, 6);
-                const trackClass = tab === 'plants' ? 'plants' : 'animals';
-
-                html += `<div class="spb-section">
-                    <div class="spb-eyebrow">Most abundant</div>
-                    <div class="spb-seg">
-                        <button class="spb-seg-btn plants${tab === 'plants' ? ' on' : ''}" onclick="switchReportTab('plants')">Plants</button>
-                        <button class="spb-seg-btn animals${tab === 'animals' ? ' on' : ''}" onclick="switchReportTab('animals')">Animals</button>
-                    </div>`;
-                display.forEach(it => {
-                    const spark = rcBuildSparkline(it.id, plants);
-                    html += `<div class="arow" style="cursor:pointer;border-radius:6px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''" tabindex="0" role="button" onclick="navigateToTrends('${navId}','${it.id}','')" onkeydown="if(event.key==='Enter')navigateToTrends('${navId}','${it.id}','')">
-                        <span class="arow-name" title="${it.name}">${it.name}</span>
-                        <div class="arow-track ${trackClass}"><i style="width:${it.value}%"></i></div>
-                        ${spark}
-                        <span class="arow-val">${it.value}</span>
-                    </div>`;
-                });
-                if (items.length > 6) {
-                    const toggleKind = tab;
-                    const linkText = showAll ? 'show top 6' : `view all ${items.length} ${toggleKind}`;
-                    html += `<a class="spb-view-all" href="#" onclick="event.preventDefault();toggleRcShowAll('${toggleKind}')">${linkText} &rarr;</a>`;
-                }
-                html += `</div>`;
-            }
-
-            // ── 5. Demographics ──
-            if (demoProps) {
-                html += `<div class="spb-section" style="border-bottom:0;">
-                    <div class="spb-eyebrow">Demographics</div>
-                    <div class="spb-demo-card">
-                        ${renderDemographicsCard(demoProps)}
-                    </div>
+                    <div class="pc-tags">${tagsHtml}</div>
                 </div>`;
             }
 
+            // ── 4. What Stands Out (top 3 as stamps) ──
+            if (d.insights.length > 0) {
+                const topInsights = d.insights.slice(0, 3);
+                html += `<div class="pc-klabel pc-stand-lbl">What stands out</div>
+                <div class="pc-stand">`;
+                topInsights.forEach(ins => {
+                    const isAnimal = ins.tone === 'rust';
+                    const iconName = isAnimal ? 'fish' : (Math.random() > 0.5 ? 'leaf' : 'sprout');
+                    const rawMult = ins.ratio ? (ins.ratio >= 100 ? Math.round(ins.ratio) : ins.ratio) : 0;
+                    const cappedMult = Math.min(rawMult, 50);
+                    const multStr = cappedMult + '\u00d7';
+                    const pct = ins.pctile || 0;
+                    const topPct = 100 - pct > 0 ? 100 - pct : 1;
+                    html += `<div class="pc-stamp">
+                        <div class="pc-stamp-ic">${foodIconSvg(iconName, 20)}</div>
+                        <div class="pc-stamp-mult">${multStr}</div>
+                        <div class="pc-stamp-nm">${ins.name || ''}</div>
+                        <div class="pc-stamp-pct">top ${topPct}%</div>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+
+            html += '</div>';
+
+            // Store data for drawer panels (Notable, Most Abundant, Demographics)
+            window._drawerData = { d, demoProps, plants, navId, tractNum };
+
             body.innerHTML = html;
         }
+
+        // renderDrawerMovedSections removed — content now rendered inline in showLandingPanels
 
         function buildBarSection(title, speciesData, type) {
             if (!speciesData) return '';
@@ -9752,11 +9940,21 @@
             const hood = TRACT_NEIGHBORHOODS[String(tractNum)] || 'Durham';
             const plantsInTract = getPlantsInTract(tractNum);
 
+            // Compute centroid for static map image
+            const geom = feature.geometry;
+            const coords = geom.type === 'Polygon' ? geom.coordinates[0] : (geom.type === 'MultiPolygon' ? geom.coordinates[0][0] : []);
+            let cLat = 0, cLng = 0;
+            if (coords.length > 0) {
+                coords.forEach(c => { cLng += c[0]; cLat += c[1]; });
+                cLat /= coords.length;
+                cLng /= coords.length;
+            }
+
             // Header
             document.getElementById('tpCrumb').textContent = 'Your neighborhood \u00b7 Durham';
-            document.getElementById('tpCrumb').style.color = '#6b7280';
-            document.getElementById('tpTitle').textContent = `Area ${tractNum} · ${hood}`;
-            document.getElementById('tpTitle').style.color = '#1e3a8a';
+            document.getElementById('tpCrumb').style.color = '#dbe4fb';
+            document.getElementById('tpTitle').innerHTML = `Area ${tractNum} \u00b7 <em style="font-style:normal;color:#f4d58a;">${hood}</em>`;
+            document.getElementById('tpTitle').style.color = '#fff';
             // Site filter
             const sitesSection = document.getElementById('tpSites');
             const sitesList = document.getElementById('tpSitesList');
@@ -9809,10 +10007,7 @@
                 visiblePlants.forEach(p => {
                     const pid = p.name.replace(/\s/g, '-');
                     tractSiteStates[pid] = true;
-                    const dotColor = p.location_type === 'manhole' ? '#1e3a8a' : '#b8612a';
-                    sitesHtml += `<span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 8px;border-radius:999px;background:#dbe4fb;font:500 11.5px 'Geist',sans-serif;color:#1e3a8a;white-space:nowrap;">
-                        <span style="width:6px;height:6px;border-radius:50%;background:${dotColor};"></span>${p.name}
-                    </span>`;
+                    sitesHtml += `<span class="pc-site">${p.name}</span>`;
                 });
                 sitesList.innerHTML = sitesHtml;
             } else {
@@ -12877,8 +13072,6 @@
             const hood = saId ? (TRACT_NEIGHBORHOODS[saId] || 'Durham') : 'Durham';
             const cats = saId ? computeGapCategories(saId) : null;
 
-            let h = '<div class="nf">';
-
             // Build food data for this tract
             const landingPlants = saId ? getPlantsInTract(saId) : [];
             const landingAgg = landingPlants.length > 0 ? aggregatePlantsData(landingPlants) : { plants: {}, animals: {} };
@@ -12917,17 +13110,17 @@
 
             const totalFoods = allSpeciesEntries.length;
             const nonEmptyGroupCount = Object.values(landingFoodGroups).filter(g => g.count > 0).length;
-
-            // --- SECTION 1: Hero ---
-            h += `<div class="nf-hero">`;
-            h += `<div class="nf-eyebrow">Your food patterns</div>`;
-            h += `<div class="nf-h1">We found <span class="hl">${totalFoods} foods</span> in ${hood}</div>`;
             const totalGroupCount = Object.keys(landingFoodGroups).length;
-            h += `<div class="nf-lede">Distinct food species detected &mdash; across ${nonEmptyGroupCount} of ${totalGroupCount} food groups.</div>`;
-            h += `</div>`;
 
-            // --- SECTION 2: Food Groups chart with Compare toggle ---
-            // Compute Durham averages
+            // Count plant vs animal types
+            let plantTypeCount = 0, animalTypeCount = 0;
+            allSpeciesEntries.forEach(([sp]) => {
+                const meta = foodseqData.species_metadata[sp];
+                if (meta && meta.type === 'plant') plantTypeCount++;
+                else animalTypeCount++;
+            });
+
+            // Compute Durham averages for food groups
             const durhamAvgCounts = {};
             let nDurTracts = 0;
             if (durhamTractsGeoJSON) {
@@ -12955,81 +13148,36 @@
             const allCounts = fgEntries.map(([,g]) => g.count).concat(fgEntries.map(([name]) => durhamAvgCounts[name] || 0));
             const scaleMax = Math.max(Math.max(...allCounts) + 3, 23);
 
-            h += `<div class="nf-sect">`;
-            h += `<div class="nf-sect-hd">`;
-            h += `<span class="nf-eyebrow">Food groups</span>`;
-            h += `<button id="nfCmpToggle" class="nf-toggle" onclick="toggleNfCompare()"><span class="knob"></span>Compare to Durham</button>`;
-            h += `</div>`;
-            h += `<div id="nfCmpLegend" class="nf-legend2" style="display:none;">`;
-            h += `<span><span class="sw ink"></span>${hood}</span>`;
-            h += `<span><span class="sw dur"></span>Durham avg</span>`;
-            h += `</div>`;
-            h += `<div id="nfGroupsContainer" class="nf-groups" style="display:flex;flex-direction:column;gap:4px;">`;
-            fgEntries.forEach(([name, g]) => {
-                const pct = Math.min((g.count / scaleMax) * 100, 100);
-                const durVal = durhamAvgCounts[name] || 0;
-                const durPct = Math.min((durVal / scaleMax) * 100, 100);
-                h += `<div class="nf-grow">`;
-                h += `<span class="lbl">${name}</span>`;
-                h += `<div>`;
-                h += `<div class="track"><div class="fill" style="width:${g.count > 0 ? pct : 0}%;background:${g.color};"></div></div>`;
-                h += `<div class="track dur"><div class="fill" style="width:${durVal > 0 ? durPct : 0}%;"></div></div>`;
-                h += `</div>`;
-                h += `<div><span class="num">${g.count}</span><span class="dur-num" style="display:none;font:500 11px 'Geist Mono',monospace;color:#9aa1ad;margin-top:2px;">${durVal}</span></div>`;
-                h += `</div>`;
-            });
-            h += `</div>`;
-            h += `</div>`;
+            // Compute percentile for variety section (reuse computeReportCardData logic)
+            const _isHiddenL = ([sp]) => { const m = foodseqData.species_metadata[sp]; return !m || m._hidden || (m.common_name && m.common_name.startsWith('NA_')); };
+            const pEntriesL = Object.entries(landingAgg.plants).filter(([sp, v]) => v > 0 && !_isHiddenL([sp]));
+            const aEntriesL = Object.entries(landingAgg.animals).filter(([sp, v]) => v > 0 && !_isHiddenL([sp]));
+            const speciesRichnessL = pEntriesL.length + aEntriesL.length;
+            const tractRichnessValsL = [];
+            if (durhamTractsGeoJSON) {
+                const tractIds = new Set(durhamTractsGeoJSON.features.map(f => String(f.properties.Sample_ID)));
+                tractIds.forEach(tid => {
+                    const tpL = getPlantsInTract(tid);
+                    if (tpL.length === 0) return;
+                    const tAggL = aggregatePlantsData(tpL);
+                    const tPl = Object.entries(tAggL.plants).filter(([sp, v]) => { const m = foodseqData.species_metadata[sp]; return v > 0 && m && !m._hidden; }).length;
+                    const tAn = Object.entries(tAggL.animals).filter(([sp, v]) => { const m = foodseqData.species_metadata[sp]; return v > 0 && m && !m._hidden; }).length;
+                    tractRichnessValsL.push(tPl + tAn);
+                });
+            }
+            const sortedRichnessL = tractRichnessValsL.slice().sort((a, b) => a - b);
+            const varietyPctile = sortedRichnessL.length > 0
+                ? Math.round((sortedRichnessL.filter(v => v <= speciesRichnessL).length / sortedRichnessL.length) * 100)
+                : 0;
+            const medianIdx = Math.floor(sortedRichnessL.length / 2);
+            const medianRichness = sortedRichnessL.length > 0 ? sortedRichnessL[medianIdx] : 0;
+            const pSuffix = varietyPctile === 1 ? 'st' : varietyPctile === 2 ? 'nd' : varietyPctile === 3 ? 'rd' : 'th';
+            let gradeLabel = 'Low';
+            if (varietyPctile >= 75) gradeLabel = 'High';
+            else if (varietyPctile >= 40) gradeLabel = 'Moderate';
+            else if (varietyPctile >= 20) gradeLabel = 'Below avg';
 
-            // --- SECTION 3: Foods Detected (accordion) ---
-            nfAccOpen = {};
-
-            h += `<div class="nf-sect">`;
-            h += `<div class="nf-sect-hd"><span class="nf-eyebrow">Foods detected</span></div>`;
-            h += `<div class="nf-note2">Specific foods identified in this area&rsquo;s wastewater.</div>`;
-            h += `<div class="nf-acc">`;
-            fgEntries.forEach(([name, g]) => {
-                const safeId = name.replace(/[^a-zA-Z]/g, '');
-                const isOpen = false;
-                const isEmpty = g.count === 0;
-                const tintBg = g.color + '18';
-                h += `<div id="nfAcc_${safeId}" class="nf-acc-item${isOpen ? ' open' : ''}">`;
-                if (isEmpty) {
-                    h += `<div class="nf-acc-hd disabled">`;
-                } else {
-                    h += `<div class="nf-acc-hd" onclick="toggleNfAccordion('${name}')">`;
-                }
-                h += `<span class="dot" style="background:${g.color};"></span>`;
-                h += `<span class="nm">${name}</span>`;
-                h += `<span class="ct" style="background:${tintBg};color:${g.color};">${g.count}</span>`;
-                if (!isEmpty) {
-                    h += `<svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-                } else {
-                    h += `<span class="chev-space"></span>`;
-                }
-                h += `</div>`;
-                if (isEmpty) {
-                    h += `<div class="nf-acc-empty" style="display:${isOpen ? 'block' : 'none'};">None detected here</div>`;
-                } else {
-                    const chipsId = 'nfChips_' + name.replace(/[^a-zA-Z]/g, '');
-                    h += `<div class="nf-chips" id="${chipsId}" style="display:${isOpen ? 'flex' : 'none'};">`;
-                    g.foods.slice(0, 5).forEach(f => {
-                        h += `<span class="chip">${f.name}</span>`;
-                    });
-                    if (g.foods.length > 5) {
-                        h += `<span class="chip more" style="cursor:pointer;" onclick="expandNfChips('${chipsId}')">+${g.foods.length - 5} more</span>`;
-                        // Stash full food list for expansion
-                        if (!window._nfChipsData) window._nfChipsData = {};
-                        window._nfChipsData[chipsId] = g.foods.map(f => f.name);
-                    }
-                    h += `</div>`;
-                }
-                h += `</div>`;
-            });
-            h += `</div>`;
-            h += `</div>`;
-
-            // --- SECTION 4: Food Rainbow (donut) ---
+            // Rainbow data
             const colorCategories = [
                 { name: 'Red', color: '#df524a', match: ['tomato','strawberr','raspberry','cherry','watermelon','red pepper','beet','pomegranate','cranberry'] },
                 { name: 'Orange', color: '#e27d3a', match: ['carrot','sweet potato','mango','papaya','orange','peach','apricot','pumpkin','squash','cantaloupe'] },
@@ -13050,7 +13198,7 @@
             });
             const totalRainbow = rainbowCounts.reduce((s, c) => s + c.count, 0) || 1;
 
-            // Compute Durham-wide rainbow
+            // Durham-wide rainbow
             const durRainbowCounts = colorCategories.map(cat => {
                 let count = 0;
                 const allTracts = durhamTractsGeoJSON ? durhamTractsGeoJSON.features.map(f => String(f.properties.Sample_ID)) : [];
@@ -13069,7 +13217,7 @@
             });
             const totalDurRainbow = durRainbowCounts.reduce((s, c) => s + c.count, 0) || 1;
 
-            // Build ring segments helper
+            // Donut helpers
             function buildRingSegs(counts, total, C, gap) {
                 let acc = 0;
                 return counts.map(cat => {
@@ -13081,90 +13229,369 @@
                     return seg;
                 });
             }
-
-            // Build single donut SVG (no compare)
             function buildSingleDonut() {
-                const sz = 168, sw = 25, r = (sz - sw) / 2, C = 2 * Math.PI * r, cx = sz / 2, cy = sz / 2;
+                const sz = 140, sw = 22, r = (sz - sw) / 2, C = 2 * Math.PI * r, cx = sz / 2, cy = sz / 2;
                 const segs = buildRingSegs(rainbowCounts, totalRainbow, C, 3);
-                let svg = `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" style="display:block;margin:0 auto;"><g transform="rotate(-90 ${cx} ${cy})">`;
+                let svg = `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" style="display:block;"><g transform="rotate(-90 ${cx} ${cy})">`;
                 segs.forEach(s => {
                     svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="${sw}" stroke-dasharray="${s.dash}" stroke-dashoffset="${s.off}"/>`;
                 });
                 svg += `</g>`;
-                svg += `<text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="'Geist',-apple-system,sans-serif" font-size="28" font-weight="400" fill="#0b1220">${totalRainbow}</text>`;
-                svg += `<text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="8" font-weight="600" letter-spacing=".12em" fill="#6b7280">PLANT FOODS</text>`;
+                svg += `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="'Geist',-apple-system,sans-serif" font-size="26" font-weight="400" fill="#0b1220">${totalRainbow}</text>`;
+                svg += `<text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="7.5" font-weight="600" letter-spacing=".12em" fill="#6b7280">PLANT FOODS</text>`;
                 svg += `</svg>`;
                 return svg;
             }
-
-            // Build concentric donut SVG (location inner thick + Durham outer thin)
             function buildConcentricDonut() {
-                const sz = 200, thinO = 8, gapB = 8, thickI = 25;
+                const sz = 160, thinO = 7, gapB = 7, thickI = 22;
                 const cx = sz / 2, cy = sz / 2;
                 const rO = sz / 2 - thinO / 2 - 2;
                 const rI = rO - thinO / 2 - gapB - thickI / 2;
                 const CO = 2 * Math.PI * rO, CI = 2 * Math.PI * rI;
                 const outerSegs = buildRingSegs(durRainbowCounts, totalDurRainbow, CO, 3);
                 const innerSegs = buildRingSegs(rainbowCounts, totalRainbow, CI, 3);
-                let svg = `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" style="display:block;margin:0 auto;"><g transform="rotate(-90 ${cx} ${cy})">`;
-                // Faint track behind outer ring
+                let svg = `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" style="display:block;"><g transform="rotate(-90 ${cx} ${cy})">`;
                 svg += `<circle cx="${cx}" cy="${cy}" r="${rO}" fill="none" stroke="#efece4" stroke-width="${thinO}"/>`;
-                // Durham outer ring (dimmed)
                 outerSegs.forEach(s => {
                     svg += `<circle cx="${cx}" cy="${cy}" r="${rO}" fill="none" stroke="${s.color}" stroke-width="${thinO}" stroke-dasharray="${s.dash}" stroke-dashoffset="${s.off}" opacity="0.55"/>`;
                 });
-                // Location inner ring
                 innerSegs.forEach(s => {
                     svg += `<circle cx="${cx}" cy="${cy}" r="${rI}" fill="none" stroke="${s.color}" stroke-width="${thickI}" stroke-dasharray="${s.dash}" stroke-dashoffset="${s.off}"/>`;
                 });
                 svg += `</g>`;
-                svg += `<text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="'Geist',-apple-system,sans-serif" font-size="30" font-weight="400" fill="#0b1220">${totalRainbow}</text>`;
-                svg += `<text x="${cx}" y="${cy + 13}" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="8" font-weight="600" letter-spacing=".12em" fill="#6b7280">PLANT FOODS</text>`;
+                svg += `<text x="${cx}" y="${cy - 2}" text-anchor="middle" font-family="'Geist',-apple-system,sans-serif" font-size="26" font-weight="400" fill="#0b1220">${totalRainbow}</text>`;
+                svg += `<text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="7.5" font-weight="600" letter-spacing=".12em" fill="#6b7280">PLANT FOODS</text>`;
                 svg += `</svg>`;
                 return svg;
             }
 
-            // Legend rows — local only
+            // Legend rows
             let localLegend = '';
             rainbowCounts.forEach(cat => {
                 const pct = Math.round((cat.count / totalRainbow) * 100);
                 localLegend += `<div class="rl"><span class="sw" style="background:${cat.color};"></span><span class="nm">${cat.name}</span><span class="pc">${pct}%</span></div>`;
             });
-            // Legend rows — compare (local / durham)
             let compareLegend = '';
             rainbowCounts.forEach((cat, i) => {
                 const lp = Math.round((cat.count / totalRainbow) * 100);
                 const dp = Math.round((durRainbowCounts[i].count / totalDurRainbow) * 100);
-                compareLegend += `<div class="rl"><span class="sw" style="background:${cat.color};"></span><span class="nm" style="font-size:11px;">${cat.name}</span><span class="pc" style="font-size:10.5px;white-space:nowrap;">${lp}%<span style="color:#9aa1ad;font-weight:400;"> / ${dp}%</span></span></div>`;
+                compareLegend += `<div class="rl"><span class="sw" style="background:${cat.color};"></span><span class="nm">${cat.name}</span><span class="pc">${lp}%<span style="color:#9aa1ad;font-weight:400;"> / ${dp}%</span></span></div>`;
             });
 
-            h += `<div class="nf-sect">`;
-            h += `<div class="nf-sect-hd">
-                <span class="nf-eyebrow">Your food rainbow</span>
-                <button id="nfRainbowToggle" class="nf-toggle" onclick="toggleNfRainbow()"><span class="knob"></span>Compare to Durham</button>
-            </div>`;
-            h += `<div class="nf-lede2">Eating a variety of colors supports better health. Here&rsquo;s what we found:</div>`;
-            h += `<div id="nfRainbowLocal">${buildSingleDonut()}<div class="nf-rlegend">${localLegend}</div></div>`;
-            h += `<div id="nfRainbowCompare" style="display:none;">
-                ${buildConcentricDonut()}
-                <div style="display:flex;gap:18px;justify-content:center;font:400 11px 'Geist',sans-serif;color:#6b7280;margin:14px 0 4px;">
-                    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="width:13px;height:13px;border-radius:50%;background:linear-gradient(90deg,#df524a,#5cb35a,#7a5fd0);"></span>${hood}</span>
-                    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid #cdc6b8;"></span>Durham</span>
-                </div>
-                <div class="nf-rlegend">${compareLegend}</div>
-            </div>`;
-            h += `<div class="nf-didyou"><b>Did you know?</b> The compounds that give fruits and vegetables their colors provide health benefits &mdash; decreased risk of type 2 diabetes, cardiovascular disease, and some protection against certain cancers.</div>`;
+            // Get demographics data from the tract feature
+            let demoProps = null;
+            if (saId && durhamTractsGeoJSON) {
+                const feat = durhamTractsGeoJSON.features.find(f => String(f.properties.Sample_ID) === saId);
+                if (feat) demoProps = feat.properties;
+            }
+
+            // ── Build the editorial article ──
+            let h = '<article class="er">';
+
+            // ── HERO ──
+            h += `<div class="er-eye">Neighborhood food report</div>`;
+            h += `<div class="er-h1">We found <span class="hl">${totalFoods} foods</span> in ${hood}</div>`;
+            h += `<div class="er-lede">Distinct food species detected across ${nonEmptyGroupCount} of ${totalGroupCount} food groups in this area&rsquo;s wastewater.</div>`;
+
+            // ── KPI STRIP ──
+            h += `<div class="er-kpis">`;
+            h += `<div class="er-kpi"><b>${totalFoods}</b><span>Total foods</span></div>`;
+            h += `<div class="er-kpi"><b>${nonEmptyGroupCount}<i> / ${totalGroupCount}</i></b><span>Groups present</span></div>`;
+            h += `<div class="er-kpi"><b>${plantTypeCount}</b><span>Plant types</span></div>`;
+            h += `<div class="er-kpi"><b>${animalTypeCount}</b><span>Animal types</span></div>`;
             h += `</div>`;
 
-            h += '</div>';
+            // ── RULE ──
+            h += `<div class="er-rule"></div>`;
+
+            // ── HOW MUCH VARIETY ──
+            h += `<div class="er-sec-hd"><span class="er-eye">How much variety</span><span class="er-note-r">${gradeLabel} diet variety</span></div>`;
+            h += `<div class="er-sub">Compared to ${sortedRichnessL.length} other Durham neighborhoods.</div>`;
+            h += `<div class="er-variety">`;
+            h += `<div class="er-variety-fig"><div class="er-bignum">${varietyPctile}<span class="ord">${pSuffix}</span></div><div class="er-bignum-cap">Percentile</div></div>`;
+            h += `<div>`;
+            h += `<div class="er-pbar">`;
+            h += `<div class="er-pbar-track"><i style="width:${varietyPctile}%;"></i></div>`;
+            h += `<div class="er-pbar-marker" style="left:${varietyPctile}%;"></div>`;
+            const medianPct = sortedRichnessL.length > 0 ? Math.round((sortedRichnessL.filter(v => v <= medianRichness).length / sortedRichnessL.length) * 100) : 50;
+            h += `<div class="er-pbar-median" style="left:${medianPct}%;"><span>Median</span></div>`;
+            h += `<div class="er-pbar-ends"><span>Less diverse</span><span>More diverse</span></div>`;
+            h += `</div>`;
+            h += `</div>`;
+            h += `</div>`;
+            const drawerEvenness = window._drawerData ? window._drawerData.d.evenness : '';
+            h += `<div style="margin-top:10px;font-size:12px;color:#94a3b8;">Evenness <b style="color:#1f2937;">${drawerEvenness}</b>/100 &mdash; how evenly foods are distributed across what's detected</div>`;
+
+            // ── RULE ──
+            h += `<div class="er-rule"></div>`;
+
+            // ── FOOD GROUPS (merged chart + accordion) ──
+            erAccOpen = {};
+            erCompareOn = false;
+            h += `<div class="er-sec-hd">`;
+            h += `<span class="er-eye">Food groups</span>`;
+            h += `<button id="erCmpToggle" class="er-toggle" onclick="toggleErCompare()"><span class="knob"></span>Compare to Durham</button>`;
+            h += `</div>`;
+            h += `<div class="er-sub">What we detected, grouped by category. Click a row to see specific foods.</div>`;
+
+            fgEntries.forEach(([name, g]) => {
+                const safeId = name.replace(/[^a-zA-Z]/g, '');
+                const isEmpty = g.count === 0;
+                const pct = Math.min((g.count / scaleMax) * 100, 100);
+                const durVal = durhamAvgCounts[name] || 0;
+                const durPct = Math.min((durVal / scaleMax) * 100, 100);
+
+                h += `<div id="erAcc_${safeId}" class="er-grp-item${isEmpty ? ' empty' : ''}">`;
+                h += `<button class="er-grp-row"${isEmpty ? ' disabled' : ` onclick="toggleErAccordion('${name}')"`}>`;
+                h += `<span class="er-grp-nm"><span class="er-grp-dot" style="background:${g.color};"></span>${name}</span>`;
+                h += `<div class="er-grp-bar">`;
+                h += `<div class="track"><i style="width:${g.count > 0 ? pct : 0}%;background:${g.color};"></i></div>`;
+                h += `<div class="track dur"><i style="width:${durVal > 0 ? durPct : 0}%;"></i></div>`;
+                h += `</div>`;
+                h += `<div class="er-grp-ct"><span class="n">${g.count}</span><span class="dur">${durVal}</span></div>`;
+                if (!isEmpty) {
+                    h += `<span class="er-grp-chev"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>`;
+                } else {
+                    h += `<span></span>`;
+                }
+                h += `</button>`;
+                if (!isEmpty) {
+                    const chipsId = 'erChips_' + safeId;
+                    h += `<div class="er-chips" id="${chipsId}" style="display:none;">`;
+                    g.foods.slice(0, 5).forEach(f => {
+                        h += `<span class="chip">${f.name}</span>`;
+                    });
+                    if (g.foods.length > 5) {
+                        h += `<span class="chip more" onclick="expandErChips('${chipsId}')">+${g.foods.length - 5} more</span>`;
+                        if (!window._nfChipsData) window._nfChipsData = {};
+                        window._nfChipsData[chipsId] = g.foods.map(f => f.name);
+                    }
+                    h += `</div>`;
+                }
+                h += `</div>`;
+            });
+
+            // ── RULE ──
+            h += `<div class="er-rule"></div>`;
+
+            // ── MOST OFTEN DETECTED ──
+            h += `<div class="er-sec-hd"><span class="er-eye">Most often detected</span></div>`;
+            h += `<div class="er-sub">The foods appearing most frequently in this area&rsquo;s samples.</div>`;
+            h += `<div id="erAbundContainer"></div>`;
+
+            // ── RULE ──
+            h += `<div class="er-rule"></div>`;
+
+            // ── FOOD RAINBOW ──
+            h += `<div class="er-sec-hd">`;
+            h += `<span class="er-eye">Your food rainbow</span>`;
+            h += `<button id="erRainbowToggle" class="er-toggle" onclick="toggleErCompare()"><span class="knob"></span>Compare to Durham</button>`;
+            h += `</div>`;
+            h += `<div class="er-sub">Eating a variety of colors supports better health. Here&rsquo;s what we found.</div>`;
+            h += `<div id="erRainbowLocal"><div class="er-rainbow">${buildSingleDonut()}<div class="er-rlegend">${localLegend}</div></div></div>`;
+            h += `<div id="erRainbowCompare" style="display:none;">`;
+            h += `<div class="er-rainbow">${buildConcentricDonut()}<div class="er-rlegend">${compareLegend}</div></div>`;
+            h += `<div class="er-leg">`;
+            h += `<span style="display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#6b7280;"><span style="width:12px;height:12px;border-radius:50%;background:linear-gradient(90deg,#df524a,#5cb35a,#7a5fd0);"></span>${hood}</span>`;
+            h += `<span style="display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#6b7280;"><span style="width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid #cdc6b8;"></span>Durham</span>`;
+            h += `</div>`;
+            h += `</div>`;
+            h += `<div class="er-note"><b>Did you know?</b> The compounds that give fruits and vegetables their colors provide health benefits &mdash; decreased risk of type 2 diabetes, cardiovascular disease, and some protection against certain cancers.</div>`;
+
+            // ── RULE ──
+            h += `<div class="er-rule"></div>`;
+
+            // ── ABOUT THIS NEIGHBORHOOD (demographics) ──
+            if (demoProps) {
+                const pop = demoProps.total_population || 0;
+                const hh = demoProps.total_households || 0;
+                const acres = demoProps.total_acres || 1;
+                const income = demoProps.median_hh_income || 0;
+                const density = pop / acres;
+                const densityRank = density < 4 ? 'Low' : density <= 10 ? 'Moderate' : 'High';
+                const densityMarker = Math.min(100, Math.max(0, (density / 15) * 100));
+                const incomeRank = income < 50000 ? 'Low' : income <= 100000 ? 'Moderate' : 'High';
+                const incomeMarker = Math.min(100, Math.max(0, (income / 150000) * 100));
+
+                h += `<div class="er-sec-hd"><span class="er-eye">About this neighborhood</span><span class="er-note-r">US Census</span></div>`;
+                h += `<div class="er-demo2">`;
+
+                // Density metric
+                h += `<div>`;
+                h += `<div class="er-metric-label">Population density</div>`;
+                h += `<div class="er-metric-hero"><span class="er-metric-rank">${densityRank}</span><span class="er-metric-fig">${density.toFixed(1)}<span class="u">people / acre</span></span></div>`;
+                h += `<div class="er-pbar"><div class="er-pbar-track"><i style="width:${densityMarker.toFixed(1)}%;background:linear-gradient(90deg,#c5caf0,#5b63d6);"></i></div>`;
+                h += `<div class="er-pbar-marker" style="left:${densityMarker.toFixed(1)}%;background:#5b63d6;box-shadow:0 1px 5px rgba(91,99,214,.5);"></div></div>`;
+                h += `<div class="er-metric-foot"><b>${Math.round(pop).toLocaleString()}</b> residents &middot; <b>${Math.round(hh).toLocaleString()}</b> households</div>`;
+                h += `</div>`;
+
+                // Income metric
+                h += `<div>`;
+                h += `<div class="er-metric-label">Median household income</div>`;
+                h += `<div class="er-metric-hero"><span class="er-metric-rank">${incomeRank}</span><span class="er-metric-fig">$${Math.round(income).toLocaleString()}</span></div>`;
+                h += `<div class="er-pbar"><div class="er-pbar-track"><i style="width:${incomeMarker.toFixed(1)}%;background:linear-gradient(90deg,#c5caf0,#5b63d6);"></i></div>`;
+                h += `<div class="er-pbar-marker" style="left:${incomeMarker.toFixed(1)}%;background:#5b63d6;box-shadow:0 1px 5px rgba(91,99,214,.5);"></div></div>`;
+                h += `</div>`;
+
+                h += `</div>`; // close er-demo2
+
+                // Race & ethnicity
+                const colorMap = { White: '#8593C6', Black: '#1e3a8a', Asian: '#FCC77C', Other: '#4CAF50', 'Two+': '#c8612e' };
+                const races = [
+                    { key: 'pct_white', label: 'White' },
+                    { key: 'pct_black', label: 'Black' },
+                    { key: 'pct_asian', label: 'Asian' },
+                    { key: 'pct_other', label: 'Other' },
+                    { key: 'pct_two_plus', label: 'Two+' }
+                ];
+                const segments = races.filter(r => demoProps[r.key] != null && demoProps[r.key] > 0)
+                    .map(r => ({ label: r.label, pct: demoProps[r.key], color: colorMap[r.label] }))
+                    .sort((a, b) => b.pct - a.pct);
+
+                if (segments.length > 0) {
+                    h += `<div class="er-race">`;
+                    h += `<div class="er-sec-hd"><span class="er-eye">Race &amp; ethnicity</span><span class="er-note-r">US Census</span></div>`;
+                    const top = segments[0];
+                    const captionText = top.pct >= 50
+                        ? `Majority <b>${top.label}</b>`
+                        : `Plurality <b>${top.label}</b> &mdash; no single majority`;
+                    h += `<div class="er-sub" style="margin-bottom:11px;">${captionText}</div>`;
+
+                    // Stacked bar
+                    h += `<div style="display:flex;height:28px;gap:2px;">`;
+                    segments.forEach((seg, i) => {
+                        const radius = segments.length === 1 ? '8px'
+                            : i === 0 ? '8px 0 0 8px'
+                            : i === segments.length - 1 ? '0 8px 8px 0' : '0';
+                        const inlineLabel = seg.pct >= 14
+                            ? `<span style="font:600 11px 'Geist',sans-serif;color:#fff;white-space:nowrap;">${seg.label}&nbsp;${Math.round(seg.pct)}%</span>`
+                            : '';
+                        h += `<span style="width:${seg.pct}%;background:${seg.color};border-radius:${radius};display:flex;align-items:center;justify-content:center;overflow:hidden;" title="${seg.label} ${seg.pct.toFixed(1)}%">${inlineLabel}</span>`;
+                    });
+                    h += `</div>`;
+
+                    // Legend
+                    const maxPctD = segments[0].pct;
+                    h += `<div style="margin-top:14px;display:flex;flex-direction:column;gap:8px;">`;
+                    segments.forEach(seg => {
+                        const relWidth = ((seg.pct / maxPctD) * 100).toFixed(1);
+                        h += `<div style="display:grid;grid-template-columns:11px 64px 1fr auto;align-items:center;gap:9px;">`;
+                        h += `<span style="width:10px;height:10px;border-radius:3px;background:${seg.color};"></span>`;
+                        h += `<span style="font-size:12.5px;color:#1f2937;">${seg.label}</span>`;
+                        h += `<span style="height:5px;border-radius:3px;background:#f1efe9;overflow:hidden;"><span style="display:block;height:100%;width:${relWidth}%;border-radius:3px;background:${seg.color};"></span></span>`;
+                        h += `<span style="font:600 12.5px 'Geist',sans-serif;color:#0b1220;font-variant-numeric:tabular-nums;min-width:42px;text-align:right;">${seg.pct.toFixed(1)}%</span>`;
+                        h += `</div>`;
+                    });
+                    h += `</div>`;
+                    h += `</div>`; // close er-race
+                }
+
+                h += `<div class="er-rule"></div>`;
+            }
+
+            // ── WHAT CAN HELP ──
+            const arrowSvg = `<svg class="nf-rc-arrow" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4l4 4-4 4"/></svg>`;
+            const phoneSvg = `<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3.5c0 5 4.5 9.5 9.5 9.5l.5-2.5-3-1-1 1.2A8 8 0 0 1 5.3 6.5L6.5 5.5l-1-3z"/></svg>`;
+            const isFlagged = saId && durhamTractsGeoJSON
+                ? durhamTractsGeoJSON.features.some(f => String(f.properties.Sample_ID) === saId && f.properties._usdaDesert)
+                : true;
+
+            h += `<div class="er-eye">What can help</div>`;
+            h += `<p style="font-size:13px;color:#64748b;margin:6px 0 12px;line-height:1.5;">We include these resources because food access matters as much as food variety. If you or someone you know could use support, these verified Durham programs can help.</p>`;
+            if (isFlagged) {
+                h += `<div class="nf-flag" style="margin:10px 0 16px;">
+                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5c3 2.4 6 3 6 3 0 5.5-2.6 9-6 12-3.4-3-6-6.5-6-12 0 0 3-.6 6-3z"/></svg>
+                    <div>
+                        <p class="l1">This area is flagged as having <b>limited nearby access to affordable, fresh food.</b></p>
+                        <p class="l2">Here&rsquo;s food and assistance nearby.</p>
+                    </div>
+                </div>`;
+            }
+            h += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:4px;">`;
+            h += `<div class="nf-help-grp" style="margin-top:0;">
+                <div class="nf-help-grp-t">Food you can get nearby</div>
+                <div class="nf-rc-list">
+                    <a class="nf-rc" href="https://www.endhungerdurham.org/food-resources/" target="_blank" rel="noopener noreferrer">
+                        <span class="nf-rc-nm">End Hunger Durham</span>
+                        <span class="nf-rc-desc">Search Durham&rsquo;s food pantries by neighborhood &mdash; English or Spanish.</span>
+                        <span class="nf-rc-actions"><span class="nf-rc-act">Open directory ${arrowSvg}</span></span>
+                    </a>
+                    <a class="nf-rc" href="https://foodbankcenc.org/locations/durham" target="_blank" rel="noopener noreferrer">
+                        <span class="nf-rc-nm">Food Bank of Central &amp; Eastern NC</span>
+                        <span class="nf-rc-desc">Find nearby pantries and free meal sites.</span>
+                        <span class="nf-rc-actions"><span class="nf-rc-act">Find sites ${arrowSvg}</span></span>
+                    </a>
+                    <a class="nf-rc" href="https://foodshuttle.org/" target="_blank" rel="noopener noreferrer">
+                        <span class="nf-rc-nm">Inter-Faith Food Shuttle</span>
+                        <span class="nf-rc-desc">Mobile markets and grocery distributions across the area.</span>
+                        <span class="nf-rc-actions"><span class="nf-rc-act">See schedule ${arrowSvg}</span></span>
+                    </a>
+                    <a class="nf-rc" href="https://www.endhungerdurham.org/food-resources/" target="_blank" rel="noopener noreferrer">
+                        <span class="nf-rc-nm">Durham Community Fridges</span>
+                        <span class="nf-rc-desc">Free food, open 24/7 &mdash; take what you need.</span>
+                        <span class="nf-rc-actions"><span class="nf-rc-act">Find a fridge ${arrowSvg}</span></span>
+                    </a>
+                </div>
+            </div>`;
+            h += `<div class="nf-help-grp" style="margin-top:0;">
+                <div class="nf-help-grp-t">Apply for food benefits</div>
+                <div class="nf-rc-list">
+                    <a class="nf-rc" href="https://epass.nc.gov" target="_blank" rel="noopener noreferrer">
+                        <span class="nf-rc-nm">SNAP / FNS food benefits</span>
+                        <span class="nf-rc-desc">Apply online through NC&rsquo;s official benefits site, ePASS.</span>
+                        <span class="nf-rc-actions"><span class="nf-rc-act">Apply on ePASS ${arrowSvg}</span></span>
+                    </a>
+                    <a class="nf-rc" href="tel:18446016881">
+                        <span class="nf-rc-nm">WIC</span>
+                        <span class="nf-rc-desc">Food support for pregnant people and families with children under 5.</span>
+                        <span class="nf-rc-actions">
+                            <span class="nf-rc-act">${phoneSvg} Call 1-844-601-6881</span>
+                            <a class="nf-rc-2nd" href="https://www.ncdhhs.gov/divisions/child-and-family-well-being/community-nutrition-services-section/wic/apply-wic" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">About WIC ${arrowSvg}</a>
+                        </span>
+                    </a>
+                </div>
+                <p class="nf-help-note">Eligibility rules are set by the state and change from time to time &mdash; the official NC sites above always show the current rules.</p>
+            </div>`;
+            h += `</div>`;
+            h += `<p style="font-size:12.5px;color:#64748b;margin-top:14px;line-height:1.5;">You can also explore nearby food options using the <b>Food Near Me</b> tab above, or toggle on <b>Places</b> at the bottom-left of the map to see grocery stores, farmers markets, and community fridges near you.</p>`;
+
+            h += '</article>';
             infoPanel.innerHTML = h;
+
+            // Render the Most Abundant tabbed section
+            erTab = 'plants'; erViewAll = false;
+            // Build _drawerData so renderErAbundance can use it
+            if (window._drawerData && window._drawerData.d) {
+                renderErAbundance();
+            } else {
+                // Build minimal abundance data inline
+                const pEntries = Object.entries(landingAgg.plants).filter(([sp, v]) => {
+                    if (v <= 0) return false;
+                    const m = foodseqData.species_metadata[sp];
+                    return m && !m._hidden && !(m.common_name && m.common_name.startsWith('NA_'));
+                }).sort((a, b) => b[1] - a[1]);
+                const aEntries = Object.entries(landingAgg.animals).filter(([sp, v]) => {
+                    if (v <= 0) return false;
+                    const m = foodseqData.species_metadata[sp];
+                    return m && !m._hidden && !(m.common_name && m.common_name.startsWith('NA_'));
+                }).sort((a, b) => b[1] - a[1]);
+                const mapE = (entries) => entries.map(([sp, val]) => {
+                    const meta = foodseqData.species_metadata[sp];
+                    return { id: sp, name: meta ? meta.common_name : sp, value: entries[0] ? Math.round((val / entries[0][1]) * 100) : 0, raw: val };
+                });
+                if (!window._drawerData) window._drawerData = {};
+                window._drawerData.d = { allPlants: mapE(pEntries), allAnimals: mapE(aEntries) };
+                renderErAbundance();
+            }
+
             if (showPanel) {
                 infoPanel.classList.remove('hidden');
                 const arrow = document.querySelector('#infoPanelTab .tab-arrow');
                 if (arrow) arrow.innerHTML = '&#9654;';
-                // Pan to account for both panels
+                // Pan to account for wider drawer
+                const dwWidth = Math.min(window.innerWidth * 0.8, window.innerWidth - 440);
                 setTimeout(() => {
-                    if (map) map.panBy([(460 + 384) / 2, 0], { animate: true, duration: 0.8 });
+                    if (map) map.panBy([(420 + dwWidth) / 2, 0], { animate: true, duration: 0.8 });
                 }, 200);
             } else {
                 infoPanel.classList.add('hidden');
