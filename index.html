@@ -6954,7 +6954,7 @@
             if (matched) {
                 openTractDetailPanel(matched);
                 // Show landing popups for this location after the panel opens
-                setTimeout(() => showLandingPanels(lat, lon, null, true), 800);
+                setTimeout(() => showLandingPanels(lat, lon, null, false), 800);
             } else {
                 // Not in any service area — show friendly no-data panel
                 showNoDataPanel();
@@ -13040,7 +13040,7 @@
                     findMeSelect(0);
 
                     // Show landing panels after a beat
-                    setTimeout(() => showLandingPanels(lat, lon, null, true), 800);
+                    setTimeout(() => showLandingPanels(lat, lon, null, false), 800);
                 }, 400);
             })
             .catch(() => {
