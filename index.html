@@ -256,7 +256,7 @@
             position: absolute;
             top: 148px;
             right: 0;
-            width: 416px;
+            width: 460px;
             height: calc(100vh - 148px);
             z-index: 999;
             background: #fff;
@@ -272,6 +272,119 @@
             transform: translateX(0);
         }
 
+        /* ── SPB: Report-card redesign ── */
+        .spb-hero { padding: 20px; background: linear-gradient(180deg, #eef2fb 0%, #f4f6fc 100%); border-bottom: 1px solid #e7e4dc; }
+        .spb-eyebrow { font: 600 10.5px/1 'Geist Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: #1e3a8a; }
+        .spb-hero-top { display: flex; align-items: center; gap: 22px; margin: 10px 0 18px; }
+        .spb-bignum { font-family: 'Geist', -apple-system, sans-serif; font-size: 53px; line-height: .85; color: #1e3a8a; }
+        .spb-bignum .ord { font-size: 21px; vertical-align: super; margin-right: 2px; }
+        .spb-hero-label { font: 500 13px/1.35 'Geist', sans-serif; color: #475569; }
+
+        /* Percentile bar */
+        .spb-pbar { position: relative; margin: 14px 0 40px; }
+        .spb-pbar-track { height: 9px; border-radius: 6px; background: #dfe4f3; overflow: hidden; }
+        .spb-pbar-track i { display: block; height: 100%; border-radius: 6px; background: linear-gradient(90deg, #8b97e6, #1e3a8a); }
+        .spb-pbar-marker { position: absolute; top: 4.5px; width: 15px; height: 15px; border-radius: 50%; background: #1e3a8a; border: 3px solid #fff; box-shadow: 0 1px 5px rgba(30,58,138,.5); transform: translate(-50%,-50%); }
+        .spb-pbar-median { position: absolute; top: -3px; height: 15px; border-left: 1.5px dashed #94a3b8; transform: translateX(-50%); }
+        .spb-pbar-median span { position: absolute; top: 17px; left: 50%; transform: translateX(-50%); font: 500 9px 'Geist Mono', monospace; color: #94a3b8; white-space: nowrap; text-transform: uppercase; letter-spacing: .04em; }
+        .spb-pbar-ends { position: absolute; top: 17px; left: 0; right: 0; display: flex; justify-content: space-between; font: 500 9.5px 'Geist Mono', monospace; color: #94a3b8; text-transform: uppercase; letter-spacing: .03em; }
+
+        /* Detection cards */
+        .spb-detect2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .spb-dcard { background: #fff; border: 1px solid #e2e7f3; border-radius: 11px; padding: 11px 13px; }
+        .spb-dcard-label { font: 600 11px 'Geist', sans-serif; color: #475569; margin-bottom: 4px; }
+        .spb-dcard-label .tag { font: 500 9.5px 'Geist Mono', monospace; color: #94a3b8; margin-left: 4px; }
+        .spb-dcard-num { font: 700 18px 'Geist', sans-serif; color: #0b1220; }
+        .spb-dcard-num small { font-weight: 400; font-size: 12px; color: #94a3b8; }
+        .spb-evenness { font: 400 10.5px 'Geist Mono', monospace; color: #94a3b8; margin-top: 12px; }
+
+        /* Cultural cuisine cards */
+        .spb-section { padding: 16px 20px; border-bottom: 1px solid #f0ede6; }
+        .spb-lede { font: 400 13px/1.45 'Geist', sans-serif; color: #475569; margin: 8px 0 12px; }
+        .spb-cuisine { border-radius: 12px; padding: 13px 15px; margin-bottom: 8px; }
+        .spb-cuisine-head { display: flex; align-items: center; gap: 8px; }
+        .spb-cuisine-dot { width: 9px; height: 9px; border-radius: 3px; flex: 0 0 auto; }
+        .spb-cuisine-name { font: 600 13px 'Geist', sans-serif; color: #0b1220; }
+        .spb-cuisine-conf { font: 500 10px 'Geist Mono', monospace; color: #64748b; margin-left: auto; text-transform: uppercase; letter-spacing: .05em; }
+        .spb-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+        .spb-chips .chip { font-size: 11.5px; color: #1f2937; background: rgba(255,255,255,.7); border: 1px solid rgba(0,0,0,.06); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+
+        /* Stand out cards */
+        .spb-stand-card { display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 12px; border-radius: 12px; padding: 12px 14px; margin-bottom: 8px; }
+        .spb-stand-mult { font: 700 20px 'Geist', sans-serif; text-align: center; }
+        .spb-stand-detail { font: 400 12.5px/1.4 'Geist', sans-serif; color: #1f2937; }
+
+        /* Segmented toggle */
+        .spb-seg { display: inline-flex; gap: 3px; background: #f5f3ee; border-radius: 10px; padding: 3px; margin: 13px 0 6px; }
+        .spb-seg-btn { border: 0; background: transparent; padding: 6px 16px; border-radius: 8px; font: 600 12.5px 'Geist', sans-serif; color: #64748b; cursor: pointer; }
+        .spb-seg-btn.on.plants { background: #fff; color: #5b6cf0; box-shadow: 0 1px 3px rgba(15,23,42,.1); }
+        .spb-seg-btn.on.animals { background: #fff; color: #c8612e; box-shadow: 0 1px 3px rgba(15,23,42,.1); }
+
+        /* NF Report panel styles */
+        .nf-eyebrow { font: 600 11px/1 'Geist Mono', monospace; letter-spacing: .16em; text-transform: uppercase; color: #64748b; }
+        .nf-hero { padding: 22px 24px 17px; }
+        .nf-h1 { font-family: 'Geist', -apple-system, sans-serif; font-weight: 400; font-size: 26px; line-height: 1.2; color: #0b1220; margin: 10px 0 0; }
+        .nf-h1 .hl { color: #1e3a8a; }
+        .nf-lede { font-size: 13.5px; color: #6b7280; margin: 11px 0 0; line-height: 1.45; }
+        .nf-sect { padding: 17px 24px; border-top: 1px solid #f0ede6; }
+        .nf-sect-hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .nf-toggle { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 13px 0 5px; border-radius: 999px; border: 1px solid #e7e4dc; background: #fff; font: 600 11.5px 'Geist', sans-serif; color: #6b7280; cursor: pointer; }
+        .nf-toggle .knob { width: 30px; height: 18px; border-radius: 999px; background: #d8d4ca; position: relative; transition: background .18s; flex-shrink: 0; }
+        .nf-toggle .knob::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .18s; }
+        .nf-toggle.on { color: #1e3a8a; border-color: #c9cef0; }
+        .nf-toggle.on .knob { background: #1e3a8a; }
+        .nf-toggle.on .knob::after { transform: translateX(12px); }
+        .nf-grow { display: grid; grid-template-columns: 84px 1fr 24px; align-items: center; gap: 8px; }
+        .nf-grow .lbl { font-size: 11.5px; color: #293241; text-align: right; line-height: 14px; }
+        .nf-grow .track { display: block; height: 14px; border-radius: 5px; background: #f4f2ec; overflow: hidden; position: relative; }
+        .nf-grow .fill { position: absolute; left: 0; top: 0; height: 100%; border-radius: 5px; min-width: 5px; transition: width .3s; }
+        .nf-grow .track.dur { height: 0; opacity: 0; margin-top: 0; background: #ece9e2; overflow: hidden; position: relative; transition: height .28s, opacity .2s, margin-top .28s; }
+        .nf-grow .track.dur .fill { background: #c3bdb0; min-width: 4px; }
+        .nf-groups.cmp .track.dur { height: 8px; opacity: 1; margin-top: 3px; }
+        .nf-groups.cmp { gap: 6px !important; }
+        .nf-grow .num { font: 600 12px 'Geist', sans-serif; color: #0b1220; text-align: left; line-height: 14px; font-variant-numeric: tabular-nums; }
+        .nf-legend2 { display: flex; gap: 18px; margin: -2px 0 13px; font-size: 11.5px; color: #6b7280; }
+        .nf-legend2 span { display: inline-flex; align-items: center; gap: 7px; }
+        .nf-legend2 .sw { width: 15px; height: 8px; border-radius: 3px; }
+        .nf-legend2 .sw.ink { background: #0b1220; }
+        .nf-legend2 .sw.dur { background: #c3bdb0; }
+        .nf-acc { display: flex; flex-direction: column; gap: 7px; }
+        .nf-acc-item { border: 1px solid #e7e4dc; border-radius: 12px; overflow: hidden; }
+        .nf-acc-item.open { background: #fcfbf8; }
+        .nf-acc-hd { width: 100%; display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: none; border: 0; cursor: pointer; text-align: left; font: inherit; }
+        .nf-acc-hd.disabled { cursor: default; opacity: .65; }
+        .nf-acc-hd .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+        .nf-acc-hd .nm { font-size: 13.5px; font-weight: 600; color: #0b1220; flex: 1; }
+        .nf-acc-hd .ct { font: 700 11.5px 'Geist Mono', monospace; padding: 2px 8px; border-radius: 7px; }
+        .nf-acc-hd .chev { color: #9aa1ad; transition: transform .2s; }
+        .nf-acc-item.open .chev { transform: rotate(180deg); }
+        .nf-acc-empty { padding: 0 14px 11px 34px; font-size: 12px; color: #9aa1ad; margin-top: -3px; }
+        .nf-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 13px 34px; }
+        .nf-chips .chip { font-size: 11.5px; color: #293241; background: #fff; border: 1px solid #e7e4dc; border-radius: 999px; padding: 4px 11px; white-space: nowrap; }
+        .nf-chips .chip.more { color: #1e3a8a; border-style: dashed; border-color: #c9cef0; background: transparent; font-weight: 500; }
+        .nf-note2 { font-size: 12.5px; color: #6b7280; margin: 7px 0 12px; }
+        .nf-rlegend { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; margin-top: 16px; }
+        .nf-rlegend .rl { display: flex; align-items: center; gap: 6px; }
+        .nf-rlegend .sw { width: 11px; height: 11px; border-radius: 3px; flex-shrink: 0; }
+        .nf-rlegend .nm { font-size: 11.5px; color: #293241; white-space: nowrap; }
+        .nf-rlegend .pc { margin-left: auto; font: 600 11.5px 'Geist', sans-serif; color: #0b1220; font-variant-numeric: tabular-nums; white-space: nowrap; }
+        .nf-lede2 { font-size: 13px; color: #6b7280; margin: 7px 0 16px; line-height: 1.45; }
+        .nf-didyou { margin-top: 16px; background: #fcf3d4; border: 1px solid #f0e2a8; border-radius: 12px; padding: 13px 16px; font-size: 12.5px; line-height: 1.55; color: #6b5417; }
+        .nf-didyou b { color: #50400f; }
+
+        /* Abundance rows */
+        .arow { display: grid; grid-template-columns: 96px 1fr 40px 26px; align-items: center; gap: 10px; padding: 5px 0; }
+        .arow-name { font: 400 12px 'Geist', sans-serif; color: #1f2937; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .arow-track { height: 6px; border-radius: 4px; background: #f0ede6; overflow: hidden; }
+        .arow-track.plants i { display: block; height: 100%; border-radius: 4px; background: #5b6cf0; }
+        .arow-track.animals i { display: block; height: 100%; border-radius: 4px; background: #c8612e; }
+        .arow-val { font: 600 11px 'Geist Mono', monospace; color: #64748b; text-align: right; }
+        .spb-view-all { display: block; margin-top: 8px; font: 500 12px 'Geist', sans-serif; color: #5b6cf0; text-decoration: none; cursor: pointer; }
+        .spb-view-all:hover { text-decoration: underline; }
+
+        /* Demographics wrapper */
+        .spb-demo-card { border: 1px solid #e2e7f3; border-radius: 14px; padding: 14px 16px; margin-top: 10px; }
+
         /* Tract panel header */
         .tp-head {
             padding: 16px 20px 15px;
@@ -282,7 +395,7 @@
             gap: 12px;
         }
         .tp-crumb { font: 600 10.5px/1 'Geist Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: #64748b; }
-        .tp-title { margin: 2px 0 4px; font-family: 'Instrument Serif', Georgia, serif; font-size: 27px; font-weight: 400; color: #0b1220; line-height: 1.05; }
+        .tp-title { margin: 2px 0 4px; font-family: 'Geist', -apple-system, sans-serif; font-size: 21px; font-weight: 700; color: #0b1220; line-height: 1.15; letter-spacing: -.01em; }
         .tp-sub { font-size: 12px; color: #64748b; margin-top: 6px; }
         .tp-close {
             width: 32px; height: 32px; flex-shrink: 0;
@@ -293,30 +406,12 @@
         }
         .tp-close:hover { border-color: #cbbfa8; color: #0b1220; }
 
-        /* Site filter */
+        /* Site pills */
         .tp-sites {
-            padding: 16px 20px;
+            padding: 10px 20px 12px;
             border-bottom: 1px solid #f0ede6;
         }
-        .tp-sites-head {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 10px;
-        }
-        .tp-sites-label {
-            font: 600 10.5px/1 'Geist Mono', monospace; letter-spacing: .15em;
-            text-transform: uppercase; color: #64748b;
-        }
-        .tp-sites-actions {
-            font: 500 11.5px 'Geist Mono', monospace; color: #94a3b8;
-            display: inline-flex; align-items: center; gap: 7px;
-        }
-        .tp-sites-count { font-weight: 600; color: #1f2937; }
-        .tp-sites-actions button {
-            border: 0; background: transparent; color: #1e3a8a;
-            cursor: pointer; padding: 0 4px; font: inherit;
-        }
-        .tp-sites-actions button:hover { text-decoration: underline; }
-        .tp-sites-list { display: flex; flex-direction: column; gap: 4px; }
+        .tp-sites-list { display: flex; flex-wrap: wrap; gap: 6px; }
 
         .tp-site {
             display: flex; align-items: center; gap: 10px;
@@ -456,7 +551,7 @@
         .rc-kicker.animal { color: #c8612e; }
         .rc-kicker.navy { color: #1e3a8a; }
         .rc-score-num {
-            font-family: "Instrument Serif", Georgia, serif; font-size: 46px; line-height: .9;
+            font-family: "Geist", -apple-system, sans-serif; font-size: 46px; line-height: .9;
             color: #1e3a8a; margin-top: 6px;
         }
         .rc-score-num small { font: 500 11px "Geist Mono", monospace; color: #64748b; }
@@ -859,7 +954,7 @@
             --t-r-pill:     999px;
             --t-sans:  "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --t-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-            --t-serif: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+            --t-serif: "Geist", -apple-system, sans-serif;
         }
 
         /* ========== TRENDS VIEW REDESIGNED ========== */
@@ -1642,6 +1737,13 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             width: 280px;
             max-height: 500px;
+            transition: right .4s ease;
+        }
+        .species-panel.shifted {
+            right: 480px;
+        }
+        .species-panel.shifted-both {
+            right: 864px;
         }
 
         .species-panel-header {
@@ -2721,7 +2823,7 @@
             color: #64748b; margin-bottom: 18px;
         }
         #homeOverlay h1 {
-            font-family: 'Instrument Serif', Georgia, serif; font-weight: 400;
+            font-family: 'Geist', -apple-system, sans-serif; font-weight: 400;
             font-size: clamp(50px, 7.5vw, 80px); line-height: 1.07; letter-spacing: -.015em;
             color: #0b1220; margin: 0;
         }
@@ -2767,7 +2869,7 @@
         #landingInfoPanel {
             position: absolute;
             top: 148px;
-            right: 416px;
+            right: 460px;
             width: 384px;
             height: calc(100vh - 148px);
             z-index: 998;
@@ -2780,8 +2882,44 @@
             transition: transform .7s ease;
         }
         #landingInfoPanel.hidden {
-            transform: translateX(calc(360px + 416px));
+            transform: translateX(calc(360px + 460px));
             pointer-events: none;
+        }
+
+        /* Pull tab on left edge of detail panel to open infographic */
+        .info-panel-tab {
+            position: absolute;
+            left: -36px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            background: #1e3a8a;
+            border-radius: 10px 0 0 10px;
+            padding: 14px 6px;
+            cursor: pointer;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            box-shadow: -4px 0 12px rgba(15,23,42,.1);
+            transition: background .15s;
+            z-index: 1;
+        }
+        .info-panel-tab:hover {
+            background: #15306e;
+        }
+        .info-panel-tab .tab-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font: 600 11px 'Geist', sans-serif;
+            color: #fff;
+            letter-spacing: .03em;
+            white-space: nowrap;
+        }
+        .info-panel-tab .tab-arrow {
+            color: #fff;
+            font-size: 14px;
+            transition: transform .3s;
         }
         /* When info panel is dismissed, detail panel also slides right */
         .detail-panel.slide-away {
@@ -2805,10 +2943,10 @@
         .sp-card { border:1px solid #e7e4dc; border-radius:14px; background:#fff; }
         .sp-eyebrow { font:600 10.5px/1 'Geist Mono',monospace; letter-spacing:.15em; text-transform:uppercase; color:#64748b; }
         .sp-gap-head { padding:14px 16px 4px; }
-        .sp-gap-h1 { font-family:'Instrument Serif',Georgia,serif; font-weight:400; font-size:23px; line-height:1.1; color:#0b1220; margin:5px 0 0; letter-spacing:-.01em; }
+        .sp-gap-h1 { font-family:'Geist',-apple-system,sans-serif; font-weight:400; font-size:23px; line-height:1.1; color:#0b1220; margin:5px 0 0; letter-spacing:-.01em; }
         .sp-gap-h1 em { font-style:italic; }
         .sp-gap-score { display:flex; align-items:baseline; gap:8px; padding:0 16px; }
-        .sp-gap-score .sp-n { font-family:'Instrument Serif',Georgia,serif; font-size:38px; line-height:1; }
+        .sp-gap-score .sp-n { font-family:'Geist',-apple-system,sans-serif; font-size:38px; line-height:1; }
         .sp-gap-score .sp-lab { font:600 9.5px 'Geist Mono',monospace; letter-spacing:.13em; text-transform:uppercase; color:#64748b; }
         .sp-bars { padding:11px 16px 6px; }
         .sp-bar-row { display:grid; grid-template-columns:82px 1fr 32px; align-items:center; gap:9px; padding:5px 0; }
@@ -2834,7 +2972,7 @@
         .sp-drow .sp-ds { font-size:11px; color:#64748b; }
         .sp-drow .sp-dv { font:600 13px 'Geist',sans-serif; font-variant-numeric:tabular-nums; }
         .sp-nf-card { padding:13px 16px 14px; }
-        .sp-nf-big { font-family:'Instrument Serif',Georgia,serif; font-size:32px; line-height:1; color:#0b1220; }
+        .sp-nf-big { font-family:'Geist',-apple-system,sans-serif; font-size:32px; line-height:1; color:#0b1220; }
         .sp-nf-seg { display:flex; height:12px; gap:2px; margin:9px 0 10px; }
         .sp-nf-seg span { height:100%; }
         .sp-nf-seg span:first-child { border-radius:7px 0 0 7px; }
@@ -2881,12 +3019,12 @@
         .gap-sheet .sheet-x:hover { color:#0b1220; border-color:#cbbfa8; }
         .gap-sheet-scroll { overflow-y:auto; padding:8px 0 40px; flex:1; }
         .gap-sheet-wrap { max-width:760px; margin:0 auto; padding:0 32px; }
-        .gap-sheet .verdict { font-family:'Instrument Serif',Georgia,serif; font-weight:400; font-size:38px; line-height:1.08; letter-spacing:-.015em; color:#0b1220; margin:16px 0 0; }
+        .gap-sheet .verdict { font-family:'Geist',-apple-system,sans-serif; font-weight:400; font-size:38px; line-height:1.08; letter-spacing:-.015em; color:#0b1220; margin:16px 0 0; }
         .gap-sheet .verdict em { font-style:italic; }
         .gap-sheet .verdict-sub { font-size:14.5px; color:#64748b; line-height:1.5; margin:12px 0 0; max-width:560px; }
         .gap-sheet .metric { display:grid; grid-template-columns:auto 1fr; gap:30px; align-items:center; margin:28px 0 6px; padding:24px; border:1px solid #e7e4dc; border-radius:18px; background:linear-gradient(180deg,#fff,#fcfbf8); }
         .gap-sheet .score { text-align:center; padding-right:30px; border-right:1px solid #f0ede6; }
-        .gap-sheet .score .n { font-family:'Instrument Serif',Georgia,serif; font-size:72px; line-height:.9; }
+        .gap-sheet .score .n { font-family:'Geist',-apple-system,sans-serif; font-size:72px; line-height:.9; }
         .gap-sheet .score .l { font:600 9.5px 'Geist Mono',monospace; letter-spacing:.14em; text-transform:uppercase; color:#64748b; margin-top:6px; }
         .gap-sheet .bar-row { display:grid; grid-template-columns:120px 1fr 42px; align-items:center; gap:12px; padding:8px 0; }
         .gap-sheet .bar-row .k { font-size:13px; color:#1f2937; }
@@ -2899,7 +3037,7 @@
         .gap-sheet .mm { border:1px solid #e7e4dc; border-radius:15px; padding:17px; background:#fff; }
         .gap-sheet .mm .top { display:flex; align-items:center; justify-content:space-between; }
         .gap-sheet .mm .nm { font-size:14px; font-weight:600; color:#0b1220; }
-        .gap-sheet .mm .dl { font:600 18px 'Instrument Serif',serif; }
+        .gap-sheet .mm .dl { font:600 18px 'Geist',sans-serif; }
         .gap-sheet .mm .dl.pos { color:#15803d; } .gap-sheet .mm .dl.neg { color:#b8612a; }
         .gap-sheet .mm .flow { display:flex; align-items:center; gap:7px; margin-top:12px; font:500 11.5px 'Geist Mono',monospace; color:#64748b; }
         .gap-sheet .mm .flow b { color:#1f2937; font-weight:600; }
@@ -2989,17 +3127,11 @@
 
     <!-- Landing info panel (slides in to the left of detail panel) -->
     <div id="landingInfoPanel" class="hidden"></div>
-    <div class="landing-dismiss-bar hidden" id="landingDismissBar">
-        <button class="landing-dismiss-btn" onclick="dismissLandingPanels()">
-            Explore the whole map
-            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
-        </button>
-    </div>
 
     <!-- Row 1: Brand bar -->
     <div class="header-row1">
         <div class="header-brand">
-            <span class="header-mark">FS</span>
+            <img src="foodseq-logo-64.png" alt="FoodSeq" style="width:30px;height:30px;border-radius:8px;">
             <span class="header-wordmark">NC FoodSeq <span style="color:rgba(255,255,255,.6);font-weight:500;">Explorer</span></span>
         </div>
     </div>
@@ -3026,7 +3158,6 @@
             <option value="asian">% Asian</option>
             <option value="other">% Other Race</option>
             <option value="usda_desert">USDA Food Desert</option>
-            <option value="predicted_desert">Predicted Food Desert</option>
         </select>
         <span class="ctrl-label">Period</span>
         <div style="position:relative;display:inline-block;">
@@ -3355,7 +3486,7 @@
             <!-- Left rail -->
             <aside style="width:320px;flex-shrink:0;background:#fff;border-right:1px solid #e7e4dc;display:flex;flex-direction:column;">
                 <div style="flex:1;overflow-y:auto;padding:22px 22px 16px;">
-                    <h1 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:30px;line-height:1.05;color:#0b1220;margin:0 0 4px;">Food Near Me</h1>
+                    <h1 style="font-family:'Geist',-apple-system,sans-serif;font-weight:400;font-size:30px;line-height:1.05;color:#0b1220;margin:0 0 4px;">Food Near Me</h1>
                     <div style="font-size:12.5px;color:#64748b;margin-bottom:22px;">Food access options in my area.</div>
 
                     <div style="margin-bottom:22px;position:relative;">
@@ -3479,6 +3610,10 @@
 
     <!-- Right tract panel (slides in on tract/site click) -->
     <div class="detail-panel" id="detailPanel">
+        <div class="info-panel-tab" id="infoPanelTab" onclick="toggleInfoPanel()" title="See breakdown">
+            <span class="tab-arrow">&#9664;</span>
+            <span class="tab-label">See breakdown</span>
+        </div>
         <header class="tp-head">
             <div>
                 <div class="tp-crumb" id="tpCrumb"></div>
@@ -3488,15 +3623,6 @@
             <button class="tp-close" onclick="closeDetailPanel()">&#10005;</button>
         </header>
         <section class="tp-sites" id="tpSites" style="display:none;">
-            <div class="tp-sites-head">
-                <span class="tp-sites-label">Include sites in graphs</span>
-                <span class="tp-sites-actions">
-                    <span><span class="tp-sites-count" id="tpSitesCount">0</span> / <span id="tpSitesTotal">0</span></span>
-                    <button onclick="setAllTractSites(true)">all</button>
-                    <span>&middot;</span>
-                    <button onclick="setAllTractSites(false)">none</button>
-                </span>
-            </div>
             <div class="tp-sites-list" id="tpSitesList"></div>
         </section>
         <div style="flex:1;overflow-y:auto;min-height:0;" id="tpScrollWrap">
@@ -3769,6 +3895,35 @@
             'Fruits': '#8593C6',          // Purple-blue
             'Protein (plant)': '#8B4513', // Brown/legume color
             'Other': '#9BA4B4'            // Gray
+        };
+
+        // Ethnic food signatures from the wastewater paper (Dong et al.)
+        // Each signature defines species (matched against common_name) linked to a demographic pattern
+        const ETHNIC_FOOD_SIGNATURES = {
+            'South Asian': {
+                color: '#d4a017',
+                markers: ['mung', 'chickpea', 'pigeon pea', 'lentil', 'mango', 'coconut', 'palm', 'turmeric', 'coriander', 'cumin', 'tamarind', 'black gram', 'urad', 'vigna', 'cardamom', 'fenugreek'],
+                demoKey: 'pct_asian',
+                desc: 'South Asian cuisine'
+            },
+            'East Asian': {
+                color: '#e53e3e',
+                markers: ['soybean', 'soy', 'ginger', 'sesame', 'bamboo', 'bok choy', 'water chestnut', 'millet', 'duck', 'carp'],
+                demoKey: 'pct_asian',
+                desc: 'East Asian cuisine'
+            },
+            'Southern US': {
+                color: '#8B6914',
+                markers: ['pecan', 'black-eyed pea', 'field pea', 'collard', 'okra', 'sweet potato', 'catfish', 'cornbread', 'hominy', 'grits'],
+                demoKey: 'pct_black',
+                desc: 'Southern regional foods'
+            },
+            'Latin American': {
+                color: '#15803d',
+                markers: ['avocado', 'jalape', 'chili pepper', 'cilantro', 'tomatillo', 'plantain', 'papaya', 'guava', 'black bean', 'pinto bean', 'queso'],
+                demoKey: 'pct_other',
+                desc: 'Latin American cuisine'
+            },
         };
 
         // Cuisine bundle definitions — species associated with each cuisine type
@@ -5973,6 +6128,123 @@
                 ]);
 
                 foodseqData = await foodseqResponse.json();
+
+                // --- Runtime species-name fixes (merge, rename, hide NA_) ---
+                {
+                    const sm = foodseqData.species_metadata;
+
+                    // 1. Rename all Latin scientific names to common names
+                    const RENAME_LATIN = {
+                        // Original 24
+                        'Oreochromis niloticus': 'Tilapia',
+                        'Cairina moschata': 'Muscovy duck',
+                        'Pomoxis nigromaculatus': 'Black crappie',
+                        'Ictalurus pricei': 'Catfish',
+                        'Engraulis encrasicolus': 'Anchovy',
+                        'Mallotus villosus': 'Capelin',
+                        'Bubalus bubalis': 'Water buffalo',
+                        'Micropterus salmoides': 'Largemouth bass',
+                        'Cervus canadensis': 'Elk',
+                        'Sardina pilchardus': 'European sardine',
+                        'Coregonus lavaretus': 'European whitefish',
+                        'Trichiurus lepturus': 'Hairtail',
+                        'Argyrosomus japonicus': 'Japanese meagre',
+                        'Equus caballus': 'Horse',
+                        'Lepomis gibbosus': 'Pumpkinseed sunfish',
+                        'Lepomis macrochirus': 'Bluegill',
+                        'Menticirrhus americanus': 'Southern kingfish',
+                        'Ocyurus chrysurus': 'Yellowtail snapper',
+                        'Euthynnus affinis': 'Kawakawa tuna',
+                        'Pristipomoides filamentosus': 'Opakapaka snapper',
+                        'Pampus cinereus': 'Silver pomfret',
+                        'Epinephelus fuscoguttatus': 'Grouper',
+                        'Hippoglossus hippoglossus': 'Atlantic halibut',
+                        'Lepidocybium flavobrunneum': 'Escolar',
+                        // Additional Latin names
+                        'Anser anser': 'Greylag goose',
+                        'Aquarana catesbeiana': 'Bullfrog',
+                        'Brevoortia patronus': 'Gulf menhaden',
+                        'Brevoortia': 'Menhaden',
+                        'Cavia porcellus': 'Guinea pig',
+                        'Chanos chanos': 'Milkfish',
+                        'Clupea harengus': 'Atlantic herring',
+                        'Clupeidae': 'Herring family',
+                        'Coryphaena hippurus': 'Mahi-mahi',
+                        'Coturnix japonica': 'Japanese quail',
+                        'Cynoscion nebulosus': 'Spotted seatrout',
+                        'Decapterus macrosoma': 'Shortfin scad',
+                        'Dicentrarchus labrax': 'European sea bass',
+                        'Dorosoma petenense': 'Threadfin shad',
+                        'Engraulis': 'Anchovy',
+                        'Engraulis ringens': 'Peruvian anchovy',
+                        'Exocoetidae': 'Flying fish',
+                        'Haemulon plumierii': 'White grunt',
+                        'Lagodon': 'Pinfish',
+                        'Lagodon rhomboides': 'Pinfish',
+                        'Larimichthys crocea': 'Yellow croaker',
+                        'Lepomis': 'Sunfish',
+                        'Lutjanidae': 'Snapper family',
+                        'Lutjanus': 'Snapper',
+                        'Lutjanus peru': 'Pacific red snapper',
+                        'Macropodidae': 'Kangaroo',
+                        'Morone americana': 'White perch',
+                        'Morone chrysops': 'White bass',
+                        'Morone saxatilis': 'Striped bass',
+                        'Ocyphaps lophotes': 'Crested pigeon',
+                        'Oncorhynchus kisutch': 'Coho salmon',
+                        'Oncorhynchus mykiss': 'Rainbow trout',
+                        'Oncorhynchus tshawytscha': 'Chinook salmon',
+                        'Pangasianodon hypophthalmus': 'Swai',
+                        'Paralichthys dentatus': 'Summer flounder',
+                        'Pennahia aneus': 'Croaker',
+                        'Phoca': 'Seal',
+                        'Phocidae': 'Seal',
+                        'Pseudopleuronectes americanus': 'Winter flounder',
+                        'Rastrelliger kanagurta': 'Indian mackerel',
+                        'Rhomboplites aurorubens': 'Vermilion snapper',
+                        'Sardinops': 'Pacific sardine',
+                        'Sardinops sagax': 'Pacific sardine',
+                        'Sciaenidae': 'Drum family',
+                        'Sciaenops ocellatus': 'Red drum',
+                        'Scomber scombrus': 'Atlantic mackerel',
+                        'Scomberomorus': 'Spanish mackerel',
+                        'Scombridae': 'Mackerel family',
+                        'Sebastes': 'Rockfish',
+                        'Seriola': 'Amberjack',
+                        'Stolothrissa tanganicae': 'Lake Tanganyika sardine',
+                        'Sylvilagus': 'Cottontail rabbit',
+                        'Thunnus alalunga': 'Albacore tuna',
+                        'Trachinotus': 'Pompano',
+                        'Umbrina canosai': 'Argentine croaker',
+                        'Xiphias gladius': 'Swordfish',
+                        // Taxonomic orders/classes (hide or genericize)
+                        'Actinopteri': 'Bony fish',
+                        'Artiodactyla': 'Hoofed mammal',
+                        'Aves': 'Bird',
+                        'Carnivora': 'Carnivore',
+                        'Mammalia': 'Mammal',
+                        // Simplify parenthetical names
+                        'Cow (Beef)': 'Cow',
+                        'Pig (Pork)': 'Pig',
+                        'Sheep (Lamb)': 'Sheep',
+                    };
+                    const MERGE_NAMES = {}; // kept for compatibility
+                    Object.entries(sm).forEach(([id, meta]) => {
+                        if (RENAME_LATIN[meta.common_name]) {
+                            meta.common_name = RENAME_LATIN[meta.common_name];
+                        }
+                    });
+
+                    // 3. Mark NA_ species as hidden
+                    Object.entries(sm).forEach(([id, meta]) => {
+                        if (meta.common_name && meta.common_name.startsWith('NA_')) {
+                            meta._hidden = true;
+                        }
+                    });
+
+                    console.log('Applied species-name fixes (merge/rename/hide)');
+                }
+
                 countiesGeoJSON = await countiesResponse.json();
                 populationDensityGeoJSON = await densityResponse.json();
                 durhamTractsGeoJSON = await durhamTractsResponse.json();
@@ -6053,6 +6325,28 @@
         function initMap(countiesGeoJSON) {
             // Create map centered on NC
             map = L.map('map').setView([35.99, -78.90], 12);
+
+            // Add reset button inside the default zoom control bar
+            setTimeout(() => {
+                const zoomBar = document.querySelector('.leaflet-control-zoom');
+                if (zoomBar) {
+                    const btn = document.createElement('a');
+                    btn.href = '#';
+                    btn.title = 'Reset view';
+                    btn.setAttribute('role', 'button');
+                    btn.setAttribute('aria-label', 'Reset view');
+                    btn.className = 'leaflet-control-zoom-reset';
+                    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;margin:auto;"><path d="M2 8a6 6 0 0 1 10.3-4.1"/><path d="M14 8a6 6 0 0 1-10.3 4.1"/><path d="M12.3 1v3h-3"/><path d="M3.7 15v-3h3"/></svg>`;
+                    btn.style.cssText = 'display:flex;align-items:center;justify-content:center;width:26px;height:26px;cursor:pointer;color:#333;border-top:1px solid #ccc;';
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        closeDetailPanel();
+                        map.flyTo([35.98, -78.9], 11, { duration: 1.2 });
+                    });
+                    zoomBar.appendChild(btn);
+                }
+            }, 100);
 
             // Create custom pane for plant markers with higher z-index
             map.createPane('markerPane');
@@ -6205,13 +6499,94 @@
             });
         }
 
+        function updateSpeciesPanelPosition() {
+            const sp = document.getElementById('species-panel');
+            if (!sp) return;
+            const detailOpen = document.getElementById('detailPanel').classList.contains('open');
+            const infoOpen = !document.getElementById('landingInfoPanel').classList.contains('hidden');
+            sp.classList.remove('shifted', 'shifted-both');
+            if (detailOpen && infoOpen) {
+                sp.classList.add('shifted-both');
+            } else if (detailOpen) {
+                sp.classList.add('shifted');
+            }
+        }
+        // Watch for detail panel and info panel changes to shift species panel
+        new MutationObserver(() => updateSpeciesPanelPosition())
+            .observe(document.getElementById('detailPanel'), { attributes: true, attributeFilter: ['class'] });
+        new MutationObserver(() => updateSpeciesPanelPosition())
+            .observe(document.getElementById('landingInfoPanel'), { attributes: true, attributeFilter: ['class'] });
+
         function closeDetailPanel() {
             document.getElementById('detailPanel').classList.remove('open');
             hideLandingPopups();
+            document.getElementById('infoPanelTab').style.display = 'none';
             currentDetailPlant = null;
             clearHighlights();
+            updateSpeciesPanelPosition();
             // Remove find-me marker
             if (findMeMarker) { map.removeLayer(findMeMarker); findMeMarker = null; }
+        }
+
+        function toggleInfoPanel() {
+            const panel = document.getElementById('landingInfoPanel');
+            const arrow = document.querySelector('#infoPanelTab .tab-arrow');
+            if (panel.classList.contains('hidden')) {
+                panel.classList.remove('hidden');
+                if (arrow) arrow.innerHTML = '&#9654;';
+                // Pan map to keep selected tract visible
+                if (map) map.panBy([384 / 2, 0], { animate: true, duration: 0.5 });
+            } else {
+                panel.classList.add('hidden');
+                if (arrow) arrow.innerHTML = '&#9664;';
+                // Pan map back
+                if (map) map.panBy([-384 / 2, 0], { animate: true, duration: 0.5 });
+            }
+        }
+
+        let nfCompareOn = false;
+        function toggleNfCompare() {
+            nfCompareOn = !nfCompareOn;
+            const btn = document.getElementById('nfCmpToggle');
+            const groups = document.getElementById('nfGroupsContainer');
+            const legend = document.getElementById('nfCmpLegend');
+            if (btn) btn.classList.toggle('on', nfCompareOn);
+            if (groups) {
+                groups.classList.toggle('cmp', nfCompareOn);
+                groups.style.gap = nfCompareOn ? '6px' : '4px';
+            }
+            if (legend) legend.style.display = nfCompareOn ? 'flex' : 'none';
+            document.querySelectorAll('.dur-num').forEach(el => { el.style.display = nfCompareOn ? 'block' : 'none'; });
+        }
+
+        let nfAccOpen = {};
+        function toggleNfAccordion(groupName) {
+            nfAccOpen[groupName] = !nfAccOpen[groupName];
+            const item = document.getElementById('nfAcc_' + groupName.replace(/[^a-zA-Z]/g, ''));
+            if (!item) return;
+            item.classList.toggle('open', nfAccOpen[groupName]);
+            const chips = item.querySelector('.nf-chips');
+            const empty = item.querySelector('.nf-acc-empty');
+            if (chips) chips.style.display = nfAccOpen[groupName] ? 'flex' : 'none';
+            if (empty) empty.style.display = nfAccOpen[groupName] ? 'block' : 'none';
+        }
+
+        let nfRainbowCompare = false;
+        function toggleNfRainbow() {
+            nfRainbowCompare = !nfRainbowCompare;
+            const btn = document.getElementById('nfRainbowToggle');
+            const local = document.getElementById('nfRainbowLocal');
+            const compare = document.getElementById('nfRainbowCompare');
+            if (btn) btn.classList.toggle('on', nfRainbowCompare);
+            if (local) local.style.display = nfRainbowCompare ? 'none' : '';
+            if (compare) compare.style.display = nfRainbowCompare ? '' : 'none';
+        }
+
+        function expandNfChips(chipsId) {
+            const el = document.getElementById(chipsId);
+            const foods = window._nfChipsData && window._nfChipsData[chipsId];
+            if (!el || !foods) return;
+            el.innerHTML = foods.map(f => `<span class="chip">${f}</span>`).join('');
         }
 
         // --- Find Me: locate address and select its service area ---
@@ -6304,7 +6679,7 @@
             if (matched) {
                 openTractDetailPanel(matched);
                 // Show landing popups for this location after the panel opens
-                setTimeout(() => showLandingPanels(lat, lon), 800);
+                setTimeout(() => showLandingPanels(lat, lon, null, true), 800);
             } else {
                 // Not in any service area — show friendly no-data panel
                 showNoDataPanel();
@@ -8590,7 +8965,25 @@
             document.getElementById('tpTitle').style.color = isWWTP ? '#c53030' : '#1e3a8a';
             document.getElementById('tpCrumb').style.color = isWWTP ? '#c53030' : '#6b7280';
 
-            document.getElementById('tpSub').textContent = getPeriodLabel(plant);
+            // Count data points for this site
+            let siteDataPoints = 0;
+            if (currentTimeIndex === 'all') {
+                Object.values(plant.timeseries).forEach(td => {
+                    const pv = Object.values(td.plants || {});
+                    const av = Object.values(td.animals || {});
+                    if (pv.some(v => v > 0) || av.some(v => v > 0)) siteDataPoints++;
+                });
+            } else {
+                const date = foodseqData.dates[currentTimeIndex];
+                const td = plant.timeseries[date];
+                if (td) {
+                    const pv = Object.values(td.plants || {});
+                    const av = Object.values(td.animals || {});
+                    if (pv.some(v => v > 0) || av.some(v => v > 0)) siteDataPoints++;
+                }
+            }
+            const sitePeriod = getPeriodLabel(plant).replace('showing data from ', '');
+            document.getElementById('tpSub').textContent = `${siteDataPoints} collection date${siteDataPoints !== 1 ? 's' : ''} from ${sitePeriod}`;
 
             document.getElementById('tpSites').style.display = 'none';
             document.getElementById('tpCtas').style.display = '';
@@ -8687,6 +9080,7 @@
         // ── Report Card renderer ──
         let rcShowAllPlants = false;
         let rcShowAllAnimals = false;
+        let rcActiveTab = 'plants';
 
         function toggleRcShowAll(kind) {
             if (kind === 'plants') rcShowAllPlants = !rcShowAllPlants;
@@ -8699,33 +9093,75 @@
             }
         }
 
+        function switchReportTab(tab) {
+            rcActiveTab = tab;
+            if (currentTractFeature) {
+                reRenderTractReportCard();
+            } else if (currentSitePlant) {
+                renderReportCard(document.getElementById('tpBody'), [currentSitePlant], currentSitePlant.name, null);
+            }
+        }
+
         function computeReportCardData(plants, areaName) {
             const agg = aggregatePlantsData(plants);
-            const plantEntries = Object.entries(agg.plants).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
-            const animalEntries = Object.entries(agg.animals).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+            const _isHidden = ([sp]) => { const m = foodseqData.species_metadata[sp]; return !m || m._hidden || (m.common_name && m.common_name.startsWith('NA_')); };
+            const plantEntries = Object.entries(agg.plants).filter(([sp, v]) => v > 0 && !_isHidden([sp])).sort((a, b) => b[1] - a[1]);
+            const animalEntries = Object.entries(agg.animals).filter(([sp, v]) => v > 0 && !_isHidden([sp])).sort((a, b) => b[1] - a[1]);
 
             let totalPlantTaxa = 0, totalAnimalTaxa = 0;
-            Object.values(foodseqData.species_metadata).forEach(m => {
+            Object.entries(foodseqData.species_metadata).forEach(([id, m]) => {
+                if (m._hidden || (m.common_name && m.common_name.startsWith('NA_'))) return;
                 if (m.type === 'plant') totalPlantTaxa++;
                 else totalAnimalTaxa++;
             });
 
-            // Shannon diversity on plant abundances (trnL), normalized 0–100
-            let shannonH = 0;
+            // Species richness = total distinct species detected (plants + animals)
+            const speciesRichness = plantEntries.length + animalEntries.length;
+
+            // Evenness score 0–100 (secondary metric, based on Shannon H)
+            let rawShannonH = 0;
             if (plantEntries.length > 1) {
                 const totalAbundance = plantEntries.reduce((s, [, v]) => s + v, 0);
                 plantEntries.forEach(([, v]) => {
                     const p = v / totalAbundance;
-                    if (p > 0) shannonH -= p * Math.log(p);
+                    if (p > 0) rawShannonH -= p * Math.log(p);
                 });
-                const maxH = Math.log(plantEntries.length);
-                shannonH = maxH > 0 ? Math.round((shannonH / maxH) * 100) : 0;
             }
+            const maxH = plantEntries.length > 1 ? Math.log(plantEntries.length) : 0;
+            const evenness = maxH > 0 ? Math.round((rawShannonH / maxH) * 100) : 0;
 
-            let gradeLabel = 'Low plant diversity';
-            if (shannonH >= 80) gradeLabel = 'Varied plant diet';
-            else if (shannonH >= 60) gradeLabel = 'Moderate variety';
-            else if (shannonH >= 40) gradeLabel = 'Limited variety';
+            // Compute percentile by ranking species richness across all comparable sites
+            const isWWTPForRank = plants.length > 0 && plants[0].location_type !== 'manhole';
+            const compPoolForRank = Object.values(foodseqData.plants).filter(p =>
+                isWWTPForRank ? p.location_type !== 'manhole' : (p.census_tract && p.census_tract !== 'unknown')
+            );
+            const tractRichnessValues = [];
+            if (!isWWTPForRank) {
+                const tractIds = new Set(compPoolForRank.map(p => p.census_tract));
+                tractIds.forEach(tid => {
+                    const tractPlants = compPoolForRank.filter(p => String(p.census_tract) === String(tid));
+                    const tAgg = aggregatePlantsData(tractPlants);
+                    const tPlant = Object.entries(tAgg.plants).filter(([sp, v]) => { const m = foodseqData.species_metadata[sp]; return v > 0 && m && !m._hidden; }).length;
+                    const tAnimal = Object.entries(tAgg.animals).filter(([sp, v]) => { const m = foodseqData.species_metadata[sp]; return v > 0 && m && !m._hidden; }).length;
+                    tractRichnessValues.push(tPlant + tAnimal);
+                });
+            } else {
+                compPoolForRank.forEach(p => {
+                    const pAgg = aggregatePlantsData([p]);
+                    const pPlant = Object.entries(pAgg.plants).filter(([sp, v]) => { const m = foodseqData.species_metadata[sp]; return v > 0 && m && !m._hidden; }).length;
+                    const pAnimal = Object.entries(pAgg.animals).filter(([sp, v]) => { const m = foodseqData.species_metadata[sp]; return v > 0 && m && !m._hidden; }).length;
+                    tractRichnessValues.push(pPlant + pAnimal);
+                });
+            }
+            const sortedRichness = tractRichnessValues.slice().sort((a, b) => a - b);
+            const biodiversityPctile = sortedRichness.length > 0
+                ? Math.round((sortedRichness.filter(v => v <= speciesRichness).length / sortedRichness.length) * 100)
+                : 0;
+
+            let gradeLabel = 'Low biodiversity';
+            if (biodiversityPctile >= 75) gradeLabel = 'High biodiversity';
+            else if (biodiversityPctile >= 40) gradeLabel = 'Moderate biodiversity';
+            else if (biodiversityPctile >= 20) gradeLabel = 'Below average';
 
             // Build full lists with species IDs (for sparklines + navigation)
             const mapEntry = (entries) => entries.map(([sp, val]) => {
@@ -8733,89 +9169,110 @@
                 return { id: sp, name: meta ? meta.common_name : sp, value: Math.round((val / entries[0][1]) * 100), raw: val };
             });
 
-            // "What's surprising" — compare to median across similar sites
-            // WWTPs compare to NC (all WWTPs), manholes compare to Durham (manholes only)
+            // "What's surprising" — find individual foods with unusually high
+            // relative abundance at this location compared to all other locations
             const insights = [];
             const isWWTP = plants.length > 0 && plants[0].location_type !== 'manhole';
             const comparisonPool = Object.values(foodseqData.plants).filter(p =>
                 isWWTP ? p.location_type !== 'manhole' : (p.census_tract && p.census_tract !== 'unknown')
             );
             const compLabel = isWWTP ? 'NC' : 'Durham';
-            const compAreaLabel = isWWTP ? 'NC sites' : 'Durham neighborhoods';
             if (comparisonPool.length > 1) {
-                const categories = [
-                    { label: 'Seafood', match: ['tilapia','shrimp','salmon','tuna','catfish','trout','crab','lobster','cod','pangasius','squid','clam','mussel','oyster','scallop'], tone: 'green' },
-                    { label: 'Leafy greens', match: ['lettuce','spinach','kale','cabbage','arugula','collard','chard','romaine'], tone: 'green' },
-                ];
+                const allSpecies = plantEntries.concat(animalEntries);
+                const siteTotal = allSpecies.reduce((s, [, v]) => s + v, 0) || 1;
 
-                // Build a species→category lookup once
-                const speciesCatMap = {};
-                Object.entries(foodseqData.species_metadata).forEach(([sp, meta]) => {
-                    const cn = (meta.common_name || sp).toLowerCase();
-                    categories.forEach((cat, ci) => {
-                        if (cat.match.some(m => cn.includes(m))) {
-                            speciesCatMap[sp] = ci;
-                        }
-                    });
-                });
+                // Compute per-species relative abundance at each site in the comparison pool
+                const compDates = currentTimeRangeFilter
+                    ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
+                    : (currentTimeIndex === 'all' ? foodseqData.dates : [foodseqData.dates[currentTimeIndex]].filter(Boolean));
 
-                // This site's totals per category
-                const siteTotals = categories.map(() => 0);
-                plantEntries.concat(animalEntries).forEach(([sp, v]) => {
-                    if (sp in speciesCatMap) siteTotals[speciesCatMap[sp]] += v;
-                });
-
-                // Comparison pool totals per category (respects current time period)
-                const compDates = currentTimeIndex === 'all'
-                    ? foodseqData.dates
-                    : [foodseqData.dates[currentTimeIndex]].filter(Boolean);
-                const allSiteTotals = categories.map(() => []);
-                comparisonPool.forEach(p => {
-                    const catSums = categories.map(() => 0);
-                    compDates.forEach(date => {
-                        const td = p.timeseries[date];
-                        if (!td) return;
-                        const all = Object.entries(td.plants || {}).concat(Object.entries(td.animals || {}));
-                        all.forEach(([sp, v]) => {
-                            if (v > 0 && sp in speciesCatMap) catSums[speciesCatMap[sp]] += v;
+                // For each species detected here, gather its relative abundance across all sites
+                const standouts = [];
+                allSpecies.forEach(([sp, val]) => {
+                    const siteRelAbundance = val / siteTotal;
+                    const poolRelAbundances = [];
+                    comparisonPool.forEach(p => {
+                        let spTotal = 0, allTotal = 0;
+                        compDates.forEach(date => {
+                            const td = p.timeseries[date];
+                            if (!td) return;
+                            const entries = Object.entries(td.plants || {}).concat(Object.entries(td.animals || {}));
+                            entries.forEach(([s, v]) => {
+                                if (v > 0) {
+                                    allTotal += v;
+                                    if (s === sp) spTotal += v;
+                                }
+                            });
                         });
+                        if (allTotal > 0) poolRelAbundances.push(spTotal / allTotal);
                     });
-                    const nDates = compDates.filter(d => p.timeseries[d]).length || 1;
-                    catSums.forEach((s, ci) => allSiteTotals[ci].push(s / nDates));
+                    if (poolRelAbundances.length < 2) return;
+                    const sorted = poolRelAbundances.slice().sort((a, b) => a - b);
+                    const median = sorted[Math.floor(sorted.length / 2)];
+                    const rank = sorted.filter(v => v <= siteRelAbundance).length;
+                    const pctile = Math.round((rank / sorted.length) * 100);
+                    if (median > 0 && siteRelAbundance > median * 1.5 && pctile >= 75) {
+                        const meta = foodseqData.species_metadata[sp];
+                        const name = meta ? meta.common_name : sp;
+                        const ratio = (siteRelAbundance / median).toFixed(1);
+                        standouts.push({ name, ratio: parseFloat(ratio), pctile, tone: meta && meta.type === 'animal' ? 'rust' : 'green' });
+                    }
                 });
 
-                categories.forEach((cat, ci) => {
-                    const sorted = allSiteTotals[ci].slice().sort((a, b) => a - b);
-                    const median = sorted[Math.floor(sorted.length / 2)] || 0;
-                    if (siteTotals[ci] === 0 && median > 0) {
-                        insights.push({ tone: 'rust', text: `${cat.label} is <b>not detected here</b> despite appearing at most ${compAreaLabel}.` });
-                    } else if (median > 0 && siteTotals[ci] > median * 1.5) {
-                        const ratio = (siteTotals[ci] / median).toFixed(1);
-                        insights.push({ tone: cat.tone, text: `${cat.label} runs <b>${ratio}\u00d7 the ${compLabel} median</b> here.` });
-                    } else if (median > 0 && siteTotals[ci] < median * 0.5) {
-                        const ratio = (median / siteTotals[ci]).toFixed(1);
-                        insights.push({ tone: 'rust', text: `${cat.label} is <b>${ratio}\u00d7 below the ${compLabel} median</b> — much less than typical.` });
-                    } else if (median > 0) {
-                        const rank = sorted.filter(t => t <= siteTotals[ci]).length;
-                        const pctile = Math.round((rank / sorted.length) * 100);
-                        if (pctile >= 70) {
-                            insights.push({ tone: cat.tone, text: `${cat.label} appears more than at <b>${pctile}% of ${compAreaLabel}</b>.` });
-                        } else if (pctile <= 25) {
-                            insights.push({ tone: 'rust', text: `${cat.label} appears less than at <b>${100 - pctile}% of ${compAreaLabel}</b>.` });
-                        }
-                    }
+                // Show top standouts sorted by ratio
+                standouts.sort((a, b) => b.ratio - a.ratio);
+                standouts.slice(0, 4).forEach(s => {
+                    insights.push({ tone: s.tone, name: s.name, ratio: s.ratio, pctile: s.pctile, text: `<b>${s.name}</b> is ${s.ratio}\u00d7 the ${compLabel} median relative abundance here (higher than ${s.pctile}% of sites).` });
                 });
             }
 
+            // Ethnic food signature scoring
+            const allDetected = plantEntries.concat(animalEntries);
+            const totalSiteAbundance = allDetected.reduce((s, [, v]) => s + v, 0) || 1;
+            const ethnicSignatures = [];
+            Object.entries(ETHNIC_FOOD_SIGNATURES).forEach(([name, sig]) => {
+                const matches = [];
+                sig.markers.forEach(marker => {
+                    const ml = marker.toLowerCase();
+                    allDetected.forEach(([sp, val]) => {
+                        const meta = foodseqData.species_metadata[sp];
+                        const cn = meta ? meta.common_name.toLowerCase() : sp.toLowerCase();
+                        // Only count if relative abundance is >= 0.01% of total
+                        if (cn.includes(ml) && (val / totalSiteAbundance) >= 0.0001) {
+                            matches.push({ name: meta ? meta.common_name : sp, abundance: val });
+                        }
+                    });
+                });
+                // Need at least 3 markers above the cutoff
+                if (matches.length >= 3) {
+                    const totalAbundance = matches.reduce((s, m) => s + m.abundance, 0);
+                    const relPct = (totalAbundance / totalSiteAbundance) * 100;
+                    const sortedMatches = matches.sort((a, b) => b.abundance - a.abundance);
+                    ethnicSignatures.push({
+                        name,
+                        color: sig.color,
+                        desc: sig.desc,
+                        totalAbundance,
+                        relPct,
+                        markerCount: matches.length,
+                        topFoods: sortedMatches.slice(0, 3).map(m => m.name),
+                    });
+                }
+            });
+            ethnicSignatures.sort((a, b) => b.relPct - a.relPct);
+
             return {
                 area: areaName,
-                score: shannonH,
+                score: biodiversityPctile,
+                evenness,
                 gradeLabel,
+                speciesRichness,
                 plantTaxa: { detected: plantEntries.length, total: totalPlantTaxa },
                 animalTaxa: { detected: animalEntries.length, total: totalAnimalTaxa },
                 allPlants: mapEntry(plantEntries),
                 allAnimals: mapEntry(animalEntries),
                 insights,
+                ethnicSignatures,
             };
         }
 
@@ -8856,39 +9313,134 @@
             </svg>`;
         }
 
-        function renderDemoDonut(races, props) {
-            // Updated colors to match reference design
-            const colorMap = { White: '#a9b4ec', Black: '#5b63d6', Asian: '#edc24e', Other: '#5ec98f', 'Two+': '#e79ac4' };
-            const segments = races.filter(rc => props[rc.key] != null && props[rc.key] > 0)
-                .map(rc => ({ label: rc.label, pct: props[rc.key], color: colorMap[rc.label] || rc.color }))
+        function renderDemographicsCard(demoProps) {
+            const pop = demoProps.total_population || 0;
+            const hh = demoProps.total_households || 0;
+            const acres = demoProps.total_acres || 1;
+            const income = demoProps.median_hh_income || 0;
+            const density = pop / acres;
+
+            // Density ranking: <4 Low, 4-10 Moderate, >10 High. Scale max 15.
+            const densityRank = density < 4 ? 'Low' : density <= 10 ? 'Moderate' : 'High';
+            const densityActiveIdx = density < 4 ? 0 : density <= 10 ? 1 : 2;
+            const densityMarker = Math.min(100, Math.max(0, (density / 15) * 100));
+            const densityZones = [
+                { w: '26.67%', label: 'Low', thresh: '&lt; 4' },
+                { w: '40%', label: 'Moderate', thresh: '4 – 10' },
+                { w: '33.33%', label: 'High', thresh: '10 +' }
+            ];
+
+            // Income ranking: <50k Low, 50-100k Moderate, >100k High. Scale max 150k.
+            const incomeRank = income < 50000 ? 'Low' : income <= 100000 ? 'Moderate' : 'High';
+            const incomeActiveIdx = income < 50000 ? 0 : income <= 100000 ? 1 : 2;
+            const incomeMarker = Math.min(100, Math.max(0, (income / 150000) * 100));
+            const incomeZones = [
+                { w: '33.33%', label: 'Low', thresh: '&lt; $50k' },
+                { w: '33.33%', label: 'Moderate', thresh: '$50–100k' },
+                { w: '33.34%', label: 'High', thresh: '$100k +' }
+            ];
+
+            function renderMetric(label, rank, fig, figUnit, zones, activeIdx, markerPct, footnote) {
+                let h = `<div style="padding:10px 0;border-bottom:1px solid #f0ede6;">`;
+                h += `<div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.14em;text-transform:uppercase;color:#94a3b8;">${label}</div>`;
+                h += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin:7px 0 10px;">`;
+                h += `<span style="font-size:24px;font-weight:600;color:#0b1220;letter-spacing:-.01em;line-height:1;">${rank}</span>`;
+                h += `<span style="font:600 14px 'Geist',sans-serif;color:#1f2937;font-variant-numeric:tabular-nums;">${fig}`;
+                if (figUnit) h += `<span style="color:#94a3b8;font-weight:500;font-size:12px;margin-left:2px;">${figUnit}</span>`;
+                h += `</span></div>`;
+                // Scale
+                h += `<div style="position:relative;">`;
+                h += `<div style="display:flex;height:8px;border-radius:6px;overflow:hidden;background:#f1efe9;">`;
+                zones.forEach((z, i) => {
+                    const bg = i === activeIdx ? '#cdd1f3' : 'transparent';
+                    const br = i < zones.length - 1 ? 'border-right:2px solid #fff;' : '';
+                    h += `<div style="height:100%;width:${z.w};background:${bg};${br}"></div>`;
+                });
+                h += `</div>`;
+                h += `<div style="position:absolute;top:4px;left:${markerPct.toFixed(1)}%;width:14px;height:14px;border-radius:50%;background:#5b63d6;border:2.5px solid #fff;box-shadow:0 1px 4px rgba(91,99,214,.45);transform:translate(-50%,-50%);"></div>`;
+                h += `</div>`;
+                // Zone labels
+                h += `<div style="display:flex;margin-top:8px;">`;
+                zones.forEach((z, i) => {
+                    const nameColor = i === activeIdx ? '#0b1220' : '#94a3b8';
+                    h += `<div style="width:${z.w};text-align:center;"><span style="font-size:12px;font-weight:600;color:${nameColor};">${z.label}</span><span style="display:block;font:500 10.5px/1.3 'Geist Mono',monospace;color:#94a3b8;letter-spacing:.01em;margin-top:2px;">${z.thresh}</span></div>`;
+                });
+                h += `</div>`;
+                if (footnote) h += `<div style="margin-top:8px;font-size:12.5px;color:#64748b;font-variant-numeric:tabular-nums;">${footnote}</div>`;
+                h += `</div>`;
+                return h;
+            }
+
+            let html = '';
+            html += renderMetric(
+                'Population density', densityRank,
+                density.toFixed(1), 'people / acre',
+                densityZones, densityActiveIdx, densityMarker,
+                `<b style="color:#1f2937;font-weight:600;">${Math.round(pop).toLocaleString()}</b> residents · <b style="color:#1f2937;font-weight:600;">${Math.round(hh).toLocaleString()}</b> households`
+            );
+            html += renderMetric(
+                'Median household income', incomeRank,
+                '$' + Math.round(income).toLocaleString(), null,
+                incomeZones, incomeActiveIdx, incomeMarker, null
+            );
+
+            // Race & ethnicity
+            const colorMap = { White: '#8593C6', Black: '#1e3a8a', Asian: '#FCC77C', Other: '#4CAF50', 'Two+': '#c8612e' };
+            const races = [
+                { key: 'pct_white', label: 'White' },
+                { key: 'pct_black', label: 'Black' },
+                { key: 'pct_asian', label: 'Asian' },
+                { key: 'pct_other', label: 'Other' },
+                { key: 'pct_two_plus', label: 'Two+' }
+            ];
+            const segments = races.filter(r => demoProps[r.key] != null && demoProps[r.key] > 0)
+                .map(r => ({ label: r.label, pct: demoProps[r.key], color: colorMap[r.label] }))
                 .sort((a, b) => b.pct - a.pct);
 
-            let html = `<hr style="height:1px;background:#e7e4dc;margin:18px 0;border:0;">`;
-            html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px;">
-                <span style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#1f2937;">Race &amp; ethnicity</span>
-                <span style="font:500 10px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;">ACS 5-yr</span>
-            </div>`;
-
-            // Segmented bar
-            html += `<div style="display:flex;height:16px;gap:2px;">`;
-            segments.forEach((seg, i) => {
-                const rLeft = i === 0 ? '8px 0 0 8px' : '0';
-                const rRight = i === segments.length - 1 ? '0 8px 8px 0' : '0';
-                const radius = i === 0 && i === segments.length - 1 ? '8px' : (i === 0 ? '8px 0 0 8px' : (i === segments.length - 1 ? '0 8px 8px 0' : '0'));
-                html += `<span style="width:${seg.pct}%;background:${seg.color};border-radius:${radius};" title="${seg.label} ${seg.pct.toFixed(1)}%"></span>`;
-            });
-            html += `</div>`;
-
-            // Legend grid
-            html += `<div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:11px 18px;">`;
-            segments.forEach(seg => {
-                html += `<div style="display:flex;align-items:center;gap:8px;">
-                    <span style="width:10px;height:10px;border-radius:3px;background:${seg.color};flex:0 0 auto;"></span>
-                    <span style="font-size:12.5px;color:#1f2937;">${seg.label}</span>
-                    <span style="margin-left:auto;font:600 12.5px 'Geist',sans-serif;color:#0b1220;font-variant-numeric:tabular-nums;">${seg.pct.toFixed(1)}%</span>
+            if (segments.length > 0) {
+                html += `<hr style="height:1px;background:#e7e4dc;margin:18px 0 16px;border:0;">`;
+                html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;">
+                    <span style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#0b1220;">Race &amp; ethnicity</span>
+                    <span style="font:500 10px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;">ACS 5-yr</span>
                 </div>`;
-            });
-            html += `</div>`;
+
+                // Caption: majority/plurality
+                const top = segments[0];
+                const captionText = top.pct >= 50
+                    ? `Majority <b style="color:#0b1220;font-weight:600;">${top.label}</b>`
+                    : `Plurality <b style="color:#0b1220;font-weight:600;">${top.label}</b> — no single majority`;
+                html += `<div style="display:flex;align-items:center;gap:7px;margin-bottom:11px;font-size:12.5px;color:#64748b;">
+                    <span style="width:9px;height:9px;border-radius:3px;background:${top.color};flex:0 0 auto;"></span>${captionText}
+                </div>`;
+
+                // Stacked bar (30px tall)
+                html += `<div style="display:flex;height:30px;gap:2px;">`;
+                segments.forEach((seg, i) => {
+                    const radius = segments.length === 1 ? '8px'
+                        : i === 0 ? '8px 0 0 8px'
+                        : i === segments.length - 1 ? '0 8px 8px 0' : '0';
+                    const inlineLabel = seg.pct >= 14
+                        ? `<span style="font:600 11px 'Geist',sans-serif;color:#fff;white-space:nowrap;">${seg.label}&nbsp;<span style="font-variant-numeric:tabular-nums;">${Math.round(seg.pct)}%</span></span>`
+                        : '';
+                    html += `<span style="width:${seg.pct}%;background:${seg.color};border-radius:${radius};display:flex;align-items:center;justify-content:center;overflow:hidden;" title="${seg.label} ${seg.pct.toFixed(1)}%">${inlineLabel}</span>`;
+                });
+                html += `</div>`;
+
+                // Legend with mini-bars
+                const maxPct = segments[0].pct;
+                html += `<div style="margin-top:16px;display:flex;flex-direction:column;gap:9px;">`;
+                segments.forEach(seg => {
+                    const relWidth = ((seg.pct / maxPct) * 100).toFixed(1);
+                    html += `<div style="display:grid;grid-template-columns:11px 64px 1fr auto;align-items:center;gap:9px;">
+                        <span style="width:10px;height:10px;border-radius:3px;background:${seg.color};"></span>
+                        <span style="font-size:12.5px;color:#1f2937;">${seg.label}</span>
+                        <span style="height:5px;border-radius:3px;background:#f1efe9;overflow:hidden;"><span style="display:block;height:100%;width:${relWidth}%;border-radius:3px;background:${seg.color};"></span></span>
+                        <span style="font:600 12.5px 'Geist',sans-serif;color:#0b1220;font-variant-numeric:tabular-nums;min-width:42px;text-align:right;">${seg.pct.toFixed(1)}%</span>
+                    </div>`;
+                });
+                html += `</div>`;
+            }
+
             return html;
         }
 
@@ -8896,80 +9448,100 @@
             const d = computeReportCardData(plants, areaName);
             const navId = String(tractNum || (plants.length === 1 ? plants[0].name : areaName));
 
-            let html = `<div class="tp-pane" style="padding:16px 20px 18px;">`;
+            let html = '';
 
-            // Score + per-marker detection grid
-            html += `<div class="rc-score-grid">
-                <div class="rc-score-left">
-                    <span class="rc-kicker">Diversity</span>
-                    <div class="rc-score-num">${d.score}<small>/100</small></div>
-                    <div class="rc-score-label">${d.gradeLabel}</div>
-                    <div class="rc-score-marker">trnL marker</div>
+            // ── 1. Biodiversity Hero ──
+            const pSuffix = d.score === 1 ? 'st' : d.score === 2 ? 'nd' : d.score === 3 ? 'rd' : 'th';
+            html += `<div class="spb-hero">
+                <div class="spb-eyebrow">Biodiversity</div>
+                <div class="spb-hero-top">
+                    <div class="spb-bignum">${d.score}<span class="ord">${pSuffix}</span></div>
+                    <div class="spb-hero-label">${d.gradeLabel}<br>percentile in Durham</div>
                 </div>
-                <div class="rc-score-right">
-                    <div>
-                        <div class="rc-marker-row">
-                            <span class="rc-marker-label" style="color:#5b6cf0;">Plants <span class="marker-tag">trnL</span></span>
-                            <span class="rc-marker-count"><b>${d.plantTaxa.detected}</b>/${d.plantTaxa.total}</span>
-                        </div>
-                        <div class="rc-marker-track plant"><div class="rc-marker-fill" style="width:${(d.plantTaxa.detected / d.plantTaxa.total * 100).toFixed(1)}%"></div></div>
+                <div class="spb-pbar">
+                    <div class="spb-pbar-track"><i style="width:${d.score}%"></i></div>
+                    <div class="spb-pbar-marker" style="left:${d.score}%"></div>
+                    <div class="spb-pbar-median" style="left:50%"><span>Durham median</span></div>
+                    <div class="spb-pbar-ends"><span>Less diverse</span><span>More diverse</span></div>
+                </div>
+                <div class="spb-detect2">
+                    <div class="spb-dcard">
+                        <div class="spb-dcard-label" style="color:#5b6cf0;">Plants <span class="tag">trnL</span></div>
+                        <div class="spb-dcard-num">${d.plantTaxa.detected} <small>of ${d.plantTaxa.total} taxa</small></div>
                     </div>
-                    <div>
-                        <div class="rc-marker-row">
-                            <span class="rc-marker-label" style="color:#c8612e;">Animals <span class="marker-tag">12S</span></span>
-                            <span class="rc-marker-count"><b>${d.animalTaxa.detected}</b>/${d.animalTaxa.total}</span>
-                        </div>
-                        <div class="rc-marker-track animal"><div class="rc-marker-fill" style="width:${(d.animalTaxa.detected / d.animalTaxa.total * 100).toFixed(1)}%"></div></div>
+                    <div class="spb-dcard">
+                        <div class="spb-dcard-label" style="color:#c8612e;">Animals <span class="tag">12S</span></div>
+                        <div class="spb-dcard-num">${d.animalTaxa.detected} <small>of ${d.animalTaxa.total} taxa</small></div>
                     </div>
                 </div>
+                <div class="spb-evenness">Evenness ${d.evenness}/100 &middot; how evenly reads spread across taxa</div>
             </div>`;
 
-            // Helper to render a species bar section with sparklines + view all
-            function renderBars(items, kind, showAll) {
-                const display = showAll ? items : items.slice(0, 6);
-                let s = `<div class="rc-section">
-                    <div class="rc-section-head">
-                        <span class="rc-kicker ${kind}">Top ${kind === 'plant' ? 'plants' : 'animals'}</span>
-                        <span class="rc-hint">${kind === 'plant' ? 'trnL' : '12S'} &middot; 100 = top</span>
+            // ── 2. Cultural Food Signatures ──
+            if (d.ethnicSignatures && d.ethnicSignatures.length > 0) {
+                const sigColorMap = {
+                    green: '#d9efe1', rust: '#f3e2d3', orange: '#f3e2d3',
+                    blue: '#dce6f7', purple: '#e8dff5', red: '#f5d9d9',
+                    yellow: '#f5f0d3', teal: '#d3f0ed'
+                };
+                html += `<div class="spb-section">
+                    <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                        <div class="spb-eyebrow">We're detecting in your area</div>
+                        <span style="font:500 10px 'Geist Mono',monospace;color:#94a3b8;">co-occurrence</span>
                     </div>
-                    <div class="rc-bars">`;
-                display.forEach(it => {
-                    const spark = rcBuildSparkline(it.id, plants);
-                    const esc = it.id.replace(/'/g, "\\'");
-                    s += `<div class="rc-bar-row" onclick="navigateToTrends('${navId.replace(/'/g, "\\'")}','${esc}','')" title="${it.name} — click for trend">
-                        <span class="rc-bar-name">${it.name}</span>
-                        <div class="rc-bar-track ${kind}"><div class="rc-bar-fill" style="width:${it.value}%"></div></div>
-                        ${spark}
-                        <span class="rc-bar-val">${it.value}</span>
+                    <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">`;
+                d.ethnicSignatures.forEach(sig => {
+                    const rp = sig.relPct || 0;
+                    const conf = rp >= 1 ? 'Strong' : rp >= 0.4 ? 'Moderate' : 'Weak';
+                    const sigColorMap = { '#d4a017': '#faf0d4', '#e53e3e': '#fde8e8', '#8B6914': '#f5eedd', '#15803d': '#d9efe1' };
+                    const bgColor = sigColorMap[sig.color] || sig.color + '18';
+                    const textColor = sig.color || '#64748b';
+                    html += `<div style="background:${bgColor};border-radius:10px;padding:10px 12px;">
+                        <div style="display:flex;align-items:center;gap:7px;">
+                            <span style="width:8px;height:8px;border-radius:3px;background:${sig.color};flex:0 0 auto;"></span>
+                            <span style="font-size:13px;font-weight:600;color:#0b1220;">${sig.desc}</span>
+                            <span style="font:600 9.5px 'Geist Mono',monospace;color:${textColor};margin-left:auto;text-transform:uppercase;letter-spacing:.05em;">${conf}</span>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;">
+                            ${sig.topFoods.map(f => `<span style="font-size:11px;color:#1f2937;background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.06);border-radius:999px;padding:3px 9px;white-space:nowrap;">${f}</span>`).join('')}
+                        </div>
                     </div>`;
                 });
-                s += `</div>`;
-                if (items.length > 6) {
-                    const toggleKind = kind === 'plant' ? 'plants' : 'animals';
-                    const linkText = showAll ? 'show top 6' : `view all ${items.length} ${toggleKind}`;
-                    s += `<a class="rc-view-all" href="#" onclick="event.preventDefault();toggleRcShowAll('${toggleKind}')">${linkText} &rarr;</a>`;
-                }
-                s += `</div>`;
-                return s;
+                html += `</div></div>`;
             }
 
-            // What's surprising (shown first, above species bars)
+            // ── 3. What Stands Out ──
             if (d.insights.length > 0) {
-                html += `<div class="rc-section">
-                    <span class="rc-kicker" style="margin-bottom:9px;display:block;">What's surprising</span>`;
+                html += `<div class="spb-section">
+                    <div class="spb-eyebrow">What stands out in ${areaName}</div>
+                    <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">`;
                 d.insights.forEach(ins => {
-                    html += `<div class="rc-callout ${ins.tone}">${ins.text}</div>`;
+                    const isAnimal = ins.tone === 'rust';
+                    const accent = isAnimal ? '#c8612e' : '#5b6cf0';
+                    const softBg = isAnimal ? '#f5e0d2' : '#e6e8fb';
+                    const mult = ins.ratio ? (ins.ratio >= 100 ? Math.round(ins.ratio) + '\u00d7' : ins.ratio + '\u00d7') : '';
+                    const pct = ins.pctile || 0;
+                    html += `<div style="display:grid;grid-template-columns:56px 1fr;align-items:center;gap:10px;background:${softBg};border-radius:10px;padding:9px 12px;">
+                        <span style="font:600 ${mult.length > 5 ? '13' : '15'}px 'Geist Mono',monospace;color:${accent};text-align:center;">${mult}</span>
+                        <div>
+                            <div style="display:flex;align-items:baseline;justify-content:space-between;">
+                                <span style="font-size:12.5px;font-weight:600;color:#0b1220;">${ins.name || ''} <span style="font-weight:400;color:#94a3b8;font-size:10.5px;">vs median</span></span>
+                                <span style="font-size:10px;color:#64748b;white-space:nowrap;margin-left:8px;">top <b style="color:${accent};">${100 - pct > 0 ? 100 - pct : 1}%</b></span>
+                            </div>
+                            <div style="height:4px;border-radius:3px;background:rgba(0,0,0,.07);overflow:hidden;margin-top:5px;"><div style="height:100%;width:${pct}%;background:${accent};border-radius:3px;"></div></div>
+                        </div>
+                    </div>`;
                 });
-                html += `</div>`;
+                html += `</div></div>`;
             }
 
-            // Notable trends (flagged changes) — rendered inline
+            // Notable trends (flagged changes)
             const rcTractNum = tractNum || (plants.length === 1 && plants[0].census_tract ? plants[0].census_tract : null);
             if (rcTractNum) {
                 const flagged = getFlaggedTrends(rcTractNum);
                 if (flagged.length > 0) {
-                    html += `<div class="rc-section">
-                        <span class="rc-kicker" style="margin-bottom:9px;display:block;">Notable this month</span>`;
+                    html += `<div class="spb-section">
+                        <div class="spb-eyebrow">Notable this month</div>`;
                     flagged.forEach(f => {
                         const changeText = f.isNew ? `${f.arrow} New` : `${f.arrow} ${f.caption}`;
                         html += `<div class="tp-flagged-item ${f.variant}" onclick="navigateToTrends('${rcTractNum}','${f.foodId}','${f.focusMonth}')" role="button" tabindex="0">
@@ -8981,49 +9553,47 @@
                 }
             }
 
-            if (d.allPlants.length > 0) html += renderBars(d.allPlants, 'plant', rcShowAllPlants);
-            if (d.allAnimals.length > 0) html += renderBars(d.allAnimals, 'animal', rcShowAllAnimals);
+            // ── 4. Most Abundant (tabbed Plants / Animals) ──
+            if (d.allPlants.length > 0 || d.allAnimals.length > 0) {
+                const tab = rcActiveTab; // 'plants' or 'animals'
+                const items = tab === 'plants' ? d.allPlants : d.allAnimals;
+                const showAll = tab === 'plants' ? rcShowAllPlants : rcShowAllAnimals;
+                const display = showAll ? items : items.slice(0, 6);
+                const trackClass = tab === 'plants' ? 'plants' : 'animals';
 
-            // Demographics section (when tract properties are available)
-            if (demoProps) {
-                const income = demoProps.median_hh_income ? '$' + Math.round(demoProps.median_hh_income).toLocaleString() : 'N/A';
-                const totalPop = demoProps.total_population ? Math.round(demoProps.total_population).toLocaleString() : 'N/A';
-                const totalHH = demoProps.total_households ? Math.round(demoProps.total_households).toLocaleString() : 'N/A';
-                const acres = demoProps.total_acres ? demoProps.total_acres.toLocaleString() : 'N/A';
-
-                html += `<div class="rc-section" style="margin-bottom:0;">
-                    <div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.16em;text-transform:uppercase;color:#64748b;margin-bottom:4px;">Demographics</div>
-                    <div style="margin-top:12px;">
-                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #f0ede6;"><span style="font-size:13.5px;color:#64748b;">Population</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${totalPop}</span></div>
-                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #f0ede6;"><span style="font-size:13.5px;color:#64748b;">Households</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${totalHH}</span></div>
-                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #f0ede6;"><span style="font-size:13.5px;color:#64748b;">Median HH income</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${income}</span></div>
-                        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;"><span style="font-size:13.5px;color:#64748b;">Area</span><span style="font-size:14.5px;font-weight:600;color:#0b1220;font-variant-numeric:tabular-nums;">${acres}<span style="font-size:11px;font-weight:500;color:#94a3b8;margin-left:3px;">acres</span></span></div>
+                html += `<div class="spb-section">
+                    <div class="spb-eyebrow">Most abundant</div>
+                    <div class="spb-seg">
+                        <button class="spb-seg-btn plants${tab === 'plants' ? ' on' : ''}" onclick="switchReportTab('plants')">Plants</button>
+                        <button class="spb-seg-btn animals${tab === 'animals' ? ' on' : ''}" onclick="switchReportTab('animals')">Animals</button>
                     </div>`;
-
-                const races = [
-                    { key: 'pct_white', label: 'White', color: '#a5b4fc' },
-                    { key: 'pct_black', label: 'Black', color: '#6366f1' },
-                    { key: 'pct_asian', label: 'Asian', color: '#fcd34d' },
-                    { key: 'pct_other', label: 'Other', color: '#86efac' },
-                    { key: 'pct_two_plus', label: 'Two+', color: '#f9a8d4' }
-                ];
-                const hasRace = races.some(r => demoProps[r.key] != null);
-                if (hasRace) {
-                    html += renderDemoDonut(races, demoProps);
+                display.forEach(it => {
+                    const spark = rcBuildSparkline(it.id, plants);
+                    html += `<div class="arow" style="cursor:pointer;border-radius:6px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''" tabindex="0" role="button" onclick="navigateToTrends('${navId}','${it.id}','')" onkeydown="if(event.key==='Enter')navigateToTrends('${navId}','${it.id}','')">
+                        <span class="arow-name" title="${it.name}">${it.name}</span>
+                        <div class="arow-track ${trackClass}"><i style="width:${it.value}%"></i></div>
+                        ${spark}
+                        <span class="arow-val">${it.value}</span>
+                    </div>`;
+                });
+                if (items.length > 6) {
+                    const toggleKind = tab;
+                    const linkText = showAll ? 'show top 6' : `view all ${items.length} ${toggleKind}`;
+                    html += `<a class="spb-view-all" href="#" onclick="event.preventDefault();toggleRcShowAll('${toggleKind}')">${linkText} &rarr;</a>`;
                 }
                 html += `</div>`;
-            } else if (plants.length === 1) {
-                // Single site (WWTP/manhole) — show basic info
-                const plant = plants[0];
-                html += `<div class="rc-section" style="margin-bottom:0;">
-                    <span class="rc-kicker" style="margin-bottom:10px;display:block;">Site info</span>
-                    <div class="tp-stat"><span class="k">Type</span><span class="v">${plant.location_type === 'manhole' ? 'Manhole / Lift Station' : 'Wastewater Treatment Plant'}</span></div>
-                    <div class="tp-stat"><span class="k">Location</span><span class="v">${plant.lat.toFixed(4)}, ${plant.lng.toFixed(4)}</span></div>
-                    <div class="tp-stat"><span class="k">Data periods</span><span class="v">${Object.keys(plant.timeseries).length}</span></div>
+            }
+
+            // ── 5. Demographics ──
+            if (demoProps) {
+                html += `<div class="spb-section" style="border-bottom:0;">
+                    <div class="spb-eyebrow">Demographics</div>
+                    <div class="spb-demo-card">
+                        ${renderDemographicsCard(demoProps)}
+                    </div>
                 </div>`;
             }
 
-            html += `</div>`;
             body.innerHTML = html;
         }
 
@@ -9187,25 +9757,38 @@
             });
 
             const periodText = currentTimeIndex === 'all' ? getDateRangeForPlants(visiblePlants) : `showing data from ${foodseqData.dates[currentTimeIndex]}`;
-            document.getElementById('tpSub').textContent =
-                `${visiblePlants.length} site${visiblePlants.length !== 1 ? 's' : ''} · ${periodText}`;
 
+            // Count unique collection dates with data across all sites
+            const collectionDates = new Set();
+            visiblePlants.forEach(p => {
+                const dates = currentTimeIndex === 'all' ? foodseqData.dates : [foodseqData.dates[currentTimeIndex]];
+                dates.forEach(date => {
+                    const td = p.timeseries[date];
+                    if (td) {
+                        const pv = Object.values(td.plants || {});
+                        const av = Object.values(td.animals || {});
+                        if (pv.some(v => v > 0) || av.some(v => v > 0)) collectionDates.add(date);
+                    }
+                });
+            });
+            const numDates = collectionDates.size;
+
+            document.getElementById('tpSub').textContent =
+                `${visiblePlants.length} site${visiblePlants.length !== 1 ? 's' : ''} · ${numDates} collection date${numDates !== 1 ? 's' : ''} from ${periodText.replace('showing data from ', '')}`;
+
+            // Show sites as compact pills
             if (visiblePlants.length > 0) {
                 sitesSection.style.display = '';
                 let sitesHtml = '';
                 visiblePlants.forEach(p => {
                     const pid = p.name.replace(/\s/g, '-');
                     tractSiteStates[pid] = true;
-                    const dotClass = p.location_type === 'manhole' ? 'manhole' : 'wwtp';
-                    sitesHtml += `<div class="tp-site" data-on="true" data-site-id="${pid}" onclick="toggleTractSite(this)" role="button" tabindex="0">
-                        <span class="tp-checkbox"><svg viewBox="0 0 12 12"><polyline points="2,6.5 5,9.5 10,3"/></svg></span>
-                        <span class="tp-site-dot ${dotClass}"></span>
-                        <span class="tp-site-name">${p.name}</span>
-                    </div>`;
+                    const dotColor = p.location_type === 'manhole' ? '#1e3a8a' : '#b8612a';
+                    sitesHtml += `<span style="display:inline-flex;align-items:center;gap:6px;padding:4px 10px 4px 8px;border-radius:999px;background:#dbe4fb;font:500 11.5px 'Geist',sans-serif;color:#1e3a8a;white-space:nowrap;">
+                        <span style="width:6px;height:6px;border-radius:50%;background:${dotColor};"></span>${p.name}
+                    </span>`;
                 });
                 sitesList.innerHTML = sitesHtml;
-                document.getElementById('tpSitesTotal').textContent = visiblePlants.length;
-                updateTractSiteCount();
             } else {
                 sitesSection.style.display = 'none';
             }
@@ -9230,6 +9813,14 @@
             const wasOpen = panel.classList.contains('open');
             panel.classList.remove('open');
             setTimeout(() => { panel.classList.add('open'); }, wasOpen ? 600 : 10);
+
+            // Show infographic pull tab and populate data
+            const tab = document.getElementById('infoPanelTab');
+            tab.style.display = 'flex';
+            // Populate infographic if not already showing
+            showLandingPanels(null, null, tractNum);
+            // Start hidden — user pulls it out
+            document.getElementById('landingInfoPanel').classList.add('hidden');
         }
 
         function reRenderTractReportCard() {
@@ -10391,9 +10982,9 @@
 
             // Update detail panel if open
             if (currentTractFeature) {
-                reRenderTractReportCard();
+                openTractDetailPanel(currentTractFeature);
             } else if (currentSitePlant) {
-                renderReportCard(document.getElementById('tpBody'), [currentSitePlant], currentSitePlant.name, null);
+                populateDetailPanel(currentSitePlant);
             } else if (currentDetailPlant) {
                 populateDetailPanel(currentDetailPlant);
             }
@@ -12020,7 +12611,7 @@
                     Back to Food Near Me
                 </button>
                 <div style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;margin-bottom:8px;">The available-vs-eaten gap</div>
-                <h1 style="font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;line-height:1.05;color:#0b1220;margin:0;">
+                <h1 style="font-family:'Geist',-apple-system,sans-serif;font-weight:400;font-size:27px;line-height:1.05;color:#0b1220;margin:0;">
                     Who eats <em style="font-style:italic;color:#0e9488;">better</em> — or <em style="font-style:italic;color:#d4541f;">worse</em> — than their neighborhood predicts?
                 </h1>
                 <p style="margin:10px 0 0;font-size:14px;color:#64748b;max-width:78ch;">
@@ -12058,7 +12649,7 @@
             svg += `<line x1="${sx(0)}" y1="${sy(0)}" x2="${sx(100)}" y2="${sy(100)}" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="5 4"/>`;
             // Diagonal label — hardcoded -45° to match the 45° diagonal line
             const labelX = sx(70), labelY = sy(70) - 10;
-            svg += `<text x="${labelX}" y="${labelY}" text-anchor="middle" transform="rotate(-37 ${labelX} ${labelY})" style="font:italic 12px 'Instrument Serif',Georgia,serif;fill:#94a3b8;">eats as its environment predicts</text>`;
+            svg += `<text x="${labelX}" y="${labelY}" text-anchor="middle" transform="rotate(-37 ${labelX} ${labelY})" style="font:italic 12px 'Geist',-apple-system,sans-serif;fill:#94a3b8;">eats as its environment predicts</text>`;
 
             areas.forEach(a => {
                 const esc = a.saId.replace(/'/g, "\\'");
@@ -12105,7 +12696,7 @@
                 h += `<div class="gm-area-card" data-name="${a.name.toLowerCase()}" data-said="${a.saId}" style="background:#fff;border:1px solid #e5e7eb;border-radius:14px;overflow:hidden;flex-shrink:0;">
                     <div style="padding:12px 15px 8px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;">
                         <div>
-                            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:21px;line-height:1.15;color:#0b1220;">${a.name}</div>
+                            <div style="font-family:'Geist',-apple-system,sans-serif;font-size:21px;line-height:1.15;color:#0b1220;">${a.name}</div>
                             <div style="font-size:11.5px;color:#64748b;margin-top:4px;font-variant-numeric:tabular-nums;">Tract ${a.saId}</div>
                         </div>
                     </div>
@@ -12113,7 +12704,7 @@
                         <div style="flex:1;">
                             <div class="gm-eyebrow" style="font-size:9.5px;margin-bottom:4px;">Food environment</div>
                             <div style="display:flex;align-items:baseline;gap:3px;">
-                                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:34px;line-height:.9;color:#0b1220;">${a.envPct}<span style="font:400 12px 'Geist',sans-serif;color:#64748b;">th</span></span>
+                                <span style="font-family:'Geist',-apple-system,sans-serif;font-size:34px;line-height:.9;color:#0b1220;">${a.envPct}<span style="font:400 12px 'Geist',sans-serif;color:#64748b;">th</span></span>
                             </div>
                             <div style="height:6px;background:#f5f3ee;border-radius:4px;overflow:hidden;margin:7px 0 4px;"><div style="width:${a.envPct}%;height:100%;background:#64748b;border-radius:4px;"></div></div>
                             <div style="font-size:10.5px;color:#64748b;">percentile · healthy access</div>
@@ -12122,14 +12713,14 @@
                         <div style="flex:1;">
                             <div class="gm-eyebrow" style="font-size:9.5px;margin-bottom:4px;">What's eaten</div>
                             <div style="display:flex;align-items:baseline;gap:3px;">
-                                <span style="font-family:'Instrument Serif',Georgia,serif;font-size:34px;line-height:.9;color:#0b1220;">${a.consPct}<span style="font:400 12px 'Geist',sans-serif;color:#64748b;">th</span></span>
+                                <span style="font-family:'Geist',-apple-system,sans-serif;font-size:34px;line-height:.9;color:#0b1220;">${a.consPct}<span style="font:400 12px 'Geist',sans-serif;color:#64748b;">th</span></span>
                             </div>
                             <div style="height:6px;background:#e9edf8;border-radius:4px;overflow:hidden;margin:7px 0 4px;"><div style="width:${a.consPct}%;height:100%;background:#1e3a8a;border-radius:4px;"></div></div>
                             <div style="font-size:10.5px;color:#64748b;">percentile · diet diversity</div>
                         </div>
                     </div>
                     <div style="background:${tint};border-top:1px solid ${bd};padding:10px 15px;display:flex;align-items:center;gap:12px;">
-                        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:${gapColor};line-height:1;min-width:48px;text-align:center;">${gapStr}</div>
+                        <div style="font-family:'Geist',-apple-system,sans-serif;font-size:24px;color:${gapColor};line-height:1;min-width:48px;text-align:center;">${gapStr}</div>
                         <div style="font-size:12.5px;color:#0b1220;line-height:1.35;font-weight:500;">${gapVerdict(a.gap)}</div>
                     </div>
                 </div>`;
@@ -12228,7 +12819,7 @@
                     findMeSelect(0);
 
                     // Show landing panels after a beat
-                    setTimeout(() => showLandingPanels(lat, lon), 800);
+                    setTimeout(() => showLandingPanels(lat, lon, null, true), 800);
                 }, 400);
             })
             .catch(() => {
@@ -12236,10 +12827,10 @@
             });
         }
 
-        function showLandingPanels(lat, lon) {
+        function showLandingPanels(lat, lon, tractId, showPanel) {
             // Find which tract we're in
-            let saId = null;
-            if (durhamTractsGeoJSON) {
+            let saId = tractId || null;
+            if (!saId && durhamTractsGeoJSON) {
                 for (const feat of durhamTractsGeoJSON.features) {
                     const geom = feat.geometry;
                     const polys = geom.type === 'Polygon' ? [geom.coordinates[0]] : geom.coordinates.map(p => p[0]);
@@ -12260,193 +12851,296 @@
             const hood = saId ? (TRACT_NEIGHBORHOODS[saId] || 'Durham') : 'Durham';
             const cats = saId ? computeGapCategories(saId) : null;
 
-            let h = `<div style="padding:16px 17px 20px;display:flex;flex-direction:column;gap:12px;">`;
+            let h = '<div class="nf">';
 
-            // 1. GAP CARD
-            if (gapData && gapData.gap != null) {
-                const gapColor = gapData.gap >= 0 ? '#0e9488' : '#b8612a';
-                const gapSign = gapData.gap >= 0 ? '+' : '\u2212';
-                const eatingBetter = gapData.gap > 0;
-                const headline = eatingBetter
-                    ? `Eating <em style="color:#0e9488;">better</em> than the<br/>neighborhood predicts.`
-                    : `Eating <em style="color:#b8612a;">worse</em> than the<br/>neighborhood predicts.`;
-                const note = gapData.envPct >= 50
-                    ? `Healthy retail sits in the top half of Durham \u2014 but diet diversity is ${gapData.consPct <= 25 ? 'near the bottom' : 'below average'}. That distance is the gap.`
-                    : `Food access is below average in Durham${gapData.consPct > 50 ? ', yet diet diversity ranks higher than expected' : ' and diet diversity follows suit'}.`;
+            // Build food data for this tract
+            const landingPlants = saId ? getPlantsInTract(saId) : [];
+            const landingAgg = landingPlants.length > 0 ? aggregatePlantsData(landingPlants) : { plants: {}, animals: {} };
+            const landingFoodGroups = {
+                'Vegetables': { color: '#4CAF50', count: 0, foods: [] },
+                'Fruits': { color: '#8593C6', count: 0, foods: [] },
+                'Seeds & Nuts': { color: '#8a6d1f', count: 0, foods: [] },
+                'Grains': { color: '#FCC77C', count: 0, foods: [] },
+                'Legumes': { color: '#8B6914', count: 0, foods: [] },
+                'Herbs & Spices': { color: '#15803d', count: 0, foods: [] },
+                'Meat & Poultry': { color: '#c8612e', count: 0, foods: [] },
+                'Seafood': { color: '#0891b2', count: 0, foods: [] },
+                'Other': { color: '#9BA4B4', count: 0, foods: [] },
+            };
+            const fgMap = {
+                vegetable: 'Vegetables', fruit: 'Fruits', seed_nut: 'Seeds & Nuts', nut_seed: 'Seeds & Nuts',
+                grain: 'Grains', legume: 'Legumes', herb_spice: 'Herbs & Spices',
+                meat_poultry: 'Meat & Poultry', meat: 'Meat & Poultry', seafood: 'Seafood',
+                other: 'Other',
+            };
+            const allSpeciesEntries = Object.entries(landingAgg.plants).concat(Object.entries(landingAgg.animals)).filter(([sp, v]) => {
+                if (v <= 0) return false;
+                const meta = foodseqData.species_metadata[sp];
+                return meta && !meta._hidden && !(meta.common_name && meta.common_name.startsWith('NA_'));
+            });
+            allSpeciesEntries.forEach(([sp, val]) => {
+                const meta = foodseqData.species_metadata[sp];
+                if (!meta) return;
+                const group = fgMap[meta.food_group];
+                if (!group) return;
+                landingFoodGroups[group].count++;
+                landingFoodGroups[group].foods.push({ name: meta.common_name, val });
+            });
+            // Sort foods within each group by abundance
+            Object.values(landingFoodGroups).forEach(g => g.foods.sort((a, b) => b.val - a.val));
 
-                h += `<div class="sp-card">
-                    <div class="sp-gap-head">
-                        <div class="sp-eyebrow">The available-vs-eaten gap</div>
-                        <div class="sp-gap-h1">${headline}</div>
-                    </div>
-                    <div class="sp-gap-score">
-                        <span class="sp-n" style="color:${gapColor};">${gapSign}${Math.abs(gapData.gap)}</span>
-                        <span class="sp-lab">gap score</span>
-                    </div>
-                    <div class="sp-bars">
-                        <div class="sp-bar-row">
-                            <span class="sp-k">Food access</span>
-                            <div class="sp-bar-track"><div class="sp-bar-fill" style="width:${gapData.envPct}%;background:#1e3a8a;"></div></div>
-                            <span class="sp-pc">${gapData.envPct}<sup>th</sup></span>
-                        </div>
-                        <div class="sp-bar-row">
-                            <span class="sp-k">Diet diversity</span>
-                            <div class="sp-bar-track"><div class="sp-bar-fill" style="width:${gapData.consPct}%;background:${gapColor};"></div></div>
-                            <span class="sp-pc">${gapData.consPct}<sup>th</sup></span>
-                        </div>
-                    </div>
-                    <div class="sp-pctl-note">${note}</div>
-                    <div style="padding:12px 16px 14px;">
-                        <button onclick="dismissLandingPanels();switchView('find-food');setTimeout(()=>openGapMapView(),500);" style="width:100%;height:40px;border:0;border-radius:10px;background:#1e3a8a;color:#fff;font:600 13px 'Geist',sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;">
-                            Explore the gap map
-                            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 8h8M8 4l4 4-4 4"/></svg>
-                        </button>
-                    </div>`;
+            const totalFoods = allSpeciesEntries.length;
+            const nonEmptyGroupCount = Object.values(landingFoodGroups).filter(g => g.count > 0).length;
 
-                h += `</div>`;
-            }
-
-            // 2. GAP OVER TIME CARD
-            if (gapData && gapData.gap != null && saId && foodseqData) {
-                // Compute gap-like score per time period for this tract
-                const dates = foodseqData.dates.slice().sort();
-                const gapOverTime = [];
-                const plants = getPlantsInTract(saId);
-
-                // Use the actual gap score (consumption pctile - env pctile) as a baseline,
-                // then show how species richness changes per period as a proxy for diet quality shift
-                const monthNames = ['','Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-                dates.forEach((date) => {
-                    let speciesCount = 0;
-                    plants.forEach(p => {
-                        const td = p.timeseries[date];
-                        if (!td) return;
-                        const pe = Object.entries(td.plants || {}).filter(([, v]) => v > 0).length;
-                        const ae = Object.entries(td.animals || {}).filter(([, v]) => v > 0).length;
-                        speciesCount += pe + ae;
-                    });
-                    if (speciesCount > 0) {
-                        const m = parseInt(date.split('-')[1]);
-                        const y = date.slice(2, 4);
-                        const label = monthNames[m] + " '" + y;
-                        gapOverTime.push({ date, val: speciesCount, label });
-                    }
-                });
-
-                if (gapOverTime.length >= 2) {
-                    const vals = gapOverTime.map(g => g.val);
-                    const W = 300, H = 64, pad = 6;
-                    const min = Math.min(...vals) - 5, max = Math.max(...vals) + 5;
-                    const xAt = i => pad + (i / (vals.length - 1)) * (W - pad * 2);
-                    const yAt = v => pad + (1 - (v - min) / (max - min)) * (H - pad * 2);
-                    const line = vals.map((v, i) => `${i ? 'L' : 'M'}${xAt(i).toFixed(1)},${yAt(v).toFixed(1)}`).join(' ');
-                    const area = `${line} L${xAt(vals.length - 1).toFixed(1)},${H - pad} L${xAt(0).toFixed(1)},${H - pad} Z`;
-                    const sparkColor = gapData.gap >= 0 ? '#0e9488' : '#b8612a';
-                    const firstVal = vals[0], lastVal = vals[vals.length - 1];
-                    const change = lastVal - firstVal;
-                    const pctChange = firstVal > 0 ? Math.round(((lastVal - firstVal) / firstVal) * 100) : 0;
-                    let footText;
-                    if (change > 5) {
-                        footText = `Diversity rising \u2014 ${lastVal} species detected, up from ${firstVal}.`;
-                    } else if (change < -5) {
-                        footText = `Diversity declining \u2014 ${lastVal} species detected, down from ${firstVal}.`;
-                    } else {
-                        footText = `Diet diversity has held steady at ~${lastVal} species.`;
-                    }
-                    const chevDown = change < -5 ? 'M3 4l3.5 4L10 4' : change > 5 ? 'M3 9l3.5-4L10 9' : 'M3 6.5h7';
-
-                    h += `<div class="sp-card">
-                        <div style="padding:12px 16px 0;">
-                            <div class="sp-eyebrow">Diet diversity over time</div>
-                            <svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto;display:block;margin-top:10px;">
-                                <path d="${area}" fill="${sparkColor}10"/>
-                                <path d="${line}" fill="none" stroke="${sparkColor}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <circle cx="${xAt(vals.length - 1)}" cy="${yAt(lastVal)}" r="4" fill="${sparkColor}" stroke="#fff" stroke-width="1.5"/>
-                            </svg>
-                            <div style="display:flex;align-items:center;gap:7px;margin:6px 0 0;font-size:11px;color:${sparkColor};font-weight:600;">
-                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${chevDown}"/></svg>
-                                <span>${footText}</span>
-                            </div>
-                        </div>
-                        <div class="sp-exp" id="spTrendExp">
-                            <div class="sp-exp-in">
-                                <div class="gbp">
-                                    <div class="gbp-head">Species detected by period</div>`;
-                    gapOverTime.forEach((g, i) => {
-                        const prev = i > 0 ? gapOverTime[i - 1].val : null;
-                        const delta = prev === null ? null : g.val - prev;
-                        const deltaClass = delta === null ? 'is-flat' : delta < 0 ? 'is-down' : 'is-up';
-                        const deltaText = delta === null ? '\u2014' : (delta > 0 ? '+' : '\u2212') + Math.abs(delta);
-                        h += `<div class="gbp-row">
-                            <span class="gbp-period">${g.label}</span>
-                            <span class="gbp-value">${g.val}</span>
-                            <span class="gbp-delta ${deltaClass}">${deltaText}</span>
-                        </div>`;
-                    });
-                    h += `</div></div></div>
-                        <button class="sp-disc" onclick="this.classList.toggle('sp-open');document.getElementById('spTrendExp').classList.toggle('sp-open');">
-                            <span class="sp-nudge">Month-by-month <svg class="sp-chev" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 5l3.5 3.5L10 5"/></svg></span>
-                            <span class="sp-hint">tap to expand</span>
-                        </button>
-                    </div>`;
-                }
-            }
-
-            // 3. NEARBY FOOD CARD
-            if (poiCounts) {
-                const foodCats = [
-                    { key: 'grocery', name: 'Grocery', count: poiCounts.grocery || 0, color: '#15803d' },
-                    { key: 'fast_food', name: 'Fast food', count: poiCounts.fast_food || 0, color: '#b8612a' },
-                    { key: 'convenience', name: 'Convenience', count: poiCounts.convenience || 0, color: '#d97706' },
-                    { key: 'restaurant', name: 'Restaurants', count: poiCounts.restaurant || 0, color: '#5b63d6' },
-                    { key: 'seafood', name: 'Seafood', count: poiCounts.seafood || 0, color: '#0891b2' },
-                    { key: 'bakery', name: 'Bakery', count: poiCounts.bakery || 0, color: '#a855f7' },
-                ].filter(c => c.count > 0);
-                const total = foodCats.reduce((s, c) => s + c.count, 0);
-                const pop = durhamTractsGeoJSON && saId ? durhamTractsGeoJSON.features.find(f => String(f.properties.Sample_ID) === saId)?.properties.total_population : null;
-                const grocPerCap = pop && (poiCounts.grocery || 0) > 0 ? Math.round(pop / (poiCounts.grocery || 1)).toLocaleString() : null;
-
-                h += `<div class="sp-card sp-nf-card">
-                    <div class="sp-eyebrow">Nearby food · ${hood}</div>
-                    <div style="display:flex;align-items:baseline;gap:8px;margin-top:7px;">
-                        <span class="sp-nf-big">${total}</span>
-                        <span style="font-size:12.5px;color:#64748b;">food retailers</span>
-                    </div>
-                    <div class="sp-nf-seg">`;
-                foodCats.forEach(c => {
-                    h += `<span style="width:${(c.count / total) * 100}%;background:${c.color};"></span>`;
-                });
-                h += `</div><div>`;
-                foodCats.forEach(c => {
-                    h += `<div class="sp-nf-item">
-                        <span class="sp-dot" style="background:${c.color};"></span>
-                        <span class="sp-nm">${c.name}</span>
-                        <span class="sp-ct">${c.count}</span>
-                    </div>`;
-                });
-                h += `</div>`;
-                if (grocPerCap) {
-                    h += `<div class="sp-nf-insight">Just <b>1 grocery per ~${grocPerCap} residents</b> in this area.</div>`;
-                }
-                h += `<div class="sp-nf-caption">
-                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5C5 1.5 2.5 4 2.5 7c0 4 5.5 7.5 5.5 7.5S13.5 11 13.5 7C13.5 4 11 1.5 8 1.5z"/><circle cx="8" cy="7" r="2"/></svg>
-                    <span>To see every retailer, switch on <b>Points of Interest</b> at lower-left of the map.</span>
-                </div>`;
-                h += `</div>`;
-            }
-
+            // --- SECTION 1: Hero ---
+            h += `<div class="nf-hero">`;
+            h += `<div class="nf-eyebrow">Your food patterns</div>`;
+            h += `<div class="nf-h1">We found <span class="hl">${totalFoods} foods</span> in ${hood}</div>`;
+            const totalGroupCount = Object.keys(landingFoodGroups).length;
+            h += `<div class="nf-lede">Distinct food species detected &mdash; across ${nonEmptyGroupCount} of ${totalGroupCount} food groups.</div>`;
             h += `</div>`;
+
+            // --- SECTION 2: Food Groups chart with Compare toggle ---
+            // Compute Durham averages
+            const durhamAvgCounts = {};
+            let nDurTracts = 0;
+            if (durhamTractsGeoJSON) {
+                durhamTractsGeoJSON.features.forEach(feat => {
+                    const tid = String(feat.properties.Sample_ID);
+                    const tp = getPlantsInTract(tid);
+                    if (tp.length === 0) return;
+                    nDurTracts++;
+                    const tAgg = aggregatePlantsData(tp);
+                    const tEntries = Object.entries(tAgg.plants).concat(Object.entries(tAgg.animals)).filter(([,v]) => v > 0);
+                    const tCounts = {};
+                    tEntries.forEach(([sp]) => {
+                        const meta = foodseqData.species_metadata[sp];
+                        if (!meta) return;
+                        const grp = fgMap[meta.food_group];
+                        if (!grp) return;
+                        tCounts[grp] = (tCounts[grp] || 0) + 1;
+                    });
+                    Object.entries(tCounts).forEach(([g, c]) => { durhamAvgCounts[g] = (durhamAvgCounts[g] || 0) + c; });
+                });
+                if (nDurTracts > 0) Object.keys(durhamAvgCounts).forEach(k => { durhamAvgCounts[k] = Math.round(durhamAvgCounts[k] / nDurTracts); });
+            }
+
+            const fgEntries = Object.entries(landingFoodGroups);
+            const allCounts = fgEntries.map(([,g]) => g.count).concat(fgEntries.map(([name]) => durhamAvgCounts[name] || 0));
+            const scaleMax = Math.max(Math.max(...allCounts) + 3, 23);
+
+            h += `<div class="nf-sect">`;
+            h += `<div class="nf-sect-hd">`;
+            h += `<span class="nf-eyebrow">Food groups</span>`;
+            h += `<button id="nfCmpToggle" class="nf-toggle" onclick="toggleNfCompare()"><span class="knob"></span>Compare to Durham</button>`;
+            h += `</div>`;
+            h += `<div id="nfCmpLegend" class="nf-legend2" style="display:none;">`;
+            h += `<span><span class="sw ink"></span>${hood}</span>`;
+            h += `<span><span class="sw dur"></span>Durham avg</span>`;
+            h += `</div>`;
+            h += `<div id="nfGroupsContainer" class="nf-groups" style="display:flex;flex-direction:column;gap:4px;">`;
+            fgEntries.forEach(([name, g]) => {
+                const pct = Math.min((g.count / scaleMax) * 100, 100);
+                const durVal = durhamAvgCounts[name] || 0;
+                const durPct = Math.min((durVal / scaleMax) * 100, 100);
+                h += `<div class="nf-grow">`;
+                h += `<span class="lbl">${name}</span>`;
+                h += `<div>`;
+                h += `<div class="track"><div class="fill" style="width:${g.count > 0 ? pct : 0}%;background:${g.color};"></div></div>`;
+                h += `<div class="track dur"><div class="fill" style="width:${durVal > 0 ? durPct : 0}%;"></div></div>`;
+                h += `</div>`;
+                h += `<div><span class="num">${g.count}</span><span class="dur-num" style="display:none;font:500 11px 'Geist Mono',monospace;color:#9aa1ad;margin-top:2px;">${durVal}</span></div>`;
+                h += `</div>`;
+            });
+            h += `</div>`;
+            h += `</div>`;
+
+            // --- SECTION 3: Foods Detected (accordion) ---
+            nfAccOpen = {};
+
+            h += `<div class="nf-sect">`;
+            h += `<div class="nf-sect-hd"><span class="nf-eyebrow">Foods detected</span></div>`;
+            h += `<div class="nf-note2">Specific foods identified in this area&rsquo;s wastewater.</div>`;
+            h += `<div class="nf-acc">`;
+            fgEntries.forEach(([name, g]) => {
+                const safeId = name.replace(/[^a-zA-Z]/g, '');
+                const isOpen = false;
+                const isEmpty = g.count === 0;
+                const tintBg = g.color + '18';
+                h += `<div id="nfAcc_${safeId}" class="nf-acc-item${isOpen ? ' open' : ''}">`;
+                if (isEmpty) {
+                    h += `<div class="nf-acc-hd disabled">`;
+                } else {
+                    h += `<div class="nf-acc-hd" onclick="toggleNfAccordion('${name}')">`;
+                }
+                h += `<span class="dot" style="background:${g.color};"></span>`;
+                h += `<span class="nm">${name}</span>`;
+                h += `<span class="ct" style="background:${tintBg};color:${g.color};">${g.count}</span>`;
+                if (!isEmpty) {
+                    h += `<svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+                }
+                h += `</div>`;
+                if (isEmpty) {
+                    h += `<div class="nf-acc-empty" style="display:${isOpen ? 'block' : 'none'};">None detected here</div>`;
+                } else {
+                    const chipsId = 'nfChips_' + name.replace(/[^a-zA-Z]/g, '');
+                    h += `<div class="nf-chips" id="${chipsId}" style="display:${isOpen ? 'flex' : 'none'};">`;
+                    g.foods.slice(0, 5).forEach(f => {
+                        h += `<span class="chip">${f.name}</span>`;
+                    });
+                    if (g.foods.length > 5) {
+                        h += `<span class="chip more" style="cursor:pointer;" onclick="expandNfChips('${chipsId}')">+${g.foods.length - 5} more</span>`;
+                        // Stash full food list for expansion
+                        if (!window._nfChipsData) window._nfChipsData = {};
+                        window._nfChipsData[chipsId] = g.foods.map(f => f.name);
+                    }
+                    h += `</div>`;
+                }
+                h += `</div>`;
+            });
+            h += `</div>`;
+            h += `</div>`;
+
+            // --- SECTION 4: Food Rainbow (donut) ---
+            const colorCategories = [
+                { name: 'Red', color: '#df524a', match: ['tomato','strawberr','raspberry','cherry','watermelon','red pepper','beet','pomegranate','cranberry'] },
+                { name: 'Orange', color: '#e27d3a', match: ['carrot','sweet potato','mango','papaya','orange','peach','apricot','pumpkin','squash','cantaloupe'] },
+                { name: 'Yellow', color: '#e6c24a', match: ['banana','corn','lemon','pineapple','ginger','turmeric','yellow'] },
+                { name: 'Green', color: '#5cb35a', match: ['lettuce','spinach','kale','cabbage','broccoli','pea','okra','avocado','cucumber','celery','asparagus','collard','basil','cilantro','parsley','mint','green bean','lima bean'] },
+                { name: 'Blue/Purple', color: '#7a5fd0', match: ['blueberry','grape','plum','eggplant','blackberry','fig','acai','elderberry'] },
+                { name: 'White/Brown', color: '#b3ada1', match: ['onion','garlic','potato','rice','wheat','oat','barley','mushroom','cauliflower','coconut','sesame','flax','walnut','pecan','almond'] },
+            ];
+            const rainbowCounts = colorCategories.map(cat => {
+                let count = 0;
+                allSpeciesEntries.forEach(([sp]) => {
+                    const meta = foodseqData.species_metadata[sp];
+                    if (!meta || meta.type !== 'plant') return;
+                    const cn = meta.common_name.toLowerCase();
+                    if (cat.match.some(m => cn.includes(m))) count++;
+                });
+                return { ...cat, count };
+            });
+            const totalRainbow = rainbowCounts.reduce((s, c) => s + c.count, 0) || 1;
+
+            // Compute Durham-wide rainbow
+            const durRainbowCounts = colorCategories.map(cat => {
+                let count = 0;
+                const allTracts = durhamTractsGeoJSON ? durhamTractsGeoJSON.features.map(f => String(f.properties.Sample_ID)) : [];
+                allTracts.forEach(tid => {
+                    const tp = getPlantsInTract(tid);
+                    if (tp.length === 0) return;
+                    const tAgg = aggregatePlantsData(tp);
+                    Object.entries(tAgg.plants).forEach(([sp]) => {
+                        const meta = foodseqData.species_metadata[sp];
+                        if (!meta || meta._hidden || meta.type !== 'plant') return;
+                        const cn = meta.common_name.toLowerCase();
+                        if (cat.match.some(m => cn.includes(m))) count++;
+                    });
+                });
+                return { ...cat, count };
+            });
+            const totalDurRainbow = durRainbowCounts.reduce((s, c) => s + c.count, 0) || 1;
+
+            // Build ring segments helper
+            function buildRingSegs(counts, total, C, gap) {
+                let acc = 0;
+                return counts.map(cat => {
+                    const pct = total > 0 ? cat.count / total : 0;
+                    const len = pct * C;
+                    const dash = `${Math.max(len - gap, 0.5)} ${C - Math.max(len - gap, 0.5)}`;
+                    const seg = { color: cat.color, dash, off: -acc };
+                    acc += len;
+                    return seg;
+                });
+            }
+
+            // Build single donut SVG (no compare)
+            function buildSingleDonut() {
+                const sz = 168, sw = 25, r = (sz - sw) / 2, C = 2 * Math.PI * r, cx = sz / 2, cy = sz / 2;
+                const segs = buildRingSegs(rainbowCounts, totalRainbow, C, 3);
+                let svg = `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" style="display:block;margin:0 auto;"><g transform="rotate(-90 ${cx} ${cy})">`;
+                segs.forEach(s => {
+                    svg += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${s.color}" stroke-width="${sw}" stroke-dasharray="${s.dash}" stroke-dashoffset="${s.off}"/>`;
+                });
+                svg += `</g>`;
+                svg += `<text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="'Geist',-apple-system,sans-serif" font-size="28" font-weight="400" fill="#0b1220">${totalRainbow}</text>`;
+                svg += `<text x="${cx}" y="${cy + 12}" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="8" font-weight="600" letter-spacing=".12em" fill="#6b7280">PLANT FOODS</text>`;
+                svg += `</svg>`;
+                return svg;
+            }
+
+            // Build concentric donut SVG (location inner thick + Durham outer thin)
+            function buildConcentricDonut() {
+                const sz = 200, thinO = 8, gapB = 8, thickI = 25;
+                const cx = sz / 2, cy = sz / 2;
+                const rO = sz / 2 - thinO / 2 - 2;
+                const rI = rO - thinO / 2 - gapB - thickI / 2;
+                const CO = 2 * Math.PI * rO, CI = 2 * Math.PI * rI;
+                const outerSegs = buildRingSegs(durRainbowCounts, totalDurRainbow, CO, 3);
+                const innerSegs = buildRingSegs(rainbowCounts, totalRainbow, CI, 3);
+                let svg = `<svg width="${sz}" height="${sz}" viewBox="0 0 ${sz} ${sz}" style="display:block;margin:0 auto;"><g transform="rotate(-90 ${cx} ${cy})">`;
+                // Faint track behind outer ring
+                svg += `<circle cx="${cx}" cy="${cy}" r="${rO}" fill="none" stroke="#efece4" stroke-width="${thinO}"/>`;
+                // Durham outer ring (dimmed)
+                outerSegs.forEach(s => {
+                    svg += `<circle cx="${cx}" cy="${cy}" r="${rO}" fill="none" stroke="${s.color}" stroke-width="${thinO}" stroke-dasharray="${s.dash}" stroke-dashoffset="${s.off}" opacity="0.55"/>`;
+                });
+                // Location inner ring
+                innerSegs.forEach(s => {
+                    svg += `<circle cx="${cx}" cy="${cy}" r="${rI}" fill="none" stroke="${s.color}" stroke-width="${thickI}" stroke-dasharray="${s.dash}" stroke-dashoffset="${s.off}"/>`;
+                });
+                svg += `</g>`;
+                svg += `<text x="${cx}" y="${cy - 4}" text-anchor="middle" font-family="'Geist',-apple-system,sans-serif" font-size="30" font-weight="400" fill="#0b1220">${totalRainbow}</text>`;
+                svg += `<text x="${cx}" y="${cy + 13}" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="8" font-weight="600" letter-spacing=".12em" fill="#6b7280">PLANT FOODS</text>`;
+                svg += `</svg>`;
+                return svg;
+            }
+
+            // Legend rows — local only
+            let localLegend = '';
+            rainbowCounts.forEach(cat => {
+                const pct = Math.round((cat.count / totalRainbow) * 100);
+                localLegend += `<div class="rl"><span class="sw" style="background:${cat.color};"></span><span class="nm">${cat.name}</span><span class="pc">${pct}%</span></div>`;
+            });
+            // Legend rows — compare (local / durham)
+            let compareLegend = '';
+            rainbowCounts.forEach((cat, i) => {
+                const lp = Math.round((cat.count / totalRainbow) * 100);
+                const dp = Math.round((durRainbowCounts[i].count / totalDurRainbow) * 100);
+                compareLegend += `<div class="rl"><span class="sw" style="background:${cat.color};"></span><span class="nm" style="font-size:11px;">${cat.name}</span><span class="pc" style="font-size:10.5px;white-space:nowrap;">${lp}%<span style="color:#9aa1ad;font-weight:400;"> / ${dp}%</span></span></div>`;
+            });
+
+            h += `<div class="nf-sect">`;
+            h += `<div class="nf-sect-hd">
+                <span class="nf-eyebrow">Your food rainbow</span>
+                <button id="nfRainbowToggle" class="nf-toggle" onclick="toggleNfRainbow()"><span class="knob"></span>Compare to Durham</button>
+            </div>`;
+            h += `<div class="nf-lede2">Eating a variety of colors supports better health. Here&rsquo;s what we found:</div>`;
+            h += `<div id="nfRainbowLocal">${buildSingleDonut()}<div class="nf-rlegend">${localLegend}</div></div>`;
+            h += `<div id="nfRainbowCompare" style="display:none;">
+                ${buildConcentricDonut()}
+                <div style="display:flex;gap:18px;justify-content:center;font:400 11px 'Geist',sans-serif;color:#6b7280;margin:14px 0 4px;">
+                    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="width:13px;height:13px;border-radius:50%;background:linear-gradient(90deg,#df524a,#5cb35a,#7a5fd0);"></span>${hood}</span>
+                    <span style="display:inline-flex;align-items:center;gap:7px;"><span style="width:13px;height:13px;border-radius:50%;background:#fff;border:2px solid #cdc6b8;"></span>Durham</span>
+                </div>
+                <div class="nf-rlegend">${compareLegend}</div>
+            </div>`;
+            h += `<div class="nf-didyou"><b>Did you know?</b> The compounds that give fruits and vegetables their colors provide health benefits &mdash; decreased risk of type 2 diabetes, cardiovascular disease, and some protection against certain cancers.</div>`;
+            h += `</div>`;
+
+            h += '</div>';
             infoPanel.innerHTML = h;
-            infoPanel.classList.remove('hidden');
-
-            // Show dismiss bar
-            document.getElementById('landingDismissBar').classList.remove('hidden');
-
-            // Pan map so the marker is centered in the visible area
-            // Panels: detail 416 + info 384 = 800px on right
-            setTimeout(() => {
-                if (map) map.panBy([800 / 2, 0], { animate: true, duration: 0.8 });
-            }, 200);
+            if (showPanel) {
+                infoPanel.classList.remove('hidden');
+                const arrow = document.querySelector('#infoPanelTab .tab-arrow');
+                if (arrow) arrow.innerHTML = '&#9654;';
+                // Pan to account for both panels
+                setTimeout(() => {
+                    if (map) map.panBy([(460 + 384) / 2, 0], { animate: true, duration: 0.8 });
+                }, 200);
+            } else {
+                infoPanel.classList.add('hidden');
+            }
         }
 
         function showNoDataPanel() {
@@ -12468,7 +13162,7 @@
                     <circle cx="48" cy="34" r="3" fill="#94a3b8"/>
                     <path d="M30 50 Q40 42 50 50" stroke="#94a3b8" stroke-width="2.5" stroke-linecap="round" fill="none"/>
                 </svg>
-                <div style="font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:#0b1220;margin-bottom:8px;">No data here — yet</div>
+                <div style="font-family:'Geist',-apple-system,sans-serif;font-size:22px;color:#0b1220;margin-bottom:8px;">No data here — yet</div>
                 <p style="font-size:13.5px;color:#64748b;line-height:1.5;max-width:28ch;margin:0 auto;">
                     This location isn't within a Durham wastewater sampling area. Try an address within a marked service area.
                 </p>
@@ -12481,7 +13175,6 @@
 
         function hideLandingPopups() {
             document.getElementById('landingInfoPanel').classList.add('hidden');
-            document.getElementById('landingDismissBar').classList.add('hidden');
         }
 
         function dismissLandingPanels() {
@@ -12490,7 +13183,6 @@
             const detailPanel = document.getElementById('detailPanel');
             infoPanel.classList.add('hidden');
             detailPanel.classList.add('slide-away');
-            document.getElementById('landingDismissBar').classList.add('hidden');
 
             // After slide completes, clean up detail panel
             setTimeout(() => {
