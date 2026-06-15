@@ -355,7 +355,8 @@
         .nf-acc-hd.disabled { cursor: default; opacity: .65; }
         .nf-acc-hd .dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
         .nf-acc-hd .nm { font-size: 13.5px; font-weight: 600; color: #0b1220; flex: 1; }
-        .nf-acc-hd .ct { font: 700 11.5px 'Geist Mono', monospace; padding: 2px 8px; border-radius: 7px; }
+        .nf-acc-hd .ct { font: 700 11.5px 'Geist Mono', monospace; padding: 2px 8px; border-radius: 7px; min-width: 28px; text-align: center; }
+        .nf-acc-hd .chev-space { width: 12px; flex-shrink: 0; }
         .nf-acc-hd .chev { color: #9aa1ad; transition: transform .2s; }
         .nf-acc-item.open .chev { transform: rotate(180deg); }
         .nf-acc-empty { padding: 0 14px 11px 34px; font-size: 12px; color: #9aa1ad; margin-top: -3px; }
@@ -1638,6 +1639,7 @@
         .poi-icon-gym { background: #ea580c; color: #fff; }
         .poi-icon-bar { background: #7c3aed; color: #fff; }
         .poi-icon-brewery { background: #a16207; color: #fff; }
+        .poi-icon-community_fridge { background: #e74694; color: #fff; }
 
         /* Census Tract Labels */
         .tract-label {
@@ -3095,18 +3097,14 @@
     <!-- Home landing overlay -->
     <div id="homeOverlay">
         <div class="home-brand">
-            <span class="mark">FS</span>
+            <img src="foodseq-logo-64.png" alt="FoodSeq" style="width:28px;height:28px;border-radius:7px;">
             <span class="bname">NC&nbsp;FoodSeq</span>
         </div>
         <div class="home-stage">
-            <div class="home-dots">
-                <span style="background:#d4541f;"></span>
-                <span style="background:#f5f3ee;border:1px solid #e5e7eb;"></span>
-                <span style="background:#0e9488;"></span>
-            </div>
             <div class="home-eyebrow">Welcome to</div>
             <h1><span class="l">FoodSeq</span><span class="l l2">Explorer</span></h1>
             <p class="home-lede">See what Durham neighborhoods actually eat — read from the city's wastewater, not from surveys.</p>
+            <p style="font-size:13px;color:#94a3b8;margin-top:12px;max-width:46ch;margin-left:auto;margin-right:auto;line-height:1.5;">Built for Durham neighborhoods to explore local food patterns, compare diets, and find healthy food nearby.</p>
             <form class="home-loc" onsubmit="submitHomeAddress(event)">
                 <span class="pin">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 1.5c-2.8 0-5 2.2-5 5C4 10.5 9 16.5 9 16.5s5-6 5-10c0-2.8-2.2-5-5-5z"/><circle cx="9" cy="6.5" r="1.9"/></svg>
@@ -3185,17 +3183,17 @@
         </div>
         <select id="timeSelect" style="display:none;" onchange="onTimeSelectChange(this.value)"></select>
         <button class="marker-chip active" id="chip-manhole" onclick="toggleMarkerChip('manhole')">
-            <span class="chip-dot" style="background:#1e3a8a;"></span>Manhole
+            <span class="chip-dot" style="background:#1e3a8a;"></span>Sampling Sites
         </button>
         <button class="marker-chip active" id="chip-wwtp" onclick="toggleMarkerChip('wwtp')">
-            <span class="chip-dot" style="background:#b8612a;"></span>WWTP
+            <span class="chip-dot" style="background:#b8612a;"></span>Wastewater Plants
         </button>
         <button class="marker-chip" id="speciesButton" onclick="toggleSpeciesPanel()" style="margin-left:8px;">
-            Species Abundance
+            Food Explorer
         </button>
         <span style="flex:1;"></span>
         <div style="position:relative;display:inline-flex;align-items:center;gap:4px;">
-            <input type="text" id="findMeInput" placeholder="Enter address to find your service area" autocomplete="off"
+            <input type="text" id="findMeInput" placeholder="Enter address to find your neighborhood" autocomplete="off"
                    style="padding:5px 10px;border:1.5px solid #d2d6dc;border-radius:6px;font-size:13px;font-family:inherit;color:#1a365d;width:260px;"
                    oninput="onFindMeInput(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();selectFirstFindMe();}">
             <button class="marker-chip" onclick="selectFirstFindMe()" style="padding:5px 10px;">Find me</button>
@@ -3205,26 +3203,26 @@
 
     <!-- POI controls moved to bottom-left-container -->
 
-    <!-- Species Abundance Panel -->
+    <!-- Food Explorer Panel -->
     <div id="species-panel" class="species-panel" style="display: none;">
         <div class="species-panel-header">
-            <span>Species Abundance</span>
+            <span>Food Explorer</span>
             <button onclick="closeSpeciesPanel()">&times;</button>
         </div>
         <div style="display:flex;gap:4px;margin-bottom:10px;">
             <button class="marker-chip active" id="species-filter-manhole" onclick="setSpeciesSiteFilter('manhole')" style="flex:1;justify-content:center;">
-                <span class="chip-dot" style="background:#3182ce;"></span>Manhole
+                <span class="chip-dot" style="background:#3182ce;"></span>Sampling Sites
             </button>
             <button class="marker-chip" id="species-filter-wwtp" onclick="setSpeciesSiteFilter('wwtp')" style="flex:1;justify-content:center;">
-                <span class="chip-dot" style="background:#e53e3e;"></span>WWTP
+                <span class="chip-dot" style="background:#e53e3e;"></span>Wastewater Plants
             </button>
         </div>
         <div class="species-search-container">
-            <input type="text" id="species-search" placeholder="Search species..." oninput="filterSpeciesList(this.value)">
+            <input type="text" id="species-search" placeholder="Search foods..." oninput="filterSpeciesList(this.value)">
             <div id="species-list" class="species-list"></div>
         </div>
         <div class="species-info" id="species-info">
-            Select a species to show abundance heat map
+            Select a food to see where it appears
         </div>
     </div>
 
@@ -3648,7 +3646,7 @@
         <!-- POI Layer Controls -->
         <div class="poi-controls" id="poiControls">
             <div class="poi-controls-header" onclick="togglePOIControls()">
-                <span>Points of Interest</span>
+                <span>Places</span>
                 <span class="poi-controls-toggle">&#9660;</span>
             </div>
             <div class="poi-controls-body" id="poiControlsBody">
@@ -3656,6 +3654,7 @@
                     <div class="poi-category-header">Grocery & Markets</div>
                     <label class="poi-toggle"><input type="checkbox" id="poi-grocery" onchange="togglePOILayer('grocery')"><span>Grocery Stores</span><span class="poi-count" id="count-grocery">0</span></label>
                     <label class="poi-toggle"><input type="checkbox" id="poi-marketplace" onchange="togglePOILayer('marketplace')"><span>Farmers Markets</span><span class="poi-count" id="count-marketplace">0</span></label>
+                    <label class="poi-toggle"><input type="checkbox" id="poi-community_fridge" onchange="togglePOILayer('community_fridge')"><span>Community Fridges</span><span class="poi-count" id="count-community_fridge">3</span></label>
                 </div>
                 <div class="poi-category-group">
                     <div class="poi-category-header">Restaurants</div>
@@ -4029,6 +4028,12 @@
                 html: poiSvg('<path d="M3 3h8v7a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V3zM11 5h2a2 2 0 0 1 0 4h-2"/>'),
                 iconSize: [22, 22],
                 iconAnchor: [12, 12]
+            }),
+            community_fridge: L.divIcon({
+                className: 'poi-icon poi-icon-community_fridge',
+                html: poiSvg('<rect x="4" y="2" width="8" height="12" rx="1.5"/><line x1="4" y1="8" x2="12" y2="8"/><circle cx="10" cy="5" r=".8"/><circle cx="10" cy="11" r=".8"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             })
         };
 
@@ -4064,6 +4069,13 @@
                 console.log('No POI data to initialize');
                 return;
             }
+
+            // Add Durham Community Fridges (durhamcommunityfridges.com)
+            poiData.categories.community_fridge = [
+                { name: "St. Joseph's Episcopal Church Community Fridge", lat: 35.9924, lon: -78.9156, type: 'community_fridge', address: '1902 W. Main St, Durham, NC 27705', bus: 'Route 11 (Stop at Broad/Main)' },
+                { name: "Braggtown Baptist Church Community Fridge", lat: 36.0401, lon: -78.8816, type: 'community_fridge', address: '3218 N. Roxboro St, Durham, NC 27704', bus: 'Route 4 (Stop at Roxboro/Channing)' },
+                { name: "The Scrap Exchange (Lakewood) Community Fridge", lat: 35.9747, lon: -78.9243, type: 'community_fridge', address: '2050 Chapel Hill Rd, Durham, NC 27707', bus: 'Route 10 (Stop at Chapel Hill/Palmer)' },
+            ];
 
             // Split convenience stores out of grocery (OSM shop=convenience was lumped in)
             if (poiData.categories.grocery && !poiData.categories.convenience) {
@@ -4515,7 +4527,7 @@
 
             selectedSpecies = null;
             document.getElementById('species-search').value = '';
-            document.getElementById('species-info').textContent = 'Select a species to show abundance heat map';
+            document.getElementById('species-info').textContent = 'Select a food to see where it appears';
             hideHeatmapLegend();
         }
 
@@ -5910,7 +5922,7 @@
                     const label = L.marker([centroid.lat, centroid.lon], {
                         icon: L.divIcon({
                             className: 'tract-label',
-                            html: `SA ${tractNum}<br><span style="font-size: 9px; font-weight: normal;">(${counts.total} POIs)</span>`,
+                            html: `Area ${tractNum}<br><span style="font-size: 9px; font-weight: normal;">(${counts.total} places)</span>`,
                             iconSize: null
                         })
                     });
@@ -6242,7 +6254,19 @@
                         }
                     });
 
-                    console.log('Applied species-name fixes (merge/rename/hide)');
+                    // 4. Reclassify fish from 'meat' to 'seafood'
+                    // The data has most fish under food_group='meat' — fix by whitelist of true land animals
+                    const LAND_ANIMALS = new Set(['chicken','cow','pig','sheep','turkey','duck','goose','goat','deer','elk','bison','buffalo','horse','rabbit','dog','cat','rat','mouse','bear','raccoon','opossum','human','guinea pig','emu','quail','pigeon','dove','pheasant','frog','bullfrog','alligator','turtle','snake','lizard','iguana','kangaroo','seal','whale','dolphin','water buffalo','cottontail rabbit','greylag goose','muscovy duck','japanese quail','crested pigeon','guinea fowl','helmeted guineafowl','greater cane rat','muskrat','virginia opossum','elk','horse','carnivore','mammal','bird','hoofed mammal','bony fish','cattle/sheep/goat family','brown rat','black rat','house mouse','sri lankan junglefowl']);
+                    Object.entries(sm).forEach(([id, meta]) => {
+                        if (meta.food_group === 'meat') {
+                            const cn = (meta.common_name || '').toLowerCase();
+                            if (!LAND_ANIMALS.has(cn)) {
+                                meta.food_group = 'seafood';
+                            }
+                        }
+                    });
+
+                    console.log('Applied species-name fixes (merge/rename/hide/reclassify)');
                 }
 
                 countiesGeoJSON = await countiesResponse.json();
@@ -6780,7 +6804,7 @@
 
         // Help modal placeholder
         function showHelp() {
-            alert('NC FoodSeq Explorer\\n\\nVisualize wastewater-based dietary surveillance data across Durham, NC.\\n\\nClick service areas or sampling sites to view species detection data.\\nUse Layers to overlay demographic data.\\nUse Period to change the time window.');
+            alert('NC FoodSeq Explorer\\n\\nExplore food patterns across Durham, NC neighborhoods.\\n\\nClick a neighborhood to see what foods were detected.\\nUse Layers to overlay demographic data.\\nUse Period to change the time window.');
         }
 
         // Find Food map
@@ -7673,7 +7697,7 @@
             // Check if it's a tract number
             const navPlantsInTract = getPlantsInTract(tractOrSiteId);
             if (navPlantsInTract.length > 0) {
-                breadcrumbLabel = `SA ${tractOrSiteId}`;
+                breadcrumbLabel = `Area ${tractOrSiteId}`;
                 // Check which sites are currently toggled on in the tract panel
                 // tractSiteStates keys are name-based (e.g. "Manhole-17863"), convert to plant IDs
                 const activeNames = Object.entries(tractSiteStates)
@@ -7697,7 +7721,7 @@
                         const p = foodseqData.plants[activePlantIds[0]];
                         if (p) breadcrumbLabel = p.name;
                     } else if (activePlantIds.length > 1) {
-                        breadcrumbLabel = `SA ${tractOrSiteId} (${activePlantIds.length} sites)`;
+                        breadcrumbLabel = `Area ${tractOrSiteId} (${activePlantIds.length} sites)`;
                     }
                 }
             } else {
@@ -7798,7 +7822,7 @@
 
             foodContainer.innerHTML = topFoods.map(([key, info]) => {
                 const sel = trendsQuickFood && trendsQuickFood.id === key;
-                const typeLabel = info.type === 'animal' ? 'animal · 12S' : 'plant · trnL';
+                const typeLabel = info.type === 'animal' ? 'animal' : 'plant';
                 return `<button class="trends-qp-row" style="${sel ? 'border-color:#1e3a8a;background:#eef2fb;' : ''}" onclick="selectQuickFood('${key}','${info.name.replace(/'/g, "\\'")}')">
                     <span class="trends-qp-dot" style="background:${info.type === 'animal' ? '#c8612e' : '#5b6cf0'};"></span>
                     <span class="trends-qp-name">${info.name}<span class="trends-qp-sub">${typeLabel}</span></span>
@@ -7925,7 +7949,7 @@
             // Show WWTPs only when no manholes/tracts selected
             if (selectionType !== 'manhole' && wwtps.length > 0) {
                 const grp = document.createElement('optgroup');
-                grp.label = 'WWTPs';
+                grp.label = 'Wastewater Plants';
                 wwtps.forEach(w => {
                     const opt = document.createElement('option');
                     opt.value = w.pid;
@@ -8960,7 +8984,7 @@
             rcShowAllAnimals = false;
 
             const isWWTP = plant.location_type !== 'manhole';
-            document.getElementById('tpCrumb').textContent = isWWTP ? 'WWTP' : 'Manhole';
+            document.getElementById('tpCrumb').textContent = isWWTP ? 'Wastewater Plant' : 'Sampling Site';
             document.getElementById('tpTitle').textContent = plant.name;
             document.getElementById('tpTitle').style.color = isWWTP ? '#c53030' : '#1e3a8a';
             document.getElementById('tpCrumb').style.color = isWWTP ? '#c53030' : '#6b7280';
@@ -9017,7 +9041,7 @@
             if (currentSiteTab === 'demo') {
                 // No demographics for WWTPs — show basic info
                 let html = `<div class="tp-pane">`;
-                html += `<div class="tp-stat"><span class="k">Type</span><span class="v">${plant.location_type === 'manhole' ? 'Manhole / Lift Station' : 'Wastewater Treatment Plant'}</span></div>`;
+                html += `<div class="tp-stat"><span class="k">Type</span><span class="v">${plant.location_type === 'manhole' ? 'Sampling Site' : 'Wastewater Treatment Plant'}</span></div>`;
                 html += `<div class="tp-stat"><span class="k">Location</span><span class="v">${plant.lat.toFixed(4)}, ${plant.lng.toFixed(4)}</span></div>`;
                 const nPeriods = Object.keys(plant.timeseries).length;
                 html += `<div class="tp-stat"><span class="k">Data periods</span><span class="v">${nPeriods}</span></div>`;
@@ -9158,9 +9182,9 @@
                 ? Math.round((sortedRichness.filter(v => v <= speciesRichness).length / sortedRichness.length) * 100)
                 : 0;
 
-            let gradeLabel = 'Low biodiversity';
-            if (biodiversityPctile >= 75) gradeLabel = 'High biodiversity';
-            else if (biodiversityPctile >= 40) gradeLabel = 'Moderate biodiversity';
+            let gradeLabel = 'Low diet variety';
+            if (biodiversityPctile >= 75) gradeLabel = 'High diet variety';
+            else if (biodiversityPctile >= 40) gradeLabel = 'Moderate diet variety';
             else if (biodiversityPctile >= 20) gradeLabel = 'Below average';
 
             // Build full lists with species IDs (for sparklines + navigation)
@@ -9211,18 +9235,20 @@
                     const median = sorted[Math.floor(sorted.length / 2)];
                     const rank = sorted.filter(v => v <= siteRelAbundance).length;
                     const pctile = Math.round((rank / sorted.length) * 100);
-                    if (median > 0 && siteRelAbundance > median * 1.5 && pctile >= 75) {
+                    // Require median >= 0.1% so we're not dividing by near-zero
+                    if (median >= 0.001 && siteRelAbundance > median * 1.5 && pctile >= 75) {
                         const meta = foodseqData.species_metadata[sp];
                         const name = meta ? meta.common_name : sp;
-                        const ratio = (siteRelAbundance / median).toFixed(1);
-                        standouts.push({ name, ratio: parseFloat(ratio), pctile, tone: meta && meta.type === 'animal' ? 'rust' : 'green' });
+                        const rawRatio = siteRelAbundance / median;
+                        const ratio = Math.min(rawRatio, 50); // cap display at 50x
+                        standouts.push({ name, ratio: parseFloat(ratio.toFixed(1)), pctile, tone: meta && meta.type === 'animal' ? 'rust' : 'green' });
                     }
                 });
 
                 // Show top standouts sorted by ratio
                 standouts.sort((a, b) => b.ratio - a.ratio);
                 standouts.slice(0, 4).forEach(s => {
-                    insights.push({ tone: s.tone, name: s.name, ratio: s.ratio, pctile: s.pctile, text: `<b>${s.name}</b> is ${s.ratio}\u00d7 the ${compLabel} median relative abundance here (higher than ${s.pctile}% of sites).` });
+                    insights.push({ tone: s.tone, name: s.name, ratio: s.ratio, pctile: s.pctile, text: `<b>${s.name}</b> is ${s.ratio}\u00d7 the ${compLabel} median here (higher than ${s.pctile}% of areas).` });
                 });
             }
 
@@ -9401,7 +9427,7 @@
                 html += `<hr style="height:1px;background:#e7e4dc;margin:18px 0 16px;border:0;">`;
                 html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:12px;">
                     <span style="font:600 11px/1 'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#0b1220;">Race &amp; ethnicity</span>
-                    <span style="font:500 10px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;">ACS 5-yr</span>
+                    <span style="font:500 10px/1 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#94a3b8;">US Census</span>
                 </div>`;
 
                 // Caption: majority/plurality
@@ -9453,7 +9479,7 @@
             // ── 1. Biodiversity Hero ──
             const pSuffix = d.score === 1 ? 'st' : d.score === 2 ? 'nd' : d.score === 3 ? 'rd' : 'th';
             html += `<div class="spb-hero">
-                <div class="spb-eyebrow">Biodiversity</div>
+                <div class="spb-eyebrow">Diet variety</div>
                 <div class="spb-hero-top">
                     <div class="spb-bignum">${d.score}<span class="ord">${pSuffix}</span></div>
                     <div class="spb-hero-label">${d.gradeLabel}<br>percentile in Durham</div>
@@ -9466,15 +9492,15 @@
                 </div>
                 <div class="spb-detect2">
                     <div class="spb-dcard">
-                        <div class="spb-dcard-label" style="color:#5b6cf0;">Plants <span class="tag">trnL</span></div>
-                        <div class="spb-dcard-num">${d.plantTaxa.detected} <small>of ${d.plantTaxa.total} taxa</small></div>
+                        <div class="spb-dcard-label" style="color:#5b6cf0;">Plants</div>
+                        <div class="spb-dcard-num">${d.plantTaxa.detected} <small>of ${d.plantTaxa.total} foods tracked</small></div>
                     </div>
                     <div class="spb-dcard">
-                        <div class="spb-dcard-label" style="color:#c8612e;">Animals <span class="tag">12S</span></div>
-                        <div class="spb-dcard-num">${d.animalTaxa.detected} <small>of ${d.animalTaxa.total} taxa</small></div>
+                        <div class="spb-dcard-label" style="color:#c8612e;">Animals</div>
+                        <div class="spb-dcard-num">${d.animalTaxa.detected} <small>of ${d.animalTaxa.total} foods tracked</small></div>
                     </div>
                 </div>
-                <div class="spb-evenness">Evenness ${d.evenness}/100 &middot; how evenly reads spread across taxa</div>
+                <div class="spb-evenness">Evenness ${d.evenness}/100 &middot; how evenly foods are distributed</div>
             </div>`;
 
             // ── 2. Cultural Food Signatures ──
@@ -9487,7 +9513,7 @@
                 html += `<div class="spb-section">
                     <div style="display:flex;align-items:baseline;justify-content:space-between;">
                         <div class="spb-eyebrow">We're detecting in your area</div>
-                        <span style="font:500 10px 'Geist Mono',monospace;color:#94a3b8;">co-occurrence</span>
+                        <span style="font:500 10px 'Geist Mono',monospace;color:#94a3b8;">food patterns</span>
                     </div>
                     <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">`;
                 d.ethnicSignatures.forEach(sig => {
@@ -9727,9 +9753,9 @@
             const plantsInTract = getPlantsInTract(tractNum);
 
             // Header
-            document.getElementById('tpCrumb').textContent = 'Service Area \u00b7 Durham Co.';
+            document.getElementById('tpCrumb').textContent = 'Your neighborhood \u00b7 Durham';
             document.getElementById('tpCrumb').style.color = '#6b7280';
-            document.getElementById('tpTitle').textContent = `SA ${tractNum} · ${hood}`;
+            document.getElementById('tpTitle').textContent = `Area ${tractNum} · ${hood}`;
             document.getElementById('tpTitle').style.color = '#1e3a8a';
             // Site filter
             const sitesSection = document.getElementById('tpSites');
@@ -9795,7 +9821,7 @@
 
             // Show CTAs
             document.getElementById('tpCtas').style.display = '';
-            document.getElementById('compareBtn').textContent = 'Compare with another service area';
+            document.getElementById('compareBtn').textContent = 'Compare with another neighborhood';
 
             rcShowAllPlants = false;
             rcShowAllAnimals = false;
@@ -10035,7 +10061,7 @@
             let nameA, metaA;
             if (isSiteMode) {
                 nameA = compareState.siteA.name;
-                metaA = compareState.siteA.location_type === 'manhole' ? 'Manhole' : 'WWTP';
+                metaA = compareState.siteA.location_type === 'manhole' ? 'Sampling Site' : 'Wastewater Plant';
             } else {
                 const tractA = compareState.tractA;
                 const tractNumA = tractA ? (tractA.properties.Sample_ID || '?') : '?';
@@ -10088,7 +10114,7 @@
             const hasB = isSiteMode ? !!compareState.siteB : !!compareState.tractB;
             if (isSiteMode && compareState.siteB) {
                 nameB = compareState.siteB.name;
-                metaB = compareState.siteB.location_type === 'manhole' ? 'Manhole' : 'WWTP';
+                metaB = compareState.siteB.location_type === 'manhole' ? 'Sampling Site' : 'Wastewater Plant';
             } else if (!isSiteMode && compareState.tractB) {
                 const tractNumB = compareState.tractB.properties.Sample_ID || '?';
                 nameB = `SA ${tractNumB}`;
@@ -10462,7 +10488,7 @@
                         : !!p.timeseries[foodseqData.dates[currentTimeIndex]];
                     if (!hasData) return;
                     const name = p.name;
-                    const type = p.location_type === 'manhole' ? 'Manhole' : 'WWTP';
+                    const type = p.location_type === 'manhole' ? 'Sampling Site' : 'Wastewater Plant';
                     if (q && !name.toLowerCase().includes(q) && !type.toLowerCase().includes(q)) return;
                     html += `<div class="cp-picker-item" onclick="onCompareSiteSelect('${pid}')">
                         <div><span class="name">${name}</span><span class="hood">${type}</span></div>
@@ -12978,6 +13004,8 @@
                 h += `<span class="ct" style="background:${tintBg};color:${g.color};">${g.count}</span>`;
                 if (!isEmpty) {
                     h += `<svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+                } else {
+                    h += `<span class="chev-space"></span>`;
                 }
                 h += `</div>`;
                 if (isEmpty) {
