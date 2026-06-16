@@ -425,12 +425,13 @@
         .er-pbar-median { position: absolute; top: -3px; height: 16px; border-left: 1.5px dashed #94a3b8; transform: translateX(-50%); }
         .er-pbar-median span { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); font: 500 9px 'Geist Mono', monospace; color: #94a3b8; white-space: nowrap; text-transform: uppercase; letter-spacing: .04em; }
         .er-pbar-ends { position: absolute; top: 18px; left: 0; right: 0; display: flex; justify-content: space-between; font: 500 9.5px 'Geist Mono', monospace; color: #94a3b8; text-transform: uppercase; letter-spacing: .03em; }
-        .er-toggle { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 13px 0 5px; border-radius: 999px; border: 1px solid #e7e4dc; background: #fff; font: 600 11.5px 'Geist', sans-serif; color: #64748b; cursor: pointer; flex-shrink: 0; }
-        .er-toggle .knob { width: 30px; height: 18px; border-radius: 999px; background: #d8d4ca; position: relative; transition: background .18s; flex-shrink: 0; }
-        .er-toggle .knob::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .18s; }
-        .er-toggle.on { color: #1e3a8a; border-color: #dbe4fb; }
+        .er-toggle { display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 13px 0 5px; border-radius: 999px; border: 1px solid #e7e4dc; background: #fff; font: 600 11.5px 'Geist', sans-serif; color: #64748b; cursor: pointer; flex-shrink: 0; transition: color .3s ease, border-color .3s ease, background .3s ease, box-shadow .3s ease; }
+        .er-toggle .knob { width: 30px; height: 18px; border-radius: 999px; background: #d8d4ca; position: relative; transition: background .3s cubic-bezier(.4,.0,.2,1); flex-shrink: 0; }
+        .er-toggle .knob::after { content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25); transition: transform .3s cubic-bezier(.4,.0,.2,1), box-shadow .3s ease; }
+        .er-toggle:hover { border-color: #cbbfa8; box-shadow: 0 2px 8px rgba(15,23,42,.06); }
+        .er-toggle.on { color: #1e3a8a; border-color: #dbe4fb; background: #f0f3fc; box-shadow: 0 2px 8px rgba(30,58,138,.08); }
         .er-toggle.on .knob { background: #1e3a8a; }
-        .er-toggle.on .knob::after { transform: translateX(12px); }
+        .er-toggle.on .knob::after { transform: translateX(12px); box-shadow: 0 1px 4px rgba(30,58,138,.35); }
         .er-grp-item { border-top: 1px solid #efece4; }
         .er-grp-item:first-child { border-top: 0; }
         .er-grp-item.empty { opacity: .5; }
@@ -440,17 +441,19 @@
         .er-grp-nm { display: flex; align-items: center; gap: 9px; font-size: 13.5px; font-weight: 600; color: #0b1220; white-space: nowrap; }
         .er-grp-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
         .er-grp-bar { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-        .er-grp-bar .track { position: relative; height: 14px; border-radius: 5px; background: #f2efe8; overflow: hidden; }
-        .er-grp-bar .track i { display: block; height: 100%; border-radius: 5px; min-width: 5px; }
-        .er-grp-bar .track.dur { height: 0; opacity: 0; background: #e7e2d8; transition: height .26s, opacity .2s; }
+        .er-grp-bar .track { position: relative; height: 14px; border-radius: 5px; background: #f2efe8; overflow: hidden; transition: all .3s ease; }
+        .er-grp-bar .track i { display: block; height: 100%; border-radius: 5px; min-width: 5px; transition: width .4s cubic-bezier(.25,.8,.25,1); }
+        .er-grp-bar .track.dur { height: 0; opacity: 0; margin-top: 0; background: #e7e2d8; overflow: hidden; transition: height .3s ease, opacity .3s ease, margin-top .3s ease; }
         .er-grp-bar .track.dur i { background: #c3bdb0; }
-        .er-grp-bar.cmp .track.dur { height: 9px; opacity: 1; }
+        .er-grp-bar.cmp .track.dur { height: 9px; opacity: 1; margin-top: 3px; }
         .er-grp-ct { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
         .er-grp-ct .n { font: 600 13.5px 'Geist', sans-serif; color: #0b1220; line-height: 14px; }
-        .er-grp-ct .dur { display: none; font: 600 11px 'Geist Mono', monospace; color: #a89c86; line-height: 9px; }
-        .er-grp-chev { color: #94a3b8; display: grid; place-items: center; transition: transform .2s; }
+        .er-grp-ct .dur { font: 600 11px 'Geist Mono', monospace; color: #a89c86; line-height: 9px; max-height: 0; opacity: 0; overflow: hidden; transition: max-height .3s ease, opacity .3s ease; }
+        .er-grp-ct .dur.show { max-height: 20px; opacity: 1; }
+        .er-grp-chev { color: #94a3b8; display: grid; place-items: center; transition: transform .3s cubic-bezier(.25,.8,.25,1); }
         .er-grp-item.open .er-grp-chev { transform: rotate(180deg); }
-        .er-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 6px 14px 25px; }
+        .er-chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 6px 14px 25px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .35s ease, opacity .25s ease, padding .35s ease; padding-top: 0; padding-bottom: 0; }
+        .er-chips.open { max-height: 300px; opacity: 1; padding-top: 2px; padding-bottom: 14px; }
         .er-chips .chip { font-size: 12px; color: #1f2937; background: #fff; border: 1px solid #e7e4dc; border-radius: 999px; padding: 4px 12px; white-space: nowrap; }
         .er-chips .chip.more { color: #1e3a8a; border-style: dashed; border-color: #dbe4fb; background: transparent; font-weight: 500; cursor: pointer; }
         .er-seg { display: inline-flex; gap: 3px; background: #f2efe8; border-radius: 10px; padding: 3px; margin: 6px 0 12px; }
@@ -483,6 +486,17 @@
         .er-metric-foot { margin-top: 12px; font-size: 12px; color: #64748b; font-variant-numeric: tabular-nums; }
         .er-metric-foot b { color: #1f2937; font-weight: 600; }
         .er-race { margin-top: 22px; }
+        .scale { position: relative; }
+        .scale-track { display: flex; height: 9px; border-radius: 6px; overflow: hidden; background: #f2efe8; }
+        .scale-zone { height: 100%; border-right: 2px solid #faf9f5; }
+        .scale-zone:last-child { border-right: 0; }
+        .scale-zone.active { background: #dbe4fb; }
+        .scale-marker { position: absolute; top: 4.5px; width: 14px; height: 14px; border-radius: 50%; background: #1e3a8a; border: 2.5px solid #faf9f5; box-shadow: 0 1px 4px rgba(30,58,138,.4); transform: translate(-50%,-50%); }
+        .scale-labels { display: flex; margin-top: 10px; }
+        .scale-lab { text-align: center; }
+        .scale-lab .r { font-size: 11px; font-weight: 600; color: #94a3b8; }
+        .scale-lab.active .r { color: #0b1220; }
+        .scale-lab .t { display: block; font: 500 9.5px/1.3 'Geist Mono', monospace; color: #94a3b8; margin-top: 2px; }
         .er-leg { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 14px; }
 
         /* Abundance rows */
@@ -3212,8 +3226,8 @@
         .pc-body { padding: 15px 20px 3px; }
         .pc-klabel { font: 600 10px/1 'Geist Mono', monospace; letter-spacing: .14em; text-transform: uppercase; color: #94a3b8; }
         .pc-variety { display: flex; align-items: center; gap: 13px; margin-bottom: 12px; }
-        .pc-bignum { font-family: 'Geist', -apple-system, sans-serif; font-size: 46px; font-weight: 800; line-height: .78; color: #1e3a8a; }
-        .pc-bignum .ord { font-size: 20px; vertical-align: super; }
+        .pc-bignum { font-family: 'Geist', -apple-system, sans-serif; font-size: 36px; font-weight: 400; line-height: .78; color: #1e3a8a; }
+        .pc-bignum .ord { font-size: 16px; vertical-align: super; }
         .pc-variety-r { flex: 1; }
         .pc-rubber { display: inline-block; font: 700 10.5px 'Geist Mono', monospace; letter-spacing: .07em; text-transform: uppercase; color: #c24a2b; border: 2px dashed rgba(194,74,43,.6); border-radius: 7px; padding: 3px 9px; }
         .pc-rubber.sm { font-size: 9px; padding: 3px 7px; }
@@ -3227,10 +3241,10 @@
         .pc-count.plant .pc-count-badge { background: #5b6cf0; }
         .pc-count.animal .pc-count-badge { background: #c8612e; }
         .pc-count.even { display: flex; flex-direction: column; justify-content: center; }
-        .pc-count-num { font-family: 'Geist', -apple-system, sans-serif; font-size: 25px; font-weight: 800; line-height: .9; color: #0b1220; }
+        .pc-count-num { font-family: 'Geist', -apple-system, sans-serif; font-size: 25px; font-weight: 400; line-height: .9; color: #0b1220; }
         .pc-count-num.sm { font-size: 22px; }
         .pc-count-num i { font-style: normal; font-size: 13px; color: #94a3b8; font-weight: 400; }
-        .pc-count-cap { font-size: 11px; font-weight: 600; color: #0b1220; margin-top: 4px; }
+        .pc-count-cap { font-size: 11px; font-weight: 400; color: #0b1220; margin-top: 4px; }
         .pc-count-of { font-size: 10px; color: #94a3b8; margin-top: 1px; }
         .pc-cuisine { background: #f3f0e6; border: 1px solid #e7e4dc; border-radius: 11px; padding: 10px 13px; margin-bottom: 12px; }
         .pc-cuisine-top { display: flex; align-items: center; gap: 9px; }
@@ -3432,11 +3446,11 @@
         </div>
 
         <div class="prediction-section">
-            <div class="prediction-section-label">POI Categories</div>
+            <div class="prediction-section-label">Place types</div>
             <div class="prediction-poi-settings">
                 <label class="prediction-poi-toggle">
                     <input type="checkbox" id="prediction-use-all-pois" checked onchange="toggleUseAllPOIs(this.checked)">
-                    <span>Use All POI Categories</span>
+                    <span>Use All Place types</span>
                 </label>
                 <div class="prediction-poi-indicator" id="prediction-poi-indicator">
                     Using all 13 categories
@@ -3705,7 +3719,7 @@
                     </div>
 
                     <div style="margin-bottom:0;">
-                        <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">POI types</span>
+                        <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">Place types</span>
                         <div id="foodPOIChips" style="display:flex;flex-wrap:wrap;gap:8px;">
                             <button class="marker-chip active" data-cat="grocery" onclick="this.classList.toggle('active')" style="height:36px;border-radius:999px;">Grocery</button>
                             <button class="marker-chip active" data-cat="marketplace" onclick="this.classList.toggle('active')" style="height:36px;border-radius:999px;">Farmers market</button>
@@ -3776,7 +3790,7 @@
     <div id="gapMapView"></div>
 
     <!-- Gap persistent button + bottom sheet -->
-    <div class="gapbtn-bar" id="gapBtnBar">
+    <div class="gapbtn-bar" id="gapBtnBar" style="display:none;">
         <button class="gapbtn" onclick="openGapSheet()">
             <span class="mini"><i style="height:20px;background:#aab6ee"></i><i style="height:8px;background:#e7a06f"></i></span>
             See how your food access compares to what's actually eaten
@@ -6796,16 +6810,30 @@
         let erCompareOn = false;
         function toggleErCompare() {
             erCompareOn = !erCompareOn;
+            // Toggle buttons
             document.getElementById('erCmpToggle').classList.toggle('on', erCompareOn);
-            document.querySelectorAll('.er-grp-bar').forEach(el => el.classList.toggle('cmp', erCompareOn));
-            document.querySelectorAll('.er-grp-ct .dur').forEach(el => { el.style.display = erCompareOn ? 'block' : 'none'; });
-            // Also toggle rainbow
-            const local = document.getElementById('erRainbowLocal');
-            const compare = document.getElementById('erRainbowCompare');
-            if (local) local.style.display = erCompareOn ? 'none' : '';
-            if (compare) compare.style.display = erCompareOn ? '' : 'none';
             const rbtn = document.getElementById('erRainbowToggle');
             if (rbtn) rbtn.classList.toggle('on', erCompareOn);
+            // Toggle food group Durham bars (CSS transition handles animation)
+            document.querySelectorAll('.er-grp-bar').forEach(el => el.classList.toggle('cmp', erCompareOn));
+            // Toggle Durham numbers (CSS transition via .show class)
+            document.querySelectorAll('.er-grp-ct .dur').forEach(el => el.classList.toggle('show', erCompareOn));
+            // Toggle rainbow with crossfade
+            const local = document.getElementById('erRainbowLocal');
+            const compare = document.getElementById('erRainbowCompare');
+            if (local && compare) {
+                const fadeOut = erCompareOn ? local : compare;
+                const fadeIn = erCompareOn ? compare : local;
+                fadeOut.style.transition = 'opacity .25s ease';
+                fadeOut.style.opacity = '0';
+                setTimeout(() => {
+                    fadeOut.style.display = 'none';
+                    fadeIn.style.display = '';
+                    fadeIn.style.opacity = '0';
+                    fadeIn.style.transition = 'opacity .25s ease';
+                    requestAnimationFrame(() => { fadeIn.style.opacity = '1'; });
+                }, 250);
+            }
         }
 
         let erAccOpen = {};
@@ -6815,7 +6843,7 @@
             if (!item) return;
             item.classList.toggle('open', erAccOpen[name]);
             const chips = item.querySelector('.er-chips');
-            if (chips) chips.style.display = erAccOpen[name] ? 'flex' : 'none';
+            if (chips) chips.classList.toggle('open', erAccOpen[name]);
         }
 
         let erTab = 'plants', erViewAll = false;
@@ -6839,16 +6867,27 @@
             html += `<button class="er-seg-btn${erTab === 'plants' ? ' on' : ''}" data-k="plants" onclick="switchErTab('plants')">Plants</button>`;
             html += `<button class="er-seg-btn${erTab === 'animals' ? ' on' : ''}" data-k="animals" onclick="switchErTab('animals')">Animals</button>`;
             html += `</div>`;
-            html += `<div class="er-abund">`;
-            display.forEach(it => {
-                const sparkSvg = rcBuildSparkline(it.id, window._drawerData.plants);
-                html += `<div class="er-arow" onclick="navigateToTrends('${window._drawerData.navId}','${it.id}','')" style="cursor:pointer;border-radius:6px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">`;
-                html += `<span class="nm" title="${it.name}">${it.name}</span>`;
-                html += `<span class="track" style="background:#f2efe8;"><i style="width:${it.value}%;background:${trackColor};"></i></span>`;
-                html += `<span class="sparkline" style="display:flex;align-items:center;justify-content:center;">${sparkSvg}</span>`;
-                html += `<span class="v">${it.value}</span>`;
-                html += `</div>`;
-            });
+            const maxPct = items.length > 0 ? items[0].value : 1;
+            const half = Math.ceil(display.length / 2);
+            const leftCol = display.slice(0, half);
+            const rightCol = display.slice(half);
+            function renderAbundCol(col) {
+                let out = '';
+                col.forEach(it => {
+                    const sparkSvg = rcBuildSparkline(it.id, window._drawerData.plants);
+                    const barW = maxPct > 0 ? (it.value / maxPct) * 100 : 0;
+                    out += `<div class="er-arow" onclick="navigateToTrends('${window._drawerData.navId}','${it.id}','')" style="cursor:pointer;border-radius:6px;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">`;
+                    out += `<span class="nm" title="${it.name}">${it.name}</span>`;
+                    out += `<span class="track" style="background:#f2efe8;"><i style="width:${barW}%;background:${trackColor};"></i></span>`;
+                    out += `<span class="sparkline" style="display:flex;align-items:center;justify-content:center;">${sparkSvg}</span>`;
+                    out += `<span class="v">${it.value}%</span>`;
+                    out += `</div>`;
+                });
+                return out;
+            }
+            html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 32px;">`;
+            html += `<div>${renderAbundCol(leftCol)}</div>`;
+            html += `<div>${renderAbundCol(rightCol)}</div>`;
             html += `</div>`;
             if (items.length > 10) {
                 const linkText = erViewAll ? 'Show top 10' : `View all ${items.length}`;
@@ -9427,13 +9466,16 @@
             let gradeLabel = 'Low diet variety';
             if (biodiversityPctile >= 75) gradeLabel = 'High diet variety';
             else if (biodiversityPctile >= 40) gradeLabel = 'Moderate diet variety';
-            else if (biodiversityPctile >= 20) gradeLabel = 'Below average';
 
             // Build full lists with species IDs (for sparklines + navigation)
-            const mapEntry = (entries) => entries.map(([sp, val]) => {
-                const meta = foodseqData.species_metadata[sp];
-                return { id: sp, name: meta ? meta.common_name : sp, value: Math.round((val / entries[0][1]) * 100), raw: val };
-            });
+            const mapEntry = (entries) => {
+                const total = entries.reduce((s, [, v]) => s + v, 0) || 1;
+                return entries.map(([sp, val]) => {
+                    const meta = foodseqData.species_metadata[sp];
+                    const pct = (val / total) * 100;
+                    return { id: sp, name: meta ? meta.common_name : sp, value: Math.round(pct * 10) / 10, raw: val };
+                });
+            };
 
             // "What's surprising" — find individual foods with unusually high
             // relative abundance at this location compared to all other locations
@@ -9478,9 +9520,12 @@
                     const rank = sorted.filter(v => v <= siteRelAbundance).length;
                     const pctile = Math.round((rank / sorted.length) * 100);
                     // Require median >= 0.1% so we're not dividing by near-zero
-                    if (median >= 0.001 && siteRelAbundance > median * 1.5 && pctile >= 75) {
+                    if (median >= 0.001 && siteRelAbundance > median * 3 && pctile >= 90) {
                         const meta = foodseqData.species_metadata[sp];
                         const name = meta ? meta.common_name : sp;
+                        // Skip non-food species
+                        const nameLower = name.toLowerCase();
+                        if (['dog','cat','human','rat','mouse','horse','bear','raccoon','opossum','frog','bullfrog','seal','mammal','bird','bony fish','hoofed mammal','carnivore','grass family'].some(x => nameLower === x)) return;
                         const rawRatio = siteRelAbundance / median;
                         const ratio = Math.min(rawRatio, 50); // cap display at 50x
                         standouts.push({ name, ratio: parseFloat(ratio.toFixed(1)), pctile, tone: meta && meta.type === 'animal' ? 'rust' : 'green' });
@@ -9781,8 +9826,9 @@
             // ── 4. What Stands Out (top 3 as stamps) ──
             if (d.insights.length > 0) {
                 const topInsights = d.insights.slice(0, 3);
-                html += `<div class="pc-klabel pc-stand-lbl">What stands out</div>
-                <div class="pc-stand">`;
+                const stampCols = Math.min(topInsights.length, 3);
+                html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;"><span class="pc-klabel">What stands out</span><span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;letter-spacing:.03em;">vs Durham median</span></div>
+                <div class="pc-stand" style="grid-template-columns:repeat(${stampCols},1fr);">`;
                 topInsights.forEach(ins => {
                     const isAnimal = ins.tone === 'rust';
                     const iconName = isAnimal ? 'fish' : (Math.random() > 0.5 ? 'leaf' : 'sprout');
@@ -9799,6 +9845,9 @@
                     </div>`;
                 });
                 html += `</div>`;
+            } else {
+                html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;"><span class="pc-klabel">What stands out</span><span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;letter-spacing:.03em;">vs Durham median</span></div>`;
+                html += `<div style="text-align:center;padding:14px 12px;border:2px dashed rgba(30,58,138,.15);border-radius:10px;color:#94a3b8;font-size:12px;line-height:1.5;">No foods stand out significantly here compared to the rest of Durham — this area's diet looks pretty typical.</div>`;
             }
 
             html += '</div>';
@@ -13278,11 +13327,14 @@
                 compareLegend += `<div class="rl"><span class="sw" style="background:${cat.color};"></span><span class="nm">${cat.name}</span><span class="pc">${lp}%<span style="color:#9aa1ad;font-weight:400;"> / ${dp}%</span></span></div>`;
             });
 
-            // Get demographics data from the tract feature
+            // Get demographics data from the tract feature or from drawer data
             let demoProps = null;
             if (saId && durhamTractsGeoJSON) {
                 const feat = durhamTractsGeoJSON.features.find(f => String(f.properties.Sample_ID) === saId);
                 if (feat) demoProps = feat.properties;
+            }
+            if (!demoProps && window._drawerData && window._drawerData.demoProps) {
+                demoProps = window._drawerData.demoProps;
             }
 
             // ── Build the editorial article ──
@@ -13300,27 +13352,6 @@
             h += `<div class="er-kpi"><b>${plantTypeCount}</b><span>Plant types</span></div>`;
             h += `<div class="er-kpi"><b>${animalTypeCount}</b><span>Animal types</span></div>`;
             h += `</div>`;
-
-            // ── RULE ──
-            h += `<div class="er-rule"></div>`;
-
-            // ── HOW MUCH VARIETY ──
-            h += `<div class="er-sec-hd"><span class="er-eye">How much variety</span><span class="er-note-r">${gradeLabel} diet variety</span></div>`;
-            h += `<div class="er-sub">Compared to ${sortedRichnessL.length} other Durham neighborhoods.</div>`;
-            h += `<div class="er-variety">`;
-            h += `<div class="er-variety-fig"><div class="er-bignum">${varietyPctile}<span class="ord">${pSuffix}</span></div><div class="er-bignum-cap">Percentile</div></div>`;
-            h += `<div>`;
-            h += `<div class="er-pbar">`;
-            h += `<div class="er-pbar-track"><i style="width:${varietyPctile}%;"></i></div>`;
-            h += `<div class="er-pbar-marker" style="left:${varietyPctile}%;"></div>`;
-            const medianPct = sortedRichnessL.length > 0 ? Math.round((sortedRichnessL.filter(v => v <= medianRichness).length / sortedRichnessL.length) * 100) : 50;
-            h += `<div class="er-pbar-median" style="left:${medianPct}%;"><span>Median</span></div>`;
-            h += `<div class="er-pbar-ends"><span>Less diverse</span><span>More diverse</span></div>`;
-            h += `</div>`;
-            h += `</div>`;
-            h += `</div>`;
-            const drawerEvenness = window._drawerData ? window._drawerData.d.evenness : '';
-            h += `<div style="margin-top:10px;font-size:12px;color:#94a3b8;">Evenness <b style="color:#1f2937;">${drawerEvenness}</b>/100 &mdash; how evenly foods are distributed across what's detected</div>`;
 
             // ── RULE ──
             h += `<div class="er-rule"></div>`;
@@ -13357,7 +13388,7 @@
                 h += `</button>`;
                 if (!isEmpty) {
                     const chipsId = 'erChips_' + safeId;
-                    h += `<div class="er-chips" id="${chipsId}" style="display:none;">`;
+                    h += `<div class="er-chips" id="${chipsId}">`;
                     g.foods.slice(0, 5).forEach(f => {
                         h += `<span class="chip">${f.name}</span>`;
                     });
@@ -13402,6 +13433,7 @@
             h += `<div class="er-rule"></div>`;
 
             // ── ABOUT THIS NEIGHBORHOOD (demographics) ──
+            console.log('Drawer demoProps:', demoProps ? 'found' : 'NULL', 'saId:', saId);
             if (demoProps) {
                 const pop = demoProps.total_population || 0;
                 const hh = demoProps.total_households || 0;
@@ -13416,21 +13448,49 @@
                 h += `<div class="er-sec-hd"><span class="er-eye">About this neighborhood</span><span class="er-note-r">US Census</span></div>`;
                 h += `<div class="er-demo2">`;
 
-                // Density metric
+                // Density metric with rank scale
+                const densityZones = [
+                    { r: 'Low', t: '&lt; 4', w: 26.67 },
+                    { r: 'Moderate', t: '4 – 10', w: 40 },
+                    { r: 'High', t: '10 +', w: 33.33 }
+                ];
+                const densityActiveIdx = density < 4 ? 0 : density <= 10 ? 1 : 2;
                 h += `<div>`;
                 h += `<div class="er-metric-label">Population density</div>`;
                 h += `<div class="er-metric-hero"><span class="er-metric-rank">${densityRank}</span><span class="er-metric-fig">${density.toFixed(1)}<span class="u">people / acre</span></span></div>`;
-                h += `<div class="er-pbar"><div class="er-pbar-track"><i style="width:${densityMarker.toFixed(1)}%;background:linear-gradient(90deg,#c5caf0,#5b63d6);"></i></div>`;
-                h += `<div class="er-pbar-marker" style="left:${densityMarker.toFixed(1)}%;background:#5b63d6;box-shadow:0 1px 5px rgba(91,99,214,.5);"></div></div>`;
+                h += `<div class="scale"><div class="scale-track">`;
+                densityZones.forEach((z, i) => {
+                    h += `<div class="scale-zone${i === densityActiveIdx ? ' active' : ''}" style="width:${z.w}%;"></div>`;
+                });
+                h += `</div><div class="scale-marker" style="left:${densityMarker.toFixed(1)}%;"></div>`;
+                h += `<div class="scale-labels">`;
+                densityZones.forEach((z, i) => {
+                    h += `<div class="scale-lab${i === densityActiveIdx ? ' active' : ''}" style="width:${z.w}%;"><span class="r">${z.r}</span><span class="t">${z.t}</span></div>`;
+                });
+                h += `</div></div>`;
                 h += `<div class="er-metric-foot"><b>${Math.round(pop).toLocaleString()}</b> residents &middot; <b>${Math.round(hh).toLocaleString()}</b> households</div>`;
                 h += `</div>`;
 
-                // Income metric
+                // Income metric with rank scale
+                const incomeZones = [
+                    { r: 'Low', t: '&lt; $50k', w: 33.33 },
+                    { r: 'Moderate', t: '$50–100k', w: 33.33 },
+                    { r: 'High', t: '$100k +', w: 33.34 }
+                ];
+                const incomeActiveIdx = income < 50000 ? 0 : income <= 100000 ? 1 : 2;
                 h += `<div>`;
                 h += `<div class="er-metric-label">Median household income</div>`;
                 h += `<div class="er-metric-hero"><span class="er-metric-rank">${incomeRank}</span><span class="er-metric-fig">$${Math.round(income).toLocaleString()}</span></div>`;
-                h += `<div class="er-pbar"><div class="er-pbar-track"><i style="width:${incomeMarker.toFixed(1)}%;background:linear-gradient(90deg,#c5caf0,#5b63d6);"></i></div>`;
-                h += `<div class="er-pbar-marker" style="left:${incomeMarker.toFixed(1)}%;background:#5b63d6;box-shadow:0 1px 5px rgba(91,99,214,.5);"></div></div>`;
+                h += `<div class="scale"><div class="scale-track">`;
+                incomeZones.forEach((z, i) => {
+                    h += `<div class="scale-zone${i === incomeActiveIdx ? ' active' : ''}" style="width:${z.w}%;"></div>`;
+                });
+                h += `</div><div class="scale-marker" style="left:${incomeMarker.toFixed(1)}%;"></div>`;
+                h += `<div class="scale-labels">`;
+                incomeZones.forEach((z, i) => {
+                    h += `<div class="scale-lab${i === incomeActiveIdx ? ' active' : ''}" style="width:${z.w}%;"><span class="r">${z.r}</span><span class="t">${z.t}</span></div>`;
+                });
+                h += `</div></div>`;
                 h += `</div>`;
 
                 h += `</div>`; // close er-demo2
@@ -13496,8 +13556,12 @@
                 ? durhamTractsGeoJSON.features.some(f => String(f.properties.Sample_ID) === saId && f.properties._usdaDesert)
                 : true;
 
-            h += `<div class="er-eye">What can help</div>`;
-            h += `<p style="font-size:13px;color:#64748b;margin:6px 0 12px;line-height:1.5;">We include these resources because food access matters as much as food variety. If you or someone you know could use support, these verified Durham programs can help.</p>`;
+            h += `<div style="background:#f8f6f0;border:1px solid #e7e4dc;border-radius:16px;padding:24px 28px 28px;margin-top:4px;">`;
+            h += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4.5 8-11.8A8 8 0 0 0 4 10.2C4 17.5 12 22 12 22z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span class="er-eye" style="color:#1e3a8a;font-size:12px;letter-spacing:.14em;">What can help</span>
+            </div>`;
+            h += `<p style="font-size:13.5px;color:#4b5563;margin:0 0 16px;line-height:1.55;">Food access matters as much as food variety. If you or someone you know could use support, these verified Durham programs can help.</p>`;
             if (isFlagged) {
                 h += `<div class="nf-flag" style="margin:10px 0 16px;">
                     <svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5c3 2.4 6 3 6 3 0 5.5-2.6 9-6 12-3.4-3-6-6.5-6-12 0 0 3-.6 6-3z"/></svg>
@@ -13554,6 +13618,7 @@
             </div>`;
             h += `</div>`;
             h += `<p style="font-size:12.5px;color:#64748b;margin-top:14px;line-height:1.5;">You can also explore nearby food options using the <b>Food Near Me</b> tab above, or toggle on <b>Places</b> at the bottom-left of the map to see grocery stores, farmers markets, and community fridges near you.</p>`;
+            h += `</div>`; // close tinted card
 
             h += '</article>';
             infoPanel.innerHTML = h;
@@ -13575,10 +13640,14 @@
                     const m = foodseqData.species_metadata[sp];
                     return m && !m._hidden && !(m.common_name && m.common_name.startsWith('NA_'));
                 }).sort((a, b) => b[1] - a[1]);
-                const mapE = (entries) => entries.map(([sp, val]) => {
-                    const meta = foodseqData.species_metadata[sp];
-                    return { id: sp, name: meta ? meta.common_name : sp, value: entries[0] ? Math.round((val / entries[0][1]) * 100) : 0, raw: val };
-                });
+                const mapE = (entries) => {
+                    const total = entries.reduce((s, [, v]) => s + v, 0) || 1;
+                    return entries.map(([sp, val]) => {
+                        const meta = foodseqData.species_metadata[sp];
+                        const pct = (val / total) * 100;
+                        return { id: sp, name: meta ? meta.common_name : sp, value: Math.round(pct * 10) / 10, raw: val };
+                    });
+                };
                 if (!window._drawerData) window._drawerData = {};
                 window._drawerData.d = { allPlants: mapE(pEntries), allAnimals: mapE(aEntries) };
                 renderErAbundance();
