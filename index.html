@@ -9489,6 +9489,7 @@
             // "What's surprising" — find individual foods with unusually high
             // relative abundance at this location compared to all other locations
             const insights = [];
+            const missingFoods = [];
             const isWWTP = plants.length > 0 && plants[0].location_type !== 'manhole';
             const comparisonPool = Object.values(foodseqData.plants).filter(p =>
                 isWWTP ? p.location_type !== 'manhole' : (p.census_tract && p.census_tract !== 'unknown')
@@ -9546,6 +9547,46 @@
                 standouts.slice(0, 4).forEach(s => {
                     insights.push({ tone: s.tone, name: s.name, ratio: s.ratio, pctile: s.pctile, text: `<b>${s.name}</b> is ${s.ratio}\u00d7 the ${compLabel} median here (higher than ${s.pctile}% of areas).` });
                 });
+
+                // "What's missing" — foods common in Durham but dramatically low/absent here
+                // Use tract-level aggregation for stable medians
+                const NON_FOOD_NAMES = new Set(['dog','cat','human','rat','mouse','horse','bear','raccoon','opossum','frog','bullfrog','seal','mammal','bird','bony fish','hoofed mammal','carnivore','grass family']);
+                if (durhamTractsGeoJSON) {
+                // Build site rel map from tract-level aggregation (same method as other tracts)
+                    // Aggregate per tract
+                    const tractRels = {};
+                    const allTractSpecies = new Set();
+                    durhamTractsGeoJSON.features.forEach(f => {
+                        const tid = String(f.properties.Sample_ID);
+                        const tp = getPlantsInTract(tid);
+                        if (tp.length === 0) return;
+                        const tAgg = aggregatePlantsData(tp);
+                        const tAll = Object.entries(tAgg.plants).concat(Object.entries(tAgg.animals)).filter(([, v]) => v > 0);
+                        const tTotal = tAll.reduce((s, [, v]) => s + v, 0) || 1;
+                        const rels = {};
+                        tAll.forEach(([sp, v]) => { rels[sp] = v / tTotal; allTractSpecies.add(sp); });
+                        tractRels[tid] = rels;
+                    });
+                    const tractIds = Object.keys(tractRels);
+                    // Use tract-level rel for the current area (not per-site)
+                    const currentTractId = plants.length > 0 && plants[0].census_tract ? String(plants[0].census_tract) : null;
+                    const currentTractRel = currentTractId ? (tractRels[currentTractId] || {}) : {};
+                    allTractSpecies.forEach(sp => {
+                        const siteRel = currentTractRel[sp] || 0;
+                        // Exclude current tract from median calculation
+                        const otherVals = tractIds.filter(t => t !== currentTractId).map(t => tractRels[t][sp] || 0).sort((a, b) => a - b);
+                        const median = otherVals.length > 0 ? otherVals[Math.floor(otherVals.length / 2)] : 0;
+                        if (median >= 0.02 && siteRel < median * 0.5) {
+                            const meta = foodseqData.species_metadata[sp];
+                            if (!meta || meta._hidden) return;
+                            const name = meta.common_name;
+                            if (name.startsWith('NA_') || NON_FOOD_NAMES.has(name.toLowerCase())) return;
+                            const ratio = siteRel > 0 ? parseFloat((siteRel / median).toFixed(2)) : 0;
+                            missingFoods.push({ name, ratio, type: meta.type });
+                        }
+                    });
+                    missingFoods.sort((a, b) => b.medianPct - a.medianPct);
+                }
             }
 
             // Ethnic food signature scoring
@@ -9594,6 +9635,7 @@
                 allPlants: mapEntry(plantEntries),
                 allAnimals: mapEntry(animalEntries),
                 insights,
+                missingFoods,
                 ethnicSignatures,
             };
         }
@@ -9832,32 +9874,64 @@
                 </div>`;
             }
 
-            // ── 4. What Stands Out (top 3 as stamps) ──
-            if (d.insights.length > 0) {
-                const topInsights = d.insights.slice(0, 3);
-                const stampCols = Math.min(topInsights.length, 3);
-                html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;"><span class="pc-klabel">What stands out</span><span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;letter-spacing:.03em;">vs Durham median</span></div>
-                <div class="pc-stand" style="grid-template-columns:repeat(${stampCols},1fr);">`;
-                topInsights.forEach(ins => {
+            // ── 4. What Stands Out (high + missing combined as stamps) ──
+            {
+                // Build combined list: high standouts + missing foods, up to 3 total
+                const stamps = [];
+                // Add high standouts first (max 2 to leave room for missing)
+                const maxHighStamps = (d.missingFoods && d.missingFoods.length > 0) ? 2 : 3;
+                d.insights.slice(0, maxHighStamps).forEach(ins => {
                     const isAnimal = ins.tone === 'rust';
-                    const iconName = isAnimal ? 'fish' : (Math.random() > 0.5 ? 'leaf' : 'sprout');
+                    const iconName = isAnimal ? 'fish' : 'sprout';
                     const rawMult = ins.ratio ? (ins.ratio >= 100 ? Math.round(ins.ratio) : ins.ratio) : 0;
                     const cappedMult = Math.min(rawMult, 50);
-                    const multStr = cappedMult + '\u00d7';
-                    const pct = ins.pctile || 0;
-                    const topPct = 100 - pct > 0 ? 100 - pct : 1;
-                    html += `<div class="pc-stamp">
-                        <div class="pc-stamp-ic">${foodIconSvg(iconName, 20)}</div>
-                        <div class="pc-stamp-mult">${multStr}</div>
-                        <div class="pc-stamp-nm">${ins.name || ''}</div>
-                        <div class="pc-stamp-pct">top ${topPct}%</div>
-                    </div>`;
+                    stamps.push({
+                        icon: iconName,
+                        mult: cappedMult + '\u00d7',
+                        name: ins.name || '',
+                        sub: 'top ' + (100 - (ins.pctile || 0) > 0 ? 100 - (ins.pctile || 0) : 1) + '%',
+                        type: 'high',
+                    });
                 });
-                html += `</div>`;
-            } else {
+                // Fill remaining slots with missing foods
+                const missingSlots = 3 - stamps.length;
+                if (d.missingFoods && d.missingFoods.length > 0 && missingSlots > 0) {
+                    d.missingFoods.slice(0, missingSlots).forEach(m => {
+                        const iconName = m.type === 'animal' ? 'fish' : 'leaf';
+                        const multStr = m.ratio > 0 ? m.ratio + '\u00d7' : '0\u00d7';
+                        stamps.push({
+                            icon: iconName,
+                            mult: multStr,
+                            name: m.name,
+                            sub: 'below median',
+                            type: 'low',
+                        });
+                    });
+                }
+
                 html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;"><span class="pc-klabel">What stands out</span><span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;letter-spacing:.03em;">vs Durham median</span></div>`;
-                html += `<div style="text-align:center;padding:14px 12px;border:2px dashed rgba(30,58,138,.15);border-radius:10px;color:#94a3b8;font-size:12px;line-height:1.5;">No foods stand out significantly here compared to the rest of Durham — this area's diet looks pretty typical.</div>`;
+                if (stamps.length > 0) {
+                    const stampCols = Math.min(stamps.length, 3);
+                    html += `<div class="pc-stand" style="grid-template-columns:repeat(${stampCols},1fr);">`;
+                    stamps.forEach(s => {
+                        const isLow = s.type === 'low';
+                        const icBg = isLow ? 'background:#f5e0d2;color:#c24a2b;' : '';
+                        const multColor = isLow ? 'color:#c24a2b;' : '';
+                        const borderColor = isLow ? 'border-color:rgba(194,74,43,.3);' : '';
+                        const arrow = isLow ? '&#9660; ' : '';
+                        html += `<div class="pc-stamp" style="${borderColor}">
+                            <div class="pc-stamp-ic" style="${icBg}">${foodIconSvg(s.icon, 20)}</div>
+                            <div class="pc-stamp-mult" style="${multColor}">${arrow}${s.mult}</div>
+                            <div class="pc-stamp-nm">${s.name}</div>
+                            <div class="pc-stamp-pct">${s.sub}</div>
+                        </div>`;
+                    });
+                    html += `</div>`;
+                } else {
+                    html += `<div style="text-align:center;padding:14px 12px;border:2px dashed rgba(30,58,138,.15);border-radius:10px;color:#94a3b8;font-size:12px;line-height:1.5;">No foods stand out significantly here compared to the rest of Durham — this area's diet looks pretty typical.</div>`;
+                }
             }
+
 
             html += '</div>';
 
