@@ -1580,10 +1580,11 @@
             border: 1px solid #e7e4dc;
             box-shadow: 0 8px 30px rgba(15,23,42,.12);
             max-width: 244px;
-            max-height: 240px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            transition: max-height .3s ease, box-shadow .3s ease;
+            max-height: 300px;
         }
 
         .poi-controls-header {
@@ -1591,12 +1592,13 @@
             font-weight: 600;
             color: #0b1220;
             letter-spacing: -.01em;
-            padding: 13px 15px;
+            padding: 10px 13px;
             border-bottom: 1px solid #f0ede6;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 6px;
             user-select: none;
             flex-shrink: 0;
         }
@@ -1608,20 +1610,33 @@
         .poi-controls-toggle {
             font-size: 12px;
             color: #94a3b8;
-            transition: transform 0.2s;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
         }
 
         .poi-controls.collapsed .poi-controls-toggle {
             transform: rotate(-90deg);
         }
 
+        .poi-controls-body {
+            transition: max-height .3s ease, opacity .25s ease;
+            max-height: 225px;
+            opacity: 1;
+            overflow-y: auto;
+        }
+
         .poi-controls.collapsed .poi-controls-body {
-            display: none;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
         }
 
         .poi-controls.collapsed {
-            max-height: none;
-            overflow: visible;
+            max-height: 40px;
+            border-bottom: none;
+        }
+        .poi-controls.collapsed .poi-controls-header {
+            border-bottom: none;
         }
 
         .poi-controls-body {
@@ -3272,17 +3287,17 @@
             background: #1e3a8a;
             background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px);
             background-size: 15px 15px;
-            padding: 18px 20px 16px;
+            padding: 14px 20px 6px;
             border-bottom: none;
         }
         .detail-panel .tp-crumb { color: #dbe4fb; font-size: 10px; }
-        .detail-panel .tp-title { color: #fff; font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 19px; }
-        .detail-panel .tp-sub { color: #dbe4fb; font-size: 11.5px; }
+        .detail-panel .tp-title { color: #fff; font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 19px; margin: 2px 0 2px; }
+        .detail-panel .tp-sub { color: #dbe4fb; font-size: 11.5px; margin-top: 2px; }
         .detail-panel .tp-close { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.2); color: #fff; }
         .detail-panel .tp-close:hover { background: rgba(255,255,255,.2); }
 
         /* Sites section override for navy band */
-        .detail-panel .tp-sites { background: #1e3a8a; background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px); background-size: 15px 15px; padding: 0 24px 18px; border-bottom: none; }
+        .detail-panel .tp-sites { background: #1e3a8a; background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px); background-size: 15px 15px; padding: 0 20px 10px; border-bottom: none; }
 
         /* Footer button overrides */
         .detail-panel .tp-ctas { padding: 16px 22px 18px; }
@@ -3295,13 +3310,13 @@
 
     /* ── A. Panels → bottom sheets ── */
     @media (max-width: 768px) {
-        /* Detail panel → compact bottom sheet, shows map above */
+        /* Detail panel → bottom sheet */
         .detail-panel {
             width: 100vw !important;
             top: auto !important;
             bottom: 0;
-            height: 55vh;
-            max-height: 55vh;
+            height: 60vh;
+            max-height: 60vh;
             border-radius: 18px 18px 0 0;
             transform: translateY(100%) !important;
             overflow-y: auto;
@@ -3311,30 +3326,27 @@
         }
         .detail-panel.compare-mode {
             width: 100vw !important;
-            height: 80vh;
-            max-height: 80vh;
         }
-        /* Hide compare button on mobile */
-        #compareBtn { display: none !important; }
 
-        /* Landing info panel → full sheet up to blue ribbon (46px header) */
+        /* Landing info panel (breakdown drawer) → bottom sheet */
         #landingInfoPanel {
             width: 100vw !important;
             max-width: 100vw !important;
             right: 0 !important;
             top: 46px !important;
-            bottom: 0;
-            height: auto !important;
-            border-radius: 0;
-            transform: translateX(100%) !important;
+            bottom: 0 !important;
+            height: calc(100vh - 46px) !important;
+            height: calc(100dvh - 46px) !important;
+            border-radius: 0 !important;
+            transform: translateY(100%) !important;
             z-index: 1003 !important;
         }
         #landingInfoPanel.hidden {
-            transform: translateX(100%) !important;
+            transform: translateY(100%) !important;
         }
-        /* When visible on mobile — slides in from right */
+        /* When visible on mobile */
         #landingInfoPanel:not(.hidden) {
-            transform: translateX(0) !important;
+            transform: translateY(0) !important;
         }
 
         /* Species panel → bottom sheet */
@@ -3384,8 +3396,7 @@
             top: 84px;
             padding: 8px 12px;
             gap: 8px;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+            overflow: visible;
             flex-wrap: nowrap;
         }
         .header-row2 select {
@@ -3486,27 +3497,26 @@
     /* ── G. Editorial drawer single-column on mobile ── */
     @media (max-width: 768px) {
         .er {
-            padding: 12px 16px 40px !important;
+            padding: 2px 16px 40px !important;
             max-width: 100% !important;
         }
-        .er-rule {
-            margin: 16px 0 !important;
+        .er-mobile-close {
+            margin-bottom: 0 !important;
         }
-        .er-lede {
-            font-size: 13px !important;
-            margin-top: 6px !important;
+        .er-kpis {
+            grid-template-columns: 1fr 1fr !important;
+            gap: 8px !important;
+            margin-top: 12px !important;
+        }
+        .er-kpi {
+            padding-left: 12px !important;
         }
         .er-kpi b {
-            font-size: 22px !important;
+            font-size: 24px !important;
         }
         .er-kpi span {
             font-size: 11px !important;
-        }
-        .er-kpis {
-            margin-top: 12px !important;
-        }
-        .mobile-sheet-close {
-            margin-bottom: 0 !important;
+            margin-top: 3px !important;
         }
         .er-h1 {
             font-size: 24px !important;
@@ -3576,7 +3586,7 @@
             border: none !important;
             box-shadow: none !important;
             padding: 0 !important;
-            gap: 12px;
+            gap: 14px;
         }
         #homeOverlay .home-loc .pin {
             display: none;
@@ -3593,11 +3603,11 @@
         #homeOverlay .home-loc button {
             width: auto;
             padding: 0 32px;
+            align-self: center;
             border-radius: 14px;
             height: 48px;
             font-size: 15px;
             background: #c8612e !important;
-            align-self: center;
         }
         #homeOverlay .home-loc button:hover {
             background: #b8561f !important;
@@ -3631,152 +3641,39 @@
             height: 4px;
             background: #d1d5db;
             border-radius: 2px;
-            margin: 10px auto 6px;
+            margin: 5px auto 2px;
             flex-shrink: 0;
         }
     }
 
-    /* ── J. Right panel sticker collage — compact for mobile ── */
+    /* ── J. Right panel sticker collage adjustments ── */
     @media (max-width: 768px) {
-        /* Header */
-        .detail-panel .tp-head {
-            padding: 10px 14px 8px !important;
-        }
-        .detail-panel .tp-title {
-            font-size: 16px !important;
-        }
-        .detail-panel .tp-sub {
-            font-size: 10px !important;
-            margin-top: 2px !important;
-        }
-        .detail-panel .tp-crumb {
-            font-size: 8.5px !important;
-        }
-        .detail-panel .tp-close {
-            width: 32px !important;
-            height: 32px !important;
-        }
-        /* Sites pills */
-        .tp-sites {
-            padding: 4px 14px 6px !important;
-        }
-        .tp-sites .pc-site {
-            font-size: 9px !important;
-            padding: 2px 7px !important;
-        }
-        /* Body */
         .pc-body {
-            padding: 8px 14px 2px !important;
+            padding: 12px 16px 3px !important;
+        }
+        .pc-head {
+            padding: 14px 16px 12px !important;
         }
         .pc-variety {
-            gap: 8px !important;
-            margin-bottom: 8px !important;
+            gap: 10px !important;
         }
-        .pc-bignum {
-            font-size: 30px !important;
-        }
-        .pc-bignum .ord {
-            font-size: 14px !important;
-        }
-        .pc-rubber {
-            font-size: 9px !important;
-            padding: 2px 6px !important;
-        }
-        .pc-segmeter {
-            margin: 6px 0 3px !important;
-        }
-        .pc-segmeter i {
-            height: 10px !important;
-        }
-        .pc-segmeter-ends {
-            font-size: 7.5px !important;
-        }
-        /* Count cards */
         .pc-counts {
-            gap: 5px !important;
-            margin-bottom: 8px !important;
+            gap: 6px !important;
         }
-        .pc-count {
-            padding: 7px 6px 6px !important;
-            border-radius: 9px !important;
-        }
-        .pc-count-badge {
-            width: 28px !important;
-            height: 28px !important;
-            margin-bottom: 4px !important;
-        }
-        .pc-count-num {
-            font-size: 20px !important;
-        }
-        .pc-count-num.sm {
-            font-size: 17px !important;
-        }
-        .pc-count-cap {
-            font-size: 9px !important;
-            margin-top: 2px !important;
-        }
-        .pc-count-of {
-            font-size: 8.5px !important;
-        }
-        /* Cuisine */
-        .pc-cuisine {
-            padding: 8px 10px !important;
-            margin-bottom: 8px !important;
-        }
-        .pc-cuisine-ic {
-            width: 24px !important;
-            height: 24px !important;
-        }
-        .pc-cuisine-nm {
-            font-size: 12px !important;
-        }
-        .pc-klabel {
-            font-size: 8.5px !important;
-        }
-        .pc-tags {
-            max-height: 26px !important;
-            gap: 3px !important;
-            margin-top: 5px !important;
-        }
-        .pc-tag {
-            font-size: 9px !important;
-            padding: 2px 7px !important;
-        }
-        /* Stamps */
         .pc-stand {
-            gap: 5px !important;
-            margin-bottom: 6px !important;
-        }
-        .pc-stamp {
-            padding: 7px 4px 6px !important;
-        }
-        .pc-stamp-ic {
-            width: 26px !important;
-            height: 26px !important;
-            margin-bottom: 3px !important;
-        }
-        .pc-stamp-mult {
-            font-size: 15px !important;
+            gap: 6px !important;
         }
         .pc-stamp-nm {
-            font-size: 8.5px !important;
-            min-height: 18px !important;
+            font-size: 9px !important;
         }
-        .pc-stamp-pct {
-            font-size: 7.5px !important;
+        .pc-tags {
+            max-height: 56px !important;
         }
-        /* Footer */
+        .tp-sites {
+            padding: 8px 16px 10px !important;
+        }
         .pc-foot {
-            padding: 6px 14px 8px !important;
-            gap: 4px !important;
-        }
-        .pc-btn {
-            height: 34px !important;
-            font-size: 12px !important;
-        }
-        .pc-btn.ghost {
-            height: 30px !important;
-            font-size: 11px !important;
+            padding: 10px 16px 12px !important;
         }
         /* Add "See full report" button styling (will be added via JS) */
         .mobile-report-btn {
@@ -3789,9 +3686,42 @@
             font: 500 12px 'Geist', sans-serif;
             cursor: pointer;
         }
-        .mobile-sheet-close { display: none !important; }
+        .er-mobile-close { display: none; text-align: right; margin-bottom: 4px; }
         @media (max-width: 768px) {
-            .mobile-sheet-close { display: block !important; }
+            .er-mobile-close { display: block; }
+            #compareBtn { display: none !important; }
+            .poi-controls { max-width: 160px !important; }
+            .poi-controls-header { padding: 8px 10px; }
+            /* Compact the sticker panel on mobile */
+            .pc-body { padding: 10px 16px 2px !important; }
+            .pc-variety { margin-bottom: 8px !important; gap: 10px !important; }
+            .pc-bignum { font-size: 32px !important; }
+            .pc-bignum .ord { font-size: 15px !important; }
+            .pc-segmeter { margin: 6px 0 3px !important; }
+            .pc-segmeter i { height: 11px !important; }
+            .pc-segmeter-ends { font-size: 8px !important; }
+            .pc-rubber { font-size: 9.5px !important; padding: 2px 7px !important; }
+            .pc-counts { gap: 5px !important; margin-bottom: 8px !important; }
+            .pc-count { padding: 8px 6px 6px !important; }
+            .pc-count-badge { width: 30px !important; height: 30px !important; margin-bottom: 4px !important; }
+            .pc-count-num { font-size: 22px !important; }
+            .pc-count-num.sm { font-size: 18px !important; }
+            .pc-count-cap { font-size: 10px !important; margin-top: 2px !important; }
+            .pc-count-of { font-size: 9px !important; }
+            .pc-cuisine { padding: 8px 10px !important; margin-bottom: 8px !important; }
+            .pc-cuisine-ic { width: 26px !important; height: 26px !important; }
+            .pc-cuisine-nm { font-size: 12px !important; }
+            .pc-tags { max-height: 26px !important; margin-top: 5px !important; }
+            .pc-tag { font-size: 9.5px !important; padding: 2px 8px !important; }
+            .pc-stand { gap: 5px !important; margin-bottom: 6px !important; }
+            .pc-stamp { padding: 8px 5px 6px !important; }
+            .pc-stamp-ic { width: 28px !important; height: 28px !important; margin-bottom: 4px !important; }
+            .pc-stamp-mult { font-size: 16px !important; }
+            .pc-stamp-nm { font-size: 9px !important; min-height: 20px !important; }
+            .pc-stamp-pct { font-size: 8px !important; }
+            .pc-klabel { font-size: 9px !important; }
+            .pc-foot { padding: 6px 16px 8px !important; gap: 4px !important; }
+            .pc-btn { height: 36px !important; font-size: 12px !important; }
         }
     }
 
@@ -3903,10 +3833,10 @@
         </button>
         <span style="flex:1;"></span>
         <div style="position:relative;display:inline-flex;align-items:center;gap:4px;">
-            <input type="text" id="findMeInput" placeholder="Enter address to find your neighborhood" autocomplete="off"
+            <input type="text" id="findMeInput" placeholder="Enter location" autocomplete="off"
                    style="padding:5px 10px;border:1.5px solid #d2d6dc;border-radius:6px;font-size:13px;font-family:inherit;color:#1a365d;width:260px;"
                    oninput="onFindMeInput(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();selectFirstFindMe();}">
-            <button class="marker-chip" onclick="selectFirstFindMe()" style="padding:5px 10px;">Find me</button>
+            <button class="marker-chip" onclick="selectFirstFindMe()" style="padding:5px 10px;background:#c8612e;color:#fff;border-color:#c8612e;">Find me</button>
             <div id="findMeSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100000;background:#fff;border:1.5px solid #d2d6dc;border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);"></div>
         </div>
     </div>
@@ -7133,6 +7063,14 @@
                 updateAllPOILayersForZoom();
             });
 
+            // Add click handler for POI radius counting
+            map.on('click', function(e) {
+                // Only show POI count if radius is enabled and POI layers are active
+                if (poiClickRadius === null) return;
+                if (activePOILayers.size === 0) return;
+                const counts = countPOIsWithinRadius(e.latlng.lat, e.latlng.lng, poiClickRadius);
+                showPOIRadiusPopup(e.latlng, counts, poiClickRadius);
+            });
         }
 
         function addPlantMarkers() {
@@ -7471,7 +7409,14 @@
                 .addTo(map)
                 .bindTooltip('You are here', { permanent: false, direction: 'top', offset: [0, -36] });
 
-            map.setView([lat, lon], 14);
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                // Zoom out more on mobile; after panel opens, re-center so marker is in visible top 40%
+                // Panel covers 60% of screen — offset the map center far south so marker appears at top
+                map.setView([lat - 0.025, lon], 13);
+            } else {
+                map.setView([lat, lon], 14);
+            }
 
             // Find which service area contains this point
             if (!durhamTractsGeoJSON) return;
@@ -13956,10 +13901,8 @@
 
             // ── Build the editorial article ──
             let h = '<article class="er">';
-            // Mobile close button
-            h += `<div class="mobile-sheet-close" style="display:none;text-align:right;margin-bottom:4px;">
-                <button onclick="document.getElementById('landingInfoPanel').classList.add('hidden')" style="width:36px;height:36px;border:1px solid #e7e4dc;border-radius:10px;background:#fff;color:#64748b;font-size:18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">&times;</button>
-            </div>`;
+            // Mobile close button for full report
+            h += `<div class="er-mobile-close"><button onclick="document.getElementById('landingInfoPanel').classList.add('hidden')" style="width:36px;height:36px;border:1px solid #e7e4dc;border-radius:10px;background:#fff;color:#64748b;font-size:18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">&times;</button></div>`;
 
             // ── HERO ──
             h += `<div class="er-eye">Neighborhood food report</div>`;
@@ -14346,27 +14289,21 @@
 
         // Mobile: swipe down to close bottom sheet panels (only when scrolled to top)
         if ('ontouchstart' in window) {
-            function addSwipeToDismiss(id, closeFn) {
-                const el = document.getElementById(id);
-                if (!el) return;
-                let touchStartY = 0;
-                let scrollTop = 0;
+            function addSwipeDismiss(el, closeFn) {
+                let startY = 0, startScroll = 0;
                 el.addEventListener('touchstart', function(e) {
-                    touchStartY = e.touches[0].clientY;
-                    scrollTop = el.scrollTop;
+                    startY = e.touches[0].clientY;
+                    startScroll = el.scrollTop;
                 }, { passive: true });
                 el.addEventListener('touchend', function(e) {
-                    const deltaY = e.changedTouches[0].clientY - touchStartY;
-                    // Only dismiss if scrolled to top and swiped down significantly
-                    if (deltaY > 80 && scrollTop <= 5 && window.innerWidth <= 768) {
-                        closeFn();
-                    }
+                    const delta = e.changedTouches[0].clientY - startY;
+                    if (delta > 80 && startScroll <= 5 && window.innerWidth <= 768) closeFn();
                 }, { passive: true });
             }
-            addSwipeToDismiss('detailPanel', closeDetailPanel);
-            addSwipeToDismiss('landingInfoPanel', function() {
-                document.getElementById('landingInfoPanel').classList.add('hidden');
-            });
+            const dp = document.getElementById('detailPanel');
+            if (dp) addSwipeDismiss(dp, closeDetailPanel);
+            const lp = document.getElementById('landingInfoPanel');
+            if (lp) addSwipeDismiss(lp, function() { lp.classList.add('hidden'); });
         }
 
         // Start the application
