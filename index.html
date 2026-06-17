@@ -3395,17 +3395,15 @@
             padding: 0 10px;
             white-space: nowrap;
         }
-        /* Hide everything on header-row2 except time period */
+        /* Hide everything on header-row2 except time period + find me */
         #layerSelect { display: none !important; }
         #chip-manhole { display: none !important; }
         #chip-wwtp { display: none !important; }
         #speciesButton { display: none !important; }
-        #findMeInput { display: none !important; }
-        #findMeSuggestions { display: none !important; }
-        #findMeInput + .marker-chip { display: none !important; }
-        /* Hide "Layers" label */
         .header-row2 > .ctrl-label:first-child { display: none !important; }
-        /* Keep only "Period" label + time range button */
+        /* Make find me input fill available space */
+        #findMeInput { width: 100% !important; min-width: 0 !important; flex: 1 !important; font-size: 14px !important; height: 36px !important; }
+        #findMeSuggestions { z-index: 100000 !important; }
     }
 
     /* ── C. Map container ── */
@@ -3536,21 +3534,55 @@
     }
 
     /* ── H. Home overlay mobile ── */
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
+        #homeOverlay .home-stage {
+            padding: 0 20px;
+        }
         #homeOverlay h1 {
-            font-size: clamp(36px, 7vw, 50px) !important;
+            font-size: clamp(34px, 9vw, 52px) !important;
+            letter-spacing: -.02em;
+        }
+        #homeOverlay .home-lede {
+            font-size: 14.5px;
+            margin-top: 20px !important;
         }
         #homeOverlay .home-loc {
+            margin-top: 28px !important;
             flex-direction: column;
+            border-radius: 16px;
+            padding: 12px 14px;
+            gap: 10px;
+        }
+        #homeOverlay .home-loc .pin {
+            display: none;
         }
         #homeOverlay .home-loc input {
             width: 100%;
+            padding: 8px 4px;
+            font-size: 16px;
         }
         #homeOverlay .home-loc button {
             width: 100%;
+            border-radius: 12px;
+            height: 48px;
+            font-size: 15px;
         }
-        #homeOverlay .home-lede {
-            font-size: 14px;
+        #homeOverlay .home-explore {
+            margin-top: 16px;
+        }
+        #homeOverlay .home-footer {
+            font-size: 11px;
+            bottom: 14px;
+            padding: 0 20px;
+            text-align: center;
+        }
+        #homeOverlay .home-brand {
+            padding: 18px 20px;
+        }
+        /* The notice text below lede */
+        #homeOverlay .home-stage > p:last-of-type {
+            font-size: 12px !important;
+            max-width: 100% !important;
         }
     }
 
