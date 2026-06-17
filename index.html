@@ -3692,7 +3692,7 @@
                     <div style="font-size:12.5px;color:#64748b;margin-bottom:22px;">Food access options in my area.</div>
 
                     <div style="margin-bottom:22px;position:relative;">
-                        <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">Foods to compare</span>
+                        <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">Foods to price search</span>
                         <div id="foodTagsInput" style="display:flex;align-items:center;gap:9px;height:44px;padding:0 13px;border:1px solid #e7e4dc;border-radius:11px;background:#fff;cursor:text;transition:border-color .15s,box-shadow .15s;" onclick="document.getElementById('foodSearchInput').focus()">
                             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#94a3b8" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
                             <input id="foodSearchInput" type="text" placeholder="Search foods…" autocomplete="off" style="border:none;outline:none;font:14px 'Geist',sans-serif;flex:1;min-width:80px;padding:0;color:#0b1220;background:transparent;" oninput="onFoodSearchInput(this.value)" onkeydown="onFoodSearchKeydown(event)">
@@ -3836,7 +3836,7 @@
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-7.5-7-12a7 7 0 1 1 14 0c0 4.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
                 Find food near me
             </button>
-            <button class="tp-btn tp-btn-outline" id="compareBtn" onclick="compareTract()">Compare with another site</button>
+            <button class="tp-btn tp-btn-outline" id="compareBtn" onclick="compareTract()">Compare with another neighborhood</button>
         </footer>
     </div>
 
@@ -7626,12 +7626,19 @@
                 <span style="font-size:13px;color:#64748b;">${nearbyStores.length} stores nearby</span>
             </div>`;
 
+            // Build grid columns: store + dist + one column per food
+            const nFoods = selectedFoods.length;
+            const priceCols = selectedFoods.map(() => '100px').join(' ');
+            const gridCols = `1fr 70px ${priceCols}`;
+
             // Table header
-            html += `<div style="display:grid;grid-template-columns:1fr 84px 116px;align-items:center;gap:14px;padding:11px 4px;border-bottom:1px solid #e7e4dc;">
+            html += `<div style="display:grid;grid-template-columns:${gridCols};align-items:center;gap:10px;padding:11px 4px;border-bottom:1px solid #e7e4dc;">
                 <span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:#94a3b8;">Store</span>
-                <span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:#94a3b8;text-align:right;">Dist</span>
-                <span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:#1e3a8a;text-align:right;">${selectedFoods[0]?.name || 'Price'}</span>
-            </div>`;
+                <span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.13em;text-transform:uppercase;color:#94a3b8;text-align:right;">Dist</span>`;
+            selectedFoods.forEach(f => {
+                html += `<span style="font:600 10px/1 'Geist Mono',monospace;letter-spacing:.1em;text-transform:uppercase;color:#1e3a8a;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${f.name}">${f.name}</span>`;
+            });
+            html += `</div>`;
 
             // Rows
             nearbyStores.forEach(store => {
@@ -7644,34 +7651,36 @@
 
                 const addrLine = store.address ? `<div style="font:500 11.5px 'Geist Mono',monospace;color:#94a3b8;margin-top:4px;">${store.address}</div>` : '';
 
-                // Get price for first selected food
-                const f = selectedFoods[0];
+                // Get price for each selected food
                 const storePrices = priceLookup[store.storeId] || {};
                 const brandPrices = brandPriceLookup[store.brand] || {};
-                const p = f ? (storePrices[f.id] || storePrices[f.name] || brandPrices[f.id] || brandPrices[f.name]) : null;
+                let priceColsHtml = '';
+                selectedFoods.forEach(f => {
+                    const p = storePrices[f.id] || storePrices[f.name] || brandPrices[f.id] || brandPrices[f.name];
+                    if (p) {
+                        const isLowest = p.price === lowestPrice[f.id];
+                        const isEst = p.source === 'usda_estimate';
+                        const prefix = isEst ? '~' : '';
+                        const arrow = isLowest ? ' ↓' : '';
+                        const vClass = isLowest ? 'color:#15803d;font-weight:600;' : isEst ? 'color:#15803d;font-weight:600;' : 'font-weight:700;color:#0b1220;';
+                        priceColsHtml += `<div style="text-align:right;">
+                            <div style="font:700 12px 'Geist Mono',monospace;${vClass}">${prefix}$${p.price.toFixed(2)}${arrow}</div>
+                            <div style="font:500 9.5px 'Geist Mono',monospace;color:#94a3b8;margin-top:2px;">${p.unit}</div>
+                        </div>`;
+                    } else {
+                        priceColsHtml += `<div style="text-align:right;color:#d1d5db;font-size:12px;">&mdash;</div>`;
+                    }
+                });
 
-                let priceHtml = '<div style="text-align:right;color:#d1d5db;">&mdash;</div>';
-                if (p) {
-                    const isLowest = p.price === lowestPrice[f.id];
-                    const isEst = p.source === 'usda_estimate';
-                    const prefix = isEst ? '~' : '';
-                    const arrow = isLowest ? ' ↓' : '';
-                    const vClass = isLowest ? 'color:#15803d;font-style:italic;font-weight:600;' : isEst ? 'color:#15803d;font-style:italic;font-weight:600;' : 'font-weight:700;color:#0b1220;';
-                    priceHtml = `<div style="text-align:right;">
-                        <div style="font:700 13px 'Geist Mono',monospace;${vClass}">${prefix}$${p.price.toFixed(2)}${arrow}</div>
-                        <div style="font:500 10.5px 'Geist Mono',monospace;color:#94a3b8;margin-top:3px;">${p.unit}</div>
-                    </div>`;
-                }
-
-                html += `<div style="display:grid;grid-template-columns:1fr 84px 116px;align-items:center;gap:14px;padding:13px 4px;border-bottom:1px solid #f0ede6;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
+                html += `<div style="display:grid;grid-template-columns:${gridCols};align-items:center;gap:10px;padding:12px 4px;border-bottom:1px solid #f0ede6;transition:background .12s;" onmouseover="this.style.background='#f5f3ee'" onmouseout="this.style.background=''">
                     <div>
-                        <div style="font-size:14px;font-weight:600;color:#0b1220;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-                            ${store.name} <span style="font:700 12px 'Geist Mono',monospace;letter-spacing:-.02em;${tierClass}">${tierLabel}</span>${estBadge}
+                        <div style="font-size:13px;font-weight:600;color:#0b1220;display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+                            ${store.name} <span style="font:700 11px 'Geist Mono',monospace;letter-spacing:-.02em;${tierClass}">${tierLabel}</span>${estBadge}
                         </div>
                         ${addrLine}
                     </div>
-                    <div style="text-align:right;font:500 13px 'Geist Mono',monospace;color:#64748b;">${store.distMi.toFixed(1)} mi</div>
-                    ${priceHtml}
+                    <div style="text-align:right;font:500 12px 'Geist Mono',monospace;color:#64748b;">${store.distMi.toFixed(1)} mi</div>
+                    ${priceColsHtml}
                 </div>`;
             });
 
@@ -9975,6 +9984,7 @@
             return { plants: plantsData, animals: animalsData };
         }
 
+
         let currentTractFeature = null;
         let tractSiteStates = {}; // siteId -> boolean
         let currentTractTab = 'plants';
@@ -10091,6 +10101,7 @@
             showLandingPanels(null, null, tractNum);
             // Start hidden — user pulls it out
             document.getElementById('landingInfoPanel').classList.add('hidden');
+
         }
 
         function reRenderTractReportCard() {
@@ -10498,8 +10509,14 @@
             const sourceB = compareState.siteB || compareState.tractB;
             const dataA = getCompareData(sourceA);
             const dataB = getCompareData(sourceB);
-            const a = dataA[metric] || {};
-            const b = dataB[metric] || {};
+            const aRaw = dataA[metric] || {};
+            const bRaw = dataB[metric] || {};
+            // Convert to percentage of each area's total
+            const aTotalRaw = Object.values(aRaw).reduce((s, v) => s + v, 0) || 1;
+            const bTotalRaw = Object.values(bRaw).reduce((s, v) => s + v, 0) || 1;
+            const a = {}, b = {};
+            Object.entries(aRaw).forEach(([k, v]) => { a[k] = Math.round((v / aTotalRaw) * 1000) / 10; }); // 1 decimal %
+            Object.entries(bRaw).forEach(([k, v]) => { b[k] = Math.round((v / bTotalRaw) * 1000) / 10; });
 
             const topAKeys = Object.entries(a).sort((x, y) => y[1] - x[1]).slice(0, 5).map(e => e[0]);
             const topBKeys = Object.entries(b).sort((x, y) => y[1] - x[1]).slice(0, 5).map(e => e[0]);
@@ -10534,9 +10551,9 @@
         }
 
         function fmtCp(n) {
-            if (n >= 100) return n.toFixed(0);
-            if (n >= 10) return n.toFixed(1);
-            return n.toFixed(2);
+            if (n >= 100) return n.toFixed(0) + '%';
+            if (n >= 10) return n.toFixed(1) + '%';
+            return n.toFixed(1) + '%';
         }
 
         function renderCompareBody() {
@@ -10634,9 +10651,10 @@
 
                     let deltaHtml;
                     if (r.hasA && r.hasB) {
-                        const cls = r.deltaPct > 5 ? 'up' : r.deltaPct < -5 ? 'down' : 'eq';
-                        const sign = r.deltaPct > 0 ? '+' : '';
-                        deltaHtml = `<span class="delta ${cls}">${sign}${Math.round(r.deltaPct)}%</span>`;
+                        const diff = r.aVal - r.bVal;
+                        const cls = diff > 0.5 ? 'up' : diff < -0.5 ? 'down' : 'eq';
+                        const sign = diff > 0 ? '+' : '';
+                        deltaHtml = `<span class="delta ${cls}">${sign}${diff.toFixed(1)}%</span>`;
                     } else if (r.hasA && !r.hasB) {
                         deltaHtml = `<span class="delta only-a">A only</span>`;
                     } else {
