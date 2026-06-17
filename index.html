@@ -3295,13 +3295,13 @@
 
     /* ── A. Panels → bottom sheets ── */
     @media (max-width: 768px) {
-        /* Detail panel → bottom sheet */
+        /* Detail panel → compact bottom sheet, shows map above */
         .detail-panel {
             width: 100vw !important;
             top: auto !important;
             bottom: 0;
-            height: 85vh;
-            max-height: 85vh;
+            height: 55vh;
+            max-height: 55vh;
             border-radius: 18px 18px 0 0;
             transform: translateY(100%) !important;
             overflow-y: auto;
@@ -3311,26 +3311,30 @@
         }
         .detail-panel.compare-mode {
             width: 100vw !important;
+            height: 80vh;
+            max-height: 80vh;
         }
+        /* Hide compare button on mobile */
+        #compareBtn { display: none !important; }
 
-        /* Landing info panel (breakdown drawer) → bottom sheet */
+        /* Landing info panel → full sheet up to blue ribbon (46px header) */
         #landingInfoPanel {
             width: 100vw !important;
             max-width: 100vw !important;
             right: 0 !important;
-            top: auto !important;
+            top: 46px !important;
             bottom: 0;
-            height: 92vh;
-            border-radius: 18px 18px 0 0;
-            transform: translateY(100%) !important;
+            height: auto !important;
+            border-radius: 0;
+            transform: translateX(100%) !important;
             z-index: 1003 !important;
         }
         #landingInfoPanel.hidden {
-            transform: translateY(100%) !important;
+            transform: translateX(100%) !important;
         }
-        /* When visible on mobile */
+        /* When visible on mobile — slides in from right */
         #landingInfoPanel:not(.hidden) {
-            transform: translateY(0) !important;
+            transform: translateX(0) !important;
         }
 
         /* Species panel → bottom sheet */
@@ -3482,8 +3486,27 @@
     /* ── G. Editorial drawer single-column on mobile ── */
     @media (max-width: 768px) {
         .er {
-            padding: 24px 18px 40px !important;
+            padding: 12px 16px 40px !important;
             max-width: 100% !important;
+        }
+        .er-rule {
+            margin: 16px 0 !important;
+        }
+        .er-lede {
+            font-size: 13px !important;
+            margin-top: 6px !important;
+        }
+        .er-kpi b {
+            font-size: 22px !important;
+        }
+        .er-kpi span {
+            font-size: 11px !important;
+        }
+        .er-kpis {
+            margin-top: 12px !important;
+        }
+        .mobile-sheet-close {
+            margin-bottom: 0 !important;
         }
         .er-h1 {
             font-size: 24px !important;
@@ -3549,23 +3572,35 @@
         #homeOverlay .home-loc {
             margin-top: 28px !important;
             flex-direction: column;
-            border-radius: 16px;
-            padding: 12px 14px;
-            gap: 10px;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+            gap: 12px;
         }
         #homeOverlay .home-loc .pin {
             display: none;
         }
         #homeOverlay .home-loc input {
             width: 100%;
-            padding: 8px 4px;
+            padding: 14px 16px;
             font-size: 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(15,23,42,.08);
         }
         #homeOverlay .home-loc button {
-            width: 100%;
-            border-radius: 12px;
+            width: auto;
+            padding: 0 32px;
+            border-radius: 14px;
             height: 48px;
             font-size: 15px;
+            background: #c8612e !important;
+            align-self: center;
+        }
+        #homeOverlay .home-loc button:hover {
+            background: #b8561f !important;
         }
         #homeOverlay .home-explore {
             margin-top: 16px;
@@ -3601,34 +3636,147 @@
         }
     }
 
-    /* ── J. Right panel sticker collage adjustments ── */
+    /* ── J. Right panel sticker collage — compact for mobile ── */
     @media (max-width: 768px) {
-        .pc-body {
-            padding: 12px 16px 3px !important;
+        /* Header */
+        .detail-panel .tp-head {
+            padding: 10px 14px 8px !important;
         }
-        .pc-head {
-            padding: 14px 16px 12px !important;
+        .detail-panel .tp-title {
+            font-size: 16px !important;
+        }
+        .detail-panel .tp-sub {
+            font-size: 10px !important;
+            margin-top: 2px !important;
+        }
+        .detail-panel .tp-crumb {
+            font-size: 8.5px !important;
+        }
+        .detail-panel .tp-close {
+            width: 32px !important;
+            height: 32px !important;
+        }
+        /* Sites pills */
+        .tp-sites {
+            padding: 4px 14px 6px !important;
+        }
+        .tp-sites .pc-site {
+            font-size: 9px !important;
+            padding: 2px 7px !important;
+        }
+        /* Body */
+        .pc-body {
+            padding: 8px 14px 2px !important;
         }
         .pc-variety {
-            gap: 10px !important;
+            gap: 8px !important;
+            margin-bottom: 8px !important;
         }
-        .pc-counts {
-            gap: 6px !important;
+        .pc-bignum {
+            font-size: 30px !important;
         }
-        .pc-stand {
-            gap: 6px !important;
+        .pc-bignum .ord {
+            font-size: 14px !important;
         }
-        .pc-stamp-nm {
+        .pc-rubber {
             font-size: 9px !important;
+            padding: 2px 6px !important;
+        }
+        .pc-segmeter {
+            margin: 6px 0 3px !important;
+        }
+        .pc-segmeter i {
+            height: 10px !important;
+        }
+        .pc-segmeter-ends {
+            font-size: 7.5px !important;
+        }
+        /* Count cards */
+        .pc-counts {
+            gap: 5px !important;
+            margin-bottom: 8px !important;
+        }
+        .pc-count {
+            padding: 7px 6px 6px !important;
+            border-radius: 9px !important;
+        }
+        .pc-count-badge {
+            width: 28px !important;
+            height: 28px !important;
+            margin-bottom: 4px !important;
+        }
+        .pc-count-num {
+            font-size: 20px !important;
+        }
+        .pc-count-num.sm {
+            font-size: 17px !important;
+        }
+        .pc-count-cap {
+            font-size: 9px !important;
+            margin-top: 2px !important;
+        }
+        .pc-count-of {
+            font-size: 8.5px !important;
+        }
+        /* Cuisine */
+        .pc-cuisine {
+            padding: 8px 10px !important;
+            margin-bottom: 8px !important;
+        }
+        .pc-cuisine-ic {
+            width: 24px !important;
+            height: 24px !important;
+        }
+        .pc-cuisine-nm {
+            font-size: 12px !important;
+        }
+        .pc-klabel {
+            font-size: 8.5px !important;
         }
         .pc-tags {
-            max-height: 56px !important;
+            max-height: 26px !important;
+            gap: 3px !important;
+            margin-top: 5px !important;
         }
-        .tp-sites {
-            padding: 8px 16px 10px !important;
+        .pc-tag {
+            font-size: 9px !important;
+            padding: 2px 7px !important;
         }
+        /* Stamps */
+        .pc-stand {
+            gap: 5px !important;
+            margin-bottom: 6px !important;
+        }
+        .pc-stamp {
+            padding: 7px 4px 6px !important;
+        }
+        .pc-stamp-ic {
+            width: 26px !important;
+            height: 26px !important;
+            margin-bottom: 3px !important;
+        }
+        .pc-stamp-mult {
+            font-size: 15px !important;
+        }
+        .pc-stamp-nm {
+            font-size: 8.5px !important;
+            min-height: 18px !important;
+        }
+        .pc-stamp-pct {
+            font-size: 7.5px !important;
+        }
+        /* Footer */
         .pc-foot {
-            padding: 10px 16px 12px !important;
+            padding: 6px 14px 8px !important;
+            gap: 4px !important;
+        }
+        .pc-btn {
+            height: 34px !important;
+            font-size: 12px !important;
+        }
+        .pc-btn.ghost {
+            height: 30px !important;
+            font-size: 11px !important;
         }
         /* Add "See full report" button styling (will be added via JS) */
         .mobile-report-btn {
@@ -3640,6 +3788,10 @@
             color: #0b1220;
             font: 500 12px 'Geist', sans-serif;
             cursor: pointer;
+        }
+        .mobile-sheet-close { display: none !important; }
+        @media (max-width: 768px) {
+            .mobile-sheet-close { display: block !important; }
         }
     }
 
@@ -6981,14 +7133,6 @@
                 updateAllPOILayersForZoom();
             });
 
-            // Add click handler for POI radius counting
-            map.on('click', function(e) {
-                // Only show POI count if radius is enabled and POI layers are active
-                if (poiClickRadius === null) return;
-                if (activePOILayers.size === 0) return;
-                const counts = countPOIsWithinRadius(e.latlng.lat, e.latlng.lng, poiClickRadius);
-                showPOIRadiusPopup(e.latlng, counts, poiClickRadius);
-            });
         }
 
         function addPlantMarkers() {
@@ -13812,6 +13956,10 @@
 
             // ── Build the editorial article ──
             let h = '<article class="er">';
+            // Mobile close button
+            h += `<div class="mobile-sheet-close" style="display:none;text-align:right;margin-bottom:4px;">
+                <button onclick="document.getElementById('landingInfoPanel').classList.add('hidden')" style="width:36px;height:36px;border:1px solid #e7e4dc;border-radius:10px;background:#fff;color:#64748b;font-size:18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">&times;</button>
+            </div>`;
 
             // ── HERO ──
             h += `<div class="er-eye">Neighborhood food report</div>`;
@@ -14196,22 +14344,28 @@
             }
         }
 
-        // Mobile: swipe down to close bottom sheet panels
+        // Mobile: swipe down to close bottom sheet panels (only when scrolled to top)
         if ('ontouchstart' in window) {
-            let touchStartY = 0;
-            const panels = ['detailPanel'];
-            panels.forEach(id => {
+            function addSwipeToDismiss(id, closeFn) {
                 const el = document.getElementById(id);
                 if (!el) return;
+                let touchStartY = 0;
+                let scrollTop = 0;
                 el.addEventListener('touchstart', function(e) {
                     touchStartY = e.touches[0].clientY;
+                    scrollTop = el.scrollTop;
                 }, { passive: true });
                 el.addEventListener('touchend', function(e) {
                     const deltaY = e.changedTouches[0].clientY - touchStartY;
-                    if (deltaY > 100 && window.innerWidth <= 768) {
-                        closeDetailPanel();
+                    // Only dismiss if scrolled to top and swiped down significantly
+                    if (deltaY > 80 && scrollTop <= 5 && window.innerWidth <= 768) {
+                        closeFn();
                     }
                 }, { passive: true });
+            }
+            addSwipeToDismiss('detailPanel', closeDetailPanel);
+            addSwipeToDismiss('landingInfoPanel', function() {
+                document.getElementById('landingInfoPanel').classList.add('hidden');
             });
         }
 
