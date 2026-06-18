@@ -3342,11 +3342,14 @@
             z-index: 1003 !important;
         }
         #landingInfoPanel.hidden {
-            transform: translateY(100%) !important;
+            transform: translateY(110%) !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
         }
         /* When visible on mobile */
         #landingInfoPanel:not(.hidden) {
             transform: translateY(0) !important;
+            visibility: visible !important;
         }
 
         /* Species panel → bottom sheet */
@@ -3967,6 +3970,8 @@
         @media (max-width: 768px) {
             .er-mobile-close { display: block; }
             #compareBtn { display: none !important; }
+            .detail-panel .tp-sub { display: none !important; }
+            .detail-panel .tp-sites { display: none !important; }
             .poi-controls { max-width: 160px !important; }
             .poi-controls-header { padding: 8px 10px; }
             /* Compact the sticker panel on mobile */
@@ -7586,7 +7591,9 @@
             if (!container || !window._drawerData) return;
             const { d } = window._drawerData;
             const items = erTab === 'plants' ? d.allPlants : d.allAnimals;
-            const display = erViewAll ? items : items.slice(0, 10);
+            const isMobileAbund = window.innerWidth <= 768;
+            const defaultCount = isMobileAbund ? 5 : 10;
+            const display = erViewAll ? items : items.slice(0, defaultCount);
             const trackColor = erTab === 'plants' ? '#5b6cf0' : '#c8612e';
             let html = '';
             html += `<div class="er-seg">`;
@@ -7611,12 +7618,16 @@
                 });
                 return out;
             }
-            html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 32px;">`;
-            html += `<div>${renderAbundCol(leftCol)}</div>`;
-            html += `<div>${renderAbundCol(rightCol)}</div>`;
-            html += `</div>`;
-            if (items.length > 10) {
-                const linkText = erViewAll ? 'Show top 10' : `View all ${items.length}`;
+            if (isMobileAbund) {
+                html += `<div>${renderAbundCol(display)}</div>`;
+            } else {
+                html += `<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 32px;">`;
+                html += `<div>${renderAbundCol(leftCol)}</div>`;
+                html += `<div>${renderAbundCol(rightCol)}</div>`;
+                html += `</div>`;
+            }
+            if (items.length > defaultCount) {
+                const linkText = erViewAll ? `Show top ${defaultCount}` : `View all ${items.length}`;
                 html += `<div class="er-viewall"><a href="#" onclick="event.preventDefault();toggleErViewAll()">${linkText} &rarr;</a></div>`;
             }
             container.innerHTML = html;
