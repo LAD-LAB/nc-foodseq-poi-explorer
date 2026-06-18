@@ -3328,28 +3328,27 @@
             width: 100vw !important;
         }
 
-        /* Landing info panel (breakdown drawer) → bottom sheet */
+        /* Landing info panel (breakdown drawer) → full screen sheet */
         #landingInfoPanel {
             width: 100vw !important;
             max-width: 100vw !important;
             right: 0 !important;
+            left: 0 !important;
             top: 46px !important;
             bottom: 0 !important;
             height: calc(100vh - 46px) !important;
             height: calc(100dvh - 46px) !important;
             border-radius: 0 !important;
-            transform: translateY(100%) !important;
             z-index: 1003 !important;
+            transition: transform .35s ease !important;
         }
         #landingInfoPanel.hidden {
-            transform: translateY(110%) !important;
+            transform: translateY(100%) !important;
             pointer-events: none !important;
-            visibility: hidden !important;
         }
-        /* When visible on mobile */
         #landingInfoPanel:not(.hidden) {
             transform: translateY(0) !important;
-            visibility: visible !important;
+            pointer-events: auto !important;
         }
 
         /* Species panel → bottom sheet */
@@ -7785,9 +7784,10 @@
                 initFindFoodMap();
             }
 
-            // Close detail panel when switching away from map
+            // Close detail panel and info panel when switching away from map
             if (view !== 'map') {
                 closeDetailPanel();
+                document.getElementById('landingInfoPanel').classList.add('hidden');
             }
             // Hide gap button and map view when not on Food Near Me
             if (view !== 'find-food') {
