@@ -7763,6 +7763,9 @@
             const row2 = document.getElementById('mapControlsRow');
             if (view === 'map') {
                 row2.classList.remove('hidden');
+                // Restore panels (may still be hidden via .hidden/.open classes)
+                document.getElementById('detailPanel').style.display = '';
+                document.getElementById('landingInfoPanel').style.display = '';
             } else {
                 row2.classList.add('hidden');
             }
@@ -7784,10 +7787,13 @@
                 initFindFoodMap();
             }
 
-            // Close detail panel and info panel when switching away from map
+            // Close and hide all panels when switching away from map
             if (view !== 'map') {
                 closeDetailPanel();
-                document.getElementById('landingInfoPanel').classList.add('hidden');
+                document.getElementById('detailPanel').style.display = 'none';
+                const lp = document.getElementById('landingInfoPanel');
+                lp.classList.add('hidden');
+                lp.style.display = 'none';
             }
             // Hide gap button and map view when not on Food Near Me
             if (view !== 'find-food') {
