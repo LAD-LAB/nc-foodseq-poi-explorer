@@ -3345,8 +3345,10 @@
         #landingInfoPanel.hidden {
             transform: translateY(100%) !important;
             pointer-events: none !important;
+            display: none !important;
         }
         #landingInfoPanel:not(.hidden) {
+            display: block !important;
             transform: translateY(0) !important;
             pointer-events: auto !important;
         }
