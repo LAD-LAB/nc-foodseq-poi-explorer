@@ -14868,6 +14868,11 @@
                 h += `<div class="er-rule"></div>`;
             }
 
+            // ── USDA FOOD ACCESS (redesigned) ──
+            if (typeof buildUSDASection === 'function' && saId) {
+                h += buildUSDASection(saId);
+            }
+
             // ── WHAT CAN HELP ──
             const arrowSvg = `<svg class="nf-rc-arrow" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4l4 4-4 4"/></svg>`;
             const phoneSvg = `<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3.5c0 5 4.5 9.5 9.5 9.5l.5-2.5-3-1-1 1.2A8 8 0 0 1 5.3 6.5L6.5 5.5l-1-3z"/></svg>`;
@@ -15068,6 +15073,141 @@
 
         // Start the application
         init();
+    </script>
+    <script>
+        // USDA Food Access Research Atlas integration
+        function sampleIdToGeoid(sid) {
+            var parts = String(sid).split('.');
+            var main = parts[0].padStart(4, '0');
+            var sub = parts.length > 1 ? parts[1].padEnd(2, '0') : '00';
+            return '37063' + main + sub;
+        }
+        function getUSDAData(tractNum) {
+            if (typeof usdaDesertData === 'undefined' || !usdaDesertData || !usdaDesertData.tracts) return null;
+            return usdaDesertData.tracts[sampleIdToGeoid(tractNum)] || null;
+        }
+
+        // SVG icons
+        var _uChk26 = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 6.5"/></svg>';
+        var _uChk11 = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 6.5"/></svg>';
+        var _uWarn26 = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/><path d="M10.3 3.2L1.8 18a2 2 0 0 0 1.7 3h16.9a2 2 0 0 0 1.7-3L13.7 3.2a2 2 0 0 0-3.4 0z"/></svg>';
+        var _uPin = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>';
+        var _uCar = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l1.4-4.2A2 2 0 0 1 7.3 8.4h9.4a2 2 0 0 1 1.9 1.4L20 14M4 14h16v3.2h-2.2M4 14v3.2h2.2M6.2 17.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 0 0-3.2 0zm8.4 0a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 0 0-3.2 0z"/></svg>';
+
+        function buildUSDASection(saId) {
+            var u = getUSDAData(saId);
+            if (!u) return '';
+
+            var flags = [
+                { key: 'foodDesert_half_10', dist: '0.5 / 10 mi', name: 'Strict distance', sub: '&frac12; mi urban &middot; 10 mi rural', icon: _uPin },
+                { key: 'foodDesert_1_10', dist: '1 / 10 mi', name: 'Standard <span style="color:#94a3b8;font-weight:500">&middot; LILA</span>', sub: '1 mi urban &middot; 10 mi rural', icon: _uPin },
+                { key: 'foodDesert_1_20', dist: '1 / 20 mi', name: 'Extended rural', sub: '1 mi urban &middot; 20 mi rural', icon: _uPin },
+                { key: 'foodDesert_vehicle', dist: 'Vehicle', name: 'Vehicle-limited', sub: 'Low access + few vehicles', icon: _uCar }
+            ];
+            var flaggedCount = 0;
+            for (var i = 0; i < flags.length; i++) { if (u[flags[i].key]) flaggedCount++; }
+
+            var isOk = flaggedCount === 0 && !u.lowIncome;
+            var gc = isOk ? '#1f8a5b' : '#b8842a';
+            var gd = isOk ? '#15683f' : '#8a6418';
+            var gs = isOk ? '#e3f1e8' : '#f6ecd6';
+            var gl = isOk ? '#bfe0cb' : '#e7d3a2';
+            var shadow = isOk ? 'rgba(31,138,91,.32)' : 'rgba(184,132,42,.32)';
+
+            var h = '<div class="er-rule"></div>';
+            // Section with background
+            h += '<div style="background:#f5f3ee;border-top:1px solid #e7e4dc;border-bottom:1px solid #e7e4dc;padding:26px 0;margin:0 -28px;padding-left:28px;padding-right:28px;">';
+
+            // Header row
+            h += '<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px;">';
+            h += '<span style="font:600 11px/1 \'Geist Mono\',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;">USDA Food Access</span>';
+            h += '<span style="font:500 10.5px \'Geist Mono\',monospace;letter-spacing:.04em;color:#94a3b8;">USDA ERS &middot; Food Access Research Atlas &middot; 2019</span>';
+            h += '</div>';
+
+            // Verdict band
+            var verdictTitle = isOk ? 'Adequate food access' : 'Limited food access';
+            var verdictSub = isOk
+                ? 'This neighborhood is <b>not</b> flagged as a food desert under any USDA distance rule.'
+                : 'This neighborhood is flagged under <b>' + flaggedCount + ' of 4</b> USDA distance rules.';
+            h += '<div style="display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;background:' + gs + ';border:1px solid ' + gl + ';border-radius:14px;padding:20px 24px;">';
+            // Seal
+            h += '<span style="width:52px;height:52px;border-radius:15px;background:' + gc + ';color:#fff;display:grid;place-items:center;box-shadow:0 6px 16px ' + shadow + ';">' + (isOk ? _uChk26 : _uWarn26) + '</span>';
+            // Text
+            h += '<div>';
+            h += '<div style="font:600 27px/1.05 \'Geist\',-apple-system,sans-serif;color:' + gd + ';letter-spacing:-.01em;">' + verdictTitle + '</div>';
+            h += '<div style="font-size:13.5px;color:' + (isOk ? '#43705a' : '#7a6333') + ';margin-top:4px;max-width:46ch;">' + verdictSub + '</div>';
+            h += '</div>';
+            // Flag pills
+            h += '<div style="display:flex;flex-direction:column;gap:8px;">';
+            // Income pill
+            var incOk = !u.lowIncome;
+            var pillBg = incOk ? 'rgba(255,255,255,.72)' : '#f6ecd6';
+            var pillBorder = incOk ? gl : '#e7d3a2';
+            var pillColor = incOk ? gd : '#8a6418';
+            var tickBg = incOk ? gc : '#b8842a';
+            h += '<span style="display:inline-flex;align-items:center;gap:9px;white-space:nowrap;background:' + pillBg + ';border:1px solid ' + pillBorder + ';border-radius:999px;padding:8px 14px 8px 11px;font-size:13px;font-weight:600;color:' + pillColor + ';">';
+            h += '<span style="width:18px;height:18px;border-radius:50%;background:' + tickBg + ';color:#fff;display:grid;place-items:center;">' + _uChk11 + '</span>';
+            h += '<span style="font:600 9px \'Geist Mono\',monospace;letter-spacing:.1em;text-transform:uppercase;color:' + (incOk ? '#6d9a82' : '#a89060') + ';margin-right:-2px;">Income</span>';
+            h += (incOk ? 'No income flag' : 'Income flag');
+            h += '</span>';
+            // Access pill
+            var accOk = !u.lowAccess_1;
+            pillBg = accOk ? 'rgba(255,255,255,.72)' : '#f6ecd6';
+            pillBorder = accOk ? gl : '#e7d3a2';
+            pillColor = accOk ? gd : '#8a6418';
+            tickBg = accOk ? gc : '#b8842a';
+            h += '<span style="display:inline-flex;align-items:center;gap:9px;white-space:nowrap;background:' + pillBg + ';border:1px solid ' + pillBorder + ';border-radius:999px;padding:8px 14px 8px 11px;font-size:13px;font-weight:600;color:' + pillColor + ';">';
+            h += '<span style="width:18px;height:18px;border-radius:50%;background:' + tickBg + ';color:#fff;display:grid;place-items:center;">' + _uChk11 + '</span>';
+            h += '<span style="font:600 9px \'Geist Mono\',monospace;letter-spacing:.1em;text-transform:uppercase;color:' + (accOk ? '#6d9a82' : '#a89060') + ';margin-right:-2px;">Access</span>';
+            h += (accOk ? 'Adequate access' : 'Limited access');
+            h += '</span>';
+            h += '</div>'; // flags
+            h += '</div>'; // verdict grid
+
+            // Matrix intro
+            h += '<div style="display:flex;align-items:baseline;justify-content:space-between;margin:26px 0 4px;">';
+            h += '<span style="font:600 11px \'Geist Mono\',monospace;letter-spacing:.14em;text-transform:uppercase;color:#64748b;">Desert flags by threshold</span>';
+            h += '<span style="font:500 11.5px \'Geist Mono\',monospace;color:' + gd + ';display:inline-flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;border-radius:50%;background:' + gc + ';"></span>' + flaggedCount + ' of 4 rules flagged</span>';
+            h += '</div>';
+            var noteEnd = isOk ? 'this area clears every one.' : 'this area is flagged on ' + flaggedCount + '.';
+            h += '<p style="font-size:13px;color:#64748b;line-height:1.5;max-width:78ch;margin:0 0 16px;">A tract is a <b style="color:#1f2937;font-weight:600;">food desert</b> only when it is both low-income <b style="color:#1f2937;font-weight:600;">and</b> low-access under a rule. Each rule pairs an <b style="color:#1f2937;font-weight:600;">urban</b> and a <b style="color:#1f2937;font-weight:600;">rural</b> distance to the nearest supermarket &mdash; ' + noteEnd + '</p>';
+
+            // Threshold cards
+            h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;">';
+            for (var ci = 0; ci < flags.length; ci++) {
+                var f = flags[ci];
+                var isFlagged = !!u[f.key];
+                var cls = isFlagged ? 'flag' : 'clear';
+                var icBg = isFlagged ? '#f6ecd6' : '#e3f1e8';
+                var icColor = isFlagged ? '#b8842a' : '#1f8a5b';
+                var badgeBg = isFlagged ? '#f6ecd6' : '#e3f1e8';
+                var badgeColor = isFlagged ? '#8a6418' : '#15683f';
+                var badgeText = isFlagged ? 'Desert' : 'Clear';
+
+                h += '<div style="background:#fff;border:1px solid #e7e4dc;border-radius:13px;padding:15px 16px 16px;display:flex;flex-direction:column;">';
+                // Top row
+                h += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:12px;">';
+                h += '<span style="width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:' + icBg + ';color:' + icColor + ';">' + f.icon + '</span>';
+                h += '<span style="font:600 10px \'Geist Mono\',monospace;letter-spacing:.07em;text-transform:uppercase;padding:5px 9px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;background:' + badgeBg + ';color:' + badgeColor + ';"><span style="width:6px;height:6px;border-radius:50%;background:currentColor;"></span>' + badgeText + '</span>';
+                h += '</div>';
+                // Content
+                h += '<div style="font:600 17px/1 \'Geist Mono\',monospace;color:#0b1220;letter-spacing:-.01em;">' + f.dist + '</div>';
+                h += '<div style="font-size:13.5px;font-weight:600;color:#1f2937;margin-top:7px;">' + f.name + '</div>';
+                h += '<div style="font-size:12px;color:#64748b;margin-top:3px;line-height:1.4;">' + f.sub + '</div>';
+                h += '</div>'; // card
+            }
+            h += '</div>'; // matrix grid
+
+            // Source row
+            h += '<div style="margin-top:20px;display:flex;align-items:center;gap:9px;font-size:12px;color:#94a3b8;">';
+            h += '<span>Flags reflect 2019 census-tract data and update with each Atlas release.</span>';
+            h += '<span style="flex:1;height:1px;background:#e7e4dc;"></span>';
+            h += '</div>';
+
+            h += '</div>'; // close background section
+            h += '<div style="height:30px;"></div>';
+            return h;
+        }
     </script>
 </body>
 </html>
