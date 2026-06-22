@@ -5008,7 +5008,8 @@
             'Chelonia mydas', 'Southern puffer', 'Human', 'Centropus sinensis',
             // Vague taxonomic groups
             'Actinopteri', 'Mammalia', 'Aves', 'Carnivora', 'Artiodactyla',
-            'Galliformes', 'Cattle/Sheep/Goat family', 'Macropodidae', 'Phoca', 'Phocidae'
+            'Galliformes', 'Cattle/Sheep/Goat family', 'Macropodidae', 'Phoca', 'Phocidae',
+            'White-tailed deer'
         ]);
 
         // Build reverse lookup: original key -> consolidated display name
@@ -11136,6 +11137,11 @@
 
             body.innerHTML = html;
 
+            // Replace diet variety with balance scores
+            if (typeof replaceDietVariety === 'function') {
+                replaceDietVariety(body, plants);
+            }
+
             // On mobile, add "See full report" to footer since side tab is hidden
             if (window.innerWidth <= 768 && tractNum) {
                 const foot = document.getElementById('tpCtas');
@@ -15097,6 +15103,105 @@
         var _uWarn26 = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/><path d="M10.3 3.2L1.8 18a2 2 0 0 0 1.7 3h16.9a2 2 0 0 0 1.7-3L13.7 3.2a2 2 0 0 0-3.4 0z"/></svg>';
         var _uPin = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.2-7-11a7 7 0 1 1 14 0c0 5.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.4"/></svg>';
         var _uCar = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14l1.4-4.2A2 2 0 0 1 7.3 8.4h9.4a2 2 0 0 1 1.9 1.4L20 14M4 14h16v3.2h-2.2M4 14v3.2h2.2M6.2 17.2a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 0 0-3.2 0zm8.4 0a1.6 1.6 0 1 0 3.2 0 1.6 1.6 0 0 0-3.2 0z"/></svg>';
+
+        function replaceDietVariety(container, plants) {
+            try {
+                // Aggregate data
+                var agg = aggregatePlantsData(plants);
+                var _isH = function(sp) { var m = foodseqData.species_metadata[sp]; return !m || m._hidden || (m.common_name && m.common_name.startsWith('NA_')); };
+                var plantEntries = Object.entries(agg.plants).filter(function(e) { return e[1] > 0 && !_isH(e[0]); });
+                var animalEntries = Object.entries(agg.animals).filter(function(e) { return e[1] > 0 && !_isH(e[0]); });
+
+                var PLANT_GROUPS = ['vegetable', 'fruit', 'grain', 'legume', 'seed_nut', 'herb_spice'];
+                var ANIMAL_GROUPS = ['meat_poultry', 'meat', 'seafood'];
+
+                function groupBalance(entries, groups) {
+                    var counts = {};
+                    groups.forEach(function(g) { counts[g] = 0; });
+                    entries.forEach(function(e) {
+                        var meta = foodseqData.species_metadata[e[0]];
+                        if (!meta) return;
+                        var fg = meta.food_group;
+                        if (fg === 'meat_poultry' || fg === 'meat') fg = 'meat_poultry';
+                        if (counts[fg] !== undefined) counts[fg] += e[1];
+                    });
+                    var vals = Object.values(counts).filter(function(v) { return v > 0; });
+                    if (vals.length <= 1) return { score: 0, gp: vals.length, gt: groups.length };
+                    var total = vals.reduce(function(s, v) { return s + v; }, 0);
+                    var H = 0;
+                    vals.forEach(function(v) { var p = v / total; if (p > 0) H -= p * Math.log(p); });
+                    var maxH = Math.log(vals.length);
+                    return { score: maxH > 0 ? Math.round((H / maxH) * 100) : 0, gp: vals.length, gt: groups.length };
+                }
+
+                var pb = groupBalance(plantEntries, PLANT_GROUPS);
+                var ab = groupBalance(animalEntries, ANIMAL_GROUPS);
+
+                function balanceCard(iconName, label, b) {
+                    var color = b.score < 40 ? '#c24a2b' : b.score < 70 ? '#b78e2c' : '#1f8a5b';
+                    var border = b.score < 40 ? 'rgba(194,74,43,.6)' : b.score < 70 ? 'rgba(183,142,44,.6)' : 'rgba(31,138,91,.6)';
+                    var tag = b.score < 40 ? 'Low balance' : b.score < 70 ? 'Moderate' : 'Well balanced';
+                    var h = '<div style="background:#f8f7f3;border:1px solid #e7e4dc;border-radius:12px;padding:14px 16px;">';
+                    h += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">';
+                    h += foodIconSvg(iconName, 18);
+                    h += '<span style="font:600 12px \'Geist\',sans-serif;color:#1f2937;">' + label + '</span></div>';
+                    h += '<div style="display:flex;align-items:baseline;gap:8px;">';
+                    h += '<span style="font:600 28px/1 \'Geist\',sans-serif;color:#0b1220;">' + b.score + '</span>';
+                    h += '<span style="font-size:13px;color:#64748b;">/100</span></div>';
+                    h += '<span style="display:inline-block;margin-top:6px;padding:3px 9px;border-radius:999px;font:600 10.5px \'Geist\',sans-serif;color:' + color + ';border:1px solid ' + border + ';">' + tag + '</span>';
+                    h += '<div style="margin-top:8px;font-size:11.5px;color:#64748b;">' + b.gp + ' of ' + b.gt + ' food groups</div>';
+                    h += '</div>';
+                    return h;
+                }
+
+                // Find the pc-body container
+                var pcBody = container.querySelector('.pc-body');
+                if (!pcBody) return;
+
+                // Find the Diet variety label
+                var klabels = pcBody.querySelectorAll('.pc-klabel');
+                var varietyLabel = null;
+                for (var i = 0; i < klabels.length; i++) {
+                    if (klabels[i].textContent === 'Diet variety') { varietyLabel = klabels[i]; break; }
+                }
+                if (!varietyLabel) return;
+
+                // Collect elements to remove: varietyLabel, then siblings until next pc-klabel
+                var toRemove = [varietyLabel];
+                var next = varietyLabel.nextElementSibling;
+                while (next && !next.classList.contains('pc-klabel')) {
+                    toRemove.push(next);
+                    next = next.nextElementSibling;
+                }
+                // Also remove pc-counts if it's a direct child of pcBody
+                var counts = pcBody.querySelector('.pc-counts');
+                if (counts && counts.parentNode === pcBody) toRemove.push(counts);
+
+                // Remember insertion point
+                var insertBefore = next; // the next pc-klabel or null
+
+                // Remove collected elements (all children of pcBody)
+                toRemove.forEach(function(el) {
+                    if (el.parentNode === pcBody) pcBody.removeChild(el);
+                });
+
+                // Build replacement
+                var wrapper = document.createElement('div');
+                var html = '<div class="pc-klabel" style="margin-bottom:10px;">Diet balance</div>';
+                html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:4px;">';
+                html += balanceCard('leaf', 'Plant foods', pb);
+                html += balanceCard('fish', 'Animal foods', ab);
+                html += '</div>';
+                wrapper.innerHTML = html;
+
+                // Insert before the next section
+                while (wrapper.firstChild) {
+                    pcBody.insertBefore(wrapper.firstChild, insertBefore);
+                }
+            } catch(e) {
+                console.log('replaceDietVariety error:', e.message, e.stack);
+            }
+        }
 
         function buildUSDASection(saId) {
             var u = getUSDAData(saId);
