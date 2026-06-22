@@ -29,6 +29,16 @@
             overflow: hidden;
         }
 
+        /* Global focus-visible for keyboard accessibility */
+        button:focus-visible,
+        .header-tab:focus-visible,
+        .marker-chip:focus-visible,
+        .toggle-btn:focus-visible,
+        [role="option"]:focus-visible {
+            outline: 2px solid #1e3a8a;
+            outline-offset: 2px;
+        }
+
         #map {
             width: 100vw;
             height: 100vh;
@@ -44,7 +54,7 @@
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: var(--z-header);
             background: #1e3a8a;
             padding: 0 24px;
             height: 52px;
@@ -59,7 +69,7 @@
             top: 52px;
             left: 0;
             right: 0;
-            z-index: 1000;
+            z-index: var(--z-header);
             background: #fff;
             padding: 0 24px;
             height: 42px;
@@ -210,8 +220,11 @@
         }
 
         .header-row2 select:focus {
-            outline: none;
             border-color: #cbbfa8;
+        }
+        .header-row2 select:focus-visible {
+            outline: 2px solid #1e3a8a;
+            outline-offset: 2px;
         }
 
         .marker-chip {
@@ -258,7 +271,7 @@
             right: 0;
             width: 420px;
             height: calc(100vh - 148px);
-            z-index: 1002;
+            z-index: var(--z-panel-top);
             background: #fff;
             border-left: 1px solid #e7e4dc;
             box-shadow: -8px 0 30px rgba(15,23,42,.05);
@@ -869,7 +882,8 @@
             border-radius: 8px; font: inherit; font-size: 13px;
             background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 10px center;
         }
-        .cp-picker-search:focus { outline: none; border-color: #1e3a8a; }
+        .cp-picker-search:focus { border-color: #1e3a8a; }
+        .cp-picker-search:focus-visible { outline: 2px solid #1e3a8a; outline-offset: 2px; }
         .cp-picker-current {
             display: inline-flex; align-items: center; gap: 6px;
             background: #e0e7ff; color: #1e3a8a; font-size: 12px; font-weight: 600;
@@ -897,7 +911,8 @@
             position: absolute;
             bottom: 20px;
             left: 20px;
-            z-index: 1000;
+            z-index: var(--z-header);
+            transition: opacity .08s ease;
         }
 
         .map-legend {
@@ -1014,7 +1029,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2000;
+            z-index: var(--z-loading);
             background: white;
             padding: 30px 50px;
             border-radius: 8px;
@@ -1023,8 +1038,8 @@
         }
 
         .loading-spinner {
-            border: 4px solid #e2e8f0;
-            border-top: 4px solid #4299e1;
+            border: 4px solid var(--t-line);
+            border-top: 4px solid var(--t-info);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -1036,6 +1051,33 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* ── Per-view loading overlay ── */
+        .view-loading-overlay {
+            position: absolute; inset: 0;
+            background: rgba(250,249,245,.85);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            z-index: 100; gap: 14px;
+            font: 500 14px/1 'Geist', sans-serif; color: #64748b;
+            transition: opacity .25s ease;
+        }
+        .view-loading-overlay.removing { opacity: 0; }
+        @keyframes pulse-bar {
+            0%, 100% { opacity: .3; }
+            50% { opacity: 1; }
+        }
+        .view-loading-bars {
+            display: flex; gap: 4px; align-items: flex-end; height: 24px;
+        }
+        .view-loading-bars span {
+            width: 4px; border-radius: 2px; background: #1e3a8a;
+            animation: pulse-bar 1.2s ease-in-out infinite;
+        }
+        .view-loading-bars span:nth-child(1) { height: 12px; animation-delay: 0s; }
+        .view-loading-bars span:nth-child(2) { height: 20px; animation-delay: .15s; }
+        .view-loading-bars span:nth-child(3) { height: 16px; animation-delay: .3s; }
+        .view-loading-bars span:nth-child(4) { height: 24px; animation-delay: .45s; }
 
 
         /* Toggle group (trends page) */
@@ -1066,7 +1108,7 @@
             --t-ink:        #0b1220;
             --t-text:       #1f2937;
             --t-muted:      #64748b;
-            --t-muted-2:    #94a3b8;
+            --t-muted-2:    #6b7a8d;
             --t-line:       #e5e7eb;
             --t-line-2:     #eef0f3;
             --t-bg:         #faf9f5;
@@ -1078,14 +1120,36 @@
             --t-rust:       #b8612a;
             --t-green:      #15803d;
             --t-red:        #b91c1c;
+            --t-error:      #e53e3e;
+            --t-info:       #4299e1;
             --t-r-card:     14px;
             --t-r-pill:     999px;
             --t-sans:  "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --t-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
             --t-serif: "Geist", -apple-system, sans-serif;
+            /* z-index scale */
+            --z-view:       999;
+            --z-map-ctrl:   998;
+            --z-header:     1000;
+            --z-panel:      1001;
+            --z-panel-top:  1002;
+            --z-landing:    1003;
+            --z-picker:     1100;
+            --z-loading:    2000;
+            --z-suggestions:10000;
+            --z-modal:      10001;
+            --z-home:       10002;
         }
 
         /* ========== TRENDS VIEW REDESIGNED ========== */
+        /* ── View transition ── */
+        .view-container {
+            transition: opacity .08s ease;
+        }
+        .view-container.view-fading {
+            opacity: 0;
+        }
+
         #trendsView {
             background: var(--t-bg) !important;
             font-family: var(--t-sans);
@@ -2240,8 +2304,11 @@
         }
 
         .prediction-search:focus {
-            outline: none;
             border-color: #4299e1;
+        }
+        .prediction-search:focus-visible {
+            outline: 2px solid #1e3a8a;
+            outline-offset: 2px;
         }
 
         .prediction-species-list {
@@ -2940,9 +3007,75 @@
         .food-desert-export-btn:hover {
             background: #3182ce;
         }
+        /* ── Help modal ── */
+        #helpModal {
+            position: fixed; inset: 0; z-index: var(--z-modal);
+            background: rgba(15,23,42,.45);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none;
+            transition: opacity .3s ease;
+            font-family: 'Geist', -apple-system, sans-serif;
+        }
+        #helpModal.open {
+            opacity: 1; pointer-events: auto;
+        }
+        #helpModal .help-card {
+            background: #faf9f5;
+            border-radius: 18px;
+            box-shadow: 0 24px 64px rgba(15,23,42,.18), 0 2px 8px rgba(15,23,42,.06);
+            max-width: 480px; width: calc(100% - 40px);
+            max-height: 80vh; overflow-y: auto;
+            padding: 36px 32px 28px;
+            transform: translateY(12px) scale(.97);
+            transition: transform .3s ease;
+        }
+        #helpModal.open .help-card {
+            transform: translateY(0) scale(1);
+        }
+        #helpModal .help-close {
+            position: absolute; top: 14px; right: 14px;
+            width: 32px; height: 32px; border: 1px solid #e7e4dc; border-radius: 10px;
+            background: #fff; color: #64748b; font-size: 18px; cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center;
+            transition: background .15s ease;
+        }
+        #helpModal .help-close:hover { background: #f1f0ec; }
+        #helpModal .help-title {
+            font: 700 20px/1.3 'Geist', sans-serif; color: #0b1220; margin: 0 0 6px;
+        }
+        #helpModal .help-sub {
+            font-size: 13.5px; color: #64748b; line-height: 1.5; margin: 0 0 24px;
+        }
+        #helpModal .help-section {
+            margin-bottom: 20px;
+        }
+        #helpModal .help-section-title {
+            font: 600 11px/1 'Geist Mono', monospace; letter-spacing: .14em; text-transform: uppercase;
+            color: #1e3a8a; margin-bottom: 10px;
+        }
+        #helpModal .help-item {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 13.5px; color: #4b5563; line-height: 1.55;
+            margin-bottom: 8px;
+        }
+        #helpModal .help-icon {
+            flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+            background: #e6e8fb; color: #1e3a8a;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; margin-top: 1px;
+        }
+        #helpModal .help-kbd {
+            display: inline-block; padding: 1px 6px; border-radius: 4px;
+            background: #f1f0ec; border: 1px solid #e7e4dc;
+            font: 500 11px/1.6 'Geist Mono', monospace; color: #4b5563;
+        }
+        #helpModal .help-footer {
+            margin-top: 20px; padding-top: 16px; border-top: 1px solid #e7e4dc;
+            font-size: 12px; color: #94a3b8; text-align: center;
+        }
         /* ── Home landing overlay ── */
         #homeOverlay {
-            position: fixed; inset: 0; z-index: 10000;
+            position: fixed; inset: 0; z-index: var(--z-home);
             background: radial-gradient(120% 90% at 50% -10%, #fffdf8 0%, rgba(255,253,248,0) 55%), #faf9f5;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             text-align: center; transition: opacity .8s ease, transform .8s ease;
@@ -3339,7 +3472,7 @@
             height: calc(100vh - 46px) !important;
             height: calc(100dvh - 46px) !important;
             border-radius: 0 !important;
-            z-index: 1003 !important;
+            z-index: var(--z-landing) !important;
             transition: transform .35s ease !important;
         }
         #landingInfoPanel.hidden {
@@ -3426,7 +3559,7 @@
         .header-row2 > .ctrl-label { font-size: 9px !important; }
         /* Make find me input fill available space */
         #findMeInput { width: 100% !important; min-width: 0 !important; flex: 1 !important; font-size: 14px !important; height: 36px !important; }
-        #findMeSuggestions { z-index: 100000 !important; }
+        #findMeSuggestions { z-index: var(--z-suggestions) !important; }
     }
 
     /* ── C. Map container ── */
@@ -3966,10 +4099,12 @@
             font: 500 12px 'Geist', sans-serif;
             cursor: pointer;
         }
-        .er-mobile-close { display: none; text-align: right; margin-bottom: 4px; }
+        .er-mobile-close { display: none !important; text-align: right; margin-bottom: 4px; }
+        @media (max-width: 768px) {
+            .er-mobile-close { display: block !important; }
+        }
         .trends-mobile-add { display: none; }
         @media (max-width: 768px) {
-            .er-mobile-close { display: block; }
             #compareBtn { display: none !important; }
             .detail-panel .tp-sub { display: none !important; }
             .detail-panel .tp-sites { display: none !important; }
@@ -4017,6 +4152,73 @@
         <div>Loading FoodSeq data...</div>
     </div>
 
+    <!-- Help modal -->
+    <div id="helpModal" onclick="if(event.target===this)closeHelp()">
+        <div class="help-card" style="position:relative;">
+            <button class="help-close" onclick="closeHelp()" aria-label="Close help">&times;</button>
+            <div class="help-title">NC FoodSeq Explorer</div>
+            <div class="help-sub">Explore food patterns across North Carolina using wastewater DNA surveillance data.</div>
+
+            <div class="help-section">
+                <div class="help-section-title">Getting started</div>
+                <div class="help-item">
+                    <span class="help-icon">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="6"/></svg>
+                    </span>
+                    <span>Click any <strong>treatment plant marker</strong> on the map to see what foods were detected in that area.</span>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M2 6h12"/></svg>
+                    </span>
+                    <span>Use <strong>Layers</strong> to overlay demographic data like income, population density, or USDA food deserts.</span>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v12M2 8h12"/></svg>
+                    </span>
+                    <span>Use <strong>Period</strong> to change the time window and see how diets shift over time.</span>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <div class="help-section-title">Views</div>
+                <div class="help-item">
+                    <span class="help-icon" style="background:#e6e8fb;">M</span>
+                    <span><strong>Map</strong> &mdash; Interactive map with species data, POI overlays, and demographics.</span>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon" style="background:#fce7d6;color:#c8612e;">T</span>
+                    <span><strong>Trends</strong> &mdash; Compare plant and animal detections across sites and time.</span>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon" style="background:#dcfce7;color:#15803d;">F</span>
+                    <span><strong>Food Near Me</strong> &mdash; Find grocery stores, restaurants, and food resources near any address.</span>
+                </div>
+            </div>
+
+            <div class="help-section">
+                <div class="help-section-title">Tips</div>
+                <div class="help-item">
+                    <span class="help-icon">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h8M8 4v8"/></svg>
+                    </span>
+                    <span>Zoom to level 11+ to see <strong>Points of Interest</strong> (restaurants, groceries, etc.).</span>
+                </div>
+                <div class="help-item">
+                    <span class="help-icon">
+                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 14L14 2"/><path d="M10 2h4v4"/></svg>
+                    </span>
+                    <span>Toggle <strong>Plants</strong> and <strong>Animals</strong> tabs to compare plant vs. animal detections.</span>
+                </div>
+            </div>
+
+            <div class="help-footer">
+                Built by LAD Lab &middot; Research prototype &middot; Press <span class="help-kbd">Esc</span> to close
+            </div>
+        </div>
+    </div>
+
     <!-- Home landing overlay -->
     <div id="homeOverlay">
         <div class="home-brand">
@@ -4055,6 +4257,7 @@
             <img src="foodseq-logo-64.png" alt="FoodSeq" style="width:30px;height:30px;border-radius:8px;">
             <span class="header-wordmark">NC FoodSeq <span style="color:rgba(255,255,255,.6);font-weight:500;">Explorer</span></span>
         </div>
+        <button onclick="showHelp()" aria-label="Help" style="margin-left:auto;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#fff;width:32px;height:32px;border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s ease;font-size:15px;font-weight:600;" onmouseover="this.style.background='rgba(255,255,255,.22)'" onmouseout="this.style.background='rgba(255,255,255,.12)'">?</button>
     </div>
 
     <!-- Row 1b: Page navigation tabs -->
@@ -4118,7 +4321,7 @@
         <div style="position:relative;display:inline-flex;align-items:center;gap:4px;">
             <input type="text" id="findMeInput" placeholder="Enter location" autocomplete="off"
                    style="padding:5px 10px;border:1.5px solid #d2d6dc;border-radius:6px;font-size:13px;font-family:inherit;color:#1a365d;width:260px;"
-                   oninput="onFindMeInput(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();selectFirstFindMe();}">
+                   oninput="onFindMeInput(this.value)">
             <button class="marker-chip" onclick="selectFirstFindMe()" style="padding:5px 10px;background:#c8612e;color:#fff;border-color:#c8612e;">Find me</button>
             <div id="findMeSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:100000;background:#fff;border:1.5px solid #d2d6dc;border-top:none;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);"></div>
         </div>
@@ -4247,11 +4450,11 @@
     </div>
 
     <!-- Map container -->
-    <div id="map"></div>
+    <div id="map" class="view-container"></div>
 
     <!-- Food Near Me view (hidden by default) -->
     <!-- Trends view -->
-    <div id="trendsView" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;overflow:auto;padding:28px 32px 60px;">
+    <div id="trendsView" class="view-container" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;overflow:auto;padding:28px 32px 60px;">
         <div class="trends-page">
             <!-- Breadcrumb (populated by navigateToTrends) -->
             <div class="trends-breadcrumb" id="trendsBreadcrumb" style="display:none;"></div>
@@ -4415,7 +4618,7 @@
     </div>
 
 
-    <div id="findFoodView" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;background:#faf9f5;overflow:hidden;">
+    <div id="findFoodView" class="view-container" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;background:#faf9f5;overflow:hidden;">
         <div style="display:flex;height:100%;">
             <!-- Left rail -->
             <aside style="width:320px;flex-shrink:0;background:#fff;border-right:1px solid #e7e4dc;display:flex;flex-direction:column;">
@@ -4781,12 +4984,24 @@
 
         // Species to exclude (non-food items, environmental contaminants, etc.)
         const SPECIES_EXCLUDE = new Set([
+            // Non-food plants
             'Bearded iris', 'Chinese hibiscus', 'Tiger lily', 'Wild pansy',
             'Shameplant', 'Southern magnolia', 'Yulan magnolia', 'Water lily',
             'Honeysuckle', 'Kratom', 'Opium poppy', 'Hemp', 'Oak', 'Pine',
-            'Blue Ridge two-lined salamander', 'Two-toed amphiuma', 'Siamese fighting fish',
-            'Southern platyfish', 'Southern puffer', 'Rat', 'Muskrat', 'Raccoon',
-            'Virginia opossum', 'Eastern gray squirrel', 'Greater cane rat'
+            // Pets & ornamental fish
+            'Cat', 'Dog', 'Siamese fighting fish', 'Southern platyfish',
+            // Wild animals
+            'American black bear', 'Raccoon', 'Virginia opossum', 'Eastern gray squirrel',
+            'Greater cane rat',
+            // Rodents & pests
+            'Rat', 'Black rat', 'Brown rat', 'House mouse',
+            // Non-food amphibians
+            'American green tree frog', 'Blue Ridge two-lined salamander', 'Two-toed amphiuma',
+            // Protected / toxic / non-food
+            'Chelonia mydas', 'Southern puffer', 'Human', 'Centropus sinensis',
+            // Vague taxonomic groups
+            'Actinopteri', 'Mammalia', 'Aves', 'Carnivora', 'Artiodactyla',
+            'Galliformes', 'Cattle/Sheep/Goat family', 'Macropodidae', 'Phoca', 'Phocidae'
         ]);
 
         // Build reverse lookup: original key -> consolidated display name
@@ -5307,7 +5522,9 @@
             `).join('');
         }
 
+        let _speciesSearchTimer = null;
         function filterSpeciesList(query) {
+            clearTimeout(_speciesSearchTimer);
             const listEl = document.getElementById('species-list');
 
             if (!query) {
@@ -5315,11 +5532,13 @@
                 return;
             }
 
-            listEl.classList.add('active');
-            const filtered = allSpeciesList.filter(s =>
-                s.name.toLowerCase().includes(query.toLowerCase())
-            );
-            renderSpeciesList(filtered);
+            _speciesSearchTimer = setTimeout(() => {
+                listEl.classList.add('active');
+                const filtered = allSpeciesList.filter(s =>
+                    s.name.toLowerCase().includes(query.toLowerCase())
+                );
+                renderSpeciesList(filtered);
+            }, 150);
         }
 
         function selectSpecies(speciesKey) {
@@ -6961,7 +7180,7 @@
 
         // Store radius circle for map click feature
         let radiusCircle = null;
-        let poiClickRadius = 5; // Default 5 miles, null = off
+        let poiClickRadius = null; // Disabled — feature removed
 
         // Set POI click radius
         function setPOIRadius(radius) {
@@ -7216,9 +7435,9 @@
                         }
                     });
 
-                    // 3. Mark NA_ species as hidden
+                    // 3. Mark NA_ species and excluded species as hidden
                     Object.entries(sm).forEach(([id, meta]) => {
-                        if (meta.common_name && meta.common_name.startsWith('NA_')) {
+                        if (meta.common_name && (meta.common_name.startsWith('NA_') || SPECIES_EXCLUDE.has(meta.common_name))) {
                             meta._hidden = true;
                         }
                     });
@@ -7308,6 +7527,9 @@
                 initSpeciesList();
                 console.log('Species list initialized with', allSpeciesList.length, 'species');
 
+                // Restore view from URL hash if present
+                restoreViewFromHash();
+
             } catch (error) {
                 console.error('Error loading data:', error);
                 document.getElementById('loading').innerHTML =
@@ -7359,14 +7581,7 @@
                 updateAllPOILayersForZoom();
             });
 
-            // Add click handler for POI radius counting
-            map.on('click', function(e) {
-                // Only show POI count if radius is enabled and POI layers are active
-                if (poiClickRadius === null) return;
-                if (activePOILayers.size === 0) return;
-                const counts = countPOIsWithinRadius(e.latlng.lat, e.latlng.lng, poiClickRadius);
-                showPOIRadiusPopup(e.latlng, counts, poiClickRadius);
-            });
+            // POI radius click feature removed
         }
 
         function addPlantMarkers() {
@@ -7659,13 +7874,14 @@
                     findMeResults = results;
                     if (results.length === 0) { box.style.display = 'none'; return; }
                     box.innerHTML = results.map((r, i) =>
-                        `<div style="padding:8px 12px;cursor:pointer;font-size:13px;color:#1f2937;border-bottom:1px solid #f3f4f6;"
+                        `<div data-ac-item="${i}" role="option" style="padding:8px 12px;cursor:pointer;font-size:13px;color:#1f2937;border-bottom:1px solid #f3f4f6;"
                               onmouseover="this.style.background='#f3f4f6'"
                               onmouseout="this.style.background=''"
                               onmousedown="event.preventDefault();findMeSelect(${i})">
                             ${r.display_name}
                         </div>`
                     ).join('');
+                    box.setAttribute('role', 'listbox');
                     box.style.display = '';
                 })
                 .catch(() => { box.style.display = 'none'; });
@@ -7754,58 +7970,108 @@
         let currentView = 'map';
         const VIEW_TAB_MAP = { 'map': 'Map', 'trends': 'Trends', 'find-food': 'Food Near Me', 'about': 'About' };
 
+        function showViewLoading(viewId, label) {
+            const container = document.getElementById(viewId);
+            if (!container || container.querySelector('.view-loading-overlay')) return;
+            const overlay = document.createElement('div');
+            overlay.className = 'view-loading-overlay';
+            overlay.innerHTML = `<div class="view-loading-bars"><span></span><span></span><span></span><span></span></div><div>${label || 'Loading\u2026'}</div>`;
+            container.style.position = container.style.position || 'relative';
+            container.appendChild(overlay);
+        }
+        function hideViewLoading(viewId) {
+            const container = document.getElementById(viewId);
+            if (!container) return;
+            const overlay = container.querySelector('.view-loading-overlay');
+            if (!overlay) return;
+            overlay.classList.add('removing');
+            setTimeout(() => overlay.remove(), 250);
+        }
+
+        let _switchViewTimer = null;
         function switchView(view) {
+            if (view === currentView) return;
+            if (_switchViewTimer) clearTimeout(_switchViewTimer);
+
+            const prevView = currentView;
             currentView = view;
+            // Update URL hash
+            if (!_switchViewFromPopstate) {
+                history.pushState(null, '', '#' + view);
+            }
             const tabLabel = VIEW_TAB_MAP[view];
             document.querySelectorAll('.header-tab').forEach(tab => {
                 tab.classList.toggle('active', tab.textContent === tabLabel);
             });
 
-            // Show/hide map controls strip
-            const row2 = document.getElementById('mapControlsRow');
-            if (view === 'map') {
-                row2.classList.remove('hidden');
-                // Restore panels (may still be hidden via .hidden/.open classes)
-                document.getElementById('detailPanel').style.display = '';
-                document.getElementById('landingInfoPanel').style.display = '';
-            } else {
-                row2.classList.add('hidden');
-            }
+            // Fade out current views
+            const viewEls = document.querySelectorAll('.view-container');
+            viewEls.forEach(el => el.classList.add('view-fading'));
+            document.querySelector('.bottom-left-container').style.opacity = '0';
 
-            // Show/hide views
-            document.getElementById('map').style.display = view === 'map' ? '' : 'none';
-            document.querySelector('.bottom-left-container').style.display = view === 'map' ? '' : 'none';
-            const trendsView = document.getElementById('trendsView');
-            if (trendsView) trendsView.style.display = view === 'trends' ? '' : 'none';
-            const findFoodView = document.getElementById('findFoodView');
-            if (findFoodView) findFoodView.style.display = view === 'find-food' ? '' : 'none';
-            // Initialize Trends view
-            if (view === 'trends') {
-                initTrendsView();
-            }
+            _switchViewTimer = setTimeout(() => {
+                // Show/hide map controls strip
+                const row2 = document.getElementById('mapControlsRow');
+                if (view === 'map') {
+                    row2.classList.remove('hidden');
+                    document.getElementById('detailPanel').style.display = '';
+                    document.getElementById('landingInfoPanel').style.display = '';
+                } else {
+                    row2.classList.add('hidden');
+                }
 
-            // Initialize or sync Find Food map
-            if (view === 'find-food') {
-                initFindFoodMap();
-            }
+                // Swap visibility
+                document.getElementById('map').style.display = view === 'map' ? '' : 'none';
+                document.querySelector('.bottom-left-container').style.display = view === 'map' ? '' : 'none';
+                const trendsView = document.getElementById('trendsView');
+                if (trendsView) trendsView.style.display = view === 'trends' ? '' : 'none';
+                const findFoodView = document.getElementById('findFoodView');
+                if (findFoodView) findFoodView.style.display = view === 'find-food' ? '' : 'none';
 
-            // Close and hide all panels when switching away from map
-            if (view !== 'map') {
-                closeDetailPanel();
-                document.getElementById('detailPanel').style.display = 'none';
-                const lp = document.getElementById('landingInfoPanel');
-                lp.classList.add('hidden');
-                lp.style.display = 'none';
-            }
-            // Hide gap button and map view when not on Food Near Me
-            if (view !== 'find-food') {
-                hideGapButton();
-                document.getElementById('gapMapView').classList.remove('open');
-            } else {
-                // Show gap button only if results are loaded
-                if (foodLocationMarker && foodLocationMarker._latlng_stored) {
+                // Initialize views
+                if (view === 'trends') initTrendsView();
+                if (view === 'find-food') initFindFoodMap();
+
+                // Close panels when switching away from map
+                if (view !== 'map') {
+                    closeDetailPanel();
+                    document.getElementById('detailPanel').style.display = 'none';
+                    const lp = document.getElementById('landingInfoPanel');
+                    lp.classList.add('hidden');
+                    lp.style.display = 'none';
+                }
+                // Gap button
+                if (view !== 'find-food') {
+                    hideGapButton();
+                    document.getElementById('gapMapView').classList.remove('open');
+                } else if (foodLocationMarker && foodLocationMarker._latlng_stored) {
                     showGapButton();
                 }
+
+                // Fade in — use rAF to ensure display change is painted first
+                requestAnimationFrame(() => {
+                    viewEls.forEach(el => el.classList.remove('view-fading'));
+                    document.querySelector('.bottom-left-container').style.opacity = '';
+                });
+            }, 80); // matches .08s CSS transition
+        }
+
+        // URL hash routing
+        let _switchViewFromPopstate = false;
+        const VALID_VIEWS = ['map', 'trends', 'find-food'];
+        window.addEventListener('popstate', function() {
+            const hash = location.hash.replace('#', '');
+            if (VALID_VIEWS.includes(hash) && hash !== currentView) {
+                _switchViewFromPopstate = true;
+                switchView(hash);
+                _switchViewFromPopstate = false;
+            }
+        });
+        // Restore view from hash on page load (deferred to after init)
+        function restoreViewFromHash() {
+            const hash = location.hash.replace('#', '');
+            if (VALID_VIEWS.includes(hash) && hash !== 'map') {
+                switchView(hash);
             }
         }
 
@@ -7844,16 +8110,25 @@
             });
         }
 
-        // Help modal placeholder
+        // Help modal
         function showHelp() {
-            alert('NC FoodSeq Explorer\\n\\nExplore food patterns across Durham, NC neighborhoods.\\n\\nClick a neighborhood to see what foods were detected.\\nUse Layers to overlay demographic data.\\nUse Period to change the time window.');
+            document.getElementById('helpModal').classList.add('open');
         }
+        function closeHelp() {
+            document.getElementById('helpModal').classList.remove('open');
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && document.getElementById('helpModal').classList.contains('open')) {
+                closeHelp();
+            }
+        });
 
         // Find Food map
         let findFoodMap = null;
 
         function initFindFoodMap() {
             if (!findFoodMap) {
+                showViewLoading('findFoodView', 'Initializing map\u2026');
                 findFoodMap = L.map('findFoodMap').setView(map.getCenter(), map.getZoom());
                 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; OpenStreetMap contributors',
@@ -7878,13 +8153,20 @@
                         style: { color: '#a0aec0', weight: 0.8, opacity: 0.5, fillColor: 'transparent', fillOpacity: 0 }
                     }).addTo(findFoodMap);
                 }
+
+                // Use ResizeObserver to reliably invalidate map size
+                const mapContainer = document.getElementById('findFoodMap');
+                if (mapContainer && typeof ResizeObserver !== 'undefined') {
+                    new ResizeObserver(() => { if (findFoodMap) findFoodMap.invalidateSize(); }).observe(mapContainer);
+                }
             } else {
                 // Sync view with main map
                 findFoodMap.setView(map.getCenter(), map.getZoom());
             }
-            // Fix tile rendering after display:none -> visible
+            // Brief delay to ensure layout is settled, then finalize
             setTimeout(() => {
                 findFoodMap.invalidateSize();
+                hideViewLoading('findFoodView');
                 // Auto-place marker if address was entered from home screen
                 if (window._homeGeocodedLat && !foodLocationMarker) {
                     updateFoodLocationMarker(window._homeGeocodedLat, window._homeGeocodedLon);
@@ -7895,31 +8177,88 @@
             }, 100);
         }
 
+        // Shared keyboard navigation for autocomplete suggestion boxes
+        function attachAutocompleteKeyboard(inputId, suggestionsId, selectFn) {
+            let activeIdx = -1;
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            input.addEventListener('keydown', function(e) {
+                const box = document.getElementById(suggestionsId);
+                if (!box || box.style.display === 'none') {
+                    if (e.key === 'Escape') { box && (box.style.display = 'none'); }
+                    return;
+                }
+                const items = box.querySelectorAll('[data-ac-item]');
+                if (!items.length) return;
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    activeIdx = Math.min(activeIdx + 1, items.length - 1);
+                    items.forEach((it, i) => { it.style.background = i === activeIdx ? '#f3f4f6' : ''; });
+                    items[activeIdx].scrollIntoView({ block: 'nearest' });
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    activeIdx = Math.max(activeIdx - 1, 0);
+                    items.forEach((it, i) => { it.style.background = i === activeIdx ? '#f3f4f6' : ''; });
+                    items[activeIdx].scrollIntoView({ block: 'nearest' });
+                } else if (e.key === 'Enter') {
+                    e.preventDefault();
+                    if (activeIdx >= 0 && activeIdx < items.length) {
+                        selectFn(activeIdx);
+                    } else {
+                        selectFn(0);
+                    }
+                    activeIdx = -1;
+                } else if (e.key === 'Escape') {
+                    e.preventDefault();
+                    box.style.display = 'none';
+                    activeIdx = -1;
+                } else {
+                    activeIdx = -1;
+                }
+            });
+            // Reset index when suggestions are refreshed
+            const observer = new MutationObserver(() => { activeIdx = -1; });
+            const box = document.getElementById(suggestionsId);
+            if (box) observer.observe(box, { childList: true });
+        }
+        // Wire up keyboard autocomplete on both search inputs
+        attachAutocompleteKeyboard('findMeInput', 'findMeSuggestions', function(idx) { findMeSelect(idx); });
+        attachAutocompleteKeyboard('foodLocation', 'locationSuggestions', function(idx) { selectLocationByIndex(idx); });
+
         // Location autocomplete using Nominatim
         let locationDebounce = null;
+        let locationResults = [];
         function onLocationInput(query) {
             clearTimeout(locationDebounce);
             const box = document.getElementById('locationSuggestions');
-            if (query.length < 3) { box.style.display = 'none'; return; }
+            if (query.length < 3) { box.style.display = 'none'; locationResults = []; return; }
             locationDebounce = setTimeout(() => {
                 fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query)}&countrycodes=us&viewbox=-79.2,-78.6,35.8,36.2&bounded=0&limit=5`, {
                     headers: { 'Accept-Language': 'en' }
                 })
                 .then(r => r.json())
                 .then(results => {
+                    locationResults = results;
                     if (results.length === 0) { box.style.display = 'none'; return; }
-                    box.innerHTML = results.map(r =>
-                        `<div style="padding:8px 12px;cursor:pointer;font-size:13px;color:#1f2937;border-bottom:1px solid #f3f4f6;"
+                    box.innerHTML = results.map((r, i) =>
+                        `<div data-ac-item="${i}" role="option" style="padding:8px 12px;cursor:pointer;font-size:13px;color:#1f2937;border-bottom:1px solid #f3f4f6;"
                               onmouseover="this.style.background='#f3f4f6'"
                               onmouseout="this.style.background=''"
-                              onclick="selectLocation('${r.display_name.replace(/'/g,"\\'")}', ${r.lat}, ${r.lon})">
+                              onclick="selectLocationByIndex(${i})">
                             ${r.display_name}
                         </div>`
                     ).join('');
+                    box.setAttribute('role', 'listbox');
                     box.style.display = '';
                 })
                 .catch(() => { box.style.display = 'none'; });
             }, 300);
+        }
+
+        function selectLocationByIndex(idx) {
+            const r = locationResults[idx];
+            if (!r) return;
+            selectLocation(r.display_name, r.lat, r.lon);
         }
 
         let foodLocationMarker = null;
@@ -8915,8 +9254,12 @@
         function initTrendsView() {
             if (trendsInitialized) return;
             trendsInitialized = true;
-            populateTrendsSiteDropdown();
-            renderTrendsCharts();
+            showViewLoading('trendsView', 'Preparing trends\u2026');
+            requestAnimationFrame(() => {
+                populateTrendsSiteDropdown();
+                renderTrendsCharts();
+                hideViewLoading('trendsView');
+            });
         }
 
         function populateTrendsSiteDropdown() {
@@ -14297,8 +14640,10 @@
 
             // ── Build the editorial article ──
             let h = '<article class="er">';
-            // Mobile close button for full report
-            h += `<div class="er-mobile-close"><button onclick="document.getElementById('landingInfoPanel').classList.add('hidden')" style="width:36px;height:36px;border:1px solid #e7e4dc;border-radius:10px;background:#fff;color:#64748b;font-size:18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">&times;</button></div>`;
+            // Close button — only rendered on mobile
+            if (window.innerWidth <= 768) {
+                h += `<div class="er-mobile-close"><button onclick="document.getElementById('landingInfoPanel').classList.add('hidden')" style="width:36px;height:36px;border:1px solid #e7e4dc;border-radius:10px;background:#fff;color:#64748b;font-size:18px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;">&times;</button></div>`;
+            }
 
             // ── HERO ──
             h += `<div class="er-eye">Neighborhood food report</div>`;
