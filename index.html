@@ -7337,7 +7337,7 @@
                     fetch('data/nc_counties.geojson'),
                     fetch('data/nc_population_density.geojson'),
                     fetch('data/durham_service_areas.geojson'),
-                    fetch('data/usda_food_deserts.json')
+                    fetch('data/usda_food_deserts.json?v=' + Date.now())
                 ]);
 
                 foodseqData = await foodseqResponse.json();
@@ -13018,10 +13018,12 @@
                 feat.properties._nearestPlant = s.nearestPlant;
                 feat.properties._desertRate = s.desertRate;
                 feat.properties._dietaryMetrics = s.metrics;
-                feat.properties._usdaFoodDesert = false;
-                feat.properties._usdaPovertyRate = null;
-                feat.properties._usdaMFI = null;
-                feat.properties._usdaUrban = null;
+                var _usid = String(feat.properties.Sample_ID);
+                var _udat = (typeof getUSDAData === 'function') ? getUSDAData(_usid) : null;
+                feat.properties._usdaFoodDesert = _udat ? !!_udat.foodDesert_1_10 : false;
+                feat.properties._usdaPovertyRate = _udat ? _udat.povertyRate : null;
+                feat.properties._usdaMFI = _udat ? _udat.medianFamilyIncome : null;
+                feat.properties._usdaUrban = _udat ? _udat.urban : null;
             });
 
             // Classification breakdown
@@ -13284,10 +13286,12 @@
                 computeFoodDesertCorrelations();
                 getTractCentroids().forEach(tract => {
                     const feat = durhamTractsGeoJSON.features[tract.featureIdx];
-                    feat.properties._usdaFoodDesert = false;
-                    feat.properties._usdaPovertyRate = null;
-                    feat.properties._usdaMFI = null;
-                    feat.properties._usdaUrban = null;
+                    var _usid2 = String(feat.properties.Sample_ID);
+                    var _udat2 = (typeof getUSDAData === 'function') ? getUSDAData(_usid2) : null;
+                    feat.properties._usdaFoodDesert = _udat2 ? !!_udat2.foodDesert_1_10 : false;
+                    feat.properties._usdaPovertyRate = _udat2 ? _udat2.povertyRate : null;
+                    feat.properties._usdaMFI = _udat2 ? _udat2.medianFamilyIncome : null;
+                    feat.properties._usdaUrban = _udat2 ? _udat2.urban : null;
                 });
             }
 
@@ -15107,7 +15111,7 @@
             var flaggedCount = 0;
             for (var i = 0; i < flags.length; i++) { if (u[flags[i].key]) flaggedCount++; }
 
-            var isOk = flaggedCount === 0 && !u.lowIncome;
+            var isOk = flaggedCount === 0;
             var gc = isOk ? '#1f8a5b' : '#b8842a';
             var gd = isOk ? '#15683f' : '#8a6418';
             var gs = isOk ? '#e3f1e8' : '#f6ecd6';
