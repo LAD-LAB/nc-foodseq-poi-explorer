@@ -1922,6 +1922,13 @@
             border-radius: 4px;
         }
 
+        .poi-snap-badge {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: #065f46; color: #fff; font: 600 10px/1 'Geist', sans-serif;
+            padding: 3px 8px; border-radius: 4px; margin: 5px 0;
+            letter-spacing: .03em;
+        }
+
         .poi-popup-footer {
             padding-top: 8px;
             border-top: 1px solid #e2e8f0;
@@ -5337,17 +5344,24 @@
                 `<div style="font-size: 11px; color: #666; margin: 5px 0;">Operator: ${poi.operator}</div>` :
                 (poi.capacity ? `<div style="font-size: 11px; color: #666; margin: 5px 0;">Capacity: ${poi.capacity}</div>` : '');
 
+            // SNAP badge
+            const snapBadge = poi.snap ?
+                `<div class="poi-snap-badge"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 2l-7.5 7.5-3.5-3.5-2.5 2.5 6 6 10-10z"/></svg> SNAP Accepted</div>` : '';
+
             return `
                 <div class="poi-popup">
                   <div class="poi-popup-header">
                     <strong>${poi.name || 'Unnamed'}</strong>
                   </div>
                   <div class="poi-popup-type">${formatType(poi.type)}</div>
+                  ${snapBadge}
                   ${ethnicBadge}
                   ${extraInfo}
                   ${address}
                   <div class="poi-popup-footer">
-                    <a href="https://www.openstreetmap.org/node/${poi.id}" target="_blank">View on OpenStreetMap</a>
+                    ${String(poi.id).startsWith('snap_')
+                      ? '<span style="font-size:11px;color:#718096;">Source: USDA SNAP Retailer Data</span>'
+                      : `<a href="https://www.openstreetmap.org/node/${poi.id}" target="_blank">View on OpenStreetMap</a>`}
                   </div>
                 </div>
             `;
