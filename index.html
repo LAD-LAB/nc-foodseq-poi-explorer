@@ -772,6 +772,8 @@
 
         /* Compare panel mode */
         .detail-panel.compare-mode { width: 440px; }
+        #cpContainer { transition: opacity .15s ease; }
+        #cpContainer.entering { opacity: 0; }
 
         .cp-head {
             position: relative; padding: 16px 20px 18px;
@@ -11751,8 +11753,10 @@
                 cpContainer.style.cssText = 'display:flex;flex-direction:column;flex:1;overflow-y:auto;height:0;min-height:0;';
                 panel.appendChild(cpContainer);
             }
+            cpContainer.classList.add('entering');
             cpContainer.innerHTML = html;
             cpContainer.style.display = '';
+            requestAnimationFrame(function() { cpContainer.classList.remove('entering'); });
 
             // Populate picker list
             populateComparePicker();
