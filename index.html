@@ -770,15 +770,15 @@
         .trends-breadcrumb a:hover { text-decoration: underline; }
         .trends-breadcrumb .sep { color: #9ca3af; margin: 0 6px; }
 
-        /* Compare panel mode */
-        .detail-panel.compare-mode { width: 440px; }
+        /* Compare panel v3 — biggest differences / tug-of-war */
+        .detail-panel.compare-mode { width: 420px; }
         #cpContainer { transition: opacity .15s ease; }
         #cpContainer.entering { opacity: 0; }
 
         .cp-head {
             position: relative; padding: 16px 20px 18px;
-            background: linear-gradient(90deg, #eef2fb 0%, #eef2fb 50%, #fbf2ea 50%, #fbf2ea 100%);
             border-top: 1px solid #e7e4dc; border-bottom: 1px solid #e7e4dc;
+            flex-shrink: 0;
         }
         .cp-head-top { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
         .cp-head-top .ttl { font: 600 10.5px/1 'Geist Mono', monospace; letter-spacing: .15em; text-transform: uppercase; color: #64748b; }
@@ -793,125 +793,113 @@
 
         .cp-vs { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; margin-top: 12px; }
         .cp-tract { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-        .cp-tract.B { text-align: right; }
-        .cp-tract .nm { font: 700 24px/1 'Geist', sans-serif; letter-spacing: -.02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .cp-tract.A .nm { color: #1e3a8a; }
-        .cp-tract.B .nm { color: #b8612a; }
+        .cp-tract.right { text-align: right; }
+        .cp-tract .nm { font: 700 22px/1.1 'Geist', sans-serif; letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .cp-tract .meta { font-size: 12px; color: #64748b; margin-top: 4px; }
         .cp-vs-mark { font: 600 12px 'Geist Mono', monospace; color: #94a3b8; }
 
-        .cp-status {
-            display: flex; align-items: center; gap: 10px;
-            padding: 11px 20px; background: #f3f0e6; border-bottom: 1px solid #e7e4dc;
-            font-size: 12.5px; color: #64748b;
+        .cp-toggle {
+            display: flex; gap: 0; padding: 13px 20px 4px; background: #faf9f5;
+            flex-shrink: 0;
         }
-        .cp-status b { color: #0b1220; font-weight: 600; }
-        .cp-sortlbl { margin-left: auto; font: 500 11.5px 'Geist Mono', monospace; color: #64748b; }
-
-        .cp-tabs { display: flex; gap: 4px; padding: 0 16px; background: #faf9f5; border-bottom: 1px solid #e7e4dc; }
-        .cp-tab {
-            padding: 13px 12px 11px; font: 500 14px 'Geist', sans-serif; color: #64748b;
-            background: transparent; border: 0; border-bottom: 2px solid transparent;
-            margin-bottom: -1px; cursor: pointer;
+        .cp-toggle-track {
+            display: inline-flex; border-radius: 9px; background: #ece8df; padding: 3px; gap: 2px;
         }
-        .cp-tab:hover { color: #1f2937; }
-        .cp-tab[aria-selected="true"] { color: #0b1220; font-weight: 600; border-bottom-color: #1e3a8a; }
+        .cp-toggle-btn {
+            padding: 6px 13px; border: 0; border-radius: 7px; font: 600 12.5px 'Geist', sans-serif;
+            color: #64748b; background: transparent; cursor: pointer; transition: background .14s, color .14s;
+        }
+        .cp-toggle-btn[aria-selected="true"] {
+            background: #faf9f5; color: #0b1220;
+            box-shadow: 0 1px 2px rgba(15,23,42,.12);
+        }
 
-        .cp-body { flex: 1; overflow-y: auto; min-height: 0; background: #faf9f5; }
-        .cp-pane { padding: 16px 20px 20px; }
-        .cp-pane[hidden] { display: none; }
+        .cp-body { overflow-y: auto; overflow-x: hidden; background: #faf9f5; }
+        .cp-body > section { animation: cpFadeIn .3s ease; }
+        @keyframes cpFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        .cp-legend { display: flex; gap: 16px; font-size: 12.5px; color: #64748b; margin-bottom: 14px; }
-        .cp-legend span { display: inline-flex; align-items: center; gap: 7px; }
-        .cp-legend i { display: inline-block; width: 11px; height: 11px; border-radius: 3px; }
-        .cp-legend i.A { background: #1e3a8a; }
-        .cp-legend i.B { background: #b8612a; }
+        /* Hero card */
+        .cp-hero {
+            background: #fff; border: 1px solid #e7e4dc; border-radius: 14px;
+            padding: 15px 16px 16px; margin-bottom: 18px;
+        }
+        .cp-hero-eyebrow {
+            font: 600 10px/1 'Geist Mono', monospace; letter-spacing: .08em;
+            text-transform: uppercase; margin-bottom: 9px;
+        }
+        .cp-hero-name { font: 700 22px/1.1 'Geist', sans-serif; color: #0b1220; letter-spacing: -.02em; }
+        .cp-hero-line { font: 500 13.5px/1.5 'Geist', sans-serif; color: #475569; margin-top: 6px; }
+        .cp-hero-vals { display: flex; align-items: baseline; gap: 8px; margin-top: 13px; }
+        .cp-hero-pct { font: 700 20px 'Geist', sans-serif; font-variant-numeric: tabular-nums; }
+        .cp-hero-lbl { font-size: 11px; color: #94a3b8; }
 
-        .cp-row { padding: 13px 0; border-bottom: 1px solid #f0ede6; }
-        .cp-row:last-of-type { border-bottom: 0; }
-        .cp-row-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 9px; }
-        .cp-row-name { font: 600 14px 'Geist', sans-serif; color: #0b1220; }
-        .cp-row-delta { flex-shrink: 0; font: 600 12.5px 'Geist Mono', monospace; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
-        .cp-row-delta.up { background: #e2e8fb; color: #1e3a8a; }
-        .cp-row-delta.down { background: #f7e4d3; color: #b8612a; }
-        .cp-row-delta.eq { background: #ece8df; color: #64748b; }
-        .cp-row-delta.only { font-size: 11px; }
-        .cp-bars { display: grid; gap: 7px; }
-        .cp-bar { display: grid; grid-template-columns: 22px 1fr 50px; align-items: center; gap: 11px; }
-        .cp-bar .tag { font: 600 9.5px 'Geist Mono', monospace; letter-spacing: .04em; text-transform: uppercase; }
-        .cp-bar.A .tag { color: #1e3a8a; } .cp-bar.B .tag { color: #b8612a; }
-        .cp-bar .track { height: 9px; border-radius: 5px; background: #ece8df; overflow: hidden; }
-        .cp-bar .fill { height: 100%; border-radius: 5px; transition: width .4s ease; }
-        .cp-bar.A .fill { background: #1e3a8a; } .cp-bar.B .fill { background: #b8612a; }
-        .cp-bar .val { text-align: right; font: 600 12.5px 'Geist Mono', monospace; font-variant-numeric: tabular-nums; }
-        .cp-bar.A .val { color: #1e3a8a; } .cp-bar.B .val { color: #b8612a; }
-        .cp-bar .val.na { color: #94a3b8; font-weight: 400; }
+        /* Axis legend */
+        .cp-axis {
+            display: flex; justify-content: space-between;
+            font: 600 9px/1 'Geist Mono', monospace; letter-spacing: .06em;
+            text-transform: uppercase; margin-bottom: 15px;
+        }
 
-        .cp-link { display: inline-flex; align-items: center; gap: 5px; margin-top: 14px; font: 600 13px 'Geist', sans-serif; color: #1e3a8a; text-decoration: none; cursor: pointer; background: none; border: 0; padding: 0; }
-        .cp-link:hover { text-decoration: underline; }
+        /* Diverging rows */
+        .cp-diverge-row { padding: 11px 0; }
+        .cp-diverge-top {
+            display: flex; justify-content: space-between; align-items: baseline;
+            gap: 10px; margin-bottom: 8px;
+        }
+        .cp-diverge-name { font: 600 14px 'Geist', sans-serif; color: #0b1220; }
+        .cp-diverge-delta { flex: none; font: 600 11.5px 'Geist Mono', monospace; font-variant-numeric: tabular-nums; }
+        .cp-diverge-track {
+            position: relative; height: 12px; border-radius: 6px; background: #ece8df;
+        }
+        .cp-diverge-mid {
+            position: absolute; top: 0; bottom: 0; width: 1px; left: 50%; background: #cdc7ba;
+        }
+        .cp-diverge-bar {
+            position: absolute; top: 0; bottom: 0; border-radius: 6px;
+            transition: width .45s ease, left .45s ease, background .3s ease;
+        }
 
-        .cp-demo { display: grid; grid-template-columns: 1fr auto 1fr; column-gap: 12px; row-gap: 4px; align-items: center; }
-        .cp-demo .k { grid-column: 1 / -1; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: #6b7280; font-weight: 600; padding-top: 10px; padding-bottom: 2px; }
-        .cp-demo .va, .cp-demo .vb { font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; padding: 4px 0; }
-        .cp-demo .va { color: #1e3a8a; text-align: left; }
-        .cp-demo .vb { color: #b8612a; text-align: right; }
-        .cp-demo .vs { color: #6b7280; font-size: 11px; font-weight: 600; text-align: center; padding: 4px 6px; background: #f3f4f6; border-radius: 999px; }
-        .cp-demo .vs.up { background: #e0e7ff; color: #1e3a8a; }
-        .cp-demo .vs.down { background: #fde7d3; color: #b8612a; }
+        /* Diverging rows staggered entrance */
+        .cp-diverge-row { animation: cpFadeIn .35s ease backwards; }
+        .cp-diverge-row:nth-child(1) { animation-delay: .05s; }
+        .cp-diverge-row:nth-child(2) { animation-delay: .1s; }
+        .cp-diverge-row:nth-child(3) { animation-delay: .15s; }
+        .cp-diverge-row:nth-child(4) { animation-delay: .2s; }
+        .cp-diverge-row:nth-child(5) { animation-delay: .25s; }
+        .cp-diverge-row:nth-child(6) { animation-delay: .3s; }
+        .cp-diverge-row:nth-child(7) { animation-delay: .35s; }
+        .cp-diverge-row:nth-child(8) { animation-delay: .4s; }
+        .cp-diverge-row:nth-child(9) { animation-delay: .45s; }
 
-        .cp-demo-race { grid-column: 1 / -1; margin-top: 14px; }
-        .cp-demo-race .row-h { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: center; margin: 6px 0; }
-        .cp-demo-race .who { font-size: 11px; font-weight: 700; text-align: right; }
-        .cp-demo-race .who.A { color: #1e3a8a; }
-        .cp-demo-race .who.B { color: #b8612a; }
-        .cp-demo-race .rstack { display: flex; height: 10px; border-radius: 3px; overflow: hidden; background: #e5e7eb; }
-        .cp-demo-race .rstack span { display: block; height: 100%; }
-        .cp-demo-race .legend { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; margin-top: 10px; font-size: 11.5px; color: #6b7280; }
-        .cp-demo-race .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: middle; }
-
-        /* Tract picker for compare */
-        .cp-picker { border-bottom: 1px solid #e7e4dc; background: #faf9f5; }
-        .cp-picker-hd { display: flex; align-items: center; gap: 8px; padding: 15px 20px; cursor: pointer; }
-        .cp-picker-title { margin: 0; font: 600 14px 'Geist', sans-serif; color: #0b1220; flex: 1; }
-        .cp-picker-chev { color: #64748b; transition: transform .25s ease; }
-        .cp-picker.collapsed .cp-picker-chev { transform: rotate(-90deg); }
-        .cp-picker-body { padding: 0 20px 16px; overflow: hidden; transition: max-height .3s ease, opacity .25s ease; max-height: 400px; opacity: 1; }
-        .cp-picker.collapsed .cp-picker-body { max-height: 0; opacity: 0; padding-top: 0; padding-bottom: 0; }
+        /* Picker (state B — no target) */
+        .cp-picker { padding: 16px 20px; background: #faf9f5; animation: cpFadeIn .25s ease; }
+        .cp-picker-eyebrow {
+            font: 600 10.5px/1 'Geist Mono', monospace; letter-spacing: .13em;
+            text-transform: uppercase; color: #94a3b8; margin-bottom: 13px;
+        }
         .cp-picker-search {
-            width: 100%; height: 42px; padding: 0 14px 0 38px; border: 1px solid #e7e4dc;
-            border-radius: 11px; font: 400 14px 'Geist', sans-serif; color: #0b1220; background: #fff;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.3-4.3'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: 13px center; margin-bottom: 11px;
+            width: 100%; height: 40px; padding: 0 12px 0 36px; border: 1px solid #e7e4dc;
+            border-radius: 10px; font: 400 13.5px 'Geist', sans-serif; color: #0b1220; background: #fff;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.3-4.3'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: 12px center;
+            margin: 10px 0 9px; box-sizing: border-box;
         }
         .cp-picker-search:focus { outline: none; border-color: #1e3a8a; box-shadow: 0 0 0 3px #e2e8fb; }
-        .cp-chips { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-bottom: 11px; }
-        .cp-chip { display: inline-flex; align-items: center; gap: 7px; border-radius: 999px; padding: 5px 12px; font: 600 12.5px 'Geist', sans-serif; }
-        .cp-chip.A { background: #e2e8fb; color: #1e3a8a; }
-        .cp-chip.B { background: #f7e4d3; color: #b8612a; }
-        .cp-chip-x { display: inline-grid; place-items: center; width: 17px; height: 17px; border-radius: 50%; cursor: pointer; opacity: .7; font-size: 14px; margin-left: 2px; }
-        .cp-chip-x:hover { opacity: 1; background: rgba(255,255,255,.6); }
-        .cp-chip-hint { font-size: 12.5px; color: #64748b; }
-        .cp-picker-current {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: #e2e8fb; color: #1e3a8a; font-size: 12px; font-weight: 600;
-            padding: 3px 10px; border-radius: 999px; margin: 10px 0 4px;
+        .cp-picker-list {
+            overflow-y: auto; border: 1px solid #e7e4dc;
+            border-radius: 11px; background: #fff;
         }
-        .cp-picker-current button {
-            border: 0; background: none; color: #1e3a8a; cursor: pointer;
-            font-size: 14px; line-height: 1; opacity: 0.6; padding: 0;
-        }
-        .cp-picker-hint { font-size: 12px; color: #6b7280; display: inline; margin-left: 6px; }
-        .cp-picker-list { margin-top: 8px; max-height: 200px; overflow-y: auto; }
         .cp-picker-item {
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 8px 4px; border-bottom: 1px solid #f3f4f6; cursor: pointer;
-            border-radius: 6px; transition: background 0.1s;
+            width: 100%; display: flex; align-items: baseline; gap: 8px; text-align: left;
+            border: 0; cursor: pointer; border-radius: 9px; padding: 9px 11px;
+            background: transparent; transition: background .1s;
         }
         .cp-picker-item:hover { background: #f3f4f6; }
-        .cp-picker-item .name { font-size: 13px; color: #1f2937; font-weight: 500; }
+        .cp-picker-item .name { font: 700 13.5px 'Geist', sans-serif; color: #0b1220; white-space: nowrap; }
+        .cp-picker-item .hood { flex: 1; font-size: 12.5px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .cp-picker-item .sites { font: 500 11.5px 'Geist Mono', monospace; color: #94a3b8; }
         .cp-picker-item .hood { font-size: 12px; color: #6b7280; margin-left: 6px; }
         .cp-picker-item .sites { font-size: 12px; color: #6b7280; white-space: nowrap; }
-        .cp-picker-note { font-size: 11.5px; color: #9ca3af; margin-top: 10px; font-style: italic; }
 
         /* Bottom-left legend + POI container */
         .bottom-left-container {
@@ -7086,17 +7074,16 @@
                         if (e.originalEvent.shiftKey) {
                             // Shift-click: compare this service area
                             if (compareState.tractA || compareState.siteA) {
-                                onCompareTractSelect(String(feature.properties.Sample_ID));
+                                onCompareTargetSelect(String(feature.properties.Sample_ID));
                             } else if (currentTractFeature) {
                                 compareState.tractA = currentTractFeature;
                                 compareState.siteA = null;
                                 compareState.tractB = null;
                                 compareState.siteB = null;
-                                compareState.sort = 'delta';
-                                compareState.expanded = { plants: false, animals: false };
-                                compareState.tab = 'plants';
+                                compareState.target = String(feature.properties.Sample_ID);
+                                compareState.foodTab = 'plants';
+                                compareState.query = '';
                                 renderComparePanel();
-                                onCompareTractSelect(String(feature.properties.Sample_ID));
                             } else {
                                 openTractDetailPanel(feature);
                             }
@@ -11291,6 +11278,29 @@
 
         function openTractDetailPanel(feature) {
             hideLandingPopups();
+            // If compare panel is open, slide it out first, then reopen with new tract
+            var _dp = document.getElementById('detailPanel');
+            if (_dp && _dp.classList.contains('compare-mode')) {
+                var _feat = feature;
+                _dp.classList.remove('open');
+                setTimeout(function() {
+                    _dp.classList.remove('compare-mode');
+                    var _cp = document.getElementById('cpContainer');
+                    if (_cp) { _cp.innerHTML = ''; _cp.style.display = 'none'; }
+                    document.querySelector('.tp-head').style.display = '';
+                    document.getElementById('tpSites').style.display = '';
+                    document.getElementById('tpScrollWrap').style.display = '';
+                    document.getElementById('tpCtas').style.display = '';
+                    if (compareState) {
+                        compareState.tractA = null;
+                        compareState.siteA = null;
+                        compareState.target = null;
+                        compareState.query = '';
+                    }
+                    openTractDetailPanel(_feat);
+                }, 350);
+                return;
+            }
             currentTractFeature = feature;
             currentDetailPlant = null;
             const tractNum = feature.properties.Sample_ID || 'Unknown';
@@ -11579,12 +11589,14 @@
         function getTractNeighborhood(tractNum) {
             return TRACT_NEIGHBORHOODS[String(tractNum)] || 'Durham';
         }
-        let compareState = {
-            tractA: null, // feature
-            tractB: null, // feature
-            sort: 'delta',
-            expanded: { plants: false, animals: false },
-            tab: 'plants'
+        var compareState = {
+            tractA: null,
+            tractB: null,
+            siteA: null,
+            siteB: null,
+            target: null,  // 'durham', a tract SA id string, or null (picker mode)
+            foodTab: 'plants', // 'plants' or 'animals'
+            query: ''
         };
 
         function compareTract() {
@@ -11599,10 +11611,81 @@
             }
             compareState.tractB = null;
             compareState.siteB = null;
-            compareState.sort = 'delta';
-            compareState.expanded = { plants: false, animals: false };
-            compareState.tab = 'plants';
+            compareState.target = null;
+            compareState.foodTab = 'plants';
+            compareState.query = '';
             renderComparePanel();
+        }
+
+        function _isSpeciesHidden(sp) {
+            var m = foodseqData.species_metadata[sp];
+            return !m || m._hidden || (m.common_name && m.common_name.startsWith('NA_'));
+        }
+
+        function _filterHidden(raw) {
+            var p = {}, a = {};
+            Object.entries(raw.plants).forEach(([k, v]) => { if (v > 0 && !_isSpeciesHidden(k)) p[k] = v; });
+            Object.entries(raw.animals).forEach(([k, v]) => { if (v > 0 && !_isSpeciesHidden(k)) a[k] = v; });
+            return { plants: p, animals: a };
+        }
+
+        /* Durham-wide average: iterate all tracts with data, aggregate each, convert to %, average across tracts */
+        function getDurhamAverageData() {
+            const tractNums = [...tractsWithData];
+            const plantSums = {};
+            const animalSums = {};
+            let tractCount = 0;
+            tractNums.forEach(tn => {
+                const plants = getPlantsInTract(tn);
+                if (!plants.length) return;
+                const raw = _filterHidden(aggregatePlantsData(plants));
+                // Convert to percentages for this tract
+                const pTotal = Object.values(raw.plants).reduce((s, v) => s + v, 0) || 1;
+                const aTotal = Object.values(raw.animals).reduce((s, v) => s + v, 0) || 1;
+                Object.entries(raw.plants).forEach(([k, v]) => {
+                    plantSums[k] = (plantSums[k] || 0) + (v / pTotal) * 100;
+                });
+                Object.entries(raw.animals).forEach(([k, v]) => {
+                    animalSums[k] = (animalSums[k] || 0) + (v / aTotal) * 100;
+                });
+                tractCount++;
+            });
+            if (tractCount === 0) return { plants: {}, animals: {} };
+            const pAvg = {}, aAvg = {};
+            Object.entries(plantSums).forEach(([k, v]) => { pAvg[k] = Math.round((v / tractCount) * 10) / 10; });
+            Object.entries(animalSums).forEach(([k, v]) => { aAvg[k] = Math.round((v / tractCount) * 10) / 10; });
+            return { plants: pAvg, animals: aAvg };
+        }
+
+        /* Get target data as percentages */
+        function getTargetPctData() {
+            if (compareState.target === 'durham') {
+                return getDurhamAverageData();
+            }
+            // Specific SA
+            const feat = durhamTractsGeoJSON && durhamTractsGeoJSON.features.find(f =>
+                String(f.properties.Sample_ID) === String(compareState.target)
+            );
+            if (!feat) return { plants: {}, animals: {} };
+            const raw = _filterHidden(getCompareData(feat));
+            const pTotal = Object.values(raw.plants).reduce((s, v) => s + v, 0) || 1;
+            const aTotal = Object.values(raw.animals).reduce((s, v) => s + v, 0) || 1;
+            const pPct = {}, aPct = {};
+            Object.entries(raw.plants).forEach(([k, v]) => { pPct[k] = Math.round((v / pTotal) * 1000) / 10; });
+            Object.entries(raw.animals).forEach(([k, v]) => { aPct[k] = Math.round((v / aTotal) * 1000) / 10; });
+            return { plants: pPct, animals: aPct };
+        }
+
+        /* Get "this area" data as percentages */
+        function getThisAreaPctData() {
+            const source = compareState.siteA || compareState.tractA;
+            const raw = _filterHidden(getCompareData(source));
+            const pTotal = Object.values(raw.plants).reduce((s, v) => s + v, 0) || 1;
+            const aTotal = Object.values(raw.animals).reduce((s, v) => s + v, 0) || 1;
+            const pPct = {}, aPct = {};
+            Object.entries(raw.plants).forEach(([k, v]) => { pPct[k] = Math.round((v / pTotal) * 1000) / 10; });
+            Object.entries(raw.animals).forEach(([k, v]) => { aPct[k] = Math.round((v / aTotal) * 1000) / 10; });
+            return { plants: pPct, animals: aPct };
         }
 
         function renderComparePanel() {
@@ -11610,6 +11693,11 @@
             panel.classList.add('compare-mode');
 
             const isSiteMode = !!compareState.siteA;
+            const hasTarget = compareState.target != null;
+
+            // Color tokens
+            const areaMain = '#1e3a8a', areaTint = '#eef2fb';
+            const compMain = '#cda23a', compTint = '#faf3d4';
 
             // Side A info
             let nameA, metaA;
@@ -11619,124 +11707,77 @@
             } else {
                 const tractA = compareState.tractA;
                 const tractNumA = tractA ? (tractA.properties.Sample_ID || '?') : '?';
-                nameA = `SA ${tractNumA}`;
+                nameA = 'SA ' + tractNumA;
                 const plantsA = tractA ? getPlantsInTract(tractNumA) : [];
-                metaA = `Durham · ${plantsA.length} sites`;
+                metaA = 'Durham \u00b7 ' + plantsA.length + ' sites';
             }
 
-            // Build picker options
-            let pickerOptions, pickerOnchange;
-            if (isSiteMode) {
-                // Pick another WWTP/site
-                pickerOptions = '<option value="">Select a site...</option>';
-                Object.entries(foodseqData.plants).forEach(([pid, p]) => {
-                    if (p === compareState.siteA) return;
-                    // Check if site has data for current period
-                    let hasData = false;
-                    if (currentTimeIndex === 'all') {
-                        hasData = Object.keys(p.timeseries).length > 0;
-                    } else {
-                        hasData = !!p.timeseries[foodseqData.dates[currentTimeIndex]];
-                    }
-                    if (!hasData) return;
-                    const sel = compareState.siteB && compareState.siteB.name === p.name ? ' selected' : '';
-                    pickerOptions += `<option value="${pid}"${sel}>${p.name}</option>`;
-                });
-                pickerOnchange = 'onCompareSiteSelect(this.value)';
+            // Target info
+            let nameT, metaT;
+            if (compareState.target === 'durham') {
+                nameT = 'Durham avg';
+                metaT = tractsWithData.size + ' service areas';
+            } else if (compareState.target) {
+                nameT = 'SA ' + compareState.target;
+                const hood = getTractNeighborhood(compareState.target);
+                const nSites = getPlantsInTract(compareState.target).length;
+                metaT = hood + ' \u00b7 ' + nSites + ' sites';
             } else {
-                // Pick another service area
-                const tractNumA = compareState.tractA ? (compareState.tractA.properties.Sample_ID || '') : '';
-                pickerOptions = '<option value="">Select a service area...</option>';
-                if (durhamTractsGeoJSON) {
-                    durhamTractsGeoJSON.features
-                        .filter(f => tractsWithData.has(String(f.properties.Sample_ID)))
-                        .filter(f => String(f.properties.Sample_ID) !== String(tractNumA))
-                        .sort((a, b) => parseFloat(a.properties.Sample_ID) - parseFloat(b.properties.Sample_ID))
-                        .forEach(f => {
-                            const tn = f.properties.Sample_ID;
-                            const sel = compareState.tractB && String(compareState.tractB.properties.Sample_ID) === String(tn) ? ' selected' : '';
-                            const hood = TRACT_NEIGHBORHOODS[String(tn)] || 'Durham';
-                            pickerOptions += `<option value="${tn}"${sel}>SA ${tn} · ${hood}</option>`;
-                        });
-                }
-                pickerOnchange = 'onCompareTractSelect(this.value)';
+                nameT = '';
+                metaT = '';
             }
 
-            // Side B info
-            let nameB = isSiteMode ? 'Select site' : 'Select service area';
-            let metaB = '';
-            const hasB = isSiteMode ? !!compareState.siteB : !!compareState.tractB;
-            if (isSiteMode && compareState.siteB) {
-                nameB = compareState.siteB.name;
-                metaB = compareState.siteB.location_type === 'manhole' ? 'Sampling Site' : 'Wastewater Plant';
-            } else if (!isSiteMode && compareState.tractB) {
-                const tractNumB = compareState.tractB.properties.Sample_ID || '?';
-                nameB = `SA ${tractNumB}`;
-                const plantsB = getPlantsInTract(tractNumB);
-                metaB = `Durham · ${plantsB.length} sites`;
+            // Build HTML
+            let html = '';
+
+            // Back button
+            html += '<div style="padding:10px 20px;border-bottom:1px solid #e7e4dc;flex-shrink:0;">'
+                + '<button onclick="closeCompare()" style="display:inline-flex;align-items:center;gap:6px;border:0;background:0;color:' + areaMain + ';font:500 13px \'Geist\',sans-serif;cursor:pointer;padding:4px 0;">'
+                + '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>'
+                + 'Back to ' + nameA
+                + '</button></div>';
+
+            // Header band
+            var headBg = hasTarget
+                ? 'linear-gradient(90deg, ' + areaTint + ' 0%, ' + areaTint + ' 50%, ' + compTint + ' 50%, ' + compTint + ' 100%)'
+                : areaTint;
+            html += '<header class="cp-head" style="background:' + headBg + ';">';
+            html += '<div class="cp-head-top"><span class="ttl">Biggest differences</span>';
+            if (hasTarget) {
+                html += '<div class="actions">'
+                    + '<button class="cp-iconbtn" title="Clear comparison" onclick="clearCompareSelection()">'
+                    + '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>'
+                    + '</button></div>';
             }
+            html += '</div>';
 
-            const compareLabel = isSiteMode ? 'Comparing sites' : 'Comparing service areas';
-
-            // Build full panel HTML
-            let html = `
-                <div style="padding:10px 20px;border-bottom:1px solid #e7e4dc;flex-shrink:0;">
-                    <button onclick="closeCompare()" style="display:inline-flex;align-items:center;gap:6px;border:0;background:0;color:#1e3a8a;font:500 13px 'Geist',sans-serif;cursor:pointer;padding:4px 0;">
-                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
-                        Back to ${nameA}
-                    </button>
-                </div>
-                <header class="cp-head">
-                    <div class="cp-head-top">
-                        <span class="ttl">${compareLabel}</span>
-                        <div class="actions">
-                            <button class="cp-iconbtn" title="Swap A and B" onclick="swapCompareTracts()">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="cp-vs">
-                        <div class="cp-tract A">
-                            <span class="nm">${nameA}</span>
-                            <span class="meta">${metaA}</span>
-                        </div>
-                        <span class="cp-vs-mark">vs</span>
-                        <div class="cp-tract B">
-                            <span class="nm">${nameB}</span>
-                            <span class="meta">${metaB}</span>
-                        </div>
-                    </div>
-                </header>
-                <div class="cp-picker${hasB ? ' collapsed' : ''}" id="cpPicker">
-                    <div class="cp-picker-hd" onclick="toggleComparePicker()">
-                        <span class="cp-picker-title">Pick ${isSiteMode ? 'a site' : 'a service area'} to compare</span>
-                        <svg class="cp-picker-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-                    </div>
-                    <div class="cp-picker-body">
-                        <input type="text" class="cp-picker-search" placeholder="Search by # or neighborhood" id="cpPickerSearch" oninput="filterComparePicker(this.value)">
-                        <div class="cp-chips">
-                            <span class="cp-chip A">${nameA}</span>
-                            ${hasB ? '<span class="cp-chip B">' + nameB + '<span class="cp-chip-x" onclick="clearCompareSelection()">&times;</span></span>' : '<span class="cp-chip-hint">+ pick one to compare</span>'}
-                        </div>
-                        <div class="cp-picker-list" id="cpPickerList"></div>
-                        <div class="cp-picker-note">Pick from the list, or shift-click a service area on the map.</div>
-                    </div>
-                </div>`;
-
-            if (hasB) {
-                html += `
-                <div class="cp-status">
-                    <span>Top 5 each · <b id="cpCount">—</b></span>
-                    <span class="cp-sortlbl">Sorted by biggest difference</span>
-                </div>
-                <div class="cp-tabs" role="tablist">
-                    <button class="cp-tab" role="tab" aria-selected="${compareState.tab === 'plants'}" onclick="switchCompareTab(this,'plants')">Plants</button>
-                    <button class="cp-tab" role="tab" aria-selected="${compareState.tab === 'animals'}" onclick="switchCompareTab(this,'animals')">Animals</button>
-                    <button class="cp-tab" role="tab" aria-selected="${compareState.tab === 'demo'}" onclick="switchCompareTab(this,'demo')">Demographics</button>
-                </div>
-                <div class="cp-body" id="cpBody" style="overflow-y:auto;"></div>`;
+            if (hasTarget) {
+                html += '<div class="cp-vs">';
+                html += '<div class="cp-tract" style="min-width:0;"><span class="nm" style="color:' + areaMain + ';">' + nameA + '</span><span class="meta">' + metaA + '</span></div>';
+                html += '<span class="cp-vs-mark">vs</span>';
+                html += '<div class="cp-tract right" style="min-width:0;"><span class="nm" style="color:' + compMain + ';">' + nameT + '</span><span class="meta">' + metaT + '</span></div>';
+                html += '</div>';
             } else {
-                // No message — picker list is shown above
+                html += '<div style="margin-top:8px;"><span class="nm" style="font:700 22px/1 \'Geist\',sans-serif;color:' + areaMain + ';">' + nameA + '</span><span class="meta" style="display:block;font-size:12px;color:#64748b;margin-top:4px;">' + metaA + '</span></div>';
+            }
+            html += '</header>';
+
+            if (hasTarget) {
+                // Toggle: Plants / Meat & fish
+                html += '<div class="cp-toggle"><div class="cp-toggle-track">'
+                    + '<button class="cp-toggle-btn" aria-selected="' + (compareState.foodTab === 'plants') + '" onclick="switchCompareTab(\'plants\')">Plants</button>'
+                    + '<button class="cp-toggle-btn" aria-selected="' + (compareState.foodTab === 'animals') + '" onclick="switchCompareTab(\'animals\')">Meat &amp; fish</button>'
+                    + '</div></div>';
+
+                // Leaderboard body
+                html += '<div class="cp-body" id="cpBody"></div>';
+            } else {
+                // Picker mode
+                html += '<div class="cp-picker" id="cpPicker">';
+                html += '<div class="cp-picker-eyebrow">Comparing with</div>';
+                html += '<input type="text" class="cp-picker-search" placeholder="Search by # or neighborhood" id="cpPickerSearch" value="' + (compareState.query || '') + '" oninput="filterComparePicker(this.value)">';
+                html += '<div class="cp-picker-list" id="cpPickerList"></div>';
+                html += '</div>';
             }
 
             // Replace panel contents
@@ -11750,7 +11791,7 @@
             if (!cpContainer) {
                 cpContainer = document.createElement('div');
                 cpContainer.id = 'cpContainer';
-                cpContainer.style.cssText = 'display:flex;flex-direction:column;flex:1;overflow-y:auto;height:0;min-height:0;';
+                cpContainer.style.cssText = 'display:block;';
                 panel.appendChild(cpContainer);
             }
             cpContainer.classList.add('entering');
@@ -11758,29 +11799,46 @@
             cpContainer.style.display = '';
             requestAnimationFrame(function() { cpContainer.classList.remove('entering'); });
 
-            // Populate picker list
-            populateComparePicker();
-
-            if (hasB) {
+            if (hasTarget) {
                 renderCompareBody();
+            } else {
+                populateComparePicker();
             }
 
             panel.classList.add('open');
+
+            // Explicitly size the scrollable area to fill remaining panel height
+            requestAnimationFrame(function() {
+                var panelH = panel.offsetHeight;
+                var scrollEl = hasTarget ? document.getElementById('cpBody') : document.getElementById('cpPickerList');
+                if (!scrollEl) return;
+                var usedH = 0;
+                var nodes = cpContainer.children;
+                for (var i = 0; i < nodes.length; i++) {
+                    if (nodes[i] !== scrollEl && !scrollEl.parentElement.contains(nodes[i]) || nodes[i] === scrollEl) continue;
+                    usedH += nodes[i].offsetHeight;
+                }
+                // For picker, scrollEl is nested inside .cp-picker — measure from panel top to scrollEl top
+                var top = scrollEl.getBoundingClientRect().top - panel.getBoundingClientRect().top;
+                scrollEl.style.maxHeight = (panelH - top - 12) + 'px';
+            });
         }
 
         function onCompareTractSelect(tractNum) {
-            if (!tractNum) { compareState.tractB = null; renderComparePanel(); return; }
-            compareState.tractB = durhamTractsGeoJSON.features.find(f =>
-                String(f.properties.Sample_ID) === String(tractNum)
-            );
-            compareState.expanded = { plants: false, animals: false };
+            if (!tractNum) { compareState.target = null; renderComparePanel(); return; }
+            compareState.target = String(tractNum);
             renderComparePanel();
         }
 
         function onCompareSiteSelect(plantId) {
             if (!plantId) { compareState.siteB = null; renderComparePanel(); return; }
             compareState.siteB = foodseqData.plants[plantId] || null;
-            compareState.expanded = { plants: false, animals: false };
+            renderComparePanel();
+        }
+
+        function onCompareTargetSelect(val) {
+            compareState.target = val;
+            compareState.query = '';
             renderComparePanel();
         }
 
@@ -11805,49 +11863,15 @@
         }
 
         function compareUnionRows(metric) {
-            const sourceA = compareState.siteA || compareState.tractA;
-            const sourceB = compareState.siteB || compareState.tractB;
-            const dataA = getCompareData(sourceA);
-            const dataB = getCompareData(sourceB);
-            const aRaw = dataA[metric] || {};
-            const bRaw = dataB[metric] || {};
-            // Convert to percentage of each area's total
-            const aTotalRaw = Object.values(aRaw).reduce((s, v) => s + v, 0) || 1;
-            const bTotalRaw = Object.values(bRaw).reduce((s, v) => s + v, 0) || 1;
-            const a = {}, b = {};
-            Object.entries(aRaw).forEach(([k, v]) => { a[k] = Math.round((v / aTotalRaw) * 1000) / 10; }); // 1 decimal %
-            Object.entries(bRaw).forEach(([k, v]) => { b[k] = Math.round((v / bTotalRaw) * 1000) / 10; });
+            const aPct = getThisAreaPctData();
+            const bPct = getTargetPctData();
+            const a = aPct[metric] || {};
+            const b = bPct[metric] || {};
 
             const topAKeys = Object.entries(a).sort((x, y) => y[1] - x[1]).slice(0, 5).map(e => e[0]);
             const topBKeys = Object.entries(b).sort((x, y) => y[1] - x[1]).slice(0, 5).map(e => e[0]);
 
-            let keys = compareState.expanded[metric]
-                ? Array.from(new Set([...Object.keys(a), ...Object.keys(b)]))
-                : Array.from(new Set([...topAKeys, ...topBKeys]));
-
-            const rows = keys.map(k => {
-                const aVal = a[k] || 0;
-                const bVal = b[k] || 0;
-                const hasA = a[k] != null && a[k] > 0;
-                const hasB = b[k] != null && b[k] > 0;
-                const total = aVal + bVal;
-                let deltaPct = null;
-                if (hasA && hasB && bVal > 0) deltaPct = ((aVal - bVal) / bVal) * 100;
-                else if (hasA && !hasB) deltaPct = Infinity;
-                else if (!hasA && hasB) deltaPct = -Infinity;
-                return { key: k, aVal, bVal, total, deltaPct, hasA, hasB };
-            });
-
-            if (compareState.sort === 'total') {
-                rows.sort((x, y) => y.total - x.total);
-            } else {
-                rows.sort((x, y) => {
-                    const xx = isFinite(x.deltaPct) ? Math.abs(x.deltaPct) : 1e9;
-                    const yy = isFinite(y.deltaPct) ? Math.abs(y.deltaPct) : 1e9;
-                    return yy - xx;
-                });
-            }
-            return rows;
+            return { a, b, topAKeys, topBKeys };
         }
 
         function fmtCp(n) {
@@ -11860,164 +11884,96 @@
             const body = document.getElementById('cpBody');
             if (!body) return;
 
+            const metric = compareState.foodTab;
+            const { a, b, topAKeys, topBKeys } = compareUnionRows(metric);
+
+            const areaMain = '#1e3a8a';
+            const compMain = '#cda23a';
+
+            // Labels
             const isSiteMode = !!compareState.siteA;
-            let labelA, labelB;
-            if (isSiteMode) {
-                labelA = compareState.siteA.name;
-                labelB = compareState.siteB ? compareState.siteB.name : '?';
-            } else {
-                labelA = 'SA ' + (compareState.tractA ? compareState.tractA.properties.Sample_ID : '?');
-                labelB = 'SA ' + (compareState.tractB ? compareState.tractB.properties.Sample_ID : '?');
+            let labelA = isSiteMode
+                ? compareState.siteA.name
+                : 'SA ' + (compareState.tractA ? compareState.tractA.properties.Sample_ID : '?');
+            let labelT = compareState.target === 'durham' ? 'Durham avg' : 'SA ' + compareState.target;
+
+            // Union of both top-5 name sets, compute diffs, sort by |diff| desc
+            const names = Array.from(new Set([...topAKeys, ...topBKeys]));
+            const allRows = names.map(function(key) {
+                const aVal = a[key] || 0, bVal = b[key] || 0;
+                return { key: key, a: aVal, b: bVal, d: +(aVal - bVal).toFixed(1) };
+            }).sort(function(x, y) { return Math.abs(y.d) - Math.abs(x.d); });
+
+            let html = '<section style="padding:12px 20px 22px;">';
+
+            // Caption
+            html += '<p style="margin:2px 0 14px;font-size:12.5px;line-height:1.45;color:#64748b;">Each area\u2019s <b style="color:#0b1220;font-weight:600;">top 5 foods</b>, lined up by where the two differ most.</p>';
+
+            // Hero card (largest gap)
+            var hero = allRows[0];
+            if (hero) {
+                var meta = foodseqData.species_metadata[hero.key];
+                var heroName = meta ? meta.common_name : hero.key;
+                var leadHere = hero.d >= 0;
+                var heroColor = leadHere ? areaMain : compMain;
+                var mult = (Math.max(hero.a, hero.b) / Math.max(Math.min(hero.a, hero.b), 0.5)).toFixed(1).replace(/\.0$/, '');
+                var leader = leadHere ? labelA : labelT;
+
+                html += '<div class="cp-hero">'
+                    + '<div class="cp-hero-eyebrow" style="color:' + heroColor + ';">Sharpest contrast</div>'
+                    + '<div class="cp-hero-name" style="text-wrap:pretty;">' + heroName + '</div>'
+                    + '<div class="cp-hero-line" style="text-wrap:pretty;">' + leader + ' shows it about ' + mult + '\u00d7 as often.</div>'
+                    + '<div class="cp-hero-vals">'
+                    + '<span class="cp-hero-pct" style="color:' + areaMain + ';">' + fmtCp(hero.a) + '</span>'
+                    + '<span class="cp-hero-lbl">' + labelA + '</span>'
+                    + '<span class="cp-hero-pct" style="margin-left:auto;color:' + compMain + ';">' + fmtCp(hero.b) + '</span>'
+                    + '<span class="cp-hero-lbl">' + labelT + '</span>'
+                    + '</div></div>';
             }
 
-            if (compareState.tab === 'demo') {
-                if (isSiteMode) {
-                    // No demographics for individual sites
-                    body.innerHTML = `<div class="cp-pane"><p style="color:#6b7280;text-align:center;">Demographics not available for individual sites</p></div>`;
-                    return;
-                }
-                const propsA = compareState.tractA.properties;
-                const propsB = compareState.tractB.properties;
-                const races = [
-                    { key: 'pct_white', label: 'White', color: '#a5b4fc' },
-                    { key: 'pct_black', label: 'Black', color: '#6366f1' },
-                    { key: 'pct_asian', label: 'Asian', color: '#fcd34d' },
-                    { key: 'pct_other', label: 'Other', color: '#86efac' },
-                    { key: 'pct_two_plus', label: 'Two+', color: '#f9a8d4' }
-                ];
+            // Axis legend
+            html += '<div class="cp-axis">'
+                + '<span style="color:' + areaMain + ';">\u25c2 more in ' + labelA + '</span>'
+                + '<span style="color:' + compMain + ';">more in ' + labelT + ' \u25b8</span>'
+                + '</div>';
 
-                function demoDelta(a, b, fmt) {
-                    if (a == null || b == null) return '<span class="vs">—</span>';
-                    const diff = a - b;
-                    const cls = diff > 0 ? 'up' : diff < 0 ? 'down' : '';
-                    const sign = diff > 0 ? '+' : '';
-                    return `<span class="vs ${cls}">A ${sign}${fmt(diff)}</span>`;
-                }
+            // Diverging rows (remaining after hero)
+            var rows = allRows.slice(1);
+            var scale = rows.reduce(function(m, r) { return Math.max(m, Math.abs(r.d)); }, 0) || 1;
 
-                let html = `<div class="cp-pane"><div class="cp-demo">`;
-                // Population
-                const popA = propsA.total_population;
-                const popB = propsB.total_population;
-                html += `<span class="k">Population</span>`;
-                html += `<span class="va">${popA ? Math.round(popA).toLocaleString() : '—'}</span>`;
-                html += demoDelta(popA, popB, d => {
-                    if (!popB) return '—';
-                    return Math.round((d/popB)*100) + '%';
-                });
-                html += `<span class="vb">${popB ? Math.round(popB).toLocaleString() : '—'}</span>`;
+            rows.forEach(function(r) {
+                var meta = foodseqData.species_metadata[r.key];
+                var name = meta ? meta.common_name : r.key;
+                var eq = Math.abs(r.d) < 0.6;
+                var here = r.d >= 0;
+                var w = (Math.abs(r.d) / scale) * 46;
+                var deltaText = eq ? '\u2248 same' : (here ? '\u25b2 ' : '\u25bc ') + Math.abs(r.d).toFixed(1) + '%';
+                var deltaColor = eq ? '#94a3b8' : (here ? areaMain : compMain);
+                var barLeft = here ? (50 - w).toFixed(1) + '%' : '50%';
 
-                // Income
-                const incA = propsA.median_hh_income;
-                const incB = propsB.median_hh_income;
-                html += `<span class="k">Median HH income</span>`;
-                html += `<span class="va">${incA ? '$'+Math.round(incA).toLocaleString() : '—'}</span>`;
-                html += demoDelta(incA, incB, d => {
-                    if (!incB) return '—';
-                    return Math.round((d/incB)*100) + '%';
-                });
-                html += `<span class="vb">${incB ? '$'+Math.round(incB).toLocaleString() : '—'}</span>`;
+                html += '<div class="cp-diverge-row">'
+                    + '<div class="cp-diverge-top">'
+                    + '<span class="cp-diverge-name">' + name + '</span>'
+                    + '<span class="cp-diverge-delta" style="color:' + deltaColor + ';">' + deltaText + '</span>'
+                    + '</div>'
+                    + '<div class="cp-diverge-track">'
+                    + '<div class="cp-diverge-mid"></div>'
+                    + '<div class="cp-diverge-bar" style="left:' + barLeft + ';width:' + w.toFixed(1) + '%;background:' + (here ? areaMain : compMain) + ';"></div>'
+                    + '</div></div>';
+            });
 
-                // Race composition bars
-                html += `<div class="cp-demo-race"><span class="k" style="padding-top:0;">Race composition</span>`;
-                [{ label: 'A', props: propsA }, { label: 'B', props: propsB }].forEach(side => {
-                    html += `<div class="row-h"><span class="who ${side.label}">${side.label}</span><div class="rstack">`;
-                    races.forEach(r => {
-                        const v = side.props[r.key];
-                        if (v != null) html += `<span style="width:${v}%;background:${r.color};" title="${r.label} ${v.toFixed(1)}%"></span>`;
-                    });
-                    html += `</div></div>`;
-                });
-                html += `<div class="legend">`;
-                races.forEach(r => { html += `<span><i style="background:${r.color}"></i>${r.label}</span>`; });
-                html += `</div></div></div></div>`;
-
-                body.innerHTML = html;
-            } else {
-                const metric = compareState.tab;
-                const rows = compareUnionRows(metric);
-                const maxVal = rows.reduce((m, r) => Math.max(m, r.aVal, r.bVal), 0) || 1;
-
-                let html = `<div class="cp-pane">
-                    <div class="cp-legend">
-                        <span><i class="A"></i>${labelA}</span>
-                        <span><i class="B"></i>${labelB}</span>
-                    </div><div>`;
-
-                rows.forEach(r => {
-                    const aW = (r.aVal / maxVal) * 100;
-                    const bW = (r.bVal / maxVal) * 100;
-                    const meta = foodseqData.species_metadata[r.key];
-                    const name = meta ? meta.common_name : r.key;
-
-                    let deltaHtml;
-                    if (r.hasA && r.hasB) {
-                        const diff = +(r.aVal - r.bVal).toFixed(1);
-                        const cls = diff > 0.5 ? 'up' : diff < -0.5 ? 'down' : 'eq';
-                        const sign = diff > 0 ? '+' : '';
-                        deltaHtml = `<span class="cp-row-delta ${cls}">${sign}${diff} pp</span>`;
-                    } else if (r.hasA && !r.hasB) {
-                        deltaHtml = `<span class="cp-row-delta up only">${labelA} only</span>`;
-                    } else {
-                        deltaHtml = `<span class="cp-row-delta down only">${labelB} only</span>`;
-                    }
-
-                    html += `<div class="cp-row">
-                        <div class="cp-row-top"><span class="cp-row-name">${name}</span>${deltaHtml}</div>
-                        <div class="cp-bars">
-                            <div class="cp-bar A"><span class="tag">A</span><div class="track"><div class="fill" style="width:${aW}%"></div></div>${r.hasA ? `<span class="val">${fmtCp(r.aVal)}</span>` : `<span class="val na">—</span>`}</div>
-                            <div class="cp-bar B"><span class="tag">B</span><div class="track"><div class="fill" style="width:${bW}%"></div></div>${r.hasB ? `<span class="val">${fmtCp(r.bVal)}</span>` : `<span class="val na">—</span>`}</div>
-                        </div>
-                    </div>`;
-                });
-
-                html += `</div>`;
-                const expandLabel = compareState.expanded[metric] ? `show top 5 each` : `view all combined ${metric}`;
-                html += `<a class="cp-link" href="#" onclick="event.preventDefault();toggleCompareExpand('${metric}',this)">${expandLabel} &rarr;</a>`;
-                html += `</div>`;
-
-                body.innerHTML = html;
-
-                // Update count
-                const countEl = document.getElementById('cpCount');
-                if (countEl) countEl.textContent = `${rows.length} unique`;
-            }
+            html += '</section>';
+            body.innerHTML = html;
         }
 
-        function switchCompareTab(btn, tab) {
-            compareState.tab = tab;
-            document.querySelectorAll('.cp-tab').forEach(t => t.setAttribute('aria-selected', 'false'));
-            btn.setAttribute('aria-selected', 'true');
-            renderCompareBody();
-        }
-
-        function setCompareSort(s, btn) {
-            compareState.sort = s;
-            document.querySelectorAll('.cp-sort button').forEach(b => b.setAttribute('aria-pressed', b === btn));
-            renderCompareBody();
-        }
-
-        function toggleCompareExpand(metric, link) {
-            compareState.expanded[metric] = !compareState.expanded[metric];
-            renderCompareBody();
-        }
-
-        function swapCompareTracts() {
-            if (compareState.siteA) {
-                [compareState.siteA, compareState.siteB] = [compareState.siteB, compareState.siteA];
-            } else {
-                [compareState.tractA, compareState.tractB] = [compareState.tractB, compareState.tractA];
-            }
+        function switchCompareTab(tab) {
+            compareState.foodTab = tab;
             renderComparePanel();
         }
 
-        function toggleComparePicker() {
-            var picker = document.getElementById('cpPicker');
-            if (picker) picker.classList.toggle('collapsed');
-        }
-
         function clearCompareSelection() {
-            compareState.tractB = null;
-            compareState.siteB = null;
+            compareState.target = null;
+            compareState.query = '';
             renderComparePanel();
         }
 
@@ -12044,8 +12000,14 @@
             const q = (filter || '').toLowerCase();
 
             let html = '';
+            // Durham average as first option (always, unless filtered out)
+            if (!q || 'durham average'.includes(q)) {
+                html += '<div class="cp-picker-item" onclick="onCompareTargetSelect(\'durham\')">'
+                    + '<div><span class="name">Durham average</span><span class="hood"> \u00b7 typical across all areas</span></div>'
+                    + '<span class="sites">' + tractsWithData.size + ' areas</span>'
+                    + '</div>';
+            }
             if (isSiteMode) {
-                // List all sites with data
                 Object.entries(foodseqData.plants).forEach(([pid, p]) => {
                     if (p === compareState.siteA) return;
                     let hasData = currentTimeIndex === 'all'
@@ -12055,29 +12017,28 @@
                     const name = p.name;
                     const type = p.location_type === 'manhole' ? 'Sampling Site' : 'Wastewater Plant';
                     if (q && !name.toLowerCase().includes(q) && !type.toLowerCase().includes(q)) return;
-                    html += `<div class="cp-picker-item" onclick="onCompareSiteSelect('${pid}')">
-                        <div><span class="name">${name}</span><span class="hood">${type}</span></div>
-                        <span class="sites">${Object.keys(p.timeseries).length} periods</span>
-                    </div>`;
+                    html += '<div class="cp-picker-item" onclick="onCompareSiteSelect(\'' + pid + '\')">'
+                        + '<div><span class="name">' + name + '</span><span class="hood">' + type + '</span></div>'
+                        + '<span class="sites">' + Object.keys(p.timeseries).length + ' periods</span>'
+                        + '</div>';
                 });
             } else {
-                // List all service areas with data
                 if (durhamTractsGeoJSON) {
                     const tractNumA = compareState.tractA ? String(compareState.tractA.properties.Sample_ID) : '';
                     durhamTractsGeoJSON.features
-                        .filter(f => tractsWithData.has(String(f.properties.Sample_ID)))
-                        .filter(f => String(f.properties.Sample_ID) !== tractNumA)
-                        .sort((a, b) => parseFloat(a.properties.Sample_ID) - parseFloat(b.properties.Sample_ID))
-                        .forEach(f => {
+                        .filter(function(f) { return tractsWithData.has(String(f.properties.Sample_ID)); })
+                        .filter(function(f) { return String(f.properties.Sample_ID) !== tractNumA; })
+                        .sort(function(a, b) { return parseFloat(a.properties.Sample_ID) - parseFloat(b.properties.Sample_ID); })
+                        .forEach(function(f) {
                             const tn = f.properties.Sample_ID;
                             const hood = getTractNeighborhood(tn);
                             const nSites = getPlantsInTract(tn).length;
-                            const label = `SA ${tn}`;
+                            const label = 'SA ' + tn;
                             if (q && !label.toLowerCase().includes(q) && !hood.toLowerCase().includes(q)) return;
-                            html += `<div class="cp-picker-item" onclick="onCompareTractSelect('${tn}')">
-                                <div><span class="name">SA ${tn}</span><span class="hood"> · ${hood}</span></div>
-                                <span class="sites">${nSites} site${nSites !== 1 ? 's' : ''}</span>
-                            </div>`;
+                            html += '<div class="cp-picker-item" onclick="onCompareTargetSelect(\'' + tn + '\')">'
+                                + '<div><span class="name">SA ' + tn + '</span><span class="hood"> \u00b7 ' + hood + '</span></div>'
+                                + '<span class="sites">' + nSites + ' site' + (nSites !== 1 ? 's' : '') + '</span>'
+                                + '</div>';
                         });
                 }
             }
@@ -12085,6 +12046,7 @@
         }
 
         function filterComparePicker(query) {
+            compareState.query = query;
             populateComparePicker(query);
         }
 
