@@ -8,7 +8,7 @@
     <!-- Google Fonts for Trends redesign -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -410,7 +410,7 @@
         .nf-help-note { margin: 9px 2px 0; font-size: 11.5px; line-height: 1.5; color: #94a3b8; }
 
         /* Editorial report */
-        .er { max-width: 880px; margin: 0 auto; padding: 30px 32px 40px; }
+        .er { max-width: 880px; margin: 0 auto; padding: 30px 20px 40px; }
         .er-eye { font: 600 11px/1 'Geist Mono', monospace; letter-spacing: .17em; text-transform: uppercase; color: #64748b; }
         .er-rule { height: 1px; background: #e7e4dc; margin: 20px 0; }
         .er-h1 { font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 28px; line-height: 1.06; letter-spacing: -.01em; color: #0b1220; margin: 9px 0 0; }
@@ -1103,21 +1103,21 @@
             --t-ink:        #0b1220;
             --t-text:       #1f2937;
             --t-muted:      #64748b;
-            --t-muted-2:    #6b7a8d;
-            --t-line:       #e5e7eb;
-            --t-line-2:     #eef0f3;
+            --t-muted-2:    #94a3b8;
+            --t-line:       #e7e4dc;
+            --t-line-2:     #efece4;
             --t-bg:         #faf9f5;
             --t-surface:    #ffffff;
-            --t-surface-2:  #f5f3ee;
+            --t-surface-2:  #f2efe8;
             --t-tint:       #eef2fb;
             --t-navy:       #1e3a8a;
-            --t-navy-soft:  #c7d2f0;
+            --t-navy-soft:  #dbe4fb;
             --t-rust:       #b8612a;
             --t-green:      #15803d;
-            --t-red:        #b91c1c;
+            --t-red:        #b0341f;
             --t-error:      #e53e3e;
             --t-info:       #4299e1;
-            --t-r-card:     14px;
+            --t-r-card:     16px;
             --t-r-pill:     999px;
             --t-sans:  "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --t-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -1151,15 +1151,21 @@
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
         }
+        #trendsView.trends-active {
+            display: flex !important;
+            flex-direction: column !important;
+        }
         #trendsView .trends-page {
-            max-width: 1380px;
+            max-width: 1060px;
             margin: 0 auto;
+            flex: 1; min-height: 0;
+            display: flex; flex-direction: column;
         }
 
         /* Top bar / breadcrumb override */
         #trendsView .trends-topbar {
             display: flex; align-items: center; justify-content: space-between;
-            gap: 24px; margin-bottom: 32px;
+            gap: 24px; margin-bottom: 16px;
         }
         #trendsView .trends-crumb {
             display: inline-flex; align-items: center; gap: 10px;
@@ -1176,83 +1182,104 @@
         #trendsView .trends-crumb .sep { color: var(--t-muted-2); }
         #trendsView .trends-crumb .here { color: var(--t-ink); font-weight: 500; }
 
-        /* Hero */
+        /* Hero — empty state: centered; detail state: part of left column */
         #trendsView .trends-hero {
-            display: grid;
-            grid-template-columns: 1.25fr 1fr;
-            gap: 44px;
-            align-items: end;
-            padding-bottom: 26px;
-            border-bottom: 1px solid var(--t-line);
-            margin-bottom: 26px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        #trendsView .trends-hero.trends-hero-empty {
+            align-items: center;
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 0;
+        }
+        /* Detail state: smaller headline, tighter spacing */
+        #trendsView .trends-detail-left .trends-hero .trends-h1 {
+            font-size: 30px;
+            margin-top: 11px;
+        }
+        #trendsView .trends-detail-left .trends-hero .trends-h1-sub {
+            margin-top: 12px;
+        }
+        #trendsView .trends-detail-left .trends-hero .trends-kpis {
+            margin-top: 20px;
         }
         #trendsView .trends-eyebrow {
             font: 600 11px/1 var(--t-mono);
-            letter-spacing: .14em;
+            letter-spacing: .17em;
             text-transform: uppercase;
             color: var(--t-muted);
-            margin-bottom: 15px;
+            margin-bottom: 0;
+            padding-top: 8px;
         }
         #trendsView .trends-h1 {
-            font-family: var(--t-serif);
-            font-weight: 400;
-            font-size: clamp(34px, 3.6vw, 48px);
+            font-family: var(--t-sans);
+            font-weight: 500;
+            font-size: 40px;
             line-height: 1.1;
-            letter-spacing: -0.01em;
+            letter-spacing: -0.02em;
             color: var(--t-ink);
-            margin: 0 0 18px;
-            text-wrap: balance;
+            margin: 13px 0 0;
+            text-wrap: pretty;
         }
-        #trendsView .trends-h1 em { font-style: italic; color: var(--t-navy); }
-        #trendsView .trends-hero-empty { grid-template-columns: 1fr; border-bottom: 1px dashed var(--t-line); }
-        #trendsView .trends-hero-empty .trends-h1 { color: var(--t-muted); }
-        #trendsView .trends-hero-empty .trends-h1 em { color: var(--t-navy); }
+        #trendsView .trends-h1 .hl { color: var(--t-navy); font-weight: 600; }
+        #trendsView .trends-h1 .dn { color: var(--t-red); font-weight: 600; }
+        #trendsView .trends-h1 em { font-style: normal; color: var(--t-navy); font-weight: 600; }
+        #trendsView .trends-hero-empty { grid-template-columns: 1fr; border-bottom: none; }
+        #trendsView .trends-hero-empty .trends-h1 { color: var(--t-ink); }
+        #trendsView .trends-hero-empty .trends-h1 em { color: var(--t-navy); font-weight: 600; }
         #trendsView .trends-h1-sub {
-            color: var(--t-muted); font-size: 15px; max-width: 56ch; margin: 0;
+            color: var(--t-muted); font-size: 15px; line-height: 1.55; max-width: 62ch; margin: 14px 0 0;
         }
         #trendsView .trends-h1-sub b { color: var(--t-text); font-weight: 600; }
+        #trendsView .trends-hero-empty .trends-h1-sub {
+            margin: 12px auto 24px;
+        }
 
-        /* KPIs */
+        /* KPIs — 2×2 grid */
         #trendsView .trends-kpis {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 26px;
+            margin-top: 22px;
         }
         #trendsView .trends-kpi-label {
-            font: 600 10.5px/1 var(--t-mono);
-            letter-spacing: .12em;
-            text-transform: uppercase;
-            color: var(--t-muted);
-            margin-bottom: 8px;
+            display: none;
         }
         #trendsView .trends-kpi-val {
-            font-family: var(--t-serif);
-            font-weight: 400;
-            font-size: 34px;
+            font-family: var(--t-sans);
+            font-weight: 600;
+            font-size: 32px;
             line-height: 1;
-            color: var(--t-ink);
-            letter-spacing: -0.01em;
-            display: flex; align-items: baseline; gap: 8px;
-            flex-wrap: wrap;
+            color: var(--t-navy);
+            letter-spacing: -0.02em;
+            display: inline-flex; align-items: baseline;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
         #trendsView .trends-kpi-val .unit {
-            font-family: var(--t-sans); font-size: 13px; color: var(--t-muted-2); font-weight: 400; letter-spacing: 0;
+            font-style: normal; font-size: 16px; color: var(--t-muted-2); font-weight: 400; margin-left: 3px;
         }
         #trendsView .trends-kpi-val.pos { color: var(--t-green); }
         #trendsView .trends-kpi-val.neg { color: var(--t-red); }
         #trendsView .trends-kpi-foot {
-            margin-top: 8px; font-size: 12px; color: var(--t-muted);
+            display: block; margin-top: 8px; font-size: 12px; color: var(--t-muted);
         }
 
         /* Toolbar */
         #trendsView .trends-toolbar {
-            display: flex; flex-wrap: wrap; gap: 8px 22px;
+            display: flex; flex-wrap: wrap; gap: 9px 22px;
             align-items: center;
-            margin-bottom: 26px;
-            padding: 12px 16px;
-            background: var(--t-surface);
-            border: 1px solid var(--t-line);
-            border-radius: var(--t-r-card);
+            margin-bottom: 0;
+            padding: 11px 28px;
+            background: #fff;
+            border: none;
+            border-bottom: 1px solid var(--t-line);
+            border-radius: 0;
         }
         #trendsView .trends-field {
             display: inline-flex; align-items: center; gap: 10px; min-height: 32px;
@@ -1305,8 +1332,12 @@
             font-size: 14px;
         }
         #trendsView .trends-chip .x:hover { opacity: 1; background: rgba(30,58,138,.1); }
-        #trendsView .trends-chip.rust { background: #fbf0e6; color: #8a4413; border-color: #f0d8be; }
-        #trendsView .trends-chip.rust .x { color: #8a4413; }
+        #trendsView .trends-chip.food { background: #e6e8fb; color: #4a3fb0; border-color: #cdd2f7; }
+        #trendsView .trends-chip.food .dot { background: #5b6cf0; }
+        #trendsView .trends-chip.food .x { color: #4a3fb0; }
+        /* Legacy rust class kept for backwards compat */
+        #trendsView .trends-chip.rust { background: #e6e8fb; color: #4a3fb0; border-color: #cdd2f7; }
+        #trendsView .trends-chip.rust .x { color: #4a3fb0; }
 
         #trendsView .trends-add-btn {
             display: inline-flex; align-items: center; gap: 6px;
@@ -1318,50 +1349,54 @@
             font: 500 12.5px/1 var(--t-sans);
             cursor: pointer; white-space: nowrap;
         }
-        #trendsView .trends-add-btn:hover { color: var(--t-ink); border-color: var(--t-muted); }
-        #trendsView .trends-sep-v { width: 1px; height: 22px; background: var(--t-line); margin: 0 4px; }
+        #trendsView .trends-add-btn:hover { color: var(--t-ink); border-color: #a89c86; }
+        #trendsView .trends-sep-v { width: 1px; height: 24px; background: var(--t-line); margin: 0 0; }
 
-        /* Chart grid */
+        /* Chart grid — detail state 2-column layout */
         #trendsView .trends-grid {
             display: grid;
-            grid-template-columns: 1.62fr 1fr;
-            gap: 20px;
+            grid-template-columns: 392px 1fr;
+            gap: 36px;
+            flex: 1; min-height: 0;
         }
         #trendsView .trends-card {
-            background: var(--t-surface);
+            background: #fff;
             border: 1px solid var(--t-line);
-            border-radius: var(--t-r-card);
+            border-radius: 16px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            padding: 16px 20px 18px;
+            min-height: 0;
         }
-        #trendsView .trends-card-body { flex: 1; }
+        #trendsView .trends-card-body { flex: 1; min-height: 0; }
         #trendsView .trends-card-head {
-            display: flex; align-items: flex-start; justify-content: space-between;
-            gap: 16px;
-            padding: 18px 22px 6px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 12px;
+            padding: 0;
+            margin-bottom: 4px;
         }
         #trendsView .trends-card-title {
             margin: 0;
-            font: 600 15px/1.25 var(--t-sans);
+            font: 600 13.5px/1.25 var(--t-sans);
             color: var(--t-ink);
-            letter-spacing: -0.005em;
+            letter-spacing: 0;
             display: flex; align-items: center; gap: 8px;
         }
         #trendsView .trends-badge {
-            font: 600 9.5px/1 var(--t-mono);
+            font: 600 9px/1 var(--t-mono);
             letter-spacing: .1em;
             text-transform: uppercase;
-            padding: 4px 7px;
+            padding: 3px 6px;
             border-radius: 5px;
             background: var(--t-surface-2);
             color: var(--t-muted);
         }
         #trendsView .trends-badge.primary {
-            background: var(--t-ink); color: #fff;
+            background: var(--t-surface-2); color: var(--t-muted);
         }
         #trendsView .trends-card-desc {
-            margin: 4px 0 0; color: var(--t-muted); font-size: 12.5px;
+            margin: 0; color: var(--t-muted); font-size: 11.5px;
             max-width: 52ch;
         }
         #trendsView .trends-card-meta {
@@ -1375,10 +1410,10 @@
             color: var(--t-ink); font-family: var(--t-sans); font-weight: 600;
             font-size: 13px; letter-spacing: 0;
         }
-        #trendsView .trends-card-body { padding: 14px 12px 18px; }
+        #trendsView .trends-card-body { padding: 0; }
         #trendsView .trends-card-body svg { width: 100%; display: block; }
-        #trendsView .trends-card-body #trends-slope-svg { height: 340px; }
-        #trendsView .trends-card-body #trends-line-svg { height: 340px; }
+        #trendsView .trends-card-body #trends-slope-svg { height: 160px; }
+        #trendsView .trends-card-body #trends-line-svg { height: 320px; }
 
         /* X-axis labels */
         #trendsView .trends-x-axis {
@@ -1406,11 +1441,11 @@
         }
         #trendsView .trends-icon-btn:hover { color: var(--t-ink); border-color: #cbd5e1; }
         #trendsView .trends-card-foot {
-            border-top: 1px dashed var(--t-line);
-            padding: 12px 22px;
+            border-top: none;
+            padding: 8px 0 0;
             display: flex; align-items: center; justify-content: space-between;
             gap: 16px;
-            background: #fcfbf7;
+            background: transparent;
         }
         #trendsView .trends-legend {
             display: inline-flex; align-items: center; gap: 14px;
@@ -1424,6 +1459,66 @@
             font: 500 11px/1.4 var(--t-mono);
             color: var(--t-muted);
             letter-spacing: .02em;
+        }
+
+        /* Standout cards — stacked vertically in left column */
+        #trendsView .trends-standouts {
+            display: flex; flex-direction: column; gap: 12px; flex: 1;
+        }
+        #trendsView .trends-so-card {
+            display: flex; align-items: center; gap: 14px;
+            padding: 15px 16px; border: 1px solid; border-radius: 14px;
+        }
+        #trendsView .trends-so-card.navy { background: #eef2fb; border-color: #d5def7; }
+        #trendsView .trends-so-card.green { background: #e7f1e9; border-color: #cfe3d4; }
+        #trendsView .trends-so-card.gold { background: #f8efd6; border-color: #eaddb0; }
+        #trendsView .trends-so-ic {
+            width: 34px; height: 34px; border-radius: 50%;
+            display: grid; place-items: center; flex-shrink: 0;
+        }
+        #trendsView .trends-so-card.navy .trends-so-ic { background: #dbe4fb; color: #2a4fb0; }
+        #trendsView .trends-so-card.green .trends-so-ic { background: #d3e6d8; color: #177a3c; }
+        #trendsView .trends-so-card.gold .trends-so-ic { background: #efdfab; color: #a67c1e; }
+        #trendsView .trends-so-v {
+            font-family: var(--t-sans); font-weight: 600; font-size: 23px;
+            line-height: 1; color: var(--t-ink); letter-spacing: -0.01em;
+        }
+        #trendsView .trends-so-l {
+            font-size: 12.5px; color: var(--t-muted); margin-top: 4px; line-height: 1.4;
+        }
+
+        /* Compare toggle */
+        #trendsView .trends-toggle {
+            display: inline-flex; align-items: center; gap: 8px;
+            height: 30px; padding: 0 13px 0 5px; border-radius: 999px;
+            border: 1px solid var(--t-line); background: #fff;
+            font: 600 11.5px var(--t-sans); color: var(--t-muted); cursor: pointer;
+        }
+        #trendsView .trends-toggle .knob {
+            width: 30px; height: 18px; border-radius: 999px;
+            background: #d8d4ca; position: relative; transition: background .18s; flex-shrink: 0;
+        }
+        #trendsView .trends-toggle .knob::after {
+            content: ""; position: absolute; top: 2px; left: 2px;
+            width: 14px; height: 14px; border-radius: 50%; background: #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,.25); transition: transform .18s;
+        }
+        #trendsView .trends-toggle.on { color: var(--t-navy); border-color: var(--t-navy-soft); }
+        #trendsView .trends-toggle.on .knob { background: var(--t-navy); }
+        #trendsView .trends-toggle.on .knob::after { transform: translateX(12px); }
+
+        /* Detail state: left column holds hero+KPIs+standouts; right column holds chart cards stacked */
+        #trendsView .trends-detail-left {
+            display: flex; flex-direction: column; gap: 24px;
+        }
+        #trendsView .trends-detail-right {
+            display: grid; grid-template-rows: auto auto; gap: 14px; min-height: 0;
+        }
+        #trendsView .trends-detail-right .trends-card {
+            overflow: hidden;
+        }
+        #trendsView .trends-detail-right .chart-fill {
+            flex: 1; display: flex; flex-direction: column; min-height: 0;
         }
 
         /* Data-quality note */
@@ -1446,53 +1541,106 @@
         }
         #trendsView .trends-note b { color: #3d2f06; font-weight: 600; }
 
-        /* Empty state */
-        #trendsView .trends-empty {
-            display: grid; grid-template-columns: 1fr 1.1fr; gap: 0;
-            background: var(--t-surface); border: 1px solid var(--t-line);
-            border-radius: var(--t-r-card); overflow: hidden;
+        /* Empty state wrapper */
+        #trendsView #trendsEmpty {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 22px; padding: 0 0 30px;
         }
-        #trendsView .trends-empty-pick { padding: 30px 32px 32px; }
+        /* Empty state — centered chooser cards */
+        #trendsView .trends-empty {
+            display: flex; flex-direction: column; align-items: stretch;
+            background: transparent; border: none;
+            border-radius: 0; overflow: visible;
+        }
+        #trendsView .trends-empty-pick { padding: 18px 20px 20px; }
         #trendsView .trends-empty-kicker {
-            font: 600 10.5px/1 var(--t-mono); letter-spacing: .14em;
-            text-transform: uppercase; color: var(--t-navy); margin-bottom: 12px;
+            font: 600 10.5px/1 var(--t-mono); letter-spacing: .08em;
+            text-transform: uppercase; color: var(--t-muted-2); margin-bottom: 0;
         }
         #trendsView .trends-empty-h {
-            font-family: var(--t-serif); font-weight: 400; font-size: 30px;
-            color: var(--t-ink); margin: 0 0 6px;
+            font-family: var(--t-sans); font-weight: 600; font-size: 13.5px;
+            color: var(--t-ink); margin: 0;
         }
-        #trendsView .trends-empty-p { color: var(--t-muted); font-size: 13px; margin: 0 0 16px; }
+        #trendsView .trends-empty-p { color: var(--t-muted); font-size: 13px; margin: 0 0 12px; }
         #trendsView .trends-qp { display: flex; flex-direction: column; gap: 8px; }
         #trendsView .trends-qp-row {
-            display: flex; align-items: center; gap: 11px; width: 100%;
-            padding: 11px 14px; border: 1px solid var(--t-line); border-radius: 11px;
-            background: var(--t-surface); cursor: pointer; text-align: left;
-            transition: border-color .15s, background .15s;
+            display: flex; align-items: center; gap: 12px; width: 100%;
+            padding: 11px 14px; border: 1px solid var(--t-line); border-radius: 12px;
+            background: #fff; cursor: pointer; text-align: left;
+            transition: border-color .14s, background .14s;
         }
-        #trendsView .trends-qp-row:hover { border-color: #dbe4fb; background: #eef2fb; }
+        #trendsView .trends-qp-row:hover { border-color: var(--t-navy-soft); background: #f4f6fd; }
         #trendsView .trends-qp-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; }
-        #trendsView .trends-qp-name { flex: 1; font: 600 14px var(--t-sans); color: var(--t-ink); }
-        #trendsView .trends-qp-sub { display: block; font: 400 11.5px var(--t-mono); color: var(--t-muted-2); }
+        #trendsView .trends-qp-name { flex: 1; font: 600 13.5px var(--t-sans); color: var(--t-ink); }
+        #trendsView .trends-qp-sub { display: block; font: 400 11px var(--t-mono); color: var(--t-muted-2); }
         #trendsView .trends-qp-arrow { color: var(--t-muted-2); }
         #trendsView .trends-qp-row:hover .trends-qp-arrow { color: var(--t-navy); }
         #trendsView .trends-empty-preview {
-            position: relative; border-left: 1px solid var(--t-line);
-            background: linear-gradient(180deg, #fff, #fcfbf7); padding: 30px 26px;
-            display: flex; align-items: center;
+            display: none;
         }
-        #trendsView .trends-empty-preview svg { width: 100%; opacity: .4; }
         #trendsView .trends-preview-tag {
-            position: absolute; top: 16px; right: 18px;
-            font: 600 9.5px/1 var(--t-mono); letter-spacing: .12em;
-            text-transform: uppercase; color: var(--t-muted-2);
-            background: var(--t-surface-2); padding: 5px 8px; border-radius: 5px;
+            display: none;
         }
+
+        /* Chooser card wrappers */
+        #trendsView .es-choose {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+            width: 100%; max-width: 1010px; flex: 1; min-height: 0;
+        }
+        #trendsView .es-choose .trends-empty {
+            background: #fff; border: 1px solid var(--t-line); border-radius: 16px;
+            padding: 18px 20px 20px; flex-direction: column;
+        }
+
+        /* Quick-pick search field */
+        #trendsView .qp-search {
+            display: flex; align-items: center; gap: 9px; height: 38px;
+            padding: 0 13px; border: 1px solid var(--t-line); border-radius: 11px;
+            color: var(--t-muted-2); font: 400 13px var(--t-sans);
+            margin: 10px 0 12px; background: #fff;
+        }
+        #trendsView .qp-search input {
+            border: none; outline: none; font: 400 13px var(--t-sans);
+            flex: 1; min-width: 0; padding: 0; color: var(--t-ink); background: transparent;
+        }
+
+        /* Popular pairings */
+        #trendsView .es-pair { width: 100%; max-width: 1010px; margin-top: 6px; }
+        #trendsView .es-pair-hd {
+            font: 600 10.5px var(--t-mono); letter-spacing: .14em;
+            text-transform: uppercase; color: var(--t-muted-2);
+            margin-bottom: 10px; text-align: center;
+        }
+        #trendsView .es-pair-row {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+        }
+        #trendsView .pair-card {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 15px; border: 1px solid var(--t-line); border-radius: 13px;
+            background: #fff; cursor: pointer;
+            transition: border-color .14s, background .14s;
+        }
+        #trendsView .pair-card:hover { border-color: var(--t-navy-soft); background: #f4f6fd; }
+        #trendsView .pair-dots { display: flex; }
+        #trendsView .pair-dots span {
+            width: 11px; height: 11px; border-radius: 50%; border: 2px solid #fff;
+        }
+        #trendsView .pair-dots span + span { margin-left: -5px; }
+        #trendsView .pair-nm { flex: 1; font: 600 13px var(--t-sans); color: var(--t-ink); }
+        #trendsView .pair-nm .s {
+            display: block; font: 400 11px var(--t-mono); color: var(--t-muted-2); margin-top: 2px;
+        }
+        #trendsView .pair-go { color: var(--t-muted-2); }
+        #trendsView .pair-card:hover .pair-go { color: var(--t-navy); }
 
         /* Species search (existing elements inside new toolbar) */
         #trendsView #trendsSpeciesSearch {
-            padding: 5px 10px; border: 1px solid #cbd5e1; border-radius: var(--t-r-pill);
+            padding: 5px 10px; border: 1px dashed #cbbfa8; border-radius: var(--t-r-pill);
             font: 500 12.5px/1 var(--t-sans); width: 140px;
-            color: var(--t-ink); background: var(--t-surface);
+            color: var(--t-ink); background: transparent;
+        }
+        #trendsView #trendsSpeciesSearch::placeholder {
+            color: var(--t-muted);
         }
         #trendsView #trendsSpeciesSuggestions {
             border-radius: 0 0 10px 10px !important;
@@ -1502,7 +1650,7 @@
         #trendsView #trends-site-add {
             height: 28px; padding: 0 10px;
             border-radius: var(--t-r-pill) !important;
-            border: 1px dashed #cbd5e1 !important;
+            border: 1px dashed #cbbfa8 !important;
             background: transparent !important;
             color: var(--t-muted) !important;
             font: 500 12.5px/1 var(--t-sans) !important;
@@ -1596,13 +1744,14 @@
 
         /* Multi-species hero layout override */
         #trendsView .trends-hero.multi {
-            grid-template-columns: 1.1fr 1.1fr;
+            /* stays single column in new layout */
         }
 
         /* Responsive */
         @media (max-width: 900px) {
             #trendsView .trends-grid { grid-template-columns: 1fr; }
-            #trendsView .trends-hero { grid-template-columns: 1fr; gap: 22px; }
+            #trendsView .es-choose { grid-template-columns: 1fr; }
+            #trendsView .es-pair-row { grid-template-columns: 1fr; }
         }
         @media (max-width: 720px) {
             #trendsView .trends-kpis { gap: 12px; }
@@ -3149,7 +3298,7 @@
             position: absolute;
             top: 148px;
             right: 420px;
-            width: 80vw;
+            width: 60vw;
             max-width: calc(100vw - 440px);
             height: calc(100vh - 148px);
             z-index: 1001;
@@ -3162,7 +3311,7 @@
             transition: transform .7s ease;
         }
         #landingInfoPanel.hidden {
-            transform: translateX(calc(80vw + 420px));
+            transform: translateX(calc(60vw + 420px));
             pointer-events: none;
         }
 
@@ -4456,12 +4605,36 @@
 
     <!-- Food Near Me view (hidden by default) -->
     <!-- Trends view -->
-    <div id="trendsView" class="view-container" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;overflow:auto;padding:28px 32px 60px;">
+    <div id="trendsView" class="view-container" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;overflow:hidden;flex-direction:column;">
+        <!-- Toolbar sits outside scroll area -->
+        <div class="trends-toolbar" role="toolbar" aria-label="Trend filters">
+            <div class="trends-field">
+                <span class="trends-field-label">Sites</span>
+                <div id="trendsSiteTags" style="display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
+                <select id="trends-site-add" onchange="addTrendsSite(this.value);this.value=''">
+                    <option value="">+ Add site</option>
+                </select>
+            </div>
+
+            <span class="trends-sep-v"></span>
+
+            <div class="trends-field">
+                <span class="trends-field-label">Foods</span>
+                <div id="trendsSpeciesTags" style="display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
+                <div style="position:relative;">
+                    <input type="text" id="trendsSpeciesSearch" placeholder="+ Add food" autocomplete="off"
+                        oninput="onTrendsSpeciesSearch(this.value)" onkeydown="onTrendsSpeciesKeydown(event)">
+                    <div id="trendsSpeciesSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10000;background:#fff;border:1.5px solid #d1d5db;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);min-width:220px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div style="flex:1;overflow:auto;padding:20px 28px 20px;">
         <div class="trends-page">
             <!-- Breadcrumb (populated by navigateToTrends) -->
             <div class="trends-breadcrumb" id="trendsBreadcrumb" style="display:none;"></div>
 
-            <!-- Hero: headline + KPI band -->
+            <!-- Hero: headline + KPI band (used in detail left column AND empty state) -->
             <section class="trends-hero" id="trendsHero" style="display:none;">
                 <div>
                     <div class="trends-eyebrow" id="trendsHeroEyebrow"></div>
@@ -4498,101 +4671,84 @@
                 </div>
             </section>
 
-            <!-- Toolbar -->
-            <div class="trends-toolbar" role="toolbar" aria-label="Trend filters">
-                <div class="trends-field">
-                    <span class="trends-field-label">Sites</span>
-                    <div id="trendsSiteTags" style="display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
-                    <select id="trends-site-add" onchange="addTrendsSite(this.value);this.value=''">
-                        <option value="">+ Add site</option>
-                    </select>
-                </div>
-
-                <span class="trends-sep-v"></span>
-
-                <div class="trends-field">
-                    <span class="trends-field-label">Species</span>
-                    <div id="trendsSpeciesTags" style="display:inline-flex;flex-wrap:wrap;gap:4px;align-items:center;"></div>
-                    <div style="position:relative;">
-                        <input type="text" id="trendsSpeciesSearch" placeholder="+ Add species" autocomplete="off"
-                            oninput="onTrendsSpeciesSearch(this.value)" onkeydown="onTrendsSpeciesKeydown(event)">
-                        <div id="trendsSpeciesSuggestions" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10000;background:#fff;border:1.5px solid #d1d5db;border-radius:0 0 8px 8px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);min-width:220px;"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Chart grid -->
+            <!-- Chart grid — detail state: left col (hero+kpis+standouts) + right col (charts) -->
             <div class="trends-grid" id="trends-grid">
-                <!-- LINE CHART card -->
-                <article class="trends-card" id="trendsLineCard">
-                    <header class="trends-card-head">
-                        <div>
-                            <h2 class="trends-card-title" id="trendsLineCardTitle">Line chart <span class="trends-badge primary" id="trendsLineBadge">Primary</span></h2>
-                            <p class="trends-card-desc" id="trendsLineCardDesc">Every monthly value is plotted — seasonality, dips, and noise are all visible as more samples come in.</p>
-                        </div>
-                        <div style="display:flex;align-items:flex-start;gap:8px;">
-                            <div class="trends-card-meta" id="trendsLineCardMeta">
-                                <div class="v" id="trendsLineMetaRange"></div>
-                                <div id="trendsLineMetaSamples"></div>
-                            </div>
-                            <button class="trends-icon-btn" title="Download PNG" onclick="downloadChart('trends-line-svg','line-chart')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8m0 0l-3-3m3 3l3-3"/><path d="M3 12h10"/></svg></button>
-                            <button class="trends-icon-btn" title="Copy chart link" onclick="shareChart('line')"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="7" height="8" rx="1.5"/><path d="M4 11V3.5A1.5 1.5 0 0 1 5.5 2H10"/></svg></button>
-                        </div>
-                    </header>
-                    <div class="trends-card-body">
-                        <div style="position:relative;overflow:visible;">
-                            <svg id="trends-line-svg" viewBox="0 0 760 360" preserveAspectRatio="none" aria-label="Line chart of food trends"></svg>
-                            <div id="trendsTip" style="display:none;position:fixed;pointer-events:none;z-index:9999;background:#0b1220;color:#fff;border-radius:8px;padding:6px 10px;font:600 12px 'Geist',sans-serif;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.2);"></div>
-                        </div>
-                        <div class="trends-x-axis" id="trends-line-x"></div>
-                    </div>
-                    <footer class="trends-card-foot">
-                        <div class="trends-legend" id="trends-line-legend"></div>
-                        <div class="trends-foot-note" id="trendsLineFootNote"></div>
-                    </footer>
-                </article>
+                <!-- LEFT COLUMN: hero moves here via JS; standouts injected here -->
+                <div class="trends-detail-left" id="trendsDetailLeft">
+                    <!-- Content injected by renderTrendsCharts -->
+                    <div id="trendsStandoutsContainer"></div>
+                </div>
 
-                <!-- WHERE IT RANKS card -->
-                <article class="trends-card" id="trendsSlopeCard">
-                    <header class="trends-card-head">
-                        <div>
-                            <h2 class="trends-card-title">Where it ranks <span class="trends-badge">Context</span></h2>
-                            <p class="trends-card-desc" id="trendsRankDesc">This site against all other Durham tracts for this species, latest reading.</p>
+                <!-- RIGHT COLUMN: chart cards stacked -->
+                <div class="trends-detail-right" id="trendsDetailRight">
+                    <!-- LINE CHART card -->
+                    <article class="trends-card" id="trendsLineCard">
+                        <header class="trends-card-head">
+                            <h2 class="trends-card-title" id="trendsLineCardTitle">The change, month to month <span class="trends-badge" id="trendsLineBadge">Primary</span></h2>
+                            <button class="trends-toggle on" id="trendsCompareToggle" onclick="toggleTrendsCompare()"><span class="knob"></span> Compare to Durham</button>
+                        </header>
+                        <p class="trends-card-desc" id="trendsLineCardDesc">Each collected reading, plotted. Dashed line is the Durham average.</p>
+                        <div class="trends-card-body chart-fill">
+                            <div style="position:relative;overflow:visible;width:100%;flex:1;">
+                                <svg id="trends-line-svg" viewBox="0 0 760 360" preserveAspectRatio="none" aria-label="Line chart of food trends"></svg>
+                                <div id="trendsTip" style="display:none;position:fixed;pointer-events:none;z-index:9999;background:#0b1220;color:#fff;border-radius:8px;padding:6px 10px;font:600 12px 'Geist',sans-serif;white-space:nowrap;box-shadow:0 4px 12px rgba(0,0,0,.2);"></div>
+                            </div>
+                            <div class="trends-x-axis" id="trends-line-x"></div>
                         </div>
-                    </header>
-                    <div class="trends-card-body">
-                        <svg id="trends-slope-svg" viewBox="0 0 380 220" preserveAspectRatio="xMidYMid meet" aria-label="Rank plot among Durham tracts" style="width:100%;display:block;"></svg>
-                    </div>
-                    <footer class="trends-card-foot">
-                        <div class="trends-legend" id="trends-slope-legend"></div>
-                        <div class="trends-foot-note" id="trendsRankFootNote"></div>
-                    </footer>
-                </article>
+                        <footer class="trends-card-foot">
+                            <div class="trends-legend" id="trends-line-legend"></div>
+                            <div class="trends-foot-note" id="trendsLineFootNote"></div>
+                        </footer>
+                    </article>
+
+                    <!-- WHERE IT RANKS card -->
+                    <article class="trends-card" id="trendsSlopeCard">
+                        <header class="trends-card-head">
+                            <h2 class="trends-card-title">Where it ranks <span class="trends-badge">Context</span></h2>
+                            <span class="trends-card-meta" id="trendsRankMeta" style="font:600 10.5px var(--t-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--t-muted-2);white-space:nowrap;"></span>
+                        </header>
+                        <div class="trends-card-body chart-fill">
+                            <svg id="trends-slope-svg" viewBox="0 0 380 220" preserveAspectRatio="xMidYMid meet" aria-label="Rank plot among Durham tracts" style="width:100%;display:block;"></svg>
+                        </div>
+                        <p class="trends-card-desc" id="trendsRankDesc" style="margin-top:4px;">This site against all other Durham tracts for this species, latest reading.</p>
+                        <footer class="trends-card-foot" style="display:none;">
+                            <div class="trends-legend" id="trends-slope-legend"></div>
+                            <div class="trends-foot-note" id="trendsRankFootNote"></div>
+                        </footer>
+                    </article>
+                </div>
             </div>
 
             <!-- Empty state (shown when no sites selected) -->
             <div id="trendsEmpty" style="display:none;">
-                <div id="trendsEmptyGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+                <div class="es-choose" id="trendsEmptyGrid">
                     <!-- Choose a site -->
                     <div class="trends-empty" style="grid-template-columns:1fr;">
                         <div class="trends-empty-pick">
-                            <div class="trends-empty-kicker">Step 1</div>
-                            <h3 class="trends-empty-h">Choose one or more sites</h3>
+                            <div class="trends-card-head" style="padding:0;margin-bottom:10px;">
+                                <h3 class="trends-empty-h">Choose a site</h3>
+                                <span class="trends-empty-kicker">popular</span>
+                            </div>
                             <div class="trends-mobile-add">
                                 <select id="trends-site-add-mobile" onchange="addTrendsSite(this.value);this.value=''" style="width:100%;height:40px;padding:0 12px;border:1px solid #e7e4dc;border-radius:10px;font:500 13px 'Geist',sans-serif;color:#0b1220;background:#fff;">
                                     <option value="">+ Add site</option>
                                 </select>
                                 <div id="trendsSelectedSitesDisplay" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;"></div>
                             </div>
-                            <p class="trends-empty-p trends-desktop-only">Popular sites in Durham County:</p>
+                            <div class="qp-search trends-desktop-only">
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M11 11l3 3"/></svg>
+                                <span style="color:var(--t-muted-2);">Search sampling sites...</span>
+                            </div>
                             <div class="trends-qp trends-desktop-only" id="trendsQuickPick"></div>
                         </div>
                     </div>
                     <!-- Choose a food -->
                     <div class="trends-empty" style="grid-template-columns:1fr;">
                         <div class="trends-empty-pick">
-                            <div class="trends-empty-kicker">Step 2</div>
-                            <h3 class="trends-empty-h">Choose one or more foods</h3>
+                            <div class="trends-card-head" style="padding:0;margin-bottom:10px;">
+                                <h3 class="trends-empty-h">Choose a food</h3>
+                                <span class="trends-empty-kicker">most detected</span>
+                            </div>
                             <div class="trends-mobile-add" style="position:relative;">
                                 <input type="text" id="trendsSpeciesSearchMobile" placeholder="+ Search foods" autocomplete="off"
                                     oninput="onTrendsSpeciesSearch(this.value)" onkeydown="onTrendsSpeciesKeydown(event)"
@@ -4600,7 +4756,10 @@
                                 <div id="trendsSpeciesSuggestionsMobile" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10000;background:#fff;border:1px solid #e7e4dc;border-top:none;border-radius:0 0 10px 10px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
                                 <div id="trendsSelectedFoodsDisplay" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;"></div>
                             </div>
-                            <p class="trends-empty-p trends-desktop-only">Most detected species:</p>
+                            <div class="qp-search trends-desktop-only">
+                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M11 11l3 3"/></svg>
+                                <span style="color:var(--t-muted-2);">Search foods & pollens...</span>
+                            </div>
                             <div class="trends-qp trends-desktop-only" id="trendsQuickFood"></div>
                         </div>
                     </div>
@@ -4617,6 +4776,7 @@
                 Want the raw numbers? <a href="data/foodseq_data.json" download="foodseq_data.json" style="color:#1e3a8a;font-weight:600;text-decoration:none;border-bottom:1px solid #1e3a8a40;">Download the dataset</a> <span style="color:#94a3b8;">(JSON, 1.2 MB) — last updated Feb 2026</span>
             </div>
         </div>
+        </div><!-- end scroll wrapper -->
     </div>
 
 
@@ -8033,7 +8193,15 @@
                 document.getElementById('map').style.display = view === 'map' ? '' : 'none';
                 document.querySelector('.bottom-left-container').style.display = view === 'map' ? '' : 'none';
                 const trendsView = document.getElementById('trendsView');
-                if (trendsView) trendsView.style.display = view === 'trends' ? '' : 'none';
+                if (trendsView) {
+                    if (view === 'trends') {
+                        trendsView.style.display = '';
+                        trendsView.classList.add('trends-active');
+                    } else {
+                        trendsView.style.display = 'none';
+                        trendsView.classList.remove('trends-active');
+                    }
+                }
                 const findFoodView = document.getElementById('findFoodView');
                 if (findFoodView) findFoodView.style.display = view === 'find-food' ? '' : 'none';
 
@@ -9164,6 +9332,14 @@
         let trendsSiteA = null;
         let trendsSiteB = null;
         let trendsInitialized = false;
+        let trendsCompareToDurham = true;
+
+        function toggleTrendsCompare() {
+            trendsCompareToDurham = !trendsCompareToDurham;
+            const btn = document.getElementById('trendsCompareToggle');
+            if (btn) btn.className = 'trends-toggle' + (trendsCompareToDurham ? ' on' : '');
+            renderTrendsLine();
+        }
 
         // Top 3 foods to track (by overall abundance across all sites)
         const TRENDS_COLORS = ['#1e3a8a', '#b45309', '#059669', '#7c3aed', '#dc2626', '#0891b2', '#ca8a04', '#be185d'];
@@ -9235,6 +9411,30 @@
                     ${sel ? '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="#1e3a8a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.5 3.5L13 4"/></svg>' : '<span class="trends-qp-arrow"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg></span>'}
                 </button>`;
             }).join('');
+
+            // Popular pairings: top food × top site combos
+            const pairRow = document.getElementById('trendsPairingsRow');
+            if (pairRow && topSites.length > 0 && topFoods.length > 0) {
+                const pairings = [];
+                for (let fi = 0; fi < Math.min(3, topFoods.length); fi++) {
+                    const food = topFoods[fi];
+                    const site = topSites[fi % topSites.length];
+                    pairings.push({ food, site });
+                }
+                const arrowSvg = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"/></svg>';
+                pairRow.innerHTML = pairings.map(p => {
+                    const foodKey = p.food[0];
+                    const foodName = p.food[1].name;
+                    const foodColor = p.food[1].type === 'animal' ? '#c8612e' : '#5b6cf0';
+                    const siteId = 'tract_' + p.site.saId;
+                    const siteName = 'SA ' + p.site.saId;
+                    return `<button class="pair-card" onclick="selectQuickSite('${siteId}');selectQuickFood('${foodKey}','${foodName.replace(/'/g, "\\'")}');">
+                        <span class="pair-dots"><span style="background:#1e3a8a;"></span><span style="background:${foodColor};"></span></span>
+                        <span class="pair-nm">${foodName}<span class="s">at ${siteName}</span></span>
+                        <span class="pair-go">${arrowSvg}</span>
+                    </button>`;
+                }).join('');
+            }
         }
 
         function selectQuickSite(pid) {
@@ -9476,7 +9676,7 @@
         function renderTrendsSpeciesTags() {
             const container = document.getElementById('trendsSpeciesTags');
             container.innerHTML = trendsSelectedFoods.map(f =>
-                `<span class="trends-chip rust">
+                `<span class="trends-chip food">
                     <span class="dot"></span>
                     ${f.label}
                     <span class="x" onclick="removeTrendsSpecies('${f.id}')">&times;</span>
@@ -9794,9 +9994,9 @@
             });
 
             // Baseline average (dashed) — Durham avg for manholes/tracts, NC avg for WWTPs
-            // Determines type from currently selected sites
+            // Only shown when Compare to Durham toggle is on
             let baselineLabelDeferred = '';
-            if (foodseqData && trendsSelectedFoods.length > 0 && trendsSelectedSites.length > 0) {
+            if (trendsCompareToDurham && foodseqData && trendsSelectedFoods.length > 0 && trendsSelectedSites.length > 0) {
                 const selectedIsWWTP = trendsSelectedSites.some(s => !s.isTract && isTrendsSiteWWTP(s.pid));
                 const baselineLabel = selectedIsWWTP ? 'NC avg' : 'Durham avg';
                 const food = trendsSelectedFoods[0];
@@ -9889,9 +10089,11 @@
             // Update card meta
             if (N >= 1) {
                 const first = months[0], last = months[N - 1];
-                document.getElementById('trendsLineMetaRange').textContent = trendsMonthLabel(first, true) + ' \u2014 ' + trendsMonthLabel(last, true);
+                var _metaRange = document.getElementById('trendsLineMetaRange');
+                if (_metaRange) _metaRange.textContent = trendsMonthLabel(first, true) + ' \u2014 ' + trendsMonthLabel(last, true);
                 const sampleCount = series.length > 0 ? series[0].data.filter(v => v !== null).length : 0;
-                document.getElementById('trendsLineMetaSamples').textContent = sampleCount + ' monthly sample' + (sampleCount !== 1 ? 's' : '');
+                var _metaSamples = document.getElementById('trendsLineMetaSamples');
+                if (_metaSamples) _metaSamples.textContent = sampleCount + ' monthly sample' + (sampleCount !== 1 ? 's' : '');
             }
 
             // Legend
@@ -9969,6 +10171,7 @@
             const legendEl = document.getElementById('trends-slope-legend');
             const descEl = document.getElementById('trendsRankDesc');
             const footEl = document.getElementById('trendsRankFootNote');
+            const rankMeta = document.getElementById('trendsRankMeta');
             if (trendsSelectedSites.length === 0 || trendsSelectedFoods.length === 0) {
                 svgEl.innerHTML = '';
                 legendEl.innerHTML = '';
@@ -9992,12 +10195,16 @@
             // Use first site's allValues for the dot strip
             const rankInfo = siteRanks[0];
             const vals = rankInfo.allValues || [];
-            if (vals.length === 0) { svgEl.innerHTML = ''; return; }
+            if (vals.length === 0) {
+                svgEl.innerHTML = '<text x="50%" y="50%" text-anchor="middle" font-size="13" fill="#94a3b8" font-family="Geist,sans-serif">Not enough data to rank across tracts.</text>';
+                if (rankMeta) rankMeta.textContent = '';
+                return;
+            }
 
             const nSites = siteRanks.length;
-            const W = 380, H = nSites > 1 ? 220 + (nSites - 1) * 24 : 220;
+            const W = 480, H = nSites > 1 ? 130 + (nSites - 1) * 24 : 130;
             svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
-            const padL = 26, padR = 26, padT = 20 + nSites * 22, padB = 44;
+            const padL = 30, padR = 30, padT = 16 + nSites * 20, padB = 30;
 
             const max = Math.max(...vals), min = Math.min(...vals);
             const range = max - min || 1;
@@ -10064,6 +10271,9 @@
             legendEl.innerHTML = siteRanks.map(sr =>
                 `<span class="lg-item"><span class="sw" style="background:${sr.color};width:16px;height:3px;border-radius:2px;"></span>${sr.site.name || sr.site.pid}</span>`
             ).join('') + `<span class="lg-item" style="color:var(--t-muted);"><span style="width:8px;height:8px;border-radius:50%;background:#cfc9bd;display:inline-block;"></span>${otherLabel}</span>`;
+            if (rankMeta) {
+                rankMeta.textContent = `${rankInfo.totalTracts} ${poolLabel} \u00b7 latest`;
+            }
             if (footEl) {
                 if (nSites === 1) {
                     footEl.textContent = rankInfo.rank === 1 ? `#1 in ${poolLabelShort}` : `#${rankInfo.rank} of ${rankInfo.totalTracts}`;
@@ -10216,10 +10426,10 @@
                 heroEl.classList.remove('multi');
                 document.getElementById('trendsKpis').style.display = 'none';
                 document.getElementById('trendsCompTable').style.display = 'none';
-                document.getElementById('trendsHeroEyebrow').textContent = 'Trends \u00b7 Durham Co.';
-                document.getElementById('trendsHeroHeadline').innerHTML = 'Pick a sampling site to see its <em>detection trend</em>.';
+                document.getElementById('trendsHeroEyebrow').textContent = 'Trends \u00b7 Durham County';
+                document.getElementById('trendsHeroHeadline').innerHTML = 'Pick a site and a food to see its <span class="hl">detection trend</span>.';
                 document.getElementById('trendsHeroHeadline').className = 'trends-h1';
-                document.getElementById('trendsHeroSub').textContent = 'Trends plots how food signals change over time.';
+                document.getElementById('trendsHeroSub').textContent = 'Trends plots how one food\u2019s signal changes month over month at a single sampling site \u2014 and ranks it against every other tract in Durham.';
                 return;
             }
             heroEl.classList.remove('trends-hero-empty');
@@ -10228,9 +10438,9 @@
                 heroEl.classList.add('trends-hero-empty');
                 document.getElementById('trendsKpis').style.display = 'none';
                 document.getElementById('trendsCompTable').style.display = 'none';
-                document.getElementById('trendsHeroEyebrow').textContent = 'Trends \u00b7 Durham Co.';
-                document.getElementById('trendsHeroHeadline').innerHTML = 'Pick a sampling site to see its <em>detection trend</em>.';
-                document.getElementById('trendsHeroSub').textContent = 'Trends plots how food signals change over time.';
+                document.getElementById('trendsHeroEyebrow').textContent = 'Trends \u00b7 Durham County';
+                document.getElementById('trendsHeroHeadline').innerHTML = 'Pick a site and a food to see its <span class="hl">detection trend</span>.';
+                document.getElementById('trendsHeroSub').textContent = 'Trends plots how one food\u2019s signal changes month over month at a single sampling site \u2014 and ranks it against every other tract in Durham.';
                 return;
             }
             const { months, series } = getTrendsSeries();
@@ -10263,8 +10473,8 @@
                 compTableEl.style.display = 'none';
                 const foodName = trendsSelectedFoods[0] ? trendsSelectedFoods[0].label : 'This food';
                 const siteName = trendsSelectedSites[0] ? trendsSelectedSites[0].name : 'this site';
-                document.getElementById('trendsHeroEyebrow').textContent = 'Trends \u00b7 Durham Co.';
-                document.getElementById('trendsHeroHeadline').innerHTML = `<em>${foodName}</em> was not detected at ${siteName}`;
+                document.getElementById('trendsHeroEyebrow').textContent = 'Trends \u00b7 Durham County';
+                document.getElementById('trendsHeroHeadline').innerHTML = `<span class="hl">${foodName}</span> was not detected at ${siteName}`;
                 document.getElementById('trendsHeroSub').textContent = 'Try selecting a different food or site.';
                 return;
             }
@@ -10291,7 +10501,7 @@
                 else eyebrowParts.push(siteLabel);
                 document.getElementById('trendsHeroEyebrow').textContent = eyebrowParts.join(' \u00b7 ');
 
-                headlineEl.innerHTML = `Comparing <em>${series.length}</em> series over time.`;
+                headlineEl.innerHTML = `Comparing <span class="hl">${series.length}</span> series over time.`;
                 const sampleCount0 = nonNull.length;
                 document.getElementById('trendsHeroSub').innerHTML = `Detection trends across the selected species and sites. ${sampleCount0} data points per series.`;
 
@@ -10302,41 +10512,54 @@
                 // Single-species mode
                 document.getElementById('trendsHeroEyebrow').textContent = speciesLabel + ' \u00b7 ' + siteLabel;
 
-                headlineEl.innerHTML = `Detection trend for <em>${speciesLabel}</em>.`;
+                headlineEl.innerHTML = `Detection trend for <span class="hl">${speciesLabel}</span>.`;
 
                 const sampleCount = nonNull.length;
                 document.getElementById('trendsHeroSub').innerHTML = `Tracking how this species is detected over time at ${siteLabel}. ${sampleCount} monthly sample${sampleCount !== 1 ? 's' : ''} collected so far.`;
 
                 // KPI: Latest
-                document.getElementById('trendsKpiLatest').innerHTML = `${lastVal < 1 && lastVal > 0 ? lastVal.toFixed(1) : Math.round(lastVal)}<span class="unit">detections / mo</span>`;
                 const lastMonth = months[lastIdx];
-                document.getElementById('trendsKpiLatestFoot').textContent = monthNames[lastMonth.m - 1] + ' ' + lastMonth.y;
+                document.getElementById('trendsKpiLatest').innerHTML = `${lastVal < 1 && lastVal > 0 ? lastVal.toFixed(1) : Math.round(lastVal)}<span class="unit">det/mo</span>`;
+                document.getElementById('trendsKpiLatestFoot').textContent = 'latest \u00b7 ' + monthNames[lastMonth.m - 1] + ' ' + lastMonth.y;
 
-                // KPI: Change
+                // KPI: Peak
+                const peakVal = Math.max(...nonNull);
+                const peakIdx = s.data.indexOf(peakVal);
+                const peakMonth = months[peakIdx];
                 const changeEl = document.getElementById('trendsKpiChange');
+                changeEl.className = 'trends-kpi-val';
+                changeEl.innerHTML = `${Math.round(peakVal)}<span class="unit">peak</span>`;
                 const firstMonth = months[firstIdx];
-                if (firstVal > 0) {
-                    const changePct = Math.round(((lastVal - firstVal) / firstVal) * 100);
-                    const sign = changePct >= 0 ? '+' : '';
-                    changeEl.className = 'trends-kpi-val ' + (changePct >= 0 ? 'pos' : 'neg');
-                    changeEl.innerHTML = `${sign}${changePct}<span class="unit">% vs first reading</span>`;
-                } else {
-                    changeEl.className = 'trends-kpi-val';
-                    changeEl.innerHTML = `\u2014<span class="unit">no baseline</span>`;
-                }
-                document.getElementById('trendsKpiChangeFoot').textContent = monthNames[firstMonth.m - 1] + ' ' + firstMonth.y + ' \u2192 ' + monthNames[lastMonth.m - 1] + ' ' + lastMonth.y;
+                document.getElementById('trendsKpiChangeFoot').textContent = peakMonth ? monthNames[peakMonth.m - 1] + ' high' : '';
 
-                // KPI: Rank in Durham
+                // KPI: vs Durham avg
+                const rankInfo = computeTrendsRankForFood(trendsSelectedFoods[0], months);
                 const rankEl = document.getElementById('trendsKpiRank');
                 const rankFootEl = document.getElementById('trendsKpiRankFoot');
-                const rankInfo = computeTrendsRankForFood(trendsSelectedFoods[0], months);
-                if (rankInfo.rank > 0) {
-                    rankEl.innerHTML = `#${rankInfo.rank}<span class="unit">of ${rankInfo.totalTracts} tracts</span>`;
-                    const p = rankInfo.percentile;
-                    rankFootEl.textContent = p + (p === 1 ? 'st' : p === 2 ? 'nd' : p === 3 ? 'rd' : 'th') + ' percentile';
+                if (rankInfo.avg > 0) {
+                    const vsAvg = Math.round(((lastVal - rankInfo.avg) / rankInfo.avg) * 100);
+                    const sign = vsAvg >= 0 ? '+' : '';
+                    rankEl.className = 'trends-kpi-val' + (vsAvg >= 0 ? ' pos' : ' neg');
+                    rankEl.innerHTML = `${sign}${vsAvg}<span class="unit">%</span>`;
+                    rankFootEl.textContent = (vsAvg >= 0 ? 'above' : 'below') + ' Durham avg';
                 } else {
+                    rankEl.className = 'trends-kpi-val';
                     rankEl.innerHTML = `\u2014<span class="unit"></span>`;
                     rankFootEl.textContent = '';
+                }
+
+                // We now need a 4th KPI — generate it dynamically
+                // Check if there's already a 4th KPI div, if not create one
+                const kpisEl2 = document.getElementById('trendsKpis');
+                let kpi4 = kpisEl2.children[3];
+                if (!kpi4) {
+                    kpi4 = document.createElement('div');
+                    kpisEl2.appendChild(kpi4);
+                }
+                if (rankInfo.rank > 0) {
+                    kpi4.innerHTML = `<div class="trends-kpi-val">#${rankInfo.rank}<span class="unit">of ${rankInfo.totalTracts}</span></div><div class="trends-kpi-foot">rank in Durham</div>`;
+                } else {
+                    kpi4.innerHTML = `<div class="trends-kpi-val">\u2014<span class="unit"></span></div><div class="trends-kpi-foot"></div>`;
                 }
             }
 
@@ -10348,6 +10571,8 @@
         function renderTrendsCharts() {
             const emptyEl = document.getElementById('trendsEmpty');
             const gridEl = document.getElementById('trends-grid');
+            const heroEl = document.getElementById('trendsHero');
+            const detailLeft = document.getElementById('trendsDetailLeft');
 
             // Update selected items displays
             const sitesDisp = document.getElementById('trendsSelectedSitesDisplay');
@@ -10372,9 +10597,17 @@
             if (!hasSites || !hasFoods) {
                 emptyEl.style.display = '';
                 gridEl.style.display = 'none';
-                document.getElementById('trendsHero').style.display = '';
+                // Move hero back above empty state (outside grid)
+                heroEl.style.display = '';
+                const trendsPage = document.querySelector('.trends-page');
+                if (trendsPage && heroEl.parentElement !== trendsPage) {
+                    trendsPage.insertBefore(heroEl, emptyEl);
+                }
                 populateTrendsQuickPick();
                 updateTrendsHero();
+                // Clear standouts
+                const soC = document.getElementById('trendsStandoutsContainer');
+                if (soC) soC.innerHTML = '';
                 // On mobile, hide toolbar during step selection
                 const toolbar = document.querySelector('.trends-toolbar');
                 if (toolbar && window.innerWidth <= 768) {
@@ -10384,9 +10617,15 @@
             }
             emptyEl.style.display = 'none';
             gridEl.style.display = '';
-            // Keep hero visible and update it
-            document.getElementById('trendsHero').style.display = '';
+
+            // Move hero into the detail left column
+            if (heroEl.parentElement !== detailLeft) {
+                detailLeft.insertBefore(heroEl, detailLeft.firstChild);
+            }
+            heroEl.style.display = '';
+            heroEl.classList.remove('trends-hero-empty');
             updateTrendsHero();
+
             // On mobile, show toolbar so user can change selections
             const toolbar2 = document.querySelector('.trends-toolbar');
             if (toolbar2 && window.innerWidth <= 768) {
@@ -10403,7 +10642,6 @@
 
             if (isMulti) {
                 slopeCard.style.display = '';
-                gridEl.style.gridTemplateColumns = '';
                 const nFoods = trendsSelectedFoods.length;
                 const nSites = trendsSelectedSites.length;
                 const badgeText = nFoods >= 2 && nSites >= 2 ? nFoods + ' species \u00b7 ' + nSites + ' sites'
@@ -10412,20 +10650,94 @@
                 const descText = nFoods >= 2 && nSites >= 2 ? 'All selected species across all selected sites.'
                     : nFoods >= 2 ? 'All selected species at ' + (trendsSelectedSites[0]?.name || '') + '.'
                     : trendsSelectedFoods[0]?.label + ' across all selected sites.';
-                lineTitle.innerHTML = 'Detections over time <span class="trends-badge primary" id="trendsLineBadge">' + badgeText.toUpperCase() + '</span>';
+                lineTitle.innerHTML = 'Detections over time <span class="trends-badge" id="trendsLineBadge">' + badgeText.toUpperCase() + '</span>';
                 lineDesc.textContent = descText;
                 lineFootNote.textContent = '';
             } else {
                 slopeCard.style.display = '';
-                gridEl.style.gridTemplateColumns = '';
-                lineTitle.innerHTML = 'Line chart <span class="trends-badge primary" id="trendsLineBadge">Primary</span>';
-                lineDesc.textContent = 'Every monthly value is plotted \u2014 seasonality, dips, and noise are all visible as more samples come in.';
+                lineTitle.innerHTML = 'The change, month to month <span class="trends-badge" id="trendsLineBadge">Primary</span>';
+                lineDesc.textContent = 'Each collected reading, plotted. Dashed line is the Durham average.';
                 lineFootNote.textContent = '';
             }
 
             renderTrendsLine();
             renderTrendsSlope();
             updateTrendsHero();
+            renderTrendsStandouts();
+        }
+
+        function renderTrendsStandouts() {
+            const container = document.getElementById('trendsStandoutsContainer');
+            if (!container) return;
+            if (trendsSelectedSites.length === 0 || trendsSelectedFoods.length === 0) {
+                container.innerHTML = '';
+                return;
+            }
+            try {
+
+            const { months, series } = getTrendsSeries();
+            if (months.length === 0 || series.length === 0) { container.innerHTML = ''; return; }
+            const s = series[0];
+            const nonNull = s.data.filter(v => v !== null);
+            if (nonNull.length === 0) { container.innerHTML = ''; return; }
+
+            const food = trendsSelectedFoods[0];
+            const rankInfo = computeTrendsRankForFood(food, months);
+            const lastVal = nonNull[nonNull.length - 1];
+            const firstVal = nonNull[0];
+
+            // Rank standout (navy)
+            const rankLabel = rankInfo.rank > 0
+                ? `#${rankInfo.rank} of ${rankInfo.totalTracts}`
+                : '\u2014';
+            const rankDesc = rankInfo.rank === 1
+                ? 'Highest detection rate of any Durham tract.'
+                : rankInfo.rank > 0
+                    ? `Ranked #${rankInfo.rank} out of ${rankInfo.totalTracts} Durham tracts.`
+                    : 'Not enough data to rank.';
+
+            // Vs average standout (green)
+            const avgDiff = rankInfo.avg > 0 ? Math.round(((lastVal - rankInfo.avg) / rankInfo.avg) * 100) : 0;
+            const avgSign = avgDiff >= 0 ? '+' : '';
+            const avgLabel = rankInfo.avg > 0 ? `${avgSign}${avgDiff}%` : '\u2014';
+            const avgDesc = rankInfo.avg > 0
+                ? `${avgDiff >= 0 ? 'Above' : 'Below'} the county average of ${rankInfo.avg.toFixed(1)} det/mo.`
+                : 'No county average available.';
+
+            // Change standout (gold)
+            let changeLabel = '\u2014', changeDesc = 'Not enough data for trend.';
+            if (nonNull.length >= 2 && firstVal > 0) {
+                const changePct = Math.round(((lastVal - firstVal) / firstVal) * 100);
+                const sign = changePct >= 0 ? '+' : '\u2212';
+                changeLabel = `${sign}${Math.abs(changePct)}%`;
+                const firstMonthName = months[s.data.indexOf(firstVal)] ? trendsMonthShort(months[s.data.indexOf(firstVal)]) : '';
+                changeDesc = changePct < 0
+                    ? `Down from ${firstMonthName} reading of ${Math.round(firstVal)}.`
+                    : `Up from ${firstMonthName} reading of ${Math.round(firstVal)}.`;
+            }
+
+            const icStar = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2l1.8 3.9 4.2.5-3.1 2.9.8 4.2L8 11.8 4.3 13.5l.8-4.2L2 6.4l4.2-.5z"/></svg>';
+            const icUp = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>';
+            const icDown = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5"/></svg>';
+
+            container.innerHTML = `
+                <div class="trends-eyebrow" style="margin-top:14px;">What stands out</div>
+                <div class="trends-standouts" style="margin-top:12px;">
+                    <div class="trends-so-card navy">
+                        <div class="trends-so-ic">${icStar}</div>
+                        <div><div class="trends-so-v">${rankLabel}</div><div class="trends-so-l">${rankDesc}</div></div>
+                    </div>
+                    <div class="trends-so-card green">
+                        <div class="trends-so-ic">${avgDiff >= 0 ? icUp : icDown}</div>
+                        <div><div class="trends-so-v">${avgLabel}</div><div class="trends-so-l">${avgDesc}</div></div>
+                    </div>
+                    <div class="trends-so-card gold">
+                        <div class="trends-so-ic">${icDown}</div>
+                        <div><div class="trends-so-v">${changeLabel}</div><div class="trends-so-l">${changeDesc}</div></div>
+                    </div>
+                </div>
+            `;
+            } catch(e) { console.error('renderTrendsStandouts error:', e); }
         }
 
         function getPeriodLabel(plant) {
