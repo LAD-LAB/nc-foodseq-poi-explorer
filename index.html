@@ -1666,8 +1666,9 @@
         }
         #trendsView .trends-comp-header {
             display: grid;
-            grid-template-columns: 1fr 64px 80px 76px 56px;
-            padding: 4px 16px 8px;
+            grid-template-columns: 1fr 52px 64px 60px 48px;
+            gap: 8px;
+            padding: 4px 12px 8px;
             border-bottom: 1px solid var(--t-line);
         }
         #trendsView .trends-comp-header span {
@@ -1681,8 +1682,9 @@
         }
         #trendsView .trends-comp-row {
             display: grid;
-            grid-template-columns: 1fr 64px 80px 76px 56px;
-            padding: 10px 16px;
+            grid-template-columns: 1fr 52px 64px 60px 48px;
+            gap: 8px;
+            padding: 8px 12px;
             align-items: center;
             border-bottom: 1px solid var(--t-line-2);
         }
@@ -1701,13 +1703,15 @@
             flex-shrink: 0;
         }
         #trendsView .trends-comp-name {
-            font: 500 14px/1.3 var(--t-sans);
+            font: 600 13px/1.3 var(--t-sans);
             color: var(--t-ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         #trendsView .trends-comp-sub {
-            font: 400 12px/1.3 var(--t-sans);
+            font: 400 11.5px/1.3 var(--t-sans);
             color: var(--t-muted-2);
-            margin-left: 6px;
+            margin-left: 4px;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         #trendsView .trends-comp-trend {
             text-align: right;
@@ -1720,9 +1724,9 @@
             gap: 3px;
         }
         #trendsView .trends-comp-latest .val {
-            font-family: var(--t-serif);
-            font-size: 22px;
-            font-weight: 400;
+            font-family: var(--t-sans);
+            font-size: 14px;
+            font-weight: 600;
             color: var(--t-ink);
         }
         #trendsView .trends-comp-latest .suffix {
@@ -4664,7 +4668,7 @@
                         <span>Series</span>
                         <span>Trend</span>
                         <span>Latest</span>
-                        <span>Change</span>
+                        <span>vs prev</span>
                         <span>Rank</span>
                     </div>
                     <div id="trendsCompRows"></div>
@@ -4735,10 +4739,6 @@
                                 </select>
                                 <div id="trendsSelectedSitesDisplay" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;"></div>
                             </div>
-                            <div class="qp-search trends-desktop-only">
-                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M11 11l3 3"/></svg>
-                                <span style="color:var(--t-muted-2);">Search sampling sites...</span>
-                            </div>
                             <div class="trends-qp trends-desktop-only" id="trendsQuickPick"></div>
                         </div>
                     </div>
@@ -4755,10 +4755,6 @@
                                     style="width:100%;height:40px;padding:0 12px;border:1px solid #e7e4dc;border-radius:10px;font:500 13px 'Geist',sans-serif;color:#0b1220;background:#fff;">
                                 <div id="trendsSpeciesSuggestionsMobile" style="display:none;position:absolute;top:100%;left:0;right:0;z-index:10000;background:#fff;border:1px solid #e7e4dc;border-top:none;border-radius:0 0 10px 10px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.1);"></div>
                                 <div id="trendsSelectedFoodsDisplay" style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;"></div>
-                            </div>
-                            <div class="qp-search trends-desktop-only">
-                                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="M11 11l3 3"/></svg>
-                                <span style="color:var(--t-muted-2);">Search foods & pollens...</span>
                             </div>
                             <div class="trends-qp trends-desktop-only" id="trendsQuickFood"></div>
                         </div>
@@ -10380,16 +10376,21 @@
                     <circle cx="48" cy="${sy1.toFixed(1)}" r="3" fill="${s.color}"/>
                 </svg>`;
 
-                // Change
+                // Change — latest vs previous reading (not vs first)
                 let changeTxt = '', changeCls = 'flat';
-                if (firstVal > 0) {
-                    const changePct = Math.round(((lastVal - firstVal) / firstVal) * 100);
-                    const sign = changePct >= 0 ? '+' : '';
-                    changeTxt = sign + changePct + '%';
-                    changeCls = changePct > 10 ? 'pos' : changePct < -10 ? 'neg' : 'flat';
-                } else if (firstVal === 0 && lastVal > 0) {
-                    changeTxt = 'New';
-                    changeCls = 'pos';
+                if (nonNull.length >= 2) {
+                    const prevVal = nonNull[nonNull.length - 2];
+                    if (prevVal > 1) {
+                        const changePct = Math.round(((lastVal - prevVal) / prevVal) * 100);
+                        const sign = changePct >= 0 ? '+' : '';
+                        changeTxt = sign + changePct + '%';
+                        changeCls = changePct > 10 ? 'pos' : changePct < -10 ? 'neg' : 'flat';
+                    } else if (lastVal > 0) {
+                        changeTxt = 'New';
+                        changeCls = 'pos';
+                    } else {
+                        changeTxt = '\u2014';
+                    }
                 } else {
                     changeTxt = '\u2014';
                 }
@@ -10398,15 +10399,16 @@
                 // Series are built as: food0×site0, food0×site1, ..., food1×site0, food1×site1, ...
                 const numSites = trendsSelectedSites.length;
                 const foodIdx = Math.floor(idx / numSites);
+                const siteIdx = idx % numSites;
                 const food = trendsSelectedFoods[foodIdx] || trendsSelectedFoods[0];
-                const rankInfo = computeTrendsRankForFood(food, months);
+                const site = trendsSelectedSites[siteIdx];
+                const rankInfo = computeTrendsRankForFood(food, months, site);
                 const rankTxt = rankInfo.rank > 0 ? '#' + rankInfo.rank : '\u2014';
 
                 html += `<div class="trends-comp-row">
                     <div class="trends-comp-series">
                         <span class="trends-comp-swatch" style="background:${s.color};"></span>
                         <span class="trends-comp-name">${mainName}</span>
-                        ${subName ? '<span class="trends-comp-sub">' + subName + '</span>' : ''}
                     </div>
                     <div class="trends-comp-trend">${sparkSvg}</div>
                     <div class="trends-comp-latest"><span class="val">${Math.round(lastVal)}</span><span class="suffix">/mo</span></div>
@@ -10704,24 +10706,37 @@
                 ? `${avgDiff >= 0 ? 'Above' : 'Below'} the county average of ${rankInfo.avg.toFixed(1)} det/mo.`
                 : 'No county average available.';
 
-            // Change standout (gold)
+            // Change standout (gold) — latest vs previous reading
             let changeLabel = '\u2014', changeDesc = 'Not enough data for trend.';
-            if (nonNull.length >= 2 && firstVal > 0) {
-                const changePct = Math.round(((lastVal - firstVal) / firstVal) * 100);
-                const sign = changePct >= 0 ? '+' : '\u2212';
-                changeLabel = `${sign}${Math.abs(changePct)}%`;
-                const firstMonthName = months[s.data.indexOf(firstVal)] ? trendsMonthShort(months[s.data.indexOf(firstVal)]) : '';
-                changeDesc = changePct < 0
-                    ? `Down from ${firstMonthName} reading of ${Math.round(firstVal)}.`
-                    : `Up from ${firstMonthName} reading of ${Math.round(firstVal)}.`;
+            if (nonNull.length >= 2) {
+                const prevVal = nonNull[nonNull.length - 2];
+                const prevIdx = s.data.lastIndexOf(prevVal, s.data.length - 2);
+                const prevMonthName = prevIdx >= 0 && months[prevIdx] ? trendsMonthShort(months[prevIdx]) : 'prev';
+                if (prevVal > 1) {
+                    const changePct = Math.round(((lastVal - prevVal) / prevVal) * 100);
+                    const sign = changePct >= 0 ? '+' : '\u2212';
+                    changeLabel = `${sign}${Math.abs(changePct)}%`;
+                    changeDesc = changePct < 0
+                        ? `Down from ${prevMonthName} reading of ${Math.round(prevVal)}.`
+                        : `Up from ${prevMonthName} reading of ${Math.round(prevVal)}.`;
+                } else if (lastVal > 0) {
+                    changeLabel = 'New';
+                    changeDesc = `First significant reading — previous (${prevMonthName}) was near zero.`;
+                }
             }
 
             const icStar = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2l1.8 3.9 4.2.5-3.1 2.9.8 4.2L8 11.8 4.3 13.5l.8-4.2L2 6.4l4.2-.5z"/></svg>';
             const icUp = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5"/></svg>';
             const icDown = '<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5"/></svg>';
 
+            const soFood = food.label || food.id;
+            // Extract neighborhood from site name (after · if present, strip "(summed)")
+            const soSiteRaw = trendsSelectedSites[0]?.name || trendsSelectedSites[0]?.pid || '';
+            const soParts = soSiteRaw.split(' \u00b7 ');
+            const soHood = (soParts.length > 1 ? soParts[1] : soParts[0]).replace(/\s*\(summed\)/i, '').trim();
             container.innerHTML = `
                 <div class="trends-eyebrow" style="margin-top:14px;">What stands out</div>
+                <div style="font:500 13px var(--t-sans);color:var(--t-muted);margin-top:6px;">${soFood} at ${soHood}</div>
                 <div class="trends-standouts" style="margin-top:12px;">
                     <div class="trends-so-card navy">
                         <div class="trends-so-ic">${icStar}</div>
@@ -10732,7 +10747,7 @@
                         <div><div class="trends-so-v">${avgLabel}</div><div class="trends-so-l">${avgDesc}</div></div>
                     </div>
                     <div class="trends-so-card gold">
-                        <div class="trends-so-ic">${icDown}</div>
+                        <div class="trends-so-ic">${changeLabel.includes('+') || changeLabel === 'New' ? icUp : icDown}</div>
                         <div><div class="trends-so-v">${changeLabel}</div><div class="trends-so-l">${changeDesc}</div></div>
                     </div>
                 </div>
