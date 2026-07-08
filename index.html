@@ -590,7 +590,7 @@
         .tp-tab.active { color: #111827; font-weight: 600; border-bottom-color: #1e3a8a; }
 
         /* Tract panel body */
-        .tp-body { }
+        .tp-body { overflow-x: hidden; width: 100%; box-sizing: border-box; }
         .tp-pane { padding: 16px 20px; }
         .tp-pane[hidden] { display: none; }
 
@@ -3561,7 +3561,7 @@
         .pc-stamp { background: #fff; border: 2px dashed rgba(30,58,138,.32); border-radius: 10px; padding: 10px 6px 8px; text-align: center; }
         .pc-stamp-ic { width: 32px; height: 32px; border-radius: 50%; background: #e6e8fb; color: #5b6cf0; display: grid; place-items: center; margin: 0 auto 6px; }
         .pc-stamp-mult { font-family: 'Geist', -apple-system, sans-serif; font-size: 20px; font-weight: 800; color: #1e3a8a; line-height: 1; }
-        .pc-stamp-nm { font-size: 10px; font-weight: 600; color: #0b1220; margin-top: 4px; line-height: 1.2; min-height: 24px; display: flex; align-items: center; justify-content: center; }
+        .pc-stamp-nm { font-size: 10px; font-weight: 600; color: #0b1220; margin-top: 4px; line-height: 1.2; min-height: 24px; text-align: center; word-break: break-word; overflow-wrap: break-word; }
         .pc-stamp-pct { font: 600 9px 'Geist Mono', monospace; color: #b78e2c; margin-top: 3px; text-transform: uppercase; letter-spacing: .04em; }
         .pc-foot { padding: 11px 20px 13px; display: flex; flex-direction: column; gap: 6px; }
         .pc-btn { height: 40px; border-radius: 11px; font: 600 13.5px 'Geist', sans-serif; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
@@ -3739,7 +3739,12 @@
     @media (max-width: 768px) {
         #trendsView {
             top: 84px !important;
-            padding: 14px 14px 40px !important;
+            height: calc(100vh - 84px) !important;
+            height: calc(100dvh - 84px) !important;
+            padding: 0 !important;
+            bottom: auto !important;
+            background: #faf9f5 !important;
+            outline: 3px solid red !important;
         }
         #findFoodView {
             top: 84px !important;
@@ -3816,18 +3821,18 @@
         }
         /* Trends page mobile */
         #trendsView {
-            padding: 14px 14px 40px !important;
+            padding: 0 !important;
         }
         #trendsView .trends-page {
             max-width: 100% !important;
         }
         #trendsView .trends-h1 {
             font-size: clamp(22px, 5vw, 34px) !important;
-            margin: 2px 0 0 !important;
+            margin: 8px 0 0 !important;
         }
         #trendsView .trends-h1-sub {
             font-size: 13px !important;
-            margin: 2px 0 0 !important;
+            margin: 6px 0 12px !important;
         }
         #trendsView .trends-hero {
             grid-template-columns: 1fr !important;
@@ -3896,6 +3901,11 @@
         }
         #trendsView #trendsSpeciesSearch {
             width: 100% !important;
+            max-width: 140px !important;
+            height: 28px !important;
+            padding: 4px 10px !important;
+            font-size: 12px !important;
+            box-sizing: border-box !important;
         }
         #trendsView .trends-toolbar.mobile-show .trends-sep-v {
             display: none;
@@ -4017,14 +4027,14 @@
             border-radius: 0 0 14px 14px !important;
         }
         #trendsView .trends-empty-pick {
-            padding: 8px 12px !important;
+            padding: 6px 12px 8px !important;
         }
         #trendsView .trends-hero-empty .trends-h1-sub {
             margin-bottom: 12px !important;
         }
         #trendsView .trends-eyebrow {
             margin-bottom: 0 !important;
-            padding-top: 3px !important;
+            padding-top: 0 !important;
         }
         #trendsView .trends-empty-kicker {
             margin-bottom: 6px !important;
@@ -4067,10 +4077,65 @@
         #trendsView .trends-comp-table {
             overflow-x: auto;
         }
+        #trendsView .trends-comp-trend,
+        #trendsView .trends-comp-header span:nth-child(2) {
+            display: none !important;
+        }
         #trendsView .trends-comp-header,
         #trendsView .trends-comp-row {
-            grid-template-columns: 1fr 50px 60px 60px 44px !important;
-            font-size: 12px !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0 !important;
+            padding: 7px 10px !important;
+            font-size: 11px !important;
+        }
+        #trendsView .trends-comp-series {
+            flex: 1 !important;
+            min-width: 0 !important;
+        }
+        #trendsView .trends-comp-latest {
+            width: 60px !important;
+            flex-shrink: 0 !important;
+        }
+        #trendsView .trends-comp-change {
+            width: 48px !important;
+            flex-shrink: 0 !important;
+        }
+        #trendsView .trends-comp-rank {
+            width: 32px !important;
+            flex-shrink: 0 !important;
+        }
+        #trendsView .trends-comp-table {
+            max-width: 100% !important;
+            overflow: hidden !important;
+            margin-bottom: 6px !important;
+            padding: 6px 2px 2px !important;
+        }
+        #trendsView .trends-comp-latest .val {
+            font-size: 13px !important;
+        }
+        #trendsView .trends-comp-latest .suffix {
+            font-size: 9px !important;
+        }
+        #trendsView .trends-comp-header span:first-child {
+            flex: 1 !important;
+            min-width: 0 !important;
+            font-size: 9px !important;
+        }
+        #trendsView .trends-comp-header span:nth-child(3) {
+            width: 60px !important;
+            flex-shrink: 0 !important;
+            font-size: 9px !important;
+        }
+        #trendsView .trends-comp-header span:nth-child(4) {
+            width: 48px !important;
+            flex-shrink: 0 !important;
+            font-size: 9px !important;
+        }
+        #trendsView .trends-comp-header span:nth-child(5) {
+            width: 32px !important;
+            flex-shrink: 0 !important;
+            font-size: 9px !important;
         }
         /* Find Food layout → vertical stack */
         #findFoodView > div {
@@ -4294,17 +4359,32 @@
         }
         .pc-stand {
             gap: 4px !important;
-            max-width: 100% !important;
+            width: 100% !important;
+            max-width: calc(100vw - 24px) !important;
             overflow: hidden !important;
+            box-sizing: border-box !important;
         }
         .pc-stamp {
             min-width: 0 !important;
             overflow: hidden !important;
+            padding: 6px 3px 5px !important;
+        }
+        .pc-stamp-ic {
+            width: 24px !important;
+            height: 24px !important;
+            margin-bottom: 3px !important;
+        }
+        .pc-stamp-mult {
+            font-size: 14px !important;
         }
         .pc-stamp-nm {
-            font-size: 8px !important;
+            font-size: 7.5px !important;
             word-break: break-word !important;
             overflow-wrap: break-word !important;
+            min-height: 16px !important;
+        }
+        .pc-stamp-pct {
+            font-size: 7px !important;
         }
         .pc-tags {
             max-height: 56px !important;
@@ -4339,7 +4419,17 @@
             .poi-controls { max-width: 160px !important; }
             .poi-controls-header { padding: 8px 10px; }
             /* Compact the sticker panel on mobile */
-            .pc-body { padding: 10px 16px 2px !important; }
+            .pc-body {
+                padding: 10px 12px 2px !important;
+                overflow-x: hidden !important;
+                max-width: 100vw !important;
+                box-sizing: border-box !important;
+                width: 100% !important;
+            }
+            .pc-body > * {
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+            }
             .pc-variety { margin-bottom: 8px !important; gap: 10px !important; }
             .pc-bignum { font-size: 32px !important; }
             .pc-bignum .ord { font-size: 15px !important; }
@@ -4366,6 +4456,10 @@
             .pc-stamp-nm { font-size: 9px !important; min-height: 20px !important; }
             .pc-stamp-pct { font-size: 8px !important; }
             .pc-klabel { font-size: 9px !important; }
+            .pc-body > div[style*="display:flex"] {
+                flex-wrap: wrap !important;
+                max-width: 100% !important;
+            }
             .pc-foot { padding: 6px 16px 8px !important; gap: 4px !important; }
             .pc-btn { height: 36px !important; font-size: 12px !important; }
 
@@ -4724,7 +4818,7 @@
 
     <!-- Food Near Me view (hidden by default) -->
     <!-- Trends view -->
-    <div id="trendsView" class="view-container" style="display:none;position:absolute;top:94px;left:0;right:0;bottom:0;z-index:999;overflow:hidden;flex-direction:column;">
+    <div id="trendsView" class="view-container" style="display:none;position:absolute;top:94px;left:0;right:0;height:calc(100vh - 94px);height:calc(100dvh - 94px);z-index:999;overflow:hidden;flex-direction:column;">
         <!-- Toolbar sits outside scroll area -->
         <div class="trends-toolbar" role="toolbar" aria-label="Trend filters">
             <div class="trends-field">
@@ -4748,7 +4842,7 @@
             </div>
         </div>
 
-        <div style="flex:1;overflow:auto;padding:20px 28px 20px;">
+        <div style="flex:1;overflow:auto;overflow-x:hidden;padding:18px 20px 14px;">
         <div class="trends-page">
             <!-- Breadcrumb (populated by navigateToTrends) -->
             <div class="trends-breadcrumb" id="trendsBreadcrumb" style="display:none;"></div>
@@ -5033,7 +5127,7 @@
         <section class="tp-sites" id="tpSites" style="display:none;">
             <div class="tp-sites-list" id="tpSitesList"></div>
         </section>
-        <div style="flex:1 1 auto;overflow-y:auto;min-height:0;" id="tpScrollWrap">
+        <div style="flex:1 1 auto;overflow-y:auto;overflow-x:hidden;min-height:0;max-width:100%;" id="tpScrollWrap">
             <div class="tp-flagged" id="tpFlagged" style="display:none;"></div>
             <div class="tp-body" id="tpBody"></div>
         </div>
@@ -9831,33 +9925,12 @@
                     ${name} <span style="font-size:11px;color:#9ca3af;">${type}</span>
                 </div>`;
             }).join('');
-            if (window.innerWidth <= 768) {
-                // On mobile, use a body-level dropdown to escape all overflow:hidden
-                box.style.display = 'none';
-                var mobileDropId = '_trendsFoodDropMobile';
-                var drop = document.getElementById(mobileDropId);
-                if (!drop) {
-                    drop = document.createElement('div');
-                    drop.id = mobileDropId;
-                    drop.style.cssText = 'position:fixed;z-index:99999;background:#fff;border:1px solid #e7e4dc;border-radius:0 0 10px 10px;max-height:200px;overflow-y:auto;box-shadow:0 4px 12px rgba(0,0,0,0.15);';
-                    document.body.appendChild(drop);
-                }
-                drop.innerHTML = html;
-                drop.style.display = '';
-                // Find whichever search input is visible
-                var input = document.getElementById('trendsSpeciesSearchMobile');
-                if (!input || input.offsetParent === null) input = document.getElementById('trendsSpeciesSearch');
-                if (input) {
-                    var rect = input.getBoundingClientRect();
-                    drop.style.top = rect.bottom + 'px';
-                    drop.style.left = rect.left + 'px';
-                    drop.style.width = Math.max(rect.width, 200) + 'px';
-                }
-            } else {
-                box.innerHTML = html;
-                box.style.display = '';
-                if (mobileBox) { mobileBox.innerHTML = html; mobileBox.style.display = ''; }
-            }
+            box.innerHTML = html;
+            box.style.display = '';
+            if (mobileBox) { mobileBox.innerHTML = html; mobileBox.style.display = ''; }
+            // Also hide any stale body-level dropdown
+            var _oldDrop = document.getElementById('_trendsFoodDropMobile');
+            if (_oldDrop) _oldDrop.style.display = 'none';
         }
 
         function onTrendsSpeciesKeydown(e) {
@@ -11720,7 +11793,7 @@
                 html += `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px;"><span class="pc-klabel">What stands out</span><span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;letter-spacing:.03em;">vs Durham median</span></div>`;
                 if (stamps.length > 0) {
                     const stampCols = Math.min(stamps.length, 3);
-                    html += `<div class="pc-stand" style="grid-template-columns:repeat(${stampCols},1fr);">`;
+                    html += `<div class="pc-stand" style="grid-template-columns:repeat(${stampCols},minmax(0,1fr));">`;
                     stamps.forEach(s => {
                         const isLow = s.type === 'low';
                         const icBg = isLow ? 'background:#f5e0d2;color:#c24a2b;' : '';
@@ -11730,7 +11803,7 @@
                         html += `<div class="pc-stamp" style="${borderColor}">
                             <div class="pc-stamp-ic" style="${icBg}">${foodIconSvg(s.icon, 20)}</div>
                             <div class="pc-stamp-mult" style="${multColor}">${arrow}${s.mult}</div>
-                            <div class="pc-stamp-nm">${s.name}</div>
+                            <div class="pc-stamp-nm">${s.name.replace(/\//g, '/<wbr>')}</div>
                             <div class="pc-stamp-pct">${s.sub}</div>
                         </div>`;
                     });
@@ -15825,7 +15898,7 @@
                 var downArrow = '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17L4 8h16z"/></svg>';
 
                 var cols = Math.min(stamps.length, 3);
-                var h = '<div style="display:grid;grid-template-columns:repeat(' + cols + ',1fr);gap:11px;">';
+                var h = '<div style="display:grid;grid-template-columns:repeat(' + cols + ',minmax(0,1fr));gap:8px;max-width:100%;overflow:hidden;">';
                 stamps.forEach(function(s) {
                     var isUp = s.type === 'up';
                     var bg = isUp ? '#e6e8fb' : '#f5e0d2';
@@ -15850,7 +15923,7 @@
                     h += '<div style="background:' + bg + ';border:1px solid ' + border + ';border-radius:11px;padding:10px 8px 10px;text-align:center;">';
                     h += '<span style="width:30px;height:30px;border-radius:50%;display:grid;place-items:center;margin:0 auto 6px;background:#fff;color:' + icColor + ';">' + icon + '</span>';
                     h += '<div style="font:500 20px/1 \'Geist\',sans-serif;letter-spacing:-.02em;color:' + multColor + ';">' + multStr + '</div>';
-                    h += '<div style="font-size:11px;font-weight:600;color:#0b1220;margin-top:4px;line-height:1.2;">' + s.name + '</div>';
+                    h += '<div style="font-size:10px;font-weight:600;color:#0b1220;margin-top:4px;line-height:1.2;word-break:break-word;overflow-wrap:break-word;">' + s.name.replace(/\//g, '/<wbr>') + '</div>';
                     h += '<div style="position:relative;height:5px;border-radius:3px;background:rgba(15,23,42,.08);margin:8px 3px 0;">';
                     h += '<i style="display:block;height:100%;width:' + fillPct + '%;border-radius:4px;background:' + (isUp ? '#1e3a8a' : '#c24a2b') + ';"></i>';
                     h += '<span style="position:absolute;top:-3px;bottom:-3px;width:2px;border-radius:2px;background:#94a3b8;left:' + medPct + '%;"></span>';
