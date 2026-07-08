@@ -3973,9 +3973,43 @@
         #trendsView .trends-card-head {
             padding: 0 !important;
             margin-bottom: 2px !important;
+            flex-wrap: wrap !important;
+            gap: 4px !important;
         }
         #trendsView .trends-card-title {
             font-size: 12px !important;
+        }
+        #trendsView .trends-toggle {
+            font-size: 9px !important;
+            height: 24px !important;
+            padding: 0 8px 0 3px !important;
+            gap: 4px !important;
+        }
+        #trendsView .trends-toggle .knob {
+            width: 24px !important;
+            height: 14px !important;
+        }
+        #trendsView .trends-toggle .knob::after {
+            width: 10px !important;
+            height: 10px !important;
+        }
+        #trendsView .trends-toggle.on .knob::after {
+            transform: translateX(10px) !important;
+        }
+        #trendsView .trends-hero-empty .trends-h1-sub {
+            margin-bottom: 12px !important;
+        }
+        #trendsView #trendsEmptyGrid {
+            margin-bottom: 120px !important;
+        }
+        #trendsView .trends-detail-left {
+            gap: 10px !important;
+        }
+        #trendsView .trends-detail-left .trends-hero .trends-h1-sub {
+            margin-top: 4px !important;
+        }
+        #trendsView .trends-detail-left .trends-hero .trends-kpis {
+            margin-top: 8px !important;
         }
         #trendsView .trends-card-body {
             padding: 0 !important;
