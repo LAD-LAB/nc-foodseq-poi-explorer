@@ -1,203 +1,111 @@
-# NC FoodSeq POI Explorer
+# NC Wastewater FoodSeq — Project README
 
-Interactive web-based visualization of FoodSeq wastewater data with OpenStreetMap Points of Interest overlay for dietary context analysis across North Carolina.
+Dietary-DNA (FoodSeq) surveillance of North Carolina wastewater, paired with an
+interactive map explorer, a food-environment (POI) layer, and a set of temporal
+and demographic analyses. Maintained by the **David Lab, Duke University**
+([ladlab.org](https://www.ladlab.org/)).
 
-## Quick Start
+> **What this is.** FoodSeq amplifies food-derived DNA in wastewater to estimate
+> what a community is eating — cheaply (`<$0.01`/person) and at population scale.
+> This repo holds the sequencing→phyloseq pipeline, the reference databases, the
+> downstream statistical analyses, and the web app that visualizes the results.
 
-### Run Locally
+---
+
+## At a glance
+
+| | |
+|---|---|
+| Samples | 183 (147 longitudinal 2020–21 · 39 spatial 2021) |
+| Municipalities | 19 · ~2.1M people monitored |
+| Food taxa detected | 113 animal · 185 plant |
+| Amplicons | **12S** (animal) · **_trnL_** (plant) |
+| Food-read fraction | 98.9% animal · 76.5% plant |
+
+Consolidated findings live in **`FoodSeq Results.html`** (slide deck) — open it in
+a browser.
+
+---
+
+## Repository layout
+
+This working directory currently holds **two related project trees**. See
+`CLEANUP_PLAN.md` for a proposed consolidation.
+
+```
+.
+├── nc-foodseq-poi-explorer/      # Web app + downstream analysis
+│   ├── index.html                #   → single-file Leaflet/Chart.js map explorer
+│   ├── data/                     #   GeoJSON, POI JSON, FoodSeq JSON, USDA/NOAA refs
+│   ├── analysis/                 #   Python time-series, Mann–Kendall, POI correlation
+│   ├── scripts/                  #   R/JS/Python data-prep & scraping utilities
+│   ├── api/                      #   Vercel serverless (login, price scraping)
+│   ├── 2023 Sushi Project/       #   Earlier sushi/salmon correlation study
+│   ├── heatmap prediction validation/
+│   ├── Photo Inventory/ · Receipts/   # Field documentation
+│   └── README.md                 #   App-specific docs (run instructions, POI details)
+│
+└── Code and Data/                # Manuscript pipeline (NCWW paper)
+    ├── code/                     #   R analysis + figure scripts (Figure_2A/2B, PCA, tobacco)
+    ├── data/                     #   phyloseq .rds objects, taxa & metadata tables
+    ├── food-dbs/                 #   12SV5 / trnL reference-database build (Rmd)
+    └── mb-pipeline/              #   raw-reads → phyloseq pipeline (shell + Rmd) + protocols
+```
+
+---
+
+## The web app — NC FoodSeq POI Explorer
+
+Interactive map of FoodSeq wastewater data with an OpenStreetMap food-environment
+overlay. **Single file, no build step.**
 
 ```bash
-# Clone the repository
-git clone https://github.com/LAD-LAB/nc-foodseq-poi-explorer.git
 cd nc-foodseq-poi-explorer
-
-# Start a local web server
-python3 -m http.server 8000
-
-# Open in browser
+python3 -m http.server 8000      # a server is required (CORS on local JSON)
 open http://localhost:8000
 ```
 
-Visit `http://localhost:8000` in your browser.
+- **Stack:** Leaflet 1.9.4 · Leaflet.markercluster 1.5.3 · Chart.js 4.4.0 · vanilla JS
+- **Features:** county / treatment-plant selection, plant vs animal species views,
+  top-25 bar charts, time-period navigation, census overlays (density, income,
+  race/ethnicity), draggable multi-panel comparison, 9 POI categories
+  (~28k locations), service-area catchments.
+- Full detail in `nc-foodseq-poi-explorer/README.md`.
 
-## Features
+---
 
-- **Interactive Map**: Click on NC counties or treatment plant markers to view species data
-- **Dual Species Views**: Toggle between plant and animal species detection
-- **Top 25 Display**: Color-coded bar charts showing most abundant species
-- **Temporal Navigation**: Time period selector (May 2020 - June 2021)
-- **Dynamic Markers**: Location markers change color based on data availability
-  - Green: No data for selected time period
-  - Red: Has data for selected time period
-- **Census Data Overlays**: Multiple demographic and population layers
-  - Population Density (block group level)
-  - Median Income (census tract)
-  - Race/Ethnicity percentages (census tract)
-- **Multi-Panel Comparison**: View multiple counties simultaneously
-- **Draggable Panels**: Rearrange panels for custom layouts
+## The analysis pipeline
 
-### Points of Interest (POI) Overlays ✨ NEW
+**Upstream — sequencing to phyloseq** (`Code and Data/mb-pipeline/`)
+Demultiplex → trim → DADA2 → assign taxonomy against the 12SV5 / _trnL_ reference
+databases (`Code and Data/food-dbs/`) → phyloseq `.rds` objects.
 
-Explore the food retail environment with OpenStreetMap data overlays:
+**Downstream — statistics & figures**
+| Analysis | Location | Key output |
+|---|---|---|
+| Seafood detection ranking & consumption mismatch | `analysis/generate_seafood_report.py` | ρ ≈ 0.75 detection vs consumption |
+| Species × food-environment POI correlations | `analysis/poi_species_correlation.py` | `poi_species_correlation.png` |
+| Mann–Kendall temporal trends (daily & monthly) | `analysis/mann_kendall_*.py` | `mann_kendall_output/` |
+| Seafood % of animal reads over time | `analysis/seafood_pct_durham_2025.py` | `seafood_pct_durham_2025.png` |
+| Salmon / tilapia time-series | `analysis/foodseq_sushi_salmon_analysis.py` | report `.docx` |
+| Manuscript figures (PCA, seasonal fish) | `Code and Data/code/Figure_2*.R` | manuscript figures |
 
-**9 POI Categories** (28,442 total locations):
-- 🛒 **Grocery Stores** (5,014) - Supermarkets, grocery stores, convenience stores
-- 🍽️ **Restaurants** (12,931) - Full-service dining with ethnic/culinary labels
-- 🍔 **Fast Food** (9,453) - Quick service restaurants
-- 🐟 **Seafood Markets** (51) - Fresh and frozen seafood retailers
-- 🥩 **Butcher Shops** (72) - Meat markets
-- 🥖 **Bakeries** (330) - Bread and pastry shops
-- 🥬 **Produce Shops** (34) - Greengrocers and produce markets
-- 🏪 **Farmers Markets** (82) - Local farmers markets
-- 🎓 **Universities/Colleges** (475) - Higher education institutions
+Python analyses expect `pandas`, `numpy`, `scipy`, `matplotlib`, `python-docx`.
+R scripts expect `phyloseq`, `tidyverse`, `Kendall`, `DECIPHER`.
 
-**Features:**
-- **Zoom-Dependent Display**: POI markers only appear when zoomed in (≥ zoom level 11) to reduce clutter
-- **Service Area Overlays**: Toggle button to show/hide approximate catchment areas (~15km radius) for each wastewater treatment plant
-- Toggle POI layers on/off via control panel (left side of screen)
-- Marker clustering for performance with large datasets
-- Click individual POI markers to see details (name, type, address, cuisine, OSM link)
-- Ethnic/culinary group labels for all restaurants (Asian, Latin American, European, etc.)
-- "Show All" / "Hide All" quick toggles
-- POI markers render below treatment plant markers (proper z-ordering)
+---
 
-**Research Applications:**
-- Correlate seafood shop density with fish DNA detection patterns
-- Identify food deserts and compare with dietary diversity indicators
-- Analyze restaurant density impact on dietary complexity
-- Study ethnic food markets and specialty ingredient detection (Asian, Latin American, etc.)
-- Compare coastal vs inland food retail environments
-- Analyze proximity to universities/colleges and specific demographic/retail patterns
+## Data sources
 
-## Project Structure
+- **FoodSeq sequencing** — David Lab wastewater surveillance (12S + _trnL_)
+- **POIs** — OpenStreetMap via Overpass API (ODbL)
+- **Consumption references** — NOAA/NFI per-capita seafood; USDA ERS food availability
+- **Geography / demographics** — US Census (TIGER, ACS), NC OneMap
 
-```
-nc-foodseq-poi-explorer/
-├── index.html                         # Main application (single-file)
-├── data/
-│   ├── foodseq_data.json             # FoodSeq species data (2020-2021)
-│   ├── nc_counties.geojson           # NC county boundaries
-│   ├── nc_population_density.geojson # Population density by block group
-│   ├── nc_demographics.geojson       # Census demographic data
-│   └── nc_pois.json                  # OpenStreetMap POI data (27,967 locations)
-├── scripts/
-│   └── fetch_pois.js                 # POI data generator script
-├── .gitignore
-└── README.md
-```
+---
 
-## Technology Stack
+## Credits & license
 
-- **Leaflet.js 1.9.4** - Interactive mapping
-- **Leaflet.markercluster 1.5.3** - POI marker clustering
-- **Chart.js 4.4.0** - Data visualization
-- **Vanilla JavaScript** - Application logic
-- **OpenStreetMap** - Free map tiles and POI data
-- No build tools required - runs entirely in the browser
-
-## Data Files
-
-### foodseq_data.json (576 KB)
-Real FoodSeq surveillance data containing:
-- 20 wastewater treatment plants across NC
-- 292 species (179 plants, 113 animals)
-- 9 time periods (May 2020 - June 2021)
-- Species metadata with common names and food group classifications
-
-### nc_counties.geojson (82 KB)
-North Carolina county boundaries for map overlay.
-
-### nc_population_density.geojson (5.5 MB)
-2020 Census block group-level population density data.
-
-### nc_demographics.geojson (3.6 MB)
-Census tract-level demographic data (ACS 2019-2023):
-- Median household income
-- Foreign born percentage
-- Race/ethnicity percentages (White, Black, Asian, Hispanic/Latino)
-
-### nc_pois.json (~8 MB)
-OpenStreetMap Points of Interest data for North Carolina:
-- 28,442 food-related locations and institutions
-- 9 categories (grocery, restaurants, fast food, specialty food, farmers markets, universities)
-- Includes: coordinates, names, addresses, types, ethnic/culinary groups for restaurants
-- Source: OpenStreetMap via Overpass API
-- License: ODbL (OpenStreetMap)
-- Generated: January 2026
-
-**To update POI data:**
-```bash
-cd scripts
-node fetch_pois.js
-```
-
-## Usage
-
-1. **View County Data**: Click any county or treatment plant marker
-2. **Switch Species**: Use "Plants"/"Animals" tabs in the panel
-3. **Compare Counties**: Click multiple counties to open multiple panels
-4. **Navigate Time**: Click time period buttons at bottom
-5. **Change Map View**: Use layer buttons on the right side
-6. **Toggle Service Areas**: Click "Service Areas" button to show/hide wastewater treatment plant catchment areas
-7. **Toggle POI Layers**: Use POI control panel on the left side
-   - POI markers only appear when zoomed in (zoom level 11+)
-   - Check/uncheck categories to show/hide POI markers
-   - Click "Show All" or "Hide All" for quick toggling
-   - Click POI markers to see location details (name, address, cuisine type, etc.)
-8. **Rearrange Panels**: Drag panels by their headers
-9. **Close Panels**: Click the × button
-
-## Development Notes
-
-### Running the Application
-
-The application **requires a local web server** to avoid CORS issues when loading JSON files. Options:
-
-```bash
-# Python 3
-python3 -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-
-# Node.js (if you have http-server installed)
-npx http-server -p 8000
-```
-
-### Browser Compatibility
-
-Tested on:
-- Chrome/Edge (latest)
-- Safari (latest)
-- Firefox (latest)
-
-### File Paths
-
-All data files are loaded relative to `index.html`:
-```javascript
-fetch('data/foodseq_data.json')
-fetch('data/nc_counties.geojson')
-fetch('data/nc_population_density.geojson')
-fetch('data/nc_demographics.geojson')
-```
-
-Ensure data files remain in the `data/` directory.
-
-### External Dependencies
-
-Loaded via CDN (no local installation needed):
-- Leaflet CSS/JS: `unpkg.com/leaflet@1.9.4`
-- Leaflet.markercluster CSS/JS: `unpkg.com/leaflet.markercluster@1.5.3`
-- Chart.js: `cdn.jsdelivr.net/npm/chart.js@4.4.0`
-
-All dependencies are free and open source. No API keys required.
-
-## Credits
-
-**Principal Investigator**: Lawrence David, Duke University
-**Lab**: [The David Lab](https://www.ladlab.org/)
-**Technology**: FoodSeq - DNA-based dietary tracking
-
-## License
-
-Research use only. Contact the David Lab for collaboration opportunities.
+**PI:** Lawrence David · **Lab:** [The David Lab](https://www.ladlab.org/), Duke University.
+Research use only — contact the lab for collaboration. POI data © OpenStreetMap
+contributors (ODbL).

@@ -3689,17 +3689,34 @@
             background: #1e3a8a;
             background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px);
             background-size: 15px 15px;
-            padding: 18px 20px 10px;
+            padding: 22px 20px 14px;
             border-bottom: none;
         }
-        .detail-panel .tp-crumb { color: #dbe4fb; font-size: 10px; }
-        .detail-panel .tp-title { color: #fff; font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 19px; margin: 2px 0 2px; }
-        .detail-panel .tp-sub { color: #dbe4fb; font-size: 11.5px; margin-top: 2px; }
+        .detail-panel .tp-crumb { color: #dbe4fb; font-size: 10.5px; letter-spacing: .08em; }
+        .detail-panel .tp-title { color: #fff; font-family: 'Geist', -apple-system, sans-serif; font-weight: 700; font-size: 24px; margin: 4px 0 4px; line-height: 1.1; }
+        .detail-panel .tp-sub { color: #dbe4fb; font-size: 12px; margin-top: 4px; }
         .detail-panel .tp-close { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.2); color: #fff; }
         .detail-panel .tp-close:hover { background: rgba(255,255,255,.2); }
 
+        /* WWTP mode — red accent instead of navy */
+        .detail-panel.wwtp-mode .tp-head {
+            background: #7f1d1d !important;
+            background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px) !important;
+            background-size: 15px 15px !important;
+        }
+        .detail-panel.wwtp-mode .tp-crumb { color: #fecaca !important; }
+        .detail-panel.wwtp-mode .pc-bignum { color: #b91c1c !important; }
+        .detail-panel.wwtp-mode .pc-count-badge { background: #fce8e8 !important; color: #b91c1c !important; }
+        .detail-panel.wwtp-mode .pc-stamp-ic { background: #fce8e8 !important; color: #b91c1c !important; }
+        .detail-panel.wwtp-mode .pc-stamp-mult { color: #b91c1c !important; }
+        .detail-panel.wwtp-mode .pc-rubber { color: #b91c1c !important; border-color: rgba(185,28,28,.25) !important; }
+        .detail-panel.wwtp-mode .er-h1 .hl { color: #b91c1c !important; }
+        .detail-panel.wwtp-mode .pc-stamp { border-color: rgba(185,28,28,.25) !important; }
+        .detail-panel.wwtp-mode .tp-btn-primary { background: #b91c1c !important; }
+        .detail-panel.wwtp-mode .tp-btn-primary:hover { background: #991b1b !important; }
+
         /* Sites section override for navy band */
-        .detail-panel .tp-sites { background: #1e3a8a; background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px); background-size: 15px 15px; padding: 0 20px 10px; border-bottom: none; }
+        .detail-panel .tp-sites { background: #1e3a8a; background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px); background-size: 15px 15px; padding: 0 20px 16px; border-bottom: none; }
 
         /* Footer button overrides */
         .detail-panel .tp-ctas { padding: 16px 22px 18px; }
@@ -3726,8 +3743,8 @@
             width: 100vw !important;
             top: auto !important;
             bottom: 0;
-            height: 60vh;
-            max-height: 60vh;
+            height: auto;
+            max-height: 55vh;
             border-radius: 18px 18px 0 0;
             transform: translateY(100%) !important;
             overflow-y: auto;
@@ -4537,8 +4554,11 @@
         @media (max-width: 768px) {
             #compareBtn { display: none !important; }
             .tp-btn-primary { display: none !important; }
+            .detail-panel .tp-head { padding: 14px 16px 8px !important; }
+            .detail-panel .tp-title { font-size: 19px !important; margin: 2px 0 2px !important; }
+            .detail-panel .tp-crumb { font-size: 10px !important; letter-spacing: 0 !important; }
             .detail-panel .tp-sub { display: none !important; }
-            .detail-panel .tp-sites { display: none !important; }
+            .detail-panel .tp-sites { display: none !important; padding-bottom: 10px !important; }
             .poi-controls { max-width: 160px !important; }
             .poi-controls-header { padding: 8px 10px; }
             /* Compact the sticker panel on mobile */
@@ -4776,7 +4796,7 @@
                 <div>
                     <div class="home-hero-eyebrow">Durham, North Carolina</div>
                     <h1>What food species are in your neighborhood's <em>water</em>?</h1>
-                    <p class="home-hero-lede">NC FoodSeq Explorer reveals food DNA traces found in Durham's wastewater &mdash; not from surveys, but from what flows through the sewer system. Explore your area.</p>
+                    <p class="home-hero-lede">NC FoodSeq Explorer uses DNA sequencing to identify food species detected in Durham's wastewater, offering a window into neighborhood-level food patterns.</p>
                     <form class="home-loc" onsubmit="submitHomeAddress(event)">
                         <span class="pin">
                             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 1.5c-2.8 0-5 2.2-5 5C4 10.5 9 16.5 9 16.5s5-6 5-10c0-2.8-2.2-5-5-5z"/><circle cx="9" cy="6.5" r="1.9"/></svg>
@@ -4822,7 +4842,7 @@
                             <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#d97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7"/><path d="M17 17l6 6"/><path d="M9.5 12h5"/><path d="M12 9.5v5"/></svg>
                         </div>
                         <h3>Identify</h3>
-                        <p>Sequences are matched to known food species &mdash; plants and animals.</p>
+                        <p>Sequences are matched to known food species, both plants and animals.</p>
                     </div>
                     <div class="home-how-card">
                         <div class="home-how-icon mapstep">
@@ -4878,7 +4898,7 @@
             <div class="home-wrap">
                 <div class="home-trust-eyebrow">The research behind it</div>
                 <h2>From the Edible Atlas Lab at Duke</h2>
-                <p class="home-trust-desc">The Edible Atlas Lab, led by Lawrence David in the Department of Medicine at Duke University, studies food consumption patterns through wastewater-based epidemiology. FoodSeq uses environmental DNA sequencing to detect food species in municipal sewage. This explorer is a research prototype &mdash; it maps those signals to Durham neighborhoods so communities can see what's flowing through their local sewer system.</p>
+                <p class="home-trust-desc">The Edible Atlas Lab, led by Lawrence David in the Department of Medicine at Duke University, studies food consumption patterns through wastewater-based epidemiology. FoodSeq uses environmental DNA sequencing to detect food species in municipal sewage. This explorer is a research prototype that maps those signals to Durham neighborhoods so communities can see what's flowing through their local sewer system.</p>
                 <button class="home-trust-btn" onclick="switchView('about');">
                     Read the full story
                     <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8 4l4 4-4 4"/></svg>
@@ -11602,8 +11622,9 @@
         let currentSiteTab = 'plants';
 
         function populateDetailPanel(plant) {
-            // For individual site clicks, if it's in a service area, open service area panel instead
-            if (plant.census_tract && plant.census_tract !== 'unknown' && durhamTractsGeoJSON) {
+            // For individual site clicks (manholes only), if it's in a service area, open service area panel instead
+            // WWTPs always get their own panel even if they fall within a service area boundary
+            if (plant.location_type === 'manhole' && plant.census_tract && plant.census_tract !== 'unknown' && durhamTractsGeoJSON) {
                 const saFeature = durhamTractsGeoJSON.features.find(f =>
                     String(f.properties.Sample_ID) === String(plant.census_tract)
                 );
@@ -11622,10 +11643,27 @@
             // Hide map image for non-tract sites
 
             const isWWTP = plant.location_type !== 'manhole';
-            document.getElementById('tpCrumb').textContent = isWWTP ? 'Wastewater Plant' : 'Sampling Site';
-            document.getElementById('tpTitle').textContent = plant.name;
-            document.getElementById('tpTitle').style.color = isWWTP ? '#c53030' : '#1e3a8a';
-            document.getElementById('tpCrumb').style.color = isWWTP ? '#c53030' : '#6b7280';
+            const panel = document.getElementById('detailPanel');
+            const head = document.querySelector('.tp-head');
+            if (isWWTP) {
+                panel.classList.add('wwtp-mode');
+                head.style.background = '#7f1d1d';
+                head.style.backgroundImage = 'radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.3px)';
+                head.style.backgroundSize = '15px 15px';
+                document.getElementById('tpCrumb').textContent = 'Wastewater plant \u00b7 NC';
+                document.getElementById('tpCrumb').style.color = '#fecaca';
+                document.getElementById('tpTitle').innerHTML = plant.name;
+                document.getElementById('tpTitle').style.color = '#fff';
+            } else {
+                panel.classList.remove('wwtp-mode');
+                head.style.background = '';
+                head.style.backgroundImage = '';
+                head.style.backgroundSize = '';
+                document.getElementById('tpCrumb').textContent = 'Sampling Site';
+                document.getElementById('tpCrumb').style.color = '#dbe4fb';
+                document.getElementById('tpTitle').textContent = plant.name;
+                document.getElementById('tpTitle').style.color = '#fff';
+            }
 
             // Count data points for this site
             let siteDataPoints = 0;
@@ -11651,8 +11689,27 @@
             document.getElementById('tpCtas').style.display = '';
             document.getElementById('compareBtn').textContent = 'Compare with another site';
 
-            // Render report card with demographics
+            // Render report card (no demographics for WWTPs)
             renderReportCard(document.getElementById('tpBody'), [plant], plant.name, null);
+
+            // Populate full report panel for this WWTP (food data only, no demographics/food access)
+            showLandingPanels(plant.lat, plant.lng, null, false);
+
+            // Show info panel tab
+            document.getElementById('infoPanelTab').style.display = 'flex';
+            document.getElementById('landingInfoPanel').classList.add('hidden');
+
+            // On mobile, add "See full report" button
+            if (window.innerWidth <= 768) {
+                const foot = document.getElementById('tpCtas');
+                if (foot && !foot.querySelector('.mobile-report-btn')) {
+                    const btn = document.createElement('button');
+                    btn.className = 'mobile-report-btn';
+                    btn.textContent = 'See full report';
+                    btn.onclick = function() { toggleInfoPanel(); };
+                    foot.appendChild(btn);
+                }
+            }
         }
 
         function switchSiteTab(btn, tab) {
@@ -12464,7 +12521,12 @@
                 cLng /= coords.length;
             }
 
-            // Header
+            // Header — reset to navy (in case WWTP was previously shown)
+            document.getElementById('detailPanel').classList.remove('wwtp-mode');
+            var _head = document.querySelector('.tp-head');
+            _head.style.background = '';
+            _head.style.backgroundImage = '';
+            _head.style.backgroundSize = '';
             document.getElementById('tpCrumb').textContent = 'Your neighborhood \u00b7 Durham';
             document.getElementById('tpCrumb').style.color = '#dbe4fb';
             document.getElementById('tpTitle').innerHTML = `Area ${tractNum} \u00b7 <em style="font-style:normal;color:#f4d58a;">${hood}</em>`;
@@ -15546,9 +15608,11 @@
         }
 
         function showLandingPanels(lat, lon, tractId, showPanel) {
-            // Find which tract we're in
+            // Find which tract we're in (skip for WWTPs)
             let saId = tractId || null;
-            if (!saId && durhamTractsGeoJSON) {
+            const isWWTPLanding = currentSitePlant && currentSitePlant.location_type !== 'manhole';
+            if (isWWTPLanding) saId = null; // WWTPs don't belong to a service area
+            if (!saId && !isWWTPLanding && durhamTractsGeoJSON) {
                 for (const feat of durhamTractsGeoJSON.features) {
                     const geom = feat.geometry;
                     const polys = geom.type === 'Polygon' ? [geom.coordinates[0]] : geom.coordinates.map(p => p[0]);
@@ -15569,8 +15633,16 @@
             const hood = saId ? (TRACT_NEIGHBORHOODS[saId] || 'Durham') : 'Durham';
             const cats = saId ? computeGapCategories(saId) : null;
 
-            // Build food data for this tract
-            const landingPlants = saId ? getPlantsInTract(saId) : [];
+            // Build food data for this tract or WWTP
+            let landingPlants;
+            if (saId) {
+                landingPlants = getPlantsInTract(saId);
+            } else if (currentSitePlant) {
+                // WWTP or non-tract site — use its data directly
+                landingPlants = [currentSitePlant];
+            } else {
+                landingPlants = [];
+            }
             const landingAgg = landingPlants.length > 0 ? aggregatePlantsData(landingPlants) : { plants: {}, animals: {} };
             const landingFoodGroups = {
                 'Vegetables': { color: '#4CAF50', count: 0, foods: [] },
@@ -15793,9 +15865,12 @@
             }
 
             // ── HERO ──
-            h += `<div class="er-eye">Neighborhood food report</div>`;
-            h += `<div class="er-h1">We found <span class="hl">${totalFoods} foods</span> in ${hood}</div>`;
-            h += `<div class="er-lede">Distinct food species detected across ${nonEmptyGroupCount} of ${totalGroupCount} food groups in this area&rsquo;s wastewater.</div>`;
+            const isWWTPReport = !saId && currentSitePlant;
+            const reportTitle = isWWTPReport ? currentSitePlant.name : hood;
+            const reportEyebrow = isWWTPReport ? 'Wastewater plant report' : 'Neighborhood food report';
+            h += `<div class="er-eye">${reportEyebrow}</div>`;
+            h += `<div class="er-h1">We found <span class="hl">${totalFoods} foods</span> at ${reportTitle}</div>`;
+            h += `<div class="er-lede">Distinct food species detected across ${nonEmptyGroupCount} of ${totalGroupCount} food groups in this ${isWWTPReport ? 'plant' : 'area'}&rsquo;s wastewater.</div>`;
 
             // ── KPI STRIP ──
             h += `<div class="er-kpis">`;
@@ -16000,7 +16075,8 @@
                 h += buildUSDASection(saId);
             }
 
-            // ── WHAT CAN HELP ──
+            // ── WHAT CAN HELP (skip for WWTPs) ──
+            if (!isWWTPReport) {
             const arrowSvg = `<svg class="nf-rc-arrow" width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h9M8.5 4l4 4-4 4"/></svg>`;
             const phoneSvg = `<svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3.5c0 5 4.5 9.5 9.5 9.5l.5-2.5-3-1-1 1.2A8 8 0 0 1 5.3 6.5L6.5 5.5l-1-3z"/></svg>`;
             const isFlagged = saId && durhamTractsGeoJSON
@@ -16070,6 +16146,7 @@
             h += `</div>`;
             h += `<p style="font-size:12.5px;color:#64748b;margin-top:14px;line-height:1.5;">You can also explore nearby food options using the <b>Food Near Me</b> tab above, or toggle on <b>Places</b> at the bottom-left of the map to see grocery stores, farmers markets, and community fridges near you.</p>`;
             h += `</div>`; // close tinted card
+            } // end if (!isWWTPReport) for What Can Help
 
             h += '</article>';
             infoPanel.innerHTML = h;
