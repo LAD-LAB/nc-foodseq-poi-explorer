@@ -5457,7 +5457,7 @@
 
                     <div style="margin-bottom:22px;position:relative;">
                         <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;display:block;margin-bottom:9px;">Foods to price search</span>
-                        <div id="foodTagsInput" style="display:flex;align-items:center;gap:9px;height:44px;padding:0 13px;border:1px solid #e7e4dc;border-radius:11px;background:#fff;cursor:text;transition:border-color .15s,box-shadow .15s;" onclick="document.getElementById('foodSearchInput').focus()">
+                        <div id="foodTagsInput" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-height:44px;padding:8px 13px;border:1px solid #e7e4dc;border-radius:11px;background:#fff;cursor:text;transition:border-color .15s,box-shadow .15s;" onclick="document.getElementById('foodSearchInput').focus()">
                             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="#94a3b8" stroke-width="1.6"><circle cx="7" cy="7" r="5"/><path d="M11 11l3 3" stroke-linecap="round"/></svg>
                             <input id="foodSearchInput" type="text" placeholder="Search foods…" autocomplete="off" style="border:none;outline:none;font:14px 'Geist',sans-serif;flex:1;min-width:80px;padding:0;color:#0b1220;background:transparent;" oninput="onFoodSearchInput(this.value)" onkeydown="onFoodSearchKeydown(event)">
                         </div>
