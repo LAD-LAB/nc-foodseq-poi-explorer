@@ -46,7 +46,7 @@ cat("Loaded", length(tract_coords), "Durham tract centroids\n")
 # ---- Helpers ----
 parse_date_safe <- function(x) {
   if (is.na(x) || x == "" || x == "NA") return(NA)
-  for (fmt in c("%m/%d/%y", "%m/%d/%Y", "%Y-%m-%d")) {
+  for (fmt in c("%m/%d/%Y", "%Y-%m-%d", "%m/%d/%y")) {
     parsed <- tryCatch(as.Date(x, format = fmt), error = function(e) NA)
     if (!is.na(parsed)) return(parsed)
   }

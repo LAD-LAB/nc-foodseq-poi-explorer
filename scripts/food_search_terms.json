@@ -1,95 +1,374 @@
 {
-  "Banana": { "search": "banana", "unit": "per lb" },
-  "Tomato": { "search": "tomatoes", "unit": "per lb" },
-  "Chicken": { "search": "chicken breast", "unit": "per lb" },
-  "Rice": { "search": "white rice", "unit": "per lb" },
-  "Lettuce": { "search": "romaine lettuce", "unit": "each" },
-  "Salmon": { "search": "atlantic salmon fillet", "unit": "per lb" },
-  "Atlantic salmon": { "search": "atlantic salmon fillet", "unit": "per lb" },
-  "Pig (Pork)": { "search": "pork chops", "unit": "per lb" },
-  "Cattle (Beef)": { "search": "ground beef", "unit": "per lb" },
-  "Sesamum": { "search": "sesame seeds", "unit": "per oz" },
-  "Vaccinium": { "search": "blueberries", "unit": "per pint" },
-  "Oat": { "search": "oats", "unit": "per lb" },
-  "Cabbage/Broccoli": { "search": "broccoli", "unit": "per lb" },
-  "Asparagus": { "search": "asparagus", "unit": "per bunch" },
-  "Tea": { "search": "green tea", "unit": "per box" },
-  "Chickpea": { "search": "chickpeas canned", "unit": "per can" },
-  "Lentil": { "search": "lentils dry", "unit": "per lb" },
-  "Grass family": { "search": "wheat bread", "unit": "per loaf" },
-  "Turkey": { "search": "turkey breast", "unit": "per lb" },
-  "Peanut": { "search": "peanuts", "unit": "per lb" },
-  "Soybean": { "search": "tofu", "unit": "per block" },
-  "Pea": { "search": "green peas frozen", "unit": "per bag" },
-  "Beans": { "search": "black beans canned", "unit": "per can" },
-  "Garlic": { "search": "garlic", "unit": "each" },
-  "Onion/Garlic": { "search": "yellow onion", "unit": "per lb" },
-  "Apple/Pear/Cherry": { "search": "apples", "unit": "per lb" },
-  "Apples, Pears": { "search": "apples", "unit": "per lb" },
-  "Chili peppers": { "search": "jalapeno peppers", "unit": "per lb" },
-  "Cocoa": { "search": "cocoa powder", "unit": "per container" },
-  "Flax": { "search": "flax seeds", "unit": "per bag" },
-  "Barley": { "search": "barley", "unit": "per lb" },
-  "Beet": { "search": "beets", "unit": "per bunch" },
-  "Beet/Chard": { "search": "beets", "unit": "per bunch" },
-  "Sheep (Lamb)": { "search": "lamb chops", "unit": "per lb" },
-  "Capsicum": { "search": "bell peppers", "unit": "each" },
-  "Rose family": { "search": "strawberries", "unit": "per lb" },
-  "Carrot/Celery family": { "search": "carrots", "unit": "per lb" },
-  "Mustard family": { "search": "kale", "unit": "per bunch" },
-  "Nightshade family": { "search": "potatoes", "unit": "per lb" },
-  "Legume family": { "search": "lima beans", "unit": "per can" },
-  "Abelmoschus esculentus": { "search": "okra", "unit": "per lb" },
-  "Actinidia": { "search": "kiwi", "unit": "each" },
-  "Pistacia vera": { "search": "pistachios", "unit": "per bag" },
-  "Anacardium occidentale": { "search": "cashews", "unit": "per bag" },
-  "Ipomoea": { "search": "sweet potato", "unit": "per lb" },
-  "Curcuma": { "search": "turmeric", "unit": "per oz" },
-  "Ananas comosus": { "search": "pineapple", "unit": "each" },
-  "Catfish": { "search": "catfish fillet", "unit": "per lb" },
-  "Bullhead catfish": { "search": "catfish fillet", "unit": "per lb" },
-  "Tilapia": { "search": "tilapia fillet", "unit": "per lb" },
-  "Tuna": { "search": "canned tuna", "unit": "per can" },
-  "Anchovy": { "search": "anchovies", "unit": "per can" },
-  "Shrimp": { "search": "shrimp", "unit": "per lb" },
-  "Crab": { "search": "crab meat", "unit": "per lb" },
-  "Trout": { "search": "rainbow trout", "unit": "per lb" },
-  "Cod": { "search": "cod fillet", "unit": "per lb" },
-  "Sardine": { "search": "sardines canned", "unit": "per can" },
-  "Atlantic herring": { "search": "herring", "unit": "per lb" },
-  "Atlantic mackerel": { "search": "mackerel", "unit": "per lb" },
-  "Barramundi": { "search": "barramundi fillet", "unit": "per lb" },
-  "Artichoke": { "search": "artichoke", "unit": "each" },
-  "Arugula": { "search": "arugula", "unit": "per bag" },
-  "Basil": { "search": "fresh basil", "unit": "per bunch" },
-  "Avocado, Cinnamon, Bay Leaf": { "search": "avocado", "unit": "each" },
-  "Corylus": { "search": "hazelnuts", "unit": "per bag" },
-  "Persimmon": { "search": "persimmon", "unit": "each" },
-  "Mango": { "search": "mango", "unit": "each" },
-  "Pomegranate": { "search": "pomegranate", "unit": "each" },
-  "Fig": { "search": "figs", "unit": "per lb" },
-  "Ficus": { "search": "figs", "unit": "per lb" },
-  "Coconut": { "search": "coconut", "unit": "each" },
-  "Stone fruit": { "search": "peaches", "unit": "per lb" },
-  "Walnut": { "search": "walnuts", "unit": "per bag" },
-  "Pecan/Walnut": { "search": "pecans", "unit": "per bag" },
-  "Carya": { "search": "pecans", "unit": "per bag" },
-  "Ginger": { "search": "fresh ginger", "unit": "per lb" },
-  "Grape/Wine": { "search": "grapes", "unit": "per lb" },
-  "Vitaceae": { "search": "grapes", "unit": "per lb" },
-  "Cucumber/Melon": { "search": "cucumber", "unit": "each" },
-  "Spinach": { "search": "fresh spinach", "unit": "per bag" },
-  "Chenopodiaceae": { "search": "fresh spinach", "unit": "per bag" },
-  "Corn": { "search": "corn on the cob", "unit": "each" },
-  "Wheat": { "search": "whole wheat flour", "unit": "per lb" },
-  "Adzuki bean": { "search": "adzuki beans", "unit": "per lb" },
-  "Black bass": { "search": "bass fillet", "unit": "per lb" },
-  "Bluefish": { "search": "bluefish fillet", "unit": "per lb" },
-  "Deer": { "search": null, "unit": null },
-  "Dog": { "search": null, "unit": null },
-  "Cat": { "search": null, "unit": null },
-  "Human": { "search": null, "unit": null },
-  "Brown rat": { "search": null, "unit": null },
-  "American alligator": { "search": null, "unit": null },
-  "American black bear": { "search": null, "unit": null }
+  "Banana": {
+    "search": "banana",
+    "unit": "per lb"
+  },
+  "Tomato": {
+    "search": "tomatoes",
+    "unit": "per lb"
+  },
+  "Chicken": {
+    "search": "chicken breast",
+    "unit": "per lb"
+  },
+  "Rice": {
+    "search": "white rice",
+    "unit": "per lb"
+  },
+  "Lettuce": {
+    "search": "romaine lettuce",
+    "unit": "each"
+  },
+  "Salmon": {
+    "search": "atlantic salmon fillet",
+    "unit": "per lb"
+  },
+  "Atlantic salmon": {
+    "search": "atlantic salmon fillet",
+    "unit": "per lb"
+  },
+  "Pig (Pork)": {
+    "search": "pork chops",
+    "unit": "per lb"
+  },
+  "Sesamum": {
+    "search": "sesame seeds",
+    "unit": "per oz"
+  },
+  "Vaccinium": {
+    "search": "blueberries",
+    "unit": "per pint"
+  },
+  "Oat": {
+    "search": "oats",
+    "unit": "per lb"
+  },
+  "Cabbage/Broccoli": {
+    "search": "broccoli",
+    "unit": "per lb"
+  },
+  "Asparagus": {
+    "search": "asparagus",
+    "unit": "per bunch"
+  },
+  "Tea": {
+    "search": "green tea",
+    "unit": "per box"
+  },
+  "Chickpea": {
+    "search": "chickpeas canned",
+    "unit": "per can"
+  },
+  "Lentil": {
+    "search": "lentils dry",
+    "unit": "per lb"
+  },
+  "Grass family": {
+    "search": "wheat bread",
+    "unit": "per loaf"
+  },
+  "Turkey": {
+    "search": "turkey breast",
+    "unit": "per lb"
+  },
+  "Peanut": {
+    "search": "peanuts",
+    "unit": "per lb"
+  },
+  "Soybean": {
+    "search": "tofu",
+    "unit": "per block"
+  },
+  "Pea": {
+    "search": "green peas frozen",
+    "unit": "per bag"
+  },
+  "Beans": {
+    "search": "black beans canned",
+    "unit": "per can"
+  },
+  "Garlic": {
+    "search": "garlic",
+    "unit": "each"
+  },
+  "Onion/Garlic": {
+    "search": "yellow onion",
+    "unit": "per lb"
+  },
+  "Apple/Pear/Cherry": {
+    "search": "apples",
+    "unit": "per lb"
+  },
+  "Apples, Pears": {
+    "search": "apples",
+    "unit": "per lb"
+  },
+  "Chili peppers": {
+    "search": "jalapeno peppers",
+    "unit": "per lb"
+  },
+  "Cocoa": {
+    "search": "cocoa powder",
+    "unit": "per container"
+  },
+  "Flax": {
+    "search": "flax seeds",
+    "unit": "per bag"
+  },
+  "Barley": {
+    "search": "barley",
+    "unit": "per lb"
+  },
+  "Beet": {
+    "search": "beets",
+    "unit": "per bunch"
+  },
+  "Beet/Chard": {
+    "search": "beets",
+    "unit": "per bunch"
+  },
+  "Sheep (Lamb)": {
+    "search": "lamb chops",
+    "unit": "per lb"
+  },
+  "Capsicum": {
+    "search": "bell peppers",
+    "unit": "each"
+  },
+  "Rose family": {
+    "search": "strawberries",
+    "unit": "per lb"
+  },
+  "Carrot/Celery family": {
+    "search": "carrots",
+    "unit": "per lb"
+  },
+  "Mustard family": {
+    "search": "kale",
+    "unit": "per bunch"
+  },
+  "Nightshade family": {
+    "search": "potatoes",
+    "unit": "per lb"
+  },
+  "Legume family": {
+    "search": "lima beans",
+    "unit": "per can"
+  },
+  "Abelmoschus esculentus": {
+    "search": "okra",
+    "unit": "per lb"
+  },
+  "Actinidia": {
+    "search": "kiwi",
+    "unit": "each"
+  },
+  "Pistacia vera": {
+    "search": "pistachios",
+    "unit": "per bag"
+  },
+  "Anacardium occidentale": {
+    "search": "cashews",
+    "unit": "per bag"
+  },
+  "Ipomoea": {
+    "search": "sweet potato",
+    "unit": "per lb"
+  },
+  "Curcuma": {
+    "search": "turmeric",
+    "unit": "per oz"
+  },
+  "Ananas comosus": {
+    "search": "pineapple",
+    "unit": "each"
+  },
+  "Catfish": {
+    "search": "catfish fillet",
+    "unit": "per lb"
+  },
+  "Bullhead catfish": {
+    "search": "catfish fillet",
+    "unit": "per lb"
+  },
+  "Tilapia": {
+    "search": "tilapia fillet",
+    "unit": "per lb"
+  },
+  "Tuna": {
+    "search": "canned tuna",
+    "unit": "per can"
+  },
+  "Anchovy": {
+    "search": "anchovies",
+    "unit": "per can"
+  },
+  "Shrimp": {
+    "search": "shrimp",
+    "unit": "per lb"
+  },
+  "Crab": {
+    "search": "crab meat",
+    "unit": "per lb"
+  },
+  "Trout": {
+    "search": "rainbow trout",
+    "unit": "per lb"
+  },
+  "Cod": {
+    "search": "cod fillet",
+    "unit": "per lb"
+  },
+  "Sardine": {
+    "search": "sardines canned",
+    "unit": "per can"
+  },
+  "Atlantic herring": {
+    "search": "herring",
+    "unit": "per lb"
+  },
+  "Atlantic mackerel": {
+    "search": "mackerel",
+    "unit": "per lb"
+  },
+  "Barramundi": {
+    "search": "barramundi fillet",
+    "unit": "per lb"
+  },
+  "Artichoke": {
+    "search": "artichoke",
+    "unit": "each"
+  },
+  "Arugula": {
+    "search": "arugula",
+    "unit": "per bag"
+  },
+  "Basil": {
+    "search": "fresh basil",
+    "unit": "per bunch"
+  },
+  "Avocado, Cinnamon, Bay Leaf": {
+    "search": "avocado",
+    "unit": "each"
+  },
+  "Corylus": {
+    "search": "hazelnuts",
+    "unit": "per bag"
+  },
+  "Persimmon": {
+    "search": "persimmon",
+    "unit": "each"
+  },
+  "Mango": {
+    "search": "mango",
+    "unit": "each"
+  },
+  "Pomegranate": {
+    "search": "pomegranate",
+    "unit": "each"
+  },
+  "Fig": {
+    "search": "figs",
+    "unit": "per lb"
+  },
+  "Ficus": {
+    "search": "figs",
+    "unit": "per lb"
+  },
+  "Coconut": {
+    "search": "coconut",
+    "unit": "each"
+  },
+  "Stone fruit": {
+    "search": "peaches",
+    "unit": "per lb"
+  },
+  "Walnut": {
+    "search": "walnuts",
+    "unit": "per bag"
+  },
+  "Pecan/Walnut": {
+    "search": "pecans",
+    "unit": "per bag"
+  },
+  "Carya": {
+    "search": "pecans",
+    "unit": "per bag"
+  },
+  "Ginger": {
+    "search": "fresh ginger",
+    "unit": "per lb"
+  },
+  "Grape/Wine": {
+    "search": "grapes",
+    "unit": "per lb"
+  },
+  "Vitaceae": {
+    "search": "grapes",
+    "unit": "per lb"
+  },
+  "Cucumber/Melon": {
+    "search": "cucumber",
+    "unit": "each"
+  },
+  "Spinach": {
+    "search": "fresh spinach",
+    "unit": "per bag"
+  },
+  "Chenopodiaceae": {
+    "search": "fresh spinach",
+    "unit": "per bag"
+  },
+  "Corn": {
+    "search": "corn on the cob",
+    "unit": "each"
+  },
+  "Wheat": {
+    "search": "whole wheat flour",
+    "unit": "per lb"
+  },
+  "Adzuki bean": {
+    "search": "adzuki beans",
+    "unit": "per lb"
+  },
+  "Black bass": {
+    "search": "bass fillet",
+    "unit": "per lb"
+  },
+  "Bluefish": {
+    "search": "bluefish fillet",
+    "unit": "per lb"
+  },
+  "Deer": {
+    "search": null,
+    "unit": null
+  },
+  "Dog": {
+    "search": null,
+    "unit": null
+  },
+  "Cat": {
+    "search": null,
+    "unit": null
+  },
+  "Human": {
+    "search": null,
+    "unit": null
+  },
+  "Brown rat": {
+    "search": null,
+    "unit": null
+  },
+  "American alligator": {
+    "search": null,
+    "unit": null
+  },
+  "American black bear": {
+    "search": null,
+    "unit": null
+  },
+  "Cow": {
+    "search": "ground beef",
+    "unit": "per lb"
+  }
 }
