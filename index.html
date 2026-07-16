@@ -1137,8 +1137,8 @@
             --z-picker:     1100;
             --z-loading:    2000;
             --z-suggestions:10000;
-            --z-modal:      10001;
-            --z-home:       10002;
+            --z-home:       10001;
+            --z-modal:      10002;
         }
 
         /* ========== TRENDS VIEW REDESIGNED ========== */
@@ -9276,7 +9276,7 @@
             { id: 'Lettuce', name: 'Lettuce' },
             { id: 'Salmon', name: 'Salmon' },
             { id: 'Pig (Pork)', name: 'Pork' },
-            { id: 'Cattle (Beef)', name: 'Beef' },
+            { id: 'Cow', name: 'Beef' },
             { id: 'Sesamum', name: 'Sesame' },
             { id: 'Vaccinium', name: 'Blueberries' },
             { id: 'Oat', name: 'Oats' },
@@ -16300,7 +16300,7 @@
                 var animalEntries = Object.entries(agg.animals).filter(function(e) { return e[1] > 0 && !_isH(e[0]); });
 
                 var PLANT_GROUPS = ['vegetable', 'fruit', 'grain', 'legume', 'seed_nut', 'herb_spice'];
-                var ANIMAL_GROUPS = ['meat_poultry', 'meat', 'seafood'];
+                var ANIMAL_GROUPS = ['meat_poultry', 'seafood'];
 
                 function groupBalance(entries, groups) {
                     var counts = {};
@@ -16322,19 +16322,61 @@
                 }
 
                 var pb = groupBalance(plantEntries, PLANT_GROUPS);
-                var ab = groupBalance(animalEntries, ANIMAL_GROUPS);
+                // Animal species-level evenness compared across all sampled tracts
+                function computeAnimalEvenness(entries) {
+                    var vals = entries.map(function(e) { return e[1]; }).filter(function(v) { return v > 0; });
+                    if (vals.length <= 1) return 0;
+                    var total = vals.reduce(function(s, v) { return s + v; }, 0);
+                    var H = 0;
+                    vals.forEach(function(v) { var p = v / total; if (p > 0) H -= p * Math.log(p); });
+                    var maxH = Math.log(vals.length);
+                    return maxH > 0 ? H / maxH : 0;
+                }
+
+                var thisAnimalEvenness = computeAnimalEvenness(animalEntries);
+
+                // Compute animal evenness for all sampled tracts to rank
+                var allAnimalEvenness = [];
+                if (durhamTractsGeoJSON) {
+                    durhamTractsGeoJSON.features.forEach(function(f) {
+                        var tn = String(f.properties.Sample_ID);
+                        var tp = getPlantsInTract(tn);
+                        if (!tp.length) return;
+                        var tAgg = aggregatePlantsData(tp);
+                        var tAnimal = Object.entries(tAgg.animals).filter(function(e) {
+                            return e[1] > 0 && !_isH(e[0]);
+                        });
+                        if (tAnimal.length > 1) {
+                            allAnimalEvenness.push(computeAnimalEvenness(tAnimal));
+                        }
+                    });
+                }
+                allAnimalEvenness.sort(function(a, b) { return a - b; });
+                var animalRankLabel = 'Typical';
+                var animalChipBg = '#eef2fb';
+                var animalChipClr = '#1e3a8a';
+                if (allAnimalEvenness.length >= 3) {
+                    var tercile = Math.floor(allAnimalEvenness.length / 3);
+                    var lowerBound = allAnimalEvenness[tercile];
+                    var upperBound = allAnimalEvenness[allAnimalEvenness.length - 1 - tercile];
+                    if (thisAnimalEvenness > upperBound) {
+                        animalRankLabel = 'Above average';
+                        animalChipBg = '#e3f1e8';
+                        animalChipClr = '#1f8a5b';
+                    } else if (thisAnimalEvenness < lowerBound) {
+                        animalRankLabel = 'Below average';
+                        animalChipBg = '#f7e3da';
+                        animalChipClr = '#c24a2b';
+                    }
+                }
+                var animalSpeciesCount = animalEntries.length;
 
                 // Leaf and fish SVGs for icon tiles
                 var leafSvg = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20C6 20 4 14 4 9c5 0 11 2 11 9"/><path d="M20 4c0 6-3 10-9 11"/></svg>';
                 var fishSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12c3-4 7-5 11-5 3 0 5 2 7 5-2 3-4 5-7 5-4 0-8-1-11-5z"/><path d="M14 7l4-3v16l-4-3"/><circle cx="7.5" cy="11.5" r=".9" fill="currentColor" stroke="none"/></svg>';
 
-                function balanceCard(type, b) {
-                    var isPlant = type === 'plant';
-                    var label = isPlant ? 'Plant foods' : 'Animal foods';
-                    var icon = isPlant ? leafSvg : fishSvg;
-                    var icBg = isPlant ? '#e6e8fb' : '#f5e0d2';
-                    var icClr = isPlant ? '#5b6cf0' : '#c8612e';
-                    var meterClr = isPlant ? '#5b6cf0' : '#c8612e';
+                function plantBalanceCard(b) {
+                    var meterClr = '#5b6cf0';
                     var chipOk = b.score >= 40;
                     var chipBg = chipOk ? '#e3f1e8' : '#f7e3da';
                     var chipClr = chipOk ? '#1f8a5b' : '#c24a2b';
@@ -16343,8 +16385,8 @@
 
                     var h = '<div style="background:#fff;border:1px solid #e7e4dc;border-radius:13px;padding:12px 14px 12px;">';
                     h += '<div style="display:flex;align-items:center;gap:9px;">';
-                    h += '<span style="width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:' + icBg + ';color:' + icClr + ';">' + icon + '</span>';
-                    h += '<span style="font-size:12px;font-weight:600;color:#0b1220;">' + label + '</span></div>';
+                    h += '<span style="width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:#e6e8fb;color:#5b6cf0;">' + leafSvg + '</span>';
+                    h += '<span style="font-size:12px;font-weight:600;color:#0b1220;">Plant foods</span></div>';
                     h += '<div style="display:flex;align-items:baseline;gap:4px;margin:8px 0 0;">';
                     h += '<b style="font:500 24px/0.85 \'Geist\',sans-serif;letter-spacing:-.02em;color:#0b1220;">' + b.score + '</b>';
                     h += '<i style="font-style:normal;font:500 13px \'Geist Mono\',monospace;color:#94a3b8;">/100</i></div>';
@@ -16352,6 +16394,21 @@
                     h += '<div style="display:flex;flex-direction:column;align-items:flex-start;gap:7px;">';
                     h += '<span style="font:600 10px \'Geist\',sans-serif;border-radius:999px;padding:4px 10px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;background:' + chipBg + ';color:' + chipClr + ';"><span style="width:5px;height:5px;border-radius:50%;background:currentColor;"></span>' + chipText + '</span>';
                     h += '<span style="font-size:10.5px;color:#64748b;"><b style="color:#0b1220;font-weight:600;">' + b.gp + ' of ' + b.gt + '</b> food groups</span>';
+                    h += '</div></div>';
+                    return h;
+                }
+
+                function animalBalanceCard() {
+                    var h = '<div style="background:#fff;border:1px solid #e7e4dc;border-radius:13px;padding:12px 14px 12px;">';
+                    h += '<div style="display:flex;align-items:center;gap:9px;">';
+                    h += '<span style="width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:#f5e0d2;color:#c8612e;">' + fishSvg + '</span>';
+                    h += '<span style="font-size:12px;font-weight:600;color:#0b1220;">Animal foods</span></div>';
+                    h += '<div style="display:flex;align-items:baseline;gap:4px;margin:8px 0 0;">';
+                    h += '<b style="font:500 18px/0.85 \'Geist\',sans-serif;letter-spacing:-.02em;color:#0b1220;">' + animalRankLabel + '</b></div>';
+                    h += '<div style="margin:8px 0 10px;font-size:11px;color:#64748b;">Species evenness across sampled areas</div>';
+                    h += '<div style="display:flex;flex-direction:column;align-items:flex-start;gap:7px;">';
+                    h += '<span style="font:600 10px \'Geist\',sans-serif;border-radius:999px;padding:4px 10px;display:inline-flex;align-items:center;gap:5px;white-space:nowrap;background:' + animalChipBg + ';color:' + animalChipClr + ';"><span style="width:5px;height:5px;border-radius:50%;background:currentColor;"></span>' + animalRankLabel + '</span>';
+                    h += '<span style="font-size:10.5px;color:#64748b;"><b style="color:#0b1220;font-weight:600;">' + animalSpeciesCount + '</b> species detected</span>';
                     h += '</div></div>';
                     return h;
                 }
@@ -16383,8 +16440,8 @@
                 var wrapper = document.createElement('div');
                 var html = '<div class="pc-klabel" style="margin-bottom:13px;">Diet balance</div>';
                 html += '<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">';
-                html += balanceCard('plant', pb);
-                html += balanceCard('animal', ab);
+                html += plantBalanceCard(pb);
+                html += animalBalanceCard();
                 html += '</div>';
                 wrapper.innerHTML = html;
 

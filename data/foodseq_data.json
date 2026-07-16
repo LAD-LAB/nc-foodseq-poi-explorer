@@ -326,7 +326,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 4181.7048,
             "Charr": 0,
             "Chicken": 108.7176,
             "Chinook salmon": 0,
@@ -409,7 +408,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 4181.7048
           }
         },
         "2020-06": {
@@ -614,7 +614,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 763.88,
             "Charr": 0,
             "Chicken": 0,
             "Chinook salmon": 0,
@@ -697,7 +696,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 763.88
           }
         },
         "2020-07": {
@@ -902,7 +902,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 145.8,
             "Charr": 0,
             "Chicken": 31.44,
             "Chinook salmon": 0,
@@ -985,7 +984,8 @@
             "White perch": 0,
             "Wild yak": 9.04,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 145.8
           }
         },
         "2020-08": {
@@ -1187,7 +1187,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 932.24,
             "Charr": 0,
             "Chicken": 1106.96,
             "Chinook salmon": 0,
@@ -1270,7 +1269,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 932.24
           }
         },
         "2020-09": {
@@ -1472,7 +1472,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 323.8031,
             "Charr": 0,
             "Chicken": 732.9634,
             "Chinook salmon": 0,
@@ -1555,7 +1554,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 323.8031
           }
         },
         "2020-10": {
@@ -1756,7 +1756,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2321.965,
             "Charr": 0,
             "Chicken": 4077.3992,
             "Chinook salmon": 0,
@@ -1839,7 +1838,8 @@
             "White perch": 0,
             "Wild yak": 1.04,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 2321.965
           }
         },
         "2020-11": {
@@ -2040,7 +2040,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 1642.3989,
             "Charr": 0,
             "Chicken": 4881.8517,
             "Chinook salmon": 0,
@@ -2123,7 +2122,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 1642.3989
           }
         },
         "2020-12": {
@@ -2326,7 +2326,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2285.3187,
             "Charr": 0,
             "Chicken": 2296.6225,
             "Chinook salmon": 0,
@@ -2409,7 +2408,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 2285.3187
           }
         },
         "2021-06": {
@@ -2612,7 +2612,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 1977.5354,
             "Charr": 0,
             "Chicken": 8807.5872,
             "Chinook salmon": 0,
@@ -2695,7 +2694,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 1977.5354
           }
         }
       },
@@ -2922,7 +2922,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 125.862,
             "Charr": 0,
             "Chicken": 835.3458,
             "Chinook salmon": 0,
@@ -3005,7 +3004,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 125.862
           }
         },
         "2020-10": {
@@ -3204,7 +3204,6 @@
             "Butterfish": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 478.8739,
             "Charr": 0,
             "Chicken": 5050.9618,
             "Chinook salmon": 0,
@@ -3287,7 +3286,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Anchovy": 44.9914
+            "Anchovy": 44.9914,
+            "Cow": 478.8739
           }
         },
         "2020-11": {
@@ -3489,7 +3489,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 195.0558,
             "Charr": 0,
             "Chicken": 2479.775,
             "Chinook salmon": 0,
@@ -3572,7 +3571,8 @@
             "Wild yak": 1.0933,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 4.1867
+            "Tilapia": 4.1867,
+            "Cow": 195.0558
           }
         },
         "2020-12": {
@@ -3772,7 +3772,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0.2944,
-            "Cow (Beef)": 1102.6855,
             "Charr": 0,
             "Chicken": 1884.698,
             "Chinook salmon": 0,
@@ -3854,7 +3853,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 1102.6855
           }
         },
         "2021-06": {
@@ -4056,7 +4056,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2268.1575,
             "Charr": 0,
             "Chicken": 23474.106,
             "Chinook salmon": 0,
@@ -4139,7 +4138,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 2268.1575
           }
         }
       },
@@ -4361,7 +4361,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 3094.4236,
             "Charr": 0,
             "Chicken": 2254.4499,
             "Chinook salmon": 0,
@@ -4444,7 +4443,8 @@
             "White perch": 0,
             "Wild yak": 47.6153,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 3094.4236
           }
         },
         "2020-08": {
@@ -4648,7 +4648,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 494.5563,
             "Charr": 0,
             "Chicken": 2567.0555,
             "Chinook salmon": 0,
@@ -4731,7 +4730,8 @@
             "White perch": 0,
             "Wild yak": 11.48,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 494.5563
           }
         },
         "2020-09": {
@@ -4938,7 +4938,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 1022.0856,
             "Charr": 0,
             "Chicken": 4852.3276,
             "Chinook salmon": 0,
@@ -5021,7 +5020,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 1022.0856
           }
         },
         "2020-11": {
@@ -5224,7 +5224,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 296.2703,
             "Charr": 0,
             "Chicken": 844.5702,
             "Chinook salmon": 0,
@@ -5307,7 +5306,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 296.2703
           }
         },
         "2020-12": {
@@ -5506,7 +5506,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 691.2434,
             "Charr": 0,
             "Chicken": 1466.8189,
             "Chinook salmon": 0,
@@ -5589,7 +5588,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 691.2434
           }
         },
         "2021-06": {
@@ -5792,7 +5792,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 1469.9514,
             "Charr": 0,
             "Chicken": 6229.2793,
             "Chinook salmon": 0,
@@ -5875,7 +5874,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 1469.9514
           }
         }
       },
@@ -6101,7 +6101,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 7.048,
-            "Cow (Beef)": 21356.3436,
             "Charr": 0,
             "Chicken": 44483.9739,
             "Chinook salmon": 23.0601,
@@ -6184,7 +6183,8 @@
             "Wild yak": 41.407,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 111.3333
+            "Tilapia": 111.3333,
+            "Cow": 21356.3436
           }
         },
         "2020-10": {
@@ -6385,7 +6385,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 2.6869,
-            "Cow (Beef)": 20163.2246,
             "Charr": 0,
             "Chicken": 58369.4175,
             "Chinook salmon": 190.6979,
@@ -6468,7 +6467,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 979.992
+            "Tilapia": 979.992,
+            "Cow": 20163.2246
           }
         },
         "2020-11": {
@@ -6665,7 +6665,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0.9017,
-            "Cow (Beef)": 6018.0866,
             "Charr": 27.438,
             "Chicken": 21350.8739,
             "Chinook salmon": 0,
@@ -6747,7 +6746,8 @@
             "Wild yak": 27.9022,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 441.9878
+            "Tilapia": 441.9878,
+            "Cow": 6018.0866
           }
         },
         "2020-12": {
@@ -6947,7 +6947,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 3604.3683,
             "Charr": 0,
             "Chicken": 25410.6862,
             "Chinook salmon": 0,
@@ -7029,7 +7028,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 997.2215
+            "Tilapia": 997.2215,
+            "Cow": 3604.3683
           }
         },
         "2021-06": {
@@ -7229,7 +7229,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 1318.6572,
             "Charr": 0,
             "Chicken": 21099.4592,
             "Chinook salmon": 52.3749,
@@ -7312,7 +7311,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 174.8887
+            "Tilapia": 174.8887,
+            "Cow": 1318.6572
           }
         }
       },
@@ -7529,7 +7529,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 996.3058,
             "Charr": 0,
             "Chicken": 1881.0236,
             "Chinook salmon": 0,
@@ -7612,7 +7611,8 @@
             "Wild yak": 64.1084,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 15.863
+            "Tilapia": 15.863,
+            "Cow": 996.3058
           }
         },
         "2020-07": {
@@ -7814,7 +7814,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 846.8154,
             "Charr": 0,
             "Chicken": 1250.0154,
             "Chinook salmon": 0,
@@ -7897,7 +7896,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 846.8154
           }
         },
         "2020-08": {
@@ -8102,7 +8102,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2349.1785,
             "Charr": 0,
             "Chicken": 2923.7181,
             "Chinook salmon": 0,
@@ -8185,7 +8184,8 @@
             "White perch": 0,
             "Wild yak": 18.0312,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 2349.1785
           }
         },
         "2020-09": {
@@ -8388,7 +8388,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 451.6225,
             "Charr": 0,
             "Chicken": 1134.329,
             "Chinook salmon": 0,
@@ -8471,7 +8470,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 451.6225
           }
         },
         "2020-10": {
@@ -8680,7 +8680,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 52.92,
             "Charr": 0,
             "Chicken": 523.12,
             "Chinook salmon": 0,
@@ -8763,7 +8762,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 52.92
           }
         },
         "2020-12": {
@@ -8961,7 +8961,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 742.0066,
             "Charr": 0,
             "Chicken": 2542.1966,
             "Chinook salmon": 0,
@@ -9044,7 +9043,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 742.0066
           }
         },
         "2021-06": {
@@ -9272,7 +9272,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 44046.2568,
             "Charr": 0,
             "Chicken": 83227.5638,
             "Chinook salmon": 128.2899,
@@ -9355,7 +9354,8 @@
             "Wild yak": 147.6414,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Anchovy": 8.8381
+            "Anchovy": 8.8381,
+            "Cow": 44046.2568
           }
         },
         "2020-10": {
@@ -9555,7 +9555,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 11417.5527,
             "Charr": 0,
             "Chicken": 18472.8729,
             "Chinook salmon": 0,
@@ -9638,7 +9637,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 11417.5527
           }
         },
         "2020-11": {
@@ -9837,7 +9837,6 @@
             "Butterfish": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 3683.899,
             "Charr": 0,
             "Chicken": 13107.3967,
             "Chinook salmon": 0,
@@ -9921,7 +9920,8 @@
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
             "Anchovy": 36.0956,
-            "Tilapia": 38.2177
+            "Tilapia": 38.2177,
+            "Cow": 3683.899
           }
         },
         "2020-12": {
@@ -10122,7 +10122,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 13928.1233,
             "Charr": 0,
             "Chicken": 59415.1673,
             "Chinook salmon": 0,
@@ -10204,7 +10203,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 13928.1233
           }
         },
         "2021-06": {
@@ -10403,7 +10403,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 305.1871,
             "Charr": 0,
             "Chicken": 2793.9955,
             "Chinook salmon": 0,
@@ -10486,7 +10485,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 70.9138
+            "Tilapia": 70.9138,
+            "Cow": 305.1871
           }
         }
       },
@@ -10712,7 +10712,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 20386.7107,
             "Charr": 0,
             "Chicken": 46322.2163,
             "Chinook salmon": 0,
@@ -10795,7 +10794,8 @@
             "White perch": 0,
             "Wild yak": 194.5899,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 20386.7107
           }
         },
         "2020-10": {
@@ -10994,7 +10994,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 16.5,
-            "Cow (Beef)": 13021.2146,
             "Charr": 0,
             "Chicken": 107243.7428,
             "Chinook salmon": 0,
@@ -11076,7 +11075,8 @@
             "White perch": 0,
             "Wild yak": 165.2705,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 13021.2146
           }
         },
         "2020-11": {
@@ -11275,7 +11275,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 9.1899,
-            "Cow (Beef)": 3548.2843,
             "Charr": 0,
             "Chicken": 16696.4981,
             "Chinook salmon": 0,
@@ -11357,7 +11356,8 @@
             "Wild yak": 2.4567,
             "Yellow bullhead": 0,
             "Yellow croaker": 4.9333,
-            "Tilapia": 33.4305
+            "Tilapia": 33.4305,
+            "Cow": 3548.2843
           }
         },
         "2020-12": {
@@ -11556,7 +11556,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2142.655,
             "Charr": 0,
             "Chicken": 16074.86,
             "Chinook salmon": 0,
@@ -11639,7 +11638,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 40.25
+            "Tilapia": 40.25,
+            "Cow": 2142.655
           }
         },
         "2021-06": {
@@ -11840,7 +11840,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 651.016,
             "Charr": 0,
             "Chicken": 3978.8007,
             "Chinook salmon": 0,
@@ -11923,7 +11922,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 86.1346
+            "Tilapia": 86.1346,
+            "Cow": 651.016
           }
         }
       },
@@ -12165,7 +12165,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 1967.3207,
             "Charr": 0,
             "Chicken": 13067.0993,
             "Chinook salmon": 0,
@@ -12248,7 +12247,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 63.6753
+            "Tilapia": 63.6753,
+            "Cow": 1967.3207
           }
         }
       },
@@ -12490,7 +12490,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 4388.5116,
             "Charr": 0,
             "Chicken": 14967.304,
             "Chinook salmon": 0,
@@ -12573,7 +12572,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 4388.5116
           }
         }
       },
@@ -12815,7 +12815,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 14631.0642,
             "Charr": 0,
             "Chicken": 34567.3581,
             "Chinook salmon": 0,
@@ -12898,7 +12897,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 14631.0642
           }
         }
       },
@@ -13140,7 +13140,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 3454.2548,
             "Charr": 0,
             "Chicken": 31524.0364,
             "Chinook salmon": 53.9691,
@@ -13223,7 +13222,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 3454.2548
           }
         }
       },
@@ -13466,7 +13466,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 5757.343,
             "Charr": 0,
             "Chicken": 16418.1363,
             "Chinook salmon": 0,
@@ -13549,7 +13548,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 5757.343
           }
         }
       },
@@ -13793,7 +13793,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 4971.1784,
             "Charr": 0,
             "Chicken": 13843.976,
             "Chinook salmon": 0,
@@ -13876,7 +13875,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 128.9644
+            "Tilapia": 128.9644,
+            "Cow": 4971.1784
           }
         }
       },
@@ -14119,7 +14119,6 @@
             "Californian anchovy": 0,
             "Capelin": 54.304,
             "Catfish": 0,
-            "Cow (Beef)": 1703.1685,
             "Charr": 0,
             "Chicken": 13943.482,
             "Chinook salmon": 0,
@@ -14202,7 +14201,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 28.0672,
             "Yellow croaker": 0,
-            "Tilapia": 1.8305
+            "Tilapia": 1.8305,
+            "Cow": 1703.1685
           }
         }
       },
@@ -14443,7 +14443,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 1093.2406,
             "Charr": 0,
             "Chicken": 35802.8584,
             "Chinook salmon": 0,
@@ -14526,7 +14525,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 1093.2406
           }
         }
       },
@@ -14769,7 +14769,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2088.9702,
             "Charr": 0,
             "Chicken": 9290.2509,
             "Chinook salmon": 0,
@@ -14852,7 +14851,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 2088.9702
           }
         }
       },
@@ -15093,7 +15093,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2373.7248,
             "Charr": 0,
             "Chicken": 10116.6173,
             "Chinook salmon": 0,
@@ -15176,7 +15175,8 @@
             "White perch": 0,
             "Wild yak": 0,
             "Yellow bullhead": 0,
-            "Yellow croaker": 0
+            "Yellow croaker": 0,
+            "Cow": 2373.7248
           }
         }
       },
@@ -15419,7 +15419,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 342.7044,
             "Charr": 0,
             "Chicken": 2443.3474,
             "Chinook salmon": 0,
@@ -15502,7 +15501,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 24.5827
+            "Tilapia": 24.5827,
+            "Cow": 342.7044
           }
         }
       },
@@ -15745,7 +15745,6 @@
             "Californian anchovy": 0,
             "Capelin": 0,
             "Catfish": 0,
-            "Cow (Beef)": 2022.0048,
             "Charr": 0,
             "Chicken": 12979.1305,
             "Chinook salmon": 0,
@@ -15828,7 +15827,8 @@
             "Wild yak": 0,
             "Yellow bullhead": 0,
             "Yellow croaker": 0,
-            "Tilapia": 26.1954
+            "Tilapia": 26.1954,
+            "Cow": 2022.0048
           }
         }
       },
@@ -16079,7 +16079,6 @@
           "animals": {
             "Atlantic salmon": 12.601,
             "Bluegill": 0.9516,
-            "Cow (Beef)": 88.6316,
             "Chicken": 250.5559,
             "Duck/Goose": 0.9954,
             "NA_Animal_1": 4.0618,
@@ -16146,7 +16145,8 @@
             "NA_Animal_173": 0.0892,
             "NA_Animal_184": 0.0178,
             "NA_Animal_47": 0.232,
-            "Tilapia": 5.1636
+            "Tilapia": 5.1636,
+            "Cow": 88.6316
           }
         },
         "2025-06": {
@@ -16420,7 +16420,6 @@
             "Atlantic salmon": 20.4543,
             "Black crappie": 0.0512,
             "Catfish": 1.1924,
-            "Cow (Beef)": 127.432,
             "Charr": 0.1407,
             "Chicken": 239.6834,
             "Duck/Goose": 3.197,
@@ -16529,7 +16528,8 @@
             "NA_Animal_236": 0.2909,
             "NA_Animal_95": 0.8024,
             "Anchovy": 1.4005,
-            "Tilapia": 1.706
+            "Tilapia": 1.706,
+            "Cow": 127.432
           }
         },
         "2025-07": {
@@ -16764,7 +16764,6 @@
           },
           "animals": {
             "Capelin": 0.3032,
-            "Cow (Beef)": 159.4293,
             "Chicken": 214.7619,
             "Mahi-mahi": 0.1045,
             "NA_Animal_1": 2.727,
@@ -16867,7 +16866,8 @@
             "NA_Animal_260": 0.5718,
             "Pompano": 0.1279,
             "Anchovy": 0.4082,
-            "Tilapia": 1.0768
+            "Tilapia": 1.0768,
+            "Cow": 159.4293
           }
         },
         "2025-04": {
@@ -16943,7 +16943,6 @@
             "Atlantic salmon": 23.2851,
             "Black crappie": 0.2854,
             "Branzino": 0.2141,
-            "Cow (Beef)": 81.819,
             "Chicken": 282.1806,
             "Goat": 2.6163,
             "NA_Animal_31": 1.4271,
@@ -16951,7 +16950,8 @@
             "Pig (Pork)": 81.6763,
             "Quail": 0.8325,
             "Sheep (Lamb)": 4.0672,
-            "Turkey": 6.3981
+            "Turkey": 6.3981,
+            "Cow": 81.819
           }
         },
         "2025-08": {
@@ -17126,7 +17126,6 @@
           "animals": {
             "Atlantic salmon": 10.6628,
             "Bluegill": 1.754,
-            "Cow (Beef)": 110.832,
             "Chicken": 262.2973,
             "Coho salmon": 0.4855,
             "Duck/Goose": 0.7393,
@@ -17208,7 +17207,8 @@
             "NA_Animal_345": 0.0734,
             "NA_Animal_348": 0.0367,
             "NA_Animal_48": 0.3485,
-            "Tilapia": 1.0657
+            "Tilapia": 1.0657,
+            "Cow": 110.832
           }
         }
       },
@@ -17465,7 +17465,6 @@
             "Atlantic salmon": 7.6923,
             "Black crappie": 1.6088,
             "Bluefish": 0.171,
-            "Cow (Beef)": 142.4781,
             "Chicken": 187.1466,
             "NA_Animal_15": 1.3501,
             "NA_Animal_34": 0.531,
@@ -17571,7 +17570,8 @@
             "NA_Animal_169": 0.0888,
             "NA_Animal_172": 0.0807,
             "NA_Animal_90": 0.5087,
-            "Tilapia": 4.2212
+            "Tilapia": 4.2212,
+            "Cow": 142.4781
           }
         },
         "2025-06": {
@@ -17803,7 +17803,6 @@
           "animals": {
             "Atlantic salmon": 3.3787,
             "Catfish": 0.546,
-            "Cow (Beef)": 185.4303,
             "Chicken": 161.9716,
             "Goat": 1.6491,
             "NA_Animal_1": 2.3118,
@@ -17906,7 +17905,8 @@
             "NA_Animal_19": 11.0994,
             "NA_Animal_196": 1.3969,
             "NA_Animal_249": 0.0556,
-            "Tilapia": 2.4057
+            "Tilapia": 2.4057,
+            "Cow": 185.4303
           }
         },
         "2025-07": {
@@ -18132,7 +18132,6 @@
             "Magnolia": 4.9398
           },
           "animals": {
-            "Cow (Beef)": 182.5724,
             "Chicken": 136.8402,
             "NA_Animal_1": 4.2395,
             "NA_Animal_20": 1.3926,
@@ -18199,7 +18198,8 @@
             "NA_Animal_255": 0.2579,
             "NA_Animal_80": 0.6381,
             "Swordfish": 0.6381,
-            "Tilapia": 2.2889
+            "Tilapia": 2.2889,
+            "Cow": 182.5724
           }
         },
         "2025-04": {
@@ -18276,7 +18276,6 @@
             "Black crappie": 1.8949,
             "Black sea bass": 0.0574,
             "Catfish": 0.4785,
-            "Cow (Beef)": 58.0714,
             "Chicken": 211.4803,
             "NA_Animal_1": 0.4402,
             "NA_Animal_18": 0.2297,
@@ -18291,7 +18290,8 @@
             "Sheep (Lamb)": 1.5695,
             "Tunas": 0.0574,
             "Turkey": 76.4269,
-            "Tilapia": 0.2105
+            "Tilapia": 0.2105,
+            "Cow": 58.0714
           }
         },
         "2025-08": {
@@ -18446,7 +18446,6 @@
           },
           "animals": {
             "Atlantic salmon": 1.4101,
-            "Cow (Beef)": 157.8377,
             "Chicken": 158.8185,
             "Ilish": 2.76,
             "NA_Animal_194": 2.0614,
@@ -18479,7 +18478,8 @@
             "NA_Animal_254": 0.8285,
             "NA_Animal_9": 0.833,
             "Striped bass": 1.0168,
-            "Tilapia": 2.8226
+            "Tilapia": 2.8226,
+            "Cow": 157.8377
           }
         }
       },
@@ -18738,7 +18738,6 @@
             "Atlantic salmon": 4.797,
             "Black crappie": 4.9578,
             "Bluefish": 0.219,
-            "Cow (Beef)": 108.2982,
             "Chicken": 218.3556,
             "NA_Animal_1": 3.0031,
             "NA_Animal_12": 3.0202,
@@ -18830,7 +18829,8 @@
             "NA_Animal_78": 2.0205,
             "NA_Animal_84": 2.7499,
             "Anchovy": 0.8799,
-            "Tilapia": 3.153
+            "Tilapia": 3.153,
+            "Cow": 108.2982
           }
         },
         "2025-06": {
@@ -19114,7 +19114,6 @@
             "Bluefish": 0.6657,
             "Bluegill": 0.8976,
             "Catfish": 3.2044,
-            "Cow (Beef)": 132.9559,
             "Chicken": 208.3949,
             "Duck/Goose": 0.8841,
             "Eastern gray squirrel": 0.2393,
@@ -19228,7 +19227,8 @@
             "NA_Animal_93": 0.4437,
             "NA_Animal_200": 0.5852,
             "Anchovy": 0.5527,
-            "Tilapia": 2.834
+            "Tilapia": 2.834,
+            "Cow": 132.9559
           }
         },
         "2025-07": {
@@ -19455,7 +19455,6 @@
             "Atlantic salmon": 3.1403,
             "Black bass": 1.6205,
             "Black crappie": 0.1918,
-            "Cow (Beef)": 180.3604,
             "Chicken": 169.6285,
             "Duck/Goose": 0.5225,
             "NA_Animal_1": 2.893,
@@ -19558,7 +19557,8 @@
             "NA_Animal_289": 0.4777,
             "NA_Animal_321": 0.4382,
             "NA_Animal_334": 0.3104,
-            "Tilapia": 4.7343
+            "Tilapia": 4.7343,
+            "Cow": 180.3604
           }
         },
         "2025-08": {
@@ -19765,7 +19765,6 @@
           },
           "animals": {
             "Atlantic salmon": 3.1815,
-            "Cow (Beef)": 133.0002,
             "Chicken": 241.4382,
             "NA_Animal_1": 0.9589,
             "NA_Animal_29": 0.9667,
@@ -19837,7 +19836,8 @@
             "NA_Animal_10": 0.122,
             "NA_Animal_68": 0.1045,
             "NA_Animal_9": 0.1742,
-            "Tilapia": 1.4063
+            "Tilapia": 1.4063,
+            "Cow": 133.0002
           }
         }
       },
@@ -19969,7 +19969,6 @@
           },
           "animals": {
             "Atlantic salmon": 3.7232,
-            "Cow (Beef)": 127.3084,
             "Chicken": 236.8045,
             "Ilish": 1.4742,
             "NA_Animal_33": 0.9708,
@@ -19993,7 +19992,8 @@
             "NA_Animal_48": 0.242,
             "NA_Animal_152": 0.2525,
             "Tunas": 3.3261,
-            "Tilapia": 2.5335
+            "Tilapia": 2.5335,
+            "Cow": 127.3084
           }
         },
         "2025-06": {
@@ -20119,7 +20119,6 @@
             "Mango/Cashew family": 3.8504
           },
           "animals": {
-            "Cow (Beef)": 120.4616,
             "Chicken": 168.0902,
             "Eastern gray squirrel": 0.8116,
             "NA_Animal_127": 0.6821,
@@ -20146,7 +20145,8 @@
             "Sheep (Lamb)": 3.6856,
             "Sockeye or pink salmon": 0.5538,
             "Tunas": 0.4022,
-            "Tilapia": 0.2641
+            "Tilapia": 0.2641,
+            "Cow": 120.4616
           }
         },
         "2025-07": {
@@ -20254,7 +20254,6 @@
           },
           "animals": {
             "Atlantic salmon": 1.727,
-            "Cow (Beef)": 118.2384,
             "Chicken": 228.0572,
             "Duck/Goose": 1.8543,
             "NA_Animal_1": 1.282,
@@ -20280,7 +20279,8 @@
             "NA_Animal_48": 0.2746,
             "Tunas": 1.2816,
             "White bass": 0.0392,
-            "Tilapia": 0.3113
+            "Tilapia": 0.3113,
+            "Cow": 118.2384
           }
         },
         "2025-08": {
@@ -20316,7 +20316,6 @@
           },
           "animals": {
             "Atlantic salmon": 11.8062,
-            "Cow (Beef)": 155.6938,
             "Chicken": 208.5646,
             "Duck/Goose": 0.622,
             "Goat": 0.7656,
@@ -20327,7 +20326,8 @@
             "NA_Animal_99": 0.0837,
             "Pig (Pork)": 91.3278,
             "Turkey": 8.3373,
-            "Tilapia": 2.189
+            "Tilapia": 2.189,
+            "Cow": 155.6938
           }
         }
       },
@@ -20393,7 +20393,6 @@
           "animals": {
             "Chicken": 220.5924,
             "Pig (Pork)": 90.1178,
-            "Cow (Beef)": 150.6977,
             "Turkey": 1.2509,
             "Salmon": 0.0223,
             "White-tailed deer": 6.8204,
@@ -20401,7 +20400,8 @@
             "Oreochromis niloticus": 0.3648,
             "Duck/Goose": 1.7051,
             "Mammalia": 0.0447,
-            "Cervus canadensis": 0.0372
+            "Cervus canadensis": 0.0372,
+            "Cow": 150.6977
           }
         },
         "2025-10": {
@@ -20455,11 +20455,11 @@
           "animals": {
             "Chicken": 197.813,
             "Pig (Pork)": 118.2796,
-            "Cow (Beef)": 157.321,
             "Turkey": 11.0914,
             "Sheep (Lamb)": 0.0434,
             "Oreochromis niloticus": 0.139,
-            "Pangasianodon hypophthalmus": 0.165
+            "Pangasianodon hypophthalmus": 0.165,
+            "Cow": 157.321
           }
         },
         "2026-01": {
@@ -20526,7 +20526,6 @@
           },
           "animals": {
             "Chicken": 128.1923,
-            "Cow (Beef)": 93.0771,
             "Pig (Pork)": 219.3165,
             "Salmon": 7.6239,
             "Turkey": 3.4927,
@@ -20537,7 +20536,8 @@
             "Sardina pilchardus": 0.3005,
             "Brevoortia": 0.4382,
             "Engraulis": 0.2566,
-            "Sebastes": 0.1753
+            "Sebastes": 0.1753,
+            "Cow": 93.0771
           }
         },
         "2020-01": {
@@ -20609,7 +20609,6 @@
           "animals": {
             "Chicken": 131.6331,
             "Pig (Pork)": 225.2031,
-            "Cattle (Beef)": 95.5754,
             "Turkey": 3.5865,
             "Salmon": 7.8286,
             "White-tailed deer": 33.3196,
@@ -20619,7 +20618,8 @@
             "Sardina pilchardus": 0.3085,
             "Brevoortia": 0.4499,
             "Engraulis": 0.2635,
-            "Sebastes": 0.18
+            "Sebastes": 0.18,
+            "Cow": 95.5754
           }
         },
         "2020-04": {
@@ -20716,7 +20716,6 @@
           "animals": {
             "Chicken": 114.8233,
             "Pig (Pork)": 185.8101,
-            "Cattle (Beef)": 164.3846,
             "Turkey": 3.0207,
             "Salmon": 0.6973,
             "White-tailed deer": 0.1419,
@@ -20733,7 +20732,8 @@
             "Pangasianodon hypophthalmus": 0.0105,
             "Pomoxis nigromaculatus": 0.0881,
             "Anser anser": 0.0672,
-            "Lutjanus peru": 0.0164
+            "Lutjanus peru": 0.0164,
+            "Cow": 164.3846
           }
         },
         "2020-11": {
@@ -20741,7 +20741,6 @@
           "animals": {
             "Chicken": 232.9967,
             "Pig (Pork)": 95.1853,
-            "Cattle (Beef)": 159.1717,
             "Turkey": 1.3213,
             "Salmon": 0.0236,
             "White-tailed deer": 7.204,
@@ -20749,7 +20748,8 @@
             "Oreochromis niloticus": 0.3854,
             "Duck": 1.801,
             "Mammalia": 0.0472,
-            "Cervus canadensis": 0.0393
+            "Cervus canadensis": 0.0393,
+            "Cow": 159.1717
           }
         },
         "2020-10": {
@@ -20757,11 +20757,11 @@
           "animals": {
             "Chicken": 203.993,
             "Pig (Pork)": 121.9748,
-            "Cattle (Beef)": 162.236,
             "Turkey": 11.4379,
             "Sheep (Lamb)": 0.0448,
             "Oreochromis niloticus": 0.1433,
-            "Pangasianodon hypophthalmus": 0.1702
+            "Pangasianodon hypophthalmus": 0.1702,
+            "Cow": 162.236
           }
         }
       }
@@ -20829,7 +20829,6 @@
           "animals": {
             "Chicken": 78.0593,
             "Pig (Pork)": 117.4616,
-            "Cow (Beef)": 96.1115,
             "Turkey": 29.5741,
             "Mullet": 167.206,
             "Salmon": 7.0822,
@@ -20839,7 +20838,8 @@
             "Mammalia": 0.0103,
             "Stolothrissa tanganicae": 0.2725,
             "Lepomis": 0.1656,
-            "Actinopteri": 0.0069
+            "Actinopteri": 0.0069,
+            "Cow": 96.1115
           }
         },
         "2020-11": {
@@ -20847,7 +20847,6 @@
           "animals": {
             "Chicken": 78.4915,
             "Pig (Pork)": 118.1119,
-            "Cattle (Beef)": 96.6436,
             "Turkey": 29.7378,
             "Mullet": 168.1316,
             "Salmon": 7.1214,
@@ -20857,7 +20856,8 @@
             "Mammalia": 0.0104,
             "Stolothrissa tanganicae": 0.274,
             "Lepomis": 0.1665,
-            "Actinopteri": 0.0069
+            "Actinopteri": 0.0069,
+            "Cow": 96.6436
           }
         }
       }
@@ -20904,14 +20904,14 @@
           "animals": {
             "Chicken": 155.0574,
             "Pig (Pork)": 79.9362,
-            "Cow (Beef)": 204.0169,
             "Turkey": 1.1031,
             "Salmon": 0.6812,
             "Oreochromis niloticus": 4.5557,
             "Lutjanus": 2.6359,
             "Mammalia": 0.36,
             "Actinopteri": 0.1239,
-            "Sciaenidae": 0.0619
+            "Sciaenidae": 0.0619,
+            "Cow": 204.0169
           }
         },
         "2025-12": {
@@ -20957,7 +20957,6 @@
           },
           "animals": {
             "Chicken": 132.4977,
-            "Cow (Beef)": 56.6722,
             "Pig (Pork)": 115.7712,
             "Salmon": 168.7236,
             "Turkey": 7.9824,
@@ -20965,7 +20964,8 @@
             "Cattle/Sheep/Goat family": 0.409,
             "Pangasianodon hypophthalmus": 0.7166,
             "Clupea harengus": 0.2995,
-            "Mammalia": 0.0113
+            "Mammalia": 0.0113,
+            "Cow": 56.6722
           }
         },
         "2026-02": {
@@ -21023,7 +21023,6 @@
           },
           "animals": {
             "Chicken": 79.6604,
-            "Cow (Beef)": 152.4119,
             "Pig (Pork)": 243.2699,
             "Salmon": 0.1992,
             "Turkey": 9.1739,
@@ -21032,7 +21031,8 @@
             "Oreochromis niloticus": 0.7035,
             "Cattle/Sheep/Goat family": 0.0472,
             "Lepomis macrochirus": 0.1034,
-            "Bison": 0.2094
+            "Bison": 0.2094,
+            "Cow": 152.4119
           }
         }
       }
@@ -21100,7 +21100,6 @@
           "animals": {
             "Chicken": 272.306,
             "Pig (Pork)": 95.4112,
-            "Cow (Beef)": 65.3283,
             "Turkey": 6.4119,
             "White-tailed deer": 36.3031,
             "Sheep (Lamb)": 2.1549,
@@ -21109,7 +21108,8 @@
             "Mammalia": 1.2361,
             "Phoca": 1.3683,
             "Cynoscion nebulosus": 0.2908,
-            "Sciaenops ocellatus": 0.39
+            "Sciaenops ocellatus": 0.39,
+            "Cow": 65.3283
           }
         },
         "2026-01": {
@@ -21166,7 +21166,6 @@
           },
           "animals": {
             "Chicken": 222.9523,
-            "Cow (Beef)": 165.4235,
             "Pig (Pork)": 94.2178,
             "Salmon": 0.0166,
             "Turkey": 4.7907,
@@ -21176,7 +21175,8 @@
             "Cattle/Sheep/Goat family": 0.3327,
             "Mammalia": 0.1797,
             "Carnivora": 0.346,
-            "Bison": 0.1331
+            "Bison": 0.1331,
+            "Cow": 165.4235
           }
         },
         "2020-01": {
@@ -21236,7 +21236,6 @@
           "animals": {
             "Chicken": 227.829,
             "Pig (Pork)": 96.2787,
-            "Cattle (Beef)": 169.0419,
             "Turkey": 4.8955,
             "Salmon": 0.017,
             "Sheep (Lamb)": 0.4692,
@@ -21245,7 +21244,8 @@
             "Bison bison": 0.136,
             "Cattle/Sheep/Goat family": 0.34,
             "Mammalia": 0.1836,
-            "Carnivora": 0.3536
+            "Carnivora": 0.3536,
+            "Cow": 169.0419
           }
         },
         "2020-11": {
@@ -21253,7 +21253,6 @@
           "animals": {
             "Chicken": 281.5789,
             "Pig (Pork)": 98.6603,
-            "Cattle (Beef)": 67.553,
             "Turkey": 6.6302,
             "White-tailed deer": 37.5393,
             "Sheep (Lamb)": 2.2283,
@@ -21262,7 +21261,8 @@
             "Mammalia": 1.2782,
             "Phoca": 1.4149,
             "Cynoscion nebulosus": 0.3008,
-            "Sciaenops ocellatus": 0.4033
+            "Sciaenops ocellatus": 0.4033,
+            "Cow": 67.553
           }
         }
       }
@@ -21301,9 +21301,9 @@
           "animals": {
             "Chicken": 95.3368,
             "Pig (Pork)": 277.8499,
-            "Cow (Beef)": 90.6775,
             "Turkey": 6.9902,
-            "Actinopteri": 0.0145
+            "Actinopteri": 0.0145,
+            "Cow": 90.6775
           }
         },
         "2020-10": {
@@ -21311,7 +21311,7 @@
           "animals": {
             "Chicken": 0.0118,
             "Pig (Pork)": 417.8022,
-            "Cattle (Beef)": 82.1861
+            "Cow": 82.1861
           }
         }
       }
@@ -21352,8 +21352,8 @@
           "animals": {
             "Chicken": 14.0657,
             "Pig (Pork)": 354.161,
-            "Cow (Beef)": 104.4418,
-            "Turkey": 2.289
+            "Turkey": 2.289,
+            "Cow": 104.4418
           }
         },
         "2026-01": {
@@ -21400,13 +21400,13 @@
           },
           "animals": {
             "Chicken": 326.5974,
-            "Cow (Beef)": 56.7303,
             "Pig (Pork)": 94.3318,
             "Turkey": 2.5093,
             "White-tailed deer": 2.7733,
             "Sheep (Lamb)": 0.1153,
             "Sylvilagus": 0.792,
-            "Mammalia": 1.4969
+            "Mammalia": 1.4969,
+            "Cow": 56.7303
           }
         },
         "2020-01": {
@@ -21453,12 +21453,12 @@
           "animals": {
             "Chicken": 336.458,
             "Pig (Pork)": 97.1799,
-            "Cattle (Beef)": 58.4431,
             "Turkey": 2.5851,
             "White-tailed deer": 2.8571,
             "Sheep (Lamb)": 0.1188,
             "Mammalia": 1.5421,
-            "Sylvilagus": 0.8159
+            "Sylvilagus": 0.8159,
+            "Cow": 58.4431
           }
         },
         "2020-11": {
@@ -21466,8 +21466,8 @@
           "animals": {
             "Chicken": 14.8073,
             "Pig (Pork)": 372.8344,
-            "Cattle (Beef)": 109.9486,
-            "Turkey": 2.4097
+            "Turkey": 2.4097,
+            "Cow": 109.9486
           }
         }
       }
@@ -21538,11 +21538,11 @@
           },
           "animals": {
             "Chicken": 163.7737,
-            "Cow (Beef)": 117.6607,
             "Pig (Pork)": 181.1714,
             "Salmon": 3.3127,
             "Turkey": 10.8605,
-            "Cervus canadensis": 0.0802
+            "Cervus canadensis": 0.0802,
+            "Cow": 117.6607
           }
         },
         "2026-02": {
@@ -21594,7 +21594,6 @@
           },
           "animals": {
             "Chicken": 147.9408,
-            "Cow (Beef)": 211.7937,
             "Pig (Pork)": 81.4039,
             "Turkey": 52.5738,
             "Sheep (Lamb)": 0.1863,
@@ -21603,7 +21602,8 @@
             "Mullet": 0.2854,
             "Pampus cinereus": 0.2299,
             "Aquarana catesbeiana": 0.1348,
-            "Bison": 0.0872
+            "Bison": 0.0872,
+            "Cow": 211.7937
           }
         },
         "2020-01": {
@@ -21865,7 +21865,6 @@
           "animals": {
             "Chicken": 305.0077,
             "Pig (Pork)": 97.9912,
-            "Cow (Beef)": 63.3415,
             "Turkey": 1.165,
             "Goat": 0.5991,
             "Salmon": 3.3701,
@@ -21874,7 +21873,8 @@
             "Pacific salmon": 1.6143,
             "Decapterus macrosoma": 1.0734,
             "Carnivora": 1.5561,
-            "Cynoscion nebulosus": 0.2829
+            "Cynoscion nebulosus": 0.2829,
+            "Cow": 63.3415
           }
         },
         "2025-12": {
@@ -21938,7 +21938,6 @@
           },
           "animals": {
             "Chicken": 70.4562,
-            "Cow (Beef)": 203.6959,
             "Pig (Pork)": 50.3096,
             "Salmon": 109.2166,
             "Turkey": 41.099,
@@ -21953,7 +21952,8 @@
             "Euthynnus affinis": 0.2965,
             "Aves": 0.4289,
             "Ictalurus pricei": 0.1307,
-            "Coryphaena hippurus": 0.0503
+            "Coryphaena hippurus": 0.0503,
+            "Cow": 203.6959
           }
         },
         "2026-01": {
@@ -22020,7 +22020,6 @@
           },
           "animals": {
             "Chicken": 234.2192,
-            "Cow (Beef)": 86.4696,
             "Pig (Pork)": 125.4431,
             "Salmon": 1.1581,
             "Turkey": 22.4434,
@@ -22032,7 +22031,8 @@
             "Mammalia": 0.0378,
             "Exocoetidae": 0.4018,
             "Carnivora": 0.1371,
-            "Scombridae": 0.1418
+            "Scombridae": 0.1418,
+            "Cow": 86.4696
           }
         },
         "2020-12": {
@@ -22100,7 +22100,6 @@
           "animals": {
             "Chicken": 72.5877,
             "Pig (Pork)": 51.8316,
-            "Cattle (Beef)": 209.8582,
             "Turkey": 42.3424,
             "Goat": 0.4004,
             "Salmon": 112.5206,
@@ -22114,7 +22113,8 @@
             "Oncorhynchus tshawytscha": 0.7715,
             "Aves": 0.4418,
             "Ictalurus pricei": 0.1346,
-            "Coryphaena hippurus": 0.0518
+            "Coryphaena hippurus": 0.0518,
+            "Cow": 209.8582
           }
         },
         "2020-01": {
@@ -22185,7 +22185,6 @@
           "animals": {
             "Chicken": 245.3529,
             "Pig (Pork)": 131.4062,
-            "Cattle (Beef)": 90.58,
             "Turkey": 23.5103,
             "Salmon": 1.2131,
             "White-tailed deer": 0.4555,
@@ -22196,7 +22195,8 @@
             "Trichiurus lepturus": 4.9219,
             "Exocoetidae": 0.4209,
             "Carnivora": 0.1436,
-            "Scombridae": 0.1485
+            "Scombridae": 0.1485,
+            "Cow": 90.58
           }
         },
         "2020-03": {
@@ -22286,7 +22286,6 @@
           "animals": {
             "Chicken": 91.832,
             "Pig (Pork)": 230.9616,
-            "Cattle (Beef)": 113.5171,
             "Turkey": 48.6833,
             "Salmon": 4.1696,
             "White-tailed deer": 1.0329,
@@ -22310,7 +22309,8 @@
             "Stenotomus chrysops": 0.035,
             "Scombridae": 0.2999,
             "Lates calcarifer": 0.1022,
-            "Cervus canadensis": 0.2904
+            "Cervus canadensis": 0.2904,
+            "Cow": 113.5171
           }
         },
         "2020-11": {
@@ -22318,7 +22318,6 @@
           "animals": {
             "Chicken": 319.8988,
             "Pig (Pork)": 102.7754,
-            "Cattle (Beef)": 66.4339,
             "Turkey": 1.2219,
             "Goat": 0.6284,
             "Salmon": 3.5346,
@@ -22327,7 +22326,8 @@
             "Pacific salmon": 1.6931,
             "Decapterus macrosoma": 1.1259,
             "Carnivora": 1.632,
-            "Cynoscion nebulosus": 0.2967
+            "Cynoscion nebulosus": 0.2967,
+            "Cow": 66.4339
           }
         }
       }
@@ -22392,14 +22392,14 @@
           },
           "animals": {
             "Chicken": 4.9989,
-            "Cow (Beef)": 481.4068,
             "Pig (Pork)": 6.8952,
             "Turkey": 6.1484,
             "White-tailed deer": 0.1187,
             "Cattle/Sheep/Goat family": 0.0895,
             "Clupea harengus": 0.0103,
             "Mammalia": 0.0069,
-            "Bison": 0.117
+            "Bison": 0.117,
+            "Cow": 481.4068
           }
         },
         "2026-02": {
@@ -22442,7 +22442,6 @@
           },
           "animals": {
             "Chicken": 29.6431,
-            "Cow (Beef)": 63.8617,
             "Pig (Pork)": 162.7899,
             "Salmon": 0.6038,
             "Turkey": 208.6495,
@@ -22455,7 +22454,8 @@
             "Pomoxis nigromaculatus": 1.3018,
             "Dorosoma petenense": 1.0855,
             "Lepomis gibbosus": 0.668,
-            "Lepomis macrochirus": 0.3982
+            "Lepomis macrochirus": 0.3982,
+            "Cow": 63.8617
           }
         },
         "2020-12": {
@@ -22508,13 +22508,13 @@
           "animals": {
             "Chicken": 5.001,
             "Pig (Pork)": 6.8981,
-            "Cattle (Beef)": 481.6073,
             "Turkey": 6.151,
             "White-tailed deer": 0.1188,
             "Mammalia": 0.0069,
             "Bison bison": 0.1171,
             "Cattle/Sheep/Goat family": 0.0895,
-            "Clupea harengus": 0.0103
+            "Clupea harengus": 0.0103,
+            "Cow": 481.6073
           }
         },
         "2020-02": {
@@ -22559,7 +22559,6 @@
           "animals": {
             "Chicken": 30.3689,
             "Pig (Pork)": 166.7756,
-            "Cattle (Beef)": 65.4253,
             "Turkey": 213.758,
             "Goat": 0.5221,
             "Salmon": 0.6186,
@@ -22572,7 +22571,8 @@
             "Micropterus salmoides": 2.5115,
             "Pomoxis nigromaculatus": 1.3336,
             "Dorosoma petenense": 1.1121,
-            "Lepomis macrochirus": 0.408
+            "Lepomis macrochirus": 0.408,
+            "Cow": 65.4253
           }
         },
         "2020-04": {
@@ -22651,7 +22651,6 @@
           "animals": {
             "Chicken": 80.9377,
             "Pig (Pork)": 203.4238,
-            "Cattle (Beef)": 189.3392,
             "Turkey": 3.1357,
             "Salmon": 0.0462,
             "Sheep (Lamb)": 15.4933,
@@ -22672,7 +22671,8 @@
             "Goat": 0.0366,
             "Oncorhynchus mykiss": 0.4688,
             "Sylvilagus": 0.0151,
-            "Moxostoma macrolepidotum": 0.2602
+            "Moxostoma macrolepidotum": 0.2602,
+            "Cow": 189.3392
           }
         },
         "2020-11": {
@@ -22747,7 +22747,6 @@
           "animals": {
             "Chicken": 217.6791,
             "Pig (Pork)": 122.3207,
-            "Cow (Beef)": 72.6794,
             "Turkey": 67.7984,
             "Salmon": 0.3642,
             "Sheep (Lamb)": 0.9716,
@@ -22755,7 +22754,8 @@
             "Carnivora": 0.0457,
             "Mammalia": 0.0768,
             "Stolothrissa tanganicae": 0.0441,
-            "Oncorhynchus mykiss": 0.5307
+            "Oncorhynchus mykiss": 0.5307,
+            "Cow": 72.6794
           }
         }
       }
@@ -22809,10 +22809,10 @@
           "animals": {
             "Chicken": 144.0566,
             "Pig (Pork)": 191.1439,
-            "Cow (Beef)": 133.9739,
             "Turkey": 7.0221,
             "Pseudopleuronectes americanus": 0.9586,
-            "Umbrina canosai": 0.5428
+            "Umbrina canosai": 0.5428,
+            "Cow": 133.9739
           }
         },
         "2020-11": {
@@ -22820,10 +22820,10 @@
           "animals": {
             "Chicken": 150.7821,
             "Pig (Pork)": 200.0677,
-            "Cattle (Beef)": 140.2287,
             "Turkey": 7.3499,
             "Pseudopleuronectes americanus": 1.0034,
-            "Umbrina canosai": 0.5682
+            "Umbrina canosai": 0.5682,
+            "Cow": 140.2287
           }
         }
       }
@@ -22891,12 +22891,12 @@
           "animals": {
             "Chicken": 455.8117,
             "Pig (Pork)": 5.2026,
-            "Cow (Beef)": 36.4852,
             "Turkey": 0.0775,
             "Sheep (Lamb)": 0.1033,
             "Duck/Goose": 0.0982,
             "Pheasant family": 0.4081,
-            "Hippoglossus hippoglossus": 0.062
+            "Hippoglossus hippoglossus": 0.062,
+            "Cow": 36.4852
           }
         },
         "2025-12": {
@@ -22944,13 +22944,13 @@
           },
           "animals": {
             "Chicken": 200.7258,
-            "Cow (Beef)": 166.9607,
             "Pig (Pork)": 108.6607,
             "Salmon": 1.4559,
             "Turkey": 2.6177,
             "Cattle/Sheep/Goat family": 0.7674,
             "Sardinops sagax": 2.5675,
-            "Bison": 1.1834
+            "Bison": 1.1834,
+            "Cow": 166.9607
           }
         },
         "2026-02": {
@@ -23009,7 +23009,6 @@
           },
           "animals": {
             "Chicken": 187.3682,
-            "Cow (Beef)": 86.8501,
             "Pig (Pork)": 182.8779,
             "Salmon": 11.059,
             "Turkey": 3.232,
@@ -23018,7 +23017,8 @@
             "Mammalia": 0.9807,
             "Engraulis encrasicolus": 0.5304,
             "Phocidae": 0.2529,
-            "Paralichthys dentatus": 0.1172
+            "Paralichthys dentatus": 0.1172,
+            "Cow": 86.8501
           }
         },
         "2020-12": {
@@ -23068,12 +23068,12 @@
           "animals": {
             "Chicken": 206.9598,
             "Pig (Pork)": 112.0354,
-            "Cattle (Beef)": 172.1461,
             "Turkey": 2.699,
             "Goat": 0.7912,
             "Salmon": 1.5011,
             "Bison bison": 1.2201,
-            "Sardinops sagax": 2.6473
+            "Sardinops sagax": 2.6473,
+            "Cow": 172.1461
           }
         },
         "2020-02": {
@@ -23133,7 +23133,6 @@
           "animals": {
             "Chicken": 196.4154,
             "Pig (Pork)": 191.7084,
-            "Cattle (Beef)": 91.0437,
             "Turkey": 3.388,
             "Salmon": 11.593,
             "Pacific salmon": 1.0539,
@@ -23141,7 +23140,8 @@
             "Phoca": 0.2651,
             "Sardina pilchardus": 2.8255,
             "Engraulis encrasicolus": 0.5561,
-            "Paralichthys dentatus": 0.1228
+            "Paralichthys dentatus": 0.1228,
+            "Cow": 91.0437
           }
         },
         "2020-03": {
@@ -23230,7 +23230,6 @@
           "animals": {
             "Chicken": 250.032,
             "Pig (Pork)": 84.511,
-            "Cattle (Beef)": 153.8658,
             "Turkey": 3.9852,
             "Salmon": 1.7175,
             "Sheep (Lamb)": 3.5844,
@@ -23244,7 +23243,8 @@
             "Carnivora": 0.1558,
             "Oreochromis niloticus": 0.1395,
             "Pheasant family": 0.1168,
-            "Actinopteri": 0.2815
+            "Actinopteri": 0.2815,
+            "Cow": 153.8658
           }
         },
         "2020-11": {
@@ -23252,12 +23252,12 @@
           "animals": {
             "Chicken": 457.4139,
             "Pig (Pork)": 5.2209,
-            "Cattle (Beef)": 36.6134,
             "Turkey": 0.0778,
             "Sheep (Lamb)": 0.1037,
             "Duck": 0.0985,
             "Pheasant family": 0.4096,
-            "Hippoglossus hippoglossus": 0.0622
+            "Hippoglossus hippoglossus": 0.0622,
+            "Cow": 36.6134
           }
         }
       }
@@ -23331,7 +23331,6 @@
           "animals": {
             "Chicken": 283.6866,
             "Pig (Pork)": 97.5263,
-            "Cow (Beef)": 63.9337,
             "Turkey": 21.7549,
             "Salmon": 9.9986,
             "Sheep (Lamb)": 2.3249,
@@ -23339,7 +23338,8 @@
             "Duck/Goose": 0.4156,
             "Thunnus alalunga": 0.9968,
             "Pacific salmon": 0.1516,
-            "Chanos chanos": 1.0361
+            "Chanos chanos": 1.0361,
+            "Cow": 63.9337
           }
         },
         "2025-12": {
@@ -23404,7 +23404,6 @@
           },
           "animals": {
             "Chicken": 110.3271,
-            "Cow (Beef)": 35.9899,
             "Pig (Pork)": 330.6121,
             "Salmon": 1.195,
             "Turkey": 9.4918,
@@ -23418,7 +23417,8 @@
             "Trachinotus": 0.0679,
             "Lepidocybium flavobrunneum": 0.0923,
             "Larimichthys crocea": 0.0652,
-            "Lagodon rhomboides": 0.0217
+            "Lagodon rhomboides": 0.0217,
+            "Cow": 35.9899
           }
         },
         "2026-01": {
@@ -23482,7 +23482,6 @@
           },
           "animals": {
             "Chicken": 260.7544,
-            "Cow (Beef)": 59.8144,
             "Pig (Pork)": 99.4053,
             "Salmon": 3.6593,
             "Turkey": 8.1147,
@@ -23500,7 +23499,8 @@
             "Sebastes": 0.2847,
             "Lutjanus peru": 0.2526,
             "Mallotus villosus": 0.1865,
-            "Morone chrysops": 0.0561
+            "Morone chrysops": 0.0561,
+            "Cow": 59.8144
           }
         },
         "2020-12": {
@@ -23566,7 +23566,6 @@
           "animals": {
             "Chicken": 112.5587,
             "Pig (Pork)": 337.2992,
-            "Cattle (Beef)": 36.7179,
             "Turkey": 9.6837,
             "Salmon": 1.2191,
             "Sheep (Lamb)": 1.1609,
@@ -23579,7 +23578,8 @@
             "Oncorhynchus tshawytscha": 0.2937,
             "Lepidocybium flavobrunneum": 0.0942,
             "Larimichthys crocea": 0.0665,
-            "Lagodon rhomboides": 0.0222
+            "Lagodon rhomboides": 0.0222,
+            "Cow": 36.7179
           }
         },
         "2020-01": {
@@ -23647,7 +23647,6 @@
           "animals": {
             "Chicken": 275.2031,
             "Pig (Pork)": 104.9134,
-            "Cattle (Beef)": 63.1288,
             "Turkey": 8.5643,
             "Salmon": 3.8621,
             "White-tailed deer": 0.1947,
@@ -23663,7 +23662,8 @@
             "Sebastes": 0.3005,
             "Lutjanus peru": 0.2666,
             "Mallotus villosus": 0.1968,
-            "Morone chrysops": 0.0593
+            "Morone chrysops": 0.0593,
+            "Cow": 63.1288
           }
         },
         "2020-11": {
@@ -23671,7 +23671,6 @@
           "animals": {
             "Chicken": 292.9247,
             "Pig (Pork)": 100.7022,
-            "Cattle (Beef)": 66.0157,
             "Turkey": 22.4633,
             "Salmon": 10.3242,
             "Sheep (Lamb)": 2.4006,
@@ -23679,7 +23678,8 @@
             "Duck": 0.4291,
             "Thunnus alalunga": 1.0292,
             "Pacific salmon": 0.1566,
-            "Chanos chanos": 1.0698
+            "Chanos chanos": 1.0698,
+            "Cow": 66.0157
           }
         }
       }
@@ -23745,11 +23745,11 @@
           "animals": {
             "Chicken": 264.9113,
             "Pig (Pork)": 107.0584,
-            "Cow (Beef)": 113.9324,
             "Turkey": 2.0378,
             "Salmon": 6.9185,
             "White-tailed deer": 0.05,
-            "Euthynnus affinis": 0.1111
+            "Euthynnus affinis": 0.1111,
+            "Cow": 113.9324
           }
         },
         "2025-12": {
@@ -23797,7 +23797,6 @@
           },
           "animals": {
             "Chicken": 336.0363,
-            "Cow (Beef)": 15.122,
             "Pig (Pork)": 9.8968,
             "Salmon": 0.0347,
             "Turkey": 14.8172,
@@ -23807,7 +23806,8 @@
             "Oreochromis niloticus": 0.0772,
             "Cattle/Sheep/Goat family": 2.0214,
             "Ictalurus pricei": 0.0058,
-            "Pseudopleuronectes americanus": 0.0154
+            "Pseudopleuronectes americanus": 0.0154,
+            "Cow": 15.122
           }
         },
         "2026-01": {
@@ -23849,7 +23849,6 @@
           },
           "animals": {
             "Chicken": 83.5578,
-            "Cow (Beef)": 391.2102,
             "Pig (Pork)": 6.8314,
             "Salmon": 14.2025,
             "Turkey": 0.3653,
@@ -23857,7 +23856,8 @@
             "Sheep (Lamb)": 0.109,
             "Oncorhynchus mykiss": 1.4557,
             "Cattle/Sheep/Goat family": 0.1745,
-            "Bison": 0.2671
+            "Bison": 0.2671,
+            "Cow": 391.2102
           }
         },
         "2026-02": {
@@ -23898,13 +23898,13 @@
           },
           "animals": {
             "Chicken": 107.971,
-            "Cow (Beef)": 280.7398,
             "Pig (Pork)": 103.4015,
             "Salmon": 0.3697,
             "Turkey": 2.645,
             "Duck/Goose": 0.7584,
             "Pacific salmon": 0.6447,
-            "Cattle/Sheep/Goat family": 0.4361
+            "Cattle/Sheep/Goat family": 0.4361,
+            "Cow": 280.7398
           }
         },
         "2020-12": {
@@ -23956,7 +23956,6 @@
           "animals": {
             "Chicken": 337.3637,
             "Pig (Pork)": 9.9359,
-            "Cattle (Beef)": 15.1817,
             "Turkey": 14.8758,
             "Goat": 2.0294,
             "Salmon": 0.0349,
@@ -23965,7 +23964,8 @@
             "Pacific salmon": 0.6623,
             "Duck": 119.7537,
             "Pseudopleuronectes americanus": 0.0155,
-            "Ictalurus pricei": 0.0058
+            "Ictalurus pricei": 0.0058,
+            "Cow": 15.1817
           }
         },
         "2020-01": {
@@ -24007,14 +24007,14 @@
           "animals": {
             "Chicken": 83.7395,
             "Pig (Pork)": 6.8462,
-            "Cattle (Beef)": 392.061,
             "Turkey": 0.3661,
             "Salmon": 14.2334,
             "White-tailed deer": 0.7431,
             "Sheep (Lamb)": 0.1093,
             "Oncorhynchus mykiss": 1.4589,
             "Bison bison": 0.2677,
-            "Cattle/Sheep/Goat family": 0.1748
+            "Cattle/Sheep/Goat family": 0.1748,
+            "Cow": 392.061
           }
         },
         "2020-02": {
@@ -24056,12 +24056,12 @@
           "animals": {
             "Chicken": 108.6301,
             "Pig (Pork)": 104.0327,
-            "Cattle (Beef)": 282.4536,
             "Turkey": 2.6611,
             "Goat": 0.4388,
             "Salmon": 0.372,
             "Pacific salmon": 0.6486,
-            "Duck": 0.7631
+            "Duck": 0.7631,
+            "Cow": 282.4536
           }
         },
         "2020-04": {
@@ -24135,7 +24135,6 @@
           "animals": {
             "Chicken": 128.2704,
             "Pig (Pork)": 136.1625,
-            "Cattle (Beef)": 202.7545,
             "Turkey": 16.2807,
             "Salmon": 1.4603,
             "White-tailed deer": 0.6298,
@@ -24148,7 +24147,8 @@
             "Ocyurus chrysurus": 0.8011,
             "Lutjanus peru": 1.1438,
             "Pacific salmon": 0.2718,
-            "Coryphaena hippurus": 0.3907
+            "Coryphaena hippurus": 0.3907,
+            "Cow": 202.7545
           }
         },
         "2020-10": {
@@ -24156,11 +24156,11 @@
           "animals": {
             "Chicken": 267.5767,
             "Pig (Pork)": 108.1355,
-            "Cattle (Beef)": 115.0787,
             "Turkey": 2.0583,
             "Salmon": 6.9881,
             "White-tailed deer": 0.0505,
-            "Euthynnus affinis": 0.1122
+            "Euthynnus affinis": 0.1122,
+            "Cow": 115.0787
           }
         }
       }
@@ -24219,13 +24219,13 @@
           "animals": {
             "Chicken": 214.4434,
             "Pig (Pork)": 40.7176,
-            "Cow (Beef)": 155.1426,
             "Turkey": 0.6685,
             "Salmon": 0.8893,
             "Sheep (Lamb)": 0.4232,
             "Equus caballus": 1.2082,
             "Macropodidae": 0.5642,
-            "Actinopteri": 0.0123
+            "Actinopteri": 0.0123,
+            "Cow": 155.1426
           }
         },
         "2025-10": {
@@ -24278,11 +24278,11 @@
           "animals": {
             "Chicken": 90.2664,
             "Pig (Pork)": 77.3976,
-            "Cow (Beef)": 308.5276,
             "Turkey": 5.8799,
             "Salmon": 1.2245,
             "White-tailed deer": 1.9003,
-            "Sheep (Lamb)": 1.8945
+            "Sheep (Lamb)": 1.8945,
+            "Cow": 308.5276
           }
         },
         "2026-01": {
@@ -24345,7 +24345,6 @@
           },
           "animals": {
             "Chicken": 123.2967,
-            "Cow (Beef)": 159.3159,
             "Pig (Pork)": 171.0797,
             "Turkey": 5.6098,
             "White-tailed deer": 0.1148,
@@ -24354,7 +24353,8 @@
             "Sylvilagus": 2.5082,
             "Mammalia": 0.1344,
             "Clupeidae": 0.4656,
-            "Bison": 0.0918
+            "Bison": 0.0918,
+            "Cow": 159.3159
           }
         },
         "2020-01": {
@@ -24419,7 +24419,6 @@
           "animals": {
             "Chicken": 133.1403,
             "Pig (Pork)": 184.738,
-            "Cattle (Beef)": 172.0351,
             "Turkey": 6.0576,
             "White-tailed deer": 0.1239,
             "Sheep (Lamb)": 0.0142,
@@ -24427,7 +24426,8 @@
             "Mammalia": 0.1452,
             "Bison bison": 0.0991,
             "Sylvilagus": 2.7084,
-            "Clupeidae": 0.5027
+            "Clupeidae": 0.5027,
+            "Cow": 172.0351
           }
         },
         "2020-04": {
@@ -24510,7 +24510,6 @@
           "animals": {
             "Chicken": 120.1642,
             "Pig (Pork)": 203.9059,
-            "Cattle (Beef)": 172.2177,
             "Turkey": 1.318,
             "Salmon": 0.2758,
             "Sheep (Lamb)": 0.2286,
@@ -24527,7 +24526,8 @@
             "Oreochromis niloticus": 0.0558,
             "Galliformes": 0.1596,
             "Lates": 0.0589,
-            "Thunnus alalunga": 0.0093
+            "Thunnus alalunga": 0.0093,
+            "Cow": 172.2177
           }
         },
         "2020-11": {
@@ -24535,13 +24535,13 @@
           "animals": {
             "Chicken": 258.9463,
             "Pig (Pork)": 49.1676,
-            "Cattle (Beef)": 187.3389,
             "Turkey": 0.8072,
             "Salmon": 1.0739,
             "Sheep (Lamb)": 0.511,
             "Equus caballus": 1.459,
             "Macropodidae": 0.6813,
-            "Actinopteri": 0.0148
+            "Actinopteri": 0.0148,
+            "Cow": 187.3389
           }
         },
         "2020-10": {
@@ -24549,11 +24549,11 @@
           "animals": {
             "Chicken": 92.6587,
             "Pig (Pork)": 79.4488,
-            "Cattle (Beef)": 316.7044,
             "Turkey": 6.0357,
             "Salmon": 1.257,
             "White-tailed deer": 1.9506,
-            "Sheep (Lamb)": 1.9447
+            "Sheep (Lamb)": 1.9447,
+            "Cow": 316.7044
           }
         }
       }
@@ -24610,7 +24610,6 @@
           "animals": {
             "Chicken": 202.2848,
             "Pig (Pork)": 163.1736,
-            "Cow (Beef)": 117.2536,
             "Turkey": 0.0916,
             "Salmon": 0.0859,
             "Duck/Goose": 0.0172,
@@ -24618,7 +24617,8 @@
             "Rhomboplites aurorubens": 0.3436,
             "Morone saxatilis": 0.2978,
             "Xiphias gladius": 0.1088,
-            "Bison": 0.292
+            "Bison": 0.292,
+            "Cow": 117.2536
           }
         },
         "2025-12": {
@@ -24678,7 +24678,6 @@
           },
           "animals": {
             "Chicken": 268.0137,
-            "Cow (Beef)": 113.8955,
             "Pig (Pork)": 84.3401,
             "Salmon": 1.8954,
             "Turkey": 7.1462,
@@ -24692,7 +24691,8 @@
             "Epinephelus fuscoguttatus": 0.0848,
             "Xiphias gladius": 0.077,
             "Scomberomorus": 0.0616,
-            "Bison": 0.3313
+            "Bison": 0.3313,
+            "Cow": 113.8955
           }
         },
         "2026-01": {
@@ -24746,7 +24746,6 @@
           },
           "animals": {
             "Chicken": 216.0918,
-            "Cow (Beef)": 169.1271,
             "Pig (Pork)": 76.3924,
             "Salmon": 0.5487,
             "Turkey": 16.3511,
@@ -24756,7 +24755,8 @@
             "Cattle/Sheep/Goat family": 0.1239,
             "Thunnus alalunga": 0.6284,
             "Chanos chanos": 0.2257,
-            "Ocyphaps lophotes": 0.1637
+            "Ocyphaps lophotes": 0.1637,
+            "Cow": 169.1271
           }
         },
         "2020-12": {
@@ -24818,7 +24818,6 @@
           "animals": {
             "Chicken": 276.3957,
             "Pig (Pork)": 86.9778,
-            "Cattle (Beef)": 117.4575,
             "Turkey": 7.3697,
             "Salmon": 1.9546,
             "Sheep (Lamb)": 1.5693,
@@ -24831,7 +24830,8 @@
             "Morone saxatilis": 0.0397,
             "Xiphias gladius": 0.0795,
             "Epinephelus fuscoguttatus": 0.0874,
-            "Scomberomorus": 0.0636
+            "Scomberomorus": 0.0636,
+            "Cow": 117.4575
           }
         },
         "2020-01": {
@@ -24887,7 +24887,6 @@
           "animals": {
             "Chicken": 224.579,
             "Pig (Pork)": 79.3927,
-            "Cattle (Beef)": 175.7696,
             "Turkey": 16.9933,
             "Goat": 0.1288,
             "Salmon": 0.5703,
@@ -24896,7 +24895,8 @@
             "Duck": 0.3265,
             "Chanos chanos": 0.2345,
             "Thunnus alalunga": 0.6531,
-            "Ocyphaps lophotes": 0.1702
+            "Ocyphaps lophotes": 0.1702,
+            "Cow": 175.7696
           }
         },
         "2020-11": {
@@ -24904,7 +24904,6 @@
           "animals": {
             "Chicken": 207.9605,
             "Pig (Pork)": 167.7518,
-            "Cattle (Beef)": 120.5435,
             "Turkey": 0.0942,
             "Salmon": 0.0883,
             "Duck": 0.0177,
@@ -24912,7 +24911,8 @@
             "Bison bison": 0.3002,
             "Rhomboplites aurorubens": 0.3532,
             "Morone saxatilis": 0.3061,
-            "Xiphias gladius": 0.1119
+            "Xiphias gladius": 0.1119,
+            "Cow": 120.5435
           }
         }
       }
@@ -24970,13 +24970,13 @@
           "animals": {
             "Chicken": 170.7444,
             "Pig (Pork)": 59.8386,
-            "Cow (Beef)": 236.1345,
             "Turkey": 13.991,
             "White-tailed deer": 0.6726,
             "Sheep (Lamb)": 7.2197,
             "Pacific salmon": 0.5291,
             "Duck/Goose": 1.3274,
-            "Cavia porcellus": 0.7085
+            "Cavia porcellus": 0.7085,
+            "Cow": 236.1345
           }
         },
         "2025-12": {
@@ -25039,7 +25039,6 @@
           },
           "animals": {
             "Chicken": 194.7782,
-            "Cow (Beef)": 47.0112,
             "Pig (Pork)": 33.0707,
             "Salmon": 185.5903,
             "Turkey": 15.8327,
@@ -25052,7 +25051,8 @@
             "Coturnix japonica": 0.8539,
             "Engraulis ringens": 0.4869,
             "Mammalia": 0.0074,
-            "Bison": 0.0627
+            "Bison": 0.0627,
+            "Cow": 47.0112
           }
         },
         "2026-01": {
@@ -25108,7 +25108,6 @@
           },
           "animals": {
             "Chicken": 106.1432,
-            "Cow (Beef)": 35.0119,
             "Pig (Pork)": 44.3095,
             "Salmon": 0.2556,
             "Turkey": 2.8051,
@@ -25124,7 +25123,8 @@
             "Cynoscion nebulosus": 0.073,
             "Paralichthys dentatus": 0.073,
             "Oreochromis niloticus": 0.0426,
-            "Bison": 0.1034
+            "Bison": 0.1034,
+            "Cow": 35.0119
           }
         },
         "2020-12": {
@@ -25190,7 +25190,6 @@
           "animals": {
             "Chicken": 201.331,
             "Pig (Pork)": 34.1833,
-            "Cattle (Beef)": 48.5928,
             "Turkey": 16.3653,
             "Goat": 0.2516,
             "Salmon": 191.8339,
@@ -25202,7 +25201,8 @@
             "Bison bison": 0.0648,
             "Coturnix japonica": 0.8826,
             "Engraulis ringens": 0.5033,
-            "Mammalia": 0.0076
+            "Mammalia": 0.0076,
+            "Cow": 48.5928
           }
         },
         "2020-01": {
@@ -25262,7 +25262,6 @@
           "animals": {
             "Chicken": 107.8494,
             "Pig (Pork)": 45.0218,
-            "Cattle (Beef)": 35.5747,
             "Turkey": 2.8502,
             "Salmon": 0.2597,
             "White-tailed deer": 0.6739,
@@ -25277,7 +25276,8 @@
             "Engraulis ringens": 0.0927,
             "Seriola": 0.068,
             "Paralichthys dentatus": 0.0742,
-            "Oreochromis niloticus": 0.0433
+            "Oreochromis niloticus": 0.0433,
+            "Cow": 35.5747
           }
         },
         "2020-03": {
@@ -25369,7 +25369,6 @@
           "animals": {
             "Chicken": 172.8229,
             "Pig (Pork)": 78.5278,
-            "Cattle (Beef)": 209.5259,
             "Turkey": 4.4049,
             "Salmon": 17.7161,
             "Thunnus alalunga": 0.6116,
@@ -25397,7 +25396,8 @@
             "Sylvilagus": 0.0369,
             "Mallotus villosus": 0.0065,
             "Cyprinus carpio": 0.0737,
-            "Brevoortia": 0.0249
+            "Brevoortia": 0.0249,
+            "Cow": 209.5259
           }
         },
         "2020-11": {
@@ -25405,13 +25405,13 @@
           "animals": {
             "Chicken": 173.8154,
             "Pig (Pork)": 60.9148,
-            "Cattle (Beef)": 240.3816,
             "Turkey": 14.2427,
             "White-tailed deer": 0.6847,
             "Sheep (Lamb)": 7.3496,
             "Pacific salmon": 0.5387,
             "Duck": 1.3512,
-            "Cavia porcellus": 0.7213
+            "Cavia porcellus": 0.7213,
+            "Cow": 240.3816
           }
         }
       }
@@ -25490,7 +25490,6 @@
           "animals": {
             "Chicken": 242.626,
             "Pig (Pork)": 103.5129,
-            "Cow (Beef)": 125.7292,
             "Turkey": 2.7912,
             "Goat": 3.7279,
             "Salmon": 4.9034,
@@ -25500,7 +25499,8 @@
             "Bubalus bubalis": 0.2955,
             "Cairina moschata": 0.2452,
             "Scombridae": 0.0503,
-            "Bison": 0.6035
+            "Bison": 0.6035,
+            "Cow": 125.7292
           }
         },
         "2025-12": {
@@ -25568,7 +25568,6 @@
           },
           "animals": {
             "Chicken": 140.4051,
-            "Cow (Beef)": 54.7321,
             "Pig (Pork)": 101.7663,
             "Salmon": 22.9358,
             "Turkey": 69.9243,
@@ -25580,7 +25579,8 @@
             "Sardina pilchardus": 0.9134,
             "Equus caballus": 0.137,
             "Morone chrysops": 0.0166,
-            "Bison": 0.2325
+            "Bison": 0.2325,
+            "Cow": 54.7321
           }
         },
         "2026-01": {
@@ -25651,7 +25651,6 @@
           },
           "animals": {
             "Chicken": 175.569,
-            "Cow (Beef)": 224.003,
             "Pig (Pork)": 71.4929,
             "Salmon": 1.6292,
             "Turkey": 12.416,
@@ -25662,7 +25661,8 @@
             "Seriola": 0.0975,
             "Mammalia": 0.1485,
             "Engraulis": 0.0789,
-            "Bison": 0.0464
+            "Bison": 0.0464,
+            "Cow": 224.003
           }
         },
         "2020-12": {
@@ -25733,7 +25733,6 @@
           "animals": {
             "Chicken": 142.4191,
             "Pig (Pork)": 103.2261,
-            "Cattle (Beef)": 55.5172,
             "Turkey": 70.9274,
             "Salmon": 23.2648,
             "White-tailed deer": 0.1474,
@@ -25744,7 +25743,8 @@
             "Bison bison": 0.2358,
             "Cervus canadensis": 99.8694,
             "Sardina pilchardus": 0.9265,
-            "Morone chrysops": 0.0168
+            "Morone chrysops": 0.0168,
+            "Cow": 55.5172
           }
         },
         "2020-01": {
@@ -25819,7 +25819,6 @@
           "animals": {
             "Chicken": 178.7179,
             "Pig (Pork)": 72.7751,
-            "Cattle (Beef)": 228.0205,
             "Turkey": 12.6387,
             "Goat": 0.1134,
             "Salmon": 1.6584,
@@ -25831,7 +25830,8 @@
             "Carnivora": 0.1276,
             "Seriola": 0.0992,
             "Engraulis": 0.0803,
-            "Mammalia": 0.0236
+            "Mammalia": 0.0236,
+            "Cow": 228.0205
           }
         },
         "2020-11": {
@@ -25839,7 +25839,6 @@
           "animals": {
             "Chicken": 249.6055,
             "Pig (Pork)": 106.4906,
-            "Cattle (Beef)": 129.346,
             "Turkey": 2.8715,
             "Goat": 3.8351,
             "Salmon": 5.0445,
@@ -25849,7 +25848,8 @@
             "Pristipomoides filamentosus": 0.3686,
             "Bubalus bubalis": 0.304,
             "Cairina moschata": 0.2522,
-            "Scombridae": 0.0517
+            "Scombridae": 0.0517,
+            "Cow": 129.346
           }
         }
       }
@@ -25910,10 +25910,10 @@
           "animals": {
             "Chicken": 249.2858,
             "Pig (Pork)": 134.9064,
-            "Cow (Beef)": 100.8157,
             "Turkey": 1.0768,
             "White-tailed deer": 0.0391,
-            "Sheep (Lamb)": 2.0477
+            "Sheep (Lamb)": 2.0477,
+            "Cow": 100.8157
           }
         },
         "2025-12": {
@@ -25965,7 +25965,6 @@
           },
           "animals": {
             "Chicken": 39.8584,
-            "Cow (Beef)": 410.5426,
             "Pig (Pork)": 42.0332,
             "Salmon": 0.0324,
             "Turkey": 5.0538,
@@ -25973,7 +25972,8 @@
             "Cattle/Sheep/Goat family": 1.0712,
             "Mammalia": 0.0216,
             "Trachinotus": 0.0081,
-            "Bison": 1.171
+            "Bison": 1.171,
+            "Cow": 410.5426
           }
         },
         "2026-02": {
@@ -26001,9 +26001,9 @@
           },
           "animals": {
             "Chicken": 485.561,
-            "Cow (Beef)": 8.8463,
             "Pig (Pork)": 1.543,
-            "Turkey": 3.4038
+            "Turkey": 3.4038,
+            "Cow": 8.8463
           }
         },
         "2020-12": {
@@ -26055,14 +26055,14 @@
           "animals": {
             "Chicken": 39.8735,
             "Pig (Pork)": 42.0491,
-            "Cattle (Beef)": 410.6977,
             "Turkey": 5.0557,
             "Salmon": 0.0324,
             "Trachinotus": 0.0081,
             "Duck": 0.0189,
             "Mammalia": 0.0216,
             "Bison bison": 1.1715,
-            "Cattle/Sheep/Goat family": 1.0716
+            "Cattle/Sheep/Goat family": 1.0716,
+            "Cow": 410.6977
           }
         },
         "2020-02": {
@@ -26091,8 +26091,8 @@
           "animals": {
             "Chicken": 486.189,
             "Pig (Pork)": 1.545,
-            "Cattle (Beef)": 8.8578,
-            "Turkey": 3.4082
+            "Turkey": 3.4082,
+            "Cow": 8.8578
           }
         },
         "2020-03": {
@@ -26182,7 +26182,6 @@
           "animals": {
             "Chicken": 197.3213,
             "Pig (Pork)": 155.7388,
-            "Cattle (Beef)": 132.6551,
             "Turkey": 8.127,
             "Goat": 0.0924,
             "Salmon": 1.7067,
@@ -26198,7 +26197,8 @@
             "Bison bison": 0.1047,
             "Ictalurus pricei": 0.0446,
             "Equus caballus": 0.0038,
-            "Cynoscion striatus": 0.0339
+            "Cynoscion striatus": 0.0339,
+            "Cow": 132.6551
           }
         },
         "2020-11": {
@@ -26206,10 +26206,10 @@
           "animals": {
             "Chicken": 255.3261,
             "Pig (Pork)": 138.1752,
-            "Cattle (Beef)": 103.2585,
             "Turkey": 1.1029,
             "White-tailed deer": 0.04,
-            "Sheep (Lamb)": 2.0973
+            "Sheep (Lamb)": 2.0973,
+            "Cow": 103.2585
           }
         }
       }
@@ -26266,12 +26266,12 @@
           "animals": {
             "Chicken": 68.4358,
             "Pig (Pork)": 278.4972,
-            "Cow (Beef)": 118.976,
             "Turkey": 4.4998,
             "Salmon": 11.9132,
             "Sheep (Lamb)": 8.6886,
             "Argyrosomus japonicus": 0.8087,
-            "Bison": 0.3059
+            "Bison": 0.3059,
+            "Cow": 118.976
           }
         },
         "2026-01": {
@@ -26315,11 +26315,11 @@
           },
           "animals": {
             "Chicken": 304.7875,
-            "Cow (Beef)": 58.4511,
             "Pig (Pork)": 130.7112,
             "Turkey": 1.3621,
             "Sheep (Lamb)": 1.1918,
-            "Haemulon plumierii": 0.1419
+            "Haemulon plumierii": 0.1419,
+            "Cow": 58.4511
           }
         },
         "2026-02": {
@@ -26372,7 +26372,6 @@
           },
           "animals": {
             "Chicken": 171.9532,
-            "Cow (Beef)": 185.4121,
             "Pig (Pork)": 116.0421,
             "Salmon": 2.8467,
             "Turkey": 4.514,
@@ -26380,7 +26379,8 @@
             "Oncorhynchus mykiss": 4.5382,
             "Brevoortia": 0.761,
             "Menticirrhus americanus": 0.5707,
-            "Scomber scombrus": 0.0865
+            "Scomber scombrus": 0.0865,
+            "Cow": 185.4121
           }
         },
         "2020-01": {
@@ -26426,10 +26426,10 @@
           "animals": {
             "Chicken": 306.8461,
             "Pig (Pork)": 131.5941,
-            "Cattle (Beef)": 58.8459,
             "Turkey": 1.3713,
             "Sheep (Lamb)": 1.1999,
-            "Haemulon plumierii": 0.1428
+            "Haemulon plumierii": 0.1428,
+            "Cow": 58.8459
           }
         },
         "2020-02": {
@@ -26486,14 +26486,14 @@
           "animals": {
             "Chicken": 176.3763,
             "Pig (Pork)": 119.027,
-            "Cattle (Beef)": 190.1814,
             "Turkey": 4.6301,
             "Salmon": 2.92,
             "Oncorhynchus mykiss": 4.6549,
             "Pacific salmon": 0.7557,
             "Brevoortia patronus": 0.7806,
             "Menticirrhus americanus": 0.5854,
-            "Scomber scombrus": 0.0887
+            "Scomber scombrus": 0.0887,
+            "Cow": 190.1814
           }
         },
         "2020-11": {
@@ -26501,12 +26501,12 @@
           "animals": {
             "Chicken": 69.5309,
             "Pig (Pork)": 282.9536,
-            "Cattle (Beef)": 120.8798,
             "Turkey": 4.5718,
             "Salmon": 12.1038,
             "Sheep (Lamb)": 8.8277,
             "Argyrosomus japonicus": 0.8217,
-            "Bison bison": 0.3108
+            "Bison bison": 0.3108,
+            "Cow": 120.8798
           }
         }
       }
@@ -26549,8 +26549,8 @@
           "animals": {
             "Chicken": 273.3047,
             "Pig (Pork)": 1.1694,
-            "Cow (Beef)": 58.1662,
-            "Turkey": 72.2683
+            "Turkey": 72.2683,
+            "Cow": 58.1662
           }
         },
         "2020-10": {
@@ -26558,8 +26558,8 @@
           "animals": {
             "Chicken": 337.4894,
             "Pig (Pork)": 1.4441,
-            "Cattle (Beef)": 71.8263,
-            "Turkey": 89.2402
+            "Turkey": 89.2402,
+            "Cow": 71.8263
           }
         }
       }
@@ -26621,12 +26621,12 @@
           "animals": {
             "Chicken": 237.5681,
             "Pig (Pork)": 197.9093,
-            "Cow (Beef)": 50.2002,
             "Turkey": 3.4891,
             "Salmon": 3.0257,
             "Sheep (Lamb)": 0.5607,
             "Oncorhynchus mykiss": 6.019,
-            "Oreochromis niloticus": 0.2178
+            "Oreochromis niloticus": 0.2178,
+            "Cow": 50.2002
           }
         },
         "2025-12": {
@@ -26679,7 +26679,6 @@
           },
           "animals": {
             "Chicken": 124.3346,
-            "Cow (Beef)": 234.6073,
             "Pig (Pork)": 96.3229,
             "Salmon": 1.2747,
             "Turkey": 4.2216,
@@ -26697,7 +26696,8 @@
             "Anser anser": 1.2848,
             "Trachinotus": 0.0306,
             "Pennahia aneus": 0.1937,
-            "Artiodactyla": 0.0714
+            "Artiodactyla": 0.0714,
+            "Cow": 234.6073
           }
         },
         "2026-01": {
@@ -26758,7 +26758,6 @@
           },
           "animals": {
             "Chicken": 258.6149,
-            "Cow (Beef)": 162.692,
             "Pig (Pork)": 66.2298,
             "Salmon": 0.4267,
             "Turkey": 5.5071,
@@ -26766,7 +26765,8 @@
             "Sheep (Lamb)": 1.8196,
             "Oncorhynchus mykiss": 0.314,
             "Cattle/Sheep/Goat family": 0.6683,
-            "Bison": 0.5072
+            "Bison": 0.5072,
+            "Cow": 162.692
           }
         },
         "2020-12": {
@@ -26821,7 +26821,6 @@
           "animals": {
             "Chicken": 126.8545,
             "Pig (Pork)": 98.275,
-            "Cattle (Beef)": 239.362,
             "Turkey": 4.3072,
             "Goat": 0.5722,
             "Salmon": 1.3005,
@@ -26838,7 +26837,8 @@
             "Clupea harengus": 0.3537,
             "Anser anser": 1.3109,
             "Pennahia aneus": 0.1977,
-            "Artiodactyla": 0.0728
+            "Artiodactyla": 0.0728,
+            "Cow": 239.362
           }
         },
         "2020-01": {
@@ -26901,14 +26901,14 @@
           "animals": {
             "Chicken": 260.2071,
             "Pig (Pork)": 66.6375,
-            "Cattle (Beef)": 163.6937,
             "Turkey": 5.541,
             "Goat": 0.6724,
             "Salmon": 0.4293,
             "Sheep (Lamb)": 1.8308,
             "Oncorhynchus mykiss": 0.3159,
             "Pacific salmon": 0.162,
-            "Bison bison": 0.5104
+            "Bison bison": 0.5104,
+            "Cow": 163.6937
           }
         },
         "2020-03": {
@@ -26986,14 +26986,14 @@
           "animals": {
             "Chicken": 204.0048,
             "Pig (Pork)": 146.2147,
-            "Cattle (Beef)": 138.7313,
             "Turkey": 2.8778,
             "Sheep (Lamb)": 4.3771,
             "Cervus canadensis": 0.1759,
             "Goat": 0.5199,
             "Salmon": 2.6126,
             "Engraulis ringens": 0.2048,
-            "Centropristis striata": 0.281
+            "Centropristis striata": 0.281,
+            "Cow": 138.7313
           }
         },
         "2020-11": {
@@ -27001,12 +27001,12 @@
           "animals": {
             "Chicken": 238.049,
             "Pig (Pork)": 198.31,
-            "Cattle (Beef)": 50.3018,
             "Turkey": 3.4961,
             "Salmon": 3.0319,
             "Sheep (Lamb)": 0.5618,
             "Oncorhynchus mykiss": 6.0312,
-            "Oreochromis niloticus": 0.2182
+            "Oreochromis niloticus": 0.2182,
+            "Cow": 50.3018
           }
         }
       }
@@ -27071,11 +27071,11 @@
           "animals": {
             "Chicken": 111.8499,
             "Pig (Pork)": 246.4694,
-            "Cow (Beef)": 130.965,
             "Turkey": 1.9934,
             "Cattle/Sheep/Goat family": 0.6738,
             "Mammalia": 0.2808,
-            "Bison": 0.7206
+            "Bison": 0.7206,
+            "Cow": 130.965
           }
         },
         "2025-12": {
@@ -27129,7 +27129,6 @@
           },
           "animals": {
             "Chicken": 111.9574,
-            "Cow (Beef)": 123.2334,
             "Pig (Pork)": 249.8352,
             "Turkey": 1.3933,
             "Duck/Goose": 1.6183,
@@ -27140,7 +27139,8 @@
             "Cattle/Sheep/Goat family": 0.4364,
             "Mammalia": 0.1659,
             "Rastrelliger kanagurta": 0.0068,
-            "Bison": 0.641
+            "Bison": 0.641,
+            "Cow": 123.2334
           }
         },
         "2026-02": {
@@ -27212,14 +27212,14 @@
           },
           "animals": {
             "Chicken": 63.0142,
-            "Cow (Beef)": 182.9964,
             "Pig (Pork)": 240.8753,
             "Turkey": 3.0446,
             "Pacific salmon": 0.1829,
             "Oreochromis niloticus": 0.104,
             "Cattle/Sheep/Goat family": 1.542,
             "Carnivora": 0.061,
-            "Bison": 1.4201
+            "Bison": 1.4201,
+            "Cow": 182.9964
           }
         },
         "2020-12": {
@@ -27275,7 +27275,6 @@
           "animals": {
             "Chicken": 114.0156,
             "Pig (Pork)": 254.428,
-            "Cattle (Beef)": 125.4988,
             "Turkey": 1.4189,
             "White-tailed deer": 0.1782,
             "Sheep (Lamb)": 0.0926,
@@ -27285,7 +27284,8 @@
             "Mammalia": 0.169,
             "Bison bison": 0.6527,
             "Cattle/Sheep/Goat family": 0.4444,
-            "Rastrelliger kanagurta": 0.0069
+            "Rastrelliger kanagurta": 0.0069,
+            "Cow": 125.4988
           }
         },
         "2020-02": {
@@ -27360,14 +27360,14 @@
           "animals": {
             "Chicken": 63.8777,
             "Pig (Pork)": 244.1764,
-            "Cattle (Beef)": 185.5043,
             "Turkey": 3.0863,
             "Goat": 0.1091,
             "Oreochromis niloticus": 0.1054,
             "Pacific salmon": 0.1854,
             "Bison bison": 1.4395,
             "Cattle/Sheep/Goat family": 1.4541,
-            "Carnivora": 0.0618
+            "Carnivora": 0.0618,
+            "Cow": 185.5043
           }
         },
         "2020-04": {
@@ -27444,7 +27444,6 @@
           "animals": {
             "Chicken": 128.1734,
             "Pig (Pork)": 189.2496,
-            "Cattle (Beef)": 169.7433,
             "Turkey": 2.4621,
             "Sheep (Lamb)": 2.4787,
             "Sylvilagus": 0.115,
@@ -27461,7 +27460,8 @@
             "Mammalia": 0.0533,
             "Bison bison": 0.0067,
             "Sciaenidae": 0.04,
-            "Morone americana": 0.0433
+            "Morone americana": 0.0433,
+            "Cow": 169.7433
           }
         },
         "2020-10": {
@@ -27469,11 +27469,11 @@
           "animals": {
             "Chicken": 113.4489,
             "Pig (Pork)": 249.9929,
-            "Cattle (Beef)": 132.8372,
             "Turkey": 2.0219,
             "Bison bison": 0.7309,
             "Cattle/Sheep/Goat family": 0.6835,
-            "Mammalia": 0.2848
+            "Mammalia": 0.2848,
+            "Cow": 132.8372
           }
         }
       }
@@ -27537,11 +27537,11 @@
           "animals": {
             "Chicken": 371.76,
             "Pig (Pork)": 48.8945,
-            "Cow (Beef)": 37.7275,
             "Turkey": 2.7617,
             "Salmon": 27.3691,
             "Sheep (Lamb)": 0.0881,
-            "Coregonus lavaretus": 8.4773
+            "Coregonus lavaretus": 8.4773,
+            "Cow": 37.7275
           }
         },
         "2026-01": {
@@ -27587,11 +27587,11 @@
           },
           "animals": {
             "Chicken": 298.7706,
-            "Cow (Beef)": 32.3359,
             "Pig (Pork)": 22.4018,
             "Salmon": 63.6718,
             "Turkey": 77.2062,
-            "Dicentrarchus labrax": 0.0933
+            "Dicentrarchus labrax": 0.0933,
+            "Cow": 32.3359
           }
         },
         "2026-02": {
@@ -27656,7 +27656,6 @@
           },
           "animals": {
             "Chicken": 143.332,
-            "Cow (Beef)": 301.7555,
             "Pig (Pork)": 33.7495,
             "Salmon": 13.1578,
             "Turkey": 1.2609,
@@ -27667,7 +27666,8 @@
             "Cattle/Sheep/Goat family": 0.0094,
             "Thunnus alalunga": 0.3082,
             "Oncorhynchus kisutch": 2.1986,
-            "Bison": 0.1221
+            "Bison": 0.1221,
+            "Cow": 301.7555
           }
         },
         "2020-01": {
@@ -27715,10 +27715,10 @@
           "animals": {
             "Chicken": 302.1061,
             "Pig (Pork)": 22.6519,
-            "Cattle (Beef)": 32.6969,
             "Turkey": 78.0681,
             "Salmon": 64.3826,
-            "Dicentrarchus labrax": 0.0944
+            "Dicentrarchus labrax": 0.0944,
+            "Cow": 32.6969
           }
         },
         "2020-02": {
@@ -27787,7 +27787,6 @@
           "animals": {
             "Chicken": 143.7643,
             "Pig (Pork)": 33.8513,
-            "Cattle (Beef)": 302.6655,
             "Turkey": 1.2647,
             "Salmon": 13.1975,
             "White-tailed deer": 0.0113,
@@ -27796,7 +27795,8 @@
             "Pacific salmon": 4.3407,
             "Thunnus alalunga": 0.3091,
             "Bison bison": 0.1225,
-            "Cattle/Sheep/Goat family": 0.0094
+            "Cattle/Sheep/Goat family": 0.0094,
+            "Cow": 302.6655
           }
         },
         "2020-11": {
@@ -27804,11 +27804,11 @@
           "animals": {
             "Chicken": 373.9452,
             "Pig (Pork)": 49.1819,
-            "Cattle (Beef)": 37.9493,
             "Turkey": 2.778,
             "Salmon": 27.53,
             "Sheep (Lamb)": 0.0886,
-            "Coregonus lavaretus": 8.5271
+            "Coregonus lavaretus": 8.5271,
+            "Cow": 37.9493
           }
         }
       }
@@ -27868,10 +27868,10 @@
           "animals": {
             "Chicken": 145.8685,
             "Pig (Pork)": 70.0974,
-            "Cow (Beef)": 268.6901,
             "Turkey": 6.8781,
             "White-tailed deer": 2.587,
-            "Sheep (Lamb)": 0.7087
+            "Sheep (Lamb)": 0.7087,
+            "Cow": 268.6901
           }
         },
         "2025-12": {
@@ -27932,7 +27932,6 @@
           },
           "animals": {
             "Chicken": 169.3841,
-            "Cow (Beef)": 125.0271,
             "Pig (Pork)": 176.2103,
             "Salmon": 6.2072,
             "Turkey": 3.6465,
@@ -27946,7 +27945,8 @@
             "Pangasianodon hypophthalmus": 0.3586,
             "Euthynnus affinis": 0.2233,
             "Morone saxatilis": 0.0778,
-            "Bison": 0.3011
+            "Bison": 0.3011,
+            "Cow": 125.0271
           }
         },
         "2026-01": {
@@ -27977,8 +27977,8 @@
           },
           "animals": {
             "Chicken": 327.2495,
-            "Cow (Beef)": 8.6736,
-            "Pig (Pork)": 164.0278
+            "Pig (Pork)": 164.0278,
+            "Cow": 8.6736
           }
         },
         "2020-12": {
@@ -28042,7 +28042,6 @@
           "animals": {
             "Chicken": 171.5897,
             "Pig (Pork)": 178.5049,
-            "Cattle (Beef)": 126.6551,
             "Turkey": 3.694,
             "Goat": 0.1885,
             "Salmon": 6.288,
@@ -28055,7 +28054,8 @@
             "Euthynnus affinis": 0.2262,
             "Pangasianodon hypophthalmus": 0.3632,
             "Cervus canadensis": 1.1582,
-            "Engraulis encrasicolus": 0.1028
+            "Engraulis encrasicolus": 0.1028,
+            "Cow": 126.6551
           }
         },
         "2020-01": {
@@ -28087,7 +28087,7 @@
           "animals": {
             "Chicken": 327.2817,
             "Pig (Pork)": 164.0439,
-            "Cattle (Beef)": 8.6744
+            "Cow": 8.6744
           }
         },
         "2020-11": {
@@ -28095,10 +28095,10 @@
           "animals": {
             "Chicken": 147.3926,
             "Pig (Pork)": 70.8298,
-            "Cattle (Beef)": 271.4974,
             "Turkey": 6.9499,
             "White-tailed deer": 2.6141,
-            "Sheep (Lamb)": 0.7161
+            "Sheep (Lamb)": 0.7161,
+            "Cow": 271.4974
           }
         }
       }
@@ -28144,9 +28144,9 @@
           },
           "animals": {
             "Chicken": 179.7066,
-            "Cow (Beef)": 206.4869,
             "Pig (Pork)": 100.918,
-            "Turkey": 0.449
+            "Turkey": 0.449,
+            "Cow": 206.4869
           }
         },
         "2020-02": {
@@ -28185,8 +28185,8 @@
           "animals": {
             "Chicken": 184.2916,
             "Pig (Pork)": 103.4928,
-            "Cattle (Beef)": 211.7551,
-            "Turkey": 0.4605
+            "Turkey": 0.4605,
+            "Cow": 211.7551
           }
         },
         "2020-04": {
@@ -28273,7 +28273,6 @@
           "animals": {
             "Chicken": 224.3937,
             "Pig (Pork)": 129.3635,
-            "Cattle (Beef)": 103.9791,
             "Turkey": 9.2161,
             "Salmon": 1.6341,
             "Sheep (Lamb)": 22.2162,
@@ -28299,7 +28298,8 @@
             "White-tailed deer": 0.0412,
             "Thunnus alalunga": 0.0294,
             "Lepomis macrochirus": 0.0907,
-            "Anatidae": 0.0506
+            "Anatidae": 0.0506,
+            "Cow": 103.9791
           }
         }
       },
@@ -28318,7 +28318,7 @@
           },
           "animals": {
             "Chicken": 285.7143,
-            "Cow (Beef)": 214.2857
+            "Cow": 214.2857
           }
         },
         "2026-01": {
@@ -28380,7 +28380,6 @@
           },
           "animals": {
             "Chicken": 85.0531,
-            "Cow (Beef)": 264.5373,
             "Pig (Pork)": 131.0748,
             "Salmon": 0.7291,
             "Turkey": 4.9812,
@@ -28394,7 +28393,8 @@
             "Stolothrissa tanganicae": 1.0964,
             "Ictalurus pricei": 0.3451,
             "Morone americana": 0.4341,
-            "Bison": 0.0445
+            "Bison": 0.0445,
+            "Cow": 264.5373
           }
         },
         "2026-02": {
@@ -28460,7 +28460,6 @@
           },
           "animals": {
             "Chicken": 292.4044,
-            "Cow (Beef)": 158.1905,
             "Pig (Pork)": 36.4216,
             "Salmon": 0.6457,
             "Turkey": 1.311,
@@ -28468,7 +28467,8 @@
             "Sheep (Lamb)": 0.7359,
             "Cattle/Sheep/Goat family": 0.0423,
             "Oncorhynchus kisutch": 0.0395,
-            "Phocidae": 0.0226
+            "Phocidae": 0.0226,
+            "Cow": 158.1905
           }
         },
         "2020-12": {
@@ -28477,7 +28477,7 @@
           },
           "animals": {
             "Chicken": 285.7143,
-            "Cattle (Beef)": 214.2857
+            "Cow": 214.2857
           }
         },
         "2020-01": {
@@ -28540,7 +28540,6 @@
           "animals": {
             "Chicken": 86.3409,
             "Pig (Pork)": 133.0595,
-            "Cattle (Beef)": 268.5428,
             "Turkey": 5.0566,
             "Goat": 0.4746,
             "Salmon": 0.7401,
@@ -28553,7 +28552,8 @@
             "Bison bison": 0.0452,
             "Stolothrissa tanganicae": 1.113,
             "Ictalurus pricei": 0.3503,
-            "Morone americana": 0.4407
+            "Morone americana": 0.4407,
+            "Cow": 268.5428
           }
         },
         "2020-02": {
@@ -28623,14 +28623,14 @@
           "animals": {
             "Chicken": 298.3344,
             "Pig (Pork)": 37.1602,
-            "Cattle (Beef)": 161.3986,
             "Turkey": 1.3376,
             "Salmon": 0.6587,
             "Sheep (Lamb)": 0.7508,
             "Duck": 0.2531,
             "Phoca": 0.023,
             "Cattle/Sheep/Goat family": 0.0431,
-            "Pacific salmon": 0.0403
+            "Pacific salmon": 0.0403,
+            "Cow": 161.3986
           }
         },
         "2020-04": {
@@ -28717,7 +28717,6 @@
           "animals": {
             "Chicken": 119.5619,
             "Pig (Pork)": 143.7134,
-            "Cattle (Beef)": 201.0359,
             "Turkey": 6.4851,
             "Salmon": 22.9392,
             "Sheep (Lamb)": 1.3687,
@@ -28737,7 +28736,8 @@
             "Scombridae": 0.1031,
             "Actinopteri": 0.0122,
             "Aves": 0.0089,
-            "Eugerres plumieri": 0.0078
+            "Eugerres plumieri": 0.0078,
+            "Cow": 201.0359
           }
         }
       },
@@ -28785,12 +28785,12 @@
           },
           "animals": {
             "Chicken": 171.2206,
-            "Cow (Beef)": 42.107,
             "Pig (Pork)": 234.0469,
             "Turkey": 23.8262,
             "Oreochromis niloticus": 3.2757,
             "Mammalia": 4.8208,
-            "Ocyphaps lophotes": 0.2448
+            "Ocyphaps lophotes": 0.2448,
+            "Cow": 42.107
           }
         },
         "2020-02": {
@@ -28830,11 +28830,11 @@
           "animals": {
             "Chicken": 178.5251,
             "Pig (Pork)": 244.0317,
-            "Cattle (Beef)": 43.9033,
             "Turkey": 24.8427,
             "Oreochromis niloticus": 3.4154,
             "Mammalia": 5.0265,
-            "Ocyphaps lophotes": 0.2553
+            "Ocyphaps lophotes": 0.2553,
+            "Cow": 43.9033
           }
         }
       },
@@ -28887,7 +28887,6 @@
           },
           "animals": {
             "Chicken": 151.1462,
-            "Cow (Beef)": 122.4849,
             "Pig (Pork)": 197.7458,
             "Salmon": 0.6549,
             "Turkey": 4.7794,
@@ -28898,7 +28897,8 @@
             "Oreochromis niloticus": 0.3064,
             "Pangasianodon hypophthalmus": 0.5821,
             "Coryphaena hippurus": 0.1608,
-            "Bison": 0.4366
+            "Bison": 0.4366,
+            "Cow": 122.4849
           }
         },
         "2026-01": {
@@ -28957,7 +28957,6 @@
           },
           "animals": {
             "Chicken": 157.8223,
-            "Cow (Beef)": 99.4756,
             "Pig (Pork)": 216.9589,
             "Salmon": 1.3435,
             "Turkey": 2.4387,
@@ -28971,7 +28970,8 @@
             "Clupea harengus": 0.3176,
             "Clupeidae": 0.7776,
             "Trachinotus": 0.0814,
-            "Bison": 0.5008
+            "Bison": 0.5008,
+            "Cow": 99.4756
           }
         },
         "2020-12": {
@@ -29015,7 +29015,6 @@
           "animals": {
             "Chicken": 155.0474,
             "Pig (Pork)": 202.8498,
-            "Cattle (Beef)": 125.6462,
             "Turkey": 4.9028,
             "Salmon": 0.6718,
             "White-tailed deer": 3.9207,
@@ -29025,7 +29024,8 @@
             "Duck": 1.8621,
             "Bison bison": 0.4479,
             "Pangasianodon hypophthalmus": 0.5971,
-            "Coryphaena hippurus": 0.165
+            "Coryphaena hippurus": 0.165,
+            "Cow": 125.6462
           }
         },
         "2020-01": {
@@ -29083,7 +29083,6 @@
           "animals": {
             "Chicken": 159.5003,
             "Pig (Pork)": 219.2656,
-            "Cattle (Beef)": 100.5333,
             "Turkey": 2.4647,
             "Salmon": 1.3578,
             "White-tailed deer": 2.6663,
@@ -29096,7 +29095,8 @@
             "Cattle/Sheep/Goat family": 0.0617,
             "Engraulis encrasicolus": 9.5048,
             "Clupea harengus": 0.3209,
-            "Clupeidae": 0.7859
+            "Clupeidae": 0.7859,
+            "Cow": 100.5333
           }
         },
         "2020-03": {
@@ -29194,7 +29194,6 @@
           "animals": {
             "Chicken": 179.0341,
             "Pig (Pork)": 126.506,
-            "Cattle (Beef)": 141.8787,
             "Turkey": 9.4965,
             "Salmon": 2.18,
             "White-tailed deer": 4.7155,
@@ -29228,7 +29227,8 @@
             "Dicentrarchus labrax": 0.0041,
             "Glyptocephalus": 0.0294,
             "Abramis brama": 0.027,
-            "Scomberomorus": 0.0098
+            "Scomberomorus": 0.0098,
+            "Cow": 141.8787
           }
         }
       },
@@ -29322,7 +29322,6 @@
           "animals": {
             "Chicken": 65.3001,
             "Pig (Pork)": 124.5928,
-            "Cattle (Beef)": 170.3129,
             "Turkey": 1.0461,
             "Goat": 0.0048,
             "Salmon": 119.8221,
@@ -29345,7 +29344,8 @@
             "Duck": 0.0579,
             "Sylvilagus": 0.0953,
             "Morone americana": 0.0205,
-            "Scomber scombrus": 0.0145
+            "Scomber scombrus": 0.0145,
+            "Cow": 170.3129
           }
         }
       }
@@ -29425,7 +29425,6 @@
           "animals": {
             "Chicken": 199.7449,
             "Pig (Pork)": 53.7371,
-            "Cattle (Beef)": 219.7779,
             "Turkey": 0.2686,
             "Salmon": 2.2619,
             "Sheep (Lamb)": 1.4261,
@@ -29449,7 +29448,8 @@
             "Pseudoscaphirhynchus kaufmanni": 0.2408,
             "Scomber": 0.0278,
             "Diplodus": 0.0162,
-            "Alligator mississippiensis": 0.0069
+            "Alligator mississippiensis": 0.0069,
+            "Cow": 219.7779
           }
         }
       }
@@ -30666,13 +30666,6 @@
       "category": "A_Meat",
       "type": "animal",
       "color": "#EB88D1"
-    },
-    "Cow (Beef)": {
-      "common_name": "Cow (Beef)",
-      "food_group": "meat_poultry",
-      "category": "A_Meat",
-      "type": "animal",
-      "color": "#DC7775"
     },
     "Charr": {
       "common_name": "Charr",
@@ -40399,13 +40392,6 @@
       "type": "plant",
       "color": "#9BA4B4"
     },
-    "Cattle (Beef)": {
-      "common_name": "Cattle (Beef)",
-      "food_group": "meat",
-      "category": "A_Meat",
-      "type": "animal",
-      "color": "#E57373"
-    },
     "Duck": {
       "common_name": "Duck",
       "food_group": "meat",
@@ -41297,6 +41283,13 @@
     },
     "Alligator mississippiensis": {
       "common_name": "Alligator mississippiensis",
+      "food_group": "meat",
+      "category": "A_Meat",
+      "type": "animal",
+      "color": "#E57373"
+    },
+    "Cow": {
+      "common_name": "Cow",
       "food_group": "meat",
       "category": "A_Meat",
       "type": "animal",

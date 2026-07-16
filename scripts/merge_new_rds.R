@@ -109,7 +109,7 @@ plant_name_map <- list(
 )
 
 animal_name_map <- list(
-  "Bos taurus" = "Cattle (Beef)", "Bos" = "Cattle",
+  "Bos taurus" = "Cow", "Bos" = "Cow",
   "Sus scrofa" = "Pig (Pork)", "Sus" = "Pig",
   "Gallus gallus" = "Chicken", "Gallus" = "Chicken",
   "Ovis aries" = "Sheep (Lamb)", "Ovis" = "Sheep",
