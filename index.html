@@ -10452,28 +10452,22 @@
         function getTrendsSeries() {
             if (trendsSelectedSites.length === 0 || !foodseqData) return { months: [], series: [] };
 
-            // Union of all dates across selected sites (only dates with actual data)
+            // Union of all dates where selected food(s) have data at selected site(s)
+            const selectedFoodIds = trendsSelectedFoods.map(f => f.id);
             const allDates = new Set();
             trendsSelectedSites.forEach(s => {
-                if (s.isTract && s.tractSites) {
-                    s.tractSites.forEach(pid => {
-                        const plant = foodseqData.plants[pid];
-                        if (!plant) return;
-                        Object.entries(plant.timeseries).forEach(([d, td]) => {
-                            const hasData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
-                                            (td.animals && Object.values(td.animals).some(v => v > 0));
-                            if (hasData) allDates.add(d);
-                        });
-                    });
-                } else {
-                    const plant = foodseqData.plants[s.pid];
+                const pids = s.isTract && s.tractSites ? s.tractSites : [s.pid];
+                pids.forEach(pid => {
+                    const plant = foodseqData.plants[pid];
                     if (!plant) return;
                     Object.entries(plant.timeseries).forEach(([d, td]) => {
-                        const hasData = (td.plants && Object.values(td.plants).some(v => v > 0)) ||
-                                        (td.animals && Object.values(td.animals).some(v => v > 0));
-                        if (hasData) allDates.add(d);
+                        // Only include dates where at least one selected food has data
+                        const hasSelectedFood = selectedFoodIds.some(fid =>
+                            (td.plants && td.plants[fid] > 0) || (td.animals && td.animals[fid] > 0)
+                        );
+                        if (hasSelectedFood) allDates.add(d);
                     });
-                }
+                });
             });
             const dates = [...allDates].sort().slice(-trendsN);
 
