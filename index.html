@@ -10129,13 +10129,21 @@
         }
 
         function tryLaunchTrends() {
-            if (!trendsQuickSite || !trendsQuickFood) return;
-            // Both selected — add them and render
-            addTrendsSite(trendsQuickSite);
-            trendsSelectedFoods = [];
-            addTrendsSpecies(trendsQuickFood.id, trendsQuickFood.name);
-            trendsQuickSite = null;
-            trendsQuickFood = null;
+            // If a site was added via dropdown (not quick-pick), trendsQuickSite is null
+            // but trendsSelectedSites already has entries
+            var hasSite = trendsQuickSite || trendsSelectedSites.length > 0;
+            var hasFood = trendsQuickFood || trendsSelectedFoods.length > 0;
+            if (!hasSite || !hasFood) return;
+            // Add quick-pick selections if they exist
+            if (trendsQuickSite) {
+                addTrendsSite(trendsQuickSite);
+                trendsQuickSite = null;
+            }
+            if (trendsQuickFood) {
+                trendsSelectedFoods = [];
+                addTrendsSpecies(trendsQuickFood.id, trendsQuickFood.name);
+                trendsQuickFood = null;
+            }
             renderTrendsCharts();
         }
 
@@ -12778,14 +12786,15 @@
 
         // ========== Compare Tracts ==========
         const TRACT_NEIGHBORHOODS = {
-            '3.01': 'Watts-Hillandale', '3.02': 'Watts-Hillandale', '5': 'Downtown',
-            '7': 'Morehead Hill', '10.01': 'East Durham', '10.02': 'East Durham',
+            '1.02': 'Old North Durham', '3.01': 'Watts-Hillandale', '3.02': 'Watts-Hillandale',
+            '5': 'Downtown', '7': 'Morehead Hill', '10.01': 'East Durham', '10.02': 'East Durham',
             '13.01': 'South Central', '14': 'South Durham', '16.03': 'Bahama',
             '16.04': 'Northern Durham', '17.05': 'North Durham', '17.09': 'Northgate',
             '17.12': 'Duke Park', '18.01': 'Northeast Durham', '18.02': 'Parkwood',
             '18.06': 'Research Triangle', '18.08': 'Southeast Durham',
             '19': 'East Durham', '20.2': 'South Central', '20.23': 'South Durham',
-            '20.29': 'Southwest Durham', '22': 'Duke University', '23': 'Central Durham',
+            '20.29': 'Southwest Durham', '20.32': 'Southwest Durham',
+            '22': 'Duke University', '23': 'Central Durham',
         };
 
         function getTractNeighborhood(tractNum) {
