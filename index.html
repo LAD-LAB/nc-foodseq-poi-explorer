@@ -10117,13 +10117,13 @@
         }
 
         function selectQuickSite(pid) {
-            trendsQuickSite = pid;
+            trendsQuickSite = trendsQuickSite === pid ? null : pid;
             populateTrendsQuickPick();
             tryLaunchTrends();
         }
 
         function selectQuickFood(id, name) {
-            trendsQuickFood = { id, name };
+            trendsQuickFood = (trendsQuickFood && trendsQuickFood.id === id) ? null : { id, name };
             populateTrendsQuickPick();
             tryLaunchTrends();
         }
