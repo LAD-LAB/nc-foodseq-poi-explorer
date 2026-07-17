@@ -15805,16 +15805,6 @@
                 landingFoodGroups[group].count++;
                 landingFoodGroups[group].foods.push({ name: meta.common_name, val });
             });
-            // Deduplicate pills by name within each group (Latin key + common-name key can both exist)
-            Object.values(landingFoodGroups).forEach(g => {
-                const seen = new Set();
-                const deduped = [];
-                g.foods.forEach(f => {
-                    if (!seen.has(f.name)) { seen.add(f.name); deduped.push(f); }
-                });
-                g.foods = deduped;
-                g.count = deduped.length;
-            });
             // Sort foods within each group by abundance
             Object.values(landingFoodGroups).forEach(g => g.foods.sort((a, b) => b.val - a.val));
 
