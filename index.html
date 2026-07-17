@@ -8263,6 +8263,60 @@
                         'Pig (Pork)': 'Pig',
                         'Sheep (Lamb)': 'Sheep',
                         'Mungbean/Cowpea/Black eye peas': 'Mungbean/Black eye peas',
+                        // Plant Latin/taxonomic names → common names
+                        'Lauraceae': 'Laurel family',
+                        'Vaccinium': 'Blueberry/Cranberry',
+                        'Magnoliopsida': 'Flowering plants (class)',
+                        'Rubiaceae': 'Coffee family',
+                        'Anacardiaceae': 'Cashew/Mango family',
+                        'Chenopodiaceae': 'Beet/Spinach family',
+                        'Cajanus cajan': 'Pigeon pea',
+                        'Sapindaceae': 'Lychee/Maple family',
+                        'Rutaceae': 'Citrus family',
+                        'Lamiaceae': 'Mint family',
+                        'Vitaceae': 'Grape family',
+                        'Arecaceae': 'Palm family',
+                        'Convolvulaceae': 'Sweet potato/Morning glory family',
+                        'Pinus': 'Pine',
+                        'Pistacia vera': 'Pistachio',
+                        'Actinidia': 'Kiwi',
+                        'Juglans': 'Walnut',
+                        'Vigna': 'Cowpea/Mung bean',
+                        'Piper': 'Pepper vine',
+                        'Ipomoea': 'Sweet potato',
+                        'Zingiber': 'Ginger',
+                        'Carya': 'Hickory/Pecan',
+                        'Mentha': 'Mint',
+                        'Vicia faba': 'Fava bean',
+                        'Ocimum': 'Basil',
+                        'Araceae': 'Taro family',
+                        'Corylus': 'Hazelnut',
+                        'Passiflora': 'Passion fruit',
+                        'Acer': 'Maple',
+                        'Morus': 'Mulberry',
+                        'Trifolium': 'Clover',
+                        'Ginkgo biloba': 'Ginkgo',
+                        'Apium graveolens': 'Celery',
+                        'Cenchrus americanus': 'Pearl millet',
+                        'Psidium guajava': 'Guava',
+                        'Persicaria hydropiper': 'Water pepper',
+                        'Lagerstroemia speciosa': 'Crepe myrtle',
+                        'Eryngium foetidum': 'Culantro',
+                        'Plantago major': 'Plantain herb',
+                        'Diplotaxis tenuifolia': 'Wild rocket',
+                        'Juniperus communis': 'Juniper',
+                        'Pyrus communis': 'Pear',
+                        'Armoracia rusticana': 'Horseradish',
+                        'Ilex paraguariensis': 'Yerba mate',
+                        'Catha edulis': 'Khat',
+                        'Nasturtium officinale': 'Watercress',
+                        'Papaver somniferum': 'Poppy seed',
+                        'Azadirachta indica': 'Neem',
+                        'Plantago ovata': 'Psyllium',
+                        'Abelmoschus esculentus': 'Okra',
+                        'Punica granatum': 'Pomegranate',
+                        'Ananas comosus': 'Pineapple',
+                        'Anacardium occidentale': 'Cashew',
                     };
                     const MERGE_NAMES = {}; // kept for compatibility
                     Object.entries(sm).forEach(([id, meta]) => {
@@ -8287,6 +8341,46 @@
                             if (!LAND_ANIMALS.has(cn)) {
                                 meta.food_group = 'seafood';
                             }
+                        }
+                    });
+
+                    // 5. Reclassify misplaced food groups
+                    const RECLASSIFY_GROUP = {
+                        'Carrot/Celery family': 'vegetable',
+                        'Celery': 'vegetable',
+                        'Okra': 'vegetable',
+                        'Horseradish': 'vegetable',
+                        'Watercress': 'vegetable',
+                        'Wild rocket': 'vegetable',
+                        'Culantro': 'herb_spice',
+                        'Ginger': 'herb_spice',
+                        'Mint': 'herb_spice',
+                        'Basil': 'herb_spice',
+                        'Water pepper': 'herb_spice',
+                        'Juniper': 'herb_spice',
+                        'Poppy seed': 'seed_nut',
+                        'Pistachio': 'seed_nut',
+                        'Hazelnut': 'seed_nut',
+                        'Cashew': 'seed_nut',
+                        'Hickory/Pecan': 'seed_nut',
+                        'Walnut': 'seed_nut',
+                        'Kiwi': 'fruit',
+                        'Guava': 'fruit',
+                        'Passion fruit': 'fruit',
+                        'Pomegranate': 'fruit',
+                        'Pear': 'fruit',
+                        'Mulberry': 'fruit',
+                        'Pineapple': 'fruit',
+                        'Sweet potato': 'vegetable',
+                        'Sweet potato/Morning glory family': 'vegetable',
+                        'Pigeon pea': 'legume',
+                        'Cowpea/Mung bean': 'legume',
+                        'Fava bean': 'legume',
+                        'Pearl millet': 'grain',
+                    };
+                    Object.entries(sm).forEach(([id, meta]) => {
+                        if (RECLASSIFY_GROUP[meta.common_name]) {
+                            meta.food_group = RECLASSIFY_GROUP[meta.common_name];
                         }
                     });
 
