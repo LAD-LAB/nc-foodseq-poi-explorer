@@ -2367,7 +2367,7 @@
         /* Heat map legend */
         .heatmap-legend {
             position: absolute;
-            top: 100px;
+            top: 175px;
             right: 330px;
             background: white;
             padding: 10px 15px;
@@ -3852,9 +3852,6 @@
         #chip-wwtp { display: none !important; }
         #speciesButton { display: none !important; }
         .header-row2 > .ctrl-label:first-child { display: none !important; }
-        /* Time period controls */
-        #timeRangeBtn { font-size: 11px !important; padding: 0 22px 0 8px !important; max-width: 120px !important; overflow: hidden; text-overflow: ellipsis; }
-        #timeRangePicker { width: calc(100vw - 24px) !important; left: -60px !important; }
         .header-row2 > .ctrl-label { font-size: 9px !important; }
         /* Make find me input fill available space */
         #findMeInput { width: 100% !important; min-width: 0 !important; flex: 1 !important; font-size: 14px !important; height: 36px !important; }
@@ -4769,12 +4766,6 @@
                 </div>
                 <div class="help-item">
                     <span class="help-icon">
-                        <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="8" r="5"/><path d="M8 5v3l2 2"/></svg>
-                    </span>
-                    <span>Use <strong>Period</strong> in the map toolbar to filter data by time range and see how diets shift seasonally.</span>
-                </div>
-                <div class="help-item">
-                    <span class="help-icon">
                         <svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M8 3l5 5-5 5"/></svg>
                     </span>
                     <span>Use <strong>Compare</strong> in the detail panel to see how two neighborhoods&rsquo; top foods differ side by side.</span>
@@ -4955,31 +4946,6 @@
             <option value="other">% Other Race</option>
             <option value="usda_desert">USDA Food Desert</option>
         </select>
-        <span class="ctrl-label">Period</span>
-        <div style="position:relative;display:inline-block;">
-            <button id="timeRangeBtn" onclick="toggleTimeRangePicker()" style="height:34px;padding:0 32px 0 13px;border:1px solid #e7e4dc;border-radius:10px;background:#fff;font:500 13px 'Geist',sans-serif;color:#0b1220;cursor:pointer;transition:border-color .15s;position:relative;white-space:nowrap;">
-                All Times
-                <span style="position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:1.6px solid #64748b;border-bottom:1.6px solid #64748b;transform:translateY(-60%) rotate(45deg);"></span>
-            </button>
-            <div id="timeRangePicker" style="display:none;position:absolute;top:calc(100% + 6px);left:0;z-index:1100;background:#fff;border:1px solid #e7e4dc;border-radius:14px;box-shadow:0 12px 36px rgba(15,23,42,.14);padding:16px 20px;width:420px;">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-                    <span style="font:600 10.5px/1 'Geist Mono',monospace;letter-spacing:.15em;text-transform:uppercase;color:#64748b;">Time range</span>
-                    <button onclick="setTimeRange('all')" style="border:0;background:0;font:500 12px 'Geist',sans-serif;color:#1e3a8a;cursor:pointer;padding:2px 6px;border-radius:6px;">Reset to all</button>
-                </div>
-                <div id="timeRangeTrack" style="position:relative;height:24px;margin:8px 8px 6px;cursor:pointer;" onmousedown="onTrackMouseDown(event)" ontouchstart="onTrackMouseDown(event)">
-                    <div style="position:absolute;top:10px;left:0;right:0;height:4px;background:#f0ede6;border-radius:2px;"></div>
-                    <div id="timeRangeFill" style="position:absolute;top:10px;height:4px;background:#1e3a8a;border-radius:2px;"></div>
-                    <div id="timeRangeThumbA" class="time-thumb" style="position:absolute;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #1e3a8a;box-shadow:0 1px 4px rgba(15,23,42,.2);cursor:grab;transform:translateX(-9px);z-index:2;" onmousedown="startThumbDrag(event,'a')" ontouchstart="startThumbDrag(event,'a')"></div>
-                    <div id="timeRangeThumbB" class="time-thumb" style="position:absolute;top:3px;width:18px;height:18px;border-radius:50%;background:#fff;border:2px solid #1e3a8a;box-shadow:0 1px 4px rgba(15,23,42,.2);cursor:grab;transform:translateX(-9px);z-index:2;" onmousedown="startThumbDrag(event,'b')" ontouchstart="startThumbDrag(event,'b')"></div>
-                </div>
-                <div id="timeRangeTicks" style="display:flex;justify-content:space-between;margin:0 8px;"></div>
-                <div style="margin-top:14px;padding-top:10px;border-top:1px solid #f0ede6;display:flex;align-items:center;justify-content:space-between;">
-                    <span style="font:500 11px 'Geist Mono',monospace;color:#94a3b8;" id="timeRangeLabel">All periods selected</span>
-                    <button onclick="applyTimeRange();toggleTimeRangePicker()" style="border:0;background:#1e3a8a;color:#fff;font:600 12px 'Geist',sans-serif;padding:6px 14px;border-radius:8px;cursor:pointer;">Apply</button>
-                </div>
-            </div>
-        </div>
-        <select id="timeSelect" style="display:none;" onchange="onTimeSelectChange(this.value)"></select>
         <button class="marker-chip active" id="chip-manhole" onclick="toggleMarkerChip('manhole')">
             <span class="chip-dot" style="background:#1e3a8a;"></span>Sampling Sites
         </button>
@@ -5815,8 +5781,12 @@
         const SPECIES_EXCLUDE = new Set([
             // Non-food plants
             'Bearded iris', 'Chinese hibiscus', 'Tiger lily', 'Wild pansy',
-            'Shameplant', 'Southern magnolia', 'Yulan magnolia', 'Water lily',
+            'Shameplant', 'Southern magnolia', 'Yulan magnolia', 'Magnolia', 'Water lily',
             'Honeysuckle', 'Kratom', 'Opium poppy', 'Hemp', 'Oak', 'Pine',
+            'Snapdragon', 'Common daisy', 'French marigold', 'Hollyhock', 'Stock flower',
+            'Crepe myrtle', 'Flowering plants (class)', 'Cocklebur', 'Coral tree', 'Sausage tree', 'White leadtree',
+            'Skunkvine', 'Rattlepod', 'Fish poison tree', 'African dayflower',
+            'Mentha sp. Edwards 177', 'Indian pokeweed',
             // Pets & ornamental fish
             'Cat', 'Dog', 'Siamese fighting fish', 'Southern platyfish',
             // Wild animals
@@ -5827,10 +5797,10 @@
             // Non-food amphibians
             'American green tree frog', 'Blue Ridge two-lined salamander', 'Two-toed amphiuma',
             // Protected / toxic / non-food
-            'Chelonia mydas', 'Southern puffer', 'Human', 'Centropus sinensis',
+            'Chelonia mydas', 'Southern puffer', 'Human', 'Greater coucal',
             // Vague taxonomic groups
-            'Actinopteri', 'Mammalia', 'Aves', 'Carnivora', 'Artiodactyla',
-            'Galliformes', 'Cattle/Sheep/Goat family', 'Macropodidae', 'Phoca', 'Phocidae',
+            'Bony fish', 'Mammal', 'Bird', 'Carnivore', 'Hoofed mammal',
+            'Galliformes', 'Cattle/Sheep/Goat family', 'Kangaroo', 'Seal',
             'White-tailed deer'
         ]);
 
@@ -6569,8 +6539,7 @@
                 panel.style.display = 'block';
                 button.classList.add('active');
             } else {
-                panel.style.display = 'none';
-                button.classList.remove('active');
+                closeSpeciesPanel();
             }
         }
 
@@ -7808,10 +7777,7 @@
 
                 let hasData = false;
                 if (currentTimeIndex === 'all') {
-                    const datesToCheck = currentTimeRangeFilter
-                        ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
-                        : foodseqData.dates;
-                    hasData = datesToCheck.some(date => {
+                    hasData = foodseqData.dates.some(date => {
                         const td = plant.timeseries[date];
                         if (!td) return false;
                         const pv = Object.values(td.plants || {});
@@ -8373,6 +8339,91 @@
                         'Clitoria ternatea': 'Butterfly pea',
                         'Byrsonima crassifolia': 'Nance fruit',
                         'Alocasia': 'Taro',
+                        // Additional animal Latin names
+                        'Alligator mississippiensis': 'American alligator',
+                        'Ameiurus': 'Catfish',
+                        'Ameiurus catus': 'White catfish',
+                        'Ameiurus natalis': 'Yellow bullhead',
+                        'Anatidae': 'Duck family',
+                        'Balistes capriscus': 'Gray triggerfish',
+                        'Carangidae': 'Jack family',
+                        'Centropristis striata': 'Black sea bass',
+                        'Centropus sinensis': 'Greater coucal',
+                        'Cephalopholis cruentata': 'Graysby grouper',
+                        'Clupeichthys aesarnensis': 'Thai river sprat',
+                        'Cyprinidae': 'Carp family',
+                        'Cynoscion arenarius': 'Sand seatrout',
+                        'Cynoscion striatus': 'Striped weakfish',
+                        'Diplodus': 'Sea bream',
+                        'Dromaius novaehollandiae': 'Emu',
+                        'Fundulus majalis': 'Striped killifish',
+                        'Glyptocephalus': 'Witch flounder',
+                        'Hyporthodus': 'Grouper',
+                        'Ictaluridae': 'Catfish family',
+                        'Ictalurus': 'Catfish',
+                        'Ictiobus': 'Buffalo fish',
+                        'Lepomis auritus': 'Redbreast sunfish',
+                        'Lepomis cyanellus': 'Green sunfish',
+                        'Leuciscidae': 'Minnow family',
+                        'Lutjanus sanguineus': 'Blood snapper',
+                        'Micropogonias undulatus': 'Atlantic croaker',
+                        'Minytrema melanops': 'Spotted sucker',
+                        'Moxostoma macrolepidotum': 'Shorthead redhorse',
+                        'Nematalosa japonica': 'Japanese gizzard shad',
+                        'Pagrus pagrus': 'Red porgy',
+                        'Pangasiidae': 'Pangasius family',
+                        'Pangasius': 'Pangasius',
+                        'Paralichthys olivaceus': 'Olive flounder',
+                        'Peprilus': 'Butterfish',
+                        'Pleuronectidae': 'Flounder family',
+                        'Semotilus atromaculatus': 'Creek chub',
+                        'Sparidae': 'Sea bream family',
+                        'Sparus aurata': 'Gilt-head bream',
+                        'Stenotomus chrysops': 'Scup',
+                        'Sylvilagus floridanus': 'Eastern cottontail',
+                        'Sylvilagus palustris': 'Marsh rabbit',
+                        'Lepisosteus osseus': 'Longnose gar',
+                        'Pseudoscaphirhynchus kaufmanni': 'Amu Darya sturgeon',
+                        'Pomatomus saltatrix': 'Bluefish',
+                        // Additional plant Latin names (remaining)
+                        'Lepidium': 'Pepperweed',
+                        'Raphanus': 'Radish',
+                        'Barbarea': 'Wintercress',
+                        'Lupinus': 'Lupine',
+                        'Lupinus albus': 'White lupine',
+                        'Melilotus': 'Sweet clover',
+                        'Digitaria': 'Crabgrass',
+                        'Eleusine': 'Finger millet',
+                        'Rubus occidentalis': 'Black raspberry',
+                        'Phytolacca acinosa': 'Indian pokeweed',
+                        'Urtica dioica': 'Stinging nettle',
+                        'Pandanus': 'Pandan',
+                        'Curcuma': 'Turmeric',
+                        'Hedychium coronarium': 'White ginger lily',
+                        'Xanthium strumarium': 'Cocklebur',
+                        'Antirrhinum majus': 'Snapdragon',
+                        'Bellis perennis': 'Common daisy',
+                        'Tagetes patula': 'French marigold',
+                        'Erythrina variegata': 'Coral tree',
+                        'Lepisanthes alata': 'Johore fruit',
+                        'Barringtonia': 'Fish poison tree',
+                        'Alcea rosea': 'Hollyhock',
+                        'Arbutus unedo': 'Strawberry tree',
+                        'Asimina triloba': 'Pawpaw',
+                        'Paederia foetida': 'Skunkvine',
+                        'Gynandropsis gynandra': 'Spider plant',
+                        'Crotalaria brevidens': 'Rattlepod',
+                        'Leucaena leucocephala': 'White leadtree',
+                        'Matthiola incana': 'Stock flower',
+                        'Bixa orellana': 'Annatto',
+                        'Dioscorea trifida': 'Cush-cush yam',
+                        'Commelina africana': 'African dayflower',
+                        'Kigelia africana': 'Sausage tree',
+                        'Selenicereus undatus': 'Dragon fruit',
+                        'Centropomus nigrescens': 'Black snook',
+                        'Hypophthalmichthys molitrix': 'Silver carp',
+                        'Perca flavescens': 'Yellow perch',
+                        'Eutrema japonicum': 'Wasabi',
                     };
                     const MERGE_NAMES = {}; // kept for compatibility
                     Object.entries(sm).forEach(([id, meta]) => {
@@ -8380,6 +8431,7 @@
                             meta.common_name = RENAME_LATIN[meta.common_name];
                         }
                     });
+
 
                     // 3. Mark NA_ species and excluded species as hidden
                     Object.entries(sm).forEach(([id, meta]) => {
@@ -8390,7 +8442,7 @@
 
                     // 4. Reclassify fish from 'meat' to 'seafood'
                     // The data has most fish under food_group='meat' — fix by whitelist of true land animals
-                    const LAND_ANIMALS = new Set(['chicken','cow','pig','sheep','turkey','duck','goose','goat','deer','elk','bison','buffalo','horse','rabbit','dog','cat','rat','mouse','bear','raccoon','opossum','human','guinea pig','emu','quail','pigeon','dove','pheasant','frog','bullfrog','alligator','turtle','snake','lizard','iguana','kangaroo','seal','whale','dolphin','water buffalo','cottontail rabbit','greylag goose','muscovy duck','japanese quail','crested pigeon','guinea fowl','helmeted guineafowl','greater cane rat','muskrat','virginia opossum','elk','horse','carnivore','mammal','bird','hoofed mammal','bony fish','cattle/sheep/goat family','brown rat','black rat','house mouse','sri lankan junglefowl']);
+                    const LAND_ANIMALS = new Set(['chicken','cow','pig','sheep','turkey','duck','goose','goat','deer','elk','bison','buffalo','horse','rabbit','dog','cat','rat','mouse','bear','raccoon','opossum','human','guinea pig','emu','quail','pigeon','dove','pheasant','frog','bullfrog','alligator','turtle','snake','lizard','iguana','kangaroo','seal','whale','dolphin','water buffalo','cottontail rabbit','greylag goose','muscovy duck','japanese quail','crested pigeon','guinea fowl','helmeted guineafowl','greater cane rat','muskrat','virginia opossum','elk','horse','carnivore','mammal','bird','hoofed mammal','bony fish','cattle/sheep/goat family','brown rat','black rat','house mouse','sri lankan junglefowl','american alligator','duck family','greater coucal','eastern cottontail','marsh rabbit','amu darya sturgeon']);
                     Object.entries(sm).forEach(([id, meta]) => {
                         if (meta.food_group === 'meat') {
                             const cn = (meta.common_name || '').toLowerCase();
@@ -8427,9 +8479,9 @@
                         'Sorrel/Dock': 'vegetable',
                         'Rumex': 'vegetable',
                         'Pepperweed': 'vegetable',
-                        'Raphanus': 'vegetable',
-                        'Barbarea': 'vegetable',
-                        'Lepidium': 'vegetable',
+                        'Wintercress': 'vegetable',
+                        'Radish': 'vegetable',
+                        'Pepperweed': 'vegetable',
                         'Artichoke/Cardoon': 'vegetable',
                         'Asparagus': 'vegetable',
                         'Spider plant': 'vegetable',
@@ -8500,7 +8552,7 @@
                         'Nutmeg': 'herb_spice',
                         'Fenugreek': 'herb_spice',
                         'Trigonella foenum-graecum': 'herb_spice',
-                        'Curcuma': 'herb_spice',
+                        'Turmeric': 'herb_spice',
                         'Pandan': 'herb_spice',
                         'Pandanus': 'herb_spice',
                         'Moringa': 'herb_spice',
@@ -8545,15 +8597,15 @@
                         'Clover': 'legume',
                         'Horse gram': 'legume',
                         'Hog peanut': 'legume',
-                        'Lupinus': 'legume',
-                        'Lupinus albus': 'legume',
+                        'Lupine': 'legume',
+                        'White lupine': 'legume',
                         // Grains
                         'Pearl millet': 'grain',
                         'Grass family': 'grain',
                         'Buckwheat': 'grain',
                         'Fagopyrum esculentum': 'grain',
-                        'Eleusine': 'grain',
-                        'Digitaria': 'grain',
+                        'Crabgrass': 'grain',
+                        'Finger millet': 'grain',
                         // Additional reclassifications for renamed species
                         'Papaya': 'fruit',
                         'Dragon fruit': 'fruit',
@@ -8567,6 +8619,7 @@
                         'Jute mallow': 'vegetable',
                         'Mallow/Hibiscus family': 'vegetable',
                         'Water lily family': 'vegetable',
+                        'Black raspberry': 'fruit',
                         'Buckthorn family': 'fruit',
                         'Mulberry family': 'fruit',
                         'Myrtle/Guava family': 'fruit',
@@ -12191,9 +12244,7 @@
                 const siteTotal = allSpecies.reduce((s, [, v]) => s + v, 0) || 1;
 
                 // Compute per-species relative abundance at each site in the comparison pool
-                const compDates = currentTimeRangeFilter
-                    ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
-                    : (currentTimeIndex === 'all' ? foodseqData.dates : [foodseqData.dates[currentTimeIndex]].filter(Boolean));
+                const compDates = currentTimeIndex === 'all' ? foodseqData.dates : [foodseqData.dates[currentTimeIndex]].filter(Boolean);
 
                 // For each species detected here, gather its relative abundance across all sites
                 const standouts = [];
@@ -13780,227 +13831,15 @@
             updatePanelChart(panelInfo);
         }
 
-        let timeRangeStart = 0;
-        let timeRangeEnd = 0;
-        let timeRangeN = 1; // total number of periods
-        let draggingThumb = null; // 'a' or 'b'
-
-        function initTimeline() {
-            const select = document.getElementById('timeSelect');
-            if (!select) return;
-
-            const allOption = document.createElement('option');
-            allOption.value = 'all';
-            allOption.textContent = 'All Times';
-            select.appendChild(allOption);
-
-            foodseqData.dates.forEach((date, index) => {
-                const periodInfo = foodseqData.time_periods[date];
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = periodInfo.label;
-                select.appendChild(option);
-            });
-
-            if (currentTimeIndex === 'all') select.value = 'all';
-
-            timeRangeN = foodseqData.dates.length;
-            timeRangeStart = 0;
-            timeRangeEnd = timeRangeN - 1;
-            renderTimelineTicks();
-            updateTimelineUI();
-        }
-
-        function toggleTimeRangePicker() {
-            const picker = document.getElementById('timeRangePicker');
-            picker.style.display = picker.style.display === 'none' ? '' : 'none';
-        }
-
-        function renderTimelineTicks() {
-            const ticks = document.getElementById('timeRangeTicks');
-            if (!ticks || !foodseqData) return;
-            // Show first, last, and a few in between
-            const n = foodseqData.dates.length;
-            const step = Math.max(1, Math.floor(n / 5));
-            let html = '';
-            for (let i = 0; i < n; i += step) {
-                const info = foodseqData.time_periods[foodseqData.dates[i]];
-                const label = info ? info.label.replace(/\s\d{4}$/, "''" + info.label.slice(-2)) : '';
-                const shortLabel = info ? info.label.split(' ')[0].slice(0, 3) + " '" + info.label.slice(-2) : '';
-                html += `<span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;white-space:nowrap;">${shortLabel}</span>`;
-            }
-            // Always show last
-            const lastInfo = foodseqData.time_periods[foodseqData.dates[n - 1]];
-            if (n % step !== 1) {
-                const shortLast = lastInfo ? lastInfo.label.split(' ')[0].slice(0, 3) + " '" + lastInfo.label.slice(-2) : '';
-                html += `<span style="font:500 9px 'Geist Mono',monospace;color:#94a3b8;white-space:nowrap;">${shortLast}</span>`;
-            }
-            ticks.innerHTML = html;
-        }
-
-        function getTrackWidth() {
-            const track = document.getElementById('timeRangeTrack');
-            return track ? track.offsetWidth : 300;
-        }
-
-        function indexToX(i) {
-            const max = Math.max(1, timeRangeN - 1);
-            return (i / max) * getTrackWidth();
-        }
-
-        function xToIndex(x) {
-            const max = Math.max(1, timeRangeN - 1);
-            const w = getTrackWidth();
-            return Math.round(Math.max(0, Math.min(max, (x / w) * max)));
-        }
-
-        function updateTimelineUI() {
-            const thumbA = document.getElementById('timeRangeThumbA');
-            const thumbB = document.getElementById('timeRangeThumbB');
-            const fill = document.getElementById('timeRangeFill');
-            if (!thumbA || !thumbB || !fill) return;
-
-            const xA = indexToX(timeRangeStart);
-            const xB = indexToX(timeRangeEnd);
-            thumbA.style.left = xA + 'px';
-            thumbB.style.left = xB + 'px';
-            fill.style.left = Math.min(xA, xB) + 'px';
-            fill.style.width = Math.abs(xB - xA) + 'px';
-
-            // Update label
-            const label = document.getElementById('timeRangeLabel');
-            const isAll = timeRangeStart === 0 && timeRangeEnd === timeRangeN - 1;
-            if (isAll) {
-                label.textContent = 'All periods';
-            } else if (timeRangeStart === timeRangeEnd) {
-                const info = foodseqData.time_periods[foodseqData.dates[timeRangeStart]];
-                label.textContent = info ? info.label : 'Single period';
-            } else {
-                const n = timeRangeEnd - timeRangeStart + 1;
-                label.textContent = n + ' period' + (n !== 1 ? 's' : '');
-            }
-
-            // Update button text
-            const btn = document.getElementById('timeRangeBtn');
-            if (isAll) {
-                btn.childNodes[0].textContent = 'All Times';
-            } else if (timeRangeStart === timeRangeEnd) {
-                const info = foodseqData.time_periods[foodseqData.dates[timeRangeStart]];
-                btn.childNodes[0].textContent = info ? info.label : '';
-            } else {
-                const sInfo = foodseqData.time_periods[foodseqData.dates[timeRangeStart]];
-                const eInfo = foodseqData.time_periods[foodseqData.dates[timeRangeEnd]];
-                const sLabel = sInfo ? sInfo.label.split(' ')[0] : '';
-                const eLabel = eInfo ? eInfo.label : '';
-                btn.childNodes[0].textContent = sLabel + ' – ' + eLabel;
-            }
-        }
-
-        function startThumbDrag(e, which) {
-            e.preventDefault();
-            e.stopPropagation();
-            draggingThumb = which;
-            document.addEventListener('mousemove', onThumbDrag);
-            document.addEventListener('mouseup', stopThumbDrag);
-            document.addEventListener('touchmove', onThumbDragTouch, { passive: false });
-            document.addEventListener('touchend', stopThumbDragTouch);
-        }
-
-        function onThumbDrag(e) {
-            if (!draggingThumb) return;
-            const track = document.getElementById('timeRangeTrack');
-            const rect = track.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const idx = xToIndex(x);
-            if (draggingThumb === 'a') {
-                timeRangeStart = Math.min(idx, timeRangeEnd);
-            } else {
-                timeRangeEnd = Math.max(idx, timeRangeStart);
-            }
-            updateTimelineUI();
-        }
-
-        function stopThumbDrag() {
-            draggingThumb = null;
-            document.removeEventListener('mousemove', onThumbDrag);
-            document.removeEventListener('mouseup', stopThumbDrag);
-            document.removeEventListener('touchmove', onThumbDragTouch);
-            document.removeEventListener('touchend', stopThumbDragTouch);
-        }
-
-        function onThumbDragTouch(e) {
-            e.preventDefault();
-            const touch = e.touches[0];
-            onThumbDrag({ clientX: touch.clientX, clientY: touch.clientY });
-        }
-        function stopThumbDragTouch() {
-            document.removeEventListener('touchmove', onThumbDragTouch);
-            document.removeEventListener('touchend', stopThumbDragTouch);
-            stopThumbDrag();
-        }
-
-        function onTrackMouseDown(e) {
-            if (e.target.classList.contains('time-thumb')) return;
-            const track = document.getElementById('timeRangeTrack');
-            const rect = track.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const idx = xToIndex(x);
-            // Move whichever thumb is closer
-            const distA = Math.abs(idx - timeRangeStart);
-            const distB = Math.abs(idx - timeRangeEnd);
-            if (distA <= distB) {
-                timeRangeStart = Math.min(idx, timeRangeEnd);
-                draggingThumb = 'a';
-            } else {
-                timeRangeEnd = Math.max(idx, timeRangeStart);
-                draggingThumb = 'b';
-            }
-            updateTimelineUI();
-            document.addEventListener('mousemove', onThumbDrag);
-            document.addEventListener('mouseup', stopThumbDrag);
-        }
-
-        function setTimeRange() {
-            timeRangeStart = 0;
-            timeRangeEnd = timeRangeN - 1;
-            updateTimelineUI();
-            applyTimeRange();
-        }
-
-        function applyTimeRange() {
-            const isAll = timeRangeStart === 0 && timeRangeEnd === timeRangeN - 1;
-            if (isAll) {
-                currentTimeRangeFilter = null;
-                onTimeSelectChange('all');
-            } else if (timeRangeStart === timeRangeEnd) {
-                currentTimeRangeFilter = null;
-                onTimeSelectChange(String(timeRangeStart));
-            } else {
-                // Range mode — set a filter so visibility/aggregation respects the range
-                currentTimeRangeFilter = { start: timeRangeStart, end: timeRangeEnd };
-                onTimeSelectChange('range');
-            }
-        }
-        let currentTimeRangeFilter = null; // { start, end } indices into foodseqData.dates
-
-        // Close picker on outside click
-        document.addEventListener('click', function(e) {
-            const picker = document.getElementById('timeRangePicker');
-            const btn = document.getElementById('timeRangeBtn');
-            if (picker && picker.style.display !== 'none' && !picker.contains(e.target) && e.target !== btn && !btn.contains(e.target)) {
-                picker.style.display = 'none';
-            }
-        });
+        // Time range filter removed — all data always shown
+        function initTimeline() { /* no-op — time range filter removed */ }
 
         // Aggregate species data across all time periods for a plant
         function aggregateAllTimes(plant) {
             const plants = {};
             const animals = {};
 
-            // Respect range filter if set
-            const dates = currentTimeRangeFilter
-                ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
-                : foodseqData.dates;
+            const dates = foodseqData.dates;
 
             dates.forEach(date => {
                 const td = plant.timeseries[date];
@@ -14028,12 +13867,7 @@
         }
 
         function onTimeSelectChange(value) {
-            if (value === 'range') {
-                currentTimeIndex = 'all'; // aggregation uses all, but filtering uses range
-            } else {
-                currentTimeIndex = value === 'all' ? 'all' : parseInt(value);
-                currentTimeRangeFilter = null;
-            }
+            currentTimeIndex = value === 'all' ? 'all' : parseInt(value);
             updateAllPanels();
             updatePlantMarkerVisibility();
             updateTractStyles();
@@ -14092,10 +13926,7 @@
 
                 let hasData = false;
                 if (currentTimeIndex === 'all') {
-                    // Filter dates to range if set
-                    const datesToCheck = currentTimeRangeFilter
-                        ? foodseqData.dates.filter((d, i) => i >= currentTimeRangeFilter.start && i <= currentTimeRangeFilter.end)
-                        : foodseqData.dates;
+                    const datesToCheck = foodseqData.dates;
                     hasData = datesToCheck.some(date => {
                         const td = plant.timeseries[date];
                         if (!td) return false;
@@ -15971,6 +15802,16 @@
                 if (!group) return;
                 landingFoodGroups[group].count++;
                 landingFoodGroups[group].foods.push({ name: meta.common_name, val });
+            });
+            // Deduplicate pills by name within each group (Latin key + common-name key can both exist)
+            Object.values(landingFoodGroups).forEach(g => {
+                const seen = new Set();
+                const deduped = [];
+                g.foods.forEach(f => {
+                    if (!seen.has(f.name)) { seen.add(f.name); deduped.push(f); }
+                });
+                g.foods = deduped;
+                g.count = deduped.length;
             });
             // Sort foods within each group by abundance
             Object.values(landingFoodGroups).forEach(g => g.foods.sort((a, b) => b.val - a.val));
