@@ -24,7 +24,7 @@ const BASE_PRICES = {
   "Lettuce": { price: 2.49, unit: "each", product: "Romaine lettuce hearts" },
   "Salmon": { price: 9.99, unit: "per lb", product: "Atlantic salmon fillet" },
   "Pig (Pork)": { price: 4.29, unit: "per lb", product: "Pork chops, bone-in" },
-  "Cattle (Beef)": { price: 5.49, unit: "per lb", product: "Ground beef, 80/20" },
+  "Cow": { price: 5.49, unit: "per lb", product: "Ground beef, 80/20" },
   "Sesamum": { price: 0.35, unit: "per oz", product: "Sesame seeds" },
   "Vaccinium": { price: 3.99, unit: "per pint", product: "Blueberries, fresh" },
   "Oat": { price: 1.49, unit: "per lb", product: "Rolled oats" },
