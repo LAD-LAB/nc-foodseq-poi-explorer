@@ -5250,7 +5250,6 @@
             </div>
 
             <div class="trends-desktop-only" style="text-align:center;padding:24px 0 0;font-size:13px;color:#64748b;">
-                Want the raw numbers? <a href="data/foodseq_data.json" download="foodseq_data.json" style="color:#1e3a8a;font-weight:600;text-decoration:none;border-bottom:1px solid #1e3a8a40;">Download the dataset</a> <span style="color:#94a3b8;">(JSON, 1.2 MB) — last updated Feb 2026</span>
             </div>
         </div>
         </div><!-- end scroll wrapper -->
@@ -11424,6 +11423,11 @@
                     }
                 }
             }
+
+            // Normalize to per-month averages so values match the hero KPIs
+            const nMonths = dates.length || 1;
+            Object.keys(siteTotals).forEach(k => { siteTotals[k] /= nMonths; });
+            currentTotal /= nMonths;
 
             const allValues = Object.values(siteTotals).filter(v => v > 0);
             const sortedTotals = allValues.slice().sort((a, b) => b - a);
