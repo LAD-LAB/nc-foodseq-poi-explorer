@@ -11829,7 +11829,7 @@
                                     total += (td.plants && td.plants[food.id]) || (td.animals && td.animals[food.id]) || 0;
                                 });
                             });
-                            if (total > 0) groupVals.push(total);
+                            if (total > 0) groupVals.push(total / dates.length);
                         });
                     }
                     if (groupVals.length > 1) {
