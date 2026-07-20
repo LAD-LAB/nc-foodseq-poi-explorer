@@ -8129,6 +8129,24 @@
 
                 foodseqData = await foodseqResponse.json();
 
+                // --- Normalize abundances to 500 per sample (plants and animals independently) ---
+                {
+                    const TARGET_SUM = 500;
+                    Object.values(foodseqData.plants).forEach(plant => {
+                        Object.values(plant.timeseries || {}).forEach(td => {
+                            ['plants', 'animals'].forEach(type => {
+                                const sp = td[type];
+                                if (!sp) return;
+                                const total = Object.values(sp).reduce((s, v) => s + v, 0);
+                                if (total <= 0) return;
+                                const scale = TARGET_SUM / total;
+                                Object.keys(sp).forEach(k => { sp[k] = Math.round(sp[k] * scale * 10000) / 10000; });
+                            });
+                        });
+                    });
+                    console.log('Normalized all samples to target sum', TARGET_SUM);
+                }
+
                 // --- Runtime species-name fixes (merge, rename, hide NA_) ---
                 {
                     const sm = foodseqData.species_metadata;
