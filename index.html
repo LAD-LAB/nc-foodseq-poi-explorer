@@ -1999,6 +1999,9 @@
         .poi-icon-bar { background: #7c3aed; color: #fff; }
         .poi-icon-brewery { background: #a16207; color: #fff; }
         .poi-icon-community_fridge { background: #e74694; color: #fff; }
+        .poi-icon-food_pantry { background: #d946a8; color: #fff; }
+        .poi-icon-kids_meals { background: #f59e0b; color: #fff; }
+        .poi-icon-community_garden { background: #16a34a; color: #fff; }
 
         /* Census Tract Labels */
         .tract-label {
@@ -2043,6 +2046,9 @@
         .poi-cluster-gym { background: #ea580c; }
         .poi-cluster-bar { background: #7c3aed; }
         .poi-cluster-brewery { background: #a16207; }
+        .poi-cluster-food_pantry { background: #d946a8; }
+        .poi-cluster-kids_meals { background: #f59e0b; }
+        .poi-cluster-community_garden { background: #16a34a; }
 
         /* POI Popup */
         .poi-popup {
@@ -5590,14 +5596,15 @@
                     <label class="poi-toggle"><input type="checkbox" id="poi-community_fridge" onchange="togglePOILayer('community_fridge')"><span>Community Fridges</span><span class="poi-count" id="count-community_fridge">3</span></label>
                 </div>
                 <div class="poi-category-group">
+                    <div class="poi-category-header">Community Health</div>
+                    <label class="poi-toggle"><input type="checkbox" id="poi-food_pantry" onchange="togglePOILayer('food_pantry')"><span>Food Pantries</span><span class="poi-count" id="count-food_pantry">0</span></label>
+                    <label class="poi-toggle"><input type="checkbox" id="poi-kids_meals" onchange="togglePOILayer('kids_meals')"><span>No-Cost Kids Meals</span><span class="poi-count" id="count-kids_meals">0</span></label>
+                    <label class="poi-toggle"><input type="checkbox" id="poi-community_garden" onchange="togglePOILayer('community_garden')"><span>Community Gardens</span><span class="poi-count" id="count-community_garden">0</span></label>
+                </div>
+                <div class="poi-category-group">
                     <div class="poi-category-header">Restaurants</div>
                     <label class="poi-toggle"><input type="checkbox" id="poi-restaurant" onchange="togglePOILayer('restaurant')"><span>Restaurants</span><span class="poi-count" id="count-restaurant">0</span></label>
                     <label class="poi-toggle"><input type="checkbox" id="poi-fast_food" onchange="togglePOILayer('fast_food')"><span>Fast Food</span><span class="poi-count" id="count-fast_food">0</span></label>
-                </div>
-                <div class="poi-category-group">
-                    <div class="poi-category-header">Drinks</div>
-                    <label class="poi-toggle"><input type="checkbox" id="poi-bar" onchange="togglePOILayer('bar')"><span>Bars</span><span class="poi-count" id="count-bar">0</span></label>
-                    <label class="poi-toggle"><input type="checkbox" id="poi-brewery" onchange="togglePOILayer('brewery')"><span>Breweries</span><span class="poi-count" id="count-brewery">0</span></label>
                 </div>
                 <div class="poi-category-group">
                     <div class="poi-category-header">Specialty Food</div>
@@ -5605,12 +5612,6 @@
                     <label class="poi-toggle"><input type="checkbox" id="poi-butcher" onchange="togglePOILayer('butcher')"><span>Butcher</span><span class="poi-count" id="count-butcher">0</span></label>
                     <label class="poi-toggle"><input type="checkbox" id="poi-bakery" onchange="togglePOILayer('bakery')"><span>Bakery</span><span class="poi-count" id="count-bakery">0</span></label>
                     <label class="poi-toggle"><input type="checkbox" id="poi-greengrocer" onchange="togglePOILayer('greengrocer')"><span>Produce</span><span class="poi-count" id="count-greengrocer">0</span></label>
-                </div>
-                <div class="poi-category-group">
-                    <div class="poi-category-header">Infrastructure</div>
-                    <label class="poi-toggle"><input type="checkbox" id="poi-university" onchange="togglePOILayer('university')"><span>Universities</span><span class="poi-count" id="count-university">0</span></label>
-                    <label class="poi-toggle"><input type="checkbox" id="poi-ev_charging" onchange="togglePOILayer('ev_charging')"><span>EV Charging</span><span class="poi-count" id="count-ev_charging">0</span></label>
-                    <label class="poi-toggle"><input type="checkbox" id="poi-gym" onchange="togglePOILayer('gym')"><span>Gyms</span><span class="poi-count" id="count-gym">0</span></label>
                 </div>
                 <div class="poi-controls-footer">
                     <button onclick="toggleAllPOIs(true)">Show All</button>
@@ -6016,6 +6017,24 @@
                 html: poiSvg('<rect x="4" y="2" width="8" height="12" rx="1.5"/><line x1="4" y1="8" x2="12" y2="8"/><circle cx="10" cy="5" r=".8"/><circle cx="10" cy="11" r=".8"/>'),
                 iconSize: [22, 22],
                 iconAnchor: [11, 11]
+            }),
+            food_pantry: L.divIcon({
+                className: 'poi-icon poi-icon-food_pantry',
+                html: poiSvg('<path d="M4 2h8l1 5H3l1-5zM3 7h10v1H3zM5 8v5a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1V8"/><path d="M8 8v4"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
+            }),
+            kids_meals: L.divIcon({
+                className: 'poi-icon poi-icon-kids_meals',
+                html: poiSvg('<circle cx="8" cy="4" r="2.5"/><path d="M4 14c0-3 1.8-5 4-5s4 2 4 5"/><path d="M6 9.5L5 7M10 9.5L11 7"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
+            }),
+            community_garden: L.divIcon({
+                className: 'poi-icon poi-icon-community_garden',
+                html: poiSvg('<path d="M8 14V8M8 8C6 6 4 6 3 7M8 8C10 6 12 6 13 7M8 8C7 5 5 4 4 4M8 8C9 5 11 4 12 4M5 14h6"/><circle cx="8" cy="3" r="1.2"/>'),
+                iconSize: [22, 22],
+                iconAnchor: [11, 11]
             })
         };
 
@@ -6057,6 +6076,121 @@
                 { name: "St. Joseph's Episcopal Church Community Fridge", lat: 35.9924, lon: -78.9156, type: 'community_fridge', address: '1902 W. Main St, Durham, NC 27705', bus: 'Route 11 (Stop at Broad/Main)' },
                 { name: "Braggtown Baptist Church Community Fridge", lat: 36.0401, lon: -78.8816, type: 'community_fridge', address: '3218 N. Roxboro St, Durham, NC 27704', bus: 'Route 4 (Stop at Roxboro/Channing)' },
                 { name: "The Scrap Exchange (Lakewood) Community Fridge", lat: 35.9747, lon: -78.9243, type: 'community_fridge', address: '2050 Chapel Hill Rd, Durham, NC 27707', bus: 'Route 10 (Stop at Chapel Hill/Palmer)' },
+            ];
+
+            // Add Durham Food Pantries (endhungerdurham.org/food-pantries/)
+            poiData.categories.food_pantry = [
+                { name: "Agape Christian Church (Hot Meals)", lat: 35.9899, lon: -78.9183, type: 'food_pantry', address: '1112 Fairview Street, Durham, NC 27707', schedule: '4th Saturday, 11am-2pm', services: 'Hot meals' },
+                { name: "Antioch Baptist Church", lat: 35.9947, lon: -78.8755, type: 'food_pantry', address: '1415 Holloway St., Durham, NC 27703', phone: '919-688-8893', schedule: 'Thursday, 9am-12pm', services: 'Fresh Food' },
+                { name: "Believers United For Progress", lat: 35.9829, lon: -78.8999, type: 'food_pantry', address: '1306 Fayetteville St., Durham, NC 27707', phone: '919-381-8519', schedule: '1st Wednesday & every Tuesday, 10am', services: 'Fresh Food, Spanish-speaking staff' },
+                { name: "Bell Yeager Free Will Baptist", lat: 35.9634, lon: -78.9178, type: 'food_pantry', address: '128 E. Cornwallis Rd., Durham, NC 27707', phone: '919-489-3963', schedule: 'Wednesday, 10am-12pm', services: 'Drive-thru' },
+                { name: "Calvary Baptist Church", lat: 35.9699, lon: -78.8494, type: 'food_pantry', address: '1204 Lynn Rd., Durham, NC 27703', phone: '919-596-2592', schedule: '4th Thursday, 9am (call for appointment)', services: 'Hygiene supplies, Drive-thru' },
+                { name: "Christian Assembly", lat: 36.0922, lon: -78.9102, type: 'food_pantry', address: '5516 N. Roxboro St., Durham, NC 27712', phone: '919-471-0220', schedule: '2nd & 4th Thursday, 4pm-5pm', services: 'Drive-thru, Spanish-speaking staff' },
+                { name: "Church of Philadelphia", lat: 35.9954, lon: -78.9203, type: 'food_pantry', address: '1309 Jackson St., Durham, NC 27701', phone: '919-286-5680', schedule: 'Tue/Wed/Thu, 10am-11:30am', services: 'Fresh Food' },
+                { name: "Church of the Apostolic Revival", lat: 35.9861, lon: -78.8880, type: 'food_pantry', address: '1207 Angier Ave., Durham, NC 27701', schedule: 'Friday, 10am-11:30am', services: 'Hygiene supplies, Diapers' },
+                { name: "Community Health Coalition", lat: 36.0393, lon: -78.9033, type: 'food_pantry', address: '308 Crutchfield Street, Durham, NC 27704', phone: '919-470-8686', schedule: '3rd Thursday, 1pm-3pm', services: 'Fresh Food, Spanish-speaking staff' },
+                { name: "Divine Grace Fellowship", lat: 36.0275, lon: -78.8690, type: 'food_pantry', address: '1500 E Club Blvd. Bldg 100-A, Durham, NC 27704', phone: '919-638-2227', schedule: 'Wednesday, 9am-12pm', services: 'Drive-thru' },
+                { name: "Durham Center for Senior Life (55+)", lat: 35.9994, lon: -78.8992, type: 'food_pantry', address: '406 Rigsbee Ave. Suite 202, Durham, NC 27701', phone: '919-688-8247 x104', schedule: 'Mon-Fri, 8:30am-5pm', services: 'Fresh Food, Hygiene supplies, Diapers (seniors only)' },
+                { name: "Durham Community Food Pantry (Catholic Charities)", lat: 35.9889, lon: -78.9279, type: 'food_pantry', address: '2020 Chapel Hill St. Suite 30, Durham, NC 27707', phone: '919-286-1964', schedule: 'Wed 10am-1pm & 5pm-7pm; Thu 10am-1pm', services: 'Fresh Food, Financial support' },
+                { name: "Durham Spanish SDA Church", lat: 35.9912, lon: -78.8743, type: 'food_pantry', address: '1606 Liberty St., Durham, NC 27703', phone: '919-215-1855', schedule: '2nd Tuesday, 2pm-4pm', services: 'Drive-thru, Fresh Food, Spanish-speaking staff' },
+                { name: "Elizabeth Street UMC", lat: 36.0044, lon: -78.8910, type: 'food_pantry', address: '1209 North Elizabeth Street, Durham, NC 27701', phone: '919-688-7138', schedule: '1st Monday, 2pm (drive-thru); Last Tuesday, 6pm (hot meals)', services: 'Drive-thru, Hot meals, Spanish-speaking staff' },
+                { name: "Emanuel Food Pantry", lat: 36.0219, lon: -78.8895, type: 'food_pantry', address: '2504 N. Roxboro St., Durham, NC 27704', phone: '919-526-3386', schedule: 'Wednesday, 2pm-4pm (register at 7am)', services: 'Drive-thru, Spanish-speaking staff' },
+                { name: "First Calvary Baptist Church", lat: 35.9916, lon: -78.9194, type: 'food_pantry', address: '1311 Morehead Ave., Durham, NC 27707', phone: '919-489-4184', schedule: 'Tue & Thu, 10am-12pm' },
+                { name: "Fisher Memorial United Holy Church", lat: 35.9841, lon: -78.9000, type: 'food_pantry', address: '420 E. Piedmont Ave., Durham, NC 27707', phone: '919-682-7416', schedule: 'Wednesday, 12pm-1pm' },
+                { name: "Grace Outreach Ministry", lat: 35.9910, lon: -78.8701, type: 'food_pantry', address: '612 Gary St., Durham, NC 27703', phone: '919-423-3215', schedule: 'Mon-Fri 10:30am-12pm; 3rd Sat 10am-2pm', services: 'Clothes' },
+                { name: "Greater Refuge Temple", lat: 36.0324, lon: -78.8659, type: 'food_pantry', address: '1438 Maplewood Dr., Durham, NC 27704', phone: '919-608-7525', schedule: '3rd Wednesday, 10am-12pm' },
+                { name: "Greater Walltown United Holy Church", lat: 36.0347, lon: -78.8848, type: 'food_pantry', address: '706 Belvin Avenue, Durham, NC 27704', phone: '919-220-7087', schedule: 'Wednesday, 11am-1:30pm', services: 'Fresh Food, Clothes' },
+                { name: "Greystone Baptist (Second Mile Ministries)", lat: 36.0102, lon: -78.9294, type: 'food_pantry', address: '2601 Hillsborough Rd., Durham, NC 27705', phone: '919-286-3596', schedule: 'Wednesday, 9:30am-11:30am', services: 'Financial support' },
+                { name: "Hannah's Kitchen @ Greater Orange Grove Baptist", lat: 36.0928, lon: -78.9100, type: 'food_pantry', address: '5524 N Roxboro St., Durham, NC 27712', phone: '919-358-2048', schedule: '1st Tue, 2nd & 4th Wed, 11:15am' },
+                { name: "Healing with CAARE, Inc.", lat: 36.0012, lon: -78.8987, type: 'food_pantry', address: '214 Broadway St., Durham, NC 27701', phone: '919-683-5300', schedule: 'Tue & Wed, 11am-1:30pm', services: 'Diapers' },
+                { name: "House of Mercy (Celebracion Cristiana)", lat: 35.9305, lon: -78.8922, type: 'food_pantry', address: '1305 Odyssey Drive, Durham, NC 27713', schedule: 'Wednesday, 5pm-6pm', services: 'Drive-thru, Clothes, Spanish-speaking staff' },
+                { name: "ICNA Food Relief Pantry", lat: 35.9618, lon: -78.9030, type: 'food_pantry', address: '3034 Fayetteville Street, Durham, NC 27707', schedule: '2nd Saturday, 2pm-4pm', services: 'Hygiene supplies, Spanish-speaking staff, Financial support, Drive-thru' },
+                { name: "Iglesia Buen Pastor (IFFS)", lat: 35.9899, lon: -78.8686, type: 'food_pantry', address: '1852 Liberty St., Durham, NC 27703', phone: '919-451-9394', schedule: '1st Saturday, 7am', services: 'Drive-thru' },
+                { name: "Iglesia La Semilla", lat: 36.0102, lon: -78.9181, type: 'food_pantry', address: '806 Clarendon Street, Durham, NC 27705', schedule: '2nd Tue 6pm; Last Sat 11am' },
+                { name: "Immanuel Temple SDA Church", lat: 35.9608, lon: -78.8885, type: 'food_pantry', address: '2102 S. Alston Ave, Durham, NC 27707', phone: '919-957-0032', schedule: '2nd Saturday, 12pm', services: 'Drive-thru' },
+                { name: "Jewels Feeding Friends", lat: 35.9642, lon: -78.8879, type: 'food_pantry', address: '1701 Sherman Ave., Durham, NC 27707', phone: '919-323-7931', schedule: '2nd Sat 9:30am (pantry); Hot meals every other month at Oakwood Park 12pm-2pm', services: 'Hot meals, Fresh Food' },
+                { name: "Jewish For Good", lat: 35.9790, lon: -78.9554, type: 'food_pantry', address: '1937 West Cornwallis Road, Durham, NC 27705', phone: '919-354-4922', schedule: '4th Tuesday, 1pm-3pm', services: 'Drive-thru, Financial support' },
+                { name: "LGBTQ Center of Durham Food Pantry", lat: 36.0141, lon: -78.9197, type: 'food_pantry', address: '1007 Broad Street, Durham, NC 27705', phone: '919-827-1436', schedule: '3rd Thu 3:30pm-6pm; 4th Sat 1pm-4pm' },
+                { name: "Ministerios Guerreros de Jesus Cristo", lat: 36.0135, lon: -78.8907, type: 'food_pantry', address: '1800 N Roxboro St., Durham, NC 27701', phone: '919-395-7539', schedule: 'Wednesday, 10am-12pm' },
+                { name: "Mom and Pops Giving Pantry", lat: 36.0325, lon: -78.9540, type: 'food_pantry', address: '1417 Cole Mill Rd., Durham, NC 27705', phone: '919-908-6213', schedule: 'Tue 4pm-6:30pm; 3rd Sat 10am-12pm' },
+                { name: "Mt. Bethel UMC (Fish & Loaves)", lat: 36.1670, lon: -78.8764, type: 'food_pantry', address: '1605 Bahama Rd., Bahama, NC 27503', phone: '919-477-4296', schedule: '2nd & 4th Saturday, 9:30am-11am', services: 'Fresh Food, Clothes, Hygiene supplies' },
+                { name: "Mt. Calvary United Church of Christ", lat: 35.9686, lon: -78.8909, type: 'food_pantry', address: '1715 Athens Ave., Durham, NC 27707', phone: '919-688-5066', schedule: 'Mon-Fri (call for appointment)', services: 'Fresh Food, Hygiene supplies, Financial support' },
+                { name: "Mt. Level Baptist (Two Fish, Five Loaves)", lat: 36.0587, lon: -78.8951, type: 'food_pantry', address: '316 Hebron Rd., Durham, NC 27704', phone: '919-682-6466', schedule: '2nd & 4th Thursday, 4pm-5:30pm', services: 'Fresh Food, Drive-thru' },
+                { name: "Mt. Zion Christian Church", lat: 35.9552, lon: -78.9067, type: 'food_pantry', address: '3519 Fayetteville St., Durham, NC 27707', phone: '919-688-4245', schedule: 'Tue/Wed/Thu, 12:30pm-1:30pm' },
+                { name: "NCCU Campus Pantry (Staff & Students Only)", lat: 35.9738, lon: -78.8983, type: 'food_pantry', address: 'NCCU Miller-Morgan Building Rm 208, Durham, NC', phone: '919-530-7462', schedule: 'Mon-Fri, 10am-4pm', services: 'Fresh Food, Hygiene supplies' },
+                { name: "New Home & Durham Baptist Association", lat: 36.1237, lon: -78.9424, type: 'food_pantry', address: '6611 Guess Rd., Durham, NC 27712', phone: '919-638-0959', schedule: '3rd Thu 9:30am; 4th Tue 9:30am (TEFAP)', services: 'Drive-thru' },
+                { name: "Oak Grove Free Will Baptist Church", lat: 35.9818, lon: -78.8933, type: 'food_pantry', address: '1008a Simmons St., Durham, NC 27701', phone: '919-680-2927', schedule: 'Tue 9am-12pm; Thu 9:30am-12:30pm', services: 'Clothes' },
+                { name: "Obedience to the Word Church", lat: 36.0303, lon: -78.8825, type: 'food_pantry', address: '644 Bon Air Ave, Durham, NC 27704', phone: '252-675-1150', schedule: 'Wednesday, 10am-11:30am', services: 'Fresh Food, Drive-thru' },
+                { name: "Parktown Food Hub", lat: 35.8944, lon: -78.9093, type: 'food_pantry', address: '5123 Revere Rd., Durham, NC 27713', phone: '984-484-8475', schedule: '2nd & 4th Thu 4:30pm-6pm; Mon 4:30pm-5:30pm (by appt)', services: 'Fresh Food, Drive-thru' },
+                { name: "Root Causes (Duke Clinic Patients Only)", lat: 36.0002, lon: -78.9442, type: 'food_pantry', address: 'Duke University, Durham, NC 27710', schedule: 'Saturday, 10am-2pm' },
+                { name: "Rougemont Community Food Pantry", lat: 36.2184, lon: -78.9260, type: 'food_pantry', address: '105 Red Mountain Rd., Rougemont, NC 27572', phone: '919-599-0712', schedule: '1st & 3rd Saturday, 9am-10am', services: 'Clothes' },
+                { name: "Russell Memorial CME Church", lat: 35.9798, lon: -78.8909, type: 'food_pantry', address: '703 S. Alston Ave., Durham, NC 27701', phone: '919-682-2523', schedule: 'Wed 9am-12pm; Sun breakfast 7am', services: 'Hot meals' },
+                { name: "Salvation Army", lat: 35.9931, lon: -78.8854, type: 'food_pantry', address: '909 Liberty St., Durham, NC 27701', phone: '919-688-7306 x100', schedule: 'Friday, 10am-12pm', services: 'Clothes, Financial support' },
+                { name: "Saving Grace @ United for Christ Church", lat: 35.8986, lon: -78.8945, type: 'food_pantry', address: '4823 Meadow Drive Suite 108, Durham, NC', phone: '919-908-8010', schedule: '1st Saturday, 10am-1pm', services: 'Clothes' },
+                { name: "Seed Time & Harvest Fellowship", lat: 36.0330, lon: -78.8804, type: 'food_pantry', address: '804 Berwyn Ave., Durham, NC 27704', phone: '919-220-2896', schedule: 'Thursday, 11am-12pm' },
+                { name: "Southside Church of Christ", lat: 35.9627, lon: -78.9012, type: 'food_pantry', address: '800 Elmira Ave., Durham, NC 27707', phone: '919-688-3535', schedule: 'Thu 6pm-8pm; Sat 11am-1pm', services: 'Fresh Food, Clothes, Drive-thru' },
+                { name: "St. Joseph's Episcopal Church (Breakfast)", lat: 36.0068, lon: -78.9213, type: 'food_pantry', address: '1902 West Main Street, Durham, NC 27705', phone: '919-286-1064', schedule: 'Mon-Fri 8am (hot meals); Community Fridge 24/7', services: 'Hot meals, Fresh Food' },
+                { name: "St. Mark AME Zion Church", lat: 35.9883, lon: -78.9016, type: 'food_pantry', address: '531 South Roxboro St., Durham, NC 27701', phone: '919-688-2092', schedule: '4th Saturday, 11am-12:30pm', services: 'Hot meals, Clothes' },
+                { name: "St. Joseph AME Church", lat: 35.9680, lon: -78.9000, type: 'food_pantry', address: '2521 Fayetteville St., Durham, NC 27707', phone: '919-683-1379', schedule: 'Wednesday, 2pm-3pm', services: 'Clothes' },
+                { name: "Urban Ministries", lat: 35.9935, lon: -78.8959, type: 'food_pantry', address: '410 Liberty St., Durham, NC 27701', phone: '919-682-0538', schedule: 'Mon & Wed 1pm-3pm; Tue & Thu 9:30am-11:30am; Hot meals daily', services: 'Hot meals, Fresh Food, Clothes, Hygiene supplies, Spanish-speaking staff' },
+                { name: "Walltown Neighborhood Ministries", lat: 36.0127, lon: -78.9149, type: 'food_pantry', address: '917 Onslow Street, Durham, NC 27705', phone: '919-286-0332', schedule: 'Last Thursday, 11am-1pm', services: 'Drive-thru' },
+                { name: "West End Community Mobile Pantry @ Duke UMC", lat: 35.9974, lon: -78.9096, type: 'food_pantry', address: '504 W. Chapel Hill St., Durham, NC 27701', phone: '919-201-8741', schedule: '3rd Saturday, 10am-11am' },
+                { name: "White Rock Baptist Church", lat: 35.9570, lon: -78.9055, type: 'food_pantry', address: '3400 Fayetteville St., Durham, NC 27707', phone: '919-688-8136', schedule: '2nd Saturday, 11am-1pm', services: 'Drive-thru, Financial support' },
+                { name: "Word Empowerment Church", lat: 36.0275, lon: -78.9098, type: 'food_pantry', address: '2403 Lednum St., Durham, NC 27705', phone: '919-698-3360', schedule: '2nd Friday, 9am-12pm', services: 'Fresh Food' },
+            ];
+
+            // Add No-Cost Kids Meals sites (Durham City/County - durhamnc.gov)
+            poiData.categories.kids_meals = [
+                { name: "EK Powe Elementary", lat: 36.0130, lon: -78.9225, type: 'kids_meals', address: '913 9th Street, Durham, NC', schedule: 'Summer meals program · Mon-Thu, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "Club Boulevard Community Center", lat: 36.0250, lon: -78.8772, type: 'kids_meals', address: '2415 Glenbrook Drive, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12-2pm' },
+                { name: "Reaching All Minds Academy", lat: 35.9892, lon: -78.8519, type: 'kids_meals', address: '2703 Holloway Street, Durham, NC 27703', schedule: 'Summer meals program · Mon-Fri, Breakfast 7:30-8:30am, Lunch 11:30am-1:30pm' },
+                { name: "Camp Calvary at Lyon Park", lat: 35.9890, lon: -78.9196, type: 'kids_meals', address: '1309 Halley St., Durham, NC 27707', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-9am, Lunch 11:30am-12:30pm' },
+                { name: "Purpose Learning Lab", lat: 36.0340, lon: -78.9818, type: 'kids_meals', address: '2315 Sparger Rd, Durham, NC 27705', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 11:30am-1pm' },
+                { name: "Latino Educational Achievement Partnership", lat: 36.0269, lon: -78.9366, type: 'kids_meals', address: '1737 Hillandale Rd, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9am, Lunch 12:30-1:30pm' },
+                { name: "Durham School of the Arts", lat: 36.0028, lon: -78.9067, type: 'kids_meals', address: '400 N Duke St, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:15-9:15am, Lunch 11:30am-1pm' },
+                { name: "Creekside Elementary", lat: 35.9273, lon: -78.9935, type: 'kids_meals', address: '5321 Ephesus Church Road, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-9am, Lunch 12-1pm' },
+                { name: "Parkwood Elementary", lat: 35.8907, lon: -78.9076, type: 'kids_meals', address: '5207 Revere Rd, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 7-8am, Lunch 11am-1pm' },
+                { name: "Boys and Girls Club", lat: 35.9490, lon: -78.9247, type: 'kids_meals', address: '1010 MLK Jr Pkwy, Durham, NC', phone: '919-943-1945', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-9am, Lunch 12-1pm' },
+                { name: "Walltown Durham Parks & Recreation", lat: 36.0175, lon: -78.9142, type: 'kids_meals', address: '1308 W Club Blvd, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "Irwin R. Holmes Sr. Recreation Center", lat: 35.9638, lon: -78.8888, type: 'kids_meals', address: '2000 South Alston Ave, Durham, NC 27707', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "Bell Yeager Baptist Church", lat: 35.9650, lon: -78.9188, type: 'kids_meals', address: '128 East Cornwallis Rd, Durham, NC', phone: '919-323-9472', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9am, Lunch 12-1pm' },
+                { name: "Edison Johnson Parks & Recreation", lat: 36.0290, lon: -78.9003, type: 'kids_meals', address: '500 W Murray Ave, Durham, NC 27704', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "YE Smith Elementary", lat: 35.9861, lon: -78.8729, type: 'kids_meals', address: '2410 E Main St, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 7-8am, Lunch 11am-1pm' },
+                { name: "Wytha Balance Yoga", lat: 35.9055, lon: -78.9173, type: 'kids_meals', address: '1096 E NC Hwy 54 Suite 200-C, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:15am, Lunch 12-1pm' },
+                { name: "Victorious Praise Fellowship Church", lat: 35.9295, lon: -78.8154, type: 'kids_meals', address: '2116 Page Road, Durham, NC', phone: '919-957-7500', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:15-9:15am, Lunch 12:30-1:30pm' },
+                { name: "Bull City Woodshop", lat: 35.9802, lon: -78.8815, type: 'kids_meals', address: '1912 E. Pettigrew St., Durham, NC 27703', schedule: 'Summer meals program · Mon-Fri, Lunch 11:30am-12pm' },
+                { name: "New Africa Village @ Hoover Rd", lat: 35.9794, lon: -78.8702, type: 'kids_meals', address: '1126 South Hoover Rd, Durham, NC', schedule: 'Summer meals program · Mon-Thu, Lunch 11:30am-12:30pm' },
+                { name: "Kestrel Heights", lat: 35.8954, lon: -78.8892, type: 'kids_meals', address: '4700 South Alston Avenue, Durham, NC 27713', schedule: 'Summer meals program · Mon-Fri, Breakfast 7:45-8:15am, Lunch 11-11:30am' },
+                { name: "Ivy Community Center", lat: 35.9444, lon: -78.9058, type: 'kids_meals', address: '4222 Fayetteville Rd, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 11am-12pm' },
+                { name: "WD Hill Parks & Recreation", lat: 35.9807, lon: -78.8999, type: 'kids_meals', address: '1308 Fayetteville St, Durham, NC', phone: '919-560-4292', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "Merrick Moore Elementary", lat: 36.0060, lon: -78.8527, type: 'kids_meals', address: '2325 Cheek Rd, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 7-8am, Lunch 11am-1pm' },
+                { name: "Mangum Elementary", lat: 36.1710, lon: -78.8776, type: 'kids_meals', address: '9008 Quail Roost Rd, Bahama, NC 27503', schedule: 'Summer meals program · Mon-Fri, Breakfast 7-8am, Lunch 11am-1pm' },
+                { name: "Carrington Middle School", lat: 36.0881, lon: -78.9133, type: 'kids_meals', address: '227 Milton Rd, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12:30-1:30pm' },
+                { name: "Salvation Army", lat: 35.9928, lon: -78.8860, type: 'kids_meals', address: '810 N. Alston Ave, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-9am, Lunch 12-1pm' },
+                { name: "Southern High School", lat: 35.9996, lon: -78.8312, type: 'kids_meals', address: '800 Clayton Rd, Durham, NC', schedule: 'Summer meals program · Mon-Thu, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "Club Boulevard Elementary", lat: 36.0185, lon: -78.8970, type: 'kids_meals', address: '400 W Club Blvd, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-9am, Lunch 12-1pm' },
+                { name: "Lakewood Elementary", lat: 35.9828, lon: -78.9358, type: 'kids_meals', address: '2520 Vesson Ave, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 7:30-8:30am, Lunch 11:30am-1:30pm' },
+                { name: "Prosperous Living-Southpoint Academy", lat: 35.8927, lon: -78.9403, type: 'kids_meals', address: '7415 Fayetteville Rd, Durham, NC', phone: '919-323-3246', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "Stiks and Kitz", lat: 35.9820, lon: -78.8966, type: 'kids_meals', address: '600 East Umstead St, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-9am, Lunch 12-1pm' },
+                { name: "Lollipop Kids", lat: 36.0325, lon: -78.8903, type: 'kids_meals', address: '3218 North Roxboro St, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-8:45am, Lunch 11am-12:15pm' },
+                { name: "Mt. Zion Christian Church", lat: 35.9552, lon: -78.9067, type: 'kids_meals', address: '3519 Fayetteville St, Durham, NC 27707', schedule: 'Summer meals program · Mon-Fri, Breakfast 7:30-8:30am, Lunch 11am-1pm' },
+                { name: "Union Baptist Church", lat: 36.0006, lon: -78.8929, type: 'kids_meals', address: '311 Dowd Street, Durham, NC', phone: '919-688-1304', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-8:30am, Lunch 11:30am-12pm' },
+                { name: "Performance Learning Center", lat: 35.9896, lon: -78.8795, type: 'kids_meals', address: '401 N Driver St, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Breakfast 8:30-9:30am, Lunch 12-1pm' },
+                { name: "Walltown Children's Theatre", lat: 36.0187, lon: -78.9155, type: 'kids_meals', address: '1225 Berkeley St, Durham, NC', schedule: 'Summer meals program · Mon-Fri, Lunch 12-1:30pm' },
+                { name: "Durham CDF Freedom Schools", lat: 35.9929, lon: -78.9047, type: 'kids_meals', address: '334 Blackwell St, Durham, NC 27701', schedule: 'Summer meals program · Mon-Fri, Breakfast 8-8:30am, Lunch 12-12:30pm' },
+            ];
+
+            // Add Durham Community Gardens
+            poiData.categories.community_garden = [
+                { name: "Briggs Avenue Community Garden", lat: 35.9631, lon: -78.8774, type: 'community_garden', address: '1314 S Briggs Ave, Durham, NC 27703', schedule: 'Plot rentals available; contact Durham Cooperative Extension', phone: '919-560-0525', services: 'Urban farming, Food security, Pollinator conservation' },
+                { name: "SEEDS", lat: 35.9956, lon: -78.8903, type: 'community_garden', address: '706 Gilbert St, Durham, NC 27701', schedule: 'Open to public Tue-Fri, 9am-2pm', phone: '919-683-1197', services: 'Urban garden, Kitchen classroom, Youth programs' },
+                { name: "Community Garden at Orchard Park", lat: 35.9890, lon: -78.9092, type: 'community_garden', address: '1000 S Duke St, Durham, NC 27701', schedule: 'Workdays select Saturdays 10am-12pm', services: "Children's garden, Plot rentals (waitlist)" },
+                { name: "Bull City Community Garden", lat: 35.9973, lon: -78.9033, type: 'community_garden', address: '110 Morris Street, Durham, NC 27701', schedule: 'Contact for volunteer hours', services: 'Senior food access, Duke-Durham partnership' },
+                { name: "Edison Johnson Community Garden", lat: 36.0295, lon: -78.9015, type: 'community_garden', address: '600 West Murray Ave, Durham, NC 27704', schedule: 'Contact for plot availability', services: 'Community wellness, Duke Healthy Lifestyles partnership' },
+                { name: "Duke Campus Farm", lat: 36.0195, lon: -78.9595, type: 'community_garden', address: '4934 Friends School Rd, Durham, NC 27705', schedule: 'Contact for volunteer days', services: 'Sustainable produce, 100% donated harvest' },
+                { name: "The HUB Farm (DPS)", lat: 36.0861, lon: -78.9115, type: 'community_garden', address: '117 Milton Rd, Durham, NC 27712', schedule: 'School-year field trips; contact for public events', phone: '919-560-2211', services: 'Outdoor education, 30-acre farm & forest' },
+                { name: "Sacred Soil Community Garden", lat: 35.9621, lon: -78.9006, type: 'community_garden', address: '814 Elmira Ave, Durham, NC 27707', schedule: 'Tue 9:30-11:30am; select Saturdays', services: 'Church ministry, Volunteer welcome' },
+                { name: "St. James Baptist Church Garden", lat: 36.0169, lon: -78.9088, type: 'community_garden', address: '1305 W Club Blvd, Durham, NC 27705', phone: '919-286-5024', services: 'Church community garden' },
             ];
 
             // Split convenience stores out of grocery (OSM shop=convenience was lumped in)
@@ -6120,8 +6254,12 @@
                   ${poi.address.city || ''}, NC ${poi.address.postcode || ''}
                 </div>` : '';
 
+            // Simple string address for community health POIs
+            const simpleAddress = (typeof poi.address === 'string') ?
+                `<div class="poi-popup-address">${poi.address}</div>` : '';
+
             const formatType = (type) => {
-                return type.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+                return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
             };
 
             // Ethnic group badge for restaurants
@@ -6140,6 +6278,29 @@
             const snapBadge = poi.snap ?
                 `<div class="poi-snap-badge"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M13.5 2l-7.5 7.5-3.5-3.5-2.5 2.5 6 6 10-10z"/></svg> SNAP Accepted</div>` : '';
 
+            // Community health details (food pantries & kids meals)
+            const scheduleInfo = poi.schedule ?
+                `<div style="font-size: 11.5px; color: #475569; margin: 5px 0; line-height: 1.4;">
+                  <strong style="color: #1e3a8a;">Schedule:</strong> ${poi.schedule}
+                </div>` : '';
+            const phoneInfo = poi.phone ?
+                `<div style="font-size: 11.5px; color: #475569; margin: 3px 0;">
+                  <strong style="color: #1e3a8a;">Phone:</strong> <a href="tel:${poi.phone.split(',')[0].trim()}" style="color: #1e3a8a;">${poi.phone}</a>
+                </div>` : '';
+            const servicesInfo = poi.services ?
+                `<div style="font-size: 11px; color: #666; margin: 5px 0; line-height: 1.4;">
+                  ${poi.services.split(', ').map(s => `<span style="display:inline-block;background:#f0fdf4;color:#166534;padding:1px 6px;border-radius:3px;margin:1px 2px;font-size:10.5px;">${s}</span>`).join('')}
+                </div>` : '';
+
+            const isCommunityHealth = poi.type === 'food_pantry' || poi.type === 'kids_meals' || poi.type === 'community_fridge' || poi.type === 'community_garden';
+
+            const communitySourceMap = { food_pantry: 'End Hunger Durham', kids_meals: 'City of Durham', community_fridge: 'durhamcommunityfridges.com', community_garden: 'Durham Community Garden Network' };
+            const sourceFooter = isCommunityHealth
+                ? `<span style="font-size:10px;color:#94a3b8;">Source: ${communitySourceMap[poi.type]}</span>`
+                : (String(poi.id).startsWith('snap_')
+                    ? '<span style="font-size:11px;color:#718096;">Source: USDA SNAP Retailer Data</span>'
+                    : `<a href="https://www.openstreetmap.org/node/${poi.id}" target="_blank">View on OpenStreetMap</a>`);
+
             return `
                 <div class="poi-popup">
                   <div class="poi-popup-header">
@@ -6147,13 +6308,15 @@
                   </div>
                   <div class="poi-popup-type">${formatType(poi.type)}</div>
                   ${snapBadge}
+                  ${scheduleInfo}
+                  ${phoneInfo}
+                  ${servicesInfo}
                   ${ethnicBadge}
                   ${extraInfo}
                   ${address}
+                  ${simpleAddress}
                   <div class="poi-popup-footer">
-                    ${String(poi.id).startsWith('snap_')
-                      ? '<span style="font-size:11px;color:#718096;">Source: USDA SNAP Retailer Data</span>'
-                      : `<a href="https://www.openstreetmap.org/node/${poi.id}" target="_blank">View on OpenStreetMap</a>`}
+                    ${sourceFooter}
                   </div>
                 </div>
             `;
