@@ -5,6 +5,8 @@ interactive map explorer, a food-environment (POI) layer, and a set of temporal
 and demographic analyses. Maintained by the **David Lab, Duke University**
 ([ladlab.org](https://www.ladlab.org/)).
 
+> **Live site:** [nc-foodseq-poi-explorer-community-h.vercel.app](https://nc-foodseq-poi-explorer-community-h.vercel.app/)
+
 > **What this is.** FoodSeq amplifies food-derived DNA in wastewater to estimate
 > what a community is eating — cheaply (`<$0.01`/person) and at population scale.
 > This repo holds the sequencing→phyloseq pipeline, the reference databases, the
@@ -60,17 +62,16 @@ Interactive map of FoodSeq wastewater data with an OpenStreetMap food-environmen
 overlay. **Single file, no build step.**
 
 ```bash
-cd nc-foodseq-poi-explorer
-python3 -m http.server 8000      # a server is required (CORS on local JSON)
-open http://localhost:8000
+python3 -m http.server 8000      # a local server is required (CORS on local JSON)
+open http://localhost:8000        # or visit in your browser
 ```
 
 - **Stack:** Leaflet 1.9.4 · Leaflet.markercluster 1.5.3 · Chart.js 4.4.0 · vanilla JS
 - **Features:** county / treatment-plant selection, plant vs animal species views,
   top-25 bar charts, time-period navigation, census overlays (density, income,
-  race/ethnicity), draggable multi-panel comparison, 9 POI categories
-  (~28k locations), service-area catchments.
-- Full detail in `nc-foodseq-poi-explorer/README.md`.
+  race/ethnicity), draggable multi-panel comparison, POI categories
+  (~28k locations), community health layers (food pantries, no-cost kids meals,
+  community gardens), service-area catchments.
 
 ---
 

@@ -1,0 +1,19 @@
+name: Sync to LAD-LAB
+
+on:
+  push:
+    branches:
+      - community_healthmap
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push to LAD-LAB
+        run: |
+          git remote add ladlab https://x-access-token:${{ secrets.LADLAB_PAT }}@github.com/LAD-LAB/nc-foodseq-poi-explorer.git
+          git push ladlab community_healthmap --force
